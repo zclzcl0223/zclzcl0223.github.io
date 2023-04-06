@@ -196,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-06 18:34:29" itemprop="dateModified" datetime="2023-04-06T18:34:29+08:00">2023-04-06</time>
+                <time title="Modified: 2023-04-06 22:24:33" itemprop="dateModified" datetime="2023-04-06T22:24:33+08:00">2023-04-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,15 +232,42 @@
 <h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><p>Cost function compares $\widehat{y}$ to $y$.<strong>The better the model is,the smaller the value of the cost function is.</strong></p>
 <p>The simplest and most commonly used cost function in linear regression is:</p>
 <p>$$J_{(w,b)}&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^{m}(\widehat{y}^{(i)}-y^{(i)})^2$$</p>
-<p>which is called <em><strong>squared error cost function</strong></em>.</p>
+<p>which is called <em><strong>mean squared error cost function</strong></em>.</p>
 <blockquote>
 <p>Why $2m$?</p>
+<p><em>This is for the convenience of later calculations.When deriving $J$ using the gradient descent method,if it is $2m$,there will not be any constant in the derivative function:</em></p>
+<p>$$\frac{\partial{J_{(w,b)}}}{\partial{w}}&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(\widehat{y}^{(i)}-y^{(i)})\frac{\partial{\widehat{y}^{(i)}}}{\partial{w}}$$</p>
 </blockquote>
 <p>Since the training set is constant,$J$ is just the function of $w$ and $b$.Therefore,<strong>our goal is to find $w$ and $b$ that minimize $J_{(w,b)}$</strong>.</p>
 <blockquote>
 <p>The 3D bowl-shaped surface plot,which is the plot of $J$,can also be visualized as a contour plot.In the contour plot,each oval contains the choices of $w$ and $b$ that result in the same value of $J$.</p>
 </blockquote>
 <p><img src="/2023/04/05/SurpervisedLearning/2.png" alt="2"></p>
+<h2 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h2><p>Gradient descent is an algorithm that can be used to minimize any function.</p>
+<p>The steps of gradient descent are:</p>
+<ol>
+<li><p>Start with some parameters (just set them to 0 is ok);</p>
+</li>
+<li><p>Keep changing the parameters to reduce $J$:<br>$$w&#x3D;w-\alpha\frac{\partial{J_{(w,b)}}}{\partial{w}}$$<br>$\alpha$:learning rate,(0,1],which is used to control the speed of gradient descent.</p>
+<p>$w$:any parameter.</p>
+<p>All the parameters should be updated <strong>simultaneously</strong>,which means that when updating one parameter,the value of other parameters should be their original value.</p>
+<blockquote>
+<p>Principle: The ${grad(f)}$ at a certain point is the direction in which the function changes the fastest.</p>
+</blockquote>
+</li>
+<li><p>Get a minimum or near minimum $J$.</p>
+</li>
+</ol>
+<p>To achieve this,$J$ has to be a <strong>bowl shape function (convex function)</strong> or <strong>a function with local minima</strong>.</p>
+<p><img src="/2023/04/05/SurpervisedLearning/3.png" alt="3"></p>
+<p>In linear regression,<em>mean squared error cost function</em> is always a bowl shape function.</p>
+<p>If $\alpha$ is too small,the gradient descent will work but may be very slow.</p>
+<p><img src="/2023/04/05/SurpervisedLearning/4.png" alt="4"></p>
+<p>If $\alpha$ is too large,the gradient descent may not work,which means it may fail to converge but diverge.</p>
+<p><img src="/2023/04/05/SurpervisedLearning/5.png" alt="5"></p>
+<blockquote>
+<p><em>Batch gradient descent</em>: Each step of gradient descent uses all the training examples.</p>
+</blockquote>
 <h1 id="Classification-model"><a href="#Classification-model" class="headerlink" title="Classification model"></a>Classification model</h1>
       
     </div>
@@ -673,7 +700,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-06 19:24:05" itemprop="dateModified" datetime="2023-04-06T19:24:05+08:00">2023-04-06</time>
+                <time title="Modified: 2023-04-06 20:05:16" itemprop="dateModified" datetime="2023-04-06T20:05:16+08:00">2023-04-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -782,7 +809,7 @@
 <p>However,there are still some bugs on the website.</p>
 <ol>
 <li>The plugin may take <code>\\</code> as <code>\</code>, <code>\;</code> as <code>;</code>.To solve this,we just need to add one <code>\</code> before <code>\</code>;</li>
-<li><del>Two <code>&#123;&#123;&#125;&#125;</code> need a <em>space</em> to distinguish.</del>(I don’t know what this means…)</li>
+<li><del>Two <code>&#123;&#123;&#125;&#125;</code> need a <em>space</em> to distinguish.</del>(I do not know what this means…)</li>
 </ol>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/476601594">Source of Solution</a></p>
 <hr>
