@@ -188,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-04-05 23:34:48 / Modified: 23:35:33" itemprop="dateCreated datePublished" datetime="2023-04-05T23:34:48+08:00">2023-04-05</time>
+              <time title="Created: 2023-04-05 23:34:48" itemprop="dateCreated datePublished" datetime="2023-04-05T23:34:48+08:00">2023-04-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-04-06 18:34:29" itemprop="dateModified" datetime="2023-04-06T18:34:29+08:00">2023-04-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -213,7 +219,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="Regression-model"><a href="#Regression-model" class="headerlink" title="Regression model"></a>Regression model</h1><p>The steps in regression model are as follow:</p>
+<p><img src="/2023/04/05/SurpervisedLearning/1.png" alt="1"></p>
+<p>$f$ is the <strong>function</strong> or <strong>model</strong> getting from the learning algorithm,which can be used to predict the output.</p>
+<p>$\widehat{y}$,the value of $f$,is the prediction of $y$.</p>
+<h2 id="Linear-regression-model"><a href="#Linear-regression-model" class="headerlink" title="Linear regression model"></a>Linear regression model</h2><p>Linear regression model is the most simple model in regression model,in which,$f$ is just a linear function:</p>
+<p>$${f}_{w,b}(x)&#x3D;wx+b$$</p>
+<p><em><center>or</center></em></p>
+<p>$$f(x)&#x3D;wx+b$$</p>
+<p>$w$ and $b$ are the <em>parameters</em> that we(the learning algorithms) can adjust to make $f$ more accurate.</p>
+<p>Linear regression with single input is also called <em>univariate linear regression</em>.</p>
+<h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><p>Cost function compares $\widehat{y}$ to $y$.<strong>The better the model is,the smaller the value of the cost function is.</strong></p>
+<p>The simplest and most commonly used cost function in linear regression is:</p>
+<p>$$J_{(w,b)}&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^{m}(\widehat{y}^{(i)}-y^{(i)})^2$$</p>
+<p>which is called <em><strong>squared error cost function</strong></em>.</p>
+<blockquote>
+<p>Why $2m$?</p>
+</blockquote>
+<p>Since the training set is constant,$J$ is just the function of $w$ and $b$.Therefore,<strong>our goal is to find $w$ and $b$ that minimize $J_{(w,b)}$</strong>.</p>
+<blockquote>
+<p>The 3D bowl-shaped surface plot,which is the plot of $J$,can also be visualized as a contour plot.In the contour plot,each oval contains the choices of $w$ and $b$ that result in the same value of $J$.</p>
+</blockquote>
+<p><img src="/2023/04/05/SurpervisedLearning/2.png" alt="2"></p>
+<h1 id="Classification-model"><a href="#Classification-model" class="headerlink" title="Classification model"></a>Classification model</h1>
       
     </div>
 
@@ -263,7 +291,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-06 01:37:46" itemprop="dateModified" datetime="2023-04-06T01:37:46+08:00">2023-04-06</time>
+                <time title="Modified: 2023-04-06 18:34:16" itemprop="dateModified" datetime="2023-04-06T18:34:16+08:00">2023-04-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -311,7 +339,17 @@
 <h3 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h3><p>Anomaly detection is a kind of unsurpervised learning that finds unusual data points.It is very useful in financial system.</p>
 <h3 id="Dimensionality-reduction"><a href="#Dimensionality-reduction" class="headerlink" title="Dimensionality reduction"></a>Dimensionality reduction</h3><p>This kind of unsurpervised learning compresses data using fewer numbers.</p>
 <h2 id="Reinforcement-learning"><a href="#Reinforcement-learning" class="headerlink" title="Reinforcement learning"></a>Reinforcement learning</h2><h1 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h1><h2 id="Jupyter-notebook"><a href="#Jupyter-notebook" class="headerlink" title="Jupyter notebook"></a>Jupyter notebook</h2><p>Jupyter notebook is the default <strong>environments</strong> that most researchers use to code up and experiment.</p>
-<h2 id="Pytorch"><a href="#Pytorch" class="headerlink" title="Pytorch"></a>Pytorch</h2><h2 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h2>
+<h2 id="Pytorch"><a href="#Pytorch" class="headerlink" title="Pytorch"></a>Pytorch</h2><h2 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h2><h1 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h1><ul>
+<li>Training set: Data used to train the model.</li>
+</ul>
+<h1 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h1><ul>
+<li>${x}$ &#x3D; “input” variable or feature;</li>
+<li>${y}$ &#x3D; “output” variable or “target” variable;</li>
+<li>${m}$ &#x3D; number of training examples;</li>
+<li>$(x, y)$ &#x3D; a single training example;</li>
+<li>$(x^i,y^i)$ &#x3D; $i^{th}$ training example</li>
+</ul>
+
       
     </div>
 
@@ -353,10 +391,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-04-05 13:33:54 / Modified: 19:01:20" itemprop="dateCreated datePublished" datetime="2023-04-05T13:33:54+08:00">2023-04-05</time>
+              <time title="Created: 2023-04-05 13:33:54" itemprop="dateCreated datePublished" datetime="2023-04-05T13:33:54+08:00">2023-04-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-04-06 19:11:01" itemprop="dateModified" datetime="2023-04-06T19:11:01+08:00">2023-04-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -469,12 +513,11 @@
 <hr>
 <h2 id="Arithmetic-formula"><a href="#Arithmetic-formula" class="headerlink" title="Arithmetic formula"></a>Arithmetic formula</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\frac&#123;\partial f&#125;&#123;\partial x&#125; = 2\sqrt&#123;a&#125;x</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
 
-<p><strong>That is</strong></p>
-<p>$$<br>\frac{\partial f}{\partial x} &#x3D; 2\sqrt{a}x<br>$$</p>
-<p>But NexT theme will not show the formula correctly.</p>
+<p><strong>That is</strong><br>$$<br>\frac{\partial f}{\partial x} &#x3D; 2\sqrt{a}x<br>$$</p>
+<p><del>But NexT theme will not show the formula correctly.</del></p>
 <hr>
 <h2 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|name|age|grade|</span><br><span class="line">|:---|---:|:---:|  // Three -; left right mid</span><br><span class="line">|Jack|20|80|</span><br><span class="line">|Bob|20|90|</span><br></pre></td></tr></table></figure>
-
+<p><strong>That is</strong></p>
 <table>
 <thead>
 <tr>
@@ -498,24 +541,19 @@
 <h1 id="Line-element"><a href="#Line-element" class="headerlink" title="Line element"></a>Line element</h1><hr>
 <h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[baidu](baidu.com &quot;A search engine&quot;)</span><br></pre></td></tr></table></figure>
 
-<p><strong>That is</strong></p>
-<p><a href="baidu.com" title="A search engine">baidu</a></p>
+<p><strong>That is</strong><br><a href="baidu.com" title="A search engine">baidu</a></p>
 <hr>
 <h2 id="Reference-link"><a href="#Reference-link" class="headerlink" title="Reference link"></a>Reference link</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[baidu][id]</span><br><span class="line"></span><br><span class="line">[baidu][id]</span><br><span class="line"></span><br><span class="line">[id]: baidu.com &quot;A search engine&quot;</span><br></pre></td></tr></table></figure>
 
-<p><strong>That is</strong></p>
-<p><a href="baidu.com" title="A search engine">baidu</a></p>
-<p><a href="baidu.com" title="A search engine">baidu</a></p>
+<p><strong>That is</strong><br><a href="baidu.com" title="A search engine">baidu</a><br><a href="baidu.com" title="A search engine">baidu</a></p>
 <p>Or</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Please refer to [Link](##Link)</span><br></pre></td></tr></table></figure>
 
-<p><strong>That is</strong></p>
-<p>Please refer to <a href="##Link">Link</a></p>
+<p><strong>That is</strong><br>Please refer to <a href="##Link">Link</a></p>
 <hr>
 <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.baidu.com</span><br></pre></td></tr></table></figure>
 
-<p><strong>That is</strong></p>
-<p><a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com</a></p>
+<p><strong>That is</strong><br><a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com</a></p>
 <hr>
 <h2 id="Picture-link"><a href="#Picture-link" class="headerlink" title="Picture link"></a>Picture link</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![baidu](https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png &quot;baidu logo&quot;)</span><br></pre></td></tr></table></figure>
 
@@ -523,23 +561,67 @@
 <hr>
 <h2 id="Italic"><a href="#Italic" class="headerlink" title="Italic"></a>Italic</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*italic*</span><br></pre></td></tr></table></figure>
 
-<p><strong>That is</strong></p>
-<p><em>italic</em></p>
+<p><strong>That is</strong><br><em>italic</em></p>
 <hr>
 <h2 id="Bold"><a href="#Bold" class="headerlink" title="Bold"></a>Bold</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**bold**</span><br></pre></td></tr></table></figure>
 
-<p><strong>That is</strong></p>
-<p><strong>bold</strong></p>
+<p><strong>That is</strong><br><strong>bold</strong></p>
 <hr>
 <h2 id="Line-code"><a href="#Line-code" class="headerlink" title="Line code"></a>Line code</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`printf()`</span><br></pre></td></tr></table></figure>
 
-<p><strong>That is</strong></p>
-<p><code>printf()</code></p>
+<p><strong>That is</strong><br><code>printf()</code></p>
 <hr>
 <h2 id="Underline"><a href="#Underline" class="headerlink" title="Underline"></a>Underline</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;u&gt;underline&lt;/u&gt;</span><br></pre></td></tr></table></figure>
 
-<p><strong>That is</strong></p>
-<p><u>underline</u></p>
+<p><strong>That is</strong><br><u>underline</u></p>
+<hr>
+<h2 id="Superscript"><a href="#Superscript" class="headerlink" title="Superscript"></a>Superscript</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">saber&lt;sup&gt;1&lt;/sup&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong><br>saber<sup>1</sup></p>
+<hr>
+<h2 id="Subscript"><a href="#Subscript" class="headerlink" title="Subscript"></a>Subscript</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">saber&lt;sub&gt;1&lt;/sub&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong><br>saber<sub>1</sub></p>
+<hr>
+<h2 id="In-the-middle"><a href="#In-the-middle" class="headerlink" title="In the middle"></a>In the middle</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;center&gt; That is &lt;/center&gt;</span><br></pre></td></tr></table></figure>
+<p><strong><center> That is </center></strong></p>
+<hr>
+<h2 id="Line-Arithmetic-formula"><a href="#Line-Arithmetic-formula" class="headerlink" title="Line Arithmetic formula"></a>Line Arithmetic formula</h2><h3 id="General"><a href="#General" class="headerlink" title="General"></a>General</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$x$</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong><br>$x$</p>
+<h3 id="Superscript-1"><a href="#Superscript-1" class="headerlink" title="Superscript"></a>Superscript</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$x^1$</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong><br>$x^1$</p>
+<h3 id="Subscript-1"><a href="#Subscript-1" class="headerlink" title="Subscript"></a>Subscript</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$x_1$</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong><br>$x_1$</p>
+<h3 id="Hat"><a href="#Hat" class="headerlink" title="Hat"></a>Hat</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\widehat&#123;y&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong><br>$\widehat{y}$</p>
+<h3 id="Ensemble"><a href="#Ensemble" class="headerlink" title="Ensemble"></a>Ensemble</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;delta&#125;^1$</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong><br>${delta}^1$</p>
+<h3 id="Fraction"><a href="#Fraction" class="headerlink" title="Fraction"></a>Fraction</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\frac&#123;1&#125;&#123;n&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong><br>$\frac{1}{n}$</p>
+<h3 id="Aproximately-equal"><a href="#Aproximately-equal" class="headerlink" title="Aproximately equal"></a>Aproximately equal</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\approx$</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong><br>$\approx$</p>
+<h3 id="Time"><a href="#Time" class="headerlink" title="Time"></a>Time</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\times$</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong><br>$\times$</p>
+<h3 id="Belong-to"><a href="#Belong-to" class="headerlink" title="Belong to"></a>Belong to</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\in$</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong><br>$\in$</p>
+<h3 id="Greek-alphabet"><a href="#Greek-alphabet" class="headerlink" title="Greek alphabet"></a>Greek alphabet</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\name$</span><br></pre></td></tr></table></figure>
+
+<p><strong>For example</strong>:<br>$\beta$ $\sigma$</p>
+<h3 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\sum\limits_&#123;i=1&#125;^&#123;n&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong> $\sum\limits_{i&#x3D;1}^{n}$</p>
+<h2 id="Deletion-line"><a href="#Deletion-line" class="headerlink" title="Deletion line"></a>Deletion line</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~aaa~~</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong> <del>aaa</del></p>
 <hr>
 
       
@@ -591,7 +673,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-06 02:07:03" itemprop="dateModified" datetime="2023-04-06T02:07:03+08:00">2023-04-06</time>
+                <time title="Modified: 2023-04-06 19:24:05" itemprop="dateModified" datetime="2023-04-06T19:24:05+08:00">2023-04-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -675,7 +757,7 @@
 <li>When using <em>hexo-asset-image</em>,we can not show the picture on website either.</li>
 </ul>
 <p>To solve this problem,firstly,we need to uninstall <em>hexo-simple-image</em>.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-simple-image</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-simple-image --save</span><br></pre></td></tr></table></figure>
 <p>Secondly,we need to install <em>hexo-asset-image</em>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 <p>Thirdly,we should change the content of <code>/node_modules/hexo-asset-image/index.js</code> to:</p>
@@ -685,6 +767,24 @@
 
 <p><strong>This will make hexo automatically extend the path of image to its absolute path.</strong></p>
 <p><a target="_blank" rel="noopener" href="https://wangwei1237.github.io/2020/02/05/handle-the-bug-of-hexo-asset-image-plugin/">Source of Solution</a></p>
+<h2 id="math-formula"><a href="#math-formula" class="headerlink" title="math formula"></a>math formula</h2><p>There are some bugs in plugin <em>hexo-renderer-marked</em> which lead the math formula to be wrongly interpreted.</p>
+<p>The solution is to revise <em>\blog\node_modules\marked\lib\marked.cjs</em>.</p>
+<ul>
+<li><p>Change all the lines starting with <strong>escape:</strong> to:</p>
+<figure class="highlight cjs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span>,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Change all the lines starting with <strong>em:</strong> to :</p>
+<figure class="highlight cjs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">em</span>: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure>
+<p>Then,enable <em>mathjax</em> in <em>theme_config.yml</em>,that is, set <code>enable</code> in <code>math</code> to <code>true</code>.</p>
+</li>
+</ul>
+<p>At last,add <code>mathjax: true</code> in <em>blog\scaffolds\post.md</em>(<strong>the posts created before need you to add this manually</strong>).</p>
+<p>However,there are still some bugs on the website.</p>
+<ol>
+<li>The plugin may take <code>\\</code> as <code>\</code>, <code>\;</code> as <code>;</code>.To solve this,we just need to add one <code>\</code> before <code>\</code>;</li>
+<li><del>Two <code>&#123;&#123;&#125;&#125;</code> need a <em>space</em> to distinguish.</del>(I don’t know what this means…)</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/476601594">Source of Solution</a></p>
 <hr>
 <h2 id="HexoDocs"><a href="#HexoDocs" class="headerlink" title="HexoDocs"></a><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">HexoDocs</a></h2>
       
@@ -874,6 +974,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
