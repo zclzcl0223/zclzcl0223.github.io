@@ -196,7 +196,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-06 22:24:33" itemprop="dateModified" datetime="2023-04-06T22:24:33+08:00">2023-04-06</time>
+                <time title="Modified: 2023-04-07 22:06:33" itemprop="dateModified" datetime="2023-04-07T22:06:33+08:00">2023-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,7 +243,7 @@
 <p>The 3D bowl-shaped surface plot,which is the plot of $J$,can also be visualized as a contour plot.In the contour plot,each oval contains the choices of $w$ and $b$ that result in the same value of $J$.</p>
 </blockquote>
 <p><img src="/2023/04/05/SurpervisedLearning/2.png" alt="2"></p>
-<h2 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h2><p>Gradient descent is an algorithm that can be used to minimize any function.</p>
+<h3 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h3><p>Gradient descent is an algorithm that can be used to minimize any function.</p>
 <p>The steps of gradient descent are:</p>
 <ol>
 <li><p>Start with some parameters (just set them to 0 is ok);</p>
@@ -268,6 +268,56 @@
 <blockquote>
 <p><em>Batch gradient descent</em>: Each step of gradient descent uses all the training examples.</p>
 </blockquote>
+<h2 id="Multiple-linear-regression-model"><a href="#Multiple-linear-regression-model" class="headerlink" title="Multiple linear regression model"></a>Multiple linear regression model</h2><p>When there are more than one features determining the output,it is advisable for us to use <em>vector</em>.</p>
+<blockquote>
+<p>Feature engineering: Using intuition to design new features,by <strong>transforming</strong> or <strong>combining</strong> original features.Good features will make the model better.</p>
+</blockquote>
+<h3 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h3><ul>
+<li>$x_j$ &#x3D; $j^{th}$ feature;</li>
+<li>$n$ &#x3D; number of features;</li>
+<li>${\vec{x}^{(i)}}$ &#x3D; features of $i^{th}$ training example.</li>
+<li>$x_j^{(i)}$ &#x3D; value of feature $j$ in $i^{th}$ training example ($x$ can also be $\vec{x}$).</li>
+</ul>
+<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><p>$$f_{w,b}(x_1,x_2,…,x_n)&#x3D;w_1x_1+w_2x_2+…+w_nx_n+b$$</p>
+<p>is equal to:</p>
+<p>$$f_{\vec{w},b}(\vec{x})&#x3D;\vec{w}\cdot\vec{x}+b$$</p>
+<p>where<br>$$\vec{w}&#x3D;[w_1,w_2,…,w_n],\vec{x}&#x3D;[x_1,x_2,…,x_n]$$</p>
+<h3 id="Vectorization"><a href="#Vectorization" class="headerlink" title="Vectorization"></a>Vectorization</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">w = np.array([<span class="number">1.0</span>, <span class="number">2.5</span>, -<span class="number">3.3</span>])</span><br><span class="line">b = <span class="number">4</span></span><br><span class="line">x = np.array([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>])</span><br><span class="line"><span class="comment"># vectorization</span></span><br><span class="line">f = np.dot(w, x) + b</span><br></pre></td></tr></table></figure>
+
+<p><code>np.dot()</code> can make use of parallel hardwares,so it is much faster than <code>for loop</code>. (<em>SIMD</em>)</p>
+<blockquote>
+<p>GPU will help to deal with <strong>vectorized code</strong>.</p>
+</blockquote>
+<h3 id="Cost-function-1"><a href="#Cost-function-1" class="headerlink" title="Cost function"></a>Cost function</h3><p>$J(\vec{w},b)$.All the parameters $\vec{w}$ and $b$ should also be updated simultaneously.</p>
+<blockquote>
+<p>Normal equation: This method only works for linear regression.It sovles for $w,b$ without iterations.However,it does not generalize to other learning algorithms and it is slow when number of features is too large(&gt;10,000).It may be useful on the backend.</p>
+</blockquote>
+<h2 id="More-about-gradient-descent"><a href="#More-about-gradient-descent" class="headerlink" title="More about gradient descent"></a>More about gradient descent</h2><h3 id="Feature-scaling-A-mothod-to-accelerate-gradient-descent"><a href="#Feature-scaling-A-mothod-to-accelerate-gradient-descent" class="headerlink" title="Feature scaling - A mothod to accelerate gradient descent"></a>Feature scaling - A mothod to accelerate gradient descent</h3><p>When the value of some features is too large,it may cause even though $\alpha$ is small,the changes of some parameters are still <strong>too significant</strong>,which slows down the convergence speed of gradient descent.</p>
+<p><img src="/2023/04/05/SurpervisedLearning/6.png" alt="6"></p>
+<p>One useful method is <em>feature scaling</em>.By scaling down some features,we can make the convergence speed of different parameters basically the same.</p>
+<p><img src="/2023/04/05/SurpervisedLearning/7.png" alt="7"></p>
+<p>Ways to scale features:</p>
+<ul>
+<li>Dividing by the maximum of the feature;</li>
+<li>Mean normalization.This method may produce negative value,but the range of feature is always 1.To realize this,<ol>
+<li>Get the mean value of this feature in the training set $\mu$;</li>
+<li>Subtract $\mu$ from each example of this feature and divide the result by the difference between the maximum and minimum values of this feature.<br>$$x&#x3D;\frac{x-\mu}{max-min}$$</li>
+</ol>
+</li>
+<li>Z-score normalization.$\sigma$ is the <strong>standard deviation</strong> of this feature.<br>$$x&#x3D;\frac{x-\mu}{\sigma}$$</li>
+</ul>
+<h3 id="Ways-to-check-convergence"><a href="#Ways-to-check-convergence" class="headerlink" title="Ways to check convergence"></a>Ways to check convergence</h3><ol>
+<li>Draw $J-iterations$ curve or learning curve.</li>
+</ol>
+<p><img src="/2023/04/05/SurpervisedLearning/8.png" alt="8"></p>
+<ol start="2">
+<li>Automatic convergence test: Let $\epsilon$ be a small value.Once $J$ decreases by $\leqslant$ $\epsilon$ in one iteration,it converges.</li>
+</ol>
+<h3 id="Choose-a-better-alpha"><a href="#Choose-a-better-alpha" class="headerlink" title="Choose a better $\alpha$"></a>Choose a better $\alpha$</h3><p>Once the learning curve looks like these:</p>
+<p><img src="/2023/04/05/SurpervisedLearning/9.png" alt="9"></p>
+<p>It indicates that $\alpha$ is too large.</p>
+<p>The way to choose a good $\alpha$ is starting with a relative <strong>small value</strong> (like 0.001).And check the astringency of $J$.If $J$ still does not converge,there may be <strong>some bugs</strong> in the code.</p>
+<p>Then,we can try to increase $\alpha$ by <strong>three times</strong>,until we find a relative large $\alpha$.</p>
 <h1 id="Classification-model"><a href="#Classification-model" class="headerlink" title="Classification model"></a>Classification model</h1>
       
     </div>
@@ -318,7 +368,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-06 18:34:16" itemprop="dateModified" datetime="2023-04-06T18:34:16+08:00">2023-04-06</time>
+                <time title="Modified: 2023-04-07 18:13:04" itemprop="dateModified" datetime="2023-04-07T18:13:04+08:00">2023-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -366,7 +416,7 @@
 <h3 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h3><p>Anomaly detection is a kind of unsurpervised learning that finds unusual data points.It is very useful in financial system.</p>
 <h3 id="Dimensionality-reduction"><a href="#Dimensionality-reduction" class="headerlink" title="Dimensionality reduction"></a>Dimensionality reduction</h3><p>This kind of unsurpervised learning compresses data using fewer numbers.</p>
 <h2 id="Reinforcement-learning"><a href="#Reinforcement-learning" class="headerlink" title="Reinforcement learning"></a>Reinforcement learning</h2><h1 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h1><h2 id="Jupyter-notebook"><a href="#Jupyter-notebook" class="headerlink" title="Jupyter notebook"></a>Jupyter notebook</h2><p>Jupyter notebook is the default <strong>environments</strong> that most researchers use to code up and experiment.</p>
-<h2 id="Pytorch"><a href="#Pytorch" class="headerlink" title="Pytorch"></a>Pytorch</h2><h2 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h2><h1 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h1><ul>
+<h2 id="Pytorch"><a href="#Pytorch" class="headerlink" title="Pytorch"></a>Pytorch</h2><h2 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h2><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h1 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h1><ul>
 <li>Training set: Data used to train the model.</li>
 </ul>
 <h1 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h1><ul>
@@ -374,7 +424,11 @@
 <li>${y}$ &#x3D; “output” variable or “target” variable;</li>
 <li>${m}$ &#x3D; number of training examples;</li>
 <li>$(x, y)$ &#x3D; a single training example;</li>
-<li>$(x^i,y^i)$ &#x3D; $i^{th}$ training example</li>
+<li>$(x^i,y^i)$ &#x3D; $i^{th}$ training example;</li>
+<li>$x_j$ &#x3D; $j^{th}$ feature;</li>
+<li>$n$ &#x3D; number of features;</li>
+<li>${\vec{x}^{(i)}}$ &#x3D; features of $i^{th}$ training example.</li>
+<li>$x_j^{(i)}$ &#x3D; value of feature $j$ in $i^{th}$ training example ($x$ can also be $\vec{x}$).</li>
 </ul>
 
       
@@ -426,7 +480,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-06 19:11:01" itemprop="dateModified" datetime="2023-04-06T19:11:01+08:00">2023-04-06</time>
+                <time title="Modified: 2023-04-07 22:47:36" itemprop="dateModified" datetime="2023-04-07T22:47:36+08:00">2023-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -646,6 +700,9 @@
 <h3 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\sum\limits_&#123;i=1&#125;^&#123;n&#125;$</span><br></pre></td></tr></table></figure>
 
 <p><strong>That is</strong> $\sum\limits_{i&#x3D;1}^{n}$</p>
+<h3 id="Dot-product"><a href="#Dot-product" class="headerlink" title="Dot product"></a>Dot product</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\cdot$</span><br></pre></td></tr></table></figure>
+
+<p><strong>That is</strong> $\cdot$</p>
 <h2 id="Deletion-line"><a href="#Deletion-line" class="headerlink" title="Deletion line"></a>Deletion line</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~aaa~~</span><br></pre></td></tr></table></figure>
 
 <p><strong>That is</strong> <del>aaa</del></p>
@@ -926,6 +983,18 @@
 
 
       </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/machine-learning/" rel="tag">machine learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markup-language/" rel="tag">markup language</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/surpervised-learning/" rel="tag">surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">2</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
 
     </div>
   </aside>
