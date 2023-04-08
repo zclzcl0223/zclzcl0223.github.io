@@ -1197,7 +1197,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #77e205;
+  background: #60f44b;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2601,4 +2601,12 @@ mjx-container + br {
 }
 .archive .collection-title {
   display: none !important;
+}
+.posts-expand .post-tags a {
+  display: inline-block;
+  font-size: 0.8em;
+  padding: 0px 10px;
+  border-radius: 8px;
+  color: #fff;
+  border: 0px;
 }
