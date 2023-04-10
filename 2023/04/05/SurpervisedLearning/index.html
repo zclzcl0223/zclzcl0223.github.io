@@ -39,8 +39,13 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/10.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/11.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/12.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/13.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/14.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/15.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/16.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/17.png">
 <meta property="article:published_time" content="2023-04-05T15:34:48.000Z">
-<meta property="article:modified_time" content="2023-04-08T15:10:25.891Z">
+<meta property="article:modified_time" content="2023-04-09T12:35:25.945Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Surpervised learning">
@@ -213,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-08 23:10:25" itemprop="dateModified" datetime="2023-04-08T23:10:25+08:00">2023-04-08</time>
+                <time title="Modified: 2023-04-09 20:35:25" itemprop="dateModified" datetime="2023-04-09T20:35:25+08:00">2023-04-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -241,8 +246,7 @@
 
 <h1 id="Regression-model"><a href="#Regression-model" class="headerlink" title="Regression model"></a>Regression model</h1><p>The steps in regression model are as follow:</p>
 <p><img src="/2023/04/05/SurpervisedLearning/1.png" alt="1"></p>
-<p>$f$ is the <strong>function</strong> or <strong>model</strong> getting from the learning algorithm,which can be used to predict the output.</p>
-<p>$\widehat{y}$,the value of $f$,is the prediction of $y$.</p>
+<p>$f$ is the <strong>function</strong> or <strong>model</strong> getting from the learning algorithm,which can be used to predict the output.$\widehat{y}$,the value of $f$,is the prediction of $y$.</p>
 <h2 id="Linear-regression-model"><a href="#Linear-regression-model" class="headerlink" title="Linear regression model"></a>Linear regression model</h2><p>Linear regression model is the most simple model in regression model,in which,$f$ is just a linear function:</p>
 <p>$${f}_{w,b}(x)&#x3D;wx+b$$</p>
 <p><em><center>or</center></em></p>
@@ -341,22 +345,58 @@
 <h2 id="Polynomial-regression"><a href="#Polynomial-regression" class="headerlink" title="Polynomial regression"></a>Polynomial regression</h2><p>In polynomial regression,the model $f$ is a polynomial,which means that one feature may occur several times with different powers.For example:</p>
 <p>$$f(x)&#x3D;w_1x+w_2\sqrt{x}+b$$</p>
 <p>In fact,by changing the power,one feature can produce infinite features.That is,$x$ and $\sqrt{x}$ are two different features.</p>
+<blockquote>
+<p>Since they are actually different features,we can use another <em>variable</em> to represent them.Then,the function may become : $f(x,z)&#x3D;w_1x+w_2z+b$.It is a linear function formally.</p>
+</blockquote>
 <p>Compared to linear regression,in polynomial regression,feature scaling and the selection of feature are more important.</p>
 <h1 id="Classification-model"><a href="#Classification-model" class="headerlink" title="Classification model"></a>Classification model</h1><p>When the output of classification model only has two possible values,such classification model can also be called <em><strong>binary classification</strong></em>.</p>
-<p>In binary classification,we always use 0 (false) and 1 (true) to represent the output.0 is also called<br><em><strong>negative class</strong></em> and 1 is also called <em><strong>positive class</strong></em>.</p>
+<p>In binary classification,we always use 0 (false) and 1 (true) to represent the output.0 is also called <em><strong>negative class</strong></em> and 1 is also called <em><strong>positive class</strong></em>.</p>
 <h2 id="Logistic-regression"><a href="#Logistic-regression" class="headerlink" title="Logistic regression"></a>Logistic regression</h2><p>Logistic regression is the most common used model in binary classification :</p>
 <p>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;g(\vec{w}\cdot\vec{x}+b)&#x3D;g(z)&#x3D;\frac{1}{1+e^{-(\vec{w}\cdot\vec{x}+b)}}$$</p>
 <p>where </p>
 <p>$$g(z)&#x3D;\frac{1}{1+e^{-z}},0&lt;g(z)&lt;1$$</p>
 <p>is called <em><strong>sigmoid function</strong></em> or <em><strong>logistic function</strong></em>.</p>
 <p><img src="/2023/04/05/SurpervisedLearning/10.png" alt="10"></p>
-<p>Actually,the output of logistic regression can also be regarded as the possibility of <code>y==1</code>,so $f$ can also be represented as :</p>
-<p>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;P(y&#x3D;1|\vec{x};\vec{w},b)$$</p>
+<p>Actually,the output of logistic regression can also be regarded as the possibility of <code>y==1</code>,so $f$ can also be represented as :<br>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;P(y&#x3D;1|\vec{x};\vec{w},b)$$</p>
 <h3 id="Decision-boundary"><a href="#Decision-boundary" class="headerlink" title="Decision boundary"></a>Decision boundary</h3><p>Since the output of logistic regression should be either 0 or 1,we must turn the value between 0 and 1 to 0 or 1.That is,we should find a threshold.When $f \ge threshold$,$f&#x3D;1$,otherwise,$f&#x3D;0$.The threshold we choose is often 0.5.</p>
-<p>When $f \ge 0.5$ ($\widehat{y}&#x3D;1$):<br>$$g(z) \ge 0.5$$<br>$$\downarrow$$<br>$$z \ge 0$$<br>$$\downarrow$$<br>$$\vec{w}\cdot\vec{x}+b \ge 0$$</p>
-<p>The curve $\vec{w}\cdot\vec{x}+b &#x3D; 0$ is called <em><strong>decision boundary</strong></em>,where $\widehat{y}$ could be 0 or 1.For example:</p>
+<p>When $f \ge 0.5$ ($\widehat{y}&#x3D;1$):<br>$$g(z) \ge 0.5$$<br>$$\downarrow$$<br>$$z \ge 0$$<br>$$\downarrow$$<br>$$\vec{w}\cdot\vec{x}+b \ge 0$$<br>The curve $\vec{w}\cdot\vec{x}+b &#x3D; 0$ is called <em><strong>decision boundary</strong></em>,where $\widehat{y}$ could be 0 or 1.For example:</p>
 <p><img src="/2023/04/05/SurpervisedLearning/11.png" alt="11"></p>
 <p><img src="/2023/04/05/SurpervisedLearning/12.png" alt="12"></p>
+<h3 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h3><p>In linear regression,the cost function :</p>
+<p>$$J_{(w,b)}&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
+<p>can also be represented as :</p>
+<p>$$J_{(w,b)}&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{1}{2}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
+<p>where :</p>
+<p>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;\frac{1}{2}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
+<p>is called <em><strong>loss function</strong></em>.</p>
+<p>Loss function indicates the difference between the prediction value and real value of one example in training set.The convexity of cost function is actually determined by loss function.</p>
+<p>In logistic regression,<em>squared error loss function</em> is a non-convex function.</p>
+<p><img src="/2023/04/05/SurpervisedLearning/13.png" alt="13"></p>
+<p>Therefore,a new convex function is needed in logistic regression,that is:<br>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;-y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))-(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))$$<br>where $y^{(i)}&#x3D;0,1$;$f_{\vec{w},b}(\vec{x}^{(i)})\in(0,1)$.</p>
+<p>When $y^{(i)}&#x3D;1$,the curve of $L$ is :</p>
+<p><img src="/2023/04/05/SurpervisedLearning/14.png" alt="14"></p>
+<p>Using gradient descent will make the loss close to 0.</p>
+<p>When $y^{(i)}&#x3D;0$,the curve of $L$ is :</p>
+<p><img src="/2023/04/05/SurpervisedLearning/15.png" alt="15"></p>
+<p>Using gradient descent will also make the loss close to 0.</p>
+<h3 id="Cost-function-2"><a href="#Cost-function-2" class="headerlink" title="Cost function"></a>Cost function</h3><p>$$J_{(w,b)}&#x3D;-\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}[y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))+(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))]$$<br>The derivative of $J$ in logistic regression is actually the same as that in linear regression :<br>$$w_j&#x3D;w_j-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})x_j^{(i)}]$$<br>$$b&#x3D;b-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})]$$<br>However,the model $f$ is different.</p>
+<blockquote>
+<p>Vectorization and feature scaling can also be used in losgistic regression.</p>
+</blockquote>
+<h1 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h1><h2 id="Underfitting"><a href="#Underfitting" class="headerlink" title="Underfitting"></a>Underfitting</h2><p>When a model does not fit the training set well,the model is underfitting,</p>
+<p><img src="/2023/04/05/SurpervisedLearning/16.png" alt="16"></p>
+<p>or the algorithm has <strong>high bias</strong>.In this case,we need to change a model.</p>
+<h2 id="Overfitting"><a href="#Overfitting" class="headerlink" title="Overfitting"></a>Overfitting</h2><p>When a model fits the training set extremely well,that is,the errors are approximate 0,the model is overfitting,</p>
+<p><img src="/2023/04/05/SurpervisedLearning/17.png" alt="17"></p>
+<p>or the algorithm has <strong>high variance</strong>.In this case,the model just fits the training set well,but it can not be generalized.This problem often occurs when the training set is too small.So,the first method to solve this problem is to <strong>collect more training examples</strong>.Besides,<strong>selecting more suitable features</strong> is also feasible (<em><strong>Feature Selection</strong></em>).However,this method may cause our model to lose some useful features.The most feasible and common used method is <strong>regularization</strong>.</p>
+<h2 id="Regularization-1"><a href="#Regularization-1" class="headerlink" title="Regularization"></a>Regularization</h2><p>Overfitting may occurs when some features have an overly large effect,that is,a little change of these features may cause large changes to the model,which can make the model unexpandable.</p>
+<p>The core idea of regularization is to <strong>reduce the weight of features with large value</strong>.When regularizing,the cost function $J$ becomes :</p>
+<p>$$J(\vec{w},b)&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})+\frac{\lambda}{2m}\sum\limits_{j&#x3D;1}^{n}w_j^2$$</p>
+<p>We just need to regularize $w_j$,as $b$ just makes $f$ move up or down.</p>
+<blockquote>
+<p>$\lambda$ (&gt;0) is an important parameter that balance fitting data and keeping $w_j$ small.</p>
+</blockquote>
+<p>Since $J$ changes,the update of $w_j$ will also change :<br>$$w_j&#x3D;w_j-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{\partial{L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})}}{\partial{w_j}}+\frac{\lambda}{m}w_j]$$<br>Or<br>$$w_j&#x3D;(1-\alpha\frac{\lambda}{m})w_j-\alpha\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{\partial{L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})}}{\partial{w_j}}$$<br>The second formula indicates that in each iteration,$w_j$ will be smaller than before.That is why regularization can work.</p>
 <hr>
 
     </div>
@@ -393,7 +433,10 @@
     <a href="/2023/04/05/MachineLearning/" rel="prev" title="MachineLearning">
       <i class="fa fa-chevron-left"></i> MachineLearning
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/04/10/HexoConfiguration/" rel="next" title="HexoConfiguration">
+      HexoConfiguration <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -452,7 +495,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Regression-model"><span class="nav-number">1.</span> <span class="nav-text">Regression model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-regression-model"><span class="nav-number">1.1.</span> <span class="nav-text">Linear regression model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function"><span class="nav-number">1.1.1.</span> <span class="nav-text">Cost function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-descent"><span class="nav-number">1.1.2.</span> <span class="nav-text">Gradient descent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-linear-regression-model"><span class="nav-number">1.2.</span> <span class="nav-text">Multiple linear regression model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notation"><span class="nav-number">1.2.1.</span> <span class="nav-text">Notation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model"><span class="nav-number">1.2.2.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vectorization"><span class="nav-number">1.2.3.</span> <span class="nav-text">Vectorization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">Cost function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-about-gradient-descent"><span class="nav-number">1.3.</span> <span class="nav-text">More about gradient descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Feature-scaling-A-mothod-to-accelerate-gradient-descent"><span class="nav-number">1.3.1.</span> <span class="nav-text">Feature scaling - A mothod to accelerate gradient descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ways-to-check-convergence"><span class="nav-number">1.3.2.</span> <span class="nav-text">Ways to check convergence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Choose-a-better-alpha"><span class="nav-number">1.3.3.</span> <span class="nav-text">Choose a better $\alpha$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polynomial-regression"><span class="nav-number">1.4.</span> <span class="nav-text">Polynomial regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Classification-model"><span class="nav-number">2.</span> <span class="nav-text">Classification model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic-regression"><span class="nav-number">2.1.</span> <span class="nav-text">Logistic regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-boundary"><span class="nav-number">2.1.1.</span> <span class="nav-text">Decision boundary</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Regression-model"><span class="nav-number">1.</span> <span class="nav-text">Regression model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-regression-model"><span class="nav-number">1.1.</span> <span class="nav-text">Linear regression model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function"><span class="nav-number">1.1.1.</span> <span class="nav-text">Cost function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-descent"><span class="nav-number">1.1.2.</span> <span class="nav-text">Gradient descent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-linear-regression-model"><span class="nav-number">1.2.</span> <span class="nav-text">Multiple linear regression model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notation"><span class="nav-number">1.2.1.</span> <span class="nav-text">Notation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model"><span class="nav-number">1.2.2.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vectorization"><span class="nav-number">1.2.3.</span> <span class="nav-text">Vectorization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">Cost function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-about-gradient-descent"><span class="nav-number">1.3.</span> <span class="nav-text">More about gradient descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Feature-scaling-A-mothod-to-accelerate-gradient-descent"><span class="nav-number">1.3.1.</span> <span class="nav-text">Feature scaling - A mothod to accelerate gradient descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ways-to-check-convergence"><span class="nav-number">1.3.2.</span> <span class="nav-text">Ways to check convergence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Choose-a-better-alpha"><span class="nav-number">1.3.3.</span> <span class="nav-text">Choose a better $\alpha$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polynomial-regression"><span class="nav-number">1.4.</span> <span class="nav-text">Polynomial regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Classification-model"><span class="nav-number">2.</span> <span class="nav-text">Classification model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic-regression"><span class="nav-number">2.1.</span> <span class="nav-text">Logistic regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-boundary"><span class="nav-number">2.1.1.</span> <span class="nav-text">Decision boundary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-function"><span class="nav-number">2.1.2.</span> <span class="nav-text">Loss function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function-2"><span class="nav-number">2.1.3.</span> <span class="nav-text">Cost function</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Regularization"><span class="nav-number">3.</span> <span class="nav-text">Regularization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Underfitting"><span class="nav-number">3.1.</span> <span class="nav-text">Underfitting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overfitting"><span class="nav-number">3.2.</span> <span class="nav-text">Overfitting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regularization-1"><span class="nav-number">3.3.</span> <span class="nav-text">Regularization</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -468,20 +511,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -505,7 +548,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">2</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">2</span></li></ul>
             </canvas>
           </div>
         </div>
@@ -642,6 +685,7 @@
     
 
   
+
 
 </body>
 </html>
