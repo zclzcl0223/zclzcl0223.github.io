@@ -31,8 +31,15 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/2.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/3.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/7.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/8.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/9.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/10.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/11.png">
 <meta property="article:published_time" content="2023-04-10T13:30:44.000Z">
-<meta property="article:modified_time" content="2023-04-11T14:24:50.739Z">
+<meta property="article:modified_time" content="2023-04-12T13:59:09.311Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Deep learning">
@@ -205,7 +212,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-11 22:24:50" itemprop="dateModified" datetime="2023-04-11T22:24:50+08:00">2023-04-11</time>
+                <time title="Modified: 2023-04-12 21:59:09" itemprop="dateModified" datetime="2023-04-12T21:59:09+08:00">2023-04-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -236,6 +243,14 @@
 <p>Neural network is an algorithm suitable for nearly all kinds of machine learning.Compared to traditional models,neural network performs better when the training set is large.</p>
 </blockquote>
 <h1 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h1><h2 id="Layer"><a href="#Layer" class="headerlink" title="Layer"></a>Layer</h2><p>Neural network is consisted of different layers.A layer is a grouping of neurons which takes the same or similar features as input and in turn outputs a few numbers together.The <em><strong>first layer</strong></em> (layer 0) is called <em><strong>input layer</strong></em> where input and output are the same.The <em><strong>last layer</strong></em> is called <em><strong>output layer</strong></em> which outputs the value of the neural network.Input and output layer are the only two layers that are visible to us,therefore,the other layers are called <em><strong>hidden layer</strong></em>.</p>
+<blockquote>
+<p>There are different types of hidden layer.</p>
+<ul>
+<li>Dense layer : Each neuron output is a function of all the activation outputs of the previous layer;</li>
+<li>Convolutional layer : Each neuron only looks at part of the previous layer’s outputs.Different neurons may look at the same outputs.</li>
+<li>…</li>
+</ul>
+</blockquote>
 <p><img src="/2023/04/10/NeuralNetwork/1.png" alt="1"></p>
 <center style="font-size:12px">Fig. 1. Multilayer perception</center>
 
@@ -278,6 +293,42 @@
 <p>For layer 1 in the neural network of fig.3,the vectorized version is :</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">A = np.array([[<span class="number">200</span>, <span class="number">17</span>]])</span><br><span class="line">W = np.array([[<span class="number">1</span>, -<span class="number">3</span>, <span class="number">5</span>], [-<span class="number">2</span>, <span class="number">4</span>, -<span class="number">6</span>]])</span><br><span class="line">B = np.array([[-<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>]])</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dense</span>(<span class="params">A_in, W, B</span>) :</span><br><span class="line">    Z = np.matmul(A_in, W) + B</span><br><span class="line">    A_out = g(Z)  <span class="comment"># A_out is a row vector</span></span><br><span class="line">    <span class="keyword">return</span> A_out</span><br></pre></td></tr></table></figure>
 
+<h1 id="Activation-function"><a href="#Activation-function" class="headerlink" title="Activation function"></a>Activation function</h1><p>Activation function is actually a reprocessing of the model $f$ and creates <strong>a new model</strong>.By using activation function,we can divide our model into two parts.The first part is <strong>uniform</strong> for all models :<br>$$z&#x3D;\vec{w}\cdot\vec{x}+b$$<br>To generate different models,we only need to select the most suitable activation function $g(z)$.And that is the second part.There are three common used activation functions : linear function (identity),Sigmoid (soft step) and ReLU (rectified linear unit).</p>
+<h2 id="Linear-function"><a href="#Linear-function" class="headerlink" title="Linear function"></a>Linear function</h2><p><img src="/2023/04/10/NeuralNetwork/5.png" alt="5"></p>
+<center style="font-size:12px">Fig. 5. Linear function</center>
+
+<p>In linear function,we do not do anything to the first part of the model.Therefore,our model is just a linear regression model :<br>$$f&#x3D;g(z)&#x3D;\vec{w}\cdot\vec{x}+b$$<br>Since the linear function of a linear function is still a linear function,we actually do not use linear function in the hidden layer,otherwise,the hidden layer will be useless.</p>
+<h2 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h2><p><img src="/2023/04/10/NeuralNetwork/6.png" alt="6"></p>
+<center style="font-size:12px">Fig. 6. Sigmoid</center>
+
+<p>Sigmoid is useful when we the output just has two possible value.So it often be used in the output layer of binary classification.</p>
+<h2 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h2><p><img src="/2023/04/10/NeuralNetwork/7.png" alt="7"></p>
+<center style="font-size:12px">Fig. 7. ReLU</center>
+
+<p>ReLU is one of the most common used activation function in <strong>hidden layer</strong>.As the slope of it does not change on the negative or positive semi-axis,the convergence speed of ReLU is much faster than Sigmoid.</p>
+<blockquote>
+<p>Andrew Ng suggests that for the output layer,we should select the activation function that produces the exact result we need,but for the hidden layer,it is advisable to choose ReLU as out default activation function.</p>
+</blockquote>
+<h1 id="Softmax-regression"><a href="#Softmax-regression" class="headerlink" title="Softmax regression"></a>Softmax regression</h1><p>Softmax regression or softmax activation function is used to deal with multiclass classification.Multiclass classification is an extension of binary classification.In multiclass classification,the number of output is more than two.</p>
+<p><img src="/2023/04/10/NeuralNetwork/8.png" alt="8"></p>
+<center style="font-size:12px">Fig. 8. Multiclass classification</center>
+
+<p>In binary regression,$g(z)$ is actually the possibility of $a&#x3D;&#x3D;1$.We can also get the possibility of $a&#x3D;&#x3D;0$ which is $1-g(z)$.But in multiclass classification,we can not do that.To solve this,softmax calculates the probability of all possible values.We use $z_i$ to represent a possible value and $a_i$ to represent its possibility :<br>$$z_1&#x3D;\vec{w_1}\cdot\vec{x}+b_1;a_1&#x3D;\frac{e^{z_1}}{e^{z_1}+…+e^{z_n}}&#x3D;P(y&#x3D;1)|\vec{x})$$<br>$$…$$<br>$$z_n&#x3D;\vec{w_n}\cdot\vec{x}+b_n;a_n&#x3D;\frac{e^{z_n}}{e^<br>{z_1}+…+e^{z_n}}&#x3D;P(y&#x3D;n|\vec{x})$$<br>And the loss function is :<br>$$L(a_1,…,a_n,y)&#x3D;\begin{cases}<br>-\log{a_1},y&#x3D;1\<br>…\<br>-log{a_n},y&#x3D;n<br>\end{cases}$$</p>
+<p>The loss function will make $a_i$ tends to 1 when $y&#x3D;i$.Binary classfication is a special case where n&#x3D;2.</p>
+<p>Softmax is a special activation in neural network as it is actually a layer.Its output is a vector whose elements are the possibility of values.</p>
+<p><img src="/2023/04/10/NeuralNetwork/9.png" alt="9"></p>
+<center style="font-size:12px">Fig. 9. Neural network with softmax</center>
+
+<h1 id="Multi-label-classification"><a href="#Multi-label-classification" class="headerlink" title="Multi-label classification"></a>Multi-label classification</h1><p>Multi-label classification is another type of classification.In multi-label classification,we are required to classify a thing into as many labels as we want.To realize this,we just need to use several sigmoid functions in our output layer.</p>
+<p><img src="/2023/04/10/NeuralNetwork/10.png" alt="10"></p>
+<center style="font-size:12px">Fig. 10. Multi-label classification</center>
+
+<h1 id="Adam-algorithm"><a href="#Adam-algorithm" class="headerlink" title="Adam algorithm"></a>Adam algorithm</h1><p>Adam algorithm is optimization of gradient descent,which will automatically modift $\alpha$.In adam algorithm,each neuron of the same layer has different $\alpha$ (the initial value is the same) :</p>
+<ul>
+<li>If $w_j$ or $b$ keeps moving in the same direction,it increases $\alpha_j$;</li>
+<li>If $w_j$ or $b$ keeps oscillating,it reduces $\alpha_j$.</li>
+</ul>
+<p><img src="/2023/04/10/NeuralNetwork/11.png" alt="11"></p>
 <hr>
 
     </div>
@@ -376,7 +427,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Component"><span class="nav-number">2.</span> <span class="nav-text">Component</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Layer"><span class="nav-number">2.1.</span> <span class="nav-text">Layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neuron"><span class="nav-number">2.2.</span> <span class="nav-text">Neuron</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notation"><span class="nav-number">2.3.</span> <span class="nav-text">Notation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Forward-propagation-algorithm"><span class="nav-number">3.</span> <span class="nav-text">Forward propagation algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Numpy-and-Tensorflow"><span class="nav-number">3.1.</span> <span class="nav-text">Numpy and Tensorflow</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vectorization"><span class="nav-number">4.</span> <span class="nav-text">Vectorization</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Component"><span class="nav-number">2.</span> <span class="nav-text">Component</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Layer"><span class="nav-number">2.1.</span> <span class="nav-text">Layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neuron"><span class="nav-number">2.2.</span> <span class="nav-text">Neuron</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notation"><span class="nav-number">2.3.</span> <span class="nav-text">Notation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Forward-propagation-algorithm"><span class="nav-number">3.</span> <span class="nav-text">Forward propagation algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Numpy-and-Tensorflow"><span class="nav-number">3.1.</span> <span class="nav-text">Numpy and Tensorflow</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vectorization"><span class="nav-number">4.</span> <span class="nav-text">Vectorization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Activation-function"><span class="nav-number">5.</span> <span class="nav-text">Activation function</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-function"><span class="nav-number">5.1.</span> <span class="nav-text">Linear function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sigmoid"><span class="nav-number">5.2.</span> <span class="nav-text">Sigmoid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReLU"><span class="nav-number">5.3.</span> <span class="nav-text">ReLU</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Softmax-regression"><span class="nav-number">6.</span> <span class="nav-text">Softmax regression</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Multi-label-classification"><span class="nav-number">7.</span> <span class="nav-text">Multi-label classification</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Adam-algorithm"><span class="nav-number">8.</span> <span class="nav-text">Adam algorithm</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -392,7 +443,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -429,7 +480,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">4</span></li></ul>
             </canvas>
           </div>
         </div>
