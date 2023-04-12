@@ -28,10 +28,10 @@
 <meta property="og:description" content="A manual of hexo blog building and configuring">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-03T16:02:48.000Z">
-<meta property="article:modified_time" content="2023-04-11T14:23:05.672Z">
+<meta property="article:modified_time" content="2023-04-12T15:34:46.467Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="Tool">
 <meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Tool">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2023/04/04/HexoManual/">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-11 22:23:05" itemprop="dateModified" datetime="2023-04-11T22:23:05+08:00">2023-04-11</time>
+                <time title="Modified: 2023-04-12 23:34:46" itemprop="dateModified" datetime="2023-04-12T23:34:46+08:00">2023-04-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -274,6 +274,17 @@
 <p>Deploy our blog to remote site:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
 <p>All the file created in command line will be placed in <strong>&#x2F;source</strong>.</p>
+<h1 id="Local-article-link"><a href="#Local-article-link" class="headerlink" title="Local article link"></a>Local article link</h1><p>Jump to the specific local article :</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% post_link &#x27;YourPostName&#x27; LinkName %&#125;  // the default linkname is the name of article</span><br><span class="line">or</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% post_path &#x27;YourPostName&#x27; %&#125;&quot;</span>&gt;</span>LinkName<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Jump to the specific catalog of local article :</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// &#x27;#&#x27; represents the level of your catalog</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% post_path &#x27;YourPostName&#x27; %&#125;#CatalogName&quot;</span>&gt;</span>LinkName<span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<p>You can also use :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[LinkName](&#123;% post_path &#x27;YourPostName&#x27; %&#125;#CatalogName)</span><br></pre></td></tr></table></figure>
+<p>But when you configure the path of your local image like this : <a href="/2023/04/10/HexoConfiguration/#Image">Image</a>,this method will fail.</p>
+<blockquote>
+<p>If your <code>CatalogName</code> has space,you should replace the space to <code>-</code>.The same to <code>YourPostName</code> if you do not use <code>&#39;&#39;</code>.</p>
+</blockquote>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">HexoDocs</a></p>
 <hr>
 
@@ -285,8 +296,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Tool/" rel="tag"># Tool</a>
               <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/Tool/" rel="tag"># Tool</a>
           </div>
 
           <script type="text/javascript">
@@ -309,7 +320,7 @@
     <div class="post-nav">
       <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/04/05/MarkDownManual/" rel="next" title="MarkDown manual">
+    <a href="/2023/04/05/MarkdownManual/" rel="next" title="MarkDown manual">
       MarkDown manual <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -370,7 +381,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-Installation"><span class="nav-number">2.</span> <span class="nav-text">Hexo Installation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js"><span class="nav-number">2.1.</span> <span class="nav-text">Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-number">2.2.</span> <span class="nav-text">Git</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-theme"><span class="nav-number">3.</span> <span class="nav-text">Hexo theme</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-Command"><span class="nav-number">4.</span> <span class="nav-text">Hexo Command</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-Installation"><span class="nav-number">2.</span> <span class="nav-text">Hexo Installation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js"><span class="nav-number">2.1.</span> <span class="nav-text">Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-number">2.2.</span> <span class="nav-text">Git</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-theme"><span class="nav-number">3.</span> <span class="nav-text">Hexo theme</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-Command"><span class="nav-number">4.</span> <span class="nav-text">Hexo Command</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Local-article-link"><span class="nav-number">5.</span> <span class="nav-text">Local article link</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -386,7 +397,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -423,7 +434,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">4</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">5</span></li></ul>
             </canvas>
           </div>
         </div>

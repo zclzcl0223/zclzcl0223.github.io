@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/10.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/11.png">
 <meta property="article:published_time" content="2023-04-10T13:30:44.000Z">
-<meta property="article:modified_time" content="2023-04-12T13:59:09.311Z">
+<meta property="article:modified_time" content="2023-04-12T16:10:31.511Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Deep learning">
@@ -212,7 +212,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-12 21:59:09" itemprop="dateModified" datetime="2023-04-12T21:59:09+08:00">2023-04-12</time>
+                <time title="Modified: 2023-04-13 00:10:31" itemprop="dateModified" datetime="2023-04-13T00:10:31+08:00">2023-04-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -313,7 +313,7 @@
 <p><img src="/2023/04/10/NeuralNetwork/8.png" alt="8"></p>
 <center style="font-size:12px">Fig. 8. Multiclass classification</center>
 
-<p>In binary regression,$g(z)$ is actually the possibility of $a&#x3D;&#x3D;1$.We can also get the possibility of $a&#x3D;&#x3D;0$ which is $1-g(z)$.But in multiclass classification,we can not do that.To solve this,softmax calculates the probability of all possible values.We use $z_i$ to represent a possible value and $a_i$ to represent its possibility :<br>$$z_1&#x3D;\vec{w_1}\cdot\vec{x}+b_1;a_1&#x3D;\frac{e^{z_1}}{e^{z_1}+…+e^{z_n}}&#x3D;P(y&#x3D;1)|\vec{x})$$<br>$$…$$<br>$$z_n&#x3D;\vec{w_n}\cdot\vec{x}+b_n;a_n&#x3D;\frac{e^{z_n}}{e^<br>{z_1}+…+e^{z_n}}&#x3D;P(y&#x3D;n|\vec{x})$$<br>And the loss function is :<br>$$L(a_1,…,a_n,y)&#x3D;\begin{cases}<br>-\log{a_1},y&#x3D;1\<br>…\<br>-log{a_n},y&#x3D;n<br>\end{cases}$$</p>
+<p>In binary regression,$g(z)$ is actually the possibility of $a&#x3D;&#x3D;1$.We can also get the possibility of $a&#x3D;&#x3D;0$ which is $1-g(z)$.But in multiclass classification,we can not do that.To solve this,softmax calculates the probability of all possible values.We use $z_i$ to represent a possible value and $a_i$ to represent its possibility :<br>$$z_1&#x3D;\vec{w_1}\cdot\vec{x}+b_1;a_1&#x3D;\frac{e^{z_1}}{e^{z_1}+…+e^{z_n}}&#x3D;P(y&#x3D;1)|\vec{x})$$<br>$$…$$<br>$$z_n&#x3D;\vec{w_n}\cdot\vec{x}+b_n;a_n&#x3D;\frac{e^{z_n}}{e^<br>{z_1}+…+e^{z_n}}&#x3D;P(y&#x3D;n|\vec{x})$$<br>And the loss function is :<br>$$L(a_1,…,a_n,y)&#x3D;\begin{cases}<br>-\log{a_1},&amp;y&#x3D;1 \\<br>…&amp; \\<br>-log{a_n},&amp;y&#x3D;n<br>\end{cases}$$</p>
 <p>The loss function will make $a_i$ tends to 1 when $y&#x3D;i$.Binary classfication is a special case where n&#x3D;2.</p>
 <p>Softmax is a special activation in neural network as it is actually a layer.Its output is a vector whose elements are the possibility of values.</p>
 <p><img src="/2023/04/10/NeuralNetwork/9.png" alt="9"></p>
@@ -443,7 +443,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -480,7 +480,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">4</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">5</span></li></ul>
             </canvas>
           </div>
         </div>
