@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="A manual of hexo blog building and configuring">
+  <meta name="description" content="Hexo is a static website builder based on nodejs and markdown which supports remote deployment and theme customization.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo manual">
 <meta property="og:url" content="https://zclzcl0223.github.io/2023/04/04/HexoManual/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="A manual of hexo blog building and configuring">
+<meta property="og:description" content="Hexo is a static website builder based on nodejs and markdown which supports remote deployment and theme customization.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-03T16:02:48.000Z">
-<meta property="article:modified_time" content="2023-04-12T15:34:46.467Z">
+<meta property="article:modified_time" content="2023-04-15T12:52:05.220Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="Tool">
 <meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Tool">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2023/04/04/HexoManual/">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-12 23:34:46" itemprop="dateModified" datetime="2023-04-12T23:34:46+08:00">2023-04-12</time>
+                <time title="Modified: 2023-04-15 20:52:05" itemprop="dateModified" datetime="2023-04-15T20:52:05+08:00">2023-04-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -208,12 +208,12 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TOOL/" itemprop="url" rel="index"><span itemprop="name">TOOL</span></a>
+                  <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">A manual of hexo blog building and configuring</div>
+            <div class="post-description">Hexo is a static website builder based on nodejs and markdown which supports remote deployment and theme customization.</div>
 
         </div>
       </header>
@@ -226,31 +226,31 @@
       
         <span id="more"></span>
 
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Hexo is a static blog website builder based on <strong>nodejs</strong>.</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Hexo is a static website builder based on <strong>nodejs</strong> and markdown which supports remote deployment and theme customization.</p>
 <h1 id="Hexo-Installation"><a href="#Hexo-Installation" class="headerlink" title="Hexo Installation"></a>Hexo Installation</h1><h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><p>The installation program,including <strong>node and npm</strong>.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ node -v  <span class="comment"># check the version of node</span></span><br><span class="line">$ npm -v  <span class="comment"># check the version of npm</span></span><br></pre></td></tr></table></figure>
 <p>The step of installation:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g cnpm --registry=http://registry.npm.taobao.org  <span class="comment"># install the cnpm manager of taobao</span></span><br><span class="line">$ cnmp install -g hexo-cli  <span class="comment"># install the scheme of hexo</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p>In windows,all the command line commands should be run in <strong>Git bash</strong>.Github can serve as the remoete blog of our local hexo blog:</p>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p>In windows, all the command line commands should be run in <strong>Git bash</strong>. Github can serve as the remoete blog of our local hexo blog:</p>
 <ul>
-<li><p>Create a new repositry in github,whose name is <u>YourGithubName.github.io</u>.</p>
+<li><p>Create a new repositry in github,whose name is <u>YourGithubName.github.io</u>;</p>
 </li>
-<li><p>Install the git deployment plugin.</p>
+<li><p>Install the git deployment plugin;</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Configure <strong>_config.yml</strong>.</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/YourGithubName/YourGithubName.github.io.git</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Visit remote blog by <u><a target="_blank" rel="noopener" href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a></u>.</p>
+<li><p>Visit remote blog through <a target="_blank" rel="noopener" href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>.</p>
 </li>
 </ul>
 <h1 id="Hexo-theme"><a href="#Hexo-theme" class="headerlink" title="Hexo theme"></a>Hexo theme</h1><p>Download the specific theme from github:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/themename.git themes/themename</span><br></pre></td></tr></table></figure>
 
-<p>Configure <strong>_config.yml</strong>.</p>
+<p>Configure <strong>_config.yml</strong>:</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">themename</span></span><br></pre></td></tr></table></figure>
 
-<p>Then,configure the theme with the help of its manual.</p>
+<p>Then, configure the theme with the help of its manual.</p>
 <h1 id="Hexo-Command"><a href="#Hexo-Command" class="headerlink" title="Hexo Command"></a>Hexo Command</h1><p>Create a folder in computer and use this folder as the <strong>root</strong> of our blog.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init [folder]</span><br></pre></td></tr></table></figure>
 
@@ -262,10 +262,10 @@
 
 <p>Once we edit our blog,we should:</p>
 <ul>
-<li><p>Clean cache files</p>
+<li><p>Clean cache files.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>Generate new public blog.That is the content we use to build our website.</p>
+<li><p>Generate new public blog. That is the content we use to build our website.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>Start our server:</p>
@@ -274,16 +274,16 @@
 <p>Deploy our blog to remote site:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
 <p>All the file created in command line will be placed in <strong>&#x2F;source</strong>.</p>
-<h1 id="Local-article-link"><a href="#Local-article-link" class="headerlink" title="Local article link"></a>Local article link</h1><p>Jump to the specific local article :</p>
+<h1 id="Local-article-link"><a href="#Local-article-link" class="headerlink" title="Local article link"></a>Local article link</h1><p>Jump to the specific local article:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% post_link &#x27;YourPostName&#x27; LinkName %&#125;  // the default linkname is the name of article</span><br><span class="line">or</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% post_path &#x27;YourPostName&#x27; %&#125;&quot;</span>&gt;</span>LinkName<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>Jump to the specific catalog of local article :</p>
+<p>Jump to the specific catalog of local article:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// &#x27;#&#x27; represents the level of your catalog</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% post_path &#x27;YourPostName&#x27; %&#125;#CatalogName&quot;</span>&gt;</span>LinkName<span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br></pre></td></tr></table></figure>
-<p>You can also use :</p>
+<p>You can also use:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[LinkName](&#123;% post_path &#x27;YourPostName&#x27; %&#125;#CatalogName)</span><br></pre></td></tr></table></figure>
-<p>But when you configure the path of your local image like this : <a href="/2023/04/10/HexoConfiguration/#Image">Image</a>,this method will fail.</p>
+<p>But when you configure the path of your local image like this: <a href="/2023/04/10/HexoConfiguration/#Image">Image</a>, this method will fail.</p>
 <blockquote>
-<p>If your <code>CatalogName</code> has space,you should replace the space to <code>-</code>.The same to <code>YourPostName</code> if you do not use <code>&#39;&#39;</code>.</p>
+<p>If your <code>CatalogName</code> has space, you should replace the space to <code>-</code>. The same to <code>YourPostName</code> if you do not use <code>&#39;&#39;</code>.</p>
 </blockquote>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">HexoDocs</a></p>
 <hr>
@@ -296,8 +296,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Tool/" rel="tag"># Tool</a>
               <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/Tool/" rel="tag"># Tool</a>
           </div>
 
           <script type="text/javascript">
@@ -320,8 +320,8 @@
     <div class="post-nav">
       <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/04/05/MarkdownManual/" rel="next" title="MarkDown manual">
-      MarkDown manual <i class="fa fa-chevron-right"></i>
+    <a href="/2023/04/05/MarkdownManual/" rel="next" title="Markdown manual">
+      Markdown manual <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -397,7 +397,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -434,7 +434,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">5</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">5</span></li></ul>
             </canvas>
           </div>
         </div>

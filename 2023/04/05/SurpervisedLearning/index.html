@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="The note of surpervised learning course by Andrew Ng">
+  <meta name="description" content="Surpervised learning is the most commonly used type of machine learning. This post includes the course notes of surpervised learning course by Andrew Ng.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Surpervised learning">
 <meta property="og:url" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="The note of surpervised learning course by Andrew Ng">
+<meta property="og:description" content="Surpervised learning is the most commonly used type of machine learning. This post includes the course notes of surpervised learning course by Andrew Ng.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/2.png">
@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/16.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/17.png">
 <meta property="article:published_time" content="2023-04-05T15:34:48.000Z">
-<meta property="article:modified_time" content="2023-04-12T16:35:29.694Z">
+<meta property="article:modified_time" content="2023-04-15T13:21:55.380Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Surpervised learning">
@@ -218,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-13 00:35:29" itemprop="dateModified" datetime="2023-04-13T00:35:29+08:00">2023-04-13</time>
+                <time title="Modified: 2023-04-15 21:21:55" itemprop="dateModified" datetime="2023-04-15T21:21:55+08:00">2023-04-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,7 +231,7 @@
             </span>
 
           
-            <div class="post-description">The note of surpervised learning course by Andrew Ng</div>
+            <div class="post-description">Surpervised learning is the most commonly used type of machine learning. This post includes the course notes of surpervised learning course by Andrew Ng.</div>
 
         </div>
       </header>
@@ -248,8 +248,8 @@
 <p><img src="/2023/04/05/SurpervisedLearning/1.png" alt="1"></p>
 <center style="font-size:12px">Fig. 1. Steps of regression model</center>
 
-<p>$f$ is the <strong>function</strong> or <strong>model</strong> getting from the learning algorithm,which can be used to predict the output.$\widehat{y}$,the value of $f$,is the prediction of $y$.</p>
-<h2 id="Linear-regression-model"><a href="#Linear-regression-model" class="headerlink" title="Linear regression model"></a>Linear regression model</h2><p>Linear regression model is the most simple model in regression model,in which,$f$ is just a linear function:</p>
+<p>$f$ is the <strong>function</strong> or <strong>model</strong> getting from the learning algorithm, which can be used to predict the output. $\widehat{y}$, the value of $f$, is the prediction of $y$.</p>
+<h2 id="Linear-regression-model"><a href="#Linear-regression-model" class="headerlink" title="Linear regression model"></a>Linear regression model</h2><p>Linear regression model is the most simple model in regression model, in which, $f$ is just a linear function:</p>
 <p>$${f}_{w,b}(x)&#x3D;wx+b$$</p>
 <center>or</center>
 
@@ -258,28 +258,28 @@
 <blockquote>
 <p>Linear regression with single input is also called <em>univariate linear regression</em>.</p>
 </blockquote>
-<h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><p>Cost function compares $\widehat{y}$ to $y$.<strong>The better the model is,the smaller the value of the cost function is</strong>.The simplest and most commonly used cost function in linear regression is :</p>
+<h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><p>Cost function compares $\widehat{y}$ to $y$. <strong>The better the model is, the smaller the value of the cost function is</strong>. The simplest and most commonly used cost function in linear regression is:</p>
 <p>$$J_{(w,b)}&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^{m}(\widehat{y}^{(i)}-y^{(i)})^2$$</p>
 <p>which is called <em><strong>mean squared error cost function</strong></em>.</p>
 <blockquote>
 <p>Why $2m$?</p>
-<p><em>This is for the convenience of later calculations.When deriving $J$ using the gradient descent method,if it is $2m$,there will not be any constant in the derivative function</em> :</p>
+<p><em>This is for the convenience of later calculations. When deriving $J$ using the gradient descent method, if it is $2m$, there will not be any constant in the derivative function</em>:</p>
 <p>$$\frac{\partial{J_{(w,b)}}}{\partial{w}}&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(\widehat{y}^{(i)}-y^{(i)})\frac{\partial{\widehat{y}^{(i)}}}{\partial{w}}$$</p>
 </blockquote>
-<p>Since the training set is constant,$J$ is just the function of $w$ and $b$.Therefore,<strong>our goal is to find $w$ and $b$ that minimize $J_{(w,b)}$</strong>.</p>
+<p>Since the training set is constant, $J$ is just the function of $w$ and $b$. Therefore, <strong>our goal is to find $w$ and $b$ that minimize $J_{(w,b)}$</strong>.</p>
 <blockquote>
-<p>The 3D bowl-shaped surface plot,which is the plot of $J$,can also be visualized as a contour plot.In the contour plot,each oval contains the choices of $w$ and $b$ that result in the same value of $J$.</p>
+<p>The 3D bowl-shaped surface plot, which is the plot of $J$, can also be visualized as a contour plot. In the contour plot, each oval contains the choices of $w$ and $b$ that result in the same value of $J$.</p>
 </blockquote>
 <p><img src="/2023/04/05/SurpervisedLearning/2.png" alt="2"></p>
 <center style="font-size:12px">Fig. 2. 3D plot and contour plot</center>
 
-<h3 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h3><p>Gradient descent is an algorithm that can be used to minimize any function.The steps of gradient descent are :</p>
+<h3 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h3><p>Gradient descent is an algorithm that can be used to minimize any function. The steps of gradient descent are:</p>
 <ol>
 <li><p>Start with some parameters (just set them to 0 is ok);</p>
 </li>
-<li><p>Keep changing the parameters to reduce $J$ :<br>$$w&#x3D;w-\alpha\frac{\partial{J_{(w,b)}}}{\partial{w}}$$<br>$\alpha$ :learning rate,(0,1],which is used to control the speed of gradient descent.</p>
-<p>$w$ :any parameter.</p>
-<p>All the parameters should be updated <strong>simultaneously</strong>,which means that when updating one parameter,the value of other parameters should be their original values.</p>
+<li><p>Keep changing the parameters to reduce $J$:<br>$$w&#x3D;w-\alpha\frac{\partial{J_{(w,b)}}}{\partial{w}}$$<br>$\alpha$: learning rate, (0,1], which is used to control the speed of gradient descent.</p>
+<p>$w$: any parameter.</p>
+<p>All the parameters should be updated <strong>simultaneously</strong>, which means that when updating one parameter, the value of other parameters should be their original values.</p>
 <blockquote>
 <p>Principle: The ${grad(f)}$ at a certain point is the direction in which the function changes the fastest.</p>
 </blockquote>
@@ -287,24 +287,24 @@
 <li><p>Get a minimum or near minimum $J$.</p>
 </li>
 </ol>
-<p>To achieve this,$J$ has to be a <strong>bowl shape function (convex function)</strong> or <strong>a function with local minima</strong>.</p>
+<p>To achieve this, $J$ has to be a <strong>bowl shape function (convex function)</strong> or <strong>a function with local minima</strong>.</p>
 <p><img src="/2023/04/05/SurpervisedLearning/3.png" alt="3"></p>
 <center style="font-size:12px">Fig. 3. Function with locak minima</center>
 
-<p>In linear regression,<em>mean squared error cost function</em> is always a bowl shape function.If $\alpha$ is too small,the gradient descent will work but may be very slow.</p>
+<p>In linear regression, <em>mean squared error cost function</em> is always a bowl shape function. If $\alpha$ is too small, the gradient descent will work but may be very slow.</p>
 <p><img src="/2023/04/05/SurpervisedLearning/4.png" alt="4"></p>
 <center style="font-size:12px">Fig. 4. Model with small learning rate</center>
 
-<p>If $\alpha$ is too large,the gradient descent may not work,which means it may fail to converge but diverge.</p>
+<p>If $\alpha$ is too large, the gradient descent may not work, which means it may fail to converge but diverge.</p>
 <p><img src="/2023/04/05/SurpervisedLearning/5.png" alt="5"></p>
 <center style="font-size:12px">Fig. 5. Model with large learning rate</center>
 
 <blockquote>
-<p><em>Batch gradient descent</em> : Each step of gradient descent uses all the training examples.</p>
+<p><em>Batch gradient descent</em>: Each step of gradient descent uses all the training examples.</p>
 </blockquote>
-<h2 id="Multiple-linear-regression-model"><a href="#Multiple-linear-regression-model" class="headerlink" title="Multiple linear regression model"></a>Multiple linear regression model</h2><p>When there are more than one features determining the output,it is advisable for us to use <em>vector</em>.</p>
+<h2 id="Multiple-linear-regression-model"><a href="#Multiple-linear-regression-model" class="headerlink" title="Multiple linear regression model"></a>Multiple linear regression model</h2><p>When there are more than one features determining the output, it is advisable for us to use <em>vector</em>.</p>
 <blockquote>
-<p>Feature engineering: Using intuition to design new features by <strong>transforming</strong> or <strong>combining</strong> original features.Good features will make the model better.</p>
+<p>Feature engineering: Using intuition to design new features by <strong>transforming</strong> or <strong>combining</strong> original features. Good features will make the model better.</p>
 </blockquote>
 <h3 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h3><ul>
 <li>$x_j$ &#x3D; $j^{th}$ feature;</li>
@@ -319,31 +319,31 @@
 <p>$$\vec{w}&#x3D;[w_1,w_2,…,w_n],\vec{x}&#x3D;[x_1,x_2,…,x_n]$$</p>
 <h3 id="Vectorization"><a href="#Vectorization" class="headerlink" title="Vectorization"></a>Vectorization</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">w = np.array([<span class="number">1.0</span>, <span class="number">2.5</span>, -<span class="number">3.3</span>])</span><br><span class="line">b = <span class="number">4</span></span><br><span class="line">x = np.array([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>])</span><br><span class="line"><span class="comment"># vectorization</span></span><br><span class="line">f = np.dot(w, x) + b</span><br></pre></td></tr></table></figure>
 
-<p><code>np.dot()</code> can make use of parallel hardwares,so it is much faster than <code>for loop</code>. (<em>SIMD</em>)</p>
+<p><code>np.dot()</code> can make use of parallel hardwares, so it is much faster than <code>for loop</code>. (<em>SIMD</em>)</p>
 <blockquote>
 <p>GPU will help to deal with <strong>vectorized code</strong>.</p>
 </blockquote>
-<h3 id="Cost-function-1"><a href="#Cost-function-1" class="headerlink" title="Cost function"></a>Cost function</h3><p>The cost function can also be represented as $J(\vec{w},b)$.All the parameters $\vec{w}$ and $b$ should also be updated simultaneously.</p>
+<h3 id="Cost-function-1"><a href="#Cost-function-1" class="headerlink" title="Cost function"></a>Cost function</h3><p>The cost function can also be represented as $J(\vec{w},b)$. All the parameters $\vec{w}$ and $b$ should also be updated simultaneously.</p>
 <blockquote>
-<p>Normal equation: This method only works for linear regression.It sovles for $w,b$ without iterations.However,it does not generalize to other learning algorithms and it is slow when the number of features is too large(&gt;10,000).It may be useful on the backend.</p>
+<p>Normal equation: This method only works for linear regression. It sovles for $w,b$ without iterations. However, it does not generalize to other learning algorithms and it is slow when the number of features is too large (&gt;10,000). It may be useful on the backend.</p>
 </blockquote>
-<h2 id="More-about-gradient-descent"><a href="#More-about-gradient-descent" class="headerlink" title="More about gradient descent"></a>More about gradient descent</h2><h3 id="Feature-scaling"><a href="#Feature-scaling" class="headerlink" title="Feature scaling"></a>Feature scaling</h3><p>Feature scaling is a mothod to accelerate gradient descent.When the value of some features is too large,what may happen is that even though $\alpha$ is small,the changes of some parameters are still <strong>too significant</strong>,which slows down the convergence speed of gradient descent.</p>
+<h2 id="More-about-gradient-descent"><a href="#More-about-gradient-descent" class="headerlink" title="More about gradient descent"></a>More about gradient descent</h2><h3 id="Feature-scaling"><a href="#Feature-scaling" class="headerlink" title="Feature scaling"></a>Feature scaling</h3><p>Feature scaling is a mothod to accelerate gradient descent. When the value of some features is too large, what may happen is that even though $\alpha$ is small, the changes of some parameters are still <strong>too significant</strong>, which slows down the convergence speed of gradient descent.</p>
 <p><img src="/2023/04/05/SurpervisedLearning/6.png" alt="6"></p>
 <center style="font-size:12px">Fig. 6. Unscaled features</center>
 
-<p>One useful method is <em>feature scaling</em>.By scaling down some features,we can make the convergence speed of different parameters basically the same.</p>
+<p>One useful method is <em>feature scaling</em>. By scaling down some features, we can make the convergence speed of different parameters basically the same.</p>
 <p><img src="/2023/04/05/SurpervisedLearning/7.png" alt="7"></p>
 <center style="font-size:12px">Fig. 7. Scaled features</center>
 
 <p>Ways to scale features:</p>
 <ul>
 <li>Dividing by the maximum of the feature;</li>
-<li>Mean normalization.This method may produce negative value,but the range of feature is always 1.To realize this :<ol>
+<li>Mean normalization. This method may produce negative value, but the range of feature is always 1.To realize this:<ol>
 <li>Get the mean value of this feature in the training set $\mu$;</li>
 <li>Subtract $\mu$ from each example of this feature and divide the result by the difference between the maximum and minimum values of this feature.<br>$$x&#x3D;\frac{x-\mu}{max-min}$$</li>
 </ol>
 </li>
-<li>Z-score normalization.$\sigma$ is the <strong>standard deviation</strong> of this feature.<br>$$x&#x3D;\frac{x-\mu}{\sigma}$$</li>
+<li>Z-score normalization. $\sigma$ is the <strong>standard deviation</strong> of this feature.<br>$$x&#x3D;\frac{x-\mu}{\sigma}$$</li>
 </ul>
 <h3 id="Ways-to-check-convergence"><a href="#Ways-to-check-convergence" class="headerlink" title="Ways to check convergence"></a>Ways to check convergence</h3><ol>
 <li>Draw $J-iterations$ curve or learning curve.</li>
@@ -352,22 +352,22 @@
 <center style="font-size:12px">Fig. 8. Iterations curve</center>
 
 <ol start="2">
-<li>Automatic convergence test: Let $\epsilon$ be a small value.Once $J$ decreases by $\leqslant$ $\epsilon$ in one iteration,it converges.</li>
+<li>Automatic convergence test: Let $\epsilon$ be a small value. Once $J$ decreases by $\leqslant$ $\epsilon$ in one iteration, it converges.</li>
 </ol>
 <h3 id="Choose-a-better-alpha"><a href="#Choose-a-better-alpha" class="headerlink" title="Choose a better $\alpha$"></a>Choose a better $\alpha$</h3><p>Once the learning curve looks like these:</p>
 <p><img src="/2023/04/05/SurpervisedLearning/9.png" alt="9"></p>
 <center style="font-size:12px">Fig. 9. Model with large learning rate</center>
 
-<p>It indicates that $\alpha$ is too large.The way to choose a good $\alpha$ is starting with a relative <strong>small value</strong> (like 0.001).And check the astringency of $J$.If $J$ still does not converge,there may be <strong>some bugs</strong> in the code.Then,we can try to increase $\alpha$ by <strong>three times</strong>,until we find a relative large $\alpha$.</p>
-<h2 id="Polynomial-regression"><a href="#Polynomial-regression" class="headerlink" title="Polynomial regression"></a>Polynomial regression</h2><p>In polynomial regression,the model $f$ is a polynomial,which means that one feature may occur several times with different powers.For example:</p>
+<p>It indicates that $\alpha$ is too large. The way to choose a good $\alpha$ is starting with a relative <strong>small value</strong> (like 0.001). And check the astringency of $J$. If $J$ still does not converge, there may be <strong>some bugs</strong> in the code. Then, we can try to increase $\alpha$ by <strong>three times</strong>, until we find a relative large $\alpha$.</p>
+<h2 id="Polynomial-regression"><a href="#Polynomial-regression" class="headerlink" title="Polynomial regression"></a>Polynomial regression</h2><p>In polynomial regression, the model $f$ is a polynomial, which means that one feature may occur several times with different powers. For example:</p>
 <p>$$f(x)&#x3D;w_1x+w_2\sqrt{x}+b$$</p>
-<p>In fact,by changing the power,one feature can produce infinite features.That is,$x$ and $\sqrt{x}$ are two different features.</p>
+<p>In fact, by changing the power, one feature can produce infinite features. That is, $x$ and $\sqrt{x}$ are two different features.</p>
 <blockquote>
-<p>Since they are actually different features,we can use another <em>variable</em> to represent them.Then,the function may become : $f(x,z)&#x3D;w_1x+w_2z+b$.It is a linear function formally.</p>
+<p>Since they are actually different features, we can use another <em>variable</em> to represent them. Then, the function may become: $f(x,z)&#x3D;w_1x+w_2z+b$. It is a linear function formally.</p>
 </blockquote>
-<p>Compared to linear regression,in polynomial regression,feature scaling and the selection of feature are more important.</p>
-<h1 id="Classification-model"><a href="#Classification-model" class="headerlink" title="Classification model"></a>Classification model</h1><h2 id="Binary-classification-model"><a href="#Binary-classification-model" class="headerlink" title="Binary classification model"></a>Binary classification model</h2><p>When the output of classification model only has two possible values,such classification model can also be named <em><strong>binary classification</strong></em>.In binary classification,we always use 0 (false) and 1 (true) to represent the output.0 is also called <em><strong>negative class</strong></em> and 1 is also called <em><strong>positive class</strong></em>.</p>
-<p><strong>Logistic regression</strong> is the most common used model in binary classification :</p>
+<p>Compared to linear regression, in polynomial regression, feature scaling and the selection of feature are more important.</p>
+<h1 id="Classification-model"><a href="#Classification-model" class="headerlink" title="Classification model"></a>Classification model</h1><h2 id="Binary-classification-model"><a href="#Binary-classification-model" class="headerlink" title="Binary classification model"></a>Binary classification model</h2><p>When the output of classification model only has two possible values, such classification model can also be named <em><strong>binary classification</strong></em>. In binary classification, we always use 0 (false) and 1 (true) to represent the output. 0 is also called <em><strong>negative class</strong></em> and 1 is also called <em><strong>positive class</strong></em>.</p>
+<p><strong>Logistic regression</strong> is the most commonly used model in binary classification:</p>
 <p>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;g(\vec{w}\cdot\vec{x}+b)&#x3D;g(z)&#x3D;\frac{1}{1+e^{-(\vec{w}\cdot\vec{x}+b)}}$$</p>
 <p>where </p>
 <p>$$g(z)&#x3D;\frac{1}{1+e^{-z}},0&lt;g(z)&lt;1$$</p>
@@ -375,63 +375,63 @@
 <p><img src="/2023/04/05/SurpervisedLearning/10.png" alt="10"></p>
 <center style="font-size:12px">Fig. 10. Sigmoid function</center>
 
-<p>Actually,the output of logistic regression can also be regarded as the possibility of <code>y==1</code>,so $f$ can also be represented as :<br>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;P(y&#x3D;1|\vec{x};\vec{w},b)$$</p>
-<h3 id="Decision-boundary"><a href="#Decision-boundary" class="headerlink" title="Decision boundary"></a>Decision boundary</h3><p>Since the output of logistic regression should be either 0 or 1,we must turn the value between 0 and 1 to 0 or 1.That is,we should find a threshold.When $f \ge threshold$,$f&#x3D;1$,otherwise,$f&#x3D;0$.The threshold we choose is often 0.5.When $f \ge 0.5$ ($\widehat{y}&#x3D;1$):<br>$$g(z) \ge 0.5$$<br>$$\downarrow$$<br>$$z \ge 0$$<br>$$\downarrow$$<br>$$\vec{w}\cdot\vec{x}+b \ge 0$$<br>The curve $\vec{w}\cdot\vec{x}+b &#x3D; 0$ is called <em><strong>decision boundary</strong></em>,where $\widehat{y}$ could be 0 or 1.For example:</p>
+<p>Actually, the output of logistic regression can also be regarded as the possibility of <code>y==1</code>, so $f$ can also be represented as:<br>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;P(y&#x3D;1|\vec{x};\vec{w},b)$$</p>
+<h3 id="Decision-boundary"><a href="#Decision-boundary" class="headerlink" title="Decision boundary"></a>Decision boundary</h3><p>Since the output of logistic regression should be either 0 or 1, we must turn the value between 0 and 1 to 0 or 1. That is, we should find a threshold. When $f \ge threshold$,$f&#x3D;1$, otherwise, $f&#x3D;0$. The threshold we choose is often 0.5. When $f \ge 0.5$ ($\widehat{y}&#x3D;1$):<br>$$g(z) \ge 0.5$$<br>$$\downarrow$$<br>$$z \ge 0$$<br>$$\downarrow$$<br>$$\vec{w}\cdot\vec{x}+b \ge 0$$<br>The curve $\vec{w}\cdot\vec{x}+b &#x3D; 0$ is called <em><strong>decision boundary</strong></em>, where $\widehat{y}$ could be 0 or 1. For example:</p>
 <p><img src="/2023/04/05/SurpervisedLearning/11.png" alt="11"></p>
 <center style="font-size:12px">Fig. 11. Decision boundary-line</center>
 
 <p><img src="/2023/04/05/SurpervisedLearning/12.png" alt="12"></p>
 <center style="font-size:12px">Fig. 12. Decision boundary-circle</center>
 
-<h3 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h3><p>In linear regression,the cost function :</p>
+<h3 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h3><p>In linear regression, the cost function:</p>
 <p>$$J_{(w,b)}&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
-<p>can also be represented as :</p>
+<p>can also be represented as:</p>
 <p>$$J_{(w,b)}&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{1}{2}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
-<p>where :</p>
+<p>where:</p>
 <p>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;\frac{1}{2}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
 <p>is called <em><strong>loss function</strong></em>.</p>
-<p>Loss function indicates the error between the prediction value and real value of one example in training set.The convexity of cost function is actually determined by loss function.In logistic regression,<em>squared error loss function</em> is a non-convex function.</p>
+<p>Loss function indicates the error between the prediction value and real value of one example in training set. The convexity of cost function is actually determined by loss function. In logistic regression, <em>squared error loss function</em> is a non-convex function.</p>
 <p><img src="/2023/04/05/SurpervisedLearning/13.png" alt="13"></p>
 <center style="font-size:12px">Fig. 13. Non-convex loss function</center>
 
-<p>Therefore,a new convex function is needed in logistic regression,that is :<br>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;-y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))-(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))$$<br>where $y^{(i)}&#x3D;0,1$;$f_{\vec{w},b}(\vec{x}^{(i)})\in(0,1)$.</p>
-<p>When $y^{(i)}&#x3D;1$,the curve of $L$ is :</p>
+<p>Therefore, a new convex function is needed in logistic regression, that is:<br>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;-y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))-(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))$$<br>where $y^{(i)}&#x3D;0,1$;$f_{\vec{w},b}(\vec{x}^{(i)})\in(0,1)$.</p>
+<p>When $y^{(i)}&#x3D;1$,the curve of $L$ is:</p>
 <p><img src="/2023/04/05/SurpervisedLearning/14.png" alt="14"></p>
 <center style="font-size:12px">Fig. 14.</center>
 
 <p>Using gradient descent will make the loss close to 0.</p>
-<p>When $y^{(i)}&#x3D;0$,the curve of $L$ is :</p>
+<p>When $y^{(i)}&#x3D;0$,the curve of $L$ is:</p>
 <p><img src="/2023/04/05/SurpervisedLearning/15.png" alt="15"></p>
 <center style="font-size:12px">Fig. 15.</center>
 
 <p>Using gradient descent will also make the loss close to 0.</p>
-<h3 id="Cost-function-2"><a href="#Cost-function-2" class="headerlink" title="Cost function"></a>Cost function</h3><p>$$J_{(w,b)}&#x3D;-\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}[y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))+(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))]$$<br>The derivative of $J$ in logistic regression is actually the same as that in linear regression :<br>$$w_j&#x3D;w_j-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})x_j^{(i)}]$$<br>$$b&#x3D;b-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})]$$</p>
-<p>However,the model $f$ is different.</p>
+<h3 id="Cost-function-2"><a href="#Cost-function-2" class="headerlink" title="Cost function"></a>Cost function</h3><p>$$J_{(w,b)}&#x3D;-\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}[y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))+(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))]$$<br>The derivative of $J$ in logistic regression is actually the same as that in linear regression:<br>$$w_j&#x3D;w_j-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})x_j^{(i)}]$$<br>$$b&#x3D;b-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})]$$</p>
+<p>However, the model $f$ is different.</p>
 <blockquote>
 <p>Vectorization and feature scaling can also be used in losgistic regression.</p>
 </blockquote>
-<h2 id="Multiclass-classification-model"><a href="#Multiclass-classification-model" class="headerlink" title="Multiclass classification model"></a>Multiclass classification model</h2><p>See <a href="/2023/04/10/NeuralNetwork/#Softmax-regression">Softmax regression</a></p>
-<h2 id="Multi-layer-classification-model"><a href="#Multi-layer-classification-model" class="headerlink" title="Multi-layer classification model"></a>Multi-layer classification model</h2><p>See <a href="/2023/04/10/NeuralNetwork/#Multi-label-classification">Multi-label classification</a></p>
-<h1 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h1><h2 id="Underfitting"><a href="#Underfitting" class="headerlink" title="Underfitting"></a>Underfitting</h2><p>When a model does not fit the training set well,the model is underfitting,</p>
+<h2 id="Multiclass-classification-model"><a href="#Multiclass-classification-model" class="headerlink" title="Multiclass classification model"></a>Multiclass classification model</h2><p>See <a href="/2023/04/10/NeuralNetwork/#Softmax-regression">Softmax regression</a>.</p>
+<h2 id="Multi-layer-classification-model"><a href="#Multi-layer-classification-model" class="headerlink" title="Multi-layer classification model"></a>Multi-layer classification model</h2><p>See <a href="/2023/04/10/NeuralNetwork/#Multi-label-classification">Multi-label classification</a>.</p>
+<h1 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h1><h2 id="Underfitting"><a href="#Underfitting" class="headerlink" title="Underfitting"></a>Underfitting</h2><p>When a model does not fit the training set well, the model is underfitting,</p>
 <p><img src="/2023/04/05/SurpervisedLearning/16.png" alt="16"></p>
 <center style="font-size:12px">Fig. 16. Underfitting model</center>
 
-<p>An underfitting model is an algorithm having <strong>high bias</strong>.In this case,we need to change a model.</p>
-<h2 id="Overfitting"><a href="#Overfitting" class="headerlink" title="Overfitting"></a>Overfitting</h2><p>When a model fits the training set extremely well,that is,the errors are approximate 0,the model is overfitting,</p>
+<p>An underfitting model is an algorithm having <strong>high bias</strong>. In this case, we need to change a model.</p>
+<h2 id="Overfitting"><a href="#Overfitting" class="headerlink" title="Overfitting"></a>Overfitting</h2><p>When a model fits the training set extremely well, that is, the errors are approximate 0, the model is overfitting.</p>
 <p><img src="/2023/04/05/SurpervisedLearning/17.png" alt="17"></p>
 <center style="font-size:12px">Fig. 17. Overfitting model</center>
 
-<p>An overfitting model is an algorithm having <strong>high variance</strong>.In this case,the model just fits the training set well,but it can not be generalized.This problem often occurs when the training set is too small.So,the first method to solve this problem is to <strong>collect more training examples</strong>.Besides,<strong>selecting more suitable features</strong> is also feasible (<em><strong>Feature Selection</strong></em>).However,this method may cause our model to lose some useful features.The most feasible and common used method is <strong>regularization</strong>.</p>
-<h2 id="Regularization-1"><a href="#Regularization-1" class="headerlink" title="Regularization"></a>Regularization</h2><p>Overfitting may occurs when some features have an overly large effect,that is,a little change of these features may cause large changes to the model,which can make the model unexpandable.</p>
-<p>The core idea of regularization is to <strong>reduce the weight of features with large value</strong>.When regularizing,the cost function $J$ becomes :</p>
+<p>An overfitting model is an algorithm having <strong>high variance</strong>. In this case, the model just fits the training set well, but it can not be generalized. This problem often occurs when the training set is too small. So, the first method to solve this problem is to <strong>collect more training examples</strong>. Besides, <strong>selecting more suitable features</strong> is also feasible (<em><strong>Feature Selection</strong></em>). However, this method may cause our model to lose some useful features. The most feasible and commonly used method is <strong>regularization</strong>.</p>
+<h2 id="Regularization-1"><a href="#Regularization-1" class="headerlink" title="Regularization"></a>Regularization</h2><p>Overfitting may occurs when some features have an overly large effect, that is, a little change of these features may cause large changes to the model, which can make the model unexpandable.</p>
+<p>The core idea of regularization is to <strong>reduce the weight of features with large value</strong>. When regularizing, the cost function $J$ becomes:</p>
 <p>$$J(\vec{w},b)&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})+\frac{\lambda}{2m}\sum\limits_{j&#x3D;1}^{n}w_j^2$$</p>
-<p>We just need to regularize $w_j$,as $b$ just makes $f$ move up or down.</p>
+<p>We just need to regularize $w_j$ as $b$ just makes $f$ move up or down.</p>
 <blockquote>
 <p>$\lambda$ (&gt;0) is an important parameter that balance fitting data and keeping $w_j$ small.</p>
 </blockquote>
-<p>Since $J$ changes,the update of $w_j$ will also change :</p>
+<p>Since $J$ changes, the update of $w_j$ will also change:</p>
 <p>$$w_j&#x3D;w_j-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{\partial{L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})}}{\partial{w_j}}+\frac{\lambda}{m}w_j]$$<br>or<br>$$w_j&#x3D;(1-\alpha\frac{\lambda}{m})w_j-\alpha\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{\partial{L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})}}{\partial{w_j}}$$</p>
-<p>The second formula indicates that in each iteration,$w_j$ will be smaller than before.That is why regularization can work.</p>
+<p>The second formula indicates that in each iteration, $w_j$ will be smaller than before. That is why regularization can work.</p>
 <hr>
 
     </div>
@@ -546,7 +546,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -583,7 +583,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">5</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">5</span></li></ul>
             </canvas>
           </div>
         </div>
