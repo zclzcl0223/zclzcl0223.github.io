@@ -20,39 +20,39 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Surpervised learning is the most commonly used type of machine learning. This post includes the course notes of surpervised learning course by Andrew Ng.">
+  <meta name="description" content="Supervised learning is the most commonly used type of machine learning. This post includes the course notes of supervised learning course by Andrew Ng.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Surpervised learning">
-<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/index.html">
+<meta property="og:title" content="Supervised learning">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Surpervised learning is the most commonly used type of machine learning. This post includes the course notes of surpervised learning course by Andrew Ng.">
+<meta property="og:description" content="Supervised learning is the most commonly used type of machine learning. This post includes the course notes of supervised learning course by Andrew Ng.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/1.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/2.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/3.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/4.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/5.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/6.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/7.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/8.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/9.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/10.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/11.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/12.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/13.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/14.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/15.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/16.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/17.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/7.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/8.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/9.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/10.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/11.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/12.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/13.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/14.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/15.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/16.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/17.png">
 <meta property="article:published_time" content="2023-04-05T15:34:48.000Z">
-<meta property="article:modified_time" content="2023-04-15T13:21:55.380Z">
+<meta property="article:modified_time" content="2023-04-16T13:48:42.725Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
-<meta property="article:tag" content="Surpervised learning">
+<meta property="article:tag" content="Supervised learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/1.png">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/1.png">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/">
 
 
 <script id="page-configurations">
@@ -65,7 +65,7 @@
   };
 </script>
 
-  <title>Surpervised learning | JourneyToCoding</title>
+  <title>Supervised learning | JourneyToCoding</title>
   
 
 
@@ -188,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/05/SurpervisedLearning/">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -201,7 +201,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Surpervised learning
+          Supervised learning
         </h1>
 
         <div class="post-meta">
@@ -218,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-15 21:21:55" itemprop="dateModified" datetime="2023-04-15T21:21:55+08:00">2023-04-15</time>
+                <time title="Modified: 2023-04-16 21:48:42" itemprop="dateModified" datetime="2023-04-16T21:48:42+08:00">2023-04-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,7 +231,7 @@
             </span>
 
           
-            <div class="post-description">Surpervised learning is the most commonly used type of machine learning. This post includes the course notes of surpervised learning course by Andrew Ng.</div>
+            <div class="post-description">Supervised learning is the most commonly used type of machine learning. This post includes the course notes of supervised learning course by Andrew Ng.</div>
 
         </div>
       </header>
@@ -245,7 +245,7 @@
         <span id="more"></span>
 
 <h1 id="Regression-model"><a href="#Regression-model" class="headerlink" title="Regression model"></a>Regression model</h1><p>The steps in regression model are as follow:</p>
-<p><img src="/2023/04/05/SurpervisedLearning/1.png" alt="1"></p>
+<p><img src="/2023/04/05/SupervisedLearning/1.png" alt="1"></p>
 <center style="font-size:12px">Fig. 1. Steps of regression model</center>
 
 <p>$f$ is the <strong>function</strong> or <strong>model</strong> getting from the learning algorithm, which can be used to predict the output. $\widehat{y}$, the value of $f$, is the prediction of $y$.</p>
@@ -270,7 +270,7 @@
 <blockquote>
 <p>The 3D bowl-shaped surface plot, which is the plot of $J$, can also be visualized as a contour plot. In the contour plot, each oval contains the choices of $w$ and $b$ that result in the same value of $J$.</p>
 </blockquote>
-<p><img src="/2023/04/05/SurpervisedLearning/2.png" alt="2"></p>
+<p><img src="/2023/04/05/SupervisedLearning/2.png" alt="2"></p>
 <center style="font-size:12px">Fig. 2. 3D plot and contour plot</center>
 
 <h3 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h3><p>Gradient descent is an algorithm that can be used to minimize any function. The steps of gradient descent are:</p>
@@ -288,15 +288,15 @@
 </li>
 </ol>
 <p>To achieve this, $J$ has to be a <strong>bowl shape function (convex function)</strong> or <strong>a function with local minima</strong>.</p>
-<p><img src="/2023/04/05/SurpervisedLearning/3.png" alt="3"></p>
+<p><img src="/2023/04/05/SupervisedLearning/3.png" alt="3"></p>
 <center style="font-size:12px">Fig. 3. Function with locak minima</center>
 
 <p>In linear regression, <em>mean squared error cost function</em> is always a bowl shape function. If $\alpha$ is too small, the gradient descent will work but may be very slow.</p>
-<p><img src="/2023/04/05/SurpervisedLearning/4.png" alt="4"></p>
+<p><img src="/2023/04/05/SupervisedLearning/4.png" alt="4"></p>
 <center style="font-size:12px">Fig. 4. Model with small learning rate</center>
 
 <p>If $\alpha$ is too large, the gradient descent may not work, which means it may fail to converge but diverge.</p>
-<p><img src="/2023/04/05/SurpervisedLearning/5.png" alt="5"></p>
+<p><img src="/2023/04/05/SupervisedLearning/5.png" alt="5"></p>
 <center style="font-size:12px">Fig. 5. Model with large learning rate</center>
 
 <blockquote>
@@ -328,11 +328,11 @@
 <p>Normal equation: This method only works for linear regression. It sovles for $w,b$ without iterations. However, it does not generalize to other learning algorithms and it is slow when the number of features is too large (&gt;10,000). It may be useful on the backend.</p>
 </blockquote>
 <h2 id="More-about-gradient-descent"><a href="#More-about-gradient-descent" class="headerlink" title="More about gradient descent"></a>More about gradient descent</h2><h3 id="Feature-scaling"><a href="#Feature-scaling" class="headerlink" title="Feature scaling"></a>Feature scaling</h3><p>Feature scaling is a mothod to accelerate gradient descent. When the value of some features is too large, what may happen is that even though $\alpha$ is small, the changes of some parameters are still <strong>too significant</strong>, which slows down the convergence speed of gradient descent.</p>
-<p><img src="/2023/04/05/SurpervisedLearning/6.png" alt="6"></p>
+<p><img src="/2023/04/05/SupervisedLearning/6.png" alt="6"></p>
 <center style="font-size:12px">Fig. 6. Unscaled features</center>
 
 <p>One useful method is <em>feature scaling</em>. By scaling down some features, we can make the convergence speed of different parameters basically the same.</p>
-<p><img src="/2023/04/05/SurpervisedLearning/7.png" alt="7"></p>
+<p><img src="/2023/04/05/SupervisedLearning/7.png" alt="7"></p>
 <center style="font-size:12px">Fig. 7. Scaled features</center>
 
 <p>Ways to scale features:</p>
@@ -348,14 +348,14 @@
 <h3 id="Ways-to-check-convergence"><a href="#Ways-to-check-convergence" class="headerlink" title="Ways to check convergence"></a>Ways to check convergence</h3><ol>
 <li>Draw $J-iterations$ curve or learning curve.</li>
 </ol>
-<p><img src="/2023/04/05/SurpervisedLearning/8.png" alt="8"></p>
+<p><img src="/2023/04/05/SupervisedLearning/8.png" alt="8"></p>
 <center style="font-size:12px">Fig. 8. Iterations curve</center>
 
 <ol start="2">
 <li>Automatic convergence test: Let $\epsilon$ be a small value. Once $J$ decreases by $\leqslant$ $\epsilon$ in one iteration, it converges.</li>
 </ol>
 <h3 id="Choose-a-better-alpha"><a href="#Choose-a-better-alpha" class="headerlink" title="Choose a better $\alpha$"></a>Choose a better $\alpha$</h3><p>Once the learning curve looks like these:</p>
-<p><img src="/2023/04/05/SurpervisedLearning/9.png" alt="9"></p>
+<p><img src="/2023/04/05/SupervisedLearning/9.png" alt="9"></p>
 <center style="font-size:12px">Fig. 9. Model with large learning rate</center>
 
 <p>It indicates that $\alpha$ is too large. The way to choose a good $\alpha$ is starting with a relative <strong>small value</strong> (like 0.001). And check the astringency of $J$. If $J$ still does not converge, there may be <strong>some bugs</strong> in the code. Then, we can try to increase $\alpha$ by <strong>three times</strong>, until we find a relative large $\alpha$.</p>
@@ -372,15 +372,15 @@
 <p>where </p>
 <p>$$g(z)&#x3D;\frac{1}{1+e^{-z}},0&lt;g(z)&lt;1$$</p>
 <p>is called <em><strong>sigmoid function</strong></em> or <em><strong>logistic function</strong></em>.</p>
-<p><img src="/2023/04/05/SurpervisedLearning/10.png" alt="10"></p>
+<p><img src="/2023/04/05/SupervisedLearning/10.png" alt="10"></p>
 <center style="font-size:12px">Fig. 10. Sigmoid function</center>
 
 <p>Actually, the output of logistic regression can also be regarded as the possibility of <code>y==1</code>, so $f$ can also be represented as:<br>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;P(y&#x3D;1|\vec{x};\vec{w},b)$$</p>
 <h3 id="Decision-boundary"><a href="#Decision-boundary" class="headerlink" title="Decision boundary"></a>Decision boundary</h3><p>Since the output of logistic regression should be either 0 or 1, we must turn the value between 0 and 1 to 0 or 1. That is, we should find a threshold. When $f \ge threshold$,$f&#x3D;1$, otherwise, $f&#x3D;0$. The threshold we choose is often 0.5. When $f \ge 0.5$ ($\widehat{y}&#x3D;1$):<br>$$g(z) \ge 0.5$$<br>$$\downarrow$$<br>$$z \ge 0$$<br>$$\downarrow$$<br>$$\vec{w}\cdot\vec{x}+b \ge 0$$<br>The curve $\vec{w}\cdot\vec{x}+b &#x3D; 0$ is called <em><strong>decision boundary</strong></em>, where $\widehat{y}$ could be 0 or 1. For example:</p>
-<p><img src="/2023/04/05/SurpervisedLearning/11.png" alt="11"></p>
+<p><img src="/2023/04/05/SupervisedLearning/11.png" alt="11"></p>
 <center style="font-size:12px">Fig. 11. Decision boundary-line</center>
 
-<p><img src="/2023/04/05/SurpervisedLearning/12.png" alt="12"></p>
+<p><img src="/2023/04/05/SupervisedLearning/12.png" alt="12"></p>
 <center style="font-size:12px">Fig. 12. Decision boundary-circle</center>
 
 <h3 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h3><p>In linear regression, the cost function:</p>
@@ -391,17 +391,17 @@
 <p>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;\frac{1}{2}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
 <p>is called <em><strong>loss function</strong></em>.</p>
 <p>Loss function indicates the error between the prediction value and real value of one example in training set. The convexity of cost function is actually determined by loss function. In logistic regression, <em>squared error loss function</em> is a non-convex function.</p>
-<p><img src="/2023/04/05/SurpervisedLearning/13.png" alt="13"></p>
+<p><img src="/2023/04/05/SupervisedLearning/13.png" alt="13"></p>
 <center style="font-size:12px">Fig. 13. Non-convex loss function</center>
 
 <p>Therefore, a new convex function is needed in logistic regression, that is:<br>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;-y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))-(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))$$<br>where $y^{(i)}&#x3D;0,1$;$f_{\vec{w},b}(\vec{x}^{(i)})\in(0,1)$.</p>
 <p>When $y^{(i)}&#x3D;1$,the curve of $L$ is:</p>
-<p><img src="/2023/04/05/SurpervisedLearning/14.png" alt="14"></p>
+<p><img src="/2023/04/05/SupervisedLearning/14.png" alt="14"></p>
 <center style="font-size:12px">Fig. 14.</center>
 
 <p>Using gradient descent will make the loss close to 0.</p>
 <p>When $y^{(i)}&#x3D;0$,the curve of $L$ is:</p>
-<p><img src="/2023/04/05/SurpervisedLearning/15.png" alt="15"></p>
+<p><img src="/2023/04/05/SupervisedLearning/15.png" alt="15"></p>
 <center style="font-size:12px">Fig. 15.</center>
 
 <p>Using gradient descent will also make the loss close to 0.</p>
@@ -413,12 +413,12 @@
 <h2 id="Multiclass-classification-model"><a href="#Multiclass-classification-model" class="headerlink" title="Multiclass classification model"></a>Multiclass classification model</h2><p>See <a href="/2023/04/10/NeuralNetwork/#Softmax-regression">Softmax regression</a>.</p>
 <h2 id="Multi-layer-classification-model"><a href="#Multi-layer-classification-model" class="headerlink" title="Multi-layer classification model"></a>Multi-layer classification model</h2><p>See <a href="/2023/04/10/NeuralNetwork/#Multi-label-classification">Multi-label classification</a>.</p>
 <h1 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h1><h2 id="Underfitting"><a href="#Underfitting" class="headerlink" title="Underfitting"></a>Underfitting</h2><p>When a model does not fit the training set well, the model is underfitting,</p>
-<p><img src="/2023/04/05/SurpervisedLearning/16.png" alt="16"></p>
+<p><img src="/2023/04/05/SupervisedLearning/16.png" alt="16"></p>
 <center style="font-size:12px">Fig. 16. Underfitting model</center>
 
 <p>An underfitting model is an algorithm having <strong>high bias</strong>. In this case, we need to change a model.</p>
 <h2 id="Overfitting"><a href="#Overfitting" class="headerlink" title="Overfitting"></a>Overfitting</h2><p>When a model fits the training set extremely well, that is, the errors are approximate 0, the model is overfitting.</p>
-<p><img src="/2023/04/05/SurpervisedLearning/17.png" alt="17"></p>
+<p><img src="/2023/04/05/SupervisedLearning/17.png" alt="17"></p>
 <center style="font-size:12px">Fig. 17. Overfitting model</center>
 
 <p>An overfitting model is an algorithm having <strong>high variance</strong>. In this case, the model just fits the training set well, but it can not be generalized. This problem often occurs when the training set is too small. So, the first method to solve this problem is to <strong>collect more training examples</strong>. Besides, <strong>selecting more suitable features</strong> is also feasible (<em><strong>Feature Selection</strong></em>). However, this method may cause our model to lose some useful features. The most feasible and commonly used method is <strong>regularization</strong>.</p>
@@ -443,7 +443,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Machine-learning/" rel="tag"># Machine learning</a>
-              <a href="/tags/Surpervised-learning/" rel="tag"># Surpervised learning</a>
+              <a href="/tags/Supervised-learning/" rel="tag"># Supervised learning</a>
           </div>
 
           <script type="text/javascript">
@@ -546,7 +546,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -559,7 +559,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -583,7 +583,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">5</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">1</span></li></ul>
             </canvas>
           </div>
         </div>

@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/8.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/9.png">
 <meta property="article:published_time" content="2023-04-13T13:25:19.000Z">
-<meta property="article:modified_time" content="2023-04-15T14:27:03.175Z">
+<meta property="article:modified_time" content="2023-04-16T14:18:09.605Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Deep learning">
@@ -210,7 +210,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-15 22:27:03" itemprop="dateModified" datetime="2023-04-15T22:27:03+08:00">2023-04-15</time>
+                <time title="Modified: 2023-04-16 22:18:09" itemprop="dateModified" datetime="2023-04-16T22:18:09+08:00">2023-04-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -362,6 +362,8 @@
 <p>A good model should have both high precision and recall. Once precision or recall is 0, chances are that the model <code>print(&quot;y=0&quot;)</code> all the time.</p>
 <h3 id="Trading-off-precision-and-recall"><a href="#Trading-off-precision-and-recall" class="headerlink" title="Trading off precision and recall"></a>Trading off precision and recall</h3><p>For logistic regression, threshold is the boundary value used to separate 0 and 1. If raising the threshold, we will get higher precision but lower recall. If decreasing the threshold, we will get higher recall but lower precision. We can’t keep both precision and recall high. What’s more, we can’t solve this problem using dev set as threshold is defined by us.</p>
 <p><img src="/2023/04/13/MachineLearningDiagnostics/9.png" alt="9"></p>
+<center style="font-size:12px">Fig. 9. Precision and recall</center>
+
 <p>The method to compare precision&#x2F;recall numbers is to calculate $F_1\space{score}$:<br>$$F_1\space{score}&#x3D;\frac{1}{\frac{1}{2}(\frac{1}{P}+\frac{1}{R})}&#x3D;\frac{2PR}{P+R}$$</p>
 <p>The larger the $F_1\space{score}$ is , the better the model is.</p>
 <hr>
@@ -478,7 +480,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -491,7 +493,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -515,7 +517,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Surpervised-learning/" rel="tag">Surpervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">5</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">1</span></li></ul>
             </canvas>
           </div>
         </div>
