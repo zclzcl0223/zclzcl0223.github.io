@@ -20,21 +20,23 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Conda is an open-source,cross-platform, language-agnostic package manager and environment management system.">
+  <meta name="description" content="Variables in python are very different from those in C&#x2F;C++. In C&#x2F;C++, variables are the aliases of the address of their values. However, variables in python are just strings which refer to certain obj">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Conda manual">
-<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/11/CondaManual/index.html">
+<meta property="og:title" content="Analysis of variables in python">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/17/AnalysisOfVariableInPython/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Conda is an open-source,cross-platform, language-agnostic package manager and environment management system.">
+<meta property="og:description" content="Variables in python are very different from those in C&#x2F;C++. In C&#x2F;C++, variables are the aliases of the address of their values. However, variables in python are just strings which refer to certain obj">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-04-11T14:21:08.000Z">
-<meta property="article:modified_time" content="2023-04-15T12:42:00.620Z">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/AnalysisOfVariableInPython/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/AnalysisOfVariableInPython/2.png">
+<meta property="article:published_time" content="2023-04-17T15:50:53.000Z">
+<meta property="article:modified_time" content="2023-04-17T16:43:13.240Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Python">
-<meta property="article:tag" content="Tool">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/17/AnalysisOfVariableInPython/1.png">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/11/CondaManual/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/17/AnalysisOfVariableInPython/">
 
 
 <script id="page-configurations">
@@ -47,7 +49,7 @@
   };
 </script>
 
-  <title>Conda manual | JourneyToCoding</title>
+  <title>Analysis of variables in python | JourneyToCoding</title>
   
 
 
@@ -170,7 +172,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/11/CondaManual/">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/17/AnalysisOfVariableInPython/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -183,7 +185,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Conda manual
+          Analysis of variables in python
         </h1>
 
         <div class="post-meta">
@@ -193,14 +195,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-04-11 22:21:08" itemprop="dateCreated datePublished" datetime="2023-04-11T22:21:08+08:00">2023-04-11</time>
+              <time title="Created: 2023-04-17 23:50:53" itemprop="dateCreated datePublished" datetime="2023-04-17T23:50:53+08:00">2023-04-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-15 20:42:00" itemprop="dateModified" datetime="2023-04-15T20:42:00+08:00">2023-04-15</time>
+                <time title="Modified: 2023-04-18 00:43:13" itemprop="dateModified" datetime="2023-04-18T00:43:13+08:00">2023-04-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -208,12 +210,12 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+                  <a href="/categories/Programming-language/" itemprop="url" rel="index"><span itemprop="name">Programming language</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">Conda is an open-source,cross-platform, language-agnostic package manager and environment management system.</div>
+            <div class="post-description">Variables in python are very different from those in C/C++. In C/C++, variables are the aliases of the address of their values. However, variables in python are just strings which refer to certain objects.</div>
 
         </div>
       </header>
@@ -225,6 +227,43 @@
 
       
         <span id="more"></span>
+
+<h1 id="Assignment"><a href="#Assignment" class="headerlink" title="Assignment"></a>Assignment</h1><p>In python, variables are just strings that refer to certain objects, which means that they are actually “pointers” in C&#x2F;C++. When assigning a value to a variable, we actually modifies the <strong>reference</strong> of the variable:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(<span class="number">10</span>))  <span class="comment"># id(ob) return the address of ob</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br></pre></td></tr></table></figure>
+<p>The outputs are:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">140723224699976</span><br><span class="line">140723224699976</span><br></pre></td></tr></table></figure>
+<p>This shows that when creating <code>a</code> in python, it will bind <code>a</code> to the address of <code>10</code>:</p>
+<p><img src="/2023/04/17/AnalysisOfVariableInPython/1.png" alt="1"></p>
+<center style="font-size:12px">Fig. 1. Relationship between a and 10</center>
+
+<p>Similarly, when changing the value of <code>a</code>, we are actually make <code>a</code> refer to the new value. In addition, when assigning the value of <code>a</code> to a new variable <code>b</code>, python does not assign new memory, but just make <code>b</code> refer to the value of <code>a</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">10</span></span><br><span class="line">b = a</span><br><span class="line">a = <span class="number">20</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(b))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(<span class="number">20</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br></pre></td></tr></table></figure>
+<p>The outputs are:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">140722523399240</span><br><span class="line">140722523399240</span><br><span class="line">140722523399560</span><br><span class="line">140722523399560</span><br></pre></td></tr></table></figure>
+<p><img src="/2023/04/17/AnalysisOfVariableInPython/2.png" alt="2"></p>
+<center style="fot-size:12px">Fig. 2. Reference of a and b</center>
+
+<h1 id="Parameters-passing-and-return"><a href="#Parameters-passing-and-return" class="headerlink" title="Parameters passing and return"></a>Parameters passing and return</h1><p>The process of parameters passing is actually a process of assignment. Therefore, what we are passing to the formal parameters <code>a</code> are the reference of actual parameters <code>b</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">a</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br><span class="line"></span><br><span class="line">b = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(b))</span><br><span class="line">func(b)</span><br></pre></td></tr></table></figure>
+<p>The outputs are:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">140723839624264</span><br><span class="line">140723839624264</span><br><span class="line">140723839624264</span><br></pre></td></tr></table></figure>
+<p>Similarly, when returning a value, we are also returning its reference:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    a = <span class="number">2</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(b))</span><br></pre></td></tr></table></figure>
+<p>The outputs are:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">140723839624008</span><br><span class="line">140723839624008</span><br></pre></td></tr></table></figure>
+
+<h1 id="Mutable-amp-immutable-objects"><a href="#Mutable-amp-immutable-objects" class="headerlink" title="Mutable &amp; immutable objects"></a>Mutable &amp; immutable objects</h1><p>In python, everything is an object. </p>
+<p>For variables that refer to immutable objects (e.g. string, number, tuple), we can’t change the value of objects. When we change the value of variable, we are actually make the variable refer to another object (e.g. fig. 2).</p>
+<p>For variables that refer to mutable objects (e.g. list, dictionary), they actually refer to the beginning address of these objects, which means variables are “secondary pointers”. Therefore, we can change the value of the elements of these objects. Change the value of a variable will also make the variable refer to another object.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">b = a</span><br><span class="line">b[<span class="number">0</span>] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(b))</span><br><span class="line"></span><br><span class="line">a = [<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br></pre></td></tr></table></figure>
+<p>The outputs are:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[2, 2]</span><br><span class="line">[2, 2]</span><br><span class="line">1330208790976</span><br><span class="line">1330208790976</span><br><span class="line">1330210492608</span><br></pre></td></tr></table></figure>
+
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Invokar/article/details/89138684">Python变量引用浅析</a></li>
+</ul>
+<hr>
+
     </div>
 
     
@@ -234,7 +273,6 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Python/" rel="tag"># Python</a>
-              <a href="/tags/Tool/" rel="tag"># Tool</a>
           </div>
 
           <script type="text/javascript">
@@ -256,13 +294,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/04/10/NeuralNetwork/" rel="prev" title="Neural network">
-      <i class="fa fa-chevron-left"></i> Neural network
+    <a href="/2023/04/17/NamespaceInPython/" rel="prev" title="Namespace in python">
+      <i class="fa fa-chevron-left"></i> Namespace in python
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/04/12/Tensorflow/" rel="next" title="Tensorflow">
-      Tensorflow <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -453,59 +488,6 @@
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
