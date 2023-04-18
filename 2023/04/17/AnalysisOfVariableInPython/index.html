@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/AnalysisOfVariableInPython/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/AnalysisOfVariableInPython/2.png">
 <meta property="article:published_time" content="2023-04-17T15:50:53.000Z">
-<meta property="article:modified_time" content="2023-04-17T16:43:13.240Z">
+<meta property="article:modified_time" content="2023-04-18T15:21:25.132Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -202,7 +202,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-18 00:43:13" itemprop="dateModified" datetime="2023-04-18T00:43:13+08:00">2023-04-18</time>
+                <time title="Modified: 2023-04-18 23:21:25" itemprop="dateModified" datetime="2023-04-18T23:21:25+08:00">2023-04-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -241,9 +241,9 @@
 <p>The outputs are:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">140722523399240</span><br><span class="line">140722523399240</span><br><span class="line">140722523399560</span><br><span class="line">140722523399560</span><br></pre></td></tr></table></figure>
 <p><img src="/2023/04/17/AnalysisOfVariableInPython/2.png" alt="2"></p>
-<center style="fot-size:12px">Fig. 2. Reference of a and b</center>
+<center style="font-size:12px">Fig. 2. Reference of a and b</center>
 
-<h1 id="Parameters-passing-and-return"><a href="#Parameters-passing-and-return" class="headerlink" title="Parameters passing and return"></a>Parameters passing and return</h1><p>The process of parameters passing is actually a process of assignment. Therefore, what we are passing to the formal parameters <code>a</code> are the reference of actual parameters <code>b</code>.</p>
+<h1 id="Parameters-passing-and-return"><a href="#Parameters-passing-and-return" class="headerlink" title="Parameters passing and return"></a>Parameters passing and return</h1><p>The process of parameters passing is actually a process of assignment. Therefore, what we are passing to the formal parameter <code>a</code> is the reference of actual parameter <code>b</code>.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">a</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br><span class="line"></span><br><span class="line">b = <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(<span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(b))</span><br><span class="line">func(b)</span><br></pre></td></tr></table></figure>
 <p>The outputs are:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">140723839624264</span><br><span class="line">140723839624264</span><br><span class="line">140723839624264</span><br></pre></td></tr></table></figure>
@@ -252,13 +252,16 @@
 <p>The outputs are:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">140723839624008</span><br><span class="line">140723839624008</span><br></pre></td></tr></table></figure>
 
-<h1 id="Mutable-amp-immutable-objects"><a href="#Mutable-amp-immutable-objects" class="headerlink" title="Mutable &amp; immutable objects"></a>Mutable &amp; immutable objects</h1><p>In python, everything is an object. </p>
+<h1 id="Mutable-amp-immutable-objects"><a href="#Mutable-amp-immutable-objects" class="headerlink" title="Mutable &amp; immutable objects"></a>Mutable &amp; immutable objects</h1><p>In python, everything is an object.</p>
 <p>For variables that refer to immutable objects (e.g. string, number, tuple), we can’t change the value of objects. When we change the value of variable, we are actually make the variable refer to another object (e.g. fig. 2).</p>
-<p>For variables that refer to mutable objects (e.g. list, dictionary), they actually refer to the beginning address of these objects, which means variables are “secondary pointers”. Therefore, we can change the value of the elements of these objects. Change the value of a variable will also make the variable refer to another object.</p>
+<p>For variables that refer to mutable objects (e.g. list, dictionary), they actually refer to the beginning address of their inner objects, which means variables are “secondary pointers”. Therefore, we can change the value of the elements of these objects. Change the value of a variable will also make the variable refer to another object.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">b = a</span><br><span class="line">b[<span class="number">0</span>] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(b))</span><br><span class="line"></span><br><span class="line">a = [<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br></pre></td></tr></table></figure>
 <p>The outputs are:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[2, 2]</span><br><span class="line">[2, 2]</span><br><span class="line">1330208790976</span><br><span class="line">1330208790976</span><br><span class="line">1330210492608</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>For mutable objects, their member functions may have side effects while member functions of immutable objects will not have side effects but return a new object. The class defined by users is always mutable obejct.</p>
+</blockquote>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Invokar/article/details/89138684">Python变量引用浅析</a></li>
 </ul>
