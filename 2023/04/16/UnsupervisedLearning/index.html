@@ -14,10 +14,13 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-mac-osx.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="Unsupervised learning is a type of algorithm that learns patterns or data groupings from unlabeled data without the need for human intervention. This post includes the course notes of unsupervised lea">
@@ -160,6 +163,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -233,7 +237,7 @@
 <h1 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h1><p>Clustering is a type of unsupervised learning that automatically groups a set of objects in such a way that objects in the same group are more similar to each other than to hose in other groups. A commonly used algorithm of clustering is K-means algorithm.</p>
 <h2 id="K-means-algorithm"><a href="#K-means-algorithm" class="headerlink" title="K-means algorithm"></a>K-means algorithm</h2><p>Cluster centroids: centers of cluster.</p>
 <ul>
-<li>Randomly initialize $K$ cluster centroids $\mu_1,\mu_2,…\mu_K$;<blockquote>
+<li>Randomly initialize $K$ cluster centroids $\mu_1,\mu_2,...\mu_K$;<blockquote>
 <p>Just randomly choosing $K$ points from the training set is ok though different initialization will produce different clusters.</p>
 </blockquote>
 </li>
@@ -241,7 +245,7 @@
 <p>If there are no points assigned to a centroid, just reduce the number of centroids to $K-1$ or reinitialize the centroids.</p>
 </blockquote>
 </li>
-<li>Move each cluster centroid to the average of all the points $(\bar{x},\bar{y},…, \bar{z})$ that were assigned to it;</li>
+<li>Move each cluster centroid to the average of all the points $(\bar{x},\bar{y},..., \bar{z})$ that were assigned to it;</li>
 <li>Keep doing so until the movements of centroids are small enough;</li>
 <li>Reinitialize all the centroids and train another set of $\mu$ 50-1000 times, choose the set with the lowest $J$ as the final result of clustering.</li>
 </ul>
@@ -250,11 +254,11 @@
 
 <h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><p>Definition of some notations:</p>
 <ul>
-<li>$c^{(i)}$ &#x3D; index of cluster (1, 2,…, $K$) where example $x^{(i)}$ is currently assigned;</li>
+<li>$c^{(i)}$ &#x3D; index of cluster (1, 2,..., $K$) where example $x^{(i)}$ is currently assigned;</li>
 <li>$\mu_k$ &#x3D; cluster centroid $k$;</li>
 <li>$\mu_{c^{(i)}}$ &#x3D; cluster centroid of cluster to which $x^{(i)}$ has been assigned</li>
 </ul>
-<p>Distortion cost function $J$:<br>$$J(c^{(1)},…,c^{(m)},\mu_1,…,\mu_k)&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(x^{(i)}-\mu_{c^{(i)}})^2$$</p>
+<p>Distortion cost function $J$:<br>$$J(c^{(1)},...,c^{(m)},\mu_1,...,\mu_k)&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(x^{(i)}-\mu_{c^{(i)}})^2$$</p>
 <p>The way to minimize $J$ is repeatedly moving $\mu_k$ to the centre of cluster $k$.</p>
 <h3 id="Choose-a-K"><a href="#Choose-a-K" class="headerlink" title="Choose a $K$"></a>Choose a $K$</h3><p>Elbow method: Choose the value at the elbow of $J-K$ curve as $K$ as elbow is the position where the slope of a function rapidly decreases.</p>
 <p><img src="/2023/04/16/UnsupervisedLearning/2.png" alt="2"></p>
@@ -266,7 +270,7 @@
 <p>The followings are procedures of anomaly detection:</p>
 <ul>
 <li>Choose $n$ features $x_j$ that you think might be indicative of anomalous examples;</li>
-<li>Fit parameters $\mu_1,…,\mu_n,\sigma_1^2,…,\sigma_n^2$;<br>$$\mu_j&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}x_j^{(i)}$$<br>$$\sigma_j&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(x_j^{(i)}-\mu_j)^2$$</li>
+<li>Fit parameters $\mu_1,...,\mu_n,\sigma_1^2,...,\sigma_n^2$;<br>$$\mu_j&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}x_j^{(i)}$$<br>$$\sigma_j&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(x_j^{(i)}-\mu_j)^2$$</li>
 <li>Given new example $\vec{x}$, compute $p(\vec{x})$;</li>
 <li>Anomaly if $p(\vec{x})&lt;\epsilon$.</li>
 </ul>
@@ -307,7 +311,7 @@
 </tr>
 </tbody></table>
 <p>The core idea of anomaly detection is to learn under what circumstances one example is normal. Therefore, anomaly detection is more robust if the types of anomalies keep changing while the standard of normal is stable.</p>
-<p>Though supervised learning is also feasible when the number of positive examples is small, it can’t learn much about positive examples. In contrast, since supervised learning learns what positive and negative examples look like from previous examples, it can’t deal with the types of anomalies that didn’t occur before well.</p>
+<p>Though supervised learning is also feasible when the number of positive examples is small, it can&#39;t learn much about positive examples. In contrast, since supervised learning learns what positive and negative examples look like from previous examples, it can&#39;t deal with the types of anomalies that didn&#39;t occur before well.</p>
 <h2 id="Choosing-good-features"><a href="#Choosing-good-features" class="headerlink" title="Choosing good features"></a>Choosing good features</h2><p>Choosing good features is more important in anomaly detection than in supervised learning since supervised learning can rescale and take the best advantage of the features we give while anomaly detection treats each feature as independent and equally important. To choose good features, there are several methods: </p>
 <ul>
 <li><p>Choose more gaussian features or <strong>make</strong> features more gaussian (e.g. $\log(x+c)$ instead of $x$);<br><img src="/2023/04/16/UnsupervisedLearning/3.png" alt="3"></p>
@@ -495,7 +499,7 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
-</div>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -512,6 +516,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

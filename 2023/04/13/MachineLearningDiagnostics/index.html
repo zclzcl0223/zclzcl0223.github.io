@@ -14,10 +14,13 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-mac-osx.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="Machine learning diagnostic is a test that you run to gain insight into what is&#x2F;isn&#39;t working with a learning algorithm and to gain guidance into improving its performance.">
@@ -166,6 +169,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -236,7 +240,7 @@
       
         <span id="more"></span>
 
-<h1 id="Evaluating-a-model"><a href="#Evaluating-a-model" class="headerlink" title="Evaluating a model"></a>Evaluating a model</h1><p>To evaluate a model is to measure the accuracy of the model’s predictions. There are many ways to do so.</p>
+<h1 id="Evaluating-a-model"><a href="#Evaluating-a-model" class="headerlink" title="Evaluating a model"></a>Evaluating a model</h1><p>To evaluate a model is to measure the accuracy of the model&#39;s predictions. There are many ways to do so.</p>
 <h2 id="Two-sets"><a href="#Two-sets" class="headerlink" title="Two sets"></a>Two sets</h2><p>One useful method is to splite our training set into <strong>training set</strong> and <strong>test set</strong>. Training set is used to train and evaluate the model, but test set is only applied to evaluate the model. To evaluate a trained model, we should calculate both the $J_{test}$ and $J_{train}$, both of which are withour regularization term. But the model is regularized.</p>
 <blockquote>
 <p>For classification model, we can also count the number of misclassified examples in training set and test set respectively.</p>
@@ -290,7 +294,7 @@
 </tr>
 </tbody></table>
 <blockquote>
-<p>A vivid metaphor about these sets is: Training set is students’textbook, dev set is students’homework and test set is the final exam.</p>
+<p>A vivid metaphor about these sets is: Training set is students&#39;textbook, dev set is students&#39;homework and test set is the final exam.</p>
 </blockquote>
 <h1 id="Diagnostics"><a href="#Diagnostics" class="headerlink" title="Diagnostics"></a>Diagnostics</h1><h2 id="Bias-and-variance"><a href="#Bias-and-variance" class="headerlink" title="Bias and variance"></a>Bias and variance</h2><p>Instead of plotting the model to judge unferfitting or overfirring, a more common method is to calculate compare $J_{train}$ and $J_{cv}$.</p>
 <ul>
@@ -360,7 +364,7 @@
 <p>Then precision is defined as the fraction that are actually 1 among all examples where we predicted $y&#x3D;1$:<br>$${Precision}&#x3D;\frac{TruePos}{TruePos+FalsePos}$$</p>
 <p>Recall is defined as the fraction that are correctly predicted among all examples that are actually 1:<br>$${Recall}&#x3D;\frac{TruePos}{TruePos+FalseNeg}$$</p>
 <p>A good model should have both high precision and recall. Once precision or recall is 0, chances are that the model <code>print(&quot;y=0&quot;)</code> all the time.</p>
-<h3 id="Trading-off-precision-and-recall"><a href="#Trading-off-precision-and-recall" class="headerlink" title="Trading off precision and recall"></a>Trading off precision and recall</h3><p>For logistic regression, threshold is the boundary value used to separate 0 and 1. If raising the threshold, we will get higher precision but lower recall. If decreasing the threshold, we will get higher recall but lower precision. We can’t keep both precision and recall high. What’s more, we can’t solve this problem using dev set as threshold is defined by us.</p>
+<h3 id="Trading-off-precision-and-recall"><a href="#Trading-off-precision-and-recall" class="headerlink" title="Trading off precision and recall"></a>Trading off precision and recall</h3><p>For logistic regression, threshold is the boundary value used to separate 0 and 1. If raising the threshold, we will get higher precision but lower recall. If decreasing the threshold, we will get higher recall but lower precision. We can&#39;t keep both precision and recall high. What&#39;s more, we can&#39;t solve this problem using dev set as threshold is defined by us.</p>
 <p><img src="/2023/04/13/MachineLearningDiagnostics/9.png" alt="9"></p>
 <center style="font-size:12px">Fig. 9. Precision and recall</center>
 
@@ -545,7 +549,7 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
-</div>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -562,6 +566,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

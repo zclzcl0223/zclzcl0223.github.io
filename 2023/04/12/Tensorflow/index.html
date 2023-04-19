@@ -14,10 +14,13 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-mac-osx.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="Tensorflow is a free and open-source software library for machine learning and artificial intelligence. It has a particular focus on training and inference of neural networks.">
@@ -29,7 +32,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/12/Tensorflow/1.png">
 <meta property="article:published_time" content="2023-04-12T14:00:29.000Z">
-<meta property="article:modified_time" content="2023-04-18T15:22:18.809Z">
+<meta property="article:modified_time" content="2023-04-19T13:38:20.693Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Tool">
 <meta property="article:tag" content="Machine learning">
@@ -159,6 +162,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -203,7 +207,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-18 23:22:18" itemprop="dateModified" datetime="2023-04-18T23:22:18+08:00">2023-04-18</time>
+                <time title="Modified: 2023-04-19 21:38:20" itemprop="dateModified" datetime="2023-04-19T21:38:20+08:00">2023-04-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,7 +233,7 @@
       
         <span id="more"></span>
 
-<h1 id="Create-the-model"><a href="#Create-the-model" class="headerlink" title="Create the model"></a>Create the model</h1><p>For a neural network like this:</p>
+<h1 id="Neural-networks"><a href="#Neural-networks" class="headerlink" title="Neural networks"></a>Neural networks</h1><h2 id="Create-the-model"><a href="#Create-the-model" class="headerlink" title="Create the model"></a>Create the model</h2><p>For a neural network like this:</p>
 <p><img src="/2023/04/12/Tensorflow/1.png" alt="1"></p>
 <center style="font-size:12px"> Fig. 1. Sample</center> 
 
@@ -253,10 +257,10 @@
 <li>sigmoid</li>
 <li>linear</li>
 <li>softmax</li>
-<li>…</li>
+<li>...</li>
 </ul>
 </blockquote>
-<h1 id="Loss-and-cost-functions"><a href="#Loss-and-cost-functions" class="headerlink" title="Loss and cost functions"></a>Loss and cost functions</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> losses</span><br><span class="line"></span><br><span class="line"><span class="comment"># for binary classificaiton</span></span><br><span class="line">model.<span class="built_in">compile</span>(loss=losses.BinaryCrossentropy())</span><br><span class="line"><span class="comment"># for linear regression</span></span><br><span class="line">model.<span class="built_in">compile</span>(loss=losses.MeanSquaredError())</span><br><span class="line"><span class="comment"># for Adam algorithm</span></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=tf.keras.optimizers.Adam(learning_rate=<span class="number">1e-3</span>), loss=YourChoiceOfFunction)</span><br></pre></td></tr></table></figure>
+<h2 id="Loss-and-cost-functions"><a href="#Loss-and-cost-functions" class="headerlink" title="Loss and cost functions"></a>Loss and cost functions</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> losses</span><br><span class="line"></span><br><span class="line"><span class="comment"># for binary classificaiton</span></span><br><span class="line">model.<span class="built_in">compile</span>(loss=losses.BinaryCrossentropy())</span><br><span class="line"><span class="comment"># for linear regression</span></span><br><span class="line">model.<span class="built_in">compile</span>(loss=losses.MeanSquaredError())</span><br><span class="line"><span class="comment"># for Adam algorithm</span></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=tf.keras.optimizers.Adam(learning_rate=<span class="number">1e-3</span>), loss=YourChoiceOfFunction)</span><br></pre></td></tr></table></figure>
 <p>See <a href="/2023/04/10/NeuralNetwork/#Adam-algorithm">Adam algorithm</a> to know more about Adam.</p>
 <p>At this step, the structure of the neural network has already been established.</p>
 <blockquote>
@@ -268,16 +272,16 @@
 </ul>
 </blockquote>
 <p>If we regard the whole neural network as a generalized model, the model and cost function can be represent as:<br>$$<br>f(W,B)(\vec{x})<br>$$<br>$$<br>J(W,B)&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}L(f(\vec{x}^{(i)},y^{(i)}))<br>$$</p>
-<h1 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h1><p>This is the final step to train a neural network. In this step, we use gradient descent to determine $W$ and $B$.</p>
+<h2 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h2><p>This is the final step to train a neural network. In this step, we use gradient descent to determine $W$ and $B$.</p>
 <blockquote>
 <p>Capital means matrix</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.fit(X, y, epochs=<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
 <p>The algorithm used in <code>fit</code> is called <strong>Backpropagation</strong>. <code>X,y</code> is our training set and <code>epochs</code> represents the number of iterations.</p>
 <p>After finishing the training of neural network, we can use <code>model.predict()</code> to predict or infer.</p>
-<h1 id="Optimization-for-softmax"><a href="#Optimization-for-softmax" class="headerlink" title="Optimization for softmax"></a>Optimization for softmax</h1><p>In multiclass classfication, the following code will work, but the value is not very accurate. See <a href="/2023/04/10/NeuralNetwork/#Softmax-regression">Softmax regression</a> to know more about multiclass classification and softmax.</p>
+<h2 id="Optimization-for-softmax"><a href="#Optimization-for-softmax" class="headerlink" title="Optimization for softmax"></a>Optimization for softmax</h2><p>In multiclass classfication, the following code will work, but the value is not very accurate. See <a href="/2023/04/10/NeuralNetwork/#Softmax-regression">Softmax regression</a> to know more about multiclass classification and softmax.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.losses <span class="keyword">import</span> SparseCategoricalCrossentropy</span><br><span class="line"></span><br><span class="line">model = Sequential([</span><br><span class="line">    Dense(units=<span class="number">25</span>, activation=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">    Dense(units=<span class="number">15</span>, activation=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">    Dense(units=<span class="number">10</span>, activation=<span class="string">&#x27;softmax&#x27;</span>)</span><br><span class="line">                   ])</span><br><span class="line">model.<span class="built_in">compile</span>(loss=SparseCategoricalCrossentropy())</span><br><span class="line">model.fit(X, y, epochs=<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
-<p>Due to the limitations in precision when using binary to represent decimals, the more intermediate values we use, the greater the loss of precision we get. Before we calculate $loss$, we must get the value of $a$. $a$ is a intermediate value, so it is advisable for us to replace $a$ in $loss$ with its original formula. That is:<br>$$a_i&#x3D;g(z)&#x3D;\frac{e^{z_i}}{e^{z_1}+…+e^{z_i}}$$<br>$$loss&#x3D;-\log{a_1}, y&#x3D;1…$$<br>$$\downarrow$$<br>$$loss&#x3D;-\log\frac{e^{z_i}}{e^{z_1}+…+e^{z_i}},y&#x3D;1…$$<br>To realize this, we just need to set the activation function of output layer to <code>linear</code> and set <code>from_logits</code> to <code>True</code>:</p>
+<p>Due to the limitations in precision when using binary to represent decimals, the more intermediate values we use, the greater the loss of precision we get. Before we calculate $loss$, we must get the value of $a$. $a$ is a intermediate value, so it is advisable for us to replace $a$ in $loss$ with its original formula. That is:<br>$$a_i&#x3D;g(z)&#x3D;\frac{e^{z_i}}{e^{z_1}+...+e^{z_i}}$$<br>$$loss&#x3D;-\log{a_1}, y&#x3D;1...$$<br>$$\downarrow$$<br>$$loss&#x3D;-\log\frac{e^{z_i}}{e^{z_1}+...+e^{z_i}},y&#x3D;1...$$<br>To realize this, we just need to set the activation function of output layer to <code>linear</code> and set <code>from_logits</code> to <code>True</code>:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(units=<span class="number">25</span>, activation=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">    Dense(units=<span class="number">15</span>, activation=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">    Dense(units=<span class="number">10</span>, activation=<span class="string">&#x27;linear&#x27;</span>)</span><br><span class="line">                   ])</span><br><span class="line">model.<span class="built_in">compile</span>(loss=SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>))</span><br></pre></td></tr></table></figure>
 <p>The principle of this code is that $g(z)$ is just $z$, and tensorflow will replace $a$ with its original formula in loss function. <code>from_logits</code> actuallly means use $z$ rather than $a$. This gives tensorflow more flexibility to rearrange the terms to get more accurate values.</p>
 <blockquote>
@@ -286,8 +290,12 @@
 <p>to get the real values.</p>
 </blockquote>
 <p>The same optimization can also be applied to other neural networks, like binary classification.</p>
-<hr>
+<h2 id="Content-based-filtering"><a href="#Content-based-filtering" class="headerlink" title="Content-based filtering"></a>Content-based filtering</h2><p>See <a href="/2023/04/17/RecommenderSystem/#Content-based-filtering">Content-based filtering</a> to know more about it.</p>
+<p>Wait for lab.</p>
+<h1 id="Regression-model"><a href="#Regression-model" class="headerlink" title="Regression model"></a>Regression model</h1><p>For regression models, Auto Diff (Auto Grad) of Tensorflow can help us get partial derivatives automatically.</p>
+<h2 id="Gradient-descent-1"><a href="#Gradient-descent-1" class="headerlink" title="Gradient descent"></a>Gradient descent</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="comment"># for J = (wx-1)^2</span></span><br><span class="line"></span><br><span class="line">w = tf.Variable(<span class="number">3.0</span>) <span class="comment"># The parameters we want to optimize, they can also be vector</span></span><br><span class="line">x = <span class="number">1.0</span> <span class="comment"># Features of trainng set</span></span><br><span class="line">y = <span class="number">1.0</span> <span class="comment"># Target value of training set</span></span><br><span class="line">alpha = <span class="number">0.01</span> <span class="comment"># Learning rate</span></span><br><span class="line"></span><br><span class="line">iterations = <span class="number">30</span> <span class="comment"># Number of iteration</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">iter</span> <span class="keyword">in</span> <span class="built_in">range</span>(iterations):</span><br><span class="line">    <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape: <span class="comment"># Record the steps</span></span><br><span class="line">        fwb = w * x <span class="comment"># Model</span></span><br><span class="line">        costJ = (fwb - y)**<span class="number">2</span> <span class="comment"># Cost function</span></span><br><span class="line">    [dJdw] = tape.gradient(costJ, [w]) <span class="comment"># Calculate derivatives</span></span><br><span class="line"></span><br><span class="line">    w.assign_add(-alpha * dJdw) <span class="comment"># Update w</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="Adam-algorithm"><a href="#Adam-algorithm" class="headerlink" title="Adam algorithm"></a>Adam algorithm</h2><h2 id="The-example-used-here-is-about-collaborative-filtering-See-Collaborative-filtering-to-know-more-about-it"><a href="#The-example-used-here-is-about-collaborative-filtering-See-Collaborative-filtering-to-know-more-about-it" class="headerlink" title="The example used here is about collaborative filtering. See Collaborative filtering to know more about it."></a>The example used here is about collaborative filtering. See <a href="/2023/04/17/RecommenderSystem/#Collaborative-filtering">Collaborative filtering</a> to know more about it.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate an adam optimizer</span></span><br><span class="line">optimizer = keras.optimizers.Adam(learning_rate=<span class="number">1e-1</span>)</span><br><span class="line"></span><br><span class="line">iterations = <span class="number">200</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">iter</span> <span class="keyword">in</span> <span class="built_in">range</span>(iterations):</span><br><span class="line">    <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line">        <span class="comment"># features, w, b, mean normalization, R (which item have a rating), number of users, number of items, lambda</span></span><br><span class="line">        coast_value = cofiCostFuncV(X, W, b, Ynorm, R, num_users, num_items, <span class="keyword">lambda</span>) <span class="comment"># Compute cost</span></span><br><span class="line">    grads = tape.gradient(cost_value, [X, W, b]) <span class="comment"># Calculate derivatives</span></span><br><span class="line">    optimizer.apply_gradients(<span class="built_in">zip</span>(grad, [X, W, b])) <span class="comment"># Update X, W, b</span></span><br></pre></td></tr></table></figure></h2>
     </div>
 
     
@@ -385,7 +393,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Create-the-model"><span class="nav-number">1.</span> <span class="nav-text">Create the model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Loss-and-cost-functions"><span class="nav-number">2.</span> <span class="nav-text">Loss and cost functions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Gradient-descent"><span class="nav-number">3.</span> <span class="nav-text">Gradient descent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optimization-for-softmax"><span class="nav-number">4.</span> <span class="nav-text">Optimization for softmax</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-networks"><span class="nav-number">1.</span> <span class="nav-text">Neural networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-the-model"><span class="nav-number">1.1.</span> <span class="nav-text">Create the model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loss-and-cost-functions"><span class="nav-number">1.2.</span> <span class="nav-text">Loss and cost functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-descent"><span class="nav-number">1.3.</span> <span class="nav-text">Gradient descent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization-for-softmax"><span class="nav-number">1.4.</span> <span class="nav-text">Optimization for softmax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Content-based-filtering"><span class="nav-number">1.5.</span> <span class="nav-text">Content-based filtering</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Regression-model"><span class="nav-number">2.</span> <span class="nav-text">Regression model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-descent-1"><span class="nav-number">2.1.</span> <span class="nav-text">Gradient descent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adam-algorithm"><span class="nav-number">2.2.</span> <span class="nav-text">Adam algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-example-used-here-is-about-collaborative-filtering-See-Collaborative-filtering-to-know-more-about-it"><span class="nav-number">2.3.</span> <span class="nav-text">The example used here is about collaborative filtering. See Collaborative filtering to know more about it.123456789101112from tensorflow import keras# Instantiate an adam optimizeroptimizer &#x3D; keras.optimizers.Adam(learning_rate&#x3D;1e-1)iterations &#x3D; 200for iter in range(iterations):    with tf.GradientTape() as tape:        # features, w, b, mean normalization, R (which item have a rating), number of users, number of items, lambda        coast_value &#x3D; cofiCostFuncV(X, W, b, Ynorm, R, num_users, num_items, lambda) # Compute cost    grads &#x3D; tape.gradient(cost_value, [X, W, b]) # Calculate derivatives    optimizer.apply_gradients(zip(grad, [X, W, b])) # Update X, W, b</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -466,7 +474,7 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
-</div>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -483,6 +491,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
