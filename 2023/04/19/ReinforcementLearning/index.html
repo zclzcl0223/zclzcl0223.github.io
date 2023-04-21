@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/19/ReinforcementLearning/4.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/19/ReinforcementLearning/5.png">
 <meta property="article:published_time" content="2023-04-19T15:52:43.000Z">
-<meta property="article:modified_time" content="2023-04-20T14:53:04.643Z">
+<meta property="article:modified_time" content="2023-04-21T07:49:16.994Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Reinforcement learning">
@@ -210,7 +210,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-20 22:53:04" itemprop="dateModified" datetime="2023-04-20T22:53:04+08:00">2023-04-20</time>
+                <time title="Modified: 2023-04-21 15:49:16" itemprop="dateModified" datetime="2023-04-21T15:49:16+08:00">2023-04-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -255,9 +255,9 @@
 
 <p>The figure above shows the procedure of reinforcement learning. A agent in state $s_i$ takes action to affect the environment or itself (The agent itself is actually a part of the environment), gets a certain reward and reach new state $s_{i+1}$. The goal of reinforcement learning is to fina a policy $\pi$ that tells the agent what action to take in every state so as to maximize the return. Nearly all reforcement learning assignment can be described as <strong>Markov decision process (MDP)</strong>. MDP is a process that the future only depends on the <strong>current state $s_i$</strong> and have nothing to do with the prior states or how things get to the current state.</p>
 <h1 id="State-action-value-function"><a href="#State-action-value-function" class="headerlink" title="State-action value function"></a>State-action value function</h1><p>State-action value function $Q(s,a)$, which is also called Q-function, $Q^*$ or optimal Q function, is a function that computes the maximum return a agent can get if it is in state $s$ and take action $a$ (once). After the agent takes action $a$, its state will become $s&#39;$ and the actions it could take in state $s&#39;$ are $a&#39;$. It is easy to realize that the computing of $Q$ is actually a dynamic programming process. In reinforcement learning, the method we use to count $Q$ is called <strong>bellman equation</strong>:</p>
-<p>$$Q(s,a)&#x3D;R(s)+{\gamma}\max_{a&#39;}Q(s&#39;,a&#39;)$$<br>where $R(s)$ is called immediate reward, the second part is the return weighted by $\gamma$ from behaving optimally starting from state $s&#39;$.</p>
+<p>$$Q(s,a)&#x3D;R(s)+{\gamma}\max_{a&#39;}Q(s&#39;,a&#39;)\tag{1}$$<br>where $R(s)$ is called immediate reward, the second part is the return weighted by $\gamma$ from behaving optimally starting from state $s&#39;$.</p>
 <h2 id="Random-stochastic-environment"><a href="#Random-stochastic-environment" class="headerlink" title="Random (stochastic) environment"></a>Random (stochastic) environment</h2><p>In practice, we can&#39;t guarantee that the agent will execute the actions precisely due to the randomness of the environment. In order to get a more precise value of return, we have to take this randomness into account:</p>
-<p>$$<br>Q(s,a)&#x3D;R(s)+{\gamma}E[\max_{a&#39;}Q(s&#39;,a&#39;)]<br>$$<br>$E$ means expectation. When taking randomness into account, the state after taking action $a$ is uncertain. Therefore, what the second term of $Q(s,a)$ computes is the weighted average of the maximum returns weighted by $\gamma$ of the different states the agent may reach after taking action $a$.</p>
+<p>$$<br>Q(s,a)&#x3D;R(s)+{\gamma}E[\max_{a&#39;}Q(s&#39;,a&#39;)]\tag{2}<br>$$<br>$E$ means expectation. When taking randomness into account, the state after taking action $a$ is uncertain. Therefore, what the second term of $Q(s,a)$ computes is the weighted average of the maximum returns weighted by $\gamma$ of the different states the agent may reach after taking action $a$.</p>
 <h1 id="Continuous-state"><a href="#Continuous-state" class="headerlink" title="Continuous state"></a>Continuous state</h1><p>In practice, the state of a agent is a vector whose values are continuous. For examples, in lab <em>Lunar Lander</em>, the state of a lunar lander can be described as:<br>$$<br>s&#x3D;[x,y,\dot{x},\dot{y},\theta,\dot{\theta},l,r]<br>$$<br>where $x$, $y$ and $\theta$ are its position since this is a plane problem. $\dot{x}$, $\dot{y}$, $\dot{\theta}$ are its velocity of different directions. $l$ and $r$ (value 0 or 1) indicates whether the left or right leg of lunar lander has landed.</p>
 <p><img src="/2023/04/19/ReinforcementLearning/2.png" alt="2"></p>
 <center style="font-size:12px">Fig. 2. Lunar Lander</center>
@@ -297,7 +297,7 @@
 <p><img src="/2023/04/19/ReinforcementLearning/5.png" alt="5"></p>
 <center style="font-size:12px">Fig. 5. Mini-batch</center>
 
-<h3 id="Soft-update"><a href="#Soft-update" class="headerlink" title="Soft update"></a>Soft update</h3><p>When updating $Q$, we can&#39;t guarantee that $Q_{new}$ is better than $Q$. Therefore, it is recommended to keep a part of $Q$ and update smoothly, like:<br>$$Q_{new}&#x3D;0.01Q_{new}+0.99Q$$</p>
+<h3 id="Soft-update"><a href="#Soft-update" class="headerlink" title="Soft update"></a>Soft update</h3><p>When updating $Q$, we can&#39;t guarantee that $Q_{new}$ is better than $Q$. Therefore, it is recommended to keep a part of $Q$ and update smoothly, like:<br>$$Q_{new}&#x3D;0.01Q_{new}+0.99Q\tag{3}$$</p>
 <hr>
 
     </div>
