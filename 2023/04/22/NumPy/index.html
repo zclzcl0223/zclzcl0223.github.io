@@ -23,27 +23,21 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="A recommender system is a subclass of information filtering system that provides suggestions for items that are most pertinent to a particular user. This post includes the course notes of recommender">
+  <meta name="description" content="NumPy is a library that extends the base capabilities of python to add a richer data set including mroe numeric types, vectors, matrices, and many matrix functions.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Recommender system">
-<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/index.html">
+<meta property="og:title" content="NumPy">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/22/NumPy/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="A recommender system is a subclass of information filtering system that provides suggestions for items that are most pertinent to a particular user. This post includes the course notes of recommender">
+<meta property="og:description" content="NumPy is a library that extends the base capabilities of python to add a richer data set including mroe numeric types, vectors, matrices, and many matrix functions.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/1.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/2.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/3.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/4.png">
-<meta property="article:published_time" content="2023-04-17T08:22:09.000Z">
-<meta property="article:modified_time" content="2023-04-19T15:41:45.328Z">
+<meta property="article:published_time" content="2023-04-22T03:37:25.000Z">
+<meta property="article:modified_time" content="2023-04-22T14:13:26.656Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="Machine learning">
-<meta property="article:tag" content="Deep learning">
-<meta property="article:tag" content="Recommender system">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Tool">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/1.png">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/22/NumPy/">
 
 
 <script id="page-configurations">
@@ -56,7 +50,7 @@
   };
 </script>
 
-  <title>Recommender system | JourneyToCoding</title>
+  <title>NumPy | JourneyToCoding</title>
   
 
 
@@ -180,7 +174,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/22/NumPy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -193,7 +187,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Recommender system
+          NumPy
         </h1>
 
         <div class="post-meta">
@@ -202,28 +196,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-04-17 16:22:09" itemprop="dateCreated datePublished" datetime="2023-04-17T16:22:09+08:00">2023-04-17</time>
+              <time title="Created: 2023-04-22 11:37:25 / Modified: 22:13:26" itemprop="dateCreated datePublished" datetime="2023-04-22T11:37:25+08:00">2023-04-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-19 23:41:45" itemprop="dateModified" datetime="2023-04-19T23:41:45+08:00">2023-04-19</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning-By-AndrewNg/" itemprop="url" rel="index"><span itemprop="name">Machine Learning By AndrewNg</span></a>
+                  <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">A recommender system is a subclass of information filtering system that provides suggestions for items that are most pertinent to a particular user. This post includes the course notes of recommender system course by Andrew Ng.</div>
+            <div class="post-description">NumPy is a library that extends the base capabilities of python to add a richer data set including mroe numeric types, vectors, matrices, and many matrix functions.</div>
 
         </div>
       </header>
@@ -236,61 +224,45 @@
       
         <span id="more"></span>
 
-<h1 id="Collaborative-filtering"><a href="#Collaborative-filtering" class="headerlink" title="Collaborative filtering"></a>Collaborative filtering</h1><p>The core idea of collaborative filtering is that users tend to use items with high ratings. Therefore, by predicting users&#39; ratings for items that they haven&#39;t used based on rating of users who gave similar ratings, we can recommend those high rated items to users.</p>
-<h2 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h2><ul>
-<li>$n_u$ &#x3D; number of users;</li>
-<li>$n_m$ &#x3D; number of items;</li>
-<li>$r(i,j)&#x3D;1$ if user $j$ has rated item $i$;</li>
-<li>$y^{(i,j)}$ &#x3D; rating given by user $j$ to movie $i$;</li>
-<li>$w^{(j)}, b^{(j)}$ &#x3D; parameters for user $j$;</li>
-<li>$x^{(i)}$ &#x3D; feature vector for item $i$;</li>
-<li>$m^{(j)}$ &#x3D; number of items rated by user $j$</li>
-</ul>
-<h2 id="Recommending-with-features"><a href="#Recommending-with-features" class="headerlink" title="Recommending with features"></a>Recommending with features</h2><p><img src="/2023/04/17/RecommenderSystem/1.png" alt="1"></p>
-<center style="font-size:12px">Fig. 1. Items with features</center>
-
-<p>If we know the composition or features of items and their respective percentages, we can estimate how mush users like each feature or component. This is actually a regression model: ${rating}&#x3D;{w^{(j)}}\cdot{x}+b^{(j)}$. If we consider all the items and all the users together and regularization, we can get cost function $J$ like this:</p>
-<p>$$J(w,b) &#x3D; \frac{1}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{i:r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{k&#x3D;1}^{n}(w_k^{(j)})^2$$</p>
-<p>It is actually a linear regression model though we only consider the items that have been rated. Since $m^{(j)}$ is different for each user and it actually doesn&#39;t affect the final result for each user since it is only related to user $j$, we can remove it and make $2m^{(j)}$ just $2$. Each user is totally independent of others, that is, $w^{(j)}$ and $b^{(j)}$ have nothing to do with others. Therefore, $J$ is just a combination of several linear regression cost functions.</p>
-<h2 id="Recommending-without-features"><a href="#Recommending-without-features" class="headerlink" title="Recommending without features"></a>Recommending without features</h2><p><img src="/2023/04/17/RecommenderSystem/2.png" alt="2"></p>
-<center style="font-size:12px">Fig. 2. Items without features</center>
-
-<p>More generally, we don&#39;t know the exact value of each feature. Therefore, the algorithm has to learn their values from users&#39; ratings:</p>
-<p>$$J(x) &#x3D; \frac{1}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{j:r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{k&#x3D;1}^{n}(x_k^{(i)})^2$$</p>
-<p>In this case, $x$, the values of features of each item, are the parameters that the algorithm will learn and we assume that the algorithm have already known the parameters of each user. Nonetheless, it actually doesn&#39;t know. Since the first term of $J(w,b)$ and $J(x)$ are the same, we can combine them together:</p>
-<p>$$J(w,b,x) &#x3D; \frac{1}{2}\sum\limits_{(i,j):r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{k&#x3D;1}^{n}(x_k^{(i)})^2+\frac{\lambda}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{k&#x3D;1}^{n}(w_k^{(j)})^2$$</p>
-<p>This is <strong>collaborative filtering</strong>. In addition to learning $w$ and $b$, it also learns $x$. When gradient descent, it has to modify $w$, $b$ and $x$ simultaneously. Because of the removing of $m^{(j)}$, it can combine the first term of $J(w,b)$ and $J(x)$ together. The ratings of other users are used to learn $x$ but affect the learning of $w$ and $b$ of all the users indirectly.</p>
-<p>If the rating of a item is given in the form of binary label (like or dislike), we can just turn linear regression to logistic regression. Namely, turn activation function from linear function to sigmoid function and turn loss function from squared error to cross entropy.</p>
-<h2 id="Mean-normalization"><a href="#Mean-normalization" class="headerlink" title="Mean normalization"></a>Mean normalization</h2><p>If there is a new user $a$ that haven&#39;t rated any items, the prediction of its rating that the collaborative filtering algorithm makes will all be zero. Because the parameters of $a$ have nothing to do with the value of the first term of $J(w,b,x)$, regularization will make them all zero and the prediction ${rating}&#x3D;{w}\cdot{x}+b$ will also be zero. Intuitively, we can use the average score of each item $\mu$ to predict the rating of a new user. And that&#39;s what mean normalization does:</p>
-<ul>
-<li>Subtract ${\mu}_{j}$ from each user&#39;s rating for item $j$;</li>
-<li>Do collaborative filtering using normalized scores;</li>
-<li>Make predictions: $\widehat{y}_{a}^{(i)}&#x3D;{w_a}\cdot{x}^{(i)}+b_a+\mu^{(i)}$</li>
-</ul>
-<h2 id="Finding-related-items"><a href="#Finding-related-items" class="headerlink" title="Finding related items"></a>Finding related items</h2><p>Features $x^{(i)}$ of item $i$ convey something about what that item is like. Therefore, we can find items similar to this item by computing:<br>$$||{x}^{(k)}-{x}^{(i)}||^2$$<br>where $n$ is the number of features.The smaller this value is, the more similar the two items are.</p>
-<h1 id="Content-based-filtering"><a href="#Content-based-filtering" class="headerlink" title="Content-based filtering"></a>Content-based filtering</h1><p>Cold start problem:</p>
-<ul>
-<li>How to rank new items that few users have rated?</li>
-<li>How to show something reasonable to new users who have rated few items?</li>
-</ul>
-<p>Though mean normalization can solve the second problem to a certain extent, it is better to use content-based filtering to solve cold start problem.</p>
-<p>Content-based filtering recommends items to users based on features or background of user and item to find good match. Each user $j$ has several background information<br>$x_u^{(j)}$ and each item $i$ has several features $x_m^{(i)}$. With $x_u^{(j)}$, it is possible for the algorithm to compute how much user $j$ like certain components of this type of item $v_u^{(j)}$. With $x_m^{(i)}$, it is possible for the algorithm to compute the proportions of each attribute of item $i$ $v_m^{(i)}$.</p>
+<h1 id="Basic-data-structure"><a href="#Basic-data-structure" class="headerlink" title="Basic data structure"></a>Basic data structure</h1><p>NumPy&#39;s basic data structure is an indexable, n-dimensional array containing elements of the same type (<code>dtype</code>), where dimension is the number of indices that we need to visit a scalar of the array. Therefore, vectors are 1-D arrays and matrices are 2-D arrays.</p>
 <blockquote>
-<p>The dimensions of $x_u^{(j)}$ and $x_m^{(i)}$ can be different, but the dimensions of $v_u^{(j)}$ and $v_m^{(i)}$ must be the same since the prediction of rating is: $v_u^{(j)}\cdot v_m^{(i)}$.</p>
+<p>Use <code>.shape</code> and <code>.dtype</code> to get the dimension and element type of a array.</p>
 </blockquote>
-<p>We can use neural networks to compute $v_u^{(j)}$ and $v_m^{(i)}$ respectively:</p>
-<p><img src="/2023/04/17/RecommenderSystem/3.png" alt="3"></p>
-<center style="font-size:12px">Fig. 3. User and item network</center>
+<h2 id="Vectors"><a href="#Vectors" class="headerlink" title="Vectors"></a>Vectors</h2><p>Vectors are 1-D arrays in NumPy. To create a vector, we can use:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are 0 and types are float64</span></span><br><span class="line">a = np.zeros(<span class="number">4</span>)</span><br><span class="line"><span class="comment"># The same as above. We use this mode to create n-D arrays</span></span><br><span class="line">a = np.zeros((<span class="number">4</span>,))</span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are random value in [0, 1) and types float64</span></span><br><span class="line">a = np.random.random_sample((<span class="number">4</span>,))</span><br><span class="line"><span class="comment"># np.arange([start=0], stop, [step=1]). Create a arithmetic progression</span></span><br><span class="line">a = np.arange(<span class="number">4.</span>)</span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are in [0, 1) obeying uniform distribution</span></span><br><span class="line">a = np.random.rand((<span class="number">4</span>,))</span><br><span class="line"><span class="comment"># Specify values manually</span></span><br><span class="line">a = np.array([<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br><span class="line">a = np.array([<span class="number">5.0</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
 
-<p>More generally, we will combine these two neural networks together:<br>$$J &#x3D; \sum\limits_{(i,j):r(i,j)&#x3D;1}{(v_u^{(j)}\cdot v_m^{(i)}-y^{(i,j)})}^2+{regularization\space term}$$</p>
-<p><img src="/2023/04/17/RecommenderSystem/4.png" alt="4"></p>
-<center style="font-size:12px">Fig. 4. Compound neural network</center>
+<h2 id="Matrices"><a href="#Matrices" class="headerlink" title="Matrices"></a>Matrices</h2><p>Matrices are 2-D arrays in NumPy, To create a matrix, the functions used are as those in creating vectors. For examples:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = np.zeros((<span class="number">4</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<p>However, when specifying the values, numpy specifies rows first:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">              [<span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></table></figure>
+<p>We can also create a matrix from a vector:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = np.zeros(<span class="number">6</span>).reshape(-<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>which will create a 3x2 matrix. <code>-1</code> indicates that the number of row depends on the number of column. If <code>.reshape(-1, )</code>, we turn a matrix to a vector by concentrating the vector row by row, that is:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">4</span>, <span class="number">5</span>]])</span><br><span class="line"><span class="built_in">print</span>(a.reshape(-<span class="number">1</span>, ))</span><br><span class="line"><span class="comment"># We get: [2 3 4 5]</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>reshape</code> regard a matrix as a vector with $mn$ elements. Therefore, if we want to transpose a matrix, we must use <code>a.T</code> rather than <code>.reshape</code>.</p>
+</blockquote>
+<h1 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h1><h2 id="Indexing-amp-slicing"><a href="#Indexing-amp-slicing" class="headerlink" title="Indexing &amp; slicing"></a>Indexing &amp; slicing</h2><p>Arrays in NumPy can be used as <code>list</code> in python, which means that the indexing and slicing in arrays are the same as those in <code>list</code>, though the data type is a built-in type of numpy (<code>float64</code>, <code>int32</code>, <code>ndarray</code>, etc.).</p>
+<h2 id="x2F"><a href="#x2F" class="headerlink" title="+-*&#x2F;"></a>+-*&#x2F;</h2><p>NumPy has overloaded +-*&#x2F;. Therefore, for arrays with the same shape, it will apply such operations to each element.</p>
+<blockquote>
+<p><code>b = 5 * a</code> <code>b = a + 1</code> or <code>b = a**2</code> are also valid. Such guidelines also apply to boolen operations, that is:</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">              [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">              [<span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">pos = a == <span class="number">1</span> <span class="comment"># a == 1 will be apply to each element of a and return matrix</span></span><br><span class="line"><span class="built_in">print</span>(pos)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">We get:</span><br><span class="line">[[False  True]</span><br><span class="line"> [ True  True]</span><br><span class="line"> [False  True]]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>If <code>a</code> is a matrix, <code>b</code> is a vector with the same row or column number. Then <code>a+-*/b</code> will <code>+-*/</code> <code>b</code> to each row or column of <code>a</code>.</p>
+</blockquote>
+<h2 id="Dot-product"><a href="#Dot-product" class="headerlink" title="Dot product"></a>Dot product</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = np.dot(a, b)</span><br></pre></td></tr></table></figure>
 
-<p>The cost function of the output layer depends on the value we need. It could be mean squared error for rating or cross entropy (and sigmoid activation function) for binary result. Similarly, we can find similar items using:</p>
-<p>$$||v_m^{(k)}-v_m^{(i)}||^2$$</p>
-<h2 id="Retrieval-amp-Ranking"><a href="#Retrieval-amp-Ranking" class="headerlink" title="Retrieval &amp; Ranking"></a>Retrieval &amp; Ranking</h2><p>For one user, the algorithm only needs to count $v_u^{(j)}$ one time but it has to count $v_m^{(i)}$ for each item. If there is a large set of items, it will be time consuming. Retrieval &amp; Ranking is one way to solve this.</p>
-<p>In retrieval step, there is another algorithm that will generate a large list of plausible item candidates that is much smaller than the whole set.</p>
-<p>In ranking step, the algorithm will only compute $v_m^{(i)}$ of items in the list generated in retrieval step and make recommendation.</p>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add all the elements up, return a scalar</span></span><br><span class="line">b = np.<span class="built_in">sum</span>(a)</span><br><span class="line"><span class="comment"># Avearge of a, return a scalar</span></span><br><span class="line">c = np.mean(a)</span><br><span class="line"><span class="comment"># Concentrate vectors to form a matrix. Each item is a column.</span></span><br><span class="line">d = np.c_[a, a**<span class="number">2</span>] <span class="comment"># if a.shape=4, d.shape=(4,2)</span></span><br><span class="line"><span class="comment"># exp^a</span></span><br><span class="line">e = np.exp(a)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>All vectorizable operations use SIMD, so they are much faster than <code>loop</code>.</p>
+</blockquote>
+<h1 id="More-information"><a href="#More-information" class="headerlink" title="More information"></a>More information</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/">NumPy.org</a></li>
+<li><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/user/basics.broadcasting.html">NumPy Broadcasting</a></li>
+</ul>
 <hr>
 
     </div>
@@ -301,9 +273,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Machine-learning/" rel="tag"># Machine learning</a>
-              <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
-              <a href="/tags/Recommender-system/" rel="tag"># Recommender system</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Tool/" rel="tag"># Tool</a>
           </div>
 
           <script type="text/javascript">
@@ -325,12 +296,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/04/16/UnsupervisedLearning/" rel="prev" title="Unsupervised learning">
-      <i class="fa fa-chevron-left"></i> Unsupervised learning
+    <a href="/2023/04/21/LabsOfMachineLearningByAndrewNg/" rel="prev" title="Labs of Machine learning by Andrew Ng">
+      <i class="fa fa-chevron-left"></i> Labs of Machine learning by Andrew Ng
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/04/17/UsageOfImportInPython/" rel="next" title="Usage of import keyword in python">
-      Usage of import keyword in python <i class="fa fa-chevron-right"></i>
+    <a href="/2023/04/22/Scikit-learn/" rel="next" title="Scikit-learn">
+      Scikit-learn <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -390,7 +361,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Collaborative-filtering"><span class="nav-number">1.</span> <span class="nav-text">Collaborative filtering</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Notation"><span class="nav-number">1.1.</span> <span class="nav-text">Notation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recommending-with-features"><span class="nav-number">1.2.</span> <span class="nav-text">Recommending with features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recommending-without-features"><span class="nav-number">1.3.</span> <span class="nav-text">Recommending without features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mean-normalization"><span class="nav-number">1.4.</span> <span class="nav-text">Mean normalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finding-related-items"><span class="nav-number">1.5.</span> <span class="nav-text">Finding related items</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Content-based-filtering"><span class="nav-number">2.</span> <span class="nav-text">Content-based filtering</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrieval-amp-Ranking"><span class="nav-number">2.1.</span> <span class="nav-text">Retrieval &amp; Ranking</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-data-structure"><span class="nav-number">1.</span> <span class="nav-text">Basic data structure</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vectors"><span class="nav-number">1.1.</span> <span class="nav-text">Vectors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matrices"><span class="nav-number">1.2.</span> <span class="nav-text">Matrices</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operations"><span class="nav-number">2.</span> <span class="nav-text">Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Indexing-amp-slicing"><span class="nav-number">2.1.</span> <span class="nav-text">Indexing &amp; slicing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x2F"><span class="nav-number">2.2.</span> <span class="nav-text">+-*&#x2F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dot-product"><span class="nav-number">2.3.</span> <span class="nav-text">Dot product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Others"><span class="nav-number">2.4.</span> <span class="nav-text">Others</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#More-information"><span class="nav-number">3.</span> <span class="nav-text">More information</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

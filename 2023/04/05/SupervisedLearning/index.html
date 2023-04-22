@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/16.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/17.png">
 <meta property="article:published_time" content="2023-04-05T15:34:48.000Z">
-<meta property="article:modified_time" content="2023-04-21T07:59:18.619Z">
+<meta property="article:modified_time" content="2023-04-22T12:02:24.912Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Supervised learning">
@@ -222,7 +222,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-21 15:59:18" itemprop="dateModified" datetime="2023-04-21T15:59:18+08:00">2023-04-21</time>
+                <time title="Modified: 2023-04-22 20:02:24" itemprop="dateModified" datetime="2023-04-22T20:02:24+08:00">2023-04-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -347,7 +347,10 @@
 <li>Subtract $\mu$ from each example of this feature and divide the result by the difference between the maximum and minimum values of this feature.<br>$$x&#x3D;\frac{x-\mu}{max-min}$$</li>
 </ol>
 </li>
-<li>Z-score normalization. $\sigma$ is the <strong>standard deviation</strong> of this feature.<br>$$x&#x3D;\frac{x-\mu}{\sigma}$$</li>
+<li>Z-score normalization. $\sigma$ is the <strong>standard deviation</strong> of this feature.<br>$$x&#x3D;\frac{x-\mu}{\sigma}$$<blockquote>
+<p>When predicting, the new $x$ should also be scaled using the same parameters as before.</p>
+</blockquote>
+</li>
 </ul>
 <h3 id="Ways-to-check-convergence"><a href="#Ways-to-check-convergence" class="headerlink" title="Ways to check convergence"></a>Ways to check convergence</h3><ol>
 <li>Draw $J-iterations$ curve or learning curve.</li>
@@ -398,8 +401,8 @@
 <p><img src="/2023/04/05/SupervisedLearning/13.png" alt="13"></p>
 <center style="font-size:12px">Fig. 13. Non-convex loss function</center>
 
-<p>Therefore, a new convex function is needed in logistic regression, that is:<br>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;-y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))-(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))$$<br>where $y^{(i)}&#x3D;0,1$;$f_{\vec{w},b}(\vec{x}^{(i)})\in(0,1)$.</p>
-<p>When $y^{(i)}&#x3D;1$,the curve of $L$ is:</p>
+<p>Therefore, a new convex function is needed in logistic regression, that is:<br>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;-y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))-(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))$$<br>where $y^{(i)}&#x3D;0,1$; $f_{\vec{w},b}(\vec{x}^{(i)})\in(0,1)$; $\log$ uses $\ln$.</p>
+<p>When $y^{(i)}&#x3D;1$, the curve of $L$ is:</p>
 <p><img src="/2023/04/05/SupervisedLearning/14.png" alt="14"></p>
 <center style="font-size:12px">Fig. 14.</center>
 
@@ -550,7 +553,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -563,7 +566,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -587,7 +590,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">1</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Labs/" rel="tag">Labs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">2</span></li></ul>
             </canvas>
           </div>
         </div>
