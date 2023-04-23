@@ -32,11 +32,11 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/12/Tensorflow/1.png">
 <meta property="article:published_time" content="2023-04-12T14:00:29.000Z">
-<meta property="article:modified_time" content="2023-04-23T15:14:07.549Z">
+<meta property="article:modified_time" content="2023-04-23T15:40:08.269Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Python">
-<meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Tool">
+<meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Deep learning">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/12/Tensorflow/1.png">
@@ -208,7 +208,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-23 23:14:07" itemprop="dateModified" datetime="2023-04-23T23:14:07+08:00">2023-04-23</time>
+                <time title="Modified: 2023-04-23 23:40:08" itemprop="dateModified" datetime="2023-04-23T23:40:08+08:00">2023-04-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -236,10 +236,13 @@
 
 <h1 id="Basic-data-structure"><a href="#Basic-data-structure" class="headerlink" title="Basic data structure"></a>Basic data structure</h1><p>See <a href="/2023/04/10/NeuralNetwork/#Numpy-and-Tensorflow
 ">Numpy and Tensorflow</a>.</p>
-<h1 id="Neural-networks"><a href="#Neural-networks" class="headerlink" title="Neural networks"></a>Neural networks</h1><h2 id="Normalize-data"><a href="#Normalize-data" class="headerlink" title="Normalize data"></a>Normalize data</h2><p>Fitting the weights (<code>w</code>, <code>b</code>) to the data will proceed more quickly if the data is normalized. In tensorflow, we can use <code>Normalization</code> to normalize data. It uses z-score. However, it is a preprocessing layer rather than a independent layer of model.</p>
+<h1 id="Neural-networks"><a href="#Neural-networks" class="headerlink" title="Neural networks"></a>Neural networks</h1><h2 id="Normalize-data"><a href="#Normalize-data" class="headerlink" title="Normalize data"></a>Normalize data</h2><p>Fitting the weights (<code>w</code>, <code>b</code>) to the data will proceed more quickly if the data is normalized. In tensorflow, we can use <code>Normalization</code> to normalize data. It uses z-score. However, it is a preprocessing layer rather than an independent layer of model.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Normalization</span><br><span class="line">norm_l = Normalization(axis=-<span class="number">1</span>)</span><br><span class="line">norm_l.adapt(X) <span class="comment"># learns mean, variance</span></span><br><span class="line">Xn = norm_l(X)</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><code>axis=-1</code> means that it will normalize the last dimension of <code>X</code>. For 2-D arrays, it will normalize the <strong>column</strong>. In this case, <code>axis=-1</code> is equal to <code>axis=1</code>.<br>After normalizing, the test set should also be normalized: <code>X_testn = norm_l(X_test)</code>.</p>
+<ul>
+<li><code>axis=-1</code> means that it will normalize the last dimension of <code>X</code>. For 2-D arrays, it will normalize the <strong>column</strong>. In this case, <code>axis=-1</code> is equal to <code>axis=1</code>.</li>
+<li>After normalizing, the test set should also be normalized: <code>X_testn = norm_l(X_test)</code>.</li>
+</ul>
 </blockquote>
 <h2 id="Create-the-model"><a href="#Create-the-model" class="headerlink" title="Create the model"></a>Create the model</h2><p>For a neural network like this:</p>
 <p><img src="/2023/04/12/Tensorflow/1.png" alt="1"></p>
@@ -319,8 +322,8 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Python/" rel="tag"># Python</a>
-              <a href="/tags/Machine-learning/" rel="tag"># Machine learning</a>
               <a href="/tags/Tool/" rel="tag"># Tool</a>
+              <a href="/tags/Machine-learning/" rel="tag"># Machine learning</a>
               <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
           </div>
 
