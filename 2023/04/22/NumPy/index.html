@@ -14,13 +14,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
   <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="NumPy is a library that extends the base capabilities of python to add a richer data set including mroe numeric types, vectors, matrices, and many matrix functions.">
@@ -31,10 +30,11 @@
 <meta property="og:description" content="NumPy is a library that extends the base capabilities of python to add a richer data set including mroe numeric types, vectors, matrices, and many matrix functions.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-22T03:37:25.000Z">
-<meta property="article:modified_time" content="2023-04-23T05:04:26.464Z">
+<meta property="article:modified_time" content="2023-04-24T13:59:21.987Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Tool">
+<meta property="article:tag" content="Data analysis">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2023/04/22/NumPy/">
@@ -204,7 +204,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-23 13:04:26" itemprop="dateModified" datetime="2023-04-23T13:04:26+08:00">2023-04-23</time>
+                <time title="Modified: 2023-04-24 21:59:21" itemprop="dateModified" datetime="2023-04-24T21:59:21+08:00">2023-04-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,7 +235,7 @@
 <p>Use <code>.shape</code> and <code>.dtype</code> to get the dimension and element type of an array.</p>
 </blockquote>
 <h2 id="Vectors"><a href="#Vectors" class="headerlink" title="Vectors"></a>Vectors</h2><p>Vectors are 1-D arrays in NumPy. To create a vector, we can use:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are 0 and types are float64</span></span><br><span class="line">a = np.zeros(<span class="number">4</span>)</span><br><span class="line"><span class="comment"># The same as above. We use this mode to create n-D arrays</span></span><br><span class="line">a = np.zeros((<span class="number">4</span>,))</span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are random value in [0, 1) and types are float64</span></span><br><span class="line">a = np.random.random_sample((<span class="number">4</span>,))</span><br><span class="line"><span class="comment"># np.arange([start=0], stop, [step=1]). Create an arithmetic progression</span></span><br><span class="line">a = np.arange(<span class="number">4.</span>)</span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are in [0, 1) obeying uniform distribution</span></span><br><span class="line">a = np.random.rand((<span class="number">4</span>,))</span><br><span class="line"><span class="comment"># Specify values manually</span></span><br><span class="line">a = np.array([<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br><span class="line">a = np.array([<span class="number">5.0</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are 0 and types are float64</span></span><br><span class="line">a = np.zeros(<span class="number">4</span>)</span><br><span class="line"><span class="comment"># The same as above. We use this mode to create n-D arrays</span></span><br><span class="line">a = np.zeros((<span class="number">4</span>,))</span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are random value in [0, 1) and types are float64</span></span><br><span class="line">a = np.random.random_sample((<span class="number">4</span>,))</span><br><span class="line"><span class="comment"># np.arange([start=0], stop, [step=1]). Create an arithmetic progression, [start, stop]</span></span><br><span class="line">a = np.arange(<span class="number">4.</span>)</span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are in [0, 1) obeying uniform distribution</span></span><br><span class="line">a = np.random.rand((<span class="number">4</span>,))</span><br><span class="line"><span class="comment"># Specify values manually</span></span><br><span class="line">a = np.array([<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br><span class="line">a = np.array([<span class="number">5.0</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
 
 <h2 id="Matrices"><a href="#Matrices" class="headerlink" title="Matrices"></a>Matrices</h2><p>Matrices are 2-D arrays in NumPy. To create a matrix, the functions used are as those in creating vectors. For examples:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = np.zeros((<span class="number">4</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
@@ -249,6 +249,9 @@
 <p><code>reshape</code> regard a matrix as a vector with $mn$ elements. Therefore, if we want to transpose a matrix, we must use <code>a.T</code> rather than <code>.reshape</code>.</p>
 </blockquote>
 <h1 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h1><h2 id="Indexing-amp-slicing"><a href="#Indexing-amp-slicing" class="headerlink" title="Indexing &amp; slicing"></a>Indexing &amp; slicing</h2><p>Arrays in NumPy can be used as <code>list</code> in python, which means that the indexing and slicing in arrays are the same as those in <code>list</code>, though the data type is a built-in type of numpy (<code>float64</code>, <code>int32</code>, <code>ndarray</code>, etc.).</p>
+<blockquote>
+<p>When slicing a certain column, we should use <code>a[:, j]</code></p>
+</blockquote>
 <h2 id="x2F"><a href="#x2F" class="headerlink" title="+-*&#x2F;"></a>+-*&#x2F;</h2><p>NumPy has overloaded +-*&#x2F;. Therefore, for arrays with the same shape, it will apply such operations to each element.</p>
 <blockquote>
 <p><code>b = 5 * a</code> <code>b = a + 1</code> or <code>b = a**2</code> are also valid. Such guidelines also apply to boolen operations, that is:</p>
@@ -256,7 +259,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">              [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">              [<span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">pos = a == <span class="number">1</span> <span class="comment"># a == 1 will be apply to each element of a and return matrix</span></span><br><span class="line"><span class="built_in">print</span>(pos)</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">We get:</span><br><span class="line">[[False  True]</span><br><span class="line"> [ True  True]</span><br><span class="line"> [False  True]]</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>If <code>a</code> is a matrix, <code>b</code> is a vector with the same row or column number. Then <code>a+-*/b</code> will <code>+-*/</code> <code>b</code> to each row or column of <code>a</code>.</p>
+<p>If <code>a</code> is a matrix, <code>b</code> is a vector with the same row or column number. Then <code>a+-*/b</code> will <code>+-*/</code> <code>b</code> to each row or column of <code>a</code>. This is the <strong>Broadcasting</strong> in numpy. See more about it on <a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/user/basics.broadcasting.html">Broadcasting</a>.</p>
 </blockquote>
 <h2 id="Dot-product"><a href="#Dot-product" class="headerlink" title="Dot product"></a>Dot product</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = np.dot(a, b)</span><br></pre></td></tr></table></figure>
 
@@ -281,6 +284,7 @@
           <div class="post-tags">
               <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Tool/" rel="tag"># Tool</a>
+              <a href="/tags/Data-analysis/" rel="tag"># Data analysis</a>
           </div>
 
           <script type="text/javascript">
@@ -383,7 +387,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -396,7 +400,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -420,7 +424,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>
@@ -465,8 +469,7 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

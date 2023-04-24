@@ -14,13 +14,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
   <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="Machine learning diagnostic is a test that you run to gain insight into what is&#x2F;isn&#39;t working with a learning algorithm and to gain guidance into improving its performance.">
@@ -40,7 +39,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/8.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/9.png">
 <meta property="article:published_time" content="2023-04-13T13:25:19.000Z">
-<meta property="article:modified_time" content="2023-04-18T15:23:18.984Z">
+<meta property="article:modified_time" content="2023-04-24T12:22:20.274Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Deep learning">
@@ -214,7 +213,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-18 23:23:18" itemprop="dateModified" datetime="2023-04-18T23:23:18+08:00">2023-04-18</time>
+                <time title="Modified: 2023-04-24 20:22:20" itemprop="dateModified" datetime="2023-04-24T20:22:20+08:00">2023-04-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -241,7 +240,7 @@
         <span id="more"></span>
 
 <h1 id="Evaluating-a-model"><a href="#Evaluating-a-model" class="headerlink" title="Evaluating a model"></a>Evaluating a model</h1><p>To evaluate a model is to measure the accuracy of the model&#39;s predictions. There are many ways to do so.</p>
-<h2 id="Two-sets"><a href="#Two-sets" class="headerlink" title="Two sets"></a>Two sets</h2><p>One useful method is to splite our training set into <strong>training set</strong> and <strong>test set</strong>. Training set is used to train and evaluate the model, but test set is only applied to evaluate the model. To evaluate a trained model, we should calculate both the $J_{test}$ and $J_{train}$, both of which are withour regularization term. But the model is regularized.</p>
+<h2 id="Two-sets"><a href="#Two-sets" class="headerlink" title="Two sets"></a>Two sets</h2><p>One useful method is to splite our training set into <strong>training set</strong> and <strong>test set</strong>. Training set is used to train and evaluate the model, but test set is only applied to evaluate the model. To evaluate a trained model, we should calculate both the $J_{test}$ and $J_{train}$, both of which are without regularization term. But the model is regularized.</p>
 <blockquote>
 <p>For classification model, we can also count the number of misclassified examples in training set and test set respectively.</p>
 </blockquote>
@@ -257,7 +256,7 @@
 <p>The procedure of choosing a model is similar to evaluating a model:</p>
 <ul>
 <li>Train the model using training set, get $W$ and $B$;</li>
-<li>Choose a model using development set, calculate $J_{cv}$ and get d(degree of polynomial);</li>
+<li>Choose a model using development set, calculate $J_{cv}$ and get d (degree of polynomial);</li>
 <li>Verify the model using test set, calculate $J_{test}$.</li>
 </ul>
 <style> table th {
@@ -289,14 +288,14 @@
 <tr>
 <td align="center">usage count</td>
 <td align="center">multiple times</td>
-<td align="center">mitiple times</td>
+<td align="center">multiple times</td>
 <td align="center">one time</td>
 </tr>
 </tbody></table>
 <blockquote>
 <p>A vivid metaphor about these sets is: Training set is students&#39;textbook, dev set is students&#39;homework and test set is the final exam.</p>
 </blockquote>
-<h1 id="Diagnostics"><a href="#Diagnostics" class="headerlink" title="Diagnostics"></a>Diagnostics</h1><h2 id="Bias-and-variance"><a href="#Bias-and-variance" class="headerlink" title="Bias and variance"></a>Bias and variance</h2><p>Instead of plotting the model to judge unferfitting or overfirring, a more common method is to calculate compare $J_{train}$ and $J_{cv}$.</p>
+<h1 id="Diagnostics"><a href="#Diagnostics" class="headerlink" title="Diagnostics"></a>Diagnostics</h1><h2 id="Bias-and-variance"><a href="#Bias-and-variance" class="headerlink" title="Bias and variance"></a>Bias and variance</h2><p>Instead of plotting the model to judge underfitting or overfitting, a more common method is to calculate and compare $J_{train}$ and $J_{cv}$.</p>
 <ul>
 <li>If $J_{train}$ is high and $J_{train}\approx J_{cv}$, the algorithm(model) may have high bias;</li>
 <li>If $J_{train}$ is low and $J_{train}&lt;&lt;J_{cv}$, the algorithm(model) may have high variance;</li>
@@ -308,7 +307,7 @@
 <p><img src="/2023/04/13/MachineLearningDiagnostics/2.png" alt="2"></p>
 <center style="font-size:12px">Fig. 2. Relationship between D and error</center>
 
-<h3 id="Choosing-a-good-lambda"><a href="#Choosing-a-good-lambda" class="headerlink" title="Choosing a good $\lambda$"></a>Choosing a good $\lambda$</h3><p>We can also the dev set to choose a better regularization parameter $\lambda$.</p>
+<h3 id="Choosing-a-good-lambda"><a href="#Choosing-a-good-lambda" class="headerlink" title="Choosing a good $\lambda$"></a>Choosing a good $\lambda$</h3><p>We can also use the dev set to choose a better regularization parameter $\lambda$.</p>
 <ul>
 <li>If $\lambda$ is rather small, we value fitting the data. Therefore, $J_{cv}$ may be rather high while $J_{train}$ may be rather low;</li>
 <li>If $\lambda$ is rather big, we value scaling $\vec{w}$. Therefore, $\vec{w}$ is aproximate 0, $J_{cv}$ may be rather high and $J_{train}$ may also be rather high.</li>
@@ -316,7 +315,7 @@
 <p><img src="/2023/04/13/MachineLearningDiagnostics/3.png" alt="3"></p>
 <center style="font-size:12px">Fig. 3. Relationship between lambda and error</center>
 
-<h3 id="Quantitative-indicators"><a href="#Quantitative-indicators" class="headerlink" title="Quantitative indicators"></a>Quantitative indicators</h3><p>In order to judge bias or variance quantitatively, a baseline level of performance is required. It can be human level performance,competing algorithms performance or just guess based on experience.</p>
+<h3 id="Quantitative-indicators"><a href="#Quantitative-indicators" class="headerlink" title="Quantitative indicators"></a>Quantitative indicators</h3><p>In order to judge bias or variance quantitatively, a baseline level of performance is required. It can be human level performance, competing algorithms performance or just guess based on experience.</p>
 <ul>
 <li>When gap between baseline and $J_{train}$ is rather high, the model may have high bias;</li>
 <li>When gap between $J_{train}$ and $J_{cv}$ is rather high, the model may have high variance.</li>
@@ -335,7 +334,7 @@
 <center style="font-size:12px">Fig. 6. High variance learning curve</center>
 
 <p>It indicates that when a model has high variance, we can train a better model by using more data because your model is complicated enough. Though learning curve gives us an intuitive visual experience of the performance of our model, it is seldom used as plotting it wastes too much time.</p>
-<h3 id="Fix-bias-variance"><a href="#Fix-bias-variance" class="headerlink" title="Fix bias variance"></a>Fix bias variance</h3><p>High variance: </p>
+<h3 id="Fixing-bias-variance"><a href="#Fixing-bias-variance" class="headerlink" title="Fixing bias variance"></a>Fixing bias variance</h3><p>High variance: </p>
 <ul>
 <li>Get more training examples;</li>
 <li>Try smaller sets of features;</li>
@@ -356,7 +355,7 @@
 </blockquote>
 <h2 id="Error-analysis"><a href="#Error-analysis" class="headerlink" title="Error analysis"></a>Error analysis</h2><p>Error analysis is another useful diagnostics method when training a model. In error analysis, we take the examples that the model has wrongly predicted or inferred into account and group them into common themes or common properties. These categories can be overlapping. Sometimes, the error set may be too large for us to deal with. In this case, it is advisable to randomly sample a subset (usually 100 examples).</p>
 <p>In the next step, we can modify the model according to these categories. It is advisable to process the categories that are large enough but just ignore those small categories.</p>
-<h2 id="Skewed-datasets"><a href="#Skewed-datasets" class="headerlink" title="Skewed datasets"></a>Skewed datasets</h2><p>Skewed datasets are datasets that have an uneven subset distribution. That is, the number of one output is much more than the others. In this case, we can not simply judge the performance of the model $J$ as we may get a good result even if the model just predicts this output all the time. </p>
+<h2 id="Skewed-datasets"><a href="#Skewed-datasets" class="headerlink" title="Skewed datasets"></a>Skewed datasets</h2><p>Skewed datasets are datasets that have an uneven subset distribution. That is, the number of one output is much more than the others. In this case, we can&#39;t simply judge the performance of model using $J$ as we may get a good result even if the model just predicts this output all the time. </p>
 <p>The solution is to count precision and recall of the model. In binary regression, we can display the true value and predict value in the form of 2*2 matrix: </p>
 <p><img src="/2023/04/13/MachineLearningDiagnostics/8.png" alt="8"></p>
 <center style="font-size:12px">Fig. 8. Output distribution</center>
@@ -468,7 +467,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Evaluating-a-model"><span class="nav-number">1.</span> <span class="nav-text">Evaluating a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-sets"><span class="nav-number">1.1.</span> <span class="nav-text">Two sets</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Choosing-a-model"><span class="nav-number">2.</span> <span class="nav-text">Choosing a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Three-sets"><span class="nav-number">2.1.</span> <span class="nav-text">Three sets</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Diagnostics"><span class="nav-number">3.</span> <span class="nav-text">Diagnostics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-and-variance"><span class="nav-number">3.1.</span> <span class="nav-text">Bias and variance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Choosing-a-good-lambda"><span class="nav-number">3.1.1.</span> <span class="nav-text">Choosing a good $\lambda$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quantitative-indicators"><span class="nav-number">3.1.2.</span> <span class="nav-text">Quantitative indicators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-curve"><span class="nav-number">3.1.3.</span> <span class="nav-text">Learning curve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fix-bias-variance"><span class="nav-number">3.1.4.</span> <span class="nav-text">Fix bias variance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DL-and-bias-variance"><span class="nav-number">3.1.5.</span> <span class="nav-text">DL and bias variance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Error-analysis"><span class="nav-number">3.2.</span> <span class="nav-text">Error analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skewed-datasets"><span class="nav-number">3.3.</span> <span class="nav-text">Skewed datasets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trading-off-precision-and-recall"><span class="nav-number">3.3.1.</span> <span class="nav-text">Trading off precision and recall</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Evaluating-a-model"><span class="nav-number">1.</span> <span class="nav-text">Evaluating a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-sets"><span class="nav-number">1.1.</span> <span class="nav-text">Two sets</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Choosing-a-model"><span class="nav-number">2.</span> <span class="nav-text">Choosing a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Three-sets"><span class="nav-number">2.1.</span> <span class="nav-text">Three sets</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Diagnostics"><span class="nav-number">3.</span> <span class="nav-text">Diagnostics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-and-variance"><span class="nav-number">3.1.</span> <span class="nav-text">Bias and variance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Choosing-a-good-lambda"><span class="nav-number">3.1.1.</span> <span class="nav-text">Choosing a good $\lambda$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quantitative-indicators"><span class="nav-number">3.1.2.</span> <span class="nav-text">Quantitative indicators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-curve"><span class="nav-number">3.1.3.</span> <span class="nav-text">Learning curve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fixing-bias-variance"><span class="nav-number">3.1.4.</span> <span class="nav-text">Fixing bias variance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DL-and-bias-variance"><span class="nav-number">3.1.5.</span> <span class="nav-text">DL and bias variance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Error-analysis"><span class="nav-number">3.2.</span> <span class="nav-text">Error analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skewed-datasets"><span class="nav-number">3.3.</span> <span class="nav-text">Skewed datasets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trading-off-precision-and-recall"><span class="nav-number">3.3.1.</span> <span class="nav-text">Trading off precision and recall</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -484,7 +483,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -497,7 +496,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -521,7 +520,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>
@@ -566,8 +565,7 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
