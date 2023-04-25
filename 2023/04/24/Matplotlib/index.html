@@ -22,20 +22,32 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="More information Plot types Plot examples Pyplot API">
+  <meta name="description" content="Matplotlib is a plotting library for python and numpy. It supports multiple types of plot and style customization. Its main plot API is pyplot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matplotlib">
 <meta property="og:url" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="More information Plot types Plot examples Pyplot API">
+<meta property="og:description" content="Matplotlib is a plotting library for python and numpy. It supports multiple types of plot and style customization. Its main plot API is pyplot">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/5-1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/7.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/8.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/9.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/10.png">
 <meta property="article:published_time" content="2023-04-24T13:58:14.000Z">
-<meta property="article:modified_time" content="2023-04-24T14:10:06.897Z">
+<meta property="article:modified_time" content="2023-04-25T14:03:11.433Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Tool">
 <meta property="article:tag" content="Data analysis">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/24/Matplotlib/1.png">
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2023/04/24/Matplotlib/">
 
@@ -196,10 +208,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-04-24 21:58:14 / Modified: 22:10:06" itemprop="dateCreated datePublished" datetime="2023-04-24T21:58:14+08:00">2023-04-24</time>
+              <time title="Created: 2023-04-24 21:58:14" itemprop="dateCreated datePublished" datetime="2023-04-24T21:58:14+08:00">2023-04-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-04-25 22:03:11" itemprop="dateModified" datetime="2023-04-25T22:03:11+08:00">2023-04-25</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -211,6 +229,7 @@
             </span>
 
           
+            <div class="post-description">Matplotlib is a plotting library for python and numpy. It supports multiple types of plot and style customization. Its main plot API is pyplot</div>
 
         </div>
       </header>
@@ -223,17 +242,147 @@
       
         <span id="more"></span>
 
-<h1 id="More-information"><a href="#More-information" class="headerlink" title="More information"></a>More information</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/plot_types/index.html">Plot types</a></li>
-<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/gallery/index.html">Plot examples</a></li>
-<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/pyplot_summary.html">Pyplot API</a></li>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install matplotlib</span><br><span class="line">or</span><br><span class="line">conda install matplotlib</span><br></pre></td></tr></table></figure>
+<p>It is recommended to install <code>matplotlib</code> together with <code>pandas</code> (matplotlib will intall numpy at the same time). Then, start to plot:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+
+<h1 id="Loading-data"><a href="#Loading-data" class="headerlink" title="Loading data"></a>Loading data</h1><h1 id="Line-plot"><a href="#Line-plot" class="headerlink" title="Line plot"></a>Line plot</h1><p>To plot a line plot, the API used is <code>plt.plot</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">ages_x = [<span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>]</span><br><span class="line"></span><br><span class="line">py_dev_y = [<span class="number">20046</span>, <span class="number">20060</span>, <span class="number">21000</span>, <span class="number">24744</span>, <span class="number">30500</span>]</span><br><span class="line">plt.plot(ages_x, py_dev_y, label=<span class="string">&#x27;Python&#x27;</span>)</span><br><span class="line"></span><br><span class="line">js_dev_y = [<span class="number">16446</span>, <span class="number">16791</span>, <span class="number">18942</span>, <span class="number">21780</span>, <span class="number">25704</span>]</span><br><span class="line">plt.plot(ages_x, js_dev_y, label=<span class="string">&#x27;JavaScript&#x27;</span>)</span><br><span class="line"></span><br><span class="line">dev_y = [<span class="number">17784</span>, <span class="number">16500</span>, <span class="number">18012</span>, <span class="number">20628</span>, <span class="number">25206</span>]</span><br><span class="line">plt.plot(ages_x, dev_y, color=<span class="string">&#x27;#444444&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, label=<span class="string">&#x27;All Devs&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">&#x27;Ages&#x27;</span>) <span class="comment"># set lable of x-axis</span></span><br><span class="line">plt.ylabel(<span class="string">&#x27;Median Salary (USD)&#x27;</span>) <span class="comment"># set label of y-axis</span></span><br><span class="line">plt.title(<span class="string">&#x27;Median Salary (USD) by Age&#x27;</span>) <span class="comment"># set name of plot</span></span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line"></span><br><span class="line">plt.savefig(<span class="string">&#x27;plot.png&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img align="right" src="/2023/04/24/Matplotlib/1.png" style=" width:380px; padding: 0px 0px; ">
+
+<p>When run the code above, we get a line plot shown on the right. All line plots using the same object <code>plt.plot</code> will be drawn together. Once we wanna show the current plot, we should use <code>plt.show()</code>. The only two necessary arguments are <code>x</code> and <code>y</code>, that is, <code>ages_x</code> and <code>py_dev_y</code> (<code>js_dev_y</code>, <code>dev_y</code>).</p>
+<p><code>plot.legend()</code> asks <code>pyplot</code> to show the label of each line. There are two ways to add label for each curve, the way above and:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.legend([<span class="string">&#x27;Python&#x27;</span>, <span class="string">&#x27;JavaScript&#x27;</span>, <span class="string">&#x27;All devs&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<p>In general, the first way is better as we don&#39;t need to arrange the labels in the order of things being added to plot. However, no matter which one we choose, we must use <code>plt.legend()</code>, otherwise, the label will not be showed.</p>
+<p>In addition to <code>label</code> argument, there are many arguments that let us format each plot. For examples, <code>color</code>, <code>linestyle</code> and etc.</p>
+<blockquote>
+<ul>
+<li>For <code>color</code>, we can use the initial letter of color, like <code>&#39;r&#39;</code> or <strong>hex color values</strong>, like what we use above.</li>
+<li>We can also use one parameter to set <code>color</code>, <code>linestyle</code> and <code>marker</code> together, like <code>&#39;b--&#39;</code>, that is <code>color=&#39;b&#39;</code> and <code>linestyle=&#39;--&#39;</code>.</li>
 </ul>
+</blockquote>
+<p><code>plt.tight_layout()</code> will automatically adjust the layout of chart to reduce the overlap of chart&#39;s x and y labels. It is useful when a chart is consisted of several subcharts. <code>plt.savefig(&#39;plot.png&#39;)</code> will save the plot as an image named <code>plot.png</code> in the specified folder (current folder by default).</p>
+<blockquote>
+<p>Absolute path is required if you want to save the plot to a specified folder.</p>
+</blockquote>
+<p>Other interesting setting:</p>
+<p><img align="left" src="/2023/04/24/Matplotlib/2.png" style=" width:380px; padding: 0px 0px; "> <img align="right" src="/2023/04/24/Matplotlib/3.png" style=" width:380px; padding: 0px 0px; "></p>
+<p>For the left one, use <code>plt.grid(True)</code>. For the right one, use <code>plt.xkcd()</code>. By the way, <code>plt.xkcd()</code> should be placed before all the <code>plt.plot()</code> so that it can change the style of all line plots. The font family used in <code>xkcd()</code> is <code>&#39;xkcd&#39;</code>, <code>&#39;xkcd Script&#39;</code>, <code>&#39;Humor Sans&#39;</code>, <code>&#39;Comic Neue&#39;</code> and <code>&#39;Comic Sans Ms&#39;</code>. Windows has installed <code>Comic Sans Ms</code>. Therefore, pyplot will plot using <code>Comic Sans Ms</code> if other fonts can&#39;t be found. The font used in the right picture is <code>Humor Sans</code>. After installing a new font, delete the cache file <code>.matplotlib</code>.</p>
+<blockquote>
+<p>Use <code>print(matplotlib.get_cachedir())</code> to get the location of <code>.matplotlib</code>.</p>
+</blockquote>
+<p>Apart from <code>skcd()</code>, there are many different styles in <code>plt.style</code>.</p>
+<blockquote>
+<ul>
+<li>Use <code>print(plt.style.available)</code> to check the styles that can be used.</li>
+<li>Use <code>plt.style.use(&#39;Yourchoice&#39;)</code> to enable a style (<code>seaborn-paper</code>, <code>fivethirtyeight</code> and <code>ggplot</code> are recommended).</li>
+</ul>
+</blockquote>
+<h2 id="Fill-between"><a href="#Fill-between" class="headerlink" title="Fill_between"></a>Fill_between</h2><p>To show the difference between two line plots or one line plot and a benchmark, <code>plt.fill_between</code> is rather useful. It can fill the area between two horizontal curves. It is actually a special type of &quot;curve&quot; so it can be formatted like other <code>plt</code> function:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">plt.style.use(<span class="string">&quot;seaborn-v0_8-paper&quot;</span>)</span><br><span class="line"></span><br><span class="line">ages_x = [<span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>]</span><br><span class="line"></span><br><span class="line">py_dev_y = np.array([<span class="number">20046</span>, <span class="number">20060</span>, <span class="number">21000</span>, <span class="number">24744</span>, <span class="number">30500</span>])</span><br><span class="line">plt.plot(ages_x, py_dev_y, color=<span class="string">&#x27;#fc4f30&#x27;</span>, label=<span class="string">&#x27;Python&#x27;</span>)</span><br><span class="line"></span><br><span class="line">dev_y = np.array([<span class="number">17784</span>, <span class="number">21000</span>, <span class="number">22000</span>, <span class="number">22628</span>, <span class="number">25206</span>])</span><br><span class="line">plt.plot(ages_x, dev_y, color=<span class="string">&#x27;#008fd5&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, label=<span class="string">&#x27;All Devs&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># fill_between</span></span><br><span class="line">plt.fill_between(ages_x, py_dev_y, dev_y, alpha=<span class="number">0.25</span>,</span><br><span class="line">                 where=(py_dev_y &gt; dev_y), interpolate=<span class="literal">True</span>,</span><br><span class="line">                 label=<span class="string">&#x27;Above average&#x27;</span>, color=<span class="string">&#x27;#6d904f&#x27;</span>)</span><br><span class="line">plt.fill_between(ages_x, py_dev_y, dev_y, alpha=<span class="number">0.25</span>,</span><br><span class="line">                 where=(py_dev_y &lt;= dev_y), interpolate=<span class="literal">True</span>,</span><br><span class="line">                 label=<span class="string">&#x27;Below average&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">&#x27;Ages&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Median Salary (USD)&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Median Salary (USD) by Age&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img align="left" src="/2023/04/24/Matplotlib/4.png" style=" width:380px; padding: 0px 0px; ">
+<img align="right" src="/2023/04/24/Matplotlib/5.png" style=" width:380px; padding: 0px 0px; ">
+
+<p>The picture on the left shows the result we get. </p>
+<ul>
+<li>The only two necessary arguments of <code>plt.fill_between</code> is <code>x</code> and <code>y1</code>, that is <code>ages_x</code> and <code>py_dev_y</code>, which form the curve <code>fill_between</code> will stuff;</li>
+<li><code>y2</code> is 0 by default so <code>fill_between</code> will fill the space between 0 and y1-x. <code>y2</code> could be a scalar (e.g. 0) or an vector. In the left chart, <code>y2</code> is an vector;</li>
+<li><code>alpha</code> (0~1) is the transparency of the patch in the coverage area. <code>1</code> means opaque;</li>
+<li><code>where</code> is an important argument. It defines the scope or condition of filling. To make <code>where</code> work, lists must can be compared, that&#39;s why we use the vector of numpy;</li>
+<li><code>interpolate</code> only works when <code>where</code> exists. When <code>interpolate</code> is <code>False</code>, the filling area near the intersection of <code>y1</code> and <code>y2</code> will be removed, like the picture on the right. It is recommended to set <code>interpolate</code> to <code>True</code> when using <code>where</code>.</li>
+</ul>
+<p>The following is a chart drawn by only using:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.fill_between(ages_x, py_dev_y, dev_y, alpha=<span class="number">0.25</span>,</span><br><span class="line">                 label=<span class="string">&#x27;Difference&#x27;</span>, color=<span class="string">&#x27;#6d904f&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<img src="/2023/04/24/Matplotlib/5-1.png" style=" width:380px; padding: 0px 0px; ">
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=UO98lJQ3QGI&t=911s">Matplotlib Tutorial (Part 1): Creating and Customizing Our First Plots
+</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=x0Uguu7gqgk">Matplotlib Tutorial (Part 5): Filling Area on Line Plots
+</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">pyplot.plot</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.fill_between.html">pyplot.fill_between</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/shreyankg/xkcd-desktop">Humor Sans font</a></li>
+</ul>
+<h1 id="Bar-chart"><a href="#Bar-chart" class="headerlink" title="Bar chart"></a>Bar chart</h1><p>To draw a bar chart, what we need to do is to use <code>plt.bar</code> instead of <code>plt.plot</code>. It is legal to use <code>plt.bar</code> and <code>plt.plot</code> together as they can coexist. If we draw <code>JavaScript</code> and <code>All devs</code> using <code>plt.bar</code> while draw <code>Python</code> using <code>plt.plot</code>, we get the chart below:  </p>
+<p><img src="/2023/04/24/Matplotlib/6.png" alt="6"></p>
+<p>It seems that <code>JavaScript</code> and <code>All devs</code> have mixed together. To solve this, we should use <code>numpy</code>. This time, we draw three bar charts:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">plt.style.use(<span class="string">&quot;seaborn-v0_8-paper&quot;</span>)</span><br><span class="line"></span><br><span class="line">ages_x = [<span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>]</span><br><span class="line"></span><br><span class="line">x_idnexex = np.arange(<span class="built_in">len</span>(ages_x)) <span class="comment"># x_indexex = [0, 1, 2, 3, 4]</span></span><br><span class="line">width = <span class="number">0.25</span></span><br><span class="line"></span><br><span class="line">py_dev_y = [<span class="number">20046</span>, <span class="number">20060</span>, <span class="number">21000</span>, <span class="number">24744</span>, <span class="number">30500</span>]</span><br><span class="line">plt.bar(x_idnexex - width, py_dev_y, width=width, color=<span class="string">&#x27;#fc4f30&#x27;</span>, label=<span class="string">&#x27;Python&#x27;</span>)</span><br><span class="line"></span><br><span class="line">js_dev_y = [<span class="number">16446</span>, <span class="number">16791</span>, <span class="number">18942</span>, <span class="number">21780</span>, <span class="number">25704</span>]</span><br><span class="line">plt.bar(x_idnexex, js_dev_y, width=width, color=<span class="string">&#x27;#008fd5&#x27;</span>, label=<span class="string">&#x27;JavaScript&#x27;</span>)</span><br><span class="line"></span><br><span class="line">dev_y = [<span class="number">17784</span>, <span class="number">16500</span>, <span class="number">18012</span>, <span class="number">20628</span>, <span class="number">25206</span>]</span><br><span class="line">plt.bar(x_idnexex + width, dev_y, width=width, color=<span class="string">&#x27;#6d904f&#x27;</span>, label=<span class="string">&#x27;All Devs&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">&#x27;Ages&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Median Salary (USD)&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Median Salary (USD) by Age&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line">plt.xticks(ticks=x_idnexex, labels=ages_x)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img align="left" src="/2023/04/24/Matplotlib/7.png" style=" width:380px; padding: 0px 0px; ">
+
+<p>Then, we get the chart on the left. The reason why we use <code>numpy</code> is that numpy supports vector operations and it could be the parameter of <code>plt.xticks()</code>. <code>x_indexes</code> is actually a list. By adding or subtracting <code>width</code>, we put each bar of the certain bar chart forward or backward. Then, use argument <code>width=width</code> to control the width of each bar. For beauty, the value of <code>width</code> should be:</p>
+<p>$$width&#x3D;\frac{Distance\space between\space two\space scales}{Number\space of\space chart+1}$$</p>
+<p><code>plt.xticks()</code> is a function that modifies the scale and label of axis-x. <code>ticks</code> is the scales that will be shown on axis-x. For the chart we draw, it should be <code>[0, 1, 2, 3, 4]</code>. <code>lables</code> is the display values of the scales, which overrides the true values of scales. If you don&#39;t wanna show axis-x, you can use <code>plt.xticks([])</code>.</p>
+<img align="right" src="/2023/04/24/Matplotlib/8.png" style=" width:380px; padding: 0px 0px; ">
+
+<p>We can also draw horizontal bar chart using <code>plot.barh()</code>, like the chart on the right. However, the first parameter of <code>plot.barh()</code> is now vertical axis, that is <strong>axis-y</strong>, and the second is <strong>axis-x</strong>. Therefore, we should use <code>plot.yticks()</code> to modify the scale. Besides, the width of bar is now the <strong>height</strong> of bar, so the argument is <code>height=xx</code>. </p>
+<h2 id="Reference-1"><a href="#Reference-1" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=nKxLfUrkLE8">Matplotlib Tutorial (Part 2): Bar Charts and Analyzing Data from CSVs
+</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.bar.html">pyplot.bar</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.barh.html">pyplot.barh</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xticks.html">pyplot.xticks</a></li>
+</ul>
+<h1 id="Pie-chart"><a href="#Pie-chart" class="headerlink" title="Pie chart"></a>Pie chart</h1><p>If the number of data is less than 5 and we want to display their proportion, the pie chart is a good choice. To draw a pie chart, the function we use is <code>plt.pie</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">plt.style.use(<span class="string">&quot;seaborn-v0_8-paper&quot;</span>)</span><br><span class="line"></span><br><span class="line">slices = [<span class="number">59219</span>, <span class="number">55466</span>, <span class="number">47544</span>, <span class="number">36443</span>, <span class="number">35917</span>]</span><br><span class="line">labels = [<span class="string">&#x27;JavaScript&#x27;</span>, <span class="string">&#x27;HTML/CSS&#x27;</span>, <span class="string">&#x27;SQL&#x27;</span>, <span class="string">&#x27;Python&#x27;</span>, <span class="string">&#x27;Java&#x27;</span>]</span><br><span class="line">colors = [<span class="string">&#x27;#008fd5&#x27;</span>, <span class="string">&#x27;#fc4f30&#x27;</span>, <span class="string">&#x27;#e5ae37&#x27;</span>, <span class="string">&#x27;#6d904f&#x27;</span>, <span class="string">&#x27;#999999&#x27;</span>]</span><br><span class="line">explode = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">plt.pie(slices, labels=labels, explode=explode, shadow=<span class="literal">True</span>,</span><br><span class="line">        startangle=<span class="number">90</span>, autopct=<span class="string">&#x27;%1.1f%%&#x27;</span>, colors=colors,</span><br><span class="line">        wedgeprops=&#123;<span class="string">&#x27;edgecolor&#x27;</span>: <span class="string">&#x27;black&#x27;</span>&#125;)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&quot;My Awesome Pie Chart&quot;</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img align="right" src="/2023/04/24/Matplotlib/9.png" style=" width:380px; padding: 0px 0px; ">
+
+<p>The picture on the right is the pie chart we get. For <code>plt.pie</code>, the only necessary argument is <code>slices</code>, that is the data. Others are formatting arguments:</p>
+<ul>
+<li><code>explode</code>: List, which specifies the fraction of the radius with which to offset each wedge;</li>
+<li><code>shadow</code>: Draw a shadow beneath pie;</li>
+<li><code>startangle</code>: The angle by which the start of the pie is rotated (counterclockwise);</li>
+<li><code>autopct</code>: A string or function used to label each wedge. If string, it should start with <code>%</code>;</li>
+<li><code>wedgepros</code>: A dictionary, which modifies the features of wedge;</li>
+<li>...</li>
+</ul>
+<h2 id="Reference-2"><a href="#Reference-2" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=MPiz50TsyF0&t=774s">Matplotlib Tutorial (Part 3): Pie Charts</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pie.html">pyplot.pie</a></li>
+</ul>
+<h1 id="Stack-plot"><a href="#Stack-plot" class="headerlink" title="Stack plot"></a>Stack plot</h1><p>Stack plot (area plot), which shows the change of items over something (e.g. time) as well as the quantitative relationship between them, is a very useful kind of chart, especially when the sum of items is constant. To draw a stack plot, what we use is <code>plt.stackplot</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">plt.style.use(<span class="string">&quot;seaborn-v0_8-paper&quot;</span>)</span><br><span class="line"></span><br><span class="line">minutes = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">player1 = [<span class="number">8</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">player2 = [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line">player3 = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">labels = [<span class="string">&#x27;player1&#x27;</span>, <span class="string">&#x27;player2&#x27;</span>, <span class="string">&#x27;player3&#x27;</span>]</span><br><span class="line">colors = [<span class="string">&#x27;#6d904f&#x27;</span>, <span class="string">&#x27;#fc4f30&#x27;</span>, <span class="string">&#x27;#008fd5&#x27;</span>]</span><br><span class="line"></span><br><span class="line">plt.stackplot(minutes, player1, player2, player3, labels=labels, colors=colors)</span><br><span class="line"></span><br><span class="line">plt.legend(loc=(<span class="number">0.07</span>, <span class="number">0.05</span>))</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&quot;My Awesome Stack Plot&quot;</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img align="left" src="/2023/04/24/Matplotlib/10.png" style=" width:380px; padding: 0px 0px; ">
+
+<p>The picture on the left show the stack plot we get. Compared to other charts, it is quite simple and does&#39;t have many things to format. One thing worth noticing is <code>plt.legend(loc(0.07, 0.05))</code>. It means putting the tab to the position that 7% from left and 5% from bottom.</p>
+<h2 id="Reference-3"><a href="#Reference-3" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=xN-Supd4H38&t=7s">Matplotlib Tutorial (Part 4): Stack Plots
+</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.stackplot.html">pyplot.stackplot</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html">pyplot.legend</a></li>
+</ul>
+<h1 id="More-information"><a href="#More-information" class="headerlink" title="More information"></a>More information</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/plot_types/index.html">plot types</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/gallery/index.html">plot examples</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/pyplot_summary.html">pyplot api</a></li>
+</ul>
+<hr>
 
     </div>
 
     
     
     
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\22\NumPy\" rel="bookmark">NumPy</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\12\Tensorflow\" rel="bookmark">Tensorflow</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\22\Scikit-learn\" rel="bookmark">Scikit-learn</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\11\CondaManual\" rel="bookmark">Conda manual</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\17\UsageOfImportInPython\" rel="bookmark">Usage of import keyword in python</a></div>
+    </li>
+  </ul>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -323,7 +472,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#More-information"><span class="nav-number">1.</span> <span class="nav-text">More information</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Loading-data"><span class="nav-number">2.</span> <span class="nav-text">Loading data</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Line-plot"><span class="nav-number">3.</span> <span class="nav-text">Line plot</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fill-between"><span class="nav-number">3.1.</span> <span class="nav-text">Fill_between</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.2.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bar-chart"><span class="nav-number">4.</span> <span class="nav-text">Bar chart</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference-1"><span class="nav-number">4.1.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pie-chart"><span class="nav-number">5.</span> <span class="nav-text">Pie chart</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference-2"><span class="nav-number">5.1.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Stack-plot"><span class="nav-number">6.</span> <span class="nav-text">Stack plot</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference-3"><span class="nav-number">6.1.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#More-information"><span class="nav-number">7.</span> <span class="nav-text">More information</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -376,7 +525,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>
@@ -421,7 +570,7 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/zclzcl0223/my_medium-zoom@master/medium-zoom-v7.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -457,6 +606,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
