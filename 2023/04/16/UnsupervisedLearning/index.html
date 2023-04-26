@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/2.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/3.png">
 <meta property="article:published_time" content="2023-04-16T13:46:40.000Z">
-<meta property="article:modified_time" content="2023-04-25T02:52:59.878Z">
+<meta property="article:modified_time" content="2023-04-26T13:46:11.412Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Unsupervised learning">
@@ -207,7 +207,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-25 10:52:59" itemprop="dateModified" datetime="2023-04-25T10:52:59+08:00">2023-04-25</time>
+                <time title="Modified: 2023-04-26 21:46:11" itemprop="dateModified" datetime="2023-04-26T21:46:11+08:00">2023-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,11 +233,14 @@
       
         <span id="more"></span>
 
-<h1 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h1><p>Clustering is a type of unsupervised learning that automatically groups a set of objects in such a way that objects in the same group are more similar to each other than to hose in other groups. A commonly used algorithm of clustering is K-means algorithm.</p>
-<h2 id="K-means-algorithm"><a href="#K-means-algorithm" class="headerlink" title="K-means algorithm"></a>K-means algorithm</h2><p>Cluster centroids: centers of cluster.</p>
+<h1 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h1><p>Clustering is a type of unsupervised learning that automatically groups a set of objects in such a way that objects in the same group are more similar to each other than to those in other groups. A commonly used algorithm of clustering is K-means algorithm.</p>
+<h2 id="K-means-algorithm"><a href="#K-means-algorithm" class="headerlink" title="K-means algorithm"></a>K-means algorithm</h2><p>K-means algorithm partition $n$ observations into $k$ clusters where each observation belongs to the cluster with the nearest mean. In other words, there is a centroid in each cluster and among all the centroids, an observation in its cluster is closer to its centroid than to other centroids, that is, observations in the same cluster are more related. The procedures of k-means are as follows:</p>
+<blockquote>
+<p>Cluster centroids: centers of cluster.</p>
+</blockquote>
 <ul>
-<li>Randomly initialize $K$ cluster centroids $\mu_1,\mu_2,...\mu_K$;<blockquote>
-<p>Just randomly choosing $K$ points from the training set is ok though different initialization will produce different clusters.</p>
+<li>Randomly initialize $K$ cluster centroids $\mu_1,\mu_2,..., \mu_K$;<blockquote>
+<p>Just randomly choose $K$ points from the training set is ok though different initialization will produce different clusters.</p>
 </blockquote>
 </li>
 <li>Assign points to its closest cluster centroids;<blockquote>
@@ -259,12 +262,12 @@
 </ul>
 <p>Distortion cost function $J$:<br>$$J(c^{(1)},...,c^{(m)},\mu_1,...,\mu_k)&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(x^{(i)}-\mu_{c^{(i)}})^2$$</p>
 <p>The way to minimize $J$ is repeatedly moving $\mu_k$ to the centre of cluster $k$.</p>
-<h3 id="Choose-a-K"><a href="#Choose-a-K" class="headerlink" title="Choose a $K$"></a>Choose a $K$</h3><p>Elbow method: Choose the value at the elbow of $J-K$ curve as $K$ as elbow is the position where the slope of a function rapidly decreases.</p>
+<h3 id="Choosing-a-K"><a href="#Choosing-a-K" class="headerlink" title="Choosing a $K$"></a>Choosing a $K$</h3><p>Elbow method: Choose the value at the elbow of $J-K$ curve as $K$ on elbow is the position where the slope of a function rapidly decreases.</p>
 <p><img src="/2023/04/16/UnsupervisedLearning/2.png" alt="2"></p>
 <center style="font-size:12px">Fig. 2. Elbow method</center>
 
 <p>More generally, the choice of $K$ depends on the downstream purpose.</p>
-<h1 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h1><p>Anomaly detection is another type of unsupervised learning that automatically identifies rare or anomalous events which are suspicous or harmful because they differ significantly from standard behaviors or patterns.The key algorithm in anomaly detection is density estimation that builds the model of $p(x)$ which is the probability density of $x$. The most commonly used probability density model is Gaussian (Normal or Bell shaped) distribution:<br>$$p(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</p>
+<h1 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h1><p>Anomaly detection is another type of unsupervised learning that automatically identifies rare or anomalous events which are suspicous or harmful because they differ significantly from standard behaviors or patterns. The key algorithm in anomaly detection is density estimation that builds the model of $p(x)$ which is the probability density of $x$. The most commonly used probability density model is Gaussian (Normal or Bell shaped) distribution:<br>$$p(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</p>
 <p>For multiple features $\vec{x}$, assuming features are independent of each other:<br>$$p(\vec{x})&#x3D;\prod\limits_{j&#x3D;1}^{n}p(x_j; \mu_j, \sigma_j^2)$$</p>
 <p>The followings are procedures of anomaly detection:</p>
 <ul>
@@ -273,8 +276,8 @@
 <li>Given new example $\vec{x}$, compute $p(\vec{x})$;</li>
 <li>Anomaly if $p(\vec{x})&lt;\epsilon$.</li>
 </ul>
-<h2 id="Evaluating-anomaly-detection-system"><a href="#Evaluating-anomaly-detection-system" class="headerlink" title="Evaluating anomaly detection system"></a>Evaluating anomaly detection system</h2><p>In anomaly, we actually know which example is positive and which is not, that is, we have labeled data. However, we train the model using only normal examples, cross validate model with both anomalous and normal examples to determine $\epsilon$, test model with both anomalous and normal examples. When data set is too small, it is feasible to remove test set.</p>
-<p>We only need to train the model one time as $\mu$ and $\sigma$ are totally depends on the training set. Dev set is used to choose the best $\epsilon$. For skewed datasets, precission and recall may also be used in addition to the accurary of prediction.</p>
+<h2 id="Evaluating-anomaly-detection-system"><a href="#Evaluating-anomaly-detection-system" class="headerlink" title="Evaluating anomaly detection system"></a>Evaluating anomaly detection system</h2><p>In anomaly detection, we actually know which example is positive and which is not, that is, we have labeled data. However, we train the model using only normal examples, cross validate model with both anomalous and normal examples to determine $\epsilon$, test model with both anomalous and normal examples. When the data set is too small, it is feasible to remove test set.</p>
+<p>We only need to train the model one time as $\mu$ and $\sigma$ totally depend on the training set. Dev set is used to choose the best $\epsilon$. For skewed datasets, precission and recall may also be used in addition to the accurary of prediction.</p>
 <h2 id="Anomaly-detection-and-supervised-learning"><a href="#Anomaly-detection-and-supervised-learning" class="headerlink" title="Anomaly detection and supervised learning"></a>Anomaly detection and supervised learning</h2><style>
     table th {
         width: 160px;
@@ -309,9 +312,9 @@
 <td align="center">hard to detect</td>
 </tr>
 </tbody></table>
-<p>The core idea of anomaly detection is to learn under what circumstances one example is normal. Therefore, anomaly detection is more robust if the types of anomalies keep changing while the standard of normal is stable.</p>
-<p>Though supervised learning is also feasible when the number of positive examples is small, it can&#39;t learn much about positive examples. In contrast, since supervised learning learns what positive and negative examples look like from previous examples, it can&#39;t deal with the types of anomalies that didn&#39;t occur before well.</p>
-<h2 id="Choosing-good-features"><a href="#Choosing-good-features" class="headerlink" title="Choosing good features"></a>Choosing good features</h2><p>Choosing good features is more important in anomaly detection than in supervised learning since supervised learning can rescale and take the best advantage of the features we give while anomaly detection treats each feature as independent and equally important. To choose good features, there are several methods: </p>
+<p>The core idea of anomaly detection is to learn under what circumstances one example is normal. Therefore, anomaly detection is more robust if the types of anomaly keep changing while the standard of normal is stable.</p>
+<p>Though supervised learning is also feasible when the number of positive examples is small, it can&#39;t learn much from positive examples. In contrast, since supervised learning learns what positive and negative examples look like from previous examples, it can&#39;t deal with the types of anomaly that didn&#39;t occur before well.</p>
+<h2 id="Choosing-good-features"><a href="#Choosing-good-features" class="headerlink" title="Choosing good features"></a>Choosing good features</h2><p>Choosing good features is more important in anomaly detection than in supervised learning since supervised learning can rescale and take the best advantage of the features we give while anomaly detection treats each feature independent and equally important. To choose good features, there are several methods: </p>
 <ul>
 <li><p>Choose more gaussian features or <strong>make</strong> features more gaussian (e.g. $\log(x+c)$ instead of $x$);<br><img src="/2023/04/16/UnsupervisedLearning/3.png" alt="3"></p>
 <center style="font-size:12px">Fig. 3. Variable transformation</center>
@@ -437,7 +440,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Clustering"><span class="nav-number">1.</span> <span class="nav-text">Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#K-means-algorithm"><span class="nav-number">1.1.</span> <span class="nav-text">K-means algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function"><span class="nav-number">1.1.1.</span> <span class="nav-text">Cost function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Choose-a-K"><span class="nav-number">1.1.2.</span> <span class="nav-text">Choose a $K$</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Anomaly-detection"><span class="nav-number">2.</span> <span class="nav-text">Anomaly detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluating-anomaly-detection-system"><span class="nav-number">2.1.</span> <span class="nav-text">Evaluating anomaly detection system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anomaly-detection-and-supervised-learning"><span class="nav-number">2.2.</span> <span class="nav-text">Anomaly detection and supervised learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Choosing-good-features"><span class="nav-number">2.3.</span> <span class="nav-text">Choosing good features</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Clustering"><span class="nav-number">1.</span> <span class="nav-text">Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#K-means-algorithm"><span class="nav-number">1.1.</span> <span class="nav-text">K-means algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function"><span class="nav-number">1.1.1.</span> <span class="nav-text">Cost function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Choosing-a-K"><span class="nav-number">1.1.2.</span> <span class="nav-text">Choosing a $K$</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Anomaly-detection"><span class="nav-number">2.</span> <span class="nav-text">Anomaly detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluating-anomaly-detection-system"><span class="nav-number">2.1.</span> <span class="nav-text">Evaluating anomaly detection system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anomaly-detection-and-supervised-learning"><span class="nav-number">2.2.</span> <span class="nav-text">Anomaly detection and supervised learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Choosing-good-features"><span class="nav-number">2.3.</span> <span class="nav-text">Choosing good features</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

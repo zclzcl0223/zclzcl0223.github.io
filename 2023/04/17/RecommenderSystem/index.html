@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/3.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/4.png">
 <meta property="article:published_time" content="2023-04-17T08:22:09.000Z">
-<meta property="article:modified_time" content="2023-04-25T02:54:34.790Z">
+<meta property="article:modified_time" content="2023-04-26T14:37:08.302Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Deep learning">
@@ -209,7 +209,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-25 10:54:34" itemprop="dateModified" datetime="2023-04-25T10:54:34+08:00">2023-04-25</time>
+                <time title="Modified: 2023-04-26 22:37:08" itemprop="dateModified" datetime="2023-04-26T22:37:08+08:00">2023-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,12 +235,12 @@
       
         <span id="more"></span>
 
-<h1 id="Collaborative-filtering"><a href="#Collaborative-filtering" class="headerlink" title="Collaborative filtering"></a>Collaborative filtering</h1><p>The core idea of collaborative filtering is that users tend to use items with high ratings. Therefore, by predicting users&#39; ratings for items that they haven&#39;t used based on rating of users who gave similar ratings, we can recommend those high rated items to users.</p>
+<h1 id="Collaborative-filtering"><a href="#Collaborative-filtering" class="headerlink" title="Collaborative filtering"></a>Collaborative filtering</h1><p>The core idea of collaborative filtering is that users tend to use items with high ratings. Therefore, by predicting users&#39; ratings for items that they haven&#39;t used based on ratings of users who gave similar ratings, we can recommend those high rated items to users.</p>
 <h2 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h2><ul>
 <li>$n_u$ &#x3D; number of users;</li>
 <li>$n_m$ &#x3D; number of items;</li>
 <li>$r(i,j)&#x3D;1$ if user $j$ has rated item $i$;</li>
-<li>$y^{(i,j)}$ &#x3D; rating given by user $j$ to movie $i$;</li>
+<li>$y^{(i,j)}$ &#x3D; rating given by user $j$ to item $i$;</li>
 <li>$w^{(j)}, b^{(j)}$ &#x3D; parameters for user $j$;</li>
 <li>$x^{(i)}$ &#x3D; feature vector for item $i$;</li>
 <li>$m^{(j)}$ &#x3D; number of items rated by user $j$</li>
@@ -248,32 +248,32 @@
 <h2 id="Recommending-with-features"><a href="#Recommending-with-features" class="headerlink" title="Recommending with features"></a>Recommending with features</h2><p><img src="/2023/04/17/RecommenderSystem/1.png" alt="1"></p>
 <center style="font-size:12px">Fig. 1. Items with features</center>
 
-<p>If we know the composition or features of items and their respective percentages, we can estimate how mush users like each feature or component. This is actually a regression model: ${rating}&#x3D;{w^{(j)}}\cdot{x}+b^{(j)}$. If we consider all the items and all the users together and regularization, we can get cost function $J$ like this:</p>
+<p>If we know the composition or features of items and their respective percentages, we can estimate how mush users like each feature or component. This is actually a regression model: ${rating}&#x3D;{w^{(j)}}\cdot{x}+b^{(j)}$. If we consider regularization as well as all the items and all the users together, we can get cost function $J$ like this:</p>
 <p>$$J(w,b) &#x3D; \frac{1}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{i:r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{k&#x3D;1}^{n}(w_k^{(j)})^2$$</p>
-<p>It is actually a linear regression model though we only consider the items that have been rated. Since $m^{(j)}$ is different for each user and it actually doesn&#39;t affect the final result for each user since it is only related to user $j$, we can remove it and make $2m^{(j)}$ just $2$. Each user is totally independent of others, that is, $w^{(j)}$ and $b^{(j)}$ have nothing to do with others. Therefore, $J$ is just a combination of several linear regression cost functions.</p>
+<p>It is actually a linear regression model though we only consider the items that have been rated. Since $m^{(j)}$ is different for each user and it actually doesn&#39;t affect the final result for each user because it is only related to user $j$, we can remove it and make $2m^{(j)}$ just $2$. Each user is totally independent of others, that is, $w^{(j)}$ and $b^{(j)}$ have nothing to do with others. Therefore, $J$ is just a combination of several linear regression cost functions.</p>
 <h2 id="Recommending-without-features"><a href="#Recommending-without-features" class="headerlink" title="Recommending without features"></a>Recommending without features</h2><p><img src="/2023/04/17/RecommenderSystem/2.png" alt="2"></p>
 <center style="font-size:12px">Fig. 2. Items without features</center>
 
 <p>More generally, we don&#39;t know the exact value of each feature. Therefore, the algorithm has to learn their values from users&#39; ratings:</p>
 <p>$$J(x) &#x3D; \frac{1}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{j:r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{k&#x3D;1}^{n}(x_k^{(i)})^2$$</p>
-<p>In this case, $x$, the values of features of each item, are the parameters that the algorithm will learn and we assume that the algorithm have already known the parameters of each user. Nonetheless, it actually doesn&#39;t know. Since the first term of $J(w,b)$ and $J(x)$ are the same, we can combine them together:</p>
+<p>In this case, $x$, the values of features of each item, are the parameters that the algorithm will learn. We assume that the algorithm have already known the parameters of each user. Nonetheless, it actually doesn&#39;t know. Since the first term of $J(w,b)$ and $J(x)$ are the same, we can combine them together:</p>
 <p>$$J(w,b,x) &#x3D; \frac{1}{2}\sum\limits_{(i,j):r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{k&#x3D;1}^{n}(x_k^{(i)})^2+\frac{\lambda}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{k&#x3D;1}^{n}(w_k^{(j)})^2$$</p>
-<p>This is <strong>collaborative filtering</strong>. In addition to learning $w$ and $b$, it also learns $x$. When gradient descent, it has to modify $w$, $b$ and $x$ simultaneously. Because of the removing of $m^{(j)}$, it can combine the first term of $J(w,b)$ and $J(x)$ together. The ratings of other users are used to learn $x$ but affect the learning of $w$ and $b$ of all the users indirectly.</p>
+<p>This is <strong>collaborative filtering</strong>. In addition to learning $w$ and $b$, it also learns $x$. When gradient descent, it has to modify $w$, $b$ and $x$ simultaneously. Because of the removing of $m^{(j)}$, it can combine the first term of $J(w,b)$ and $J(x)$ together. The ratings of other users are used to learn $x$ but affect the learning of $w$ and $b$ of all the users indirectly. That&#39;s why it is called collaborative filtering - all users collaborate to generate the features of items.</p>
 <p>If the rating of a item is given in the form of binary label (like or dislike), we can just turn linear regression to logistic regression. Namely, turn activation function from linear function to sigmoid function and turn loss function from squared error to cross entropy.</p>
 <h2 id="Mean-normalization"><a href="#Mean-normalization" class="headerlink" title="Mean normalization"></a>Mean normalization</h2><p>If there is a new user $a$ that haven&#39;t rated any items, the prediction of its rating that the collaborative filtering algorithm makes will all be zero. Because the parameters of $a$ have nothing to do with the value of the first term of $J(w,b,x)$, regularization will make them all zero and the prediction ${rating}&#x3D;{w}\cdot{x}+b$ will also be zero. Intuitively, we can use the average score of each item $\mu$ to predict the rating of a new user. And that&#39;s what mean normalization does:</p>
 <ul>
 <li>Subtract ${\mu}_{j}$ from each user&#39;s rating for item $j$;</li>
 <li>Do collaborative filtering using normalized scores;</li>
-<li>Make predictions: $\widehat{y}_{a}^{(i)}&#x3D;{w_a}\cdot{x}^{(i)}+b_a+\mu^{(i)}$</li>
+<li>Make predictions: $\widehat{y}<em>{a}^{(i)}&#x3D;{w_a}\cdot{x}^{(i)}+b_a+\mu</em>{i}$</li>
 </ul>
-<h2 id="Finding-related-items"><a href="#Finding-related-items" class="headerlink" title="Finding related items"></a>Finding related items</h2><p>Features $x^{(i)}$ of item $i$ convey something about what that item is like. Therefore, we can find items similar to this item by computing:<br>$$||{x}^{(k)}-{x}^{(i)}||^2$$<br>where $n$ is the number of features.The smaller this value is, the more similar the two items are.</p>
+<h2 id="Finding-related-items"><a href="#Finding-related-items" class="headerlink" title="Finding related items"></a>Finding related items</h2><p>Features $x^{(i)}$ of item $i$ convey something about what the item is like. Therefore, we can find items similar to this item by computing:<br>$$||{x}^{(k)}-{x}^{(i)}||^2$$<br>where ${x}^{(k)}$ and ${x}^{(i)}$ are both vectors. The smaller this value is, the more similar the two items are.</p>
 <h1 id="Content-based-filtering"><a href="#Content-based-filtering" class="headerlink" title="Content-based filtering"></a>Content-based filtering</h1><p>Cold start problem:</p>
 <ul>
 <li>How to rank new items that few users have rated?</li>
 <li>How to show something reasonable to new users who have rated few items?</li>
 </ul>
 <p>Though mean normalization can solve the second problem to a certain extent, it is better to use content-based filtering to solve cold start problem.</p>
-<p>Content-based filtering recommends items to users based on features or background of user and item to find good match. Each user $j$ has several background information<br>$x_u^{(j)}$ and each item $i$ has several features $x_m^{(i)}$. With $x_u^{(j)}$, it is possible for the algorithm to compute how much user $j$ like certain components of this type of item $v_u^{(j)}$. With $x_m^{(i)}$, it is possible for the algorithm to compute the proportions of each attribute of item $i$ $v_m^{(i)}$.</p>
+<p>Content-based filtering recommends items to users based on features or background of user as well as item to find good match. Each user $j$ has several background information $x_u^{(j)}$ and each item $i$ has several features $x_m^{(i)}$. With $x_u^{(j)}$, it is possible for the algorithm to compute how much user $j$ like certain components of this type of item $v_u^{(j)}$. With $x_m^{(i)}$, it is possible for the algorithm to compute the proportions of each attribute of item $i$ $v_m^{(i)}$.</p>
 <blockquote>
 <p>The dimensions of $x_u^{(j)}$ and $x_m^{(i)}$ can be different, but the dimensions of $v_u^{(j)}$ and $v_m^{(i)}$ must be the same since the prediction of rating is: $v_u^{(j)}\cdot v_m^{(i)}$.</p>
 </blockquote>

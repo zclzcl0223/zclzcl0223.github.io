@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/DecisionTrees/2.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/DecisionTrees/3.png">
 <meta property="article:published_time" content="2023-04-16T04:48:16.000Z">
-<meta property="article:modified_time" content="2023-04-25T02:57:14.535Z">
+<meta property="article:modified_time" content="2023-04-26T14:55:44.377Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Decision trees">
 <meta property="article:tag" content="Machine learning">
@@ -207,7 +207,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-25 10:57:14" itemprop="dateModified" datetime="2023-04-25T10:57:14+08:00">2023-04-25</time>
+                <time title="Modified: 2023-04-26 22:55:44" itemprop="dateModified" datetime="2023-04-26T22:55:44+08:00">2023-04-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,19 +233,18 @@
       
         <span id="more"></span>
 
-<h1 id="Structure-of-decision-trees"><a href="#Structure-of-decision-trees" class="headerlink" title="Structure of decision trees"></a>Structure of decision trees</h1><p>Decision trees are a tree model, where each internal node (decision node) is an  item that several possibile values.The number of values defines the degree of nodes.</p>
+<h1 id="Structure-of-decision-trees"><a href="#Structure-of-decision-trees" class="headerlink" title="Structure of decision trees"></a>Structure of decision trees</h1><p>Decision trees are a tree model, where each internal node (decision node) is a feature that has several possibile values. The number of values defines the degree of nodes.</p>
 <p><img src="/2023/04/16/DecisionTrees/1.png" alt="1"></p>
 <center style="font-size:12px">Fig. 1. Decision trees</center>
 
-<h1 id="Decision-tree-learning"><a href="#Decision-tree-learning" class="headerlink" title="Decision tree learning"></a>Decision tree learning</h1><p>First decision: How to choose features to maximize purity?</p>
-<p>Second decision: When can the tree stop splitting</p>
+<h1 id="Decision-tree-learning"><a href="#Decision-tree-learning" class="headerlink" title="Decision tree learning"></a>Decision tree learning</h1><p>First decision: How to choose features to maximize purity? Second decision: When can the tree stop splitting</p>
 <ul>
 <li>When a node is 100% one class.</li>
 <li>When splitting a node will result in the tree exceeding a <strong>maximum depth</strong> (defined by us).</li>
 <li>When improvements in purity score are below a threshold.</li>
-<li>When number of examples in a node is below a threhold.</li>
+<li>When number of examples in a node is below a threshold.</li>
 </ul>
-<h2 id="Measuring-purity"><a href="#Measuring-purity" class="headerlink" title="Measuring purity"></a>Measuring purity</h2><p>p$_1$: Fraction of examples that are our targets.</p>
+<h2 id="Measuring-purity"><a href="#Measuring-purity" class="headerlink" title="Measuring purity"></a>Measuring purity</h2><p>p$_1$: Fraction of examples that are our target.</p>
 <p>H(p$_1$): Degree of impurity of one set.</p>
 <p>$$p_0&#x3D;1-p_1$$<br>$$H(p_1)&#x3D;-p_1\log_2(p_1)-p_0\log_2(p_0)$$</p>
 <p><img src="/2023/04/16/DecisionTrees/2.png" alt="2"></p>
@@ -262,11 +261,7 @@
 </ul>
 <blockquote>
 <p>For features with more than two discrete values, we can use <strong>one-hot encoding</strong>.  That is, decompose the features with $k$ values into $k$ bool features so that the values of each new feature will only be yes (1) or no (0). One-hot encoding can also be applied to neural networks to turn multiclass classification to binary classification.</p>
-</blockquote>
-<blockquote>
 <p>For features with continuous values, we try splitting values using different thresholds and choose the threshold that gives the highest information gain.</p>
-</blockquote>
-<blockquote>
 <p>It is reasonable that the same features appears several times in one decision trees.</p>
 </blockquote>
 <h2 id="Regression-trees"><a href="#Regression-trees" class="headerlink" title="Regression trees"></a>Regression trees</h2><p>Regression trees are the generalization of decision trees, which predict a number. The differences between building a regression tree and a decision tree are:</p>
@@ -293,7 +288,7 @@
 <li>Repeatedly generate $B$ trees.</li>
 </ul>
 <p>Sampling with replacement and randomizing feature choice allow us generate different trees as much as possible.</p>
-<h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>XGBoost is an open-source library that makes ensemble of decision trees perform better. The core idea of XGBoost is that it is more worthwhile to train decision trees using the examples that the previously trained decision trees have failed to predict rather than using totally random examples. Trees generated like this is called <strong>boosted trees</strong>. In XGBoost, instead of picking from all samples with equal probability, it makes it <strong>more likely</strong> to pick examples that the previously trained trees have misclassfied. The details of XGBoost are very complicated, but the using of it is quite simple:</p>
+<h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>XGBoost is an open-source library that makes ensemble of decision trees perform better. The core idea of XGBoost is that it is more worthwhile to train decision trees using the examples that the previously trained decision trees have failed to predict rather than using totally random examples. Trees generated like this is called <strong>boosted trees</strong>. In XGBoost, instead of picking subsets from all samples with equal probability, it makes it <strong>more likely</strong> to pick examples that the previously trained trees have misclassfied. The details of XGBoost are very complicated, but the using of it is quite simple:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xgboost <span class="keyword">import</span> XGBClassifier <span class="comment"># or XGBRegressor for regression</span></span><br><span class="line"></span><br><span class="line">model = XGBClassifier()</span><br><span class="line"></span><br><span class="line">model.fit(X_train, Y_train)</span><br><span class="line">y_pred = model.predict(X_test)</span><br></pre></td></tr></table></figure>
 
 <h1 id="Decision-trees-amp-Neural-Networks"><a href="#Decision-trees-amp-Neural-Networks" class="headerlink" title="Decision trees &amp; Neural Networks"></a>Decision trees &amp; Neural Networks</h1><p>For decision trees and tree ensembles:</p>

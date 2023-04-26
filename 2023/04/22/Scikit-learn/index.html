@@ -30,12 +30,12 @@
 <meta property="og:description" content="Scikit-learn is an open-source machine learning library for python. It features traditional machine learning models, such as classification, regression and clustering algorithms including support-vect">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-22T10:28:47.000Z">
-<meta property="article:modified_time" content="2023-04-25T02:54:05.813Z">
+<meta property="article:modified_time" content="2023-04-25T15:46:05.961Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Tool">
-<meta property="article:tag" content="Supervised learning">
 <meta property="article:tag" content="Machine learning">
+<meta property="article:tag" content="Supervised learning">
 <meta property="article:tag" content="Unsupervised learning">
 <meta name="twitter:card" content="summary">
 
@@ -206,7 +206,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-25 10:54:05" itemprop="dateModified" datetime="2023-04-25T10:54:05+08:00">2023-04-25</time>
+                <time title="Modified: 2023-04-25 23:46:05" itemprop="dateModified" datetime="2023-04-25T23:46:05+08:00">2023-04-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,7 +242,7 @@
 <h1 id="Logistic-regression"><a href="#Logistic-regression" class="headerlink" title="Logistic regression"></a>Logistic regression</h1><p>The logistic regression model in scikit-learn is <code>LogisticRegression</code>.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import module</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="comment"># Create and fit the model</span></span><br><span class="line">lr_model = LogisticRegression()</span><br><span class="line">lr_model.fit(X, y)</span><br><span class="line"><span class="comment"># Make predictions</span></span><br><span class="line">y_pred = lr_model.predict(X)</span><br><span class="line"><span class="comment"># Calculate accuracy</span></span><br><span class="line">lr_model.score(X, y) <span class="comment"># Return the percentage of correct predictions</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="Datasets-and-dataset-partition"><a href="#Datasets-and-dataset-partition" class="headerlink" title="Datasets and dataset partition"></a>Datasets and dataset partition</h1><p>The <code>sklearn.datasets</code> module include utilities to load datasets. These datasets are useful for the training of model. See more information on <a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.datasets">sklearn.datasets</a>.</p>
+<h1 id="Datasets-and-dataset-partition"><a href="#Datasets-and-dataset-partition" class="headerlink" title="Datasets and dataset partition"></a>Datasets and dataset partition</h1><p>The <code>sklearn.datasets</code> module includes utilities to load datasets. These datasets are useful for the training of model. See more information on <a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.datasets">sklearn.datasets</a>.</p>
 <p>Module <code>train_test_split</code> in <code>sklearn.model_selection</code> can help us split training set into training set and test set, for examples:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X_train, X_, y_train, y_ = train_test_split(X, y, test_size=<span class="number">0.4</span>, random_state=<span class="number">1</span>)</span><br><span class="line">X_cv, X_test, y_cv, y_test = train_test_split(X_, y_, test_size=<span class="number">0.5</span>, random_state=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
@@ -273,7 +273,7 @@
       <div class="popular-posts-title"><a href="\2023\04\11\CondaManual\" rel="bookmark">Conda manual</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\05\SupervisedLearning\" rel="bookmark">Supervised learning</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\16\UnsupervisedLearning\" rel="bookmark">Unsupervised learning</a></div>
     </li>
   </ul>
 
@@ -282,8 +282,8 @@
           <div class="post-tags">
               <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Tool/" rel="tag"># Tool</a>
-              <a href="/tags/Supervised-learning/" rel="tag"># Supervised learning</a>
               <a href="/tags/Machine-learning/" rel="tag"># Machine learning</a>
+              <a href="/tags/Supervised-learning/" rel="tag"># Supervised learning</a>
               <a href="/tags/Unsupervised-learning/" rel="tag"># Unsupervised learning</a>
           </div>
 
