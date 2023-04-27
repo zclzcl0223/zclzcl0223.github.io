@@ -22,20 +22,21 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Hexo is a static website builder based on nodejs and markdown which supports remote deployment and theme customization.">
+  <meta name="description" content="Conda is an open-source,cross-platform, language-agnostic package manager and environment management system.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo manual">
-<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/04/HexoManual/index.html">
+<meta property="og:title" content="Conda">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/11/Conda/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Hexo is a static website builder based on nodejs and markdown which supports remote deployment and theme customization.">
+<meta property="og:description" content="Conda is an open-source,cross-platform, language-agnostic package manager and environment management system.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-04-03T16:02:48.000Z">
-<meta property="article:modified_time" content="2023-04-25T03:09:51.153Z">
+<meta property="article:published_time" content="2023-04-11T14:21:08.000Z">
+<meta property="article:modified_time" content="2023-04-27T15:54:35.800Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Tool">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/04/HexoManual/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/11/Conda/">
 
 
 <script id="page-configurations">
@@ -48,7 +49,7 @@
   };
 </script>
 
-  <title>Hexo manual | JourneyToCoding</title>
+  <title>Conda | JourneyToCoding</title>
   
 
 
@@ -172,7 +173,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/04/HexoManual/">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/11/Conda/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -185,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo manual
+          Conda
         </h1>
 
         <div class="post-meta">
@@ -195,14 +196,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-04-04 00:02:48" itemprop="dateCreated datePublished" datetime="2023-04-04T00:02:48+08:00">2023-04-04</time>
+              <time title="Created: 2023-04-11 22:21:08" itemprop="dateCreated datePublished" datetime="2023-04-11T22:21:08+08:00">2023-04-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-25 11:09:51" itemprop="dateModified" datetime="2023-04-25T11:09:51+08:00">2023-04-25</time>
+                <time title="Modified: 2023-04-27 23:54:35" itemprop="dateModified" datetime="2023-04-27T23:54:35+08:00">2023-04-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,7 +216,7 @@
             </span>
 
           
-            <div class="post-description">Hexo is a static website builder based on nodejs and markdown which supports remote deployment and theme customization.</div>
+            <div class="post-description">Conda is an open-source,cross-platform, language-agnostic package manager and environment management system.</div>
 
         </div>
       </header>
@@ -228,71 +229,10 @@
       
         <span id="more"></span>
 
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Hexo is a static website builder based on <strong>nodejs</strong> and markdown which supports remote deployment and theme customization.</p>
-<h1 id="Hexo-Installation"><a href="#Hexo-Installation" class="headerlink" title="Hexo Installation"></a>Hexo Installation</h1><h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><p>The installation program,including <strong>node and npm</strong>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ node -v  <span class="comment"># check the version of node</span></span><br><span class="line">$ npm -v  <span class="comment"># check the version of npm</span></span><br></pre></td></tr></table></figure>
-<p>The step of installation:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g cnpm --registry=http://registry.npm.taobao.org  <span class="comment"># install the cnpm manager of taobao</span></span><br><span class="line">$ cnmp install -g hexo-cli  <span class="comment"># install the scheme of hexo</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p>In windows, all the command line commands should be run in <strong>Git bash</strong>. Github can serve as the remoete blog of our local hexo blog:</p>
-<ul>
-<li><p>Create a new repositry in github,whose name is <u>YourGithubName.github.io</u>;</p>
-</li>
-<li><p>Install the git deployment plugin;</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Configure <strong>_config.yml</strong>.</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/YourGithubName/YourGithubName.github.io.git</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Visit remote blog through <a target="_blank" rel="noopener" href="https://yourgithubname.github.io/">https://YourGithubName.github.io/</a>.</p>
-</li>
+<h1 id="More-information"><a href="#More-information" class="headerlink" title="More information"></a>More information</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/">Conda docs</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/index.html">Basic conda commands</a></li>
 </ul>
-<h1 id="Hexo-theme"><a href="#Hexo-theme" class="headerlink" title="Hexo theme"></a>Hexo theme</h1><p>Download the specific theme from github:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/themename.git themes/themename</span><br></pre></td></tr></table></figure>
-
-<p>Configure <strong>_config.yml</strong>:</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">themename</span></span><br></pre></td></tr></table></figure>
-
-<p>Then, configure the theme with the help of its manual.</p>
-<h1 id="Hexo-Command"><a href="#Hexo-Command" class="headerlink" title="Hexo Command"></a>Hexo Command</h1><p>Create a folder in computer and use this folder as the <strong>root</strong> of our blog.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init [folder]</span><br></pre></td></tr></table></figure>
-
-<p>Create a new blog:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new &lt;title&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Create categories or tags:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new page categories</span><br><span class="line">$ hexo new page tags</span><br></pre></td></tr></table></figure>
-
-<p>Once we edit our blog,we should:</p>
-<ul>
-<li><p>Clean cache files.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Generate new public blog. That is the content we use to build our website.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>Start our server:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-
-<p>Deploy our blog to remote site:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<p>All the file created in command line will be placed in <strong>&#x2F;source</strong>.</p>
-<h1 id="Local-article-link"><a href="#Local-article-link" class="headerlink" title="Local article link"></a>Local article link</h1><p>Jump to the specific local article:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% post_link &#x27;YourPostName&#x27; LinkName %&#125;  // the default linkname is the name of article</span><br><span class="line">or</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% post_path &#x27;YourPostName&#x27; %&#125;&quot;</span>&gt;</span>LinkName<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Jump to the specific catalog of local article:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// Use &#x27;#&#x27; for all levels of catalog</span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% post_path &#x27;YourPostName&#x27; %&#125;#CatalogName&quot;</span>&gt;</span>LinkName<span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br></pre></td></tr></table></figure>
-<p>You can also use:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[LinkName](&#123;% post_path &#x27;YourPostName&#x27; %&#125;#CatalogName)</span><br></pre></td></tr></table></figure>
-<p>But when you configure the path of your local image like this: <a href="/2023/04/10/HexoConfiguration/#Image">Image</a>, this method will fail.</p>
-<blockquote>
-<p>If your <code>CatalogName</code> has space, you should replace the space to <code>-</code>. The same to <code>YourPostName</code> if you do not use <code>&#39;&#39;</code>.</p>
-</blockquote>
-<h1 id="Custom-article-priority"><a href="#Custom-article-priority" class="headerlink" title="Custom article priority"></a>Custom article priority</h1><p>See <a target="_blank" rel="noopener" href="https://blog.csdn.net/jziwjxjd/article/details/107836486">Hexo设置文章的优先级别</a>.</p>
-<h1 id="Some-bugs"><a href="#Some-bugs" class="headerlink" title="Some bugs"></a>Some bugs</h1><h2 id="Only-show-Chinese-39"><a href="#Only-show-Chinese-39" class="headerlink" title="Only show Chinese &#39;"></a>Only show Chinese &#39;</h2><p>This is a setting bug of marked renderer, turning off <code>smartypants</code> can solve it:</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">marked:</span></span><br><span class="line">  <span class="attr">smartypants:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">HexoDocs</a></p>
-<hr>
 
     </div>
 
@@ -303,17 +243,27 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\05\MarkdownManual\" rel="bookmark">Markdown manual</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\12\Tensorflow\" rel="bookmark">Tensorflow</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\10\HexoConfiguration\" rel="bookmark">Hexo configuration</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\24\Matplotlib\" rel="bookmark">Matplotlib</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\22\Scikit-learn\" rel="bookmark">Scikit-learn</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\22\NumPy\" rel="bookmark">NumPy</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\17\UsageOfImportInPython\" rel="bookmark">Usage of import keyword in python</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Tool/" rel="tag"># Tool</a>
           </div>
 
           <script type="text/javascript">
@@ -334,10 +284,13 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/04/05/MarkdownManual/" rel="next" title="Markdown manual">
-      Markdown manual <i class="fa fa-chevron-right"></i>
+    <a href="/2023/04/10/NeuralNetwork/" rel="prev" title="Neural network">
+      <i class="fa fa-chevron-left"></i> Neural network
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/04/12/Tensorflow/" rel="next" title="Tensorflow">
+      Tensorflow <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -397,7 +350,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-Installation"><span class="nav-number">2.</span> <span class="nav-text">Hexo Installation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js"><span class="nav-number">2.1.</span> <span class="nav-text">Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-number">2.2.</span> <span class="nav-text">Git</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-theme"><span class="nav-number">3.</span> <span class="nav-text">Hexo theme</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo-Command"><span class="nav-number">4.</span> <span class="nav-text">Hexo Command</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Local-article-link"><span class="nav-number">5.</span> <span class="nav-text">Local article link</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Custom-article-priority"><span class="nav-number">6.</span> <span class="nav-text">Custom article priority</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Some-bugs"><span class="nav-number">7.</span> <span class="nav-text">Some bugs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Only-show-Chinese-39"><span class="nav-number">7.1.</span> <span class="nav-text">Only show Chinese &#39;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">8.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#More-information"><span class="nav-number">1.</span> <span class="nav-text">More information</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -413,14 +366,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -450,7 +403,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>
