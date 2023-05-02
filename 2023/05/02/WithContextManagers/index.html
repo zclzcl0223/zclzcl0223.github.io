@@ -22,17 +22,20 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Start of Something New">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JourneyToCoding">
-<meta property="og:url" content="https://zclzcl0223.github.io/tags/Data-analysis/index.html">
+  <meta name="description" content="The with statement in Python is used for resource management and exception handling. It is commonly used when working with file streams. However, we can also create our own context manager classes or">
+<meta property="og:type" content="article">
+<meta property="og:title" content="with: Context managers">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/05/02/WithContextManagers/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Start of Something New">
+<meta property="og:description" content="The with statement in Python is used for resource management and exception handling. It is commonly used when working with file streams. However, we can also create our own context manager classes or">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-05-02T12:46:17.000Z">
+<meta property="article:modified_time" content="2023-05-02T14:42:03.622Z">
 <meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/tags/Data-analysis/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/05/02/WithContextManagers/">
 
 
 <script id="page-configurations">
@@ -40,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Tag: Data analysis | JourneyToCoding</title>
+  <title>with: Context managers | JourneyToCoding</title>
   
 
 
@@ -162,71 +165,146 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Data analysis
-          <small>Tag</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/05/02/WithContextManagers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          with: Context managers
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-05-02 20:46:17 / Modified: 22:42:03" itemprop="dateCreated datePublished" datetime="2023-05-02T20:46:17+08:00">2023-05-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-language/" itemprop="url" rel="index"><span itemprop="name">Programming language</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">The with statement in Python is used for resource management and exception handling. It is commonly used when working with file streams. However, we can also create our own context manager classes or context manager functions.</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
-    </div>
+        <span id="more"></span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-04-24T21:58:14+08:00"
-              content="2023-04-24">
-          04-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/04/24/Matplotlib/" itemprop="url">
-            <span itemprop="name">Matplotlib</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-04-22T11:37:25+08:00"
-              content="2023-04-22">
-          04-22
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/04/22/NumPy/" itemprop="url">
-            <span itemprop="name">NumPy</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+<h1 id="Basic-concept"><a href="#Basic-concept" class="headerlink" title="Basic concept"></a>Basic concept</h1><p><code>with</code> (or <code>with...as...</code>) is actually a special <strong>sign</strong> that tells the interpreter to call a certain function when entering <code>with</code> block and call another function when leaving <code>with</code> block.</p>
+<blockquote>
+<p>Since it calls a function, it will get return object. We can use <code>with...as...</code> to catch this object.</p>
+</blockquote>
+<h1 id="Context-manager-classes"><a href="#Context-manager-classes" class="headerlink" title="Context manager classes"></a>Context manager classes</h1><p>For each class that implements <code>__enter__</code> and <code>__exit__</code>, it is a context manager. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CTManager</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;__init__ runs&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;__enter__ runs&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_val, exc_tb</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;__exit__ runs&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">print_message</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;this is a context manager&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ct = CTManager()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;with block&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> ct <span class="keyword">as</span> c:</span><br><span class="line">    c.print_message()</span><br><span class="line"><span class="comment"># with CTManager() as c:</span></span><br><span class="line"><span class="comment">#   c.print_message()</span></span><br><span class="line"><span class="comment"># is also valid</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">We get:</span></span><br><span class="line"><span class="string">__init__ runs</span></span><br><span class="line"><span class="string">with block</span></span><br><span class="line"><span class="string">__enter__ runs</span></span><br><span class="line"><span class="string">this is a context manager</span></span><br><span class="line"><span class="string">__exit__ runs</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>For a context manager class, if it hasn&#39;t been initialized, <code>__init__</code> will be called. Then <code>__enter__</code> will be implemented automatically and <code>__exit__</code> will be implemented when leaving the block.</p>
+<h1 id="Context-manager-functions"><a href="#Context-manager-functions" class="headerlink" title="Context manager functions"></a>Context manager functions</h1><p>The definition of context manager functions is much easier than context manager classes since it is almost the same as defining a generator:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> contextlib</span><br><span class="line"></span><br><span class="line"><span class="meta">@contextlib.contextmanager</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ctmanager</span>():</span><br><span class="line">    <span class="comment"># __enter__()</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;enter&quot;</span>)</span><br><span class="line">    <span class="keyword">yield</span> </span><br><span class="line">    <span class="comment"># __exit__()</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;exit&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> ctmanager():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;main&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">We get:</span></span><br><span class="line"><span class="string">enter</span></span><br><span class="line"><span class="string">main</span></span><br><span class="line"><span class="string">exit</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>Before creating a context manager function, we should <code>import contextlib</code> and pass the context manager function as a parameter to <code>contextlib.contextmanager</code>.</p>
+<blockquote>
+<p><code>@</code> has two meanings in python:</p>
+<ul>
+<li>Matrix multiplication <code>A @ B</code>;</li>
+<li>Function modifier: Pass the function defined below it as a parameter of the function behind it.</li>
+</ul>
+</blockquote>
+<p>When <code>with</code> a context manager function, the function will keep running to <code>yield</code>. Then, finish the code left when <code>with</code> block finishs.</p>
+<hr>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\28\PyTorch\" rel="bookmark">PyTorch</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\12\Tensorflow\" rel="bookmark">Tensorflow</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\24\Matplotlib\" rel="bookmark">Matplotlib</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\22\Scikit-learn\" rel="bookmark">Scikit-learn</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\22\NumPy\" rel="bookmark">NumPy</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/02/IteratorAndGenerator/" rel="prev" title="Iterator & Generator in Python">
+      <i class="fa fa-chevron-left"></i> Iterator & Generator in Python
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/02/Splat/" rel="next" title="Splat">
+      Splat <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -279,6 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-concept"><span class="nav-number">1.</span> <span class="nav-text">Basic concept</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Context-manager-classes"><span class="nav-number">2.</span> <span class="nav-text">Context manager classes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Context-manager-functions"><span class="nav-number">3.</span> <span class="nav-text">Context manager functions</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

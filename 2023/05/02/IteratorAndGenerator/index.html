@@ -22,25 +22,20 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Machine learning is a broad subfield of artifial intelligence. This post includes the course notes of machine learning introduction course by Andrew Ng.">
+  <meta name="description" content="The iterator and generator are important objects in Python.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Machine learning">
-<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/05/MachineLearning/index.html">
+<meta property="og:title" content="Iterator &amp; Generator in Python">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/05/02/IteratorAndGenerator/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Machine learning is a broad subfield of artifial intelligence. This post includes the course notes of machine learning introduction course by Andrew Ng.">
+<meta property="og:description" content="The iterator and generator are important objects in Python.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/MachineLearning/1.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/MachineLearning/2.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/MachineLearning/3.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/MachineLearning/4.png">
-<meta property="article:published_time" content="2023-04-05T11:07:52.000Z">
-<meta property="article:modified_time" content="2023-05-01T15:43:20.015Z">
+<meta property="article:published_time" content="2023-05-02T11:05:22.000Z">
+<meta property="article:modified_time" content="2023-05-02T12:46:42.069Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="Machine learning">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/05/MachineLearning/1.png">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/05/MachineLearning/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/05/02/IteratorAndGenerator/">
 
 
 <script id="page-configurations">
@@ -53,7 +48,7 @@
   };
 </script>
 
-  <title>Machine learning | JourneyToCoding</title>
+  <title>Iterator & Generator in Python | JourneyToCoding</title>
   
 
 
@@ -177,7 +172,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/05/MachineLearning/">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/05/02/IteratorAndGenerator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -190,7 +185,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Machine learning
+          Iterator & Generator in Python
         </h1>
 
         <div class="post-meta">
@@ -199,28 +194,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-04-05 19:07:52" itemprop="dateCreated datePublished" datetime="2023-04-05T19:07:52+08:00">2023-04-05</time>
+              <time title="Created: 2023-05-02 19:05:22 / Modified: 20:46:42" itemprop="dateCreated datePublished" datetime="2023-05-02T19:05:22+08:00">2023-05-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-01 23:43:20" itemprop="dateModified" datetime="2023-05-01T23:43:20+08:00">2023-05-01</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning-By-AndrewNg/" itemprop="url" rel="index"><span itemprop="name">Machine Learning By AndrewNg</span></a>
+                  <a href="/categories/Programming-language/" itemprop="url" rel="index"><span itemprop="name">Programming language</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">Machine learning is a broad subfield of artifial intelligence. This post includes the course notes of machine learning introduction course by Andrew Ng.</div>
+            <div class="post-description">The iterator and generator are important objects in Python.</div>
 
         </div>
       </header>
@@ -233,58 +222,18 @@
       
         <span id="more"></span>
 
-<h1 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h1><blockquote>
-<p>Definition: Field of study that gives computers the ability to learn without being explicitly programmed.</p>
-</blockquote>
-<p>In general, there are three fields in machine learning, that is, supervised learning, unsupervised learning and reinforcement learning. Their relationships are as follow:</p>
-<p><img src="/2023/04/05/MachineLearning/1.png" alt="1"></p>
-<center style="font-size:12px">Fig. 1. Fields of machine learning</center>
-
-<h2 id="Supervised-learning"><a href="#Supervised-learning" class="headerlink" title="Supervised learning"></a>Supervised learning</h2><p>Supervised learning is the most commonly used machine learning. It&#39;s definition is:</p>
+<h1 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h1><p>The iterator in python is slightly different from its counterpart in C++. Once a class define <code>__iter__(self)</code> member function and <code>__next__(self)</code> member function, we can use <code>iter()</code> to get its iterator and <code>next()</code> to get the next element of this iterator:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Number</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        self.n = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__next__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> self.n &lt;= <span class="number">20</span>:</span><br><span class="line">            x = self.n</span><br><span class="line">            self.n += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> x</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> StopIteration</span><br><span class="line"></span><br><span class="line">n = Number()</span><br><span class="line">_<span class="built_in">iter</span> = <span class="built_in">iter</span>(n)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(_<span class="built_in">iter</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(_<span class="built_in">iter</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">We get:</span></span><br><span class="line"><span class="string">&lt;class &#x27;__main__.Number&#x27;&gt;</span></span><br><span class="line"><span class="string">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><code>StopIteration</code> is the end of iterator for every iterator. It is an exception and <code>for</code> can catch and solve it. Therefore, we can also use <code>for</code> to traverse a iterator:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">_<span class="built_in">iter</span> = <span class="built_in">iter</span>(a)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> _<span class="built_in">iter</span>:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">We get:</span></span><br><span class="line"><span class="string">1</span></span><br><span class="line"><span class="string">2</span></span><br><span class="line"><span class="string">3</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>Supervised learning refers to algorithms that learn input to output mappings. The key of it is that you give the <strong>input(x)</strong> and the <strong>correct output(y)</strong> for the algorithms to learn. Then, the learning algorithms eventually learn to get the input alone and give a reasonably accurate prediction or guess of the output. <strong>In short, supervised learning learns from data labeled with the &quot;right answers&quot;</strong>.</p>
+<p><code>list</code>, <code>tuple</code>, <code>string</code> have implemented iterators.</p>
 </blockquote>
-<p>There are generally two types of supervised learning, <strong>regression</strong> and <strong>classification</strong>.</p>
-<h3 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h3><p>Regression is a kind of supervised learning that predicts <strong>a number</strong>, so its output contains <strong>infinitely</strong> many possible results. For example, housing price prediction:</p>
-<p><img src="/2023/04/05/MachineLearning/2.png" alt="2"></p>
-<center style="font-size:12px">Fig. 2. House price prediction</center>
+<h1 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h1><p>The generator is a special type of iterator, which makes a function iterable. Once a function uses <code>yield</code> to return object, this function is a generator:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">yield</span> i</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"></span><br><span class="line">_generator = func(<span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(_generator))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(_generator))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">We get:</span></span><br><span class="line"><span class="string">&lt;class &#x27;generator&#x27;&gt;</span></span><br><span class="line"><span class="string">0</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(_generator))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">We get:</span></span><br><span class="line"><span class="string">hello</span></span><br><span class="line"><span class="string">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>When a function becomes a generator, it will not run immediately when called, instead, it will return a generator. When we use <code>next()</code> to traverse the generator, the function will run to the place where <code>yield</code> is, record the address and return a value. Next time, it will run starting from <code>yield</code>. Similarly, it will return <code>StopIteration</code> when finish the function. Therefore, we can also use <code>for</code> to traverse a generator:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> func(<span class="number">10</span>):</span><br><span class="line">    <span class="built_in">print</span>(i + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
-<h3 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h3><p>Classification is a kind of supervised learning that predicts <strong>categories</strong> which can be <strong>number or non numeric</strong>, so its output just contains a small number of results. For example, breast cancer detection:</p>
-<p><img src="/2023/04/05/MachineLearning/3.png" alt="3"></p>
-<center style="font-size:12px">Fig. 3. Breast cancer detection</center>
-
-<p>Both regression and classification can have <strong>more than one</strong> inputs.</p>
-<h2 id="Unsupervised-learning"><a href="#Unsupervised-learning" class="headerlink" title="Unsupervised learning"></a>Unsupervised learning</h2><p>Unsupervised learning&#39;s definition:</p>
-<blockquote>
-<p>Unsupervised learning refers to algorithm that find something interesting in unlabed data. In unsupervised learning,the algorithms figure out all by themselves what&#39;s interesting or what patterns or structures might be in the dataset. <strong>Data only comes with input(x), but not output labels(y)</strong>. Algorithm has to find structure in the data.</p>
-</blockquote>
-<p>There are generally three types of unsupervised learning, <strong>clustering</strong>, <strong>anomaly detection</strong> and <strong>dimensionality reduction</strong>.</p>
-<h3 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h3><p>Clustering is a kind of unsupervised learning that <strong>groups</strong> data into different categories by any standard. For example, grouping customers:</p>
-<p><img src="/2023/04/05/MachineLearning/4.png" alt="4"></p>
-<center style="font-size:12px">Fig. 4. Grouping customers</center>
-
-<h3 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h3><p>Anomaly detection is a kind of unsupervised learning that finds unusual data points. It is very useful in financial system.</p>
-<h3 id="Dimensionality-reduction"><a href="#Dimensionality-reduction" class="headerlink" title="Dimensionality reduction"></a>Dimensionality reduction</h3><p>This kind of unsupervised learning compresses data using fewer numbers.</p>
-<h2 id="Reinforcement-learning"><a href="#Reinforcement-learning" class="headerlink" title="Reinforcement learning"></a>Reinforcement learning</h2><h1 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h1><h2 id="Jupyter-notebook"><a href="#Jupyter-notebook" class="headerlink" title="Jupyter notebook"></a>Jupyter notebook</h2><p>Jupyter notebook is the default <strong>environment</strong> that most researchers use to code up and experiment.</p>
-<h2 id="PyTorch"><a href="#PyTorch" class="headerlink" title="PyTorch"></a>PyTorch</h2><p>see <a href="/2023/04/28/PyTorch/">PyTorch</a>.</p>
-<h2 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h2><p>See <a href="/2023/04/12/Tensorflow/">Tensorflow</a>.</p>
-<h2 id="NumOy"><a href="#NumOy" class="headerlink" title="NumOy"></a>NumOy</h2><p>See <a href="/2023/04/22/NumPy/">NumPy</a>.</p>
-<h2 id="Scikit-learn"><a href="#Scikit-learn" class="headerlink" title="Scikit-learn"></a>Scikit-learn</h2><p>See <a href="/2023/04/22/Scikit-learn/">Scikit-learn</a>.</p>
-<h1 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h1><ul>
-<li>Training set: Data used to train a model.</li>
-<li>Test set: Data used to evaluate a model.</li>
-</ul>
-<h1 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h1><ul>
-<li>${x}$ &#x3D; &quot;input&quot; variable or feature;</li>
-<li>${y}$ &#x3D; &quot;output&quot; variable or &quot;target&quot; variable;</li>
-<li>${m}$ &#x3D; number of training examples;</li>
-<li>$(x, y)$ &#x3D; a single training example;</li>
-<li>$(x^i,y^i)$ &#x3D; $i^{th}$ training example;</li>
-<li>$x_j$ &#x3D; $j^{th}$ feature;</li>
-<li>$n$ &#x3D; number of features;</li>
-<li>${\vec{x}^{(i)}}$ &#x3D; features of $i^{th}$ training example.</li>
-<li>$x_j^{(i)}$ &#x3D; value of feature $j$ in $i^{th}$ training example ($x$ can also be $\vec{x}$).</li>
-</ul>
 <hr>
 
     </div>
@@ -296,26 +245,26 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\19\ReinforcementLearning\" rel="bookmark">Reinforcement learning</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\28\PyTorch\" rel="bookmark">PyTorch</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\17\RecommenderSystem\" rel="bookmark">Recommender system</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\12\Tensorflow\" rel="bookmark">Tensorflow</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\16\UnsupervisedLearning\" rel="bookmark">Unsupervised learning</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\24\Matplotlib\" rel="bookmark">Matplotlib</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\16\DecisionTrees\" rel="bookmark">Decision trees</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\22\Scikit-learn\" rel="bookmark">Scikit-learn</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\15\MachineLearningDevelopmentProcess\" rel="bookmark">Machine learning development process</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\22\NumPy\" rel="bookmark">NumPy</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Machine-learning/" rel="tag"># Machine learning</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
           </div>
 
           <script type="text/javascript">
@@ -337,12 +286,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/04/05/Markdown/" rel="prev" title="Markdown">
-      <i class="fa fa-chevron-left"></i> Markdown
+    <a href="/2023/04/28/PyTorch/" rel="prev" title="PyTorch">
+      <i class="fa fa-chevron-left"></i> PyTorch
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/04/05/SupervisedLearning/" rel="next" title="Supervised learning">
-      Supervised learning <i class="fa fa-chevron-right"></i>
+    <a href="/2023/05/02/WithContextManagers/" rel="next" title="with: Context managers">
+      with: Context managers <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -402,7 +351,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Machine-Learning"><span class="nav-number">1.</span> <span class="nav-text">Machine Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Supervised-learning"><span class="nav-number">1.1.</span> <span class="nav-text">Supervised learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Regression"><span class="nav-number">1.1.1.</span> <span class="nav-text">Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Classification"><span class="nav-number">1.1.2.</span> <span class="nav-text">Classification</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unsupervised-learning"><span class="nav-number">1.2.</span> <span class="nav-text">Unsupervised learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clustering"><span class="nav-number">1.2.1.</span> <span class="nav-text">Clustering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anomaly-detection"><span class="nav-number">1.2.2.</span> <span class="nav-text">Anomaly detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dimensionality-reduction"><span class="nav-number">1.2.3.</span> <span class="nav-text">Dimensionality reduction</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reinforcement-learning"><span class="nav-number">1.3.</span> <span class="nav-text">Reinforcement learning</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tool"><span class="nav-number">2.</span> <span class="nav-text">Tool</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Jupyter-notebook"><span class="nav-number">2.1.</span> <span class="nav-text">Jupyter notebook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PyTorch"><span class="nav-number">2.2.</span> <span class="nav-text">PyTorch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tensorflow"><span class="nav-number">2.3.</span> <span class="nav-text">Tensorflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NumOy"><span class="nav-number">2.4.</span> <span class="nav-text">NumOy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scikit-learn"><span class="nav-number">2.5.</span> <span class="nav-text">Scikit-learn</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Terminology"><span class="nav-number">3.</span> <span class="nav-text">Terminology</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Notation"><span class="nav-number">4.</span> <span class="nav-text">Notation</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Iterator"><span class="nav-number">1.</span> <span class="nav-text">Iterator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generator"><span class="nav-number">2.</span> <span class="nav-text">Generator</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
