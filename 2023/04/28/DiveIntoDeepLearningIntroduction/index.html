@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/28/DiveIntoDeepLearningIntroduction/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/28/DiveIntoDeepLearningIntroduction/2.png">
 <meta property="article:published_time" content="2023-04-27T16:00:44.000Z">
-<meta property="article:modified_time" content="2023-05-01T16:04:53.963Z">
+<meta property="article:modified_time" content="2023-05-06T15:29:41.500Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep learning">
 <meta name="twitter:card" content="summary">
@@ -205,7 +205,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-02 00:04:53" itemprop="dateModified" datetime="2023-05-02T00:04:53+08:00">2023-05-02</time>
+                <time title="Modified: 2023-05-06 23:29:41" itemprop="dateModified" datetime="2023-05-06T23:29:41+08:00">2023-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,8 +282,8 @@
 </blockquote>
 <h2 id="Chain-rules"><a href="#Chain-rules" class="headerlink" title="Chain rules"></a>Chain rules</h2><p>See <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI4MDYzNzg4Mw==&mid=2247513352&idx=2&sn=f633df720ae78007b4a6a8ec2c60e52a&chksm=ebb78ddcdcc004cac4f8d1677bb10040d01eaaf449d1034236ecd6e780d5c823e23e83b413cb&scene=27">Matrix derivative rules</a> to know more about chain rules in matrix derivative. In deep learning, the result of loss function is always a scalar (the result of softmax is actually a scalar). Therefore, it is enough for us to just master the chain rules for derivative of scalar to vector and the chain rules for detivation of vector to vector (numerator layout):</p>
 <ol>
-<li>Scalor to vector<br>$$\vec{x}_1\rightarrow\vec{x}_2\rightarrow...\rightarrow\vec{x}_n\rightarrow y$$<br>$$\frac{\partial{y}}{\partial\vec{x}<em>1}&#x3D;\frac{\partial{y}}{\partial{\vec{x}</em>{n}}}\cdot\frac{\partial{\vec{x}<em>n}}{\partial{\vec{x}</em>{n-1}}}\cdot...\frac{\partial{\vec{x}_2}}{\partial{\vec{x}_1}}$$</li>
-<li>Vector to vector<br> $$\vec{x}_1\rightarrow\vec{x}_2\rightarrow...\rightarrow\vec{x}_n\rightarrow\vec{y}$$<br>$$\frac{\partial{\vec{y}}}{\partial\vec{x}<em>1}&#x3D;\frac{\partial{\vec{y}}}{\partial{\vec{x}</em>{n}}}\cdot\frac{\partial{\vec{x}<em>n}}{\partial{\vec{x}</em>{n-1}}}\cdot...\frac{\partial{\vec{x}_2}}{\partial{\vec{x}_1}}$$</li>
+<li>Scalor to vector<br>$$\vec{x}_1\rightarrow\vec{x}_2\rightarrow...\rightarrow\vec{x}_n\rightarrow y$$<br>$$\frac{\partial{y}}{\partial\vec{x}_1}&#x3D;\frac{\partial{y}}{\partial{\vec{x}_n}}\cdot...\frac{\partial{\vec{x}_2}}{\partial{\vec{x}_1}}$$</li>
+<li>Vector to vector<br> $$\vec{x}_1\rightarrow\vec{x}_2\rightarrow...\rightarrow\vec{x}_n\rightarrow\vec{y}$$<br>$$\frac{\partial{\vec{y}}}{\partial\vec{x}_1}&#x3D;\frac{\partial{\vec{y}}}{\partial{\vec{x}_n}}\cdot...\frac{\partial{\vec{x}_2}}{\partial{\vec{x}_1}}$$</li>
 </ol>
 <p>It is easy to prove the correctness of these rules by evaluating the dimension of each item. To get the derivative using chain rules, there are two ways:</p>
 <ul>
@@ -302,6 +302,7 @@
 <li><a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/">DIVE INTO DEEP LEARNING</a></li>
 <li><a target="_blank" rel="noopener" href="https://courses.d2l.ai/zh-v2/">Course video</a></li>
 </ul>
+<hr>
 
     </div>
 
@@ -434,7 +435,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -471,7 +472,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>

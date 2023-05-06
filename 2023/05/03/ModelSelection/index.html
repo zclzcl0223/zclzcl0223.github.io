@@ -32,8 +32,9 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/2.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/4.png">
 <meta property="article:published_time" content="2023-05-03T13:58:31.000Z">
-<meta property="article:modified_time" content="2023-05-03T15:29:30.893Z">
+<meta property="article:modified_time" content="2023-05-06T14:50:06.719Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep learning">
 <meta name="twitter:card" content="summary">
@@ -198,10 +199,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-05-03 21:58:31 / Modified: 23:29:30" itemprop="dateCreated datePublished" datetime="2023-05-03T21:58:31+08:00">2023-05-03</time>
+              <time title="Created: 2023-05-03 21:58:31" itemprop="dateCreated datePublished" datetime="2023-05-03T21:58:31+08:00">2023-05-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-05-06 22:50:06" itemprop="dateModified" datetime="2023-05-06T22:50:06+08:00">2023-05-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -253,12 +260,24 @@
 <p><img src="/2023/05/03/ModelSelection/2.png" alt="2"></p>
 <center style="font-size:12px">Fig. 2. Model capacity and data</center>
 
-<p>For neural networks, a simple way to evaluate model capacity is to computer the number of model parameters that the neural network can learn, or to evaluate the range of each parameter:</p>
+<p>For neural networks, a simple way to evaluate model capacity is to compute the number of model parameters that the neural network can learn, or to evaluate the range of each parameter (w, b):</p>
 <p><img src="/2023/05/03/ModelSelection/3.png" alt="3"></p>
 <center style="font-size:12px">Fig. 3. Evaluating model capacity</center>
 
+
 <h2 id="VC-dimension"><a href="#VC-dimension" class="headerlink" title="VC dimension*"></a>VC dimension*</h2><p>The VC dimension of a model is the maximum number of points that can be arranged so that shatters them. More formally, it is the maximum cardinal such that there exists a generally positioned data point set of cardinality can be shattered by. -- From Google</p>
 <p>For a perceptron with inputs of N dimensions, its VC dimension is $N+1$ or $O(N\log_2N)$, that is, it can classify $N+1$ ($O(N\log_2N)$) points. VC dimension can be used to evaluate the model capacity though it doesn&#39;t work well.</p>
+<h1 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h1><p>Dropout is another method of regularization besides <a href="/2023/04/05/SupervisedLearning/#Weight-decay">weight decay</a>. The motivation of dropout is that a good model should be robust to input perturbations. Dropout achieves this by adding noise to the ouptout of hidden layers:<br>$$<br>dropout[x]&#x3D;x&#39;<br>$$<br>where:<br>$$<br>x_i&#39;&#x3D;<br>\begin{cases}<br>    0, &amp;p \\<br>    \frac{x_i}{1-p}, &amp;1-p<br>\end{cases}<br>$$<br>$p$ is a hyperparameter that controls the probability of dropout. Usually, we set $p$ to 0.1, 0.5 or 0.9. The meaning of the formula above is that dropout layer randomly sets the output of the neurons in a hidden layer to 0 (with probability $p$) or $\frac{1}{1-p}$ times as much as the origin value (with probability $1-p$). This works because when one value is set to 0, it is equivalent to remove a neuron from the hidden layer, which makes the neural network a sub neural network. Since dropout is totally random, we are actually training a model using multiple neural networks, which will make the model more robust.</p>
+<p><img src="/2023/05/03/ModelSelection/4.png" alt="4"></p>
+<center style="font-size:12px">Fig. 4. Dropout</center>
+
+<blockquote>
+<p>To ensure the accuracy, we must make sure that the expectation of dropout is equivalent to its original value:<br>$$E[x&#39;]&#x3D;x$$</p>
+</blockquote>
+<p>Since dropout is a kind of regularization, it only works when training models. When making predictions, we don&#39;t use dropout layer, like weight decay.</p>
+<blockquote>
+<p>In general, we use dropout in the dense layer of MLP.</p>
+</blockquote>
 <hr>
 
     </div>
@@ -314,7 +333,10 @@
     <a href="/2023/05/02/Splat/" rel="prev" title="Splat">
       <i class="fa fa-chevron-left"></i> Splat
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/05/PythonLambda/" rel="next" title="lambda: anomymous functions">
+      lambda: anomymous functions <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -373,7 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Evaluating-a-model"><span class="nav-number">1.</span> <span class="nav-text">Evaluating a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#K-fold-Cross-Validation"><span class="nav-number">1.1.</span> <span class="nav-text">K-fold Cross Validation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-capacity-and-data"><span class="nav-number">2.</span> <span class="nav-text">Model capacity and data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VC-dimension"><span class="nav-number">2.1.</span> <span class="nav-text">VC dimension*</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Evaluating-a-model"><span class="nav-number">1.</span> <span class="nav-text">Evaluating a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#K-fold-Cross-Validation"><span class="nav-number">1.1.</span> <span class="nav-text">K-fold Cross Validation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-capacity-and-data"><span class="nav-number">2.</span> <span class="nav-text">Model capacity and data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VC-dimension"><span class="nav-number">2.1.</span> <span class="nav-text">VC dimension*</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dropout"><span class="nav-number">3.</span> <span class="nav-text">Dropout</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -389,7 +411,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -426,7 +448,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>
