@@ -30,12 +30,12 @@
 <meta property="og:description" content="PyTorch is a machine learning framework based on the Torch library. PyTorch and TensorFlow have much in common. However, PyTorch is more commonly used than TensorFlow nowadays.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-28T14:29:21.000Z">
-<meta property="article:modified_time" content="2023-05-09T11:36:14.623Z">
+<meta property="article:modified_time" content="2023-05-09T15:50:51.577Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Python">
-<meta property="article:tag" content="Tool">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Deep learning">
+<meta property="article:tag" content="Tool">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2023/04/28/PyTorch/">
@@ -205,7 +205,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-09 19:36:14" itemprop="dateModified" datetime="2023-05-09T19:36:14+08:00">2023-05-09</time>
+                <time title="Modified: 2023-05-09 23:50:51" itemprop="dateModified" datetime="2023-05-09T23:50:51+08:00">2023-05-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -306,20 +306,18 @@
 <blockquote>
 <p>In general, we just need to define the structure of our blocks in <code>__init__</code> and compute the output in <code>forward</code>. <code>forward</code> points to <code>__call__</code>, so <code>net(X)</code> is euqal to <code>net.forward(X)</code>.</p>
 </blockquote>
-<h2 id="Sequential"><a href="#Sequential" class="headerlink" title="Sequential"></a>Sequential</h2><p><code>nn.Sequential</code> is the built-in subclass of <code>nn.Module</code>. Is working principle is very simple, which just simply connects different blocks. We can define it by ourselves:</p>
+<h2 id="Sequential"><a href="#Sequential" class="headerlink" title="Sequential"></a>Sequential</h2><p><code>nn.Sequential</code> is the built-in subclass of <code>nn.Module</code>. Its working principle is very simple, which just simply connects different blocks. We can define it by ourselves:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MySequential</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, *args</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="keyword">for</span> block <span class="keyword">in</span> args:</span><br><span class="line">            self._modules[block] = block</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, X</span>):</span><br><span class="line">        <span class="keyword">for</span> block <span class="keyword">in</span> self._modules.values():</span><br><span class="line">            X = block(X)</span><br><span class="line">        <span class="keyword">return</span> X</span><br><span class="line"></span><br><span class="line">net = MySequential(nn.Linear(<span class="number">20</span>, <span class="number">256</span>), nn.ReLU(), nn.Linear(<span class="number">256</span>, <span class="number">10</span>))</span><br><span class="line">net(X)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>._modules</code> is an <code>OrderedDict</code> defined in <code>nn.Module</code>. It will store our blocks in order. All the arguments of <code>Sequential</code> should be the subclass of <code>nn.Module</code>.</p>
-</blockquote>
 <p><code>MySequential</code> will compute in the order of <code>nn.Linear</code>, <code>nn.ReLU</code> and <code>nn.Linear</code>.</p>
 <blockquote>
+<p><code>._modules</code> is an <code>OrderedDict</code> defined in <code>nn.Module</code>. It will store our blocks in order. All the arguments of <code>Sequential</code> should be the subclass of <code>nn.Module</code>.</p>
 <p>In PyTorch, the activation is also a layer though it doesn&#39;t have any model parameters.</p>
 </blockquote>
 <h1 id="Parameter-management"><a href="#Parameter-management" class="headerlink" title="Parameter management"></a>Parameter management</h1><p>The type of model parameters in PyTorch is <code>nn.Parameter</code> which is a compound object containing values (<code>Tensor</code>), gradients (<code>grad</code>) and extra information. <code>grad</code> works when we call <code>.backward</code> and <code>requires_grad=True</code>.</p>
 <h2 id="Parameter-visiting"><a href="#Parameter-visiting" class="headerlink" title="Parameter visiting"></a>Parameter visiting</h2><p>For blocks that define model parameters, we can use <code>.state_dict()</code> which returns a dictionary to visit the model parameters:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">net = nn.Sequential(nn.Linear(<span class="number">4</span>, <span class="number">8</span>), nn.ReLU(), nn.Linear(<span class="number">8</span>, <span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(net[<span class="number">2</span>].state_dict())</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">OrderedDict([(&#x27;weight&#x27;, tensor([[ 0.3016, -0.1901, -0.1991, -0.1220,  0.1121, -0.1424, -0.3060,  0.3400]])), (&#x27;bias&#x27;, tensor([-0.0291]))])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(net[<span class="number">2</span>].bias))</span><br><span class="line"><span class="built_in">print</span>(net[<span class="number">2</span>].bias)</span><br><span class="line"><span class="built_in">print</span>(net[<span class="number">2</span>].bias.data)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&lt;class &#x27;torch.nn.parameter.Parameter&#x27;&gt;</span></span><br><span class="line"><span class="string">Parameter containing:</span></span><br><span class="line"><span class="string">tensor([-0.0291], requires_grad=True)</span></span><br><span class="line"><span class="string">tensor([-0.0291])</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><code>Sequential</code> allows use to visit each block like a <code>list</code>.<br>If we just <code>print(net)</code>, python will output the structure of <code>net</code>.</p>
+<p><code>Sequential</code> allows use to visit each block like a <code>list</code>. If we just <code>print(net)</code>, python will output the structure of <code>net</code>.</p>
 </blockquote>
 <h2 id="Parameter-initialization"><a href="#Parameter-initialization" class="headerlink" title="Parameter initialization"></a>Parameter initialization</h2><p>We can define our own function to initialize the model parameters:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">init_normal</span>(<span class="params">m</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(m) == nn.Linear:</span><br><span class="line">        nn.init.normal_(m.weight, mean=<span class="number">0</span>, std=<span class="number">0.01</span>)</span><br><span class="line">        nn.init.zeros_(m.bias)</span><br><span class="line">net.apply(init_normal)</span><br></pre></td></tr></table></figure>
@@ -331,9 +329,9 @@
 <blockquote>
 <p>Direct initialization is also possible, like:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">my_init</span>(<span class="params">m</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(m) == nn.Linear:</span><br><span class="line">        nn.init.uniform_(m.weight, -<span class="number">10</span>, <span class="number">10</span>)</span><br><span class="line">        m.weight.data *= m.weight.data.<span class="built_in">abs</span>() &gt;= <span class="number">5</span></span><br></pre></td></tr></table></figure>
-<p>We must not initialize all <code>weight</code> to the same value. If we do so, all the neurons in a certain layer are computing the same thing, that is, they will output the same value and their gradients will also be the same.</p>
+<p>We must not initialize all <code>weight</code> using the same value. If we do so, all the neurons in a layer are computing the same thing, that is, they will output the same value and their gradients will also be the same.</p>
 </blockquote>
-<h2 id="Shared-layer"><a href="#Shared-layer" class="headerlink" title="Shared layer"></a>Shared layer</h2><p>Since instances of custom classes are mutable objects in python, we can make two layer share their parameters by passing the same object to PyTorch:</p>
+<h2 id="Shared-layer"><a href="#Shared-layer" class="headerlink" title="Shared layer"></a>Shared layer</h2><p>Since instances of custom classes are mutable objects in python, we can make two layers share their parameters by passing the same object to PyTorch:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shared = nn.Linear(<span class="number">8</span>, <span class="number">8</span>)</span><br><span class="line">net = nn.Sequential(nn.Linear(<span class="number">4</span>, <span class="number">8</span>), nn.ReLU(),</span><br><span class="line">                    shared, nn.ReLU(),</span><br><span class="line">                    shared, nn.ReLU(),</span><br><span class="line">                    nn.Linear(<span class="number">8</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
 
 <h2 id="Block-with-parameters"><a href="#Block-with-parameters" class="headerlink" title="Block with parameters"></a>Block with parameters</h2><p>We could define parameters for our own blocks. Since <code>backward</code> will work for all <code>Tensor</code>, we don&#39;t have to deal with <code>backward</code>. We just need to define our parameters and set <code>requires_grad=True</code>.</p>
@@ -395,9 +393,9 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Python/" rel="tag"># Python</a>
-              <a href="/tags/Tool/" rel="tag"># Tool</a>
               <a href="/tags/Machine-learning/" rel="tag"># Machine learning</a>
               <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
+              <a href="/tags/Tool/" rel="tag"># Tool</a>
           </div>
 
           <script type="text/javascript">
