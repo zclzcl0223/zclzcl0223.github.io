@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/FourierTransform/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/FourierTransform/2.png">
 <meta property="article:published_time" content="2023-05-10T15:46:14.000Z">
-<meta property="article:modified_time" content="2023-05-11T07:22:59.833Z">
+<meta property="article:modified_time" content="2023-05-11T16:08:29.074Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="CNN">
 <meta property="article:tag" content="Math">
@@ -206,7 +206,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-11 15:22:59" itemprop="dateModified" datetime="2023-05-11T15:22:59+08:00">2023-05-11</time>
+                <time title="Modified: 2023-05-12 00:08:29" itemprop="dateModified" datetime="2023-05-12T00:08:29+08:00">2023-05-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,29 +232,28 @@
       
         <span id="more"></span>
 
-<h1 id="Inner-product"><a href="#Inner-product" class="headerlink" title="Inner product"></a>Inner product</h1><p>The inner product generalizes the dot product to abstract vector spaces over a field of scalars, being either the field of real numbers $\R$  or the field of complex numbers $\Complex$. It is usually denoted using angular brackets by $\braket{\vec{a}, \vec{b}}$. Each vector in the field of real numbers $\R$ can be regarded as a <strong>discrete functions</strong> with domain $\{k\in\N:1\le k\le n\}$. And the inner product measures the similarity of two vectors:</p>
+<h1 id="Inner-product"><a href="#Inner-product" class="headerlink" title="Inner product"></a>Inner product</h1><p>The inner product generalizes the dot product to abstract vector spaces over a field of scalars, being either the field of real numbers $R$  or the field of complex numbers $C$. It is usually denoted using angular brackets by $\braket{\vec{a}, \vec{b}}$. Each vector in the field of real numbers $R$ can be regarded as a <strong>discrete functions</strong> with domain $\{k\in N:1\le k\le n\}$. And the inner product measures the similarity of two vectors:</p>
 <p>$$\vec{a}\cdot\vec{b}&#x3D;\sum\limits_{i&#x3D;0}^na_ib_i\Delta n$$</p>
 <p>where $\Delta n&#x3D;1$ , can be regarded as the difference of two dimension. It is easy to generalize this to continuous functions. In this case, the dimension of a vector is <strong>infinity</strong> and the sum will diverge. Therefore, we average each term, that is $dx$:</p>
 <p>$$\braket{f,g}&#x3D;\int_a^bf(x)g(x)dx$$</p>
-<p>Similarly, the inner produce of functions can measures the similarity of two functions.</p>
-<h1 id="Orthogonality-of-trigonometric-functions"><a href="#Orthogonality-of-trigonometric-functions" class="headerlink" title="Orthogonality of trigonometric functions"></a>Orthogonality of trigonometric functions</h1><p>We define:<br>$$\{\sin0x,\cos0x,\sin x,\cos x,...,\sin nx, \cos nx\}$$<br>as trigonometric space. In this space, the inner product of two different function with domain $\{x\in\R:-\pi\le x\le \pi\}$ is zero, that is, the two functions are orthogonal:</p>
-<p>$$\braket{\sin nx, \sin mx}&#x3D;\int_{-\pi}^\pi\sin nx\sin mxdx&#x3D;0$$<br>where $n\ne m$ and either or both of $\sin$ could be $\cos$.</p>
-<p>If the two functions are the same and are not $0$, their inner product is $\pi$:<br>$$\braket{\sin nx, \sin nx}&#x3D;\int_{-\pi}^\pi\sin nx\sin nxdx&#x3D;\pi$$</p>
-<h1 id="Fourier-series"><a href="#Fourier-series" class="headerlink" title="Fourier series"></a>Fourier series</h1><p>Fourier series is another kind of series besides power series. It can use functions in trigonometric space to represent any periodic functions.</p>
-<h2 id="T-x3D-2-pi"><a href="#T-x3D-2-pi" class="headerlink" title="$T&#x3D;2\pi$"></a>$T&#x3D;2\pi$</h2><p>For a function of period $2\pi$, $f(x)&#x3D;f(x+2\pi)$, we represent it using trigonometric functions:</p>
+<p>Similarly, the inner product of functions measures the similarity of two functions.</p>
+<h1 id="Orthogonality-of-trigonometric-functions"><a href="#Orthogonality-of-trigonometric-functions" class="headerlink" title="Orthogonality of trigonometric functions"></a>Orthogonality of trigonometric functions</h1><p>We define:<br>$$\{\sin0x,\cos0x,\sin x,\cos x,...,\sin nx, \cos nx\}$$<br>as trigonometric space. In this space, the inner product of two different functions with domain $\{x\in R:-\pi\le x\le \pi\}$ is zero, that is, the two functions are orthogonal:</p>
+<p>$$\braket{\sin nx, \sin mx}&#x3D;\int_{-\pi}^\pi\sin nx\sin mxdx&#x3D;0$$<br>where $n\ne m$ and either or both of $\sin$ could be $\cos$. If the two functions are the same and are not $0$, their inner product is $\pi$:<br>$$\braket{\sin nx, \sin nx}&#x3D;\int_{-\pi}^\pi\sin nx\sin nxdx&#x3D;\pi$$</p>
+<h1 id="Fourier-series"><a href="#Fourier-series" class="headerlink" title="Fourier series"></a>Fourier series</h1><p>Fourier series is another kind of series besides power series. It uses functions in trigonometric space to represent any periodic functions.</p>
+<h2 id="T-x3D-2-pi"><a href="#T-x3D-2-pi" class="headerlink" title="$T&#x3D;2\pi$"></a>$T&#x3D;2\pi$</h2><p>For a function of period $2\pi$, $f(x)&#x3D;f(x+2\pi)$, we can represent it using trigonometric functions:</p>
 <p>$$f(x)&#x3D;\sum\limits_{n&#x3D;0}^\infty a_n\cos nx+\sum\limits_{n&#x3D;0}^\infty b_n\sin nx$$</p>
-<p>To get $a_n\space(n\ne0)$ , we multiply both sides by $\cos nx$ and integrate at $(-\pi, \pi)$:</p>
-<p>$$\int_{-\pi}^\pi f(x)\cos nxdx&#x3D;\sum\limits_{m&#x3D;0}^\infty\int_{-\pi}^\pi a_m\cos mx\cdot\cos nxdx+\sum\limits_{m&#x3D;0}^\infty\int_{-\pi}^\pi b_m\sin mx\cdot\cos nxdx \tag{1}$$</p>
-<p>Because of the orthogonality of trigonometric functions, formula(1) becomes:</p>
+<p>To get $a_n\space(n\ne0)$ , multiply both sides by $\cos nx$ and integrate at $[-\pi, \pi]$:</p>
+<p>$$\int_{-\pi}^\pi f(x)\cos nxdx&#x3D;\sum\limits_{m&#x3D;0}^\infty[\int_{-\pi}^\pi a_m\cos mx\cdot\cos nxdx+b_m\sin mx\cdot\cos nxdx]\tag{1}$$</p>
+<p>Because of the orthogonality of trigonometric functions, formula (1) becomes:</p>
 <p>$$\int_{-\pi}^\pi f(x)\cos nxdx&#x3D;\int_{-\pi}^\pi a_n\cos nx\cdot\cos nxdx&#x3D;a_n\pi$$</p>
 <p>Therefore:</p>
-<p>$$\bm{ a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nxdx}$$</p>
+<p>$$a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nxdx$$</p>
 <p>If $n&#x3D;0$:</p>
 <p>$$\int_{-\pi}^\pi f(x)dx&#x3D;a_02\pi\rightarrow a_0&#x3D;\frac{1}{2\pi}\int_{-\pi}^\pi f(x)dx$$</p>
 <p>For unity, we usually use $2a_0\space(A_0)$ as $a_0$:</p>
 <p>$$A_0&#x3D;2a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)dx$$</p>
-<p>Similarly, if multiply both sides by $\sin nx\space(n\in\N)$ and integrate at $(-\pi, \pi)$, we get $b_n$:</p>
-<p>$$\bm{b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin nxdx}$$</p>
+<p>Similarly, if multiply both sides by $\sin nx\space(n\in N)$ and integrate at $[-\pi, \pi]$, we get $b_n$:</p>
+<p>$$b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin nxdx$$</p>
 <p>So, the fourier series of $f(x)&#x3D;f(x+2\pi)$ is:</p>
 <p>$$f(x)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos nx+b_n\sin nx], \begin{cases}<br>   a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)dx &amp;\\<br>   a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nxdx &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin nxdx &amp;<br>\end{cases}$$</p>
 <h2 id="T-x3D-2L"><a href="#T-x3D-2L" class="headerlink" title="$T&#x3D;2L$"></a>$T&#x3D;2L$</h2><p>More generally, for any function with period $2L$, $f(t)&#x3D;f(t+2L)$, we assume:</p>
@@ -268,7 +267,7 @@
 <p>$$g(x)&#x3D;g(x+2\pi)$$</p>
 <p>We have already know the fourier series of functions with period $2\pi$ is:</p>
 <p>$$g(x)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos nx+b_n\sin nx], \begin{cases}<br>   a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)dx &amp;\\<br>   a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)\cos nxdx &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)\sin nxdx &amp;<br>\end{cases}$$</p>
-<p>Since $t&#x3D;\frac{L}{\pi}x$ and $g(x)&#x3D;f(\frac{L}{\pi}x)&#x3D;f(t)$, we replace $x$ with $t$:</p>
+<p>Since $t&#x3D;\frac{L}{\pi}x$ and $g(x)&#x3D;f(\frac{L}{\pi}x)&#x3D;f(t)$, we can replace $x$ with $t$:</p>
 <p>$$dx&#x3D;\frac{\pi}{L}dt$$</p>
 <p>$$x\in[-\pi,\pi]\rightarrow t\in[-L,L]$$</p>
 <p>Therefore:</p>
@@ -277,16 +276,16 @@
 <p>$$f(t)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos n\omega_0 t+b_n\sin n\omega_0 t], \begin{cases}<br>   a_0&#x3D;\frac{2}{T}\int_{0}^T f(t)dt &amp;\\<br>   a_n&#x3D;\frac{2}{T}\int_{0}^T f(t)\cos n\omega_0 tdt &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{2}{T}\int_{0}^T f(t)\sin n\omega_0 tdt &amp;<br>\end{cases}$$</p>
 <h2 id="Complex-form"><a href="#Complex-form" class="headerlink" title="Complex form"></a>Complex form</h2><p>Fourier series can be transformed into complex form using Euler&#39;s formula:</p>
 <p>$$e^{i\theta}&#x3D;\cos\theta+i\sin\theta\tag{2}$$<br>$$e^{-i\theta}&#x3D;\cos\theta-i\sin\theta\tag{3}$$</p>
-<p>By combining (1) and (2), we can get:</p>
+<p>By combining (2) and (3), we can get:</p>
 <p>$$\cos\theta&#x3D;\frac{1}{2}(e^{i\theta}+e^{-i\theta})\tag{4}$$<br>$$\sin\theta&#x3D;-\frac{1}{2}i(e^{i\theta}-e^{-i\theta})\tag{5}$$</p>
 <p>Put the above two formulas into fourier series, we get:</p>
-<p>$$\begin{align*}<br>    f(t) &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [\frac{a_n}{2}(e^{in\omega_0 t}+e^{-in\omega_0 t})-\frac{b_n}{2}i(e^{in\omega_0 t}-e^{-in\omega_0 t})]\\<br>         &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [\frac{a_n-ib_n}{2}e^{in\omega_0 t}+\frac{a_n+ib_n}{2}e^{-in\omega_0 t}]\\<br>         &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1} ^{+\infty} \frac{a_n-ib_n}{2}e^{in\omega_0 t}+\sum\limits_{n&#x3D;-1} ^{-\infty} \frac{a_{-n}+ib_{-n}}{2}e^{in\omega_0 t}\tag{6}\\<br>         &amp;&#x3D;\sum\limits_{-\infty} ^{+\infty}C_ne^{in\omega_0 t}\tag{7}<br>\end{align*}$$</p>
+<p>$$\begin{align*}<br>    f(t) &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [\frac{a_n}{2}(e^{in\omega_0 t}+e^{-in\omega_0 t})-\frac{b_n}{2}i(e^{in\omega_0 t}-e^{-in\omega_0 t})]\\<br>         &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [\frac{a_n-ib_n}{2}e^{in\omega_0 t}+\frac{a_n+ib_n}{2}e^{-in\omega_0 t}]\\<br>         &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1} ^{+\infty} \frac{a_n-ib_n}{2}e^{in\omega_0 t}+\sum\limits_{n&#x3D;-1} ^{-\infty} \frac{a_{-n}+ib_{-n}}{2}e^{in\omega_0 t}\tag{6}\\<br>         &amp;&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}C_ne^{in\omega_0 t}\tag{7}<br>\end{align*}$$</p>
 <p>For (6) to (7), since $e^0&#x3D;1$, we can treat $\frac{a_0}{2}$ as $C_0$. Therefore:</p>
 <p>$$<br>C_n&#x3D;<br>\begin{cases}<br>    \frac{1}{2}a_0&#x3D;\frac{1}{T}\int_{0}^T f(t)dt,&amp;n&#x3D;0\\<br>    \frac{1}{2}(a_n-ib_n)&#x3D;\frac{1}{T}\int_{0}^T f(t)(\cos n\omega_0 t-i\sin n\omega_0 t)dt&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt,&amp;n&#x3D;1,2,3...\\<br>    \frac{1}{2}(a_n+ib_n)&#x3D;\frac{1}{T}\int_{0}^T f(t)(\cos n\omega_0 t+i\sin n\omega_0 t)dt&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{in\omega_0 t}dt,&amp;n&#x3D;-1,-2,-3...<br>\end{cases}<br>$$<br>Since $e^0&#x3D;1$:</p>
-<p>$$C_n&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt,n\in\Z$$</p>
+<p>$$C_n&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt,n\in Z$$</p>
 <p>Therefore:</p>
 <p>$$f(t)&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}C_ne^{in\omega_0 t}<br>      &#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt$$</p>
-<h1 id="Fourier-transform"><a href="#Fourier-transform" class="headerlink" title="Fourier transform"></a>Fourier transform</h1><p>In the complex form of fourier series, it is $C_n$ that defines the form of $f(t)$ in frequency domain, where $C_n&#x3D;A_n+iB_n$. Based on the different of frequency $\omega$, the curve of $f(t)$ in the time domain $[0,T]$ is transformed into a point in frequency domain:</p>
+<h1 id="Fourier-transform"><a href="#Fourier-transform" class="headerlink" title="Fourier transform"></a>Fourier transform</h1><p>In the complex form of fourier series, it is $C_n$ that defines the form of $f(t)$ in frequency domain, where $C_n&#x3D;A_n+iB_n$. Based on the difference of frequency $n\omega_0$, the curve of $f(t)$ in the time domain $[0,T]$ is transformed into a point in frequency domain:</p>
 <p><img src="/2023/05/10/FourierTransform/1.png" alt="1"></p>
 <center style="font-size:12px">Fig. 1. Cn in the complex domain</center>
 
@@ -301,7 +300,7 @@
 <p><img src="/2023/05/10/FourierTransform/2.png" alt="2"></p>
 <center style="font-size:12px">Fig. 2. Amplitude-omega</center>
 
-<p>$e^{i\omega t}$ represents different waveforms while $F(w)$ represents the intensity of different waveforms in the original function $f(t)$. Therefore, we can restore the original function by by superimposing waveforms of different intensities. And this is <strong>Inverse Fourier Transform</strong>.</p>
+<p>$e^{i\omega t}$ represents different waveforms while $F(w)$ represents the intensity of different waveforms in the original function $f(t)$. Therefore, we can restore the original function by superimposing waveforms of different intensities. And this is <strong>Inverse Fourier Transform</strong>.</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Et411R78v/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">纯干货数学推导_傅里叶级数与傅里叶变换</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ce4y1p7jF/?spm_id_from=333.880.my_history.page.click&vd_source=2d980a0365f3ebea674b32924d8a4ce8">卷积神经网络的底层是傅里叶变换，傅里叶变换的底层是希尔伯特空间坐标变换</a></li>

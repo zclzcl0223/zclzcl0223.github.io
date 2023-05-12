@@ -31,8 +31,13 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/7.png">
 <meta property="article:published_time" content="2023-05-10T15:45:10.000Z">
-<meta property="article:modified_time" content="2023-05-11T11:24:07.492Z">
+<meta property="article:modified_time" content="2023-05-12T16:04:48.927Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="CNN">
 <meta property="article:tag" content="Deep learning">
@@ -206,7 +211,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-11 19:24:07" itemprop="dateModified" datetime="2023-05-11T19:24:07+08:00">2023-05-11</time>
+                <time title="Modified: 2023-05-13 00:04:48" itemprop="dateModified" datetime="2023-05-13T00:04:48+08:00">2023-05-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,13 +237,35 @@
       
         <span id="more"></span>
 
-<h1 id="From-Dense-to-Convolution"><a href="#From-Dense-to-Convolution" class="headerlink" title="From Dense to Convolution"></a>From Dense to Convolution</h1><p>sadasd<br>adasd<br>asdas<br>sdas<br>d<br>asd<br>asd<br>as<br>das<br>d<br>as<br>d</p>
+<h1 id="From-Dense-to-Convolution"><a href="#From-Dense-to-Convolution" class="headerlink" title="From Dense to Convolution"></a>From Dense to Convolution</h1><p>The convolutional layer is the key layer of CNN. It is a special kind of dense layer. CNN is used to deal with images. In this section, we take the grayscale image as example, that is, the feature of an input image is a 2-D matrix. When processing images, firstly, it is reasonable that agents&#39;s awareness of a certain object should not be overly concerned with the precise location of the object in the image because what the object looks like has nothing to do with its position. Besides, the features of one object should only be related to the pixels around it as each pixel only determines the depth of the color and we distinguish objects by their color boundaries. These two priciples are called <em>translation invariance</em> and <em>locality</em> respectively. If fulfilling both priciples, dense layers become convolutional layers.</p>
+<h2 id="Constructing-a-dense-layer"><a href="#Constructing-a-dense-layer" class="headerlink" title="Constructing a dense layer"></a>Constructing a dense layer</h2><p>For convinience, we keep the dimension of a input image $X$ 2-D and make the model parameters of one neuron $w$ have the same dimension as $X$. Under such setting, the output of one neuron become:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(X*w).<span class="built_in">sum</span>() <span class="comment"># w is a matrix</span></span><br></pre></td></tr></table></figure>
+
+<p>Now that the output of a hidden layer $H$ should be a image that has the same shape as $X$, we have to place $m*n$ neurons in the hidden layer, where $m$ and $n$ are the dimension of $X$. Hence, for a hidden layer, its model parameter $W$ is:</p>
+<p>$$<br>{\begin{bmatrix}<br>    {\begin{bmatrix}<br>        w_{0,0,0,0} &amp; w_{0,0,0,1}\\<br>        w_{0,0,1,0} &amp; w_{0,0,1,1}<br>    \end{bmatrix}<br>    \begin{bmatrix}<br>        w_{0,1,0,0} &amp; w_{0,1,0,1}\\<br>        w_{0,1,1,0} &amp; w_{0,1,1,1}<br>    \end{bmatrix}}\\<br>    {\begin{bmatrix}<br>        w_{1,0,0,0} &amp; w_{1,0,0,1}\\<br>        w_{1,0,1,0} &amp; w_{1,0,1,1}<br>    \end{bmatrix}<br>    \begin{bmatrix}<br>        w_{1,1,0,0} &amp; w_{1,1,0,1}\\<br>        w_{1,1,1,0} &amp; w_{1,1,1,1}<br>    \end{bmatrix}}<br>\end{bmatrix}} _{m\times n\times m\times n&#x3D;2\times 2\times 2\times 2}<br>$$</p>
+<p>And an element of output $H$ is:</p>
+<p>$$<br>[H]_{i,j}&#x3D;\sum_k \sum_l {[W]} _{i,j,k,l} {[X]} _{k,l} + {[U]} _{i,j}<br>$$</p>
+<p>where $U$ contains bias of each output pixel.</p>
+<h2 id="Translation-invariance"><a href="#Translation-invariance" class="headerlink" title="Translation invariance"></a>Translation invariance</h2><p>Now we can clearly see that in order to process an image with $m * n$ data, we almost use $(m * n)^2$ model parameters. This is extremely space-consuming. However, if we apply translation invariance priciple to the dense layer, we can cut it to $m * n$.</p>
+<p>As mentioned above, the activation of a pixel should have nothing to do with its position. This is only possible when ${[W]} _{i,j}$ and ${[U]} _{i,j}$ are both the same for any $(i,j)$. Hence, for a certain hidden layer, we actually just need a 2-D $W$ and a scalar $u$:</p>
+<p>$$<br>{[H]} _{i,j}&#x3D;\sum_k\sum_l{[W]} _{k,l} {[X]} _{k,l}+u<br>$$</p>
+<h2 id="Locality"><a href="#Locality" class="headerlink" title="Locality"></a>Locality</h2><p>So far, we have significantly cut the space of model parameters but it is still too large. Now it is time for <em>locality</em>. As motivated above, there is no need to look so far away from the location of input pixel ${[X]}_ {i,j}$. We just need to consider a small window around ${[X]} _{i,j}$:</p>
+<p>$${[H]}_ {i, j} &#x3D; u + \sum_{a &#x3D; -\Delta}^{\Delta} \sum_{b &#x3D; -\Delta}^{\Delta} {[V]}_ {a, b}  {[X]}_ {i+a, j+b}.$$</p>
+<p>where $\Delta\times\Delta$ is the size of the window and $V$ (size $\Delta\times\Delta$) is the model parameter inside the window, a filter that generates the feature of a zone in an image or a <strong>convolution kernel</strong>.</p>
+<p>Now we construct a convolutional layer with hyperparameters <em>kernel size</em> and <em>stride</em> (see below).</p>
+<p>$$Y &#x3D; X \star W+b$$</p>
+<p>$W$ and $b$ are model parameters that the agent can learn. $\star$ is cross-correlation operator which is slightly different from convolution but their behaviors are the same in the convolutional layer (see below). The dimensions of $Y$ are smaller than the original dimensions, which is:</p>
+<p>$$(n_h-k_h+1)\times(n_w-k_w+1)$$</p>
+<p>where $n_h$ and $n_w$ are the dimensions of $X$, $k_h$ and $k_w$ are the dimensions of $W$. It doesn&#39;t matter and we can solve it easily (see below).</p>
+<p><img src="/2023/05/10/CNN/1.png" alt="1"></p>
+<center style="font-size:12px">Fig. 1. Convolutional layer</center>
+
 <h1 id="Convolution-Fourier-and-Neural-Networks"><a href="#Convolution-Fourier-and-Neural-Networks" class="headerlink" title="Convolution, Fourier and Neural Networks"></a>Convolution, Fourier and Neural Networks</h1><p>Convolution is an operation on two functions ($f$ and $g$) that produces a third function ($f*g$) that express how the shape of one is modified by the other:</p>
 <p>$$(f*g)(t)&#x3D;\int_{-\infty} ^{+\infty}f(\tau)g(t-\tau)d\tau$$</p>
 <p>Physically, we can explain it from two perspectives.</p>
 <h2 id="Stock"><a href="#Stock" class="headerlink" title="Stock"></a>Stock</h2><p>Suppose there is a system with input $f(t)$ at each moment. The input starts decaying with $g(t)$ by the time it enters the system, where $g(t)$ is its remaining percentage.</p>
-<p><img src="/2023/05/10/CNN/1.png" alt="1"></p>
-<center style="font-size:12px">Fig. 1. f(t) and g(t)</center>
+<p><img src="/2023/05/10/CNN/2.png" alt="2"></p>
+<center style="font-size:12px">Fig. 2. f(t) and g(t)</center>
 
 <p>For items that enter the system between $(t,t+\Delta t)$, their margin at $x$ is:</p>
 <p>$$f(t)g(x-t)\Delta t$$</p>
@@ -246,13 +273,51 @@
 <p>$$\int_{t_1}^{t_2}f(t)g(x-t)dt$$</p>
 <p>In this case, we take $f(t)$ as the unstable input and $g(t)$ as the stable output to compute the stock of a system after some time.</p>
 <h2 id="Influence"><a href="#Influence" class="headerlink" title="Influence"></a>Influence</h2><p>In the explaination above, we actually make $dt$ relate to $f(t)$. Namely, $f(t)dt$ is the input of the system during $t$ and $t+\Delta t$. $g(x-t)$ has nothing to do with $dt$. It is just a decaying factor.</p>
-<p>However, we can also take $g(x-t)dt$ as a whole. This will make the $t$ and $f<em>g$ more meaningful. For example, we can regard $f(t)$ as a thing happens at $t$ and $g(t)$ as its influence over time. Then $f</em>g$ can be regarded as the totally influence at $x$ caused by things that happen during $t_1$ and $t_2$:</p>
+<p>However, we can also take $g(x-t)dt$ as a whole. This will make the $t$ and  $f * g$ more meaningful. For example, we can regard $f(t)$ as a thing happens at $t$ and $g(t)$ as its influence over time. Then $f*g$ can be regarded as the totally influence at $x$ caused by things that happen during $t_1$ and $t_2$:</p>
 <p>$$\int_{t_1}^{t_2}f(t)g(x-t)dt$$</p>
 <p>To go a step further, we can take $t$ as position, $f(t)$ as a thing happens at $t$ and keep moving from $t$ to $x$, $g(t)$ as its award or loss per distance. For example, some people whose weight $f(t)$ starts running as $t$ and they will loss $g(t)$ kg per meter. Then $f*g$ is the weight loss of all. (the fatter a person is, the more contribution he&#x2F;she makes).</p>
-<p><img src="/2023/05/10/CNN/2.png" alt="2"></p>
-<center style="font-size:12px">Fig. 2. weight and weight loss</center>
+<p><img src="/2023/05/10/CNN/3.png" alt="3"></p>
+<center style="font-size:12px">Fig. 3. weight and weight loss</center>
 
-<h2 id="Convolution-in-CNN"><a href="#Convolution-in-CNN" class="headerlink" title="Convolution in CNN"></a>Convolution in CNN</h2><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<h2 id="Convolution-in-CNN"><a href="#Convolution-in-CNN" class="headerlink" title="Convolution in CNN"></a>Convolution in CNN</h2><p>For convolution in CNN, we&#39;d better expand its dimension to 2-D and take $t$ as a discrete number which represents position $(x,y)$. Then, we can take $X$ as function $f$ and $W$ as $g$. Now the meaning of convolution in CNN can be interpreted as the influence that pixels around $f(x,y)$ exert on pixel $f(x,y)$ or the certain average feature of the pixels around $f(x,y)$. </p>
+<p>$$f * g&#x3D;\sum _{i,j}f(i,j)g(x-i,y-j)$$</p>
+<p><img src="/2023/05/10/CNN/4.png" alt="4"></p>
+<center style="font-size:12px">Fig. 4. Convolution in CNN</center>
+
+<p>The phrase certain average feature may be a little confusing. However, if we regard the convolution kernel $W$ as a feature filter that extract specific features of a region of an image, it makes sense. Different filters extract different features and their parameters are totally learnt by the agent itself.</p>
+<p><img src="/2023/05/10/CNN/5.png" alt="5"></p>
+<center style="font-size:12px">Fig. 5. The feature filter</center>
+
+<p>There are still some differences between convolution and the convolutional layer, that is, $g$ is not the kernel we actually use. For example, convolution computes $f(x-1,y-1)g(1,1)$ rather than $f(x-1,y-1)g(-1,-1)$. However, in CNN, we actually compute $f(x-1,y-1)g(-1,-1)$. In fact, it doesn&#39;t matter. We just need to turn $g$ around and we get the $W$ we use in CNN. Hence, what the agent computes is <strong>cross-correlation</strong> rather than convolution but the results are the same so we just call it convolution.</p>
+<h1 id="Padding-and-stride"><a href="#Padding-and-stride" class="headerlink" title="Padding and stride"></a>Padding and stride</h1><p>Kernel size, padding and stride are the new hyperparameters that we can adjust in the convolutional layer. </p>
+<ol>
+<li>Kernel size determines the size of window. It is the simplest parameter among them. We usually set it to $3\times3$ or $5\times5$ for 2-D input.</li>
+<li>Padding is used to solve the dimensionality reduction problem of the output image.</li>
+<li>Stride determines the movement of window. The stride we use above is $1\times1$.</li>
+</ol>
+<h2 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h2><p>Padding adds extra rows and columns around the input images:</p>
+<p><img src="/2023/05/10/CNN/6.png" alt="6"></p>
+<center style="font-size:12px">Fig. 6. Padding</center>
+
+<p>After padding, the shape of output becomes:</p>
+<p>$$(n_h-k_h+1+p_h)\times(n_w-k_w+1+p_w)$$</p>
+<p>Generally, we let:</p>
+<p>$$<br>p_h&#x3D;k_h-1,\space p_w&#x3D;k_w-1<br>$$</p>
+<p>so that the shape of output is the same as the shape of input. For convinience, we often take $k_h\And k_w$ to be odd number. Therefore, we can pad $p_h&#x2F;2$ ($p_w&#x2F;2$)<br> on both sides. If $k_h\And k_w$ are even, $\lceil p_h&#x2F;2\rceil$ on the upper side and $\lfloor p_h&#x2F;2\rfloor$ on the lower side or vice versa.</p>
+<h2 id="Stride"><a href="#Stride" class="headerlink" title="Stride"></a>Stride</h2><p>Stirde refers to the step size of the kernel window on the row and column. When stride is too small, the agent will need a amount of computation to get a small ouput.</p>
+<p><img src="/2023/05/10/CNN/7.png" alt="7"></p>
+<center style="font-size:12px">Fig. 7. Stride (3*2)</center>
+
+<p>For a certain stride $s_h\times s_w$, the shape of output becomes:</p>
+<p>$$\lfloor(n_h-k_h+p_h)&#x2F;s_h+1\rfloor\times\lfloor(n_w-k_w+p_w)&#x2F;s_w+1\rfloor<br>$$</p>
+<p>If:</p>
+<p>$$<br>p_h&#x3D;k_h-1,\space p_w&#x3D;k_w-1<br>$$</p>
+<p>The shape becomes:</p>
+<p>$$\lfloor(n_h-1)&#x2F;s_h+1\rfloor\times\lfloor(n_w-1)&#x2F;s_w+1\rfloor<br>$$</p>
+<blockquote>
+<p>We can roughly regard that the stride will cut the shape of output by a factor of $s_h\And s_w$.</p>
+</blockquote>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VV411478E/?spm_id_from=333.788&vd_source=2d980a0365f3ebea674b32924d8a4ce8">从“卷积”、到“图像卷积操作”、再到“卷积神经网络”，“卷积”意义的3次改变</a></li>
 </ul>
 <hr>
@@ -373,7 +438,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#From-Dense-to-Convolution"><span class="nav-number">1.</span> <span class="nav-text">From Dense to Convolution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Convolution-Fourier-and-Neural-Networks"><span class="nav-number">2.</span> <span class="nav-text">Convolution, Fourier and Neural Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stock"><span class="nav-number">2.1.</span> <span class="nav-text">Stock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Influence"><span class="nav-number">2.2.</span> <span class="nav-text">Influence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolution-in-CNN"><span class="nav-number">2.3.</span> <span class="nav-text">Convolution in CNN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#From-Dense-to-Convolution"><span class="nav-number">1.</span> <span class="nav-text">From Dense to Convolution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Constructing-a-dense-layer"><span class="nav-number">1.1.</span> <span class="nav-text">Constructing a dense layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Translation-invariance"><span class="nav-number">1.2.</span> <span class="nav-text">Translation invariance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Locality"><span class="nav-number">1.3.</span> <span class="nav-text">Locality</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Convolution-Fourier-and-Neural-Networks"><span class="nav-number">2.</span> <span class="nav-text">Convolution, Fourier and Neural Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stock"><span class="nav-number">2.1.</span> <span class="nav-text">Stock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Influence"><span class="nav-number">2.2.</span> <span class="nav-text">Influence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolution-in-CNN"><span class="nav-number">2.3.</span> <span class="nav-text">Convolution in CNN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Padding-and-stride"><span class="nav-number">3.</span> <span class="nav-text">Padding and stride</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Padding"><span class="nav-number">3.1.</span> <span class="nav-text">Padding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stride"><span class="nav-number">3.2.</span> <span class="nav-text">Stride</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
