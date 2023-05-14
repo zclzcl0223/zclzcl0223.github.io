@@ -34,13 +34,17 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/3.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/4.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/5_1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/6.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/7.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/8.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/9.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/10.png">
 <meta property="article:published_time" content="2023-05-10T15:45:10.000Z">
-<meta property="article:modified_time" content="2023-05-12T16:04:48.927Z">
+<meta property="article:modified_time" content="2023-05-14T06:56:38.330Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="CNN">
 <meta property="article:tag" content="Deep learning">
+<meta property="article:tag" content="CNN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/1.png">
 
@@ -211,7 +215,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-13 00:04:48" itemprop="dateModified" datetime="2023-05-13T00:04:48+08:00">2023-05-13</time>
+                <time title="Modified: 2023-05-14 14:56:38" itemprop="dateModified" datetime="2023-05-14T14:56:38+08:00">2023-05-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,7 +256,7 @@
 <h2 id="Locality"><a href="#Locality" class="headerlink" title="Locality"></a>Locality</h2><p>So far, we have significantly cut the space of model parameters but it is still too large. Now it is time for <em>locality</em>. As motivated above, there is no need to look so far away from the location of input pixel ${[X]}_ {i,j}$. We just need to consider a small window around ${[X]} _{i,j}$:</p>
 <p>$${[H]}_ {i, j} &#x3D; u + \sum_{a &#x3D; -\Delta}^{\Delta} \sum_{b &#x3D; -\Delta}^{\Delta} {[V]}_ {a, b}  {[X]}_ {i+a, j+b}.$$</p>
 <p>where $\Delta\times\Delta$ is the size of the window and $V$ (size $\Delta\times\Delta$) is the model parameter inside the window, a filter that generates the feature of a zone in an image or a <strong>convolution kernel</strong>.</p>
-<p>Now we construct a convolutional layer with hyperparameters <em>kernel size</em> and <em>stride</em> (see below).</p>
+<p>Now we construct a convolutional layer (<code>nn.Conv2d</code>) with hyperparameters <em>kernel size</em> and <em>stride</em> (see below).</p>
 <p>$$Y &#x3D; X \star W+b$$</p>
 <p>$W$ and $b$ are model parameters that the agent can learn. $\star$ is cross-correlation operator which is slightly different from convolution but their behaviors are the same in the convolutional layer (see below). The dimensions of $Y$ are smaller than the original dimensions, which is:</p>
 <p>$$(n_h-k_h+1)\times(n_w-k_w+1)$$</p>
@@ -289,12 +293,22 @@
 <center style="font-size:12px">Fig. 5. The feature filter</center>
 
 <p>There are still some differences between convolution and the convolutional layer, that is, $g$ is not the kernel we actually use. For example, convolution computes $f(x-1,y-1)g(1,1)$ rather than $f(x-1,y-1)g(-1,-1)$. However, in CNN, we actually compute $f(x-1,y-1)g(-1,-1)$. In fact, it doesn&#39;t matter. We just need to turn $g$ around and we get the $W$ we use in CNN. Hence, what the agent computes is <strong>cross-correlation</strong> rather than convolution but the results are the same so we just call it convolution.</p>
-<h1 id="Padding-and-stride"><a href="#Padding-and-stride" class="headerlink" title="Padding and stride"></a>Padding and stride</h1><p>Kernel size, padding and stride are the new hyperparameters that we can adjust in the convolutional layer. </p>
+<h1 id="Hyperparameters-of-convolutional-layer"><a href="#Hyperparameters-of-convolutional-layer" class="headerlink" title="Hyperparameters of convolutional layer"></a>Hyperparameters of convolutional layer</h1><p>Kernel size, padding, stride, output (input) channels are the new hyperparameters that we can adjust in the convolutional layer. </p>
 <ol>
 <li>Kernel size determines the size of window. It is the simplest parameter among them. We usually set it to $3\times3$ or $5\times5$ for 2-D input.</li>
 <li>Padding is used to solve the dimensionality reduction problem of the output image.</li>
 <li>Stride determines the movement of window. The stride we use above is $1\times1$.</li>
+<li>The number of input channels is not a hyperparameter of the convolutional layer but it determines the size of input.</li>
+<li>The number of output channels determines the number of images the convolutional layer outputs.</li>
 </ol>
+<h2 id="Kernel-size"><a href="#Kernel-size" class="headerlink" title="Kernel size"></a>Kernel size</h2><p>It is recommended to adopt a small kernel size and deep neural networks instead of a large kernel size and shallow neural networks. Their results are almost equivalent but the speed of former is faster as the speed is inversely related to the number of data (For kernel, this is generally on the order of the square). That&#39;s why we always make its size 3, 5 instead of 11, 13.</p>
+<blockquote>
+<p>The size here refers to the length of every dimension.</p>
+</blockquote>
+<p>Such a structure is very reasonable as what the kernel does is to gather the features of the edge points together. Therefore, in the final layer, data that the kernel see is the linear combination of all pixels in the image. Namely, its kernel size is actually the whole image:</p>
+<p><img src="/2023/05/10/CNN/5_1.png" alt="5_1"></p>
+<center style="font-size:12px">Fig. 6. Gathering of data</center>
+
 <h2 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h2><p>Padding adds extra rows and columns around the input images:</p>
 <p><img src="/2023/05/10/CNN/6.png" alt="6"></p>
 <center style="font-size:12px">Fig. 6. Padding</center>
@@ -317,6 +331,47 @@
 <blockquote>
 <p>We can roughly regard that the stride will cut the shape of output by a factor of $s_h\And s_w$.</p>
 </blockquote>
+<h2 id="Multiple-input-channels"><a href="#Multiple-input-channels" class="headerlink" title="Multiple input channels"></a>Multiple input channels</h2><p>The role of multiple input channels is to combine different features together.</p>
+<p><img src="/2023/05/10/CNN/8.png" alt="8"></p>
+<center style="font-size:12px">Fig. 8. Multiple input channels</center>
+
+<ul>
+<li>$X$: $c_i\times n_h\times n_W$</li>
+<li>$W$: $c_i\times k_h\times k_w$</li>
+<li>$Y$: $m_h\times m_w$</li>
+</ul>
+<p>For each input channel, there is a kernel. The output of the multiple input channels is the <strong>weighted</strong> sum of the output of each channel. Namely, even though there are several input channels, they just generate one output. To a certain extent, a kernel can be regarded as one of the generalized $w$ of a neuron and the multiple input channels are the model parameters of a neuron.</p>
+<h2 id="Multiple-output-channels"><a href="#Multiple-output-channels" class="headerlink" title="Multiple output channels"></a>Multiple output channels</h2><p>An output channel generate an output. It contains an independent batch of kernels which form a 3-D kernel. In other words, the multiple input channels are parts of an output channel. That&#39;s why the input channel is not a hyperparameter. Its size totally depends on the data. For examples, the number of input channels should 3 for RGB images and 1 for grayscale images.</p>
+<p><img src="/2023/05/10/CNN/9.png" alt="9"></p>
+<center style="font-size:12px">Fig. 9. Multiple input and output channels</center>
+
+<ul>
+<li>$X$: $c_i\times n_h\times n_W$</li>
+<li>$W$: $c_o\times c_i\times k_h\times k_w$</li>
+<li>$Y$: $c_o\times m_h\times m_w$</li>
+<li>$B$ (bias): $c_o\times c_i$, one kernel one bias.</li>
+</ul>
+<blockquote>
+<p>The computational complexity is roughly $O(c_ik_hk_wc_om_hm_w)$, where $c_ik_hk_w$ is the complexity of computing an output pixel and $c_om_hm_w$ is the number of output pixels.</p>
+</blockquote>
+<h3 id="1-times-1-kernel"><a href="#1-times-1-kernel" class="headerlink" title="$1\times 1$ kernel"></a>$1\times 1$ kernel</h3><p>The $1\times 1$ kernel is a special kernel which doesn&#39;t recognize spatial patterns but just fuses channels. It can be regarded as a dense layer with input $n_hn_w\times c_i$ ($c_i$ is the number of features) and weight $c_ic_o$.</p>
+<p><img src="/2023/05/10/CNN/10.png" alt="10"></p>
+<center style="font-size:12px">Fig. 10. 1x1 kernel</center>
+
+<h1 id="Pooling-layer"><a href="#Pooling-layer" class="headerlink" title="Pooling layer"></a>Pooling layer</h1><p>The pooling layer is another type of layer in CNN. It has two functions:</p>
+<ol>
+<li>Reduce the sensitivity of convolutional layers to position;</li>
+<li>Reduce the computational complexity.</li>
+</ol>
+<h2 id="Sensitivity-to-position"><a href="#Sensitivity-to-position" class="headerlink" title="Sensitivity to position"></a>Sensitivity to position</h2><p>The convolutional layer is highly sensitive to the position of pixels. This makes a pixel offset will cause a large change in the output image. However, we may not want such a significant change. Therefore, we need pooling layer to reduce these effects.</p>
+<p>The hyperparameters of the pooling layer are almost the same as the convolutional layer. But, the pooling layer is just an operator, that is, it doesn&#39;t have any model parameters to learn. Besides, it doesn&#39;t fuse channels. Therefore, the number of input channels is equal to output channels in the pooling layer.</p>
+<p>There are generally two types of pooling layer:</p>
+<ol>
+<li>Maximum pooling <code>nn.MaxPool2d</code>, computes the maximum value of all elements in the pooling window;</li>
+<li>Average pooling <code>nn.AvgPool2d</code>, computes the average value of all elements in the pooling window.</li>
+</ol>
+<h2 id="Computational-complexity"><a href="#Computational-complexity" class="headerlink" title="Computational complexity"></a>Computational complexity</h2><p>Since the pooling layer windows are the same as kernels in convolutional layer, the pooling layer can reduce the dimension of data. </p>
+<p>However, because of the increase in data diversities and its consistency with the convolutional layer in dimensionality reduction, the pooling layer are no longer so important.</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VV411478E/?spm_id_from=333.788&vd_source=2d980a0365f3ebea674b32924d8a4ce8">从“卷积”、到“图像卷积操作”、再到“卷积神经网络”，“卷积”意义的3次改变</a></li>
 </ul>
@@ -331,10 +386,7 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\05\10\FourierTransformAndCNN\" rel="bookmark">FourierTransformAndCNN</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\05\10\FourierTransform\" rel="bookmark">Fourier transform</a></div>
+      <div class="popular-posts-title"><a href="\2023\05\14\CommonCNNModels\" rel="bookmark">Common CNN models</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\05\07\NumericalStability\" rel="bookmark">Numerical stability</a></div>
@@ -345,13 +397,16 @@
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\04\28\DiveIntoDeepLearningIntroduction\" rel="bookmark">D2L: Environment configuration and introduction</a></div>
     </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\23\LabsOfMachineLearningByAndrewNg2\" rel="bookmark">Lab: Advanced Learning Algorithms</a></div>
+    </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/CNN/" rel="tag"># CNN</a>
               <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
+              <a href="/tags/CNN/" rel="tag"># CNN</a>
           </div>
 
           <script type="text/javascript">
@@ -438,7 +493,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#From-Dense-to-Convolution"><span class="nav-number">1.</span> <span class="nav-text">From Dense to Convolution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Constructing-a-dense-layer"><span class="nav-number">1.1.</span> <span class="nav-text">Constructing a dense layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Translation-invariance"><span class="nav-number">1.2.</span> <span class="nav-text">Translation invariance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Locality"><span class="nav-number">1.3.</span> <span class="nav-text">Locality</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Convolution-Fourier-and-Neural-Networks"><span class="nav-number">2.</span> <span class="nav-text">Convolution, Fourier and Neural Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stock"><span class="nav-number">2.1.</span> <span class="nav-text">Stock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Influence"><span class="nav-number">2.2.</span> <span class="nav-text">Influence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolution-in-CNN"><span class="nav-number">2.3.</span> <span class="nav-text">Convolution in CNN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Padding-and-stride"><span class="nav-number">3.</span> <span class="nav-text">Padding and stride</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Padding"><span class="nav-number">3.1.</span> <span class="nav-text">Padding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stride"><span class="nav-number">3.2.</span> <span class="nav-text">Stride</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#From-Dense-to-Convolution"><span class="nav-number">1.</span> <span class="nav-text">From Dense to Convolution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Constructing-a-dense-layer"><span class="nav-number">1.1.</span> <span class="nav-text">Constructing a dense layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Translation-invariance"><span class="nav-number">1.2.</span> <span class="nav-text">Translation invariance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Locality"><span class="nav-number">1.3.</span> <span class="nav-text">Locality</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Convolution-Fourier-and-Neural-Networks"><span class="nav-number">2.</span> <span class="nav-text">Convolution, Fourier and Neural Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stock"><span class="nav-number">2.1.</span> <span class="nav-text">Stock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Influence"><span class="nav-number">2.2.</span> <span class="nav-text">Influence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolution-in-CNN"><span class="nav-number">2.3.</span> <span class="nav-text">Convolution in CNN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hyperparameters-of-convolutional-layer"><span class="nav-number">3.</span> <span class="nav-text">Hyperparameters of convolutional layer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kernel-size"><span class="nav-number">3.1.</span> <span class="nav-text">Kernel size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Padding"><span class="nav-number">3.2.</span> <span class="nav-text">Padding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stride"><span class="nav-number">3.3.</span> <span class="nav-text">Stride</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-input-channels"><span class="nav-number">3.4.</span> <span class="nav-text">Multiple input channels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-output-channels"><span class="nav-number">3.5.</span> <span class="nav-text">Multiple output channels</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-times-1-kernel"><span class="nav-number">3.5.1.</span> <span class="nav-text">$1\times 1$ kernel</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pooling-layer"><span class="nav-number">4.</span> <span class="nav-text">Pooling layer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sensitivity-to-position"><span class="nav-number">4.1.</span> <span class="nav-text">Sensitivity to position</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computational-complexity"><span class="nav-number">4.2.</span> <span class="nav-text">Computational complexity</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -454,7 +509,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -491,7 +546,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>
