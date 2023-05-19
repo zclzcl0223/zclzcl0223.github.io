@@ -1,5 +1,5 @@
 .post-block p {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 :root {
   --body-bg-color: transparent;
@@ -1212,7 +1212,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d2bfd0;
+  background: #1882ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
