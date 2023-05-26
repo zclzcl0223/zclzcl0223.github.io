@@ -22,20 +22,23 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="An anonymous function in Python is the one that has no name when it is defined. In Python, the lambda keyword is used to define anonymous functions rather than the def keyword, which is used for norma">
+  <meta name="description" content="CNN is good at processing spatial information but it is not good at processing sequence information. RNN(Recurrent Neural Network) can better process sequence information than other neural networks.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lambda: anomymous functions">
-<meta property="og:url" content="https://zclzcl0223.github.io/2023/05/05/PythonLambda/index.html">
+<meta property="og:title" content="RNN">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/05/25/RNN/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="An anonymous function in Python is the one that has no name when it is defined. In Python, the lambda keyword is used to define anonymous functions rather than the def keyword, which is used for norma">
+<meta property="og:description" content="CNN is good at processing spatial information but it is not good at processing sequence information. RNN(Recurrent Neural Network) can better process sequence information than other neural networks.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-05-05T09:57:41.000Z">
-<meta property="article:modified_time" content="2023-05-06T14:52:25.212Z">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/25/RNN/1.png">
+<meta property="article:published_time" content="2023-05-25T09:27:35.000Z">
+<meta property="article:modified_time" content="2023-05-26T12:23:53.338Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Deep learning">
+<meta property="article:tag" content="RNN">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/05/25/RNN/1.png">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/2023/05/05/PythonLambda/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/05/25/RNN/">
 
 
 <script id="page-configurations">
@@ -48,7 +51,7 @@
   };
 </script>
 
-  <title>lambda: anomymous functions | JourneyToCoding</title>
+  <title>RNN | JourneyToCoding</title>
   
 
 
@@ -172,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/05/05/PythonLambda/">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/05/25/RNN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -185,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          lambda: anomymous functions
+          RNN
         </h1>
 
         <div class="post-meta">
@@ -195,14 +198,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-05-05 17:57:41" itemprop="dateCreated datePublished" datetime="2023-05-05T17:57:41+08:00">2023-05-05</time>
+              <time title="Created: 2023-05-25 17:27:35" itemprop="dateCreated datePublished" datetime="2023-05-25T17:27:35+08:00">2023-05-25</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-06 22:52:25" itemprop="dateModified" datetime="2023-05-06T22:52:25+08:00">2023-05-06</time>
+                <time title="Modified: 2023-05-26 20:23:53" itemprop="dateModified" datetime="2023-05-26T20:23:53+08:00">2023-05-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,12 +213,12 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming-language/" itemprop="url" rel="index"><span itemprop="name">Programming language</span></a>
+                  <a href="/categories/Dive-into-deep-learning/" itemprop="url" rel="index"><span itemprop="name">Dive into deep learning</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">An anonymous function in Python is the one that has no name when it is defined. In Python, the lambda keyword is used to define anonymous functions rather than the def keyword, which is used for normal functions.</div>
+            <div class="post-description">CNN is good at processing spatial information but it is not good at processing sequence information. RNN(Recurrent Neural Network) can better process sequence information than other neural networks.</div>
 
         </div>
       </header>
@@ -228,30 +231,28 @@
       
         <span id="more"></span>
 
-<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p>Lambda functions are defined by <code>lambda</code> keyword, which could only have one expression but multiple arguments. We can assign the lambda function to any variable so that we can use it as a function. More generally, we use <code>lambda</code> together with <code>map</code>, <code>reduce</code> or <code>filter</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">lambda [arguments] : [expression]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># zero argument</span></span><br><span class="line">a = <span class="keyword">lambda</span> : <span class="built_in">print</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"><span class="comment"># one argument</span></span><br><span class="line">b = <span class="keyword">lambda</span> x : x**<span class="number">2</span></span><br><span class="line"><span class="comment"># multiple arguments</span></span><br><span class="line">c = <span class="keyword">lambda</span> x, y : x + y</span><br><span class="line">a()</span><br><span class="line"><span class="built_in">print</span>(b(<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(c(<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">hello</span></span><br><span class="line"><span class="string">4</span></span><br><span class="line"><span class="string">5</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h1 id="Sequence-model-amp-Language-model"><a href="#Sequence-model-amp-Language-model" class="headerlink" title="Sequence model &amp; Language model"></a>Sequence model &amp; Language model</h1><p>Sequence information is the data arranged in a certain order, whose biggest feature is contexutal correlation. Language, or text, is typical sequence information. When dealing with sequence information, what the neural network does is to predict the future based on the history, that is:</p>
+<p>$$x_t\sim P(x_t|x_1,...,x _{t-1})$$</p>
+<p>where $x_t$ is correlated with its history $(x_1,...,x _{t-1})$. Similarly, if we wanna predict a new sequence, we deal with:</p>
+<p>$$(x_1,...,x_T)\sim \prod\limits_{t&#x3D;1}^TP(x_t|x_1,...,x _{t-1})$$</p>
+<p>Such a model or such a relationship is called sequence model. In sequence model, the data is not independent but sequential. We use previous data to predict future data. However, when the sequence is extremely long, the quantity of previous data will be rather large. In general, there are two methods to cope with it.</p>
+<h2 id="Markov-assumption"><a href="#Markov-assumption" class="headerlink" title="Markov assumption"></a>Markov assumption</h2><p>Markov assumption (or Markov model) assumes that the future $x_t$ is only correlated with a small span of the past $(x _{t-1},...,x _{t-\tau})$ where $\tau$ is the span. In this case:</p>
+<p>$$x_t\sim P(x_t|x_{t-\tau},...,x _{t-1})$$</p>
+<p>$\tau$ is an import hyperparameter that determines the complexity of prediction. When $\tau&#x3D;m$, the model is called <em>mth-order Markov model</em>:</p>
+<p>$$(x_1,...,x_T)\sim \prod\limits_{t&#x3D;1}^TP(x_t|x _{\max (t-\tau,0)},...,x _{t-1})$$</p>
+<p>where $x_0$ has nothing to do with $x_i$, that is, it is independent from others. Such a model is also called <em>Autoregressive model</em>.</p>
+<h2 id="Latent-autoregressive-models"><a href="#Latent-autoregressive-models" class="headerlink" title="Latent autoregressive models"></a>Latent autoregressive models</h2><p>In this model, we use a new parameter $h_t$ to summarize the past information:</p>
+<p>$$h_t&#x3D;g(h_{t-1},x_{t-1})$$</p>
+<p>$$\hat{x}_t&#x3D;P(x_t|h_t)$$</p>
+<p>where $h_t$ is the latent variable.</p>
+<p><img src="/2023/05/25/RNN/1.png" alt="1"></p>
+<center style="font-size:12px">Fig. 1. Latent autoregressive models</center>
 
-<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>In addition to the basic usage above, there are 4 ways to make use of <code>lambda</code> in general.</p>
-<h2 id="Functions-nested-lambda"><a href="#Functions-nested-lambda" class="headerlink" title="Functions nested lambda"></a>Functions nested lambda</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">new_func</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> y : x + y</span><br><span class="line">t = new_func(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(t(<span class="number">3</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">6</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>Anomymous functions are also functions and they have their own scope, because of which, anomymous function will use variables of enclosing function or global variables once they can&#39;t find the specific variable in the local scope.</p>
-<h2 id="map-and-lambda"><a href="#map-and-lambda" class="headerlink" title="map and lambda"></a>map and lambda</h2><p><code>map</code> funtion makes use the idea of <strong>SIMD</strong>. It maps a certain function to all the elements of input list and return a iterator which can be turned to list using <code>list()</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">map(func_to_apply, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x : x**<span class="number">2</span>, a)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[1, 4, 9, 16, 25]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p><code>map</code> can also deal with two or more lists as long as the length of lists is the same and the function supports more than one arguments:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">map</span>(<span class="keyword">lambda</span> x, y : x + y, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">5</span></span><br><span class="line"><span class="string">7</span></span><br><span class="line"><span class="string">9</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>What&#39;s more, the element of list could even be function:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sq</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x**<span class="number">2</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">doub</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * x</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x : x(i), [sq, doub])))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 0]</span></span><br><span class="line"><span class="string">[1, 2]</span></span><br><span class="line"><span class="string">[4, 4]</span></span><br><span class="line"><span class="string">[9, 6]</span></span><br><span class="line"><span class="string">[16, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>In a word, $(x_{t-\tau},...,x <em>{t-1})$ is the feature of $x_t$. The aim of RNN is to obtain the mapping relation $x_t&#x3D;f(x</em>{t-\tau},...,x <em>{t-1})$ for markov models or $h_t&#x3D;g(h</em>{t-1},x_{t-1})$ and $\hat{x}_t&#x3D;f(h_t)$ for latent autoregressive models.</p>
+</blockquote>
+<hr>
 
-<h2 id="reduce-and-lambda"><a href="#reduce-and-lambda" class="headerlink" title="reduce and lambda"></a>reduce and lambda</h2><p><code>reduce</code> firstly passes the first two elements of list to the function. Then, take the result of function as the new first argument and pass it to the function with the third element of list and so on until the last element:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">reduce(func, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(reduce(<span class="keyword">lambda</span> x, y : x + y, a)) <span class="comment"># equal to 1 + 2 + 3 + 4 + 5</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">15</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>The element of list could also be function.</p>
-</blockquote>
-<h2 id="filter-and-lambda"><a href="#filter-and-lambda" class="headerlink" title="filter and lambda"></a>filter and lambda</h2><p><code>filter</code> returns a iterator that contains elements in the input_list that match the criteria of the function:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">filter(func, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">a = <span class="built_in">filter</span>(<span class="keyword">lambda</span> x: x % <span class="number">2</span> == <span class="number">0</span>, <span class="built_in">range</span>(<span class="number">10</span>)) <span class="comment"># get even number</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(a))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>filter</code> is easily replaced by <code>for</code> or <code>for if</code> comprehension:</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -261,26 +262,27 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\28\PyTorch\" rel="bookmark">PyTorch</a></div>
+      <div class="popular-posts-title"><a href="\2023\05\19\MultipleGPUsAndParallelism\" rel="bookmark">Multiple GPUs and Parallelism</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\12\Tensorflow\" rel="bookmark">Tensorflow</a></div>
+      <div class="popular-posts-title"><a href="\2023\05\14\CommonCNNModels\" rel="bookmark">Common CNN models</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\24\Matplotlib\" rel="bookmark">Matplotlib</a></div>
+      <div class="popular-posts-title"><a href="\2023\05\10\CNN\" rel="bookmark">CNN: feature extraction</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\22\Scikit-learn\" rel="bookmark">Scikit-learn</a></div>
+      <div class="popular-posts-title"><a href="\2023\05\07\NumericalStability\" rel="bookmark">Numerical stability</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\22\NumPy\" rel="bookmark">NumPy</a></div>
+      <div class="popular-posts-title"><a href="\2023\05\03\ModelSelection\" rel="bookmark">Model selection & hyperparameter optimization</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
+              <a href="/tags/RNN/" rel="tag"># RNN</a>
           </div>
 
           <script type="text/javascript">
@@ -302,13 +304,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/05/03/ModelSelection/" rel="prev" title="Model selection & hyperparameter optimization">
-      <i class="fa fa-chevron-left"></i> Model selection & hyperparameter optimization
+    <a href="/2023/05/19/MultipleGPUsAndParallelism/" rel="prev" title="Multiple GPUs and Parallelism">
+      <i class="fa fa-chevron-left"></i> Multiple GPUs and Parallelism
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/05/05/GammaAndFactorial/" rel="next" title="gamma and factorial">
-      gamma and factorial <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -367,7 +366,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Definition"><span class="nav-number">1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Usage"><span class="nav-number">2.</span> <span class="nav-text">Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions-nested-lambda"><span class="nav-number">2.1.</span> <span class="nav-text">Functions nested lambda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map-and-lambda"><span class="nav-number">2.2.</span> <span class="nav-text">map and lambda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduce-and-lambda"><span class="nav-number">2.3.</span> <span class="nav-text">reduce and lambda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filter-and-lambda"><span class="nav-number">2.4.</span> <span class="nav-text">filter and lambda</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sequence-model-amp-Language-model"><span class="nav-number">1.</span> <span class="nav-text">Sequence model &amp; Language model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Markov-assumption"><span class="nav-number">1.1.</span> <span class="nav-text">Markov assumption</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Latent-autoregressive-models"><span class="nav-number">1.2.</span> <span class="nav-text">Latent autoregressive models</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
