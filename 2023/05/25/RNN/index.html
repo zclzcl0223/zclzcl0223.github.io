@@ -22,16 +22,20 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="CNN is good at processing spatial information but it is not good at processing sequence information. RNN(Recurrent Neural Network) can better process sequence information than other neural networks.">
+  <meta name="description" content="CNN is good at processing spatial information but it is not good at processing sequence information. RNN (Recurrent Neural Network) can better process sequence information than other neural networks.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RNN">
 <meta property="og:url" content="https://zclzcl0223.github.io/2023/05/25/RNN/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="CNN is good at processing spatial information but it is not good at processing sequence information. RNN(Recurrent Neural Network) can better process sequence information than other neural networks.">
+<meta property="og:description" content="CNN is good at processing spatial information but it is not good at processing sequence information. RNN (Recurrent Neural Network) can better process sequence information than other neural networks.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/25/RNN/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/25/RNN/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/25/RNN/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/25/RNN/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/25/RNN/4.png">
 <meta property="article:published_time" content="2023-05-25T09:27:35.000Z">
-<meta property="article:modified_time" content="2023-05-26T12:23:53.338Z">
+<meta property="article:modified_time" content="2023-05-29T13:48:48.309Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep learning">
 <meta property="article:tag" content="RNN">
@@ -205,7 +209,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-26 20:23:53" itemprop="dateModified" datetime="2023-05-26T20:23:53+08:00">2023-05-26</time>
+                <time title="Modified: 2023-05-29 21:48:48" itemprop="dateModified" datetime="2023-05-29T21:48:48+08:00">2023-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -218,7 +222,7 @@
             </span>
 
           
-            <div class="post-description">CNN is good at processing spatial information but it is not good at processing sequence information. RNN(Recurrent Neural Network) can better process sequence information than other neural networks.</div>
+            <div class="post-description">CNN is good at processing spatial information but it is not good at processing sequence information. RNN (Recurrent Neural Network) can better process sequence information than other neural networks.</div>
 
         </div>
       </header>
@@ -251,6 +255,42 @@
 <blockquote>
 <p>In a word, $(x_{t-\tau},...,x <em>{t-1})$ is the feature of $x_t$. The aim of RNN is to obtain the mapping relation $x_t&#x3D;f(x</em>{t-\tau},...,x <em>{t-1})$ for markov models or $h_t&#x3D;g(h</em>{t-1},x_{t-1})$ and $\hat{x}_t&#x3D;f(h_t)$ for latent autoregressive models.</p>
 </blockquote>
+<h2 id="Language-models"><a href="#Language-models" class="headerlink" title="Language models"></a>Language models</h2><p>The language model is a typical sequence model. However, because languages are in the form of <em>string</em>, it is extremely hard for computers to cope with them. Hence, we always divide a text into several <em>tokens</em>. A token is a string and a word in the original text. Then, we count the probablity of occurrence of all tokens or token sequences and use markov models to model language models. The value of $\tau$ decides the number of tokens we take into account to predict $x_t$. For instance, one token (tokens are independent from each other) is <em>Unigram</em>, two tokens are <em>Bigram</em> and three tokens are <em>Trigram</em>.</p>
+<blockquote>
+<p>One-hot encoding is used to turn a token into a vector so that the neural network can work.</p>
+</blockquote>
+<h1 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h1><p>RNNs (recurrent neural networks) are neural networks with <em>hidden state</em> which is another <em>input</em> of the hidden layer and is updated by calling the hidden layer recurrrently. </p>
+<p><img src="/2023/05/25/RNN/2.png" alt="2"></p>
+<center style="font-size:12px">Fig. 2. Hidden state</center>
+
+<p>The hidden state <em>H</em> is actually the same as input <em>X</em>, that is, they are both inputs of hidden layer:</p>
+<p>$$\text{Output}<em>t&#x3D;H_t&#x3D;\phi(X_tW</em>{xh}+H_{t-1}W_{hh}+b_h)$$</p>
+<p>The following picture shows the nature of RNN better:</p>
+<p><img src="/2023/05/25/RNN/3.png" alt="3"></p>
+<center style="font-size:12px">Fig. 3. CNN</center>
+
+<p>In each timing, a token or other sequential unit $X_t$ enters the RNN as an input. $H_{t-1}$ records the information of previous tokens. They together produce $H_t$. $H_t$ records the information of current token $X_t$ and previous tokens. Hence, it is only the output of this hidden layer at this timing but also the input of the hidden layer at the next timing. That&#39;s why such a neural network is called RNN: for a sequence with several tokens, all the tokens will be fed to RNN in sequence. Their relationship is recorded by $H$. The updated $H$ is fed to RNN recurrently. And finally, after dealing with the last token, the prediction is made.</p>
+<p><img src="/2023/05/25/RNN/4.png" alt="4"></p>
+<center style="font-size:12px">Fig. 4. Process of RNN</center>
+
+<blockquote>
+<p>Though we use the RNN layer several times (depends on the length of sequence) to generate $H_1,...,H_t$ in a single iteration, it is still a layer. Namely, during one iteration, $W_{xh}$, $W_{hh}$ and $b_h$ keep the same. What changes is $H$.</p>
+</blockquote>
+<p>When the batch is generated by random sampling, that is, the sequence of different batches is not continuous (e.g. batch1: [1, 2], batch2: [8, 9]), $H$ must be initialized to 0 in each iteration. Otherwise (e.g. batch1: [1, 2], batch2: [3, 4]), $H$ should be kept as the last result of the former batch. By doing so, the current batch and the former batch form a longer sequence. In practice, we use random sampling more as the text we cope with is often too long to remember all of it only using $H$.</p>
+<blockquote>
+<p>The api of RNN in PyTorch is <code>nn.RNN</code> .</p>
+</blockquote>
+<h2 id="Gradient-clipping"><a href="#Gradient-clipping" class="headerlink" title="Gradient clipping"></a>Gradient clipping</h2><p>Timesteps represent the length of a sequence or $\tau$ in markov assumption. The larger the timestep is, the more information the RNN need to remember. In addition, because the operation of a RNN hidden layer of k timesteps is equivalent to the operation of k dense layers, it is more likely for RNN to have gradient explosion.</p>
+<p>To solve this, what we use is gradient clipping. For all the parameters that require gradient, we put their gradient in $\mathbf{g}$ and project $\mathbf{g}$ back to a sphere of given radius $\theta$:</p>
+<p>$$\mathbf{g}\leftarrow\min(1,\frac{\theta}{\left|\mathbf{g}\right|})\mathbf{g}$$</p>
+<p>Usually, $\theta$ is 5.</p>
+<h2 id="Perplexity"><a href="#Perplexity" class="headerlink" title="Perplexity"></a>Perplexity</h2><p>When coping with language model using RNN, what we actually do is to make the agent choose the best token from vocabulary. This is actually a softmax regression problem. However, in NLP, we don&#39;t use the average of crossentropy loss to measure its precision. Instead, we use its exponent, <em>perplexity</em>:</p>
+<p>$$\exp(-\frac{1}{n}\sum\limits_{t&#x3D;1}^n\log P(x_t|x_{t-1},...,x_1))$$</p>
+<p>They are actually the same but <em>perplexity</em> shows the range of tokens that the agent can choose. Namely, when <em>perplexity</em> is 1, which means that the agent can choose a specific token without hesitation, this is the ideal result. When <em>perlexity</em> is bigger than 1, this means that there are still some tokens confusing the agent.</p>
+<h1 id="Structure-of-RNN"><a href="#Structure-of-RNN" class="headerlink" title="Structure of RNN"></a>Structure of RNN</h1><p>There are many types of RNN structure. Different structures are suitable for different functions. For instance, in NLP, one to many structure is suitable for text generation, that is, predicting the subsequent text using current text. Many to one structure is suitable for text categorization. It tries to remember the whole text and only output one value. Many to many structure is fit for machine translation and question answering. Seq2seq is a typical many to many model.</p>
+<p><img src="/2023/05/25/RNN/4.png" alt="4"></p>
+<center style="font-size:12px">Fig. 4. Process of RNN</center>
+
 <hr>
 
     </div>
@@ -262,6 +302,9 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\29\CommonRNNModels\" rel="bookmark">Common RNN models</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\05\19\MultipleGPUsAndParallelism\" rel="bookmark">Multiple GPUs and Parallelism</a></div>
     </li>
     <li class="popular-posts-item">
@@ -272,9 +315,6 @@
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\05\07\NumericalStability\" rel="bookmark">Numerical stability</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\05\03\ModelSelection\" rel="bookmark">Model selection & hyperparameter optimization</a></div>
     </li>
   </ul>
 
@@ -307,7 +347,10 @@
     <a href="/2023/05/19/MultipleGPUsAndParallelism/" rel="prev" title="Multiple GPUs and Parallelism">
       <i class="fa fa-chevron-left"></i> Multiple GPUs and Parallelism
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/29/CommonRNNModels/" rel="next" title="Common RNN models">
+      Common RNN models <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -366,7 +409,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sequence-model-amp-Language-model"><span class="nav-number">1.</span> <span class="nav-text">Sequence model &amp; Language model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Markov-assumption"><span class="nav-number">1.1.</span> <span class="nav-text">Markov assumption</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Latent-autoregressive-models"><span class="nav-number">1.2.</span> <span class="nav-text">Latent autoregressive models</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sequence-model-amp-Language-model"><span class="nav-number">1.</span> <span class="nav-text">Sequence model &amp; Language model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Markov-assumption"><span class="nav-number">1.1.</span> <span class="nav-text">Markov assumption</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Latent-autoregressive-models"><span class="nav-number">1.2.</span> <span class="nav-text">Latent autoregressive models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Language-models"><span class="nav-number">1.3.</span> <span class="nav-text">Language models</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RNN"><span class="nav-number">2.</span> <span class="nav-text">RNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-clipping"><span class="nav-number">2.1.</span> <span class="nav-text">Gradient clipping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Perplexity"><span class="nav-number">2.2.</span> <span class="nav-text">Perplexity</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Structure-of-RNN"><span class="nav-number">3.</span> <span class="nav-text">Structure of RNN</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -382,7 +425,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -419,7 +462,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>
