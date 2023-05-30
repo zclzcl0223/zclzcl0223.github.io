@@ -30,7 +30,7 @@
 <meta property="og:description" content="This post records the experimental process of labs of Unsupervised Learning, Recommenders, Reinforcement Learning by Andrew Ng and some bugs that may be encountered under Windows.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-23T12:17:55.000Z">
-<meta property="article:modified_time" content="2023-04-27T15:49:37.147Z">
+<meta property="article:modified_time" content="2023-05-30T13:02:13.762Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Lab">
 <meta property="article:tag" content="Unsupervised learning">
@@ -205,7 +205,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-27 23:49:37" itemprop="dateModified" datetime="2023-04-27T23:49:37+08:00">2023-04-27</time>
+                <time title="Modified: 2023-05-30 21:02:13" itemprop="dateModified" datetime="2023-05-30T21:02:13+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,8 +253,6 @@
 <p>If there is still a bug in <code>Display(visible=0, size=(840, 480)).start()</code>, you can just comment out this code.</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Exercise 1</span></span><br><span class="line"><span class="comment"># Create the Q-Network</span></span><br><span class="line">q_network = Sequential([</span><br><span class="line">    <span class="comment">### START CODE HERE ### </span></span><br><span class="line">    Dense(units=<span class="number">64</span>, activation=<span class="string">&#x27;relu&#x27;</span>, input_dim=<span class="number">8</span>),</span><br><span class="line">    Dense(units=<span class="number">64</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">4</span>, activation=<span class="string">&#x27;linear&#x27;</span>)</span><br><span class="line">    <span class="comment">### END CODE HERE ### </span></span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the target Q^-Network</span></span><br><span class="line">target_q_network = Sequential([</span><br><span class="line">    <span class="comment">### START CODE HERE ### </span></span><br><span class="line">    Dense(units=<span class="number">64</span>, activation=<span class="string">&#x27;relu&#x27;</span>, input_dim=<span class="number">8</span>),</span><br><span class="line">    Dense(units=<span class="number">64</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">4</span>, activation=<span class="string">&#x27;linear&#x27;</span>)</span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">optimizer = Adam(learning_rate=ALPHA)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 2</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">y_targets = rewards + (<span class="number">1</span> - done_vals) * gamma * max_qsa</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">loss = MSE(q_values, y_targets)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
-
-<hr>
 
     </div>
 

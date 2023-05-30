@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/2.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/3.png">
 <meta property="article:published_time" content="2023-04-16T13:46:40.000Z">
-<meta property="article:modified_time" content="2023-04-26T13:46:11.412Z">
+<meta property="article:modified_time" content="2023-05-30T12:59:08.285Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Unsupervised learning">
@@ -207,7 +207,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-26 21:46:11" itemprop="dateModified" datetime="2023-04-26T21:46:11+08:00">2023-04-26</time>
+                <time title="Modified: 2023-05-30 20:59:08" itemprop="dateModified" datetime="2023-05-30T20:59:08+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,7 +252,7 @@
 <li>Reinitialize all the centroids and train another set of $\mu$ 50-1000 times, choose the set with the lowest $J$ as the final result of clustering.</li>
 </ul>
 <p><img src="/2023/04/16/UnsupervisedLearning/1.png" alt="1"></p>
-<center style="font-size:12px">Fig. 1. K-means</center>
+<center style="font-size:12px;font-weight:bold">Fig. 1. K-means</center>
 
 <h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><p>Definition of some notations:</p>
 <ul>
@@ -264,7 +264,7 @@
 <p>The way to minimize $J$ is repeatedly moving $\mu_k$ to the centre of cluster $k$.</p>
 <h3 id="Choosing-a-K"><a href="#Choosing-a-K" class="headerlink" title="Choosing a $K$"></a>Choosing a $K$</h3><p>Elbow method: Choose the value at the elbow of $J-K$ curve as $K$ on elbow is the position where the slope of a function rapidly decreases.</p>
 <p><img src="/2023/04/16/UnsupervisedLearning/2.png" alt="2"></p>
-<center style="font-size:12px">Fig. 2. Elbow method</center>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Elbow method</center><br>
 
 <p>More generally, the choice of $K$ depends on the downstream purpose.</p>
 <h1 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h1><p>Anomaly detection is another type of unsupervised learning that automatically identifies rare or anomalous events which are suspicous or harmful because they differ significantly from standard behaviors or patterns. The key algorithm in anomaly detection is density estimation that builds the model of $p(x)$ which is the probability density of $x$. The most commonly used probability density model is Gaussian (Normal or Bell shaped) distribution:<br>$$p(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</p>
@@ -317,12 +317,11 @@
 <h2 id="Choosing-good-features"><a href="#Choosing-good-features" class="headerlink" title="Choosing good features"></a>Choosing good features</h2><p>Choosing good features is more important in anomaly detection than in supervised learning since supervised learning can rescale and take the best advantage of the features we give while anomaly detection treats each feature independent and equally important. To choose good features, there are several methods: </p>
 <ul>
 <li><p>Choose more gaussian features or <strong>make</strong> features more gaussian (e.g. $\log(x+c)$ instead of $x$);<br><img src="/2023/04/16/UnsupervisedLearning/3.png" alt="3"></p>
-<center style="font-size:12px">Fig. 3. Variable transformation</center>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Variable transformation</center><br>
 </li>
 <li><p>Error analysis of dev set to find new features or create new features based on exsiting features.</p>
 </li>
 </ul>
-<hr>
 
     </div>
 

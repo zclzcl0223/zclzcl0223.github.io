@@ -22,21 +22,22 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Some commonly used RNN models: GRU, LSTM...">
+  <meta name="description" content="Some commonly used RNN models: GRU, LSTM, DRNN, BRNN...">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Common RNN models">
 <meta property="og:url" content="https://zclzcl0223.github.io/2023/05/29/CommonRNNModels/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Some commonly used RNN models: GRU, LSTM...">
+<meta property="og:description" content="Some commonly used RNN models: GRU, LSTM, DRNN, BRNN...">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zclzcl0223.github.io/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/29/CommonRNNModels/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/29/CommonRNNModels/2.png">
 <meta property="article:published_time" content="2023-05-29T11:53:15.000Z">
-<meta property="article:modified_time" content="2023-05-29T13:51:30.424Z">
+<meta property="article:modified_time" content="2023-05-30T15:41:49.757Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep learning">
 <meta property="article:tag" content="RNN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/1.png">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/05/29/CommonRNNModels/1.png">
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2023/05/29/CommonRNNModels/">
 
@@ -197,10 +198,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-05-29 19:53:15 / Modified: 21:51:30" itemprop="dateCreated datePublished" datetime="2023-05-29T19:53:15+08:00">2023-05-29</time>
+              <time title="Created: 2023-05-29 19:53:15" itemprop="dateCreated datePublished" datetime="2023-05-29T19:53:15+08:00">2023-05-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-05-30 23:41:49" itemprop="dateModified" datetime="2023-05-30T23:41:49+08:00">2023-05-30</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -212,7 +219,7 @@
             </span>
 
           
-            <div class="post-description">Some commonly used RNN models: GRU, LSTM...</div>
+            <div class="post-description">Some commonly used RNN models: GRU, LSTM, DRNN, BRNN...</div>
 
         </div>
       </header>
@@ -225,12 +232,49 @@
       
         <span id="more"></span>
 
+<p>RNN is a special kind of MLP that takes its output as input to remember the previous information. It is such an simple struture that it can&#39;t remember as much information as we want. Besides, since RNN updates hidden state recurrently, the cumulative chain of gradients will become rather long, which may result in gradient explosion or gradient vanishing.</p>
+<h1 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1406.1078.pdf">Gated Recurrent Unit</a> (GRU) is a method to solve gradient anomaly in RNN. Its idea is based on three facts:</p>
+<ul>
+<li>Some tokens have nothing to do with previous tokens.</li>
+<li>Some tokens are closely related to previous tokens.</li>
+<li>Current token may make no sense. It is better to just ignore its influence.</li>
+</ul>
+<p>Hence, GRU defines two kinds of gate to catch long-term and short-term relationship:</p>
+<ul>
+<li>Reset Gate $\mathbf{R}_t$, catches short-term relationship between current token and previous tokens:<br>$$\mathbf{R}_t&#x3D;\sigma(\mathbf{X}_t\mathbf{W} _{xr}+\mathbf{H} _{t-1}\mathbf{W} _{hr}+\mathbf{b}_r)$$</li>
+<li>Update Gate $\mathbf{Z}_t$, catches long-term relationship between current token and previous tokens:<br>$$\mathbf{Z}_t&#x3D;\sigma(\mathbf{X}_t\mathbf{W} _{xz}+\mathbf{H} _{t-1}\mathbf{W} _{hz}+\mathbf{b}_z)$$</li>
+</ul>
+<p>Both values of $\mathbf{R}_t$ and $\mathbf{Z}_t$ ($\sigma$ means sigmoid) are between $0$ and $1$. $\mathbf{R}_t$ is used to generate <em>candidate hidden state</em>:</p>
+<p>$$\tilde{\mathbf{H}}_t&#x3D;\tanh(\mathbf{X}_t\mathbf{W} _{xh}+(\mathbf{R}_t\odot\mathbf{H} _{t-1})\mathbf{W} _{hh}+\mathbf{b}_h)$$</p>
+<p>As its name suggests, reset gate $\mathbf{R}_t$ will weigh the influence of previous tokens $\mathbf{H} _{t-1}$ on current sequence and gather the information of current token and previous tokens. Since $\mathbf{R}_t$ is always smaller than $1$, it pays more attention to current token $\mathbf{X}_t$ while weakens $\mathbf{H} _{t-1}$. That&#39;s why we say that $\mathbf{R}_t$ catches short-term relationship.</p>
+<p>After generating the <em>candidate hidden state</em>, update gate $\mathbf{Z}_t$ generates real $\mathbf{H}_t$ from previous sequence $\mathbf{H} _{t-1}$ and current candidate sequence $\tilde{\mathbf{H}}_t$:</p>
+<p>$$\mathbf{H}_t&#x3D;\mathbf{Z}_t\odot\mathbf{H} _{t-1}+(1-\mathbf{Z}_t)\odot\tilde{\mathbf{H}}_t$$</p>
+<p>When $\mathbf{Z}_t$ is close to $0$, it means that the current token make sense and it may have something to do with previous tokens (based on $\mathbf{R}_t$). On the contrary, when $\mathbf{Z}_t$ is close to $1$, it means that the current token makes no sense. $\mathbf{Z}_t$ weighs $\mathbf{H} _{t-1}$ and $\tilde{\mathbf{H}}_t$. That&#39;s why we say that $\mathbf{Z}_t$ catches long-term relationship. </p>
+<p><img src="/2023/05/29/CommonRNNModels/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Computing process in GRU</center><br>
 
-<h1 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h1><h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><h1 id="DRNN"><a href="#DRNN" class="headerlink" title="DRNN"></a>DRNN</h1><h1 id="BRNN"><a href="#BRNN" class="headerlink" title="BRNN"></a>BRNN</h1><p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px">Fig. 1. Latent autoregressive models</center>
+<p>Compared with RNN, GRU requires more model parameters ($\mathbf{W} _{xr}$, $\mathbf{W} _{hr}$, $\mathbf{W} _{xz}$, $\mathbf{W} _{hz}$, $\mathbf{W} _{xh}$, $\mathbf{W} _{hh}$ and corresponding bias $\mathbf{b}$). All of them are learnable parameters in one GRU layer. The two gates help the agent properly forget current or previous information. This will shorten the gradient cumulative chain to a certain degree.</p>
+<blockquote>
+<p><code>nn.GRU</code> is the class of GRU in PyTorch. It is almost the same as <code>nn.RNN</code> though it has more model parameters.</p>
+</blockquote>
+<h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><p><a target="_blank" rel="noopener" href="https://papers.baulab.info/Hochreiter-1997.pdf">Long-Short-Term Memory</a> (LSTM) is almost the same as GRU but it is more complicated.</p>
+<p><img src="/2023/05/29/CommonRNNModels/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Computing process in LSTM</center><br>
 
-<hr>
-
+<p>Compared with GRU, LSTM use memory cell $\mathbf{C}_t$ to record information. The function of $\mathbf{C}_t$ in LSTM is similar as $\mathbf{H}_t$&#39;s in GRU. But $\mathbf{C}_t$ only propagates inside LSTM and the output of LSTM is still $\mathbf{H}_t$. In addition, LSTM takse $\mathbf{Z}_t$ and $(1-\mathbf{Z}_t)$ apart to form forget gate $\mathbf{F}_t$ and input gate $\mathbf{I}_t$:</p>
+<p>$$\mathbf{F}_t&#x3D;\sigma(\mathbf{X}_t\mathbf{W} _{xf}+\mathbf{H} _{t-1}\mathbf{W} _{hf}+\mathbf{b}_f)\<br>\mathbf{I}_t&#x3D;\sigma(\mathbf{X}_t\mathbf{W} _{xi}+\mathbf{H} _{t-1}\mathbf{W} _{hi}+\mathbf{b}_i)<br>$$</p>
+<p>Similarly, LSTM use $\tilde{\mathbf{C}}_t$ to record the relationship between current token and previous tokens but it doesn&#39;t reset previous tokens:</p>
+<p>$$\tilde{\mathbf{C}}_t&#x3D;\tanh(\mathbf{X}_t\mathbf{W} _{xc}+\mathbf{H} _{t-1}\mathbf{W} _{hc}+\mathbf{b}_c)<br>$$</p>
+<p>Then, LSTM generate memory cell $\mathbf{C}_t$ by weighing previous information $\mathbf{C} _{t-1}$ and current information $\tilde{\mathbf{C}}_t$:</p>
+<p>$$\mathbf{C}_t&#x3D;\mathbf{F}_t\odot\mathbf{C} _{t-1}+\mathbf{I}_t\odot\tilde{\mathbf{C}}_t$$</p>
+<p>Since $\mathbf{F}_t$ and $\mathbf{I}_t$ are no longer relevant. LSTM can combine previous information and current information more flexibly. $\mathbf{C}_t$ only flows inside LSTM. To generate the output, LSTM use output gate $\mathbf{O}_t$ for reset gate $\mathbf{R}_t$:</p>
+<p>$$\mathbf{O}_t&#x3D;\sigma(\mathbf{X}_t\mathbf{W} _{xo}+\mathbf{H} _{t-1}\mathbf{W} _{ho}+\mathbf{b}_o)\<br>\mathbf{H}_t&#x3D;\mathbf{O}_t\odot\tanh(\mathbf{C}_t)<br>$$</p>
+<p>where $\tanh$ is to make sure that $\mathbf{H}_t$ is range from $-1$ to $1$ so that the agent can control gradients better.</p>
+<blockquote>
+<p><code>nn.LSTM</code> is the class of LSTM in PyTorch. It is almost the same as <code>nn.GRU</code>.</p>
+</blockquote>
+<p>Though LSTM is more complex, GRU performs as well as LSTM.</p>
+<h1 id="DRNN"><a href="#DRNN" class="headerlink" title="DRNN"></a>DRNN</h1><h1 id="BRNN"><a href="#BRNN" class="headerlink" title="BRNN"></a>BRNN</h1>
     </div>
 
     

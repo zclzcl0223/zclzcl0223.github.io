@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/9.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/CNN/10.png">
 <meta property="article:published_time" content="2023-05-10T15:45:10.000Z">
-<meta property="article:modified_time" content="2023-05-14T06:56:38.330Z">
+<meta property="article:modified_time" content="2023-05-30T13:11:09.303Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="CNN">
 <meta property="article:tag" content="Deep learning">
@@ -215,7 +215,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-14 14:56:38" itemprop="dateModified" datetime="2023-05-14T14:56:38+08:00">2023-05-14</time>
+                <time title="Modified: 2023-05-30 21:11:09" itemprop="dateModified" datetime="2023-05-30T21:11:09+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,14 +262,14 @@
 <p>$$(n_h-k_h+1)\times(n_w-k_w+1)$$</p>
 <p>where $n_h$ and $n_w$ are the dimensions of $X$, $k_h$ and $k_w$ are the dimensions of $W$. It doesn&#39;t matter and we can solve it easily (see below).</p>
 <p><img src="/2023/05/10/CNN/1.png" alt="1"></p>
-<center style="font-size:12px">Fig. 1. Convolutional layer</center>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Convolutional layer</center>
 
 <h1 id="Convolution-Fourier-and-Neural-Networks"><a href="#Convolution-Fourier-and-Neural-Networks" class="headerlink" title="Convolution, Fourier and Neural Networks"></a>Convolution, Fourier and Neural Networks</h1><p>Convolution is an operation on two functions ($f$ and $g$) that produces a third function ($f*g$) that express how the shape of one is modified by the other:</p>
 <p>$$(f*g)(t)&#x3D;\int_{-\infty} ^{+\infty}f(\tau)g(t-\tau)d\tau$$</p>
 <p>Physically, we can explain it from two perspectives.</p>
 <h2 id="Stock"><a href="#Stock" class="headerlink" title="Stock"></a>Stock</h2><p>Suppose there is a system with input $f(t)$ at each moment. The input starts decaying with $g(t)$ by the time it enters the system, where $g(t)$ is its remaining percentage.</p>
 <p><img src="/2023/05/10/CNN/2.png" alt="2"></p>
-<center style="font-size:12px">Fig. 2. f(t) and g(t)</center>
+<center style="font-size:12px;font-weight:bold">Fig. 2. f(t) and g(t)</center><br>
 
 <p>For items that enter the system between $(t,t+\Delta t)$, their margin at $x$ is:</p>
 <p>$$f(t)g(x-t)\Delta t$$</p>
@@ -281,16 +281,16 @@
 <p>$$\int_{t_1}^{t_2}f(t)g(x-t)dt$$</p>
 <p>To go a step further, we can take $t$ as position, $f(t)$ as a thing happens at $t$ and keep moving from $t$ to $x$, $g(t)$ as its award or loss per distance. For example, some people whose weight $f(t)$ starts running as $t$ and they will loss $g(t)$ kg per meter. Then $f*g$ is the weight loss of all. (the fatter a person is, the more contribution he&#x2F;she makes).</p>
 <p><img src="/2023/05/10/CNN/3.png" alt="3"></p>
-<center style="font-size:12px">Fig. 3. weight and weight loss</center>
+<center style="font-size:12px;font-weight:bold">Fig. 3. weight and weight loss</center>
 
 <h2 id="Convolution-in-CNN"><a href="#Convolution-in-CNN" class="headerlink" title="Convolution in CNN"></a>Convolution in CNN</h2><p>For convolution in CNN, we&#39;d better expand its dimension to 2-D and take $t$ as a discrete number which represents position $(x,y)$. Then, we can take $X$ as function $f$ and $W$ as $g$. Now the meaning of convolution in CNN can be interpreted as the influence that pixels around $f(x,y)$ exert on pixel $f(x,y)$ or the certain average feature of the pixels around $f(x,y)$. </p>
 <p>$$f * g&#x3D;\sum _{i,j}f(i,j)g(x-i,y-j)$$</p>
 <p><img src="/2023/05/10/CNN/4.png" alt="4"></p>
-<center style="font-size:12px">Fig. 4. Convolution in CNN</center>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Convolution in CNN</center><br>
 
 <p>The phrase certain average feature may be a little confusing. However, if we regard the convolution kernel $W$ as a feature filter that extract specific features of a region of an image, it makes sense. Different filters extract different features and their parameters are totally learnt by the agent itself.</p>
 <p><img src="/2023/05/10/CNN/5.png" alt="5"></p>
-<center style="font-size:12px">Fig. 5. The feature filter</center>
+<center style="font-size:12px;font-weight:bold">Fig. 5. The feature filter</center><br>
 
 <p>There are still some differences between convolution and the convolutional layer, that is, $g$ is not the kernel we actually use. For example, convolution computes $f(x-1,y-1)g(1,1)$ rather than $f(x-1,y-1)g(-1,-1)$. However, in CNN, we actually compute $f(x-1,y-1)g(-1,-1)$. In fact, it doesn&#39;t matter. We just need to turn $g$ around and we get the $W$ we use in CNN. Hence, what the agent computes is <strong>cross-correlation</strong> rather than convolution but the results are the same so we just call it convolution.</p>
 <h1 id="Hyperparameters-of-convolutional-layer"><a href="#Hyperparameters-of-convolutional-layer" class="headerlink" title="Hyperparameters of convolutional layer"></a>Hyperparameters of convolutional layer</h1><p>Kernel size, padding, stride, output (input) channels are the new hyperparameters that we can adjust in the convolutional layer. </p>
@@ -307,11 +307,11 @@
 </blockquote>
 <p>Such a structure is very reasonable as what the kernel does is to gather the features of the edge points together. Therefore, in the final layer, data that the kernel see is the linear combination of all pixels in the image. Namely, its kernel size is actually the whole image:</p>
 <p><img src="/2023/05/10/CNN/5_1.png" alt="5_1"></p>
-<center style="font-size:12px">Fig. 6. Gathering of data</center>
+<center style="font-size:12px;font-weight:bold">Fig. 6. Gathering of data</center>
 
 <h2 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h2><p>Padding adds extra rows and columns around the input images:</p>
 <p><img src="/2023/05/10/CNN/6.png" alt="6"></p>
-<center style="font-size:12px">Fig. 6. Padding</center>
+<center style="font-size:12px;font-weight:bold">Fig. 7. Padding</center><br>
 
 <p>After padding, the shape of output becomes:</p>
 <p>$$(n_h-k_h+1+p_h)\times(n_w-k_w+1+p_w)$$</p>
@@ -320,7 +320,7 @@
 <p>so that the shape of output is the same as the shape of input. For convinience, we often take $k_h\And k_w$ to be odd number. Therefore, we can pad $p_h&#x2F;2$ ($p_w&#x2F;2$)<br> on both sides. If $k_h\And k_w$ are even, $\lceil p_h&#x2F;2\rceil$ on the upper side and $\lfloor p_h&#x2F;2\rfloor$ on the lower side or vice versa.</p>
 <h2 id="Stride"><a href="#Stride" class="headerlink" title="Stride"></a>Stride</h2><p>Stirde refers to the step size of the kernel window on the row and column. When stride is too small, the agent will need a amount of computation to get a small ouput.</p>
 <p><img src="/2023/05/10/CNN/7.png" alt="7"></p>
-<center style="font-size:12px">Fig. 7. Stride (3*2)</center>
+<center style="font-size:12px;font-weight:bold">Fig. 8. Stride (3*2)</center><br>
 
 <p>For a certain stride $s_h\times s_w$, the shape of output becomes:</p>
 <p>$$\lfloor(n_h-k_h+p_h)&#x2F;s_h+1\rfloor\times\lfloor(n_w-k_w+p_w)&#x2F;s_w+1\rfloor<br>$$</p>
@@ -333,7 +333,7 @@
 </blockquote>
 <h2 id="Multiple-input-channels"><a href="#Multiple-input-channels" class="headerlink" title="Multiple input channels"></a>Multiple input channels</h2><p>The role of multiple input channels is to combine different features together.</p>
 <p><img src="/2023/05/10/CNN/8.png" alt="8"></p>
-<center style="font-size:12px">Fig. 8. Multiple input channels</center>
+<center style="font-size:12px;font-weight:bold">Fig. 9. Multiple input channels</center>
 
 <ul>
 <li>$X$: $c_i\times n_h\times n_W$</li>
@@ -343,7 +343,7 @@
 <p>For each input channel, there is a kernel. The output of the multiple input channels is the <strong>weighted</strong> sum of the output of each channel. Namely, even though there are several input channels, they just generate one output. To a certain extent, a kernel can be regarded as one of the generalized $w$ of a neuron and the multiple input channels are the model parameters of a neuron.</p>
 <h2 id="Multiple-output-channels"><a href="#Multiple-output-channels" class="headerlink" title="Multiple output channels"></a>Multiple output channels</h2><p>An output channel generate an output. It contains an independent batch of kernels which form a 3-D kernel. In other words, the multiple input channels are parts of an output channel. That&#39;s why the input channel is not a hyperparameter. Its size totally depends on the data. For examples, the number of input channels should 3 for RGB images and 1 for grayscale images.</p>
 <p><img src="/2023/05/10/CNN/9.png" alt="9"></p>
-<center style="font-size:12px">Fig. 9. Multiple input and output channels</center>
+<center style="font-size:12px;font-weight:bold">Fig. 10. Multiple input and output channels</center>
 
 <ul>
 <li>$X$: $c_i\times n_h\times n_W$</li>
@@ -356,7 +356,7 @@
 </blockquote>
 <h3 id="1-times-1-kernel"><a href="#1-times-1-kernel" class="headerlink" title="$1\times 1$ kernel"></a>$1\times 1$ kernel</h3><p>The $1\times 1$ kernel is a special kernel which doesn&#39;t recognize spatial patterns but just fuses channels. It can be regarded as a dense layer with input $n_hn_w\times c_i$ ($c_i$ is the number of features) and weight $c_ic_o$.</p>
 <p><img src="/2023/05/10/CNN/10.png" alt="10"></p>
-<center style="font-size:12px">Fig. 10. 1x1 kernel</center>
+<center style="font-size:12px;font-weight:bold">Fig. 11. 1x1 kernel</center>
 
 <h1 id="Pooling-layer"><a href="#Pooling-layer" class="headerlink" title="Pooling layer"></a>Pooling layer</h1><p>The pooling layer is another type of layer in CNN. It has two functions:</p>
 <ol>
@@ -375,7 +375,6 @@
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VV411478E/?spm_id_from=333.788&vd_source=2d980a0365f3ebea674b32924d8a4ce8">从“卷积”、到“图像卷积操作”、再到“卷积神经网络”，“卷积”意义的3次改变</a></li>
 </ul>
-<hr>
 
     </div>
 

@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/3.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/4.png">
 <meta property="article:published_time" content="2023-05-03T13:58:31.000Z">
-<meta property="article:modified_time" content="2023-05-19T10:53:30.609Z">
+<meta property="article:modified_time" content="2023-05-30T13:06:29.943Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep learning">
 <meta name="twitter:card" content="summary">
@@ -207,7 +207,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-19 18:53:30" itemprop="dateModified" datetime="2023-05-19T18:53:30+08:00">2023-05-19</time>
+                <time title="Modified: 2023-05-30 21:06:29" itemprop="dateModified" datetime="2023-05-30T21:06:29+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -250,7 +250,7 @@
 <li>Train the model using the whole training set.</li>
 </ol>
 <p><img src="/2023/05/03/ModelSelection/1.png" alt="1"></p>
-<center style="font-size:12px">Fig. 1. K-fold Cross Validation</center>
+<center style="font-size:12px;font-weight:bold">Fig. 1. K-fold Cross Validation</center><br>
 
 <blockquote>
 <p>In general, we seldom use K-fold since it is time-consuming. We often set K 5 or 10.</p>
@@ -260,27 +260,25 @@
 </ul>
 <h1 id="Model-capacity-and-data"><a href="#Model-capacity-and-data" class="headerlink" title="Model capacity and data"></a>Model capacity and data</h1><p>The <strong>model capacity</strong> is a model&#39;s ability to fit the function. It&#39;s very close for model complexity. High model capacity always means a deeper and larger neural network or more complex polynomials. Data or the complexity of data is determined by the size of dataset, the features number of each data, the diversity of samples, etc. Model capacity and data together determine the performance of a model:</p>
 <p><img src="/2023/05/03/ModelSelection/2.png" alt="2"></p>
-<center style="font-size:12px">Fig. 2. Model capacity and data</center>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Model capacity and data</center><br>
 
 <p>For neural networks, a simple way to evaluate model capacity is to compute the number of model parameters that the neural network can learn, or to evaluate the range of each parameter (w, b):</p>
 <p><img src="/2023/05/03/ModelSelection/3.png" alt="3"></p>
-<center style="font-size:12px">Fig. 3. Evaluating model capacity</center>
-
+<center style="font-size:12px;font-weight:bold">Fig. 3. Evaluating model capacity</center>
 
 <h2 id="VC-dimension"><a href="#VC-dimension" class="headerlink" title="VC dimension*"></a>VC dimension*</h2><p>The VC dimension of a model is the maximum number of points that can be arranged so that shatters them. More formally, it is the maximum cardinal such that there exists a generally positioned data point set of cardinality can be shattered by. -- From Google</p>
 <p>For a perceptron with inputs of N dimensions, its VC dimension is $N+1$ or $O(N\log_2N)$, that is, it can classify $N+1$ ($O(N\log_2N)$) points. VC dimension can be used to evaluate the model capacity though it doesn&#39;t work well.</p>
-<h1 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h1><p>Dropout is another method of regularization besides <a href="/2023/04/05/SupervisedLearning/#Weight-decay">weight decay</a>. The motivation of dropout is that a good model should be robust to input perturbations. Dropout achieves this by adding noise to the ouptout of hidden layers:<br>$$<br>dropout[x]&#x3D;x&#39;<br>$$<br>where:<br>$$<br>x_i&#39;&#x3D;<br>\begin{cases}<br>    0, &amp;p \\<br>    \frac{x_i}{1-p}, &amp;1-p<br>\end{cases}<br>$$<br>$p$ is a hyperparameter that controls the probability of dropout. Usually, we set $p$ to 0.1, 0.5 or 0.9. The meaning of the formula above is that dropout layer randomly sets the output of the neurons in a hidden layer to 0 (with probability $p$) or $\frac{1}{1-p}$ times as much as the origin value (with probability $1-p$). This works because when one value is set to 0, it is equivalent to remove a neuron from the hidden layer, which makes the neural network a sub neural network. Since dropout is totally random, we are actually training a model using multiple neural networks, which will make the model more robust.</p>
+<h1 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h1><p>Dropout is another method of regularization besides <a href="/2023/04/05/SupervisedLearning/#Weight-decay">weight decay</a>. The motivation of dropout is that a good model should be robust to input perturbations. Dropout achieves this by adding noise to the ouptout of hidden layers:<br>$$<br>\text{dropout}[x]&#x3D;x&#39;<br>$$<br>where:<br>$$<br>x_i&#39;&#x3D;<br>\begin{cases}<br>    0, &amp;p \\<br>    \frac{x_i}{1-p}, &amp;1-p<br>\end{cases}<br>$$<br>$p$ is a hyperparameter that controls the probability of dropout. Usually, we set $p$ to 0.1, 0.5 or 0.9. The meaning of the formula above is that dropout layer randomly sets the output of the neurons in a hidden layer to 0 (with probability $p$) or $\frac{1}{1-p}$ times as much as the origin value (with probability $1-p$). This works because when one value is set to 0, it is equivalent to remove a neuron from the hidden layer, which makes the neural network a sub neural network. Since dropout is totally random, we are actually training a model using multiple neural networks, which will make the model more robust.</p>
 <p><img src="/2023/05/03/ModelSelection/4.png" alt="4"></p>
-<center style="font-size:12px">Fig. 4. Dropout</center>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Dropout</center><br>
 
 <blockquote>
-<p>To ensure the accuracy, we must make sure that the expectation of dropout is equivalent to its original value:<br>$$E[x&#39;]&#x3D;x$$</p>
+<p>To ensure the accuracy, we must make sure that the expectation of dropout is equivalent to its original value:<br>$$\text{E}[x&#39;]&#x3D;x$$</p>
 </blockquote>
 <p>Since dropout is a kind of regularization, it only works when training models. When making predictions, we don&#39;t use dropout layer, like weight decay.</p>
 <blockquote>
 <p>In general, we use dropout in the dense layer of MLP.</p>
 </blockquote>
-<hr>
 
     </div>
 

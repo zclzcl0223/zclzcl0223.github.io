@@ -31,12 +31,12 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/12/Tensorflow/1.png">
 <meta property="article:published_time" content="2023-04-12T14:00:29.000Z">
-<meta property="article:modified_time" content="2023-05-06T15:11:52.630Z">
+<meta property="article:modified_time" content="2023-05-30T12:40:54.312Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Deep learning">
-<meta property="article:tag" content="Tool">
 <meta property="article:tag" content="Machine learning">
+<meta property="article:tag" content="Tool">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/12/Tensorflow/1.png">
 
@@ -207,7 +207,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-06 23:11:52" itemprop="dateModified" datetime="2023-05-06T23:11:52+08:00">2023-05-06</time>
+                <time title="Modified: 2023-05-30 20:40:54" itemprop="dateModified" datetime="2023-05-30T20:40:54+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,7 +245,7 @@
 </blockquote>
 <h2 id="Create-the-model"><a href="#Create-the-model" class="headerlink" title="Create the model"></a>Create the model</h2><p>For a neural network like this:</p>
 <p><img src="/2023/04/12/Tensorflow/1.png" alt="1"></p>
-<center style="font-size:12px"> Fig. 1. Sample</center> 
+<center style="font-size:12px;font-weight:bold"> Fig. 1. Sample</center><br>
 
 <p>we can create the neural network using tensorflow in Python:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"></span><br><span class="line"><span class="comment"># non-regularization</span></span><br><span class="line">model = Sequential([</span><br><span class="line">    <span class="comment"># We can use the following code to specify the shape of input layer</span></span><br><span class="line">    <span class="comment">## tf.keras.Input(shape=(x,))</span></span><br><span class="line">    Dense(units=<span class="number">25</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">15</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">                   ])</span><br><span class="line"><span class="comment"># regularization</span></span><br><span class="line">model = Sequential([</span><br><span class="line">    Dense(units=<span class="number">25</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>, kernel_regularizer=L2(<span class="number">0.01</span>)),</span><br><span class="line">    Dense(units=<span class="number">15</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>, kernel_regularizer=L2(<span class="number">0.01</span>)),</span><br><span class="line">    Dense(units=<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>, kernel_regularizer=L2(<span class="number">0.01</span>))</span><br><span class="line">                   ])  <span class="comment"># 0.01 is the value of lambda</span></span><br></pre></td></tr></table></figure>
@@ -322,7 +322,6 @@
 <li><a target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf">Tensorflow API</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.tensorflow.org/guide/function">Better performance with tf.function</a></li>
 </ul>
-<hr>
 
     </div>
 
@@ -354,8 +353,8 @@
           <div class="post-tags">
               <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
-              <a href="/tags/Tool/" rel="tag"># Tool</a>
               <a href="/tags/Machine-learning/" rel="tag"># Machine learning</a>
+              <a href="/tags/Tool/" rel="tag"># Tool</a>
           </div>
 
           <script type="text/javascript">

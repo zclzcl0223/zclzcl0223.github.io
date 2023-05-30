@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/23/LabsOfMachineLearningByAndrewNg2/2.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/23/LabsOfMachineLearningByAndrewNg2/3.png">
 <meta property="article:published_time" content="2023-04-23T12:13:11.000Z">
-<meta property="article:modified_time" content="2023-04-27T08:01:22.949Z">
+<meta property="article:modified_time" content="2023-05-30T13:03:02.837Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep learning">
 <meta property="article:tag" content="Decision trees">
@@ -208,7 +208,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-27 16:01:22" itemprop="dateModified" datetime="2023-04-27T16:01:22+08:00">2023-04-27</time>
+                <time title="Modified: 2023-05-30 21:03:02" itemprop="dateModified" datetime="2023-05-30T21:03:02+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,10 +239,10 @@
 <p>The same operation should also be applied to <code>lab_coffee_utils.py</code>, <code>lab_neurons_utils.py</code> and <code>lab_utils_common.py</code>. </p>
 <p>Then, install tensorflow. Maybe you should run you anaconda prompt as a administrator. When running the code of labs, once using the module from tensorflow, jupyter notebook keeps saying: <strong>The kernel has died</strong>. When checking the command line of the prompt, there may be one warning and one error:</p>
 <p><img src="/2023/04/23/LabsOfMachineLearningByAndrewNg2/1.png" alt="1"></p>
-<center style="font-size:12px">Warning</center>
+<center style="font-size:12px;font-weight:bold">Warning</center><br>
 
 <p><img src="/2023/04/23/LabsOfMachineLearningByAndrewNg2/2.png" alt="2"></p>
-<center style="font-size:12px">Error</center>
+<center style="font-size:12px;font-weight:bold">Error</center><br>
 
 <p>For the warning, it indicates that tensorflow could run faster by using some CPU instructions. We can add the following code to the beginning of the first code cell to ignore this warning:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;</span>]=<span class="string">&#x27;2&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -270,7 +270,6 @@
 <blockquote>
 <p>Some bugs occur when drawing the picture, and I don&#39;t know how to fit it... Just commenting out the relevant code is ok.</p>
 </blockquote>
-<hr>
 
     </div>
 

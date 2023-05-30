@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/11.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/12.png">
 <meta property="article:published_time" content="2023-04-10T13:30:44.000Z">
-<meta property="article:modified_time" content="2023-05-03T14:55:54.655Z">
+<meta property="article:modified_time" content="2023-05-30T12:55:15.760Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep learning">
 <meta property="article:tag" content="Machine learning">
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-03 22:55:54" itemprop="dateModified" datetime="2023-05-03T22:55:54+08:00">2023-05-03</time>
+                <time title="Modified: 2023-05-30 20:55:15" itemprop="dateModified" datetime="2023-05-30T20:55:15+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,7 +256,7 @@
 </ul>
 </blockquote>
 <p><img src="/2023/04/10/NeuralNetwork/1.png" alt="1"></p>
-<center style="font-size:12px">Fig. 1. Multilayer perceptron</center>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Multilayer perceptron</center>
 
 <h2 id="Neuron"><a href="#Neuron" class="headerlink" title="Neuron"></a>Neuron</h2><p>Each layer is made up of several (including one) neurons. Each neuron is a traditional machine learning model, like linear regression, logistic regression and so on. The output of one neuron is called <em><strong>activation</strong></em> and the function of this neuron is called <em><strong>activation function</strong></em>, which means it activate the next neuron.</p>
 <p>The magic of neural network is that it can learn new features by itself. So, we do not need to define who is the father of one neuron. Actually, each neuron will take the activations as its input, but the parameter of some activations may be zero. We just need to input the training set and define the structure of neural network. Then, the neural network will produce the most suitable new features. That is, a neuron (traditional model) is actually a new feature.</p>
@@ -264,7 +264,7 @@
 <p>The structure of neural network is called <em><strong>neural network architecture</strong></em>. It defines the number of layers and the number of neurons in each layer.</p>
 </blockquote>
 <p><img src="/2023/04/10/NeuralNetwork/2.png" alt="2"></p>
-<center style="font-size:12px">Fig. 2.</center>
+<center style="font-size:12px;font-weight:bold">Fig. 2.</center>
 
 <h2 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h2><ul>
 <li>$a^{[i]}$ &#x3D; output of layer i;</li>
@@ -272,14 +272,14 @@
 </ul>
 <h1 id="Forward-propagation-algorithm"><a href="#Forward-propagation-algorithm" class="headerlink" title="Forward propagation algorithm"></a>Forward propagation algorithm</h1><p>Forward propagation is a series of steps to count $f$. It is an inference or prediction of $y$. So, it is similar to $\widehat{y}$ in traditional model.</p>
 <p><img src="/2023/04/10/NeuralNetwork/3.png" alt="3"></p>
-<center style="font-size:12px">Fig. 3. Handwritten digit recognition</center>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Handwritten digit recognition</center>
 
 <h2 id="Numpy-and-Tensorflow"><a href="#Numpy-and-Tensorflow" class="headerlink" title="Numpy and Tensorflow"></a>Numpy and Tensorflow</h2><p>The data representation in numpy is slightly different from tensorflow. In numpy, we can represent data either in the form of matrix or in the form of vector:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.array([[<span class="number">200</span>, <span class="number">17</span>]]) <span class="comment"># array 1*2</span></span><br><span class="line">x = np.array([[<span class="number">200</span>],[<span class="number">17</span>]]) <span class="comment"># array 2*1</span></span><br><span class="line">x = np.array([<span class="number">200</span>, <span class="number">17</span>]) <span class="comment"># just a row vector</span></span><br></pre></td></tr></table></figure>
 <p>But we can only represent data in the form of matrix in tensorflow. Therefore, when using numpy and tensorflow together, it is advisable to store the data in the form of matrix.</p>
 <p>The followings are the implementation of a neuron network about coffee roasting using numpy and tensorflow. (Assuming the neural network has been trained)</p>
 <p><img src="/2023/04/10/NeuralNetwork/4.png" alt="4"></p>
-<center style="font-size:12px">Fig. 3. Coffee roasting (two inputs)</center>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Coffee roasting (two inputs)</center><br>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"></span><br><span class="line">x = np.array([[<span class="number">200.0</span>, <span class="number">17.0</span>]])</span><br><span class="line">layer_1 = Dense(units=<span class="number">3</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">a1 = layer_1(x)</span><br><span class="line"></span><br><span class="line">layer_2 = Dense(units=<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">a2 = layer_2(a1)</span><br></pre></td></tr></table></figure>
 <p>The data type of <code>a1</code> and <code>a2</code> are tensor,which is a built-in type in tensorflow :</p>
@@ -299,36 +299,36 @@
 
 <h1 id="Activation-function"><a href="#Activation-function" class="headerlink" title="Activation function"></a>Activation function</h1><p>Activation function is actually a reprocessing of the model $f$ and creates <strong>a new model</strong>. By using activation function, we can divide our model into two parts. The first part is <strong>uniform</strong> for all models:<br>$$z&#x3D;\vec{w}\cdot\vec{x}+b$$<br>To generate different models, we only need to select the most suitable activation function $g(z)$. And that is the second part. There are three commonly used activation functions: linear function (identity), Sigmoid (soft step) and ReLU (rectified linear unit).</p>
 <h2 id="Linear-function"><a href="#Linear-function" class="headerlink" title="Linear function"></a>Linear function</h2><p><img src="/2023/04/10/NeuralNetwork/5.png" alt="5"></p>
-<center style="font-size:12px">Fig. 5. Linear function</center>
+<center style="font-size:12px;font-weight:bold">Fig. 5. Linear function</center><br>
 
 <p>In linear function, we do not do anything to the first part of the model. Therefore, our model is just a linear regression model:<br>$$f&#x3D;g(z)&#x3D;\vec{w}\cdot\vec{x}+b$$<br>Since the linear function of a linear function is still a linear function, we actually do not use linear function in the hidden layer, otherwise, the hidden layer will be useless.</p>
 <h2 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h2><p><img src="/2023/04/10/NeuralNetwork/6.png" alt="6"></p>
-<center style="font-size:12px">Fig. 6. Sigmoid</center>
+<center style="font-size:12px;font-weight:bold">Fig. 6. Sigmoid</center><br>
 
 <p>Sigmoid is useful when we the output just has two possible value. So it often be used in the output layer of binary classification.</p>
 <h2 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h2><p><img src="/2023/04/10/NeuralNetwork/7.png" alt="7"></p>
-<center style="font-size:12px">Fig. 7. ReLU</center>
+<center style="font-size:12px;font-weight:bold">Fig. 7. ReLU</center><br>
 
 <p>ReLU is one of the most commonly used activation function in <strong>hidden layer</strong>. As the slope of it does not change on the negative or positive semi-axis, the convergence speed of ReLU is much faster than Sigmoid. In addition, ReLU makes sense because it has a &quot;off&quot; point which enables neurons to stitch together to form complex non-linear functions:</p>
 <p><img src="/2023/04/10/NeuralNetwork/8.png" alt="8"></p>
-<center style="font-size:12px">Fig. 8. Unit0+Unit1+Unit2</center>
+<center style="font-size:12px;font-weight:bold">Fig. 8. Unit0+Unit1+Unit2</center><br>
 
 <blockquote>
 <p>Andrew Ng suggests that for the output layer, we should select the activation function that produces the exact result we need, but for the hidden layer, it is advisable to choose ReLU as out default activation function.</p>
 </blockquote>
 <h1 id="Softmax-regression"><a href="#Softmax-regression" class="headerlink" title="Softmax regression"></a>Softmax regression</h1><p>Softmax regression or softmax activation function is used to deal with multiclass classification. Multiclass classification is an extension of binary classification. In multiclass classification, the number of output is more than two.</p>
 <p><img src="/2023/04/10/NeuralNetwork/9.png" alt="9"></p>
-<center style="font-size:12px">Fig. 9. Multiclass classification</center>
+<center style="font-size:12px;font-weight:bold">Fig. 9. Multiclass classification</center><br>
 
 <p>In binary regression, $g(z)$ is actually the possibility of $a&#x3D;&#x3D;1$. We can also get the possibility of $a&#x3D;&#x3D;0$ which is $1-g(z)$. But in multiclass classification, we can not do that. To solve this, softmax calculates the probability of all possible values. We use $z_i$ to represent a possible value and $a_i$ to represent its possibility:<br>$$z_1&#x3D;\vec{w_1}\cdot\vec{x}+b_1;a_1&#x3D;\frac{e^{z_1}}{e^{z_1}+...+e^{z_n}}&#x3D;P(y&#x3D;1)|\vec{x})$$<br>$$...$$<br>$$z_n&#x3D;\vec{w_n}\cdot\vec{x}+b_n;a_n&#x3D;\frac{e^{z_n}}{e^<br>{z_1}+...+e^{z_n}}&#x3D;P(y&#x3D;n|\vec{x})$$<br>And the loss function is:<br>$$L(a_1,...,a_n,y)&#x3D;\begin{cases}<br>-\log{a_1},&amp;y&#x3D;1 \\<br>...&amp; \\<br>-log{a_n},&amp;y&#x3D;n<br>\end{cases}$$</p>
 <p>The loss function will make $a_i$ tends to 1 when $y&#x3D;i$.Binary classfication is a special case where n&#x3D;2.</p>
 <p>Softmax is a special activation in neural network as it is actually a layer. Its output is a vector whose elements are the possibility of values.</p>
 <p><img src="/2023/04/10/NeuralNetwork/10.png" alt="10"></p>
-<center style="font-size:12px">Fig. 10. Neural network with softmax</center>
+<center style="font-size:12px;font-weight:bold">Fig. 10. Neural network with softmax</center>
 
 <h1 id="Multi-label-classification"><a href="#Multi-label-classification" class="headerlink" title="Multi-label classification"></a>Multi-label classification</h1><p>Multi-label classification is another type of classification. In multi-label classification, we are required to classify a thing into as many labels as we want. To realize this, we just need to use several sigmoid functions in our output layer.</p>
 <p><img src="/2023/04/10/NeuralNetwork/11.png" alt="11"></p>
-<center style="font-size:12px">Fig. 11. Multi-label classification</center>
+<center style="font-size:12px;font-weight:bold">Fig. 11. Multi-label classification</center>
 
 <h1 id="Adam-algorithm"><a href="#Adam-algorithm" class="headerlink" title="Adam algorithm"></a>Adam algorithm</h1><p>Adam algorithm is optimization of gradient descent, which will automatically modift $\alpha$. In adam algorithm, each neuron of the same layer has different $\alpha$ (the initial value is the same):</p>
 <ul>
@@ -336,9 +336,7 @@
 <li>If $w_j$ or $b$ keeps oscillating, it reduces $\alpha_j$.</li>
 </ul>
 <p><img src="/2023/04/10/NeuralNetwork/12.png" alt="12"></p>
-<center style="font-size:12px">Fig. 12. Adam algorithm</center>
-
-<hr>
+<center style="font-size:12px;font-weight:bold">Fig. 12. Adam algorithm</center>
 
     </div>
 

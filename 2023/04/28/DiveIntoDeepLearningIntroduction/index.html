@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/28/DiveIntoDeepLearningIntroduction/2.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/28/DiveIntoDeepLearningIntroduction/3.png">
 <meta property="article:published_time" content="2023-04-27T16:00:44.000Z">
-<meta property="article:modified_time" content="2023-05-12T10:08:30.147Z">
+<meta property="article:modified_time" content="2023-05-30T13:04:41.159Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep learning">
 <meta name="twitter:card" content="summary">
@@ -206,7 +206,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-12 18:08:30" itemprop="dateModified" datetime="2023-05-12T18:08:30+08:00">2023-05-12</time>
+                <time title="Modified: 2023-05-30 21:04:41" itemprop="dateModified" datetime="2023-05-30T21:04:41+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -295,19 +295,19 @@
 <li>Backward propagation: Calculate from $y$ to $\vec{x}_2$. T(n)&#x3D;n, S(n)&#x3D;n as we have to store the previous result for other parameters.</li>
 </ul>
 <p><img src="/2023/04/28/DiveIntoDeepLearningIntroduction/1.png" alt="1"></p>
-<center style="font-size:12px"> Fig. 1. Forward and backward propagation</center>
+<center style="font-size:12px;font-weight:bold"> Fig. 1. Forward and backward propagation</center><br>
 
 <p>In general, backward propagation is more suitable for deep learning as it actually runs faster. In addition, a neural network can be easily represented as a computation graph as each neuron in the neural network is actually a node in computation graph:</p>
 <p><img src="/2023/04/28/DiveIntoDeepLearningIntroduction/2.png" alt="2"></p>
-<center style="font-size:12px"> Fig. 2. Neural network</center>
+<center style="font-size:12px;font-weight:bold"> Fig. 2. Neural network</center><br>
 
 <p>The computation graph it forms is like this:</p>
 <p><img src="/2023/04/28/DiveIntoDeepLearningIntroduction/3.png" alt="3"></p>
-<center style="font-size:12px"> Fig. 3. Computation graph</center>
+<center style="font-size:12px;font-weight:bold"> Fig. 3. Computation graph</center><br>
 
 <p>For convenience, we make <code>bias=False</code>, that is, we only compute the gradients of <code>w</code>. Autograd will compute gradients from $\vec{a}^{[2]}$ to the leaf nodes. That is:</p>
-<p>$$grad[\vec{w}^{[2]}]&#x3D;\frac{\partial{a^{[2]}}}{\partial{\vec w^{[2]}}}$$</p>
-<p>$$grad[\vec{w}^{[1]}_{[i]}]&#x3D;\frac{\partial{a^{[2]}}}{\partial{\vec a^{[1]}}}\cdot\frac{\partial{\vec a^{[1]}}}{\partial{\vec w^{[1]} _ {[i]}}}$$</p>
+<p>$$\text{grad}[\vec{w}^{[2]}]&#x3D;\frac{\partial{a^{[2]}}}{\partial{\vec w^{[2]}}}$$</p>
+<p>$$\text{grad}[\vec{w}^{[1]}_{[i]}]&#x3D;\frac{\partial{a^{[2]}}}{\partial{\vec a^{[1]}}}\cdot\frac{\partial{\vec a^{[1]}}}{\partial{\vec w^{[1]} _ {[i]}}}$$</p>
 <p>Autograd computes from the top to bottom and store the gradients it computes before (like $\frac{\partial{a^{[2]}}}{\partial{\vec a^{[1]}}}$, autograd will store it in node $\vec a^{[1]}$) so that it doesn&#39;t need to compute it again.</p>
 <h1 id="Course-website"><a href="#Course-website" class="headerlink" title="Course website"></a>Course website</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/">DIVE INTO DEEP LEARNING</a></li>
@@ -315,7 +315,6 @@
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/351687500">autograd1</a></li>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/321449610">autograd2</a></li>
 </ul>
-<hr>
 
     </div>
 

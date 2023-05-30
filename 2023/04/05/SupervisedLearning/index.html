@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/16.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/17.png">
 <meta property="article:published_time" content="2023-04-05T15:34:48.000Z">
-<meta property="article:modified_time" content="2023-05-06T14:47:59.259Z">
+<meta property="article:modified_time" content="2023-05-30T12:55:50.776Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Supervised learning">
@@ -221,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-06 22:47:59" itemprop="dateModified" datetime="2023-05-06T22:47:59+08:00">2023-05-06</time>
+                <time title="Modified: 2023-05-30 20:55:50" itemprop="dateModified" datetime="2023-05-30T20:55:50+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,7 +249,7 @@
 
 <h1 id="Regression-model"><a href="#Regression-model" class="headerlink" title="Regression model"></a>Regression model</h1><p>The steps in regression model are as follow:</p>
 <p><img src="/2023/04/05/SupervisedLearning/1.png" alt="1"></p>
-<center style="font-size:12px">Fig. 1. Steps of regression model</center>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Steps of regression model</center><br>
 
 <p>$f$ is the <strong>function</strong> or <strong>model</strong> getting from the learning algorithm, which can be used to predict the output. $\widehat{y}$, the value of $f$, is the prediction of $y$.</p>
 <h2 id="Linear-regression-model"><a href="#Linear-regression-model" class="headerlink" title="Linear regression model"></a>Linear regression model</h2><p>Linear regression model is the most simple model in regression model, in which, $f$ is just a linear function:</p>
@@ -274,7 +274,7 @@
 <p>The 3D bowl-shaped surface plot, which is the plot of $J$, can also be visualized as a contour plot. In the contour plot, each oval contains the choices of $w$ and $b$ that result in the same value of $J$.</p>
 </blockquote>
 <p><img src="/2023/04/05/SupervisedLearning/2.png" alt="2"></p>
-<center style="font-size:12px">Fig. 2. 3D plot and contour plot</center>
+<center style="font-size:12px;font-weight:bold">Fig. 2. 3D plot and contour plot</center>
 
 <h3 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h3><p>Gradient descent is an algorithm that can be used to minimize any function. The steps of gradient descent are:</p>
 <ol>
@@ -292,15 +292,15 @@
 </ol>
 <p>To achieve this, $J$ has to be a <strong>bowl shape function (convex function)</strong> or <strong>a function with local minima</strong>.</p>
 <p><img src="/2023/04/05/SupervisedLearning/3.png" alt="3"></p>
-<center style="font-size:12px">Fig. 3. Function with locak minima</center>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Function with locak minima</center><br>
 
 <p>In linear regression, <em>mean squared error cost function</em> is always a bowl shape function because it squares the loss. If $\alpha$ is too small, the gradient descent will work but may be very slow.</p>
 <p><img src="/2023/04/05/SupervisedLearning/4.png" alt="4"></p>
-<center style="font-size:12px">Fig. 4. Model with small learning rate</center>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Model with small learning rate</center><br>
 
 <p>If $\alpha$ is too large, the gradient descent may not work, which means it may fail to converge but diverge.</p>
 <p><img src="/2023/04/05/SupervisedLearning/5.png" alt="5"></p>
-<center style="font-size:12px">Fig. 5. Model with large learning rate</center>
+<center style="font-size:12px;font-weight:bold">Fig. 5. Model with large learning rate</center><br>
 
 <blockquote>
 <p><em>Batch gradient descent</em>: Each step of gradient descent uses all the training examples.</p>
@@ -332,11 +332,11 @@
 </blockquote>
 <h2 id="More-about-gradient-descent"><a href="#More-about-gradient-descent" class="headerlink" title="More about gradient descent"></a>More about gradient descent</h2><h3 id="Feature-scaling"><a href="#Feature-scaling" class="headerlink" title="Feature scaling"></a>Feature scaling</h3><p>Feature scaling is a mothod to accelerate gradient descent. When the value of some features is too large, what may happen is that even though $\alpha$ is small, the changes of some parameters are still <strong>too significant</strong>, which slows down the convergence speed of gradient descent.</p>
 <p><img src="/2023/04/05/SupervisedLearning/6.png" alt="6"></p>
-<center style="font-size:12px">Fig. 6. Unscaled features</center>
+<center style="font-size:12px;font-weight:bold">Fig. 6. Unscaled features</center><br>
 
 <p>One useful method is <em>feature scaling</em>. By scaling down some features, we can make the convergence speed of different parameters basically the same.</p>
 <p><img src="/2023/04/05/SupervisedLearning/7.png" alt="7"></p>
-<center style="font-size:12px">Fig. 7. Scaled features</center>
+<center style="font-size:12px;font-weight:bold">Fig. 7. Scaled features</center><br>
 
 <p>Ways to scale features:</p>
 <ul>
@@ -355,14 +355,14 @@
 <li>Draw $J-iterations$ curve or learning curve.</li>
 </ol>
 <p><img src="/2023/04/05/SupervisedLearning/8.png" alt="8"></p>
-<center style="font-size:12px">Fig. 8. Iterations curve</center>
+<center style="font-size:12px;font-weight:bold">Fig. 8. Iterations curve</center>
 
 <ol start="2">
 <li>Automatic convergence test: Let $\epsilon$ be a small value. Once $J$ decreases by $\leqslant$ $\epsilon$ in one iteration, it converges.</li>
 </ol>
 <h3 id="Choose-a-better-alpha"><a href="#Choose-a-better-alpha" class="headerlink" title="Choose a better $\alpha$"></a>Choose a better $\alpha$</h3><p>Once the learning curve looks like these:</p>
 <p><img src="/2023/04/05/SupervisedLearning/9.png" alt="9"></p>
-<center style="font-size:12px">Fig. 9. Model with large learning rate</center>
+<center style="font-size:12px;font-weight:bold">Fig. 9. Model with large learning rate</center><br>
 
 <p>It indicates that $\alpha$ is too large. The way to choose a good $\alpha$ is starting with a relative <strong>small value</strong> (like 0.001). And check the astringency of $J$. If $J$ still does not converge, there may be <strong>some bugs</strong> in the code. Then, we can try to increase $\alpha$ by <strong>three times</strong>, until we find a relative large $\alpha$.</p>
 <h2 id="Polynomial-regression"><a href="#Polynomial-regression" class="headerlink" title="Polynomial regression"></a>Polynomial regression</h2><p>In polynomial regression, the model $f$ is a polynomial, which means that one feature may occur several times with different powers. For example:</p>
@@ -379,15 +379,15 @@
 <p>$$g(z)&#x3D;\frac{1}{1+e^{-z}},0&lt;g(z)&lt;1$$</p>
 <p>is called <em><strong>sigmoid function</strong></em> or <em><strong>logistic function</strong></em>.</p>
 <p><img src="/2023/04/05/SupervisedLearning/10.png" alt="10"></p>
-<center style="font-size:12px">Fig. 10. Sigmoid function</center>
+<center style="font-size:12px;font-weight:bold">Fig. 10. Sigmoid function</center><br>
 
 <p>Actually, the output of logistic regression can also be regarded as the possibility of <code>y==1</code>, so $f$ can also be represented as:<br>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;P(y&#x3D;1|\vec{x};\vec{w},b)$$</p>
 <h3 id="Decision-boundary"><a href="#Decision-boundary" class="headerlink" title="Decision boundary"></a>Decision boundary</h3><p>Since the output of logistic regression should be either 0 or 1, we must turn the value between 0 and 1 to 0 or 1. That is, we should find a threshold. When $f \ge threshold$,$f&#x3D;1$, otherwise, $f&#x3D;0$. The threshold we choose is often 0.5. When $f \ge 0.5$ ($\widehat{y}&#x3D;1$):<br>$$g(z) \ge 0.5$$<br>$$\downarrow$$<br>$$z \ge 0$$<br>$$\downarrow$$<br>$$\vec{w}\cdot\vec{x}+b \ge 0$$<br>The curve $\vec{w}\cdot\vec{x}+b &#x3D; 0$ is called <em><strong>decision boundary</strong></em>, where $\widehat{y}$ could be 0 or 1. For example:</p>
 <p><img src="/2023/04/05/SupervisedLearning/11.png" alt="11"></p>
-<center style="font-size:12px">Fig. 11. Decision boundary-line</center>
+<center style="font-size:12px;font-weight:bold">Fig. 11. Decision boundary-line</center>
 
 <p><img src="/2023/04/05/SupervisedLearning/12.png" alt="12"></p>
-<center style="font-size:12px">Fig. 12. Decision boundary-circle</center>
+<center style="font-size:12px;font-weight:bold">Fig. 12. Decision boundary-circle</center>
 
 <h3 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h3><p>In linear regression, the cost function:</p>
 <p>$$J_{(w,b)}&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
@@ -398,17 +398,17 @@
 <p>is called <em><strong>loss function</strong></em>.</p>
 <p>Loss function indicates the error between the prediction value and real value of one example in training set. The convexity of cost function is actually determined by loss function. In logistic regression, <em>squared error loss function</em> is a non-convex function.</p>
 <p><img src="/2023/04/05/SupervisedLearning/13.png" alt="13"></p>
-<center style="font-size:12px">Fig. 13. Non-convex loss function</center>
+<center style="font-size:12px;font-weight:bold">Fig. 13. Non-convex loss function</center><br>
 
 <p>Therefore, a new convex function is needed in logistic regression, that is:<br>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;-y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))-(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))$$<br>where $y^{(i)}&#x3D;0,1$; $f_{\vec{w},b}(\vec{x}^{(i)})\in(0,1)$; $\log$ uses $\ln$.</p>
 <p>When $y^{(i)}&#x3D;1$, the curve of $L$ is:</p>
 <p><img src="/2023/04/05/SupervisedLearning/14.png" alt="14"></p>
-<center style="font-size:12px">Fig. 14.</center>
+<center style="font-size:12px;font-weight:bold">Fig. 14.</center><br>
 
 <p>Using gradient descent will make the loss close to 0.</p>
 <p>When $y^{(i)}&#x3D;0$,the curve of $L$ is:</p>
 <p><img src="/2023/04/05/SupervisedLearning/15.png" alt="15"></p>
-<center style="font-size:12px">Fig. 15.</center>
+<center style="font-size:12px;font-weight:bold">Fig. 15.</center><br>
 
 <p>Using gradient descent will also make the loss close to 0.</p>
 <h3 id="Cost-function-2"><a href="#Cost-function-2" class="headerlink" title="Cost function"></a>Cost function</h3><p>$$J_{(w,b)}&#x3D;-\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}[y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))+(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))]$$<br>The derivative of $J$ in logistic regression is actually the same as that in linear regression:<br>$$w_j&#x3D;w_j-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})x_j^{(i)}]$$<br>$$b&#x3D;b-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})]$$</p>
@@ -420,12 +420,12 @@
 <h2 id="Multi-layer-classification-model"><a href="#Multi-layer-classification-model" class="headerlink" title="Multi-layer classification model"></a>Multi-layer classification model</h2><p>See <a href="/2023/04/10/NeuralNetwork/#Multi-label-classification">Multi-label classification</a>.</p>
 <h1 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h1><h2 id="Underfitting"><a href="#Underfitting" class="headerlink" title="Underfitting"></a>Underfitting</h2><p>When a model does not fit the training set well, the model is underfitting,</p>
 <p><img src="/2023/04/05/SupervisedLearning/16.png" alt="16"></p>
-<center style="font-size:12px">Fig. 16. Underfitting model</center>
+<center style="font-size:12px;font-weight:bold">Fig. 16. Underfitting model</center><br>
 
 <p>An underfitting model is an algorithm having <strong>high bias</strong>. In this case, we need to change a model.</p>
 <h2 id="Overfitting"><a href="#Overfitting" class="headerlink" title="Overfitting"></a>Overfitting</h2><p>When a model fits the training set extremely well, that is, the errors are approximate 0, the model is overfitting.</p>
 <p><img src="/2023/04/05/SupervisedLearning/17.png" alt="17"></p>
-<center style="font-size:12px">Fig. 17. Overfitting model</center>
+<center style="font-size:12px;font-weight:bold">Fig. 17. Overfitting model</center><br>
 
 <p>An overfitting model is an algorithm having <strong>high variance</strong>. In this case, the model just fits the training set well, but it can not be generalized. This problem often occurs when the training set is too small. So, the first method to solve this problem is to <strong>collect more training examples</strong>. Besides, <strong>selecting more suitable features</strong> is also feasible (<em><strong>Feature Selection</strong></em>). However, this method may cause our model to lose some useful features. The most feasible and commonly used method is <strong>regularization</strong>.</p>
 <h2 id="Weight-decay"><a href="#Weight-decay" class="headerlink" title="Weight decay"></a>Weight decay</h2><p>Overfitting may occurs when some features have an overly large effect, that is, a little change of these features may cause large changes to the model, which can make the model unexpandable.</p>
@@ -438,7 +438,6 @@
 <p>Since $J$ changes, the update of $w_j$ will also change:</p>
 <p>$$w_j&#x3D;w_j-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{\partial{L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})}}{\partial{w_j}}+\frac{\lambda}{m}w_j]$$<br>or<br>$$w_j&#x3D;(1-\alpha\frac{\lambda}{m})w_j-\alpha\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{\partial{L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})}}{\partial{w_j}}$$</p>
 <p>The second formula indicates that in each iteration, $w_j$ will be smaller than before. Therefore, this kind of normalization is also called <strong>weight decay</strong>.</p>
-<hr>
 
     </div>
 

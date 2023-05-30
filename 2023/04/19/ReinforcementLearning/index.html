@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/19/ReinforcementLearning/4.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/19/ReinforcementLearning/5.png">
 <meta property="article:published_time" content="2023-04-19T15:52:43.000Z">
-<meta property="article:modified_time" content="2023-04-25T02:54:23.109Z">
+<meta property="article:modified_time" content="2023-05-30T13:01:15.365Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine learning">
 <meta property="article:tag" content="Reinforcement learning">
@@ -209,7 +209,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-25 10:54:23" itemprop="dateModified" datetime="2023-04-25T10:54:23+08:00">2023-04-25</time>
+                <time title="Modified: 2023-05-30 21:01:15" itemprop="dateModified" datetime="2023-05-30T21:01:15+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -250,7 +250,7 @@
 <li>policy $\pi(s)$: A policy $a&#x3D;\pi(s)$ decides the action that a agent in $s_i$ state ought to take to get to next state $s_{i+1}$ so as to maximize the return.</li>
 </ul>
 <p><img src="/2023/04/19/ReinforcementLearning/1.png" alt="1"></p>
-<center style="font-size:12px">Fig. 1. A loop of reinforcement learning</center>
+<center style="font-size:12px;font-weight:bold">Fig. 1. A loop of reinforcement learning</center><br>
 
 <p>The figure above shows the procedure of reinforcement learning. A agent in state $s_i$ takes action to affect the environment or itself (The agent itself is actually a part of the environment), gets a certain reward and reach new state $s_{i+1}$. The goal of reinforcement learning is to fina a policy $\pi$ that tells the agent what action to take in every state so as to maximize the return. Nearly all reforcement learning assignment can be described as <strong>Markov decision process (MDP)</strong>. MDP is a process that the future only depends on the <strong>current state $s_i$</strong> and have nothing to do with the prior states or how things get to the current state.</p>
 <h1 id="State-action-value-function"><a href="#State-action-value-function" class="headerlink" title="State-action value function"></a>State-action value function</h1><p>State-action value function $Q(s,a)$, which is also called Q-function, $Q^*$ or optimal Q function, is a function that computes the maximum return a agent can get if it is in state $s$ and take action $a$ (once). After the agent takes action $a$, its state will become $s&#39;$ and the actions it could take in state $s&#39;$ are $a&#39;$. It is easy to realize that the computing of $Q$ is actually a dynamic programming process. In reinforcement learning, the method we use to count $Q$ is called <strong>bellman equation</strong>:</p>
@@ -259,11 +259,11 @@
 <p>$$<br>Q(s,a)&#x3D;R(s)+{\gamma}E[\max_{a&#39;}Q(s&#39;,a&#39;)]\tag{2}<br>$$<br>$E$ means expectation. When taking randomness into account, the state after taking action $a$ is uncertain. Therefore, what the second term of $Q(s,a)$ computes is the weighted average of the maximum returns weighted by $\gamma$ of the different states the agent may reach after taking action $a$.</p>
 <h1 id="Continuous-state"><a href="#Continuous-state" class="headerlink" title="Continuous state"></a>Continuous state</h1><p>In practice, the state of a agent is a vector whose values are continuous. For examples, in lab <em>Lunar Lander</em>, the state of a lunar lander can be described as:<br>$$<br>s&#x3D;[x,y,\dot{x},\dot{y},\theta,\dot{\theta},l,r]<br>$$<br>where $x$, $y$ and $\theta$ are its position since this is a plane problem. $\dot{x}$, $\dot{y}$, $\dot{\theta}$ are its velocity of different directions. $l$ and $r$ (value 0 or 1) indicates whether the left or right leg of lunar lander has landed.</p>
 <p><img src="/2023/04/19/ReinforcementLearning/2.png" alt="2"></p>
-<center style="font-size:12px">Fig. 2. Lunar Lander</center>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Lunar Lander</center>
 
 <h2 id="DQN-algorithm"><a href="#DQN-algorithm" class="headerlink" title="DQN algorithm"></a>DQN algorithm</h2><p>An algorithm to solve this type of reinforcement learning is DQN algorithm or Deep Q-Network. It is also called deep reinforcement learning as it uses neural networks to solve reinforcement learning problems. Its core idea is to compute $Q(s,a)$ using neural networks:</p>
 <p><img src="/2023/04/19/ReinforcementLearning/3.png" alt="3"></p>
-<center style="font-size:12px">Fig. 3. Deep reinforcement learning</center>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Deep reinforcement learning</center><br>
 
 <p>where $s$ is the state vector and $a$ is the action vector. In lunar lander, $a$ has four dimensions: do nothing, left thruster, right thruster and main thruster. Since it is actually a supervised learning model, we have to feed it training set $(s,a,Q)$ to get the mapping relationship between $s \And a$ and $Q$. According to bellman equation:</p>
 <p>$$Q(s,a)&#x3D;R(s)+{\gamma}\max_{a&#39;}Q(s&#39;,a&#39;)$$</p>
@@ -281,7 +281,7 @@
 </blockquote>
 <p>In the architecture above, for each value of $a$ in a certain state $s$, we have to predict it respectively. A more effective architecture is to just feed $s$ and produce $Q$ of all values of $a$:</p>
 <p><img src="/2023/04/19/ReinforcementLearning/4.png" alt="4"></p>
-<center style="font-size:12px">Fig. 4. Improved neural network architecture</center>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Improved neural network architecture</center>
 
 <h2 id="epsilon-greedy-policy"><a href="#epsilon-greedy-policy" class="headerlink" title="$\epsilon$-greedy policy"></a>$\epsilon$-greedy policy</h2><p>When simulating the behaviors of the agent, instead of simulating its action randomly, it is more advisable to choose a action that will maximizes $Q(s,a)$. However, choosing the action that maximizes $Q(s,a)$ all the time may reduce the robustness of the agent or miss some good choices. A policy to solve this is $\epsilon$-greedy policy:</p>
 <ul>
@@ -294,13 +294,12 @@
 <p>It is recommended to start $\epsilon$ high to explore more so as to enrich the robustness and then slightly reduce $\epsilon$.</p>
 <h2 id="Algorithm-refinement"><a href="#Algorithm-refinement" class="headerlink" title="Algorithm refinement"></a>Algorithm refinement</h2><h3 id="Mini-batch"><a href="#Mini-batch" class="headerlink" title="Mini-batch"></a>Mini-batch</h3><p>When the training set is too large, it is advisable to use different subsets instead of the whole set in each iteration. This will accelerate the computation of both $J$ and derivatives. Such methods can also be used in regression model:</p>
 <p><img src="/2023/04/19/ReinforcementLearning/5.png" alt="5"></p>
-<center style="font-size:12px">Fig. 5. Mini-batch</center>
+<center style="font-size:12px;font-weight:bold">Fig. 5. Mini-batch</center><br>
 
 <blockquote>
 <p>Tensorflow trains model using mini-batch.</p>
 </blockquote>
 <h3 id="Soft-update"><a href="#Soft-update" class="headerlink" title="Soft update"></a>Soft update</h3><p>When updating $Q$, we can&#39;t guarantee that $Q_{new}$ is better than $Q$. Therefore, it is recommended to keep a part of $Q$ and update smoothly, like:<br>$$Q_{new}&#x3D;0.01Q_{new}+0.99Q\tag{3}$$</p>
-<hr>
 
     </div>
 

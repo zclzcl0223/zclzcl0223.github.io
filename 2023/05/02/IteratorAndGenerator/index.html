@@ -30,7 +30,7 @@
 <meta property="og:description" content="The iterator and generator are important objects in Python.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-02T11:05:22.000Z">
-<meta property="article:modified_time" content="2023-05-02T12:46:42.069Z">
+<meta property="article:modified_time" content="2023-05-30T12:36:51.431Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -194,10 +194,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-05-02 19:05:22 / Modified: 20:46:42" itemprop="dateCreated datePublished" datetime="2023-05-02T19:05:22+08:00">2023-05-02</time>
+              <time title="Created: 2023-05-02 19:05:22" itemprop="dateCreated datePublished" datetime="2023-05-02T19:05:22+08:00">2023-05-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-05-30 20:36:51" itemprop="dateModified" datetime="2023-05-30T20:36:51+08:00">2023-05-30</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -233,8 +239,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">yield</span> i</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"></span><br><span class="line">_generator = func(<span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(_generator))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(_generator))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">We get:</span></span><br><span class="line"><span class="string">&lt;class &#x27;generator&#x27;&gt;</span></span><br><span class="line"><span class="string">0</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">next</span>(_generator))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">We get:</span></span><br><span class="line"><span class="string">hello</span></span><br><span class="line"><span class="string">1</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>When a function becomes a generator, it will not run immediately when called, instead, it will return a generator. When we use <code>next()</code> to traverse the generator, the function will run to the place where <code>yield</code> is, record the address and return a value. Next time, it will run starting from <code>yield</code>. Similarly, it will return <code>StopIteration</code> when finish the function. Therefore, we can also use <code>for</code> to traverse a generator:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> func(<span class="number">10</span>):</span><br><span class="line">    <span class="built_in">print</span>(i + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<hr>
 
     </div>
 
