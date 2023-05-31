@@ -31,8 +31,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/29/CommonRNNModels/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/29/CommonRNNModels/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/29/CommonRNNModels/3.png">
 <meta property="article:published_time" content="2023-05-29T11:53:15.000Z">
-<meta property="article:modified_time" content="2023-05-30T15:41:49.757Z">
+<meta property="article:modified_time" content="2023-05-31T05:13:07.792Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep learning">
 <meta property="article:tag" content="RNN">
@@ -206,7 +207,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-30 23:41:49" itemprop="dateModified" datetime="2023-05-30T23:41:49+08:00">2023-05-30</time>
+                <time title="Modified: 2023-05-31 13:13:07" itemprop="dateModified" datetime="2023-05-31T13:13:07+08:00">2023-05-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,7 +233,7 @@
       
         <span id="more"></span>
 
-<p>RNN is a special kind of MLP that takes its output as input to remember the previous information. It is such an simple struture that it can&#39;t remember as much information as we want. Besides, since RNN updates hidden state recurrently, the cumulative chain of gradients will become rather long, which may result in gradient explosion or gradient vanishing.</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>RNN is a special kind of MLP that takes its output as input to remember the previous information. It is such an simple struture that it can&#39;t remember as much information as we want. Besides, since RNN updates hidden state recurrently, the cumulative chain of gradients will become rather long, which may result in gradient explosion or gradient vanishing.</p>
 <h1 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1406.1078.pdf">Gated Recurrent Unit</a> (GRU) is a method to solve gradient anomaly in RNN. Its idea is based on three facts:</p>
 <ul>
 <li>Some tokens have nothing to do with previous tokens.</li>
@@ -274,7 +275,19 @@
 <p><code>nn.LSTM</code> is the class of LSTM in PyTorch. It is almost the same as <code>nn.GRU</code>.</p>
 </blockquote>
 <p>Though LSTM is more complex, GRU performs as well as LSTM.</p>
-<h1 id="DRNN"><a href="#DRNN" class="headerlink" title="DRNN"></a>DRNN</h1><h1 id="BRNN"><a href="#BRNN" class="headerlink" title="BRNN"></a>BRNN</h1>
+<h1 id="DRNN"><a href="#DRNN" class="headerlink" title="DRNN"></a>DRNN</h1><p>Deep Recurrent Neural Networks (DRNNs) are neural networks with multiple hidden layers. Their structures are the same as MLP&#39;s.</p>
+<h1 id="BRNN"><a href="#BRNN" class="headerlink" title="BRNN"></a>BRNN</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2210.08402.pdf">Bidirectional Recurrent Neural Networks</a> (BRNNs) are neural networks that consider not only the leftward context but also the rightward context. In some scenarios, a token is not only associated with its previous tokens but also its future tokens, for example, contextual analysis and cloze. In this case, it is better for the agent to consider the future tokens in addition to the previous tokens. And that&#39;s what BRNNs does:</p>
+<p><img src="/2023/05/29/CommonRNNModels/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. BRNNs</center><br>
+
+<p>BRNNs assign two independent RNN layers with the same structure to each hidden layer, where one deals with the leftward context and another one deals with the rightward context (just takse the antisequence as input):</p>
+<p>$$<br>\overrightarrow{\mathbf{H}} _t&#x3D;\text{activation}(\mathbf{X}_t\mathbf{W} _{xh} ^{(f)}+\overrightarrow{\mathbf{H}} _{t-1}\mathbf{W} _{hh} ^{(f)}+\mathbf{b} _h ^{(f)})\<br>\overleftarrow{\mathbf{H}} _t&#x3D;\text{activation}(\mathbf{X}_t^r\mathbf{W} _{xh} ^{(b)}+\overleftarrow{\mathbf{H}} _{t-1}\mathbf{W} _{hh} ^{(b)}+\mathbf{b} _h ^{(b)})<br>$$</p>
+<p>Then, the concatenation of $\overrightarrow{\mathbf{H}} _t$ and $\overleftarrow{\mathbf{H}} _t$ is passed as output $\mathbf{H} _t&#x3D;(\overrightarrow{\mathbf{H}} _t,\overleftarrow{\mathbf{H}} _t)$ to the next layer.</p>
+<p>BRNNs only work when the sequence contains information about future. Hence, BRNNs can&#39;t predict the future. Instead, BRNNs are usually used to <strong>extract features</strong> from a sequence, just like what convolutional layers do.</p>
+<blockquote>
+<p>There is keyword <code>bidirectional</code> in <code>nn.RNN</code>, <code>nn.GRU</code> and <code>nn.LSTM</code>. To enable BRNN, we can just set <code>bidirectional=True</code>.</p>
+</blockquote>
+
     </div>
 
     
@@ -284,7 +297,10 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\05\25\RNN\" rel="bookmark">RNN</a></div>
+      <div class="popular-posts-title"><a href="\2023\05\31\EncoderDecoder\" rel="bookmark">The Encoder-Decoder Architecture</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\25\RNN\" rel="bookmark">RNN: a special kind of MLP</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\05\19\MultipleGPUsAndParallelism\" rel="bookmark">Multiple GPUs and Parallelism</a></div>
@@ -294,9 +310,6 @@
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\05\10\CNN\" rel="bookmark">CNN: feature extraction</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\05\07\NumericalStability\" rel="bookmark">Numerical stability</a></div>
     </li>
   </ul>
 
@@ -326,10 +339,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/05/25/RNN/" rel="prev" title="RNN">
-      <i class="fa fa-chevron-left"></i> RNN
+    <a href="/2023/05/25/RNN/" rel="prev" title="RNN: a special kind of MLP">
+      <i class="fa fa-chevron-left"></i> RNN: a special kind of MLP
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/31/EncoderDecoder/" rel="next" title="The Encoder-Decoder Architecture">
+      The Encoder-Decoder Architecture <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -388,7 +404,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GRU"><span class="nav-number">1.</span> <span class="nav-text">GRU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LSTM"><span class="nav-number">2.</span> <span class="nav-text">LSTM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DRNN"><span class="nav-number">3.</span> <span class="nav-text">DRNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BRNN"><span class="nav-number">4.</span> <span class="nav-text">BRNN</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GRU"><span class="nav-number">2.</span> <span class="nav-text">GRU</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LSTM"><span class="nav-number">3.</span> <span class="nav-text">LSTM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DRNN"><span class="nav-number">4.</span> <span class="nav-text">DRNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BRNN"><span class="nav-number">5.</span> <span class="nav-text">BRNN</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -404,7 +420,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -441,7 +457,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>

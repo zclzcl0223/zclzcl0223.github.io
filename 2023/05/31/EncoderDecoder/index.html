@@ -22,17 +22,29 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Start of Something New">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JourneyToCoding">
-<meta property="og:url" content="https://zclzcl0223.github.io/tags/Data-analysis/index.html">
+  <meta name="description" content="The Encoder-Decoder Architecture views neural networks in a new perspective. It takes the neural network a kind of signal processor which encode the input and decode it to generate output.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Encoder-Decoder Architecture">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Start of Something New">
+<meta property="og:description" content="The Encoder-Decoder Architecture views neural networks in a new perspective. It takes the neural network a kind of signal processor which encode the input and decode it to generate output.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/6.png">
+<meta property="article:published_time" content="2023-05-31T05:14:00.000Z">
+<meta property="article:modified_time" content="2023-05-31T15:47:32.584Z">
 <meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="CNN">
+<meta property="article:tag" content="Deep learning">
+<meta property="article:tag" content="RNN">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/1.png">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/tags/Data-analysis/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/">
 
 
 <script id="page-configurations">
@@ -40,12 +52,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Tag: Data analysis | JourneyToCoding</title>
+  <title>The Encoder-Decoder Architecture | JourneyToCoding</title>
   
 
 
@@ -162,71 +174,155 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Data analysis
-          <small>Tag</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          The Encoder-Decoder Architecture
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-05-31 13:14:00 / Modified: 23:47:32" itemprop="dateCreated datePublished" datetime="2023-05-31T13:14:00+08:00">2023-05-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Dive-into-deep-learning/" itemprop="url" rel="index"><span itemprop="name">Dive into deep learning</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">The Encoder-Decoder Architecture views neural networks in a new perspective. It takes the neural network a kind of signal processor which encode the input and decode it to generate output.</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+        <span id="more"></span>
+
+<h1 id="Another-view-to-ANNs"><a href="#Another-view-to-ANNs" class="headerlink" title="Another view to ANNs"></a>Another view to ANNs</h1><p>Firstly, let&#39;s explain CNNs from the perspective of encoder-decoder:</p>
+<p><img src="/2023/05/31/EncoderDecoder/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. View CNNs in a new perspective</center><br>
+
+<p>When the agent extracts features from the input using convolutional layers and pooling layer, it encodes the image as a vector that better reflects some certain characteristics of the image. After that, the agent decodes these features and generates output.</p>
+<p>Similarly, for CNNs, the embedding layer and LSTM (GRU) layer encode texts as vectors. Then, The agent decodes these message and generates output.</p>
+<p><img src="/2023/05/31/EncoderDecoder/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. View RNNs in a new perspective</center><br>
+
+<p>This is the encoder-decoder architecture. In this architecture, the encoder deals with input , passes information to the decoder and the decoder generates output. More generally, the information the encoder passes to the decoder is called <em>state</em> which contains features of the input. The decoder can also receive new input so that it will get more information about the thing it copes with.</p>
+<p><img src="/2023/05/31/EncoderDecoder/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Encoder-Decoder</center><br>
+
+<h1 id="Seq2seq"><a href="#Seq2seq" class="headerlink" title="Seq2seq"></a>Seq2seq</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1409.3215.pdf">Sequence to sequence</a> (<a href="(https://arxiv.org/pdf/1406.1078.pdf)">Seq2seq</a>) is a kind of neural network using the encoder-decoder architecture to complete the task of <em>sequence to sequence learning</em>. It is applied mainly in machine translation.</p>
+<p><img src="/2023/05/31/EncoderDecoder/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Machine translation and Seq2seq (English to French)</center><br>
+
+<p><img src="/2023/05/31/EncoderDecoder/5.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Structure of Seq2seq</center><br>
+
+<h2 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h2><p>The encoder is a DRNN without regression layers. It works like the other DRNNs: take the source sequence (English) as input and output vectors. What is worth noticing is the <em>embedding layer</em>. In fact, it is an improvement on one-hot encoding. When using one-hot encoding, we have to use a $t\times m$ tensor for a sentence with $t$ tokens and a vocabulary with $m$ tokens. This is space-consuming. However, the embedding layer can map $m$-dimensional vectors to $k$-dimensional vectors ($k&lt;m$). This cuts the size of space we have to spend to store a sentence.</p>
+<h2 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h2><p>The decoder takes the target sequence (French) $\mathbf{X}$ as a part of input and also uses the embedding layer. In addition, it also takes the last hidden state of the last RNN layer of the encoder $\mathbf{C}$ as a part of input. $\mathbf{C}$ contains the context about the source sequence. $[\mathbf{X}, \mathbf{C}]$ form the complete input and are fed to the decoder. The last hidden states of all the RNN layers of the encoder are also used to initialize the hidden states of all the RNN layers of the decoder. Hence, the depth of RNN layer in encoder and decoder should be the same (that is $n$).</p>
+<blockquote>
+<p>For convenience, the length of all the sequences ($t$) is fixed. Hence, for the sentences that are longer than $t$, they are cut to $t$; for the sentences that are shorter than $t$, they are filled up to $t$. When computing the loss using softmax, we should only consider the valid length and set the filled part to $0$.</p>
+</blockquote>
+<h2 id="Training-and-predicting"><a href="#Training-and-predicting" class="headerlink" title="Training and predicting"></a>Training and predicting</h2><p>When training, what we feed to the decoder are the correct translation sequence, like Fig. 4. However, when predicting, we only feed the token that indicates the start of a sentence (<code>&lt;bos&gt;</code>) to the decoder and the output is fed as input to the decoder until the decoder generates the token that indicates the end of a sentence (<code>&lt;eos&gt;</code>).</p>
+<p><img src="/2023/05/31/EncoderDecoder/6.png" alt="6"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. Making prediction (translation)</center>
+
+<h2 id="Assessment"><a href="#Assessment" class="headerlink" title="Assessment"></a>Assessment</h2>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\14\CommonCNNModels\" rel="bookmark">Common CNN models</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\10\CNN\" rel="bookmark">CNN: feature extraction</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\29\CommonRNNModels\" rel="bookmark">Common RNN models</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\25\RNN\" rel="bookmark">RNN: a special kind of MLP</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\10\FourierTransformAndCNN\" rel="bookmark">Fourier transform and CNN</a></div>
+    </li>
+  </ul>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-04-24T21:58:14+08:00"
-              content="2023-04-24">
-          04-24
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/04/24/Matplotlib/" itemprop="url">
-            <span itemprop="name">Matplotlib</span>
-          </a>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CNN/" rel="tag"># CNN</a>
+              <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
+              <a href="/tags/RNN/" rel="tag"># RNN</a>
+          </div>
 
-    </header>
-  </article>
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-04-22T11:37:25+08:00"
-              content="2023-04-22">
-          04-22
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/04/22/NumPy/" itemprop="url">
-            <span itemprop="name">NumPy</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/29/CommonRNNModels/" rel="prev" title="Common RNN models">
+      <i class="fa fa-chevron-left"></i> Common RNN models
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-  </div>
+      </footer>
+    
+  </article>
   
   
-  
-
   
 
 
@@ -279,6 +375,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Another-view-to-ANNs"><span class="nav-number">1.</span> <span class="nav-text">Another view to ANNs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Seq2seq"><span class="nav-number">2.</span> <span class="nav-text">Seq2seq</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Encoder"><span class="nav-number">2.1.</span> <span class="nav-text">Encoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decoder"><span class="nav-number">2.2.</span> <span class="nav-text">Decoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-and-predicting"><span class="nav-number">2.3.</span> <span class="nav-text">Training and predicting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assessment"><span class="nav-number">2.4.</span> <span class="nav-text">Assessment</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -433,6 +530,59 @@ setInterval("createtime()",250);
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
