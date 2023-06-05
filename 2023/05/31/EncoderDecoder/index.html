@@ -35,8 +35,11 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/4.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/5.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/7.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/8.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/31/EncoderDecoder/9.png">
 <meta property="article:published_time" content="2023-05-31T05:14:00.000Z">
-<meta property="article:modified_time" content="2023-05-31T15:47:32.584Z">
+<meta property="article:modified_time" content="2023-06-01T09:16:09.109Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="CNN">
 <meta property="article:tag" content="Deep learning">
@@ -203,10 +206,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-05-31 13:14:00 / Modified: 23:47:32" itemprop="dateCreated datePublished" datetime="2023-05-31T13:14:00+08:00">2023-05-31</time>
+              <time title="Created: 2023-05-31 13:14:00" itemprop="dateCreated datePublished" datetime="2023-05-31T13:14:00+08:00">2023-05-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-06-01 17:16:09" itemprop="dateModified" datetime="2023-06-01T17:16:09+08:00">2023-06-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -260,7 +269,25 @@
 <p><img src="/2023/05/31/EncoderDecoder/6.png" alt="6"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 6. Making prediction (translation)</center>
 
-<h2 id="Assessment"><a href="#Assessment" class="headerlink" title="Assessment"></a>Assessment</h2>
+<h2 id="Assessment"><a href="#Assessment" class="headerlink" title="Assessment"></a>Assessment</h2><p><a target="_blank" rel="noopener" href="https://aclanthology.org/P02-1040.pdf">Bilingual evaluation understudy</a> (BLEU) is a method to evaluate the accuracy of machine translation or other sequence to sequence application. BLEU is always range between $0$ and $1$. The larger BLEU is, the more accurate the prediction is. It is defined as:</p>
+<p>$$<br>\exp(\min(0,1-\frac{\text{len} _{label}}{\text{len} _{pred}}))\prod\limits _{n&#x3D;1}^k p _n ^{1&#x2F;2^n}<br>$$</p>
+<p>where $\text{len} _{label}$ is the number of tokens in target sequence $y$ while $\text{len} _{pred}$ is the number of tokens in prediction sequence $\hat{y}$. Since shorter predictions contain less tokens, which makes $\prod\limits _{n&#x3D;1}^k p _n ^{1&#x2F;2^n}$ bigger, there will be penalty for short predictions.</p>
+<blockquote>
+<p>The smaller $\text{len} _{pred}$ is, the larger $\text{len} _{label}&#x2F;{\text{len} _{pred}}$ is, and thus the smaller $\exp(\min(...))$ is.</p>
+</blockquote>
+<p>$p_n$ is the accuracy of $n$-grams, namely, the accuracy of prediction of $n$ tokens in sequence. Due to the difficulty to predict long sequence, long sequence will get higher weight than short sequence. $1&#x2F;2^n$ help us do this. Because $p_n$ is often smaller than $1$ and the bigger $n$ is, the smaller $1&#x2F;2^n$ is, long sequence will always get larger value even though $p_n$ keeps the same.</p>
+<p><img src="/2023/05/31/EncoderDecoder/7.png" alt="7"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 7. Curve of p<sub>n</sub><sup>1/2<sup>n</sup></sup>(p<sub>n</sub>=0.5)</center>
+
+<h1 id="Beam-search"><a href="#Beam-search" class="headerlink" title="Beam search"></a>Beam search</h1><p>When predicting a token using softmax, we are actually using <em>Greedy search</em>. That is, for each timestep, the token we choose is the one with the highest probability.</p>
+<p><img src="/2023/05/31/EncoderDecoder/8.png" alt="8"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 8. Greedy search</center> <br>
+
+<p>However, local optimum does not necessarily lead to global optimum. If we choose B in timestep1 and feed it to decoder in timestep2, maybe we will get higher accuracy for the prediction in timestep2. <em>Exhaustive search</em> can solver this problem but it is time-consuming.</p>
+<p>Beam search is a compromise between greedy search and Exhaustive search. In the first timestep, beam search will choose <em>k</em> tokens with high probability and finally generate <em>k</em> condidate sequence. Then, sequence with the highest probability is chosen. <em>k</em> is a hyperparameter called <em>beam size</em>.</p>
+<p><img src="/2023/05/31/EncoderDecoder/9.png" alt="9"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 9. Beam search</center>
+
     </div>
 
     
@@ -316,7 +343,10 @@
     <a href="/2023/05/29/CommonRNNModels/" rel="prev" title="Common RNN models">
       <i class="fa fa-chevron-left"></i> Common RNN models
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/02/OptimizationAlgorithms/" rel="next" title="Optimization Algorithms">
+      Optimization Algorithms <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -375,7 +405,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Another-view-to-ANNs"><span class="nav-number">1.</span> <span class="nav-text">Another view to ANNs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Seq2seq"><span class="nav-number">2.</span> <span class="nav-text">Seq2seq</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Encoder"><span class="nav-number">2.1.</span> <span class="nav-text">Encoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decoder"><span class="nav-number">2.2.</span> <span class="nav-text">Decoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-and-predicting"><span class="nav-number">2.3.</span> <span class="nav-text">Training and predicting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assessment"><span class="nav-number">2.4.</span> <span class="nav-text">Assessment</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Another-view-to-ANNs"><span class="nav-number">1.</span> <span class="nav-text">Another view to ANNs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Seq2seq"><span class="nav-number">2.</span> <span class="nav-text">Seq2seq</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Encoder"><span class="nav-number">2.1.</span> <span class="nav-text">Encoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decoder"><span class="nav-number">2.2.</span> <span class="nav-text">Decoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-and-predicting"><span class="nav-number">2.3.</span> <span class="nav-text">Training and predicting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assessment"><span class="nav-number">2.4.</span> <span class="nav-text">Assessment</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Beam-search"><span class="nav-number">3.</span> <span class="nav-text">Beam search</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -391,7 +421,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -428,7 +458,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>
