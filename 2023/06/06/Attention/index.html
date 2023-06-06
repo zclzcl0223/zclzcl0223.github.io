@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Attention mechanisms is a layer of neural networks added to deep learning models to focus their attention to specific parts of data, based on different weights assigned to different parts. Just as the">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Attention Mechanisms: More Targeted Information Extraction">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/06/06/Attention/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Attention mechanisms is a layer of neural networks added to deep learning models to focus their attention to specific parts of data, based on different weights assigned to different parts. Just as the">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/6.png">
+<meta property="article:published_time" content="2023-06-05T21:29:23.000Z">
+<meta property="article:modified_time" content="2023-06-06T13:56:57.250Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Attention machanism">
+<meta property="article:tag" content="Deep learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/1.png">
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/06/06/Attention/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Attention Mechanisms: More Targeted Information Extraction | JourneyToCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JourneyToCoding</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/06/06/Attention/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Attention Mechanisms: More Targeted Information Extraction
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-06-06 05:29:23 / Modified: 21:56:57" itemprop="dateCreated datePublished" datetime="2023-06-06T05:29:23+08:00">2023-06-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Dive-into-deep-learning/" itemprop="url" rel="index"><span itemprop="name">Dive into deep learning</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Attention mechanisms is a layer of neural networks added to deep learning models to focus their attention to specific parts of data, based on different weights assigned to different parts. Just as the neural network is an effort to mimic human brain actions in a simplified manner, the attention mechanism is also an attempt to implement the same action of selectively concentrating on a few relevant things while ignoring others in neural networks.</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="Attention-in-Biology"><a href="#Attention-in-Biology" class="headerlink" title="Attention in Biology"></a>Attention in Biology</h1><p>In biology, there are two kinds of cue that affect our attention: volitional cue (自主性提示) and nonvolitional cue (非自主性提示).</p>
+<p><img align="left" src="/2023/06/06/Attention/1.png" style=" width:380px; padding: 0px 0px; "> <img align="mid" src="/2023/06/06/Attention/2.png" style=" width:380px; padding: 0px 0px; "></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Nonvolitional cue (left) and Volitional cue (right)</center><br>
+
+<p>The nonvolitional cue is based on the saliency of objects in the environment. It&#39;s unconscous. As the above picture shows, when there is a red cup among several white objects, we will unconsciously choose the red cup whose color is more prominent. The volitional cue is controlled by our awareness and our decisions are led by our consciousness. For example, after drinking a cup of coffee, we may want to relax, because of which we choose a book to read.</p>
+<h1 id="Attention-Mechanisms"><a href="#Attention-Mechanisms" class="headerlink" title="Attention Mechanisms"></a>Attention Mechanisms</h1><p>The nonvolitional cue and volitional cue inspire us to take the environment as input and use volitional cue to focus the attention to a certain object or feature.</p>
+<h2 id="Queries-Keys-and-Values"><a href="#Queries-Keys-and-Values" class="headerlink" title="Queries, Keys and Values"></a>Queries, Keys and Values</h2><p>In attention mechanisms, the nonvolitional cue is also called <strong>query</strong>. It reflects the tendency of feature extraction. The volitional cue is actually our perception of the environment. The characteristics of the environment can be represented by several <strong>key-value pairs</strong>. These three things consist of the input of the attention mechanism. Giving queries and keys, the attention mechanism will aggregate values and choose the most prominent and suitable value as output. Such a process is also called <em>attention pooling</em>. It is queries that distinguish attention pooling from dense layers.</p>
+<p><img src="/2023/06/06/Attention/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Attention pooling</center>
+
+<h2 id="Mathematical-Representation-of-Attention"><a href="#Mathematical-Representation-of-Attention" class="headerlink" title="Mathematical Representation of Attention"></a>Mathematical Representation of Attention</h2><p>Our attention to a certain object reflects how much we care about it, or, mathematically, the weight we give it. When a certain query is offered to us, it is natural for us to think of finding something similar to this query to get the answer. That is, for a key-value pair, the more similar the key is to the query, the higher proportion its value should take up in the answer. This is how <em><strong>Nadaraya-Watson kernel regression</strong></em> works:</p>
+<p>$$<br>f(\mathbf{q})&#x3D;\sum\limits _{i&#x3D;1} ^n \frac{K(\mathbf{q}-\mathbf{k}_i)}{\sum\limits _{j&#x3D;1} ^n K(\mathbf{q}-\mathbf{k}_j)}\mathbf{v}_i<br>$$</p>
+<p>where $K$ is a kernel. Such a estimator assigns different weight to different keys for a certain query. More generally, attention is defined as:</p>
+<p>$$<br>\text{Attention}(\mathbf{q},\mathbf{k},\mathbf{v})&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i<br>$$</p>
+<p>where $\alpha(\mathbf{q},\mathbf{k}_i)$ is <em>attention weight</em>. It is non-negative and its sum is $1$. The output is a weighted sum of the values for each key-value pair.</p>
+<p><img src="/2023/06/06/Attention/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Mathematical representation of attention pooling</center> <br>
+
+<p>It is noteworthy that Nadaraya-Watson kernel regression is a nonparametric model (<em>nonparametric attention pooling</em>). Therefore, it is consistent. With enough data, it will converge to the optimum result. However, in machine learning, the agent needs parameters to learn so that it could improve its performance. For instance, if we set $K$ as a gaussian kernel and add learnable parameter $\mathbf{w}$, we get a formula that looks like softmax:</p>
+<p>$$<br>K(\mathbf{u})&#x3D;\frac{1}{\sqrt{2\pi}}\exp(-\frac{\mathbf{u}^2}{2})<br>$$</p>
+<p>$$<br>\begin{align*}<br>f(\mathbf{q})<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\frac{\exp[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]}{\sum\limits _{j&#x3D;1} ^n\exp[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]}\mathbf{v}_i\\<br>    &amp;&#x3D;\sum _{i&#x3D;1} ^n\text{softmax}[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]\mathbf{v}_i<br>\end{align*}<br>$$</p>
+<h2 id="Attention-Scoring-Function"><a href="#Attention-Scoring-Function" class="headerlink" title="Attention Scoring Function"></a>Attention Scoring Function</h2><p>The exponent of the gaussian kernel above ($-{\mathbf{u}^2}&#x2F;2$) is actually a attention scoring function ($a$) which evaluates the similarity between $\mathbf{q}$ and $\mathbf{k}_i$. Hence, the attention pooling can be also represented as:</p>
+<p>$$<br>\begin{align*}<br>    \text{Attention}(\mathbf{q},\mathbf{k},\mathbf{v})&amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\text{softmax}[a(\mathbf{q},\mathbf{k}_i)]<br>\end{align*}<br>$$</p>
+<p><img src="/2023/06/06/Attention/5.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Computing the output of attention pooling</center> <br>
+
+<p>where $\text{softmax}$ generates attention weights. The more similar the key $\mathbf{k}_i$ is to the query $\mathbf{q}$, the higher weight its value $\mathbf{v}_i$ gets. The output is the weighted sum of values.</p>
+<p>More generally, query $\mathbf{q}$ and key $\mathbf{k}_i$ are both <strong>vectors</strong> of different length. The attention scoring function maps these two vectors to a scalar</p>
+<h3 id="Additive-Attention"><a href="#Additive-Attention" class="headerlink" title="Additive Attention"></a>Additive Attention</h3><p>Additive attention uses MLP to evaluate the similarity between $\mathbf{q}$ and $\mathbf{k}$, where $\mathbf{q}\in\mathbf{R}^q$ and $\mathbf{k}\in\mathbf{R}^k$:</p>
+<p>$$<br>a(\mathbf{q,k})&#x3D;[\tanh(\mathbf{q}\mathbf{W}_q+\mathbf{k}\mathbf{W}_k)]\mathbf{w}_v\in\mathbf{R}<br>$$</p>
+<p>where $\mathbf{W}_q\in\mathbf{R} ^{q\times h}$, $\mathbf{W}_k\in\mathbf{R} ^{k\times h}$ and $\mathbf{w}_v\in\mathbf{R} ^{h}$. All of them are learnable parameters (here we ignore the bias) in one dense layer.</p>
+<blockquote>
+<p>In practice, each batch may have several queries and key-value pairs. And there are always more than one batches. In this case, the shape of $\mathbf{q}$ is <code>(batch_size, num_queries, q)</code> and the shape of $\mathbf{k}$ is <code>(batch_size, num_kv_pairs, k)</code>. The shape of $\mathbf{q}\mathbf{W}_q$ is <code>(batch_size, num_queries, h)</code> and the shape of $\mathbf{k}\mathbf{W}_k$ is <code>(batch_size, num_kv_pairs, h)</code>. <code>num_queries</code> and <code>num_kv_pairs</code> are always different, which means that we can&#39;t add $\mathbf{q}\mathbf{W}_q$ and $\mathbf{k}\mathbf{W}_k$ directly. </p>
+<p>To solve this, we always use <code>queries.unsqueeze(2)</code> and <code>keys.unsqueeze(1)</code> (<code>queries</code> and <code>keys</code> are both tensor) to expand their dimensions. After <code>unsqueeze</code>, the shape of <code>queries</code> is <code>(batch_size, num_queries, 1, h)</code> and the shape of <code>keys</code> is <code>(batch_size, 1, num_kv_pairs, h)</code>. Now broadcasting can make $\mathbf{q}\mathbf{W}_q+\mathbf{k}\mathbf{W}_k$ legal. The nature of this operation is that each query should take all the keys into account so the $2$ dimension of <code>queries</code> is expanded to <code>num_kv_pairs</code>, so is <code>keys</code>. </p>
+</blockquote>
+<h3 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h3><p>If the shape of $\mathbf{q}$ and $\mathbf{k}$ are the same (both are $d$), we could just use dot-product to evaluate their similarity:</p>
+<p>$$<br>a(\mathbf{q,k})&#x3D;\mathbf{q}^\text{T}\mathbf{k}&#x2F;\sqrt{d}<br>$$</p>
+<p>where $\sqrt{d}$ is to make sure that the value of $a(\mathbf{q,k})$ will not change significantly when the shape changes.</p>
+<p>If considering SGD, the attention weights are:</p>
+<p>$$<br>\text{softmax}(\mathbf{Q}\mathbf{K}^\text{T}&#x2F;\sqrt{d})\mathbf{V}<br>$$</p>
+<p>where $d$ is still the shape of each query or each key.</p>
+<h1 id="Different-Types-of-Attention"><a href="#Different-Types-of-Attention" class="headerlink" title="Different Types of Attention"></a>Different Types of Attention</h1><p>Depending on the number of attention pooling and the relationship among queries, keys and values, there are various forms of attention mechanisms.</p>
+<h2 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h2><p>Just as different convolutional output channels can extract different types of features, different attention pooling will also learn various behaviors. Hence, we can use multi-head attention to generate multiple attention pooling outputs $\mathbf{h}_1...\mathbf{h}_i$ in parallel and concatenate them together to form $(\mathbf{h}_1,...,\mathbf{h}_i)$.</p>
+<p><img src="/2023/06/06/Attention/6.png" alt="6"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Multi-head attention</center>
+
+<h2 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h2><p>Self-attention (intra-attention) is a special kind of attention, whose queries, keys and values are all the same things.</p>
+<h1 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h1><p>When dealing with sequence information, RNNs operates each token in sequence. Therefore, the location information of the sequence is used. However, the attention pooling operates all the inputs in parallel, that is, the location information is wasted. </p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\06\02\OptimizationAlgorithms\" rel="bookmark">Optimization Algorithms</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\31\EncoderDecoder\" rel="bookmark">The Encoder-Decoder Architecture</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\29\CommonRNNModels\" rel="bookmark">Common RNN models</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\25\RNN\" rel="bookmark">RNN: a special kind of MLP</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\19\MultipleGPUsAndParallelism\" rel="bookmark">Multiple GPUs and Parallelism</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Attention-machanism/" rel="tag"># Attention machanism</a>
+              <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/02/OptimizationAlgorithms/" rel="prev" title="Optimization Algorithms">
+      <i class="fa fa-chevron-left"></i> Optimization Algorithms
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-in-Biology"><span class="nav-number">1.</span> <span class="nav-text">Attention in Biology</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-Mechanisms"><span class="nav-number">2.</span> <span class="nav-text">Attention Mechanisms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Queries-Keys-and-Values"><span class="nav-number">2.1.</span> <span class="nav-text">Queries, Keys and Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mathematical-Representation-of-Attention"><span class="nav-number">2.2.</span> <span class="nav-text">Mathematical Representation of Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-Scoring-Function"><span class="nav-number">2.3.</span> <span class="nav-text">Attention Scoring Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Additive-Attention"><span class="nav-number">2.3.1.</span> <span class="nav-text">Additive Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scaled-Dot-Product-Attention"><span class="nav-number">2.3.2.</span> <span class="nav-text">Scaled Dot-Product Attention</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Different-Types-of-Attention"><span class="nav-number">3.</span> <span class="nav-text">Different Types of Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-Head-Attention"><span class="nav-number">3.1.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-Attention"><span class="nav-number">3.2.</span> <span class="nav-text">Self-Attention</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Positional-Encoding"><span class="nav-number">4.</span> <span class="nav-text">Positional Encoding</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChaosTsang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ChaosTsang</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-machanism/" rel="tag">Attention machanism</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fas fa-star-of-david"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {  // 2023-04-04 00:16:51
+        var grt= new Date("04/04/2023 00:16:51");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/zclzcl0223/my_medium-zoom@master/medium-zoom-v7.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>
