@@ -35,10 +35,11 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/4.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/5.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/7.png">
 <meta property="article:published_time" content="2023-06-05T21:29:23.000Z">
-<meta property="article:modified_time" content="2023-06-06T13:56:57.250Z">
+<meta property="article:modified_time" content="2023-06-07T12:43:07.770Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="Attention machanism">
+<meta property="article:tag" content="Attention mechanism">
 <meta property="article:tag" content="Deep learning">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/1.png">
@@ -202,10 +203,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-06-06 05:29:23 / Modified: 21:56:57" itemprop="dateCreated datePublished" datetime="2023-06-06T05:29:23+08:00">2023-06-06</time>
+              <time title="Created: 2023-06-06 05:29:23" itemprop="dateCreated datePublished" datetime="2023-06-06T05:29:23+08:00">2023-06-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-06-07 20:43:07" itemprop="dateModified" datetime="2023-06-07T20:43:07+08:00">2023-06-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -248,9 +255,8 @@
 <p><img src="/2023/06/06/Attention/4.png" alt="4"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 3. Mathematical representation of attention pooling</center> <br>
 
-<p>It is noteworthy that Nadaraya-Watson kernel regression is a nonparametric model (<em>nonparametric attention pooling</em>). Therefore, it is consistent. With enough data, it will converge to the optimum result. However, in machine learning, the agent needs parameters to learn so that it could improve its performance. For instance, if we set $K$ as a gaussian kernel and add learnable parameter $\mathbf{w}$, we get a formula that looks like softmax:</p>
-<p>$$<br>K(\mathbf{u})&#x3D;\frac{1}{\sqrt{2\pi}}\exp(-\frac{\mathbf{u}^2}{2})<br>$$</p>
-<p>$$<br>\begin{align*}<br>f(\mathbf{q})<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\frac{\exp[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]}{\sum\limits _{j&#x3D;1} ^n\exp[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]}\mathbf{v}_i\\<br>    &amp;&#x3D;\sum _{i&#x3D;1} ^n\text{softmax}[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]\mathbf{v}_i<br>\end{align*}<br>$$</p>
+<p>It is noteworthy that Nadaraya-Watson kernel regression is a nonparametric model (<em>nonparametric attention pooling</em>). Therefore, it is consistent. With enough data, it will converge to the optimum result. However, in machine learning, the agent needs parameters to learn so that it could improve its performance. For instance, if we set $K$ as a gaussian kernel and add learned parameter $\mathbf{w}$, we get a formula that looks like softmax:</p>
+<p>$$<br>\begin{align*}<br>K(\mathbf{u})&amp;&#x3D;\frac{1}{\sqrt{2\pi}}\exp(-\frac{\mathbf{u}^2}{2})\\<br>f(\mathbf{q})<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\frac{\exp[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]}{\sum\limits _{j&#x3D;1} ^n\exp[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]}\mathbf{v}_i\\<br>    &amp;&#x3D;\sum _{i&#x3D;1} ^n\text{softmax}[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]\mathbf{v}_i<br>\end{align*}<br>$$</p>
 <h2 id="Attention-Scoring-Function"><a href="#Attention-Scoring-Function" class="headerlink" title="Attention Scoring Function"></a>Attention Scoring Function</h2><p>The exponent of the gaussian kernel above ($-{\mathbf{u}^2}&#x2F;2$) is actually a attention scoring function ($a$) which evaluates the similarity between $\mathbf{q}$ and $\mathbf{k}_i$. Hence, the attention pooling can be also represented as:</p>
 <p>$$<br>\begin{align*}<br>    \text{Attention}(\mathbf{q},\mathbf{k},\mathbf{v})&amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\text{softmax}[a(\mathbf{q},\mathbf{k}_i)]<br>\end{align*}<br>$$</p>
 <p><img src="/2023/06/06/Attention/5.png" alt="5"></p>
@@ -260,7 +266,7 @@
 <p>More generally, query $\mathbf{q}$ and key $\mathbf{k}_i$ are both <strong>vectors</strong> of different length. The attention scoring function maps these two vectors to a scalar</p>
 <h3 id="Additive-Attention"><a href="#Additive-Attention" class="headerlink" title="Additive Attention"></a>Additive Attention</h3><p>Additive attention uses MLP to evaluate the similarity between $\mathbf{q}$ and $\mathbf{k}$, where $\mathbf{q}\in\mathbf{R}^q$ and $\mathbf{k}\in\mathbf{R}^k$:</p>
 <p>$$<br>a(\mathbf{q,k})&#x3D;[\tanh(\mathbf{q}\mathbf{W}_q+\mathbf{k}\mathbf{W}_k)]\mathbf{w}_v\in\mathbf{R}<br>$$</p>
-<p>where $\mathbf{W}_q\in\mathbf{R} ^{q\times h}$, $\mathbf{W}_k\in\mathbf{R} ^{k\times h}$ and $\mathbf{w}_v\in\mathbf{R} ^{h}$. All of them are learnable parameters (here we ignore the bias) in one dense layer.</p>
+<p>where $\mathbf{W}_q\in\mathbf{R} ^{q\times h}$, $\mathbf{W}_k\in\mathbf{R} ^{k\times h}$ and $\mathbf{w}_v\in\mathbf{R} ^{h}$. All of them are learned parameters (here we ignore the bias) in one dense layer.</p>
 <blockquote>
 <p>In practice, each batch may have several queries and key-value pairs. And there are always more than one batches. In this case, the shape of $\mathbf{q}$ is <code>(batch_size, num_queries, q)</code> and the shape of $\mathbf{k}$ is <code>(batch_size, num_kv_pairs, k)</code>. The shape of $\mathbf{q}\mathbf{W}_q$ is <code>(batch_size, num_queries, h)</code> and the shape of $\mathbf{k}\mathbf{W}_k$ is <code>(batch_size, num_kv_pairs, h)</code>. <code>num_queries</code> and <code>num_kv_pairs</code> are always different, which means that we can&#39;t add $\mathbf{q}\mathbf{W}_q$ and $\mathbf{k}\mathbf{W}_k$ directly. </p>
 <p>To solve this, we always use <code>queries.unsqueeze(2)</code> and <code>keys.unsqueeze(1)</code> (<code>queries</code> and <code>keys</code> are both tensor) to expand their dimensions. After <code>unsqueeze</code>, the shape of <code>queries</code> is <code>(batch_size, num_queries, 1, h)</code> and the shape of <code>keys</code> is <code>(batch_size, 1, num_kv_pairs, h)</code>. Now broadcasting can make $\mathbf{q}\mathbf{W}_q+\mathbf{k}\mathbf{W}_k$ legal. The nature of this operation is that each query should take all the keys into account so the $2$ dimension of <code>queries</code> is expanded to <code>num_kv_pairs</code>, so is <code>keys</code>. </p>
@@ -277,7 +283,20 @@
 <center style="font-size:12px; font-weight:bold">Fig. 5. Multi-head attention</center>
 
 <h2 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h2><p>Self-attention (intra-attention) is a special kind of attention, whose queries, keys and values are all the same things.</p>
-<h1 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h1><p>When dealing with sequence information, RNNs operates each token in sequence. Therefore, the location information of the sequence is used. However, the attention pooling operates all the inputs in parallel, that is, the location information is wasted. </p>
+<h1 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h1><p>When dealing with sequence information, RNNs operates each token in sequence. Therefore, the location information of the sequence is used. However, the attention pooling operates all the inputs in parallel, because of which, the location information is wasted.</p>
+<p>Positional encoding is the location information added to the keys. In computer science, we use binary string to represent position (e.g. 0: 000, 1: 001,..., 7: 111). As can be seen, the bit on each position alternates at diferent frequencies respectively. Higher bits alternate less frequently than lower bits. Such alternating changes can represent discrete positional information.</p>
+<h2 id="Absolute-Positional-Information"><a href="#Absolute-Positional-Information" class="headerlink" title="Absolute Positional Information"></a>Absolute Positional Information</h2><p>For the input $\mathbf{X}\in\mathbf{R} ^{n\times d}$ which contains $n$ tokens and $d$ features for each token, we can use positional embedding matrix $\mathbf{P}\in\mathbf{R} ^{n\times d}$ to offer it positional information:</p>
+<p>$$<br>\begin{align*}<br>    \mathbf{X&#39;}&amp;&#x3D;\mathbf{X}+\mathbf{P}\\<br>    p_{i,2j}&amp;&#x3D;\sin(\frac{i}{10000 ^{2j&#x2F;d}})\\<br>    p_{i,2j+1}&amp;&#x3D;\cos(\frac{i}{10000 ^{2j&#x2F;d}})<br>\end{align*}<br>$$</p>
+<p>It works because different columns, which are similar to the bit position in binary string, oscillate at different frequencies. It is just like the binary string but the value is continuous.</p>
+<p><img src="/2023/06/06/Attention/7.png" alt="7"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. Oscillating frequency of different columns</center>
+
+<h2 id="Relative-Positional-Information"><a href="#Relative-Positional-Information" class="headerlink" title="Relative Positional Information"></a>Relative Positional Information</h2><p>The positional information we add to $\mathbf{X}$ is called absolute positional information. What&#39;s more, we can also get the relative positional information for different rows in the same column:</p>
+<p>$$<br>\begin{align*}<br>    (p_{i,2j}, p_{i,2j+1})&amp;&#x3D;(\sin\frac{i}{10000 ^{2j&#x2F;d}},\cos\frac{i}{10000 ^{2j&#x2F;d}})\\<br>    (p_{i+\delta,2j}, p_{i+\delta,2j+1})&amp;&#x3D;(\sin\frac{i+\delta}{10000 ^{2j&#x2F;d}},\cos\frac{i+\delta}{10000 ^{2j&#x2F;d}})\\<br>    &amp;&#x3D;({\begin{bmatrix}<br>           \cos\delta\omega_j\space\space \sin\delta\omega_j\\<br>           -\sin\delta\omega_j\space\space \cos\delta\omega_j<br>       \end{bmatrix}}<br>      {\begin{bmatrix}<br>           p_{i,2j}\\<br>           p_{i,2j+1}<br>       \end{bmatrix}})^\text{T}\\<br>    &amp;&#x3D;[\sin(i+\delta)\omega_j,\cos(i+\delta)\omega_j]\\<br>\end{align*}<br>$$</p>
+<p>where $\omega_j&#x3D;1&#x2F;10000^{2j&#x2F;d}$.</p>
+<blockquote>
+<p>Positional information is information added to the input key $\mathbf{X}$, it could be fixed positional encoding like what we do above or learned one.</p>
+</blockquote>
 
     </div>
 
@@ -287,6 +306,9 @@
       
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\06\07\Transformer\" rel="bookmark">Transformer: Self-Attention and Parallelization</a></div>
+    </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\06\02\OptimizationAlgorithms\" rel="bookmark">Optimization Algorithms</a></div>
     </li>
@@ -299,15 +321,12 @@
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\05\25\RNN\" rel="bookmark">RNN: a special kind of MLP</a></div>
     </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\05\19\MultipleGPUsAndParallelism\" rel="bookmark">Multiple GPUs and Parallelism</a></div>
-    </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Attention-machanism/" rel="tag"># Attention machanism</a>
+              <a href="/tags/Attention-mechanism/" rel="tag"># Attention mechanism</a>
               <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
           </div>
 
@@ -333,7 +352,10 @@
     <a href="/2023/06/02/OptimizationAlgorithms/" rel="prev" title="Optimization Algorithms">
       <i class="fa fa-chevron-left"></i> Optimization Algorithms
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/07/Transformer/" rel="next" title="Transformer: Self-Attention and Parallelization">
+      Transformer: Self-Attention and Parallelization <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -392,7 +414,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-in-Biology"><span class="nav-number">1.</span> <span class="nav-text">Attention in Biology</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-Mechanisms"><span class="nav-number">2.</span> <span class="nav-text">Attention Mechanisms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Queries-Keys-and-Values"><span class="nav-number">2.1.</span> <span class="nav-text">Queries, Keys and Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mathematical-Representation-of-Attention"><span class="nav-number">2.2.</span> <span class="nav-text">Mathematical Representation of Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-Scoring-Function"><span class="nav-number">2.3.</span> <span class="nav-text">Attention Scoring Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Additive-Attention"><span class="nav-number">2.3.1.</span> <span class="nav-text">Additive Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scaled-Dot-Product-Attention"><span class="nav-number">2.3.2.</span> <span class="nav-text">Scaled Dot-Product Attention</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Different-Types-of-Attention"><span class="nav-number">3.</span> <span class="nav-text">Different Types of Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-Head-Attention"><span class="nav-number">3.1.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-Attention"><span class="nav-number">3.2.</span> <span class="nav-text">Self-Attention</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Positional-Encoding"><span class="nav-number">4.</span> <span class="nav-text">Positional Encoding</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-in-Biology"><span class="nav-number">1.</span> <span class="nav-text">Attention in Biology</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-Mechanisms"><span class="nav-number">2.</span> <span class="nav-text">Attention Mechanisms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Queries-Keys-and-Values"><span class="nav-number">2.1.</span> <span class="nav-text">Queries, Keys and Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mathematical-Representation-of-Attention"><span class="nav-number">2.2.</span> <span class="nav-text">Mathematical Representation of Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-Scoring-Function"><span class="nav-number">2.3.</span> <span class="nav-text">Attention Scoring Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Additive-Attention"><span class="nav-number">2.3.1.</span> <span class="nav-text">Additive Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scaled-Dot-Product-Attention"><span class="nav-number">2.3.2.</span> <span class="nav-text">Scaled Dot-Product Attention</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Different-Types-of-Attention"><span class="nav-number">3.</span> <span class="nav-text">Different Types of Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-Head-Attention"><span class="nav-number">3.1.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-Attention"><span class="nav-number">3.2.</span> <span class="nav-text">Self-Attention</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Positional-Encoding"><span class="nav-number">4.</span> <span class="nav-text">Positional Encoding</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Absolute-Positional-Information"><span class="nav-number">4.1.</span> <span class="nav-text">Absolute Positional Information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relative-Positional-Information"><span class="nav-number">4.2.</span> <span class="nav-text">Relative Positional Information</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -408,20 +430,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -445,7 +467,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-machanism/" rel="tag">Attention machanism</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-mechanism/" rel="tag">Attention mechanism</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>
