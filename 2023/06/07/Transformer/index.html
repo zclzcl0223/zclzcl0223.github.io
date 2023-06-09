@@ -22,18 +22,20 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="The transformer which is distinguished by its adoption of self-attention and multi-head attention is a deep learning model using encoder-decoder architecture. It can be used in both CV and NLP. The en">
+  <meta name="description" content="The transformer which is distinguished by its adoption of self-attention and multi-head attention, is a deep learning model using the encoder-decoder architecture. It can be used in both CV and NLP. T">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer: Self-Attention and Parallelization">
 <meta property="og:url" content="https://zclzcl0223.github.io/2023/06/07/Transformer/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="The transformer which is distinguished by its adoption of self-attention and multi-head attention is a deep learning model using encoder-decoder architecture. It can be used in both CV and NLP. The en">
+<meta property="og:description" content="The transformer which is distinguished by its adoption of self-attention and multi-head attention, is a deep learning model using the encoder-decoder architecture. It can be used in both CV and NLP. T">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/07/Transformer/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/07/Transformer/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/07/Transformer/2_1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/07/Transformer/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/07/Transformer/4.png">
 <meta property="article:published_time" content="2023-06-07T12:34:57.000Z">
-<meta property="article:modified_time" content="2023-06-08T15:21:35.057Z">
+<meta property="article:modified_time" content="2023-06-09T07:53:45.090Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Attention mechanism">
 <meta property="article:tag" content="Deep learning">
@@ -207,7 +209,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-06-08 23:21:35" itemprop="dateModified" datetime="2023-06-08T23:21:35+08:00">2023-06-08</time>
+                <time title="Modified: 2023-06-09 15:53:45" itemprop="dateModified" datetime="2023-06-09T15:53:45+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,7 +222,7 @@
             </span>
 
           
-            <div class="post-description">The transformer which is distinguished by its adoption of self-attention and multi-head attention is a deep learning model using encoder-decoder architecture. It can be used in both CV and NLP. The encoder of transformer generates BERT while the decoder of transformer generates GPT.</div>
+            <div class="post-description">The transformer which is distinguished by its adoption of self-attention and multi-head attention, is a deep learning model using the encoder-decoder architecture. It can be used in both CV and NLP. The encoder of transformer generates BERT and the decoder of transformer generates GPT.</div>
 
         </div>
       </header>
@@ -233,51 +235,65 @@
       
         <span id="more"></span>
 
-<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762.pdf">Transformer</a>基于编码器-解码器架构来处理序列对。不同于使用注意力的seq2seq，Transformer是纯基于注意力的。编码器和解码器都由$n$个重复的Transformer块组成。</p>
+<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762.pdf">Transformer</a> deals with sequence based on the encoder-decoder architecture. Compared to seq2seq which uses attention mechanisms as well as RNNs, transformer is purely based on the attention mechanism. Both of its encoder and decoder consist of $n$ transformer blocks.</p>
 <p><img src="/2023/06/07/Transformer/1.png" alt="1"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. Architecture of transformer</center><br>
 
-<p>编码器的输出为$\mathbf{y}_1,...,\mathbf{y}_n$，其中$\mathbf{y}_i$可理解为编码器对第$i$个字符的编码。除最后一个编码器外，前一个编码器的输出作为下一个编码器块的输入。最后一个编码器的编码又作为所有解码器块的key和value，而解码器块的query则是上一个解码器块经过掩码多头注意力后的输出。因此，编码器和解码器的输出维度要是一样的。</p>
+<p>The outpur of encoder is $\mathbf{y}_1,...,\mathbf{y}_n$, where $\mathbf{y}_i$ is the encoding of the $i$-th token. Except for the last encoder block, the output of other encoder blocks is the input for their next encoder block. The output of the last encoder block is the keys and values for the multi-head attention layer of all the decoder blocks whose queries are the output of masked multi-head attention layer. As a result, the shape of the output of the encoder and decoder should be the same.</p>
 <p><img src="/2023/06/07/Transformer/2.png" alt="2"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 2. 编码器和解码器间的信息传递</center><br>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Information transfer between encoder and decoder</center><br>
 
-<p>预测时，编码器的工作是没有变化的，直接处理原序列即可。而解码器则必须要顺序工作，因为预测值必须要一个接一个地获得。也就是说，在预测第$t+1$个输出时，掩码自注意力层的key和value是前$t$个预测值，而query还包含了第$t$个预测值。</p>
-<h2 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h2><p>BatchNorm：每个特征维度均值变0，方差变1（二维的列）<br>LayerNorm：每个样本的所有特征均值变0，方差变1（二维的行）</p>
-<p>但是对于序列数据，其一般是三维的，即<code>(batch_size, sequence_length, features)</code>。而对于不同的序列，其序列的有效长度可能不同，此时用BatchNorm计算得到的不同序列的均值和方差的抖动会较大，进而影响了全局的均值和方差，且当预测序列的长度远长或短于训练序列时，全局的均值和方差可能不太好用。LayerNorm则是对每个样本的所有features进行归一化，因此相对稳定一点。</p>
-<h1 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h1><p>Encoder由1个嵌入层和n个编码器块组成。每个编码器块有两个子层： 多头自注意力和前馈层。每个层的输出维度都是一样的，所以可调节的参数一般只有层的个数和输出维度。</p>
-<p>编码器输入：key，value，query是一个东西。输出的特征维和输入的特征维相同。除了第一个编码器的输入是编码后的原序列，后续编码器的输入都是前一个编码器的输出。</p>
-<h2 id="Embedding-amp-Positional-Encoding"><a href="#Embedding-amp-Positional-Encoding" class="headerlink" title="Embedding &amp; Positional Encoding"></a>Embedding &amp; Positional Encoding</h2><p>嵌入层将每个key，value和query的特征维映射为相同的维度，即编码器的输出维度，同时为所有的keys，values和queries都加上位置信息。</p>
 <blockquote>
-<p>由于此时keys，values和queries是同一个东西，所以实际上只需要处理一个变量。</p>
-<p>由于位置信息都是介于-1和1之间的，因此在加入位置信息之前，为保证每个token的特征的值不会远小于位置信息，要先让经过嵌入层处理的样本乘以嵌入维度的平方根进行放大。</p>
+<p>The code of transformer in PyTorch: <a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/chapter_attention-mechanisms/transformer.html">Dive into Deep Learning</a>.</p>
 </blockquote>
-<h2 id="Encoder-Block"><a href="#Encoder-Block" class="headerlink" title="Encoder Block"></a>Encoder Block</h2><p>编码器块由多头自注意力层和前馈网络层两大模块组成，且在每个模块后都进行了残差连接和层归一化以训练更深的网络（先残差连接再归一化）</p>
+<h2 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h2><ul>
+<li>BatchNorm: The mean of each feature dimension becomes 0, and the variance becomes 1 (two-dimensional: column).</li>
+<li>LayerNorm：The mean of all features of each sample becomes 0, and the variance becomes 1 (two-dimensional: row).</li>
+</ul>
+<p>But for sequence data, it is generally three-dimensional, that is <code>(batch_size, sequence_length, features)</code>. For different sequences, the effective length of the sequence may be different. At this time, the jitter of the mean and variance of different sequences calculated by BatchNorm will be larger, which will affect the global mean and variance, and when the length of the predicted sequence is much longer or shorter than the training sequence, the global mean and variance may not be very useful. LayerNorm normalizes all features of each sample, that is, each sample only considers itself, so it is relatively stable.</p>
+<p><img src="/2023/06/07/Transformer/2_1.png" alt="2_1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. BatchNorm and LayerNorm</center>
+
+<h1 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h1><p>The encoder is made up of one embedding layer and $n$ encoder blocks. Each encoder block consists of two sublayers: multi-head self-attention and positionwise feed-forward networks. The shape of output of each layer is the same so hyperparameters that can be adjusted are the number of encoder block and the shape of output.</p>
+<p>Inputs of encoder are keys, values and queries, which are all the source sequence. The shape of feature of the input after embedding layer is the same as the output. The input of the first encoder block is the original sequence after encoding while the others are outputs of the previous encoder block.</p>
 <blockquote>
-<p>这也侧面体现了在Transformer中，各个模块的输入和输出的特征维度是始终不变的。这一点与传统的CNN网络有很大的不同。</p>
+<p>All layers (except for the embedding layer) of encoder and decoder don&#39;t change the shape of samples.</p>
 </blockquote>
-<h3 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h3><p>Transformer使用的是Dot-Product Attention。因此为了让多头注意力层有一定的可学习参数，在keys，values和queries每一个头之前，都要先对它们用全连接层进行新的映射。</p>
+<h2 id="Embedding-amp-Positional-Encoding"><a href="#Embedding-amp-Positional-Encoding" class="headerlink" title="Embedding &amp; Positional Encoding"></a>Embedding &amp; Positional Encoding</h2><p>The embedding layer maps the feature dimension of each key, value and query to the same dimension <code>num_hiddens</code>, which is the output dimension of the encoder, and then adds location information to all keys, values and queries.</p>
+<blockquote>
+<p>Since keys, values and queries are the same thing at this point, only one variable needs to be processed. <code>key_size</code>, <code>value_size</code>, and <code>query_size</code> which are the shape of features of keys, values and queries, are all the same thing.</p>
+<p>Since the location information is between $-1$ and $1$, before adding the location information, it is necessary to multiply the samples processed by the embedding layer by the square root of <code>num_hiddens</code> in order to ensure that the value of the feature of each token is not much smaller than the location information.</p>
+</blockquote>
+<h2 id="Encoder-Block"><a href="#Encoder-Block" class="headerlink" title="Encoder Block"></a>Encoder Block</h2><p>The encoder block consists of two modules: a multi-head self-attention layer and a position-wise FFN layer. After each module, a residual connection and layer normalization are performed to train a deeper network (residual connection first and then layer normalization).</p>
+<blockquote>
+<p>This also reflects that in transformer, the feature dimensions of the input and output of each module are always constant. This is very different from the traditional CNNs.</p>
+</blockquote>
+<h3 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h3><p>Transformer uses dot-product attention. Therefore, in order to allow the multi-head attention layer to have learned parameters, before each head of keys, values, and queries, they must first be newly mapped with a fully connected layer.</p>
 <p><img src="/2023/06/07/Transformer/3.png" alt="3"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 3. 编码器和解码器间的信息传递</center><br>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Multi-head attention and fully connected layer</center><br>
 
-<p>但是，由于注意力实际上是对不同values的加权和，所示Dot-Product Attention是不会改变输入参数的维度的。而经过多头注意力层的样本特征维度要保持不变，所以实际上头的个数与特征的输出维度是相关联的：</p>
-<p>$$<br>\text{heads}\times\text{NeuronOfFC}&#x3D;\text{OutputSize}<br>$$</p>
-<p>因此，实际上不同头之前的全连接层可以合并为三个大的全连接层。每个的输出大小均为$\text{OutputSize}$，分别处理keys，values和queries。这样子并行度会更好。</p>
+<p>The attention is actually a weighted sum of different values, so the dot-product attention does not change the shape of input. However, the fully connected layer may change the shape of input. The feature dimension of the sample after the multi-head attention layer should remain unchanged, so the number of heads is actually related to the output dimension of the feature:</p>
+<p>$$<br>\text{heads}\times\text{num_hiddens_FC}&#x3D;\text{num_hiddens}<br>$$</p>
+<p>Therefore, the fully connected layers before different heads can be merged into a large fully connected layer with model parameters <code>W_q</code>, <code>W_k</code> and <code>W_v</code>, which process queries, keys, and values respectively. The output size of the layer is $\text{num_hiddens}$. In this way, the parallelism will be better.</p>
+<p><img src="/2023/06/07/Transformer/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Large fully connected layer</center><br>
+
 <blockquote>
-<p>上述操作得到的输出的形状是<code>(batch_size, 查询或键值对个数，OutputSize)</code>。经过变形操作，可使得形状变为<code>(batch_size, 查询或键值对个数, heads, OutputSize/heads)</code>。如此，不同头便再次被分开，也就可以独立地计算各个头的输出了。在注意力汇聚、各个头的输出被concat后，一般还会再进行一次线性变换，此次变换仍不改变特征维度，只是多个可学习参数而已。</p>
+<p>The shape of the output obtained from the above operations is <code>(batch_size, num_queries or key-value_pairs, num_hiddens)</code>. After the deformation operation, the shape can be changed to <code>(batch_size, num_queries or key-value_pairs, heads, num_hiddens/heads)</code>. In this way, the different heads are separated again, and the output of each head can be calculated independently. After the attention is gathered and the output of each head is concatenated, a linear transformation is performed again. This transformation still does not change the feature dimension, but increases the number of learned parameters (<code>W_o</code>).</p>
 </blockquote>
-<h3 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h3><p>该模块实际上就是只有一个隐藏层的MLP，依旧不改变输入样本的特征维度。</p>
-<h1 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h1><p>自回归： 解码器的结果是一个一个生成的，且后续的结果利用了之前的输出。</p>
-<p>带掩码的自注意力层：保证编码器在训练和预测时都采用自回归，即在训练时用掩码来遮住尚不能被看到的词元。其实现的机理是把Dot-Product后当前时间以后的值替换为负无穷，这样其softmax得到的就是无限接近于0的值。</p>
-<p>第二个注意力子层：key，value来自编码器的输出。实现在编码器的输出中挑感兴趣的东西的功能。</p>
-<h2 id="Embedding-amp-Positional-Encoding-1"><a href="#Embedding-amp-Positional-Encoding-1" class="headerlink" title="Embedding &amp; Positional Encoding"></a>Embedding &amp; Positional Encoding</h2><p>与编码器功能和操作方式相同，只不过输入是目标序列。</p>
-<h2 id="Decoder-Block"><a href="#Decoder-Block" class="headerlink" title="Decoder Block"></a>Decoder Block</h2><p>解码器块由含掩码的多头自注意力，多头注意力和前馈网络三大模块组成。类似于编码器，在每个模块后也有残差连接和层规范化。</p>
-<h3 id="Masked-Multi-Head-Attention"><a href="#Masked-Multi-Head-Attention" class="headerlink" title="Masked Multi-Head Attention"></a>Masked Multi-Head Attention</h3><p>该模块提取对目标序列的特征信息，模式与编码器的多头自注意力几乎一致，不同的是其加入了掩码操作。掩码操作的目的是使得Transformer在训练和预测时具有相同的自回归行为模式。在预测时，解码器无法一次看到所有的目标序列，而在训练时则可以。因此，在训练时，使用掩码遮挡住当前时间步以后的序列，使得其不可见。具体操作是在$\text{softmax}$之前让当前时间步以后的token的注意力分数为负无穷，使得其被分配到的注意力权重无限接近于$0$，进而达到屏蔽未来token的目的：</p>
+<h3 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h3><p>This module is actually an MLP with only one hidden layer, which still does not change the feature dimension of the input.</p>
+<h1 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h1><p>The decoder is made up of one embedding layer and $n$ decoder blocks. The input of decoder is targeted sequence. The input of the first decoder block is the targeted sequence after embedding layer while the others are outputs of the previous decoder block.</p>
+<p>When making predictions, the work of the encoder has not changed, and the original sequence can be processed directly. The decoder, on the other hand, has to work sequentially because the predictions have to be obtained one by one. That is to say, when predicting the (t+1)-th output, the keys and values of input of decoder are 0~t predicted values, while the query is the t-th predicted value.</p>
+<h2 id="Embedding-amp-Positional-Encoding-1"><a href="#Embedding-amp-Positional-Encoding-1" class="headerlink" title="Embedding &amp; Positional Encoding"></a>Embedding &amp; Positional Encoding</h2><p>Functions and operations are in the same way as the encoder, except that the input is the targeted sequence.</p>
+<h2 id="Decoder-Block"><a href="#Decoder-Block" class="headerlink" title="Decoder Block"></a>Decoder Block</h2><p>The decoder block consists of three modules: masked multi-head attention, multi-head self-attention and position-wise FFN. Similar to the encoder, there are also residual connections and layer normalization after each module.</p>
+<h3 id="Masked-Multi-Head-Attention"><a href="#Masked-Multi-Head-Attention" class="headerlink" title="Masked Multi-Head Attention"></a>Masked Multi-Head Attention</h3><p>This module extracts the feature information of the targeted sequence. Its mode is almost the same as the multi-head self-attention of the encoder. The difference is that it adds a mask operation. The purpose of the mask operation is to make the transformer have the same autoregressive behavior mode during training and prediction. At predicting time, the decoder cannot see all targeted sequences at once, while at training time it can. Therefore, during training, a mask is used to cover the tokens after the current time step, making it invisible.</p>
+<p>The mechanism is to make the attention score of the token after the current time step be negative infinity before $\text{softmax}$, so that the attention weights assigned to them are infinitely close to $0$. Then, we can achieve the purpose of shielding future tokens:</p>
 <p>$$<br>\text{softmax}(\text{masked}(\mathbf{QK}^\text{T}))\mathbf{V}<br>$$</p>
-<h3 id="Multi-Head-Attention-1"><a href="#Multi-Head-Attention-1" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h3><p>同编码器，不过keys和values来自编码器的最终输出，</p>
-<h3 id="Position-wise-Feed-Forward-Networks-1"><a href="#Position-wise-Feed-Forward-Networks-1" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h3><p>同编码器。</p>
-<h2 id="Dense-Layer"><a href="#Dense-Layer" class="headerlink" title="Dense Layer"></a>Dense Layer</h2><p>就是一个全连接层，实现softmax回归。</p>
+<h3 id="Multi-Head-Attention-1"><a href="#Multi-Head-Attention-1" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h3><p>The same to the encoder, but the keys and values come from the final output of the encoder.</p>
+<h3 id="Position-wise-Feed-Forward-Networks-1"><a href="#Position-wise-Feed-Forward-Networks-1" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h3><p>The same to the encoder.</p>
+<h2 id="Dense-Layer"><a href="#Dense-Layer" class="headerlink" title="Dense Layer"></a>Dense Layer</h2><p>It is a fully connected layer that implements softmax regression.</p>
 <blockquote>
-<p>PyTorch默认将最后一个维度当作特征维。</p>
+<p>By default, PyTorch treats the last dimension as the feature dimension.</p>
 </blockquote>
 <h1 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h1><h1 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h1>
     </div>

@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/6.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/7.png">
 <meta property="article:published_time" content="2023-06-05T21:29:23.000Z">
-<meta property="article:modified_time" content="2023-06-08T13:30:21.004Z">
+<meta property="article:modified_time" content="2023-06-09T08:13:15.174Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Attention mechanism">
 <meta property="article:tag" content="Deep learning">
@@ -211,7 +211,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-06-08 21:30:21" itemprop="dateModified" datetime="2023-06-08T21:30:21+08:00">2023-06-08</time>
+                <time title="Modified: 2023-06-09 16:13:15" itemprop="dateModified" datetime="2023-06-09T16:13:15+08:00">2023-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,19 +237,19 @@
       
         <span id="more"></span>
 
-<h1 id="Attention-in-Biology"><a href="#Attention-in-Biology" class="headerlink" title="Attention in Biology"></a>Attention in Biology</h1><p>In biology, there are two kinds of cue that affect our attention: volitional cue (自主性提示) and nonvolitional cue (非自主性提示).</p>
+<h1 id="Attention-in-Biology"><a href="#Attention-in-Biology" class="headerlink" title="Attention in Biology"></a>Attention in Biology</h1><p>In biology, there are two kinds of cues that affect our attention: volitional cue (自主性提示) and nonvolitional cue (非自主性提示).</p>
 <p><img align="left" src="/2023/06/06/Attention/1.png" style=" width:380px; padding: 0px 0px; "> <img align="mid" src="/2023/06/06/Attention/2.png" style=" width:380px; padding: 0px 0px; "></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. Nonvolitional cue (left) and Volitional cue (right)</center><br>
 
-<p>The nonvolitional cue is based on the saliency of objects in the environment. It&#39;s unconscous. As the above picture shows, when there is a red cup among several white objects, we will unconsciously choose the red cup whose color is more prominent. The volitional cue is controlled by our awareness and our decisions are led by our consciousness. For example, after drinking a cup of coffee, we may want to relax, because of which we choose a book to read.</p>
+<p>The nonvolitional cue is based on the saliency of objects in the environment. It&#39;s unconscous. As the above picture shows, when there is a red cup among several white objects, we will unconsciously choose the red cup as its color is more prominent. The volitional cue is controlled by our awareness and our decisions are led by our consciousness. For example, after drinking a cup of coffee, we may want to relax, because of which we choose a book to read.</p>
 <h1 id="Attention-Mechanisms"><a href="#Attention-Mechanisms" class="headerlink" title="Attention Mechanisms"></a>Attention Mechanisms</h1><p>The nonvolitional cue and volitional cue inspire us to take the environment as input and use volitional cue to focus the attention to a certain object or feature.</p>
-<h2 id="Queries-Keys-and-Values"><a href="#Queries-Keys-and-Values" class="headerlink" title="Queries, Keys and Values"></a>Queries, Keys and Values</h2><p>In attention mechanisms, the nonvolitional cue is also called <strong>query</strong>. It reflects the tendency of feature extraction. The volitional cue is actually our perception of the environment. The characteristics of the environment can be represented by several <strong>key-value pairs</strong>. These three things consist of the input of the attention mechanism. Giving queries and keys, the attention mechanism will aggregate values and choose the most prominent and suitable value as output. Such a process is also called <em>attention pooling</em>. It is queries that distinguish attention pooling from dense layers.</p>
+<h2 id="Queries-Keys-and-Values"><a href="#Queries-Keys-and-Values" class="headerlink" title="Queries, Keys and Values"></a>Queries, Keys and Values</h2><p>In attention mechanisms, the volitional cue is also called <strong>query</strong>. It reflects the tendency of feature extraction. The nonvolitional cue is actually our perception of the environment. The characteristics of the environment can be represented by several <strong>key-value pairs</strong>. These three things consist of the input of the attention mechanism. Giving queries and keys, the attention mechanism will aggregate values and choose the most prominent and suitable value as output. Such a process is also called <em>attention pooling</em>. It is queries that distinguish attention pooling from dense layers.</p>
 <p><img src="/2023/06/06/Attention/3.png" alt="3"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 2. Attention pooling</center>
 
 <h2 id="Mathematical-Representation-of-Attention"><a href="#Mathematical-Representation-of-Attention" class="headerlink" title="Mathematical Representation of Attention"></a>Mathematical Representation of Attention</h2><p>Our attention to a certain object reflects how much we care about it, or, mathematically, the weight we give it. When a certain query is offered to us, it is natural for us to think of finding something similar to this query to get the answer. That is, for a key-value pair, the more similar the key is to the query, the higher proportion its value should take up in the answer. This is how <em><strong>Nadaraya-Watson kernel regression</strong></em> works:</p>
 <p>$$<br>f(\mathbf{q})&#x3D;\sum\limits _{i&#x3D;1} ^n \frac{K(\mathbf{q}-\mathbf{k}_i)}{\sum\limits _{j&#x3D;1} ^n K(\mathbf{q}-\mathbf{k}_j)}\mathbf{v}_i<br>$$</p>
-<p>where $K$ is a kernel. Such a estimator assigns different weight to different keys for a certain query. More generally, attention is defined as:</p>
+<p>where $K$ is a kernel. Such an estimator assigns different weight to different keys for a certain query. More generally, attention is defined as:</p>
 <p>$$<br>\text{Attention}(\mathbf{q},\mathbf{k},\mathbf{v})&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i<br>$$</p>
 <p>where $\alpha(\mathbf{q},\mathbf{k}_i)$ is <em>attention weight</em>. It is non-negative and its sum is $1$. The output is a weighted sum of the values for each key-value pair.</p>
 <p><img src="/2023/06/06/Attention/4.png" alt="4"></p>
@@ -257,8 +257,8 @@
 
 <p>It is noteworthy that Nadaraya-Watson kernel regression is a nonparametric model (<em>nonparametric attention pooling</em>). Therefore, it is consistent. With enough data, it will converge to the optimum result. However, in machine learning, the agent needs parameters to learn so that it could improve its performance. For instance, if we set $K$ as a gaussian kernel and add learned parameter $\mathbf{w}$, we get a formula that looks like softmax:</p>
 <p>$$<br>\begin{align*}<br>K(\mathbf{u})&amp;&#x3D;\frac{1}{\sqrt{2\pi}}\exp(-\frac{\mathbf{u}^2}{2})\\<br>f(\mathbf{q})<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\frac{\exp[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]}{\sum\limits _{j&#x3D;1} ^n\exp[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]}\mathbf{v}_i\\<br>    &amp;&#x3D;\sum _{i&#x3D;1} ^n\text{softmax}[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]\mathbf{v}_i<br>\end{align*}<br>$$</p>
-<h2 id="Attention-Scoring-Function"><a href="#Attention-Scoring-Function" class="headerlink" title="Attention Scoring Function"></a>Attention Scoring Function</h2><p>The exponent of the gaussian kernel above ($-{\mathbf{u}^2}&#x2F;2$) is actually a attention scoring function ($a$) which evaluates the similarity between $\mathbf{q}$ and $\mathbf{k}_i$. Hence, the attention pooling can be also represented as:</p>
-<p>$$<br>\begin{align*}<br>    \text{Attention}(\mathbf{q},\mathbf{k},\mathbf{v})&amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\text{softmax}[a(\mathbf{q},\mathbf{k}_i)]<br>\end{align*}<br>$$</p>
+<h2 id="Attention-Scoring-Function"><a href="#Attention-Scoring-Function" class="headerlink" title="Attention Scoring Function"></a>Attention Scoring Function</h2><p>The exponent of the gaussian kernel above ($-{\mathbf{u}^2}&#x2F;2$) is actually an attention scoring function ($a$) which evaluates the similarity between $\mathbf{q}$ and $\mathbf{k}_i$. Hence, the attention pooling can be also represented as:</p>
+<p>$$<br>\begin{align*}<br>    \text{Attention}(\mathbf{q},\mathbf{k},\mathbf{v})&amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\text{softmax}[a(\mathbf{q},\mathbf{k}_i)]\mathbf{v}_i<br>\end{align*}<br>$$</p>
 <p><img src="/2023/06/06/Attention/5.png" alt="5"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 4. Computing the output of attention pooling</center> <br>
 
@@ -269,12 +269,12 @@
 <p>where $\mathbf{W}_q\in\mathbf{R} ^{q\times h}$, $\mathbf{W}_k\in\mathbf{R} ^{k\times h}$ and $\mathbf{w}_v\in\mathbf{R} ^{h}$. All of them are learned parameters (here we ignore the bias) in one dense layer.</p>
 <blockquote>
 <p>In practice, each batch may have several queries and key-value pairs. And there are always more than one batches. In this case, the shape of $\mathbf{q}$ is <code>(batch_size, num_queries, q)</code> and the shape of $\mathbf{k}$ is <code>(batch_size, num_kv_pairs, k)</code>. The shape of $\mathbf{q}\mathbf{W}_q$ is <code>(batch_size, num_queries, h)</code> and the shape of $\mathbf{k}\mathbf{W}_k$ is <code>(batch_size, num_kv_pairs, h)</code>. <code>num_queries</code> and <code>num_kv_pairs</code> are always different, which means that we can&#39;t add $\mathbf{q}\mathbf{W}_q$ and $\mathbf{k}\mathbf{W}_k$ directly. </p>
-<p>To solve this, we always use <code>queries.unsqueeze(2)</code> and <code>keys.unsqueeze(1)</code> (<code>queries</code> and <code>keys</code> are both tensor) to expand their dimensions. After <code>unsqueeze</code>, the shape of <code>queries</code> is <code>(batch_size, num_queries, 1, h)</code> and the shape of <code>keys</code> is <code>(batch_size, 1, num_kv_pairs, h)</code>. Now broadcasting can make $\mathbf{q}\mathbf{W}_q+\mathbf{k}\mathbf{W}_k$ legal. The nature of this operation is that each query should take all the keys into account so the $2$ dimension of <code>queries</code> is expanded to <code>num_kv_pairs</code>, so is <code>keys</code>. </p>
+<p>To solve this, we always use <code>queries.unsqueeze(2)</code> and <code>keys.unsqueeze(1)</code> (<code>queries</code> and <code>keys</code> are both tensor) to expand their dimensions. After <code>unsqueeze</code>, the shape of <code>queries</code> is <code>(batch_size, num_queries, 1, h)</code> and the shape of <code>keys</code> is <code>(batch_size, 1, num_kv_pairs, h)</code>. Now broadcasting can make $\mathbf{q}\mathbf{W}_q+\mathbf{k}\mathbf{W}_k$ legal. The nature of this operation is that each query should take all the keys into account so the $2$-th dimension of <code>queries</code> is expanded to <code>num_kv_pairs</code>, so is <code>keys</code>. </p>
 </blockquote>
 <h3 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h3><p>If the shape of $\mathbf{q}$ and $\mathbf{k}$ are the same (both are $d$), we could just use dot-product to evaluate their similarity:</p>
 <p>$$<br>a(\mathbf{q,k})&#x3D;\mathbf{q}^\text{T}\mathbf{k}&#x2F;\sqrt{d}<br>$$</p>
 <p>where $\sqrt{d}$ is to make sure that the value of $a(\mathbf{q,k})$ will not change significantly when the shape changes.</p>
-<p>If considering SGD, the attention weights are:</p>
+<p>If considering SGD, the output of attention pooling is:</p>
 <p>$$<br>\text{softmax}(\mathbf{Q}\mathbf{K}^\text{T}&#x2F;\sqrt{d})\mathbf{V}<br>$$</p>
 <p>where $d$ is still the shape of each query or each key.</p>
 <h1 id="Different-Types-of-Attention"><a href="#Different-Types-of-Attention" class="headerlink" title="Different Types of Attention"></a>Different Types of Attention</h1><p>Depending on the number of attention pooling and the relationship among queries, keys and values, there are various forms of attention mechanisms.</p>
@@ -283,19 +283,19 @@
 <center style="font-size:12px; font-weight:bold">Fig. 5. Multi-head attention</center>
 
 <h2 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h2><p>Self-attention (intra-attention) is a special kind of attention, whose queries, keys and values are all the same things.</p>
-<h1 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h1><p>When dealing with sequence information, RNNs operates each token in sequence. Therefore, the location information of the sequence is used. However, the attention pooling operates all the inputs in parallel, because of which, the location information is wasted.</p>
-<p>Positional encoding is the location information added to the keys. In computer science, we use binary string to represent position (e.g. 0: 000, 1: 001,..., 7: 111). As can be seen, the bit on each position alternates at diferent frequencies respectively. Higher bits alternate less frequently than lower bits. Such alternating changes can represent discrete positional information.</p>
+<h1 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h1><p>When dealing with sequence information, RNNs operate each token in sequence. Therefore, the location information of the sequence is used. However, the attention pooling operates all the inputs in parallel, because of which, the location information is wasted.</p>
+<p>Positional encoding is the location information added to the keys, values and queries. In computer science, we use binary string to represent position (e.g. 0: 000, 1: 001, ..., 7: 111). As can be seen, the bit on each position alternates at diferent frequencies respectively. Higher bits alternate less frequently than lower bits. Such alternating changes can represent discrete positional information.</p>
 <h2 id="Absolute-Positional-Information"><a href="#Absolute-Positional-Information" class="headerlink" title="Absolute Positional Information"></a>Absolute Positional Information</h2><p>For the input $\mathbf{X}\in\mathbf{R} ^{n\times d}$ which contains $n$ tokens and $d$ features for each token, we can use positional embedding matrix $\mathbf{P}\in\mathbf{R} ^{n\times d}$ to offer it positional information:</p>
-<p>$$<br>\begin{align*}<br>    \mathbf{X&#39;}&amp;&#x3D;\mathbf{X}+\mathbf{P}\\<br>    p_{i,2j}&amp;&#x3D;\sin(\frac{i}{10000 ^{2j&#x2F;d}})\\<br>    p_{i,2j+1}&amp;&#x3D;\cos(\frac{i}{10000 ^{2j&#x2F;d}})<br>\end{align*}<br>$$</p>
+<p>$$<br>\begin{align*}<br>    \mathbf{X&#39;}&amp;&#x3D;\mathbf{X}+\mathbf{P}\\<br>    \mathbf{P} _{i,2j}&amp;&#x3D;\sin(\frac{i}{10000 ^{2j&#x2F;d}})\\<br>    \mathbf{P} _{i,2j+1}&amp;&#x3D;\cos(\frac{i}{10000 ^{2j&#x2F;d}})<br>\end{align*}<br>$$</p>
 <p>It works because different columns, which are similar to the bit position in binary string, oscillate at different frequencies. It is just like the binary string but the value is continuous.</p>
 <p><img src="/2023/06/06/Attention/7.png" alt="7"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 6. Oscillating frequency of different columns</center>
 
 <h2 id="Relative-Positional-Information"><a href="#Relative-Positional-Information" class="headerlink" title="Relative Positional Information"></a>Relative Positional Information</h2><p>The positional information we add to $\mathbf{X}$ is called absolute positional information. What&#39;s more, we can also get the relative positional information for different rows in the same column:</p>
-<p>$$<br>\begin{align*}<br>    (p_{i,2j}, p_{i,2j+1})&amp;&#x3D;(\sin\frac{i}{10000 ^{2j&#x2F;d}},\cos\frac{i}{10000 ^{2j&#x2F;d}})\\<br>    (p_{i+\delta,2j}, p_{i+\delta,2j+1})&amp;&#x3D;(\sin\frac{i+\delta}{10000 ^{2j&#x2F;d}},\cos\frac{i+\delta}{10000 ^{2j&#x2F;d}})\\<br>    &amp;&#x3D;({\begin{bmatrix}<br>           \cos\delta\omega_j\space\space \sin\delta\omega_j\\<br>           -\sin\delta\omega_j\space\space \cos\delta\omega_j<br>       \end{bmatrix}}<br>      {\begin{bmatrix}<br>           p_{i,2j}\\<br>           p_{i,2j+1}<br>       \end{bmatrix}})^\text{T}\\<br>    &amp;&#x3D;[\sin(i+\delta)\omega_j,\cos(i+\delta)\omega_j]\\<br>\end{align*}<br>$$</p>
+<p>$$<br>\begin{align*}<br>    (\mathbf{P} _{i,2j}, \mathbf{P} _{i,2j+1})&amp;&#x3D;(\sin\frac{i}{10000 ^{2j&#x2F;d}},\cos\frac{i}{10000 ^{2j&#x2F;d}})\\<br>    (\mathbf{P} _{i+\delta,2j}, \mathbf{P} _{i+\delta,2j+1})&amp;&#x3D;(\sin\frac{i+\delta}{10000 ^{2j&#x2F;d}},\cos\frac{i+\delta}{10000 ^{2j&#x2F;d}})\\<br>    &amp;&#x3D;({\begin{bmatrix}<br>           \cos\delta\omega_j\space\space \sin\delta\omega_j\\<br>           -\sin\delta\omega_j\space\space \cos\delta\omega_j<br>       \end{bmatrix}}<br>      {\begin{bmatrix}<br>           \mathbf{P} _{i,2j}\\<br>           \mathbf{P} _{i,2j+1}<br>       \end{bmatrix}})^\text{T}\\<br>    &amp;&#x3D;[\sin(i+\delta)\omega_j,\cos(i+\delta)\omega_j]\\<br>\end{align*}<br>$$</p>
 <p>where $\omega_j&#x3D;1&#x2F;10000^{2j&#x2F;d}$.</p>
 <blockquote>
-<p>Positional information is information added to the input key $\mathbf{X}$, it could be fixed positional encoding like what we do above or learned one.</p>
+<p>Positional information is information added to the input $\mathbf{X}$, including keys, values and queries, it could be fixed positional encoding like what we do above or learned one.</p>
 </blockquote>
 
     </div>
