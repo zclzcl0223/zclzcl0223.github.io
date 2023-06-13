@@ -22,17 +22,23 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Start of Something New">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JourneyToCoding">
-<meta property="og:url" content="https://zclzcl0223.github.io/archives/2023/index.html">
+  <meta name="description" content="这篇论文提出的方法是对作者提出的基于梯度匹配的数据缩合法的改进。后者的缩合需要进行两个方向上的梯度下降和求二阶导，这需要大量的计算，限制了其在大数据集上的应用。而这篇论文提出的基于分布匹配的数据缩合则很好地解决了这个问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper002: Dataset Condensation with Distribution Matching">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/06/13/P002/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Start of Something New">
+<meta property="og:description" content="这篇论文提出的方法是对作者提出的基于梯度匹配的数据缩合法的改进。后者的缩合需要进行两个方向上的梯度下降和求二阶导，这需要大量的计算，限制了其在大数据集上的应用。而这篇论文提出的基于分布匹配的数据缩合则很好地解决了这个问题。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/13/P002/1.png">
+<meta property="article:published_time" content="2023-06-13T02:30:39.000Z">
+<meta property="article:modified_time" content="2023-06-13T14:21:58.279Z">
 <meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Dataset distillation">
+<meta property="article:tag" content="Paper">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/06/13/P002/1.png">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/archives/2023/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/06/13/P002/">
 
 
 <script id="page-configurations">
@@ -40,12 +46,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Archive | JourneyToCoding</title>
+  <title>Paper002: Dataset Condensation with Distribution Matching | JourneyToCoding</title>
   
 
 
@@ -162,235 +168,150 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">OK! 49 posts in total. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/06/13/P002/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Paper002: Dataset Condensation with Distribution Matching
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-06-13 10:30:39 / Modified: 22:21:58" itemprop="dateCreated datePublished" datetime="2023-06-13T10:30:39+08:00">2023-06-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">这篇论文提出的方法是对作者提出的基于梯度匹配的数据缩合法的改进。后者的缩合需要进行两个方向上的梯度下降和求二阶导，这需要大量的计算，限制了其在大数据集上的应用。而这篇论文提出的基于分布匹配的数据缩合则很好地解决了这个问题。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+        <span id="more"></span>
+
+<h1 id="核心集和以往数据压缩算法存在的问题"><a href="#核心集和以往数据压缩算法存在的问题" class="headerlink" title="核心集和以往数据压缩算法存在的问题"></a>核心集和以往数据压缩算法存在的问题</h1><p>核心集选择（Coreset selection）算法基于一定的启发式准则（Heuristic criteria），如核心集到原数据集中心的距离最小、核心集包含的样本要尽可能地多样等，从原训练集中选择一个更小的核心训练集。这种方法选择了更具有代表性的数据进行训练，从而降低了训练的开销，但是它也存在如下缺点：</p>
+<ol>
+<li>核心集选择依赖的几乎都是贪心算法，这可能无法达到全局最优；</li>
+<li>有效性极度依赖原训练集的有效性。</li>
+</ol>
+<p>数据蒸馏（Dataset distillation，或数据缩合，Dataset condensation），一定程度上解决了核心集选择的问题，但无论是最原始的数据蒸馏算法，还是前面提到的<a href="/2023/06/12/P001/">基于梯度匹配的数据缩合算法</a>都存在一定的缺陷：</p>
+<ol>
+<li>模型参数$\theta ^{\mathcal{S}}$和合成数据集$\mathcal{S}$的双重梯度下降十分消耗算力；</li>
+<li>对合成数据集$\mathcal{S}$进行梯度下降时，要计算二阶混合偏导；</li>
+<li>用于合成数据的网络的超参数不好调节（e.g. $\theta ^{\mathcal{S}}$和$\mathcal{S}$的梯度下降次数$\varsigma ^{\mathcal{\theta}}$和$\varsigma ^{\mathcal{S}}$）。</li>
+</ol>
+<p>这些缺陷限制了其在大数据集上的应用。</p>
+<h1 id="分布匹配"><a href="#分布匹配" class="headerlink" title="分布匹配"></a>分布匹配</h1><p>分布匹配（Distribution matching）是本文使用的用于数据缩合的方法。实际上，它更像是一种可以学习的核心集：</p>
+<ol>
+<li>相比于纯核心集，分布匹配学习到的$\mathcal{S}$合成集中的数据不一定存在于原训练集中；</li>
+<li>相比于基于梯度匹配的数据缩合，分布匹配学习到的$\mathcal{S}$合成集中的数据分布更加接近原训练集，且缩合的速度更快；</li>
+<li>可以将分布匹配理解为用学习的方法去获得一个更小的、与原训练集同分布的合成集。</li>
+</ol>
+<p><img src="/2023/06/13/P002/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Dataset condensation with distribution matching</center><br>
+
+<p>要让学习到的$\mathcal{S}$与原训练集$\mathcal{T}$近似于同分布，要点在于有个确切的方法能衡量两个分布的近似情况。文中采用的是常用的<a href="/2023/06/13/MaximumMeanDiscrepancy/">最大均值差异法（Maximum mean discrepancy）</a>：</p>
+<p>$$<br>\begin{align*}<br>    \sup _{\psi _{\theta}\in\mathcal{H},||\psi _{\theta}||_\mathcal{H}\le1}(\text{E}[\psi _{\theta}(\mathcal{T})]&amp;-\text{E}[\psi _{\theta}(\mathcal{S})])\tag{1}\\<br>    \min \text{E} _{\theta\sim P _{\theta}} ||\frac{1}{|\mathcal{T}|}\sum\limits _{i&#x3D;1} ^{|\mathcal{T}|}\psi _{\theta}(x_i)&amp;-\frac{1}{|\mathcal{S}|}\sum\limits _{j&#x3D;1} ^{|\mathcal{S}|}\psi _{\theta}(\mathcal{s}_j)|| ^2\tag{2}<br>\end{align*}<br>$$</p>
+<p>其中，$\mathcal{T}$是原训练集，$\mathcal{S}$是合成集；$x$和$\mathcal{s}$分别是原训练集和合成集单一样本的特征；$\psi_\theta$是一个带参数的函数（实际上是一个神经网络，$\theta$为其模型参数，服从分布$P_\theta$；也是再生希尔伯特空间中的一个向量），该函数将样本的特征映射到更低的维度，便于处理（实际上是求一个高阶矩）。</p>
+<p>文中用的实验样例是图片分类，因此样本的特征就是图片。作者还在式$(2)$的基础上考虑了数据增强（Data augmentation）以更好地适应训练图片数据地的实际情况，因此式$(2)$又可变为：</p>
+<p>$$<br>\min _{\omega\sim\Omega} \text{E} _{\theta\sim P _{\theta}}  ||\frac{1}{|\mathcal{T}|}\sum\limits _{i&#x3D;1} ^{|\mathcal{T}|}\psi _{\theta}(\mathcal{A}(x_i,\omega))-\frac{1}{|\mathcal{S}|}\sum\limits _{j&#x3D;1} ^{|\mathcal{S}|}\psi _{\theta}(\mathcal{A}(\mathcal{s}_j,\omega))|| ^2\tag{3}<br>$$</p>
+<p>其中，$\Omega$是数据增强参数空间，$\mathcal{A}(x,\omega)$则是相应的增强操作，其对$x$和$\mathcal{s}$是一样的。</p>
+<h2 id="重要代码"><a href="#重要代码" class="headerlink" title="重要代码"></a>重要代码</h2><blockquote>
+<p>只有学习率一个可调参数。</p>
+</blockquote>
+<h2 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h2><h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><h3 id="持续学习"><a href="#持续学习" class="headerlink" title="持续学习"></a>持续学习</h3><h3 id="神经架构检索"><a href="#神经架构检索" class="headerlink" title="神经架构检索"></a>神经架构检索</h3>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-13T13:40:37+08:00"
-              content="2023-06-13">
-          06-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/13/MaximumMeanDiscrepancy/" itemprop="url">
-            <span itemprop="name">Maximum Mean Discrepancy</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-13T10:30:39+08:00"
-              content="2023-06-13">
-          06-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/13/P002/" itemprop="url">
-            <span itemprop="name">Paper002: Dataset Condensation with Distribution Matching</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-12T13:21:10+08:00"
-              content="2023-06-12">
-          06-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/12/P001/" itemprop="url">
-            <span itemprop="name">Paper001: Dataset Condensation with Gradient Matching</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-07T22:18:52+08:00"
-              content="2023-06-07">
-          06-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/07/PaperReading/" itemprop="url">
-            <span itemprop="name">找论文，读论文，用论文，写论文</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-07T20:34:57+08:00"
-              content="2023-06-07">
-          06-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/07/Transformer/" itemprop="url">
-            <span itemprop="name">Transformer: Self-Attention and Parallelization</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-06T05:29:23+08:00"
-              content="2023-06-06">
-          06-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/06/Attention/" itemprop="url">
-            <span itemprop="name">Attention Mechanisms: More Targeted Information Extraction</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-02T15:39:10+08:00"
-              content="2023-06-02">
-          06-02
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/02/OptimizationAlgorithms/" itemprop="url">
-            <span itemprop="name">Optimization Algorithms</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-05-31T13:14:00+08:00"
-              content="2023-05-31">
-          05-31
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/05/31/EncoderDecoder/" itemprop="url">
-            <span itemprop="name">The Encoder-Decoder Architecture</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-05-29T19:53:15+08:00"
-              content="2023-05-29">
-          05-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/05/29/CommonRNNModels/" itemprop="url">
-            <span itemprop="name">Common RNN models</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-05-25T17:27:35+08:00"
-              content="2023-05-25">
-          05-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/05/25/RNN/" itemprop="url">
-            <span itemprop="name">RNN: a special kind of MLP</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\06\12\P001\" rel="bookmark">Paper001: Dataset Condensation with Gradient Matching</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\06\07\PaperReading\" rel="bookmark">找论文，读论文，用论文，写论文</a></div>
+    </li>
+  </ul>
 
 
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Dataset-distillation/" rel="tag"># Dataset distillation</a>
+              <a href="/tags/Paper/" rel="tag"># Paper</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/06/12/P001/" rel="prev" title="Paper001: Dataset Condensation with Gradient Matching">
+      <i class="fa fa-chevron-left"></i> Paper001: Dataset Condensation with Gradient Matching
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/06/13/MaximumMeanDiscrepancy/" rel="next" title="Maximum Mean Discrepancy">
+      Maximum Mean Discrepancy <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-  </div>
+      </footer>
+    
+  </article>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2023/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2023/page/5/">5</a><a class="extend next" rel="next" href="/archives/2023/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
 
 
 
@@ -442,6 +363,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E9%9B%86%E5%92%8C%E4%BB%A5%E5%BE%80%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9%E7%AE%97%E6%B3%95%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">核心集和以往数据压缩算法存在的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%8C%B9%E9%85%8D"><span class="nav-number">2.</span> <span class="nav-text">分布匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E4%BB%A3%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">重要代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.2.</span> <span class="nav-text">实验设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.3.</span> <span class="nav-text">应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.3.1.</span> <span class="nav-text">持续学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%A3%80%E7%B4%A2"><span class="nav-number">2.3.2.</span> <span class="nav-text">神经架构检索</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -596,6 +518,59 @@ setInterval("createtime()",250);
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
