@@ -22,18 +22,19 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="这篇论文是对传统的数据蒸馏（Dataset Distillation）的一种改进，称“数据缩合”（Dataset Condensation）。这是数据蒸馏领域一个最具突破性的研究之一。该论文首次提出了梯度匹配策略，以该策略蒸馏的数据集的测试准确率和泛化精度得到了极大的提升。">
+  <meta name="description" content="这篇论文是对传统的数据蒸馏（Dataset Distillation）的一种改进，称“数据缩合”（Dataset Condensation）。这是数据蒸馏领域最具突破性的研究之一。该论文首次提出了梯度匹配策略，以该策略蒸馏出来数据集的测试准确率和泛化精度得到了极大的提升。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Paper001: DATASET CONDENSATION WITH GRADIENT MATCHING">
 <meta property="og:url" content="https://zclzcl0223.github.io/2023/06/12/P001/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="这篇论文是对传统的数据蒸馏（Dataset Distillation）的一种改进，称“数据缩合”（Dataset Condensation）。这是数据蒸馏领域一个最具突破性的研究之一。该论文首次提出了梯度匹配策略，以该策略蒸馏的数据集的测试准确率和泛化精度得到了极大的提升。">
+<meta property="og:description" content="这篇论文是对传统的数据蒸馏（Dataset Distillation）的一种改进，称“数据缩合”（Dataset Condensation）。这是数据蒸馏领域最具突破性的研究之一。该论文首次提出了梯度匹配策略，以该策略蒸馏出来数据集的测试准确率和泛化精度得到了极大的提升。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/12/P001/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/12/P001/2.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/12/P001/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/12/P001/4.png">
 <meta property="article:published_time" content="2023-06-12T05:21:10.000Z">
-<meta property="article:modified_time" content="2023-06-12T13:19:05.508Z">
+<meta property="article:modified_time" content="2023-06-12T15:12:20.339Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Dataset distillation">
 <meta property="article:tag" content="Paper">
@@ -201,7 +202,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-06-12 13:21:10 / Modified: 21:19:05" itemprop="dateCreated datePublished" datetime="2023-06-12T13:21:10+08:00">2023-06-12</time>
+              <time title="Created: 2023-06-12 13:21:10 / Modified: 23:12:20" itemprop="dateCreated datePublished" datetime="2023-06-12T13:21:10+08:00">2023-06-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -214,7 +215,7 @@
             </span>
 
           
-            <div class="post-description">这篇论文是对传统的数据蒸馏（Dataset Distillation）的一种改进，称“数据缩合”（Dataset Condensation）。这是数据蒸馏领域一个最具突破性的研究之一。该论文首次提出了梯度匹配策略，以该策略蒸馏的数据集的测试准确率和泛化精度得到了极大的提升。</div>
+            <div class="post-description">这篇论文是对传统的数据蒸馏（Dataset Distillation）的一种改进，称“数据缩合”（Dataset Condensation）。这是数据蒸馏领域最具突破性的研究之一。该论文首次提出了梯度匹配策略，以该策略蒸馏出来数据集的测试准确率和泛化精度得到了极大的提升。</div>
 
         </div>
       </header>
@@ -268,6 +269,9 @@
 <p>其中$\varsigma ^{\mathcal{S}}$和$\varsigma ^{\mathcal{T}}$分别是$\mathcal{S}$和$\mathcal{T}$一次优化的梯度下降次数，$T$是迭代次数。整个式$(6)$表明，$\mathcal{S}$要使得整个迭代过程中的距离和最小，即$\mathcal{S}$要使得$\theta ^{\mathcal{T}}$与$\theta ^{\mathcal{S}}$几乎遵循相同的优化路径。每一次梯度下降，$\theta ^{\mathcal{T}}$与$\theta ^{\mathcal{S}}$的变化如下所示：</p>
 <p>$$<br>\theta ^{\mathcal{S}} _{t+1} \leftarrow \theta ^{\mathcal{S}} _{t}-\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{S}}(\theta _t ^{\mathcal{S}}) \quad\text{and}\quad \theta ^{\mathcal{T}} _{t+1} \leftarrow \theta ^{\mathcal{T}} _{t}-\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{T}}(\theta _t ^{\mathcal{T}})\tag{7}<br>$$</p>
 <p>其中$\eta_\theta$是学习率而其后续项为梯度。</p>
+<p><img src="/2023/06/12/P001/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Dataset condensation with gradient matching</center> <br>
+
 <p>由于$\theta ^{\mathcal{T}}$与$\theta ^{\mathcal{S}}$均初始化为$\theta_0$，所以在计算距离$D(\theta _t ^{\mathcal{T}},\theta _t ^{\mathcal{S}})$时：</p>
 <p>$$<br>\theta ^{\mathcal{S}} _{0}-\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{S}}(\theta _0 ^{\mathcal{S}}) -(\theta ^{\mathcal{T}} _{0}-\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{T}}(\theta _0 ^{\mathcal{T}}))&#x3D;\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{T}}(\theta _0 ^{\mathcal{T}})-\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{S}}(\theta _0 ^{\mathcal{S}})\tag{8}<br>$$</p>
 <p>因此，实际上我们只需要计算梯度的距离，并让其尽可能地小即可，于是式$(6)$又可转变为：</p>
