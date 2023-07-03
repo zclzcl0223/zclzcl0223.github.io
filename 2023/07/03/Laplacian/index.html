@@ -22,25 +22,23 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Unsupervised learning is a type of algorithm that learns patterns or data groupings from unlabeled data without the need for human intervention. This post includes the course notes of unsupervised lea">
+  <meta name="description" content="拉普拉斯算子是图片边缘检测和图神经网络中常用的概念，它类似于多元函数的凹凸性，能够揭露某一点函数值与周围点函数值的关系。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unsupervised learning">
-<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/index.html">
+<meta property="og:title" content="Laplacian">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Unsupervised learning is a type of algorithm that learns patterns or data groupings from unlabeled data without the need for human intervention. This post includes the course notes of unsupervised lea">
+<meta property="og:description" content="拉普拉斯算子是图片边缘检测和图神经网络中常用的概念，它类似于多元函数的凹凸性，能够揭露某一点函数值与周围点函数值的关系。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/1.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/2.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/3.png">
-<meta property="article:published_time" content="2023-04-16T13:46:40.000Z">
-<meta property="article:modified_time" content="2023-05-30T12:59:08.285Z">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/2.png">
+<meta property="article:published_time" content="2023-07-03T05:33:14.000Z">
+<meta property="article:modified_time" content="2023-07-03T14:39:36.773Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="Machine learning">
-<meta property="article:tag" content="Unsupervised learning">
+<meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/1.png">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/1.png">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/07/03/Laplacian/">
 
 
 <script id="page-configurations">
@@ -53,7 +51,7 @@
   };
 </script>
 
-  <title>Unsupervised learning | JourneyToCoding</title>
+  <title>Laplacian | JourneyToCoding</title>
   
 
 
@@ -177,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/07/03/Laplacian/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -190,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Unsupervised learning
+          Laplacian
         </h1>
 
         <div class="post-meta">
@@ -199,28 +197,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-04-16 21:46:40" itemprop="dateCreated datePublished" datetime="2023-04-16T21:46:40+08:00">2023-04-16</time>
+              <time title="Created: 2023-07-03 13:33:14 / Modified: 22:39:36" itemprop="dateCreated datePublished" datetime="2023-07-03T13:33:14+08:00">2023-07-03</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-30 20:59:08" itemprop="dateModified" datetime="2023-05-30T20:59:08+08:00">2023-05-30</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning-By-AndrewNg/" itemprop="url" rel="index"><span itemprop="name">Machine Learning By AndrewNg</span></a>
+                  <a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">Unsupervised learning is a type of algorithm that learns patterns or data groupings from unlabeled data without the need for human intervention. This post includes the course notes of unsupervised learning course by Andrew Ng.</div>
+            <div class="post-description">拉普拉斯算子是图片边缘检测和图神经网络中常用的概念，它类似于多元函数的凹凸性，能够揭露某一点函数值与周围点函数值的关系。</div>
 
         </div>
       </header>
@@ -233,94 +225,76 @@
       
         <span id="more"></span>
 
-<h1 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h1><p>Clustering is a type of unsupervised learning that automatically groups a set of objects in such a way that objects in the same group are more similar to each other than to those in other groups. A commonly used algorithm of clustering is K-means algorithm.</p>
-<h2 id="K-means-algorithm"><a href="#K-means-algorithm" class="headerlink" title="K-means algorithm"></a>K-means algorithm</h2><p>K-means algorithm partition $n$ observations into $k$ clusters where each observation belongs to the cluster with the nearest mean. In other words, there is a centroid in each cluster and among all the centroids, an observation in its cluster is closer to its centroid than to other centroids, that is, observations in the same cluster are more related. The procedures of k-means are as follows:</p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>拉普拉斯算子$\Delta$定义为函数$f$（假设$f$为三元函数）的梯度的散度，它接受标量函数输入，并输入一个新的标量函数，即：</p>
+<p>$$<br>\Delta f&#x3D;\text{div}(\text{grad}f(x,y,z))<br>$$</p>
+<h2 id="哈密顿算子"><a href="#哈密顿算子" class="headerlink" title="哈密顿算子"></a>哈密顿算子</h2><p>哈密顿算子$\nabla$定义为：</p>
+<p>$$<br>\nabla&#x3D;\frac{\partial}{\partial x}\vec{i}+\frac{\partial}{\partial y}\vec{j}+\frac{\partial}{\partial z}\vec{k}<br>$$</p>
+<p>它本身没有意义，只是一个算子，但是又被看作是一个矢量。哈密顿算子作用于标量$f$可以得到$f$的梯度，作用于矢量$\vec{f}$可以得到$\vec{f}$的散度。</p>
+<h2 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h2><p>梯度是一个矢量，它表示某一空间函数$f(x,y,z)$在点$(x,y,z)$处方向导数最大的方向或者说函数值变化最快的方向：</p>
+<p>$$<br>\text{grad}f(x,y,z)&#x3D;\nabla f(x,y,z)&#x3D;\frac{\partial f}{\partial x}\vec{i}+\frac{\partial f}{\partial y}\vec{j}+\frac{\partial f}{\partial z}\vec{k}<br>$$</p>
+<h2 id="散度"><a href="#散度" class="headerlink" title="散度"></a>散度</h2><p>散度是一个标量，它表示空间中的矢量场$F&#x3D;&lt;f,g,h&gt;$在该点$(x,y,z)$单位体积上的通量，即该矢量场发散的强弱程度：</p>
+<p>$$<br>\text{div}(F)&#x3D;\nabla\cdot&lt;f,g,h&gt;&#x3D;\frac{\partial f}{\partial x}+\frac{\partial g}{\partial y}+\frac{\partial h}{\partial z}<br>$$</p>
+<p>当散度大于0时，表示该矢量场有散发通量的正源；当散度小于0时，表示该矢量场有吸收通量的负源；当散度等于0时，表示该场无源。</p>
+<h2 id="拉普拉斯算子的意义"><a href="#拉普拉斯算子的意义" class="headerlink" title="拉普拉斯算子的意义"></a>拉普拉斯算子的意义</h2><p>以下以二元函数$f(x,y)$为例，说明拉普拉斯算子的数学意义。</p>
+<p>对于给定的二元函数$f(x,y)$，其梯度$\nabla f$给出了其在二维空间上各个点函数值变化最快的方向。</p>
+<p><img src="/2023/07/03/Laplacian/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. f & grad</center><br>
+
+<p>上图下方的箭头即为$f$在各个点上的梯度方向。此时，若我们将原函数图像去掉，我们就得到一个由原函数的梯度向量形成的矢量场：</p>
+<p><img src="/2023/07/03/Laplacian/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Vector field</center><br>
+
+<p>对该矢量场求散度$\nabla\cdot\nabla f$，我们实际上就能够得到原函数图像的凹凸性（大于0为凸，小于0为凹），如同一元函数的凹凸性一般，多元函数的凹凸性也体现了该点的函数值与该点周围的点的函数值的大小关系，凸说明该点的函数值小于周围点函数值的平均值，凹则说明大于。</p>
+<p>这就是拉普拉斯算子（$\Delta&#x3D;\nabla\cdot\nabla&#x3D;\nabla ^2$），它代表了小范围的凹凸性，这也是它能被用于图像边缘检测的原因（边缘往往显著区别于邻居）。</p>
+<h1 id="拉普拉斯矩阵"><a href="#拉普拉斯矩阵" class="headerlink" title="拉普拉斯矩阵"></a>拉普拉斯矩阵</h1><p>拉普拉斯矩阵$L$，是图上的拉普拉斯算子，也即离散的拉普拉斯算子。前面提到的拉普拉斯算子，其基于的空间都是连续的，而对于图像的像素矩阵，它可以被视为一个二元的函数，只不过其空间位置（即矩阵的行和列）是离散的值。当拉普拉斯算子作用于离散的空间，拉普拉斯算子就成了拉普拉斯矩阵。</p>
+<h2 id="一维和二维离散函数的导数"><a href="#一维和二维离散函数的导数" class="headerlink" title="一维和二维离散函数的导数"></a>一维和二维离散函数的导数</h2><p>假设离散空间中空间位置的最小步长为$h$：</p>
+<p>$$<br>x _{i+1}- x_i&#x3D;...&#x3D;x_2-x_1&#x3D;h<br>$$</p>
+<p>将$f(x _{i+1})$和$f(x _{i-1})$分别用泰勒级数在$x_i$点展开：</p>
+<p>$$<br>\begin{align*}<br>    f(x _{i+1})&amp;&#x3D;f(x_i)+f&#39;(x_i)h+f&#39;&#39;(x_i)\frac{h^2}{2}+...\tag{1}\\<br>    f(x _{i-1})&amp;&#x3D;f(x_i)-f&#39;(x_i)h+f&#39;&#39;(x_i)\frac{h^2}{2}-... \tag{2}<br>\end{align*}<br>$$</p>
+<p>$(1)$和$(2)$相减，可得：</p>
+<p>$$<br>f&#39;(x_i)&#x3D;\frac{f(x _{i+1})-f(x _{i-1})}{2h}-O(h^2)<br>$$</p>
+<p>同样地，$(1)$和$(2)$相加，可得：</p>
+<p>$$<br>f&#39;&#39;(x_i)&#x3D;\frac{f(x _{i+1})+f(x _{i-1})-2f(x_i)}{h^2}-O(h^3)<br>$$</p>
+<p>若忽略掉低阶无穷小$O(h^2)$和$O(h^3)$，并取$h$为1，那么二维空间的离散拉普拉斯算子便可表示为：</p>
+<p>$$<br>\begin{align*}<br>    \Delta f&amp;&#x3D;f _{xx}+f _{yy}\\<br>    &amp;&#x3D;f(x+1,y)+f(x-1,y)-2f(x,y)+f(x,y+1)+f(x,y-1)-2f(x,y)\\<br>    &amp;&#x3D;f(x+1,y)+f(x-1,y)+f(x,y+1)+f(x,y-1)-4f(x,y)\tag{3}<br>\end{align*}<br>$$</p>
+<p>若将3x3的卷积核的中心定义为$(x,y)$：</p>
+<p>$$<br>\begin{bmatrix}<br>    (x-1,y-1)&amp;(x,y-1)&amp;(x+1,y-1)\\<br>    (x-1,y)&amp;(x,y)&amp;(x+1,y)\\<br>    (x-1,y+1)&amp;(x,y+1)&amp;(x+1,y+1)<br>\end{bmatrix}<br>$$</p>
+<p>则其系数即为用于边缘检测的卷积核：</p>
+<p>$$<br>\begin{bmatrix}<br>    0&amp;1&amp;0\\<br>    1&amp;-4&amp;1\\<br>    0&amp;1&amp;0<br>\end{bmatrix}<br>$$</p>
 <blockquote>
-<p>Cluster centroids: centers of cluster.</p>
+<p>此处可以看出拉普拉斯算子的另外一层含义：$f(x,y)$受到微小扰动后，可能变成$f(x-1,y)$，$f(x,y-1)$，$f(x+1,y)$和$f(x,y+1)$中的任何一个。拉普拉斯算子计算的就是对该点进行微小扰动后可能获得的总增益。这对于连续的拉普拉斯算子也成立，只不过扰动后可能出现的情况变成无数个。增益越大，说明函数在该点越有可能是个凸点（谷点）。</p>
 </blockquote>
-<ul>
-<li>Randomly initialize $K$ cluster centroids $\mu_1,\mu_2,..., \mu_K$;<blockquote>
-<p>Just randomly choose $K$ points from the training set is ok though different initialization will produce different clusters.</p>
+<h2 id="图拉普拉斯矩阵"><a href="#图拉普拉斯矩阵" class="headerlink" title="图拉普拉斯矩阵"></a>图拉普拉斯矩阵</h2><p>对于有$N$个顶点的图，其每个顶点的最大邻接顶点数（自由度）为$N$，邻接矩阵为$A$，度矩阵为$D$，其中：</p>
+<p>$$<br>D&#x3D;<br>\begin{cases}<br>    D _{ii}&#x3D;\sum\limits _{j&#x3D;1} ^{N}A _{ij}\\<br>    D _{ij}&#x3D;0,i\ne j<br>\end{cases}<br>$$</p>
+<p>根据扰动与增益的定义，我们很容易将式$(3)$推广到图中。图的扰动增益可以定义为邻接的两个顶点的特征差值。假设顶点$v _i$的特征为$f_i$，那么整个图的顶点特征则为：</p>
+<p>$$<br>f&#x3D;[f_1,f_2,...,f_N]^T<br>$$</p>
+<p>两邻接顶点的差异可定义为：</p>
+<p>$$<br>f_i-f_j<br>$$</p>
+<p>若考虑加权图中边的权值，则为：</p>
+<p>$$<br>w _{ij}(f_i-f_j)<br>$$</p>
+<p>于是，对某一个顶点$v_i$，其拉普拉斯算子为：</p>
+<p>$$<br>\begin{align*}<br>    \Delta f_i<br>    &amp;&#x3D;\sum\limits _{j&#x3D;1} ^Nw _{ij}(f_i-f_j)\\<br>    &amp;&#x3D;\sum\limits _{j&#x3D;1} ^Nw _{ij}f_i-\sum\limits _{j&#x3D;1} ^Nw _{ij}f_j\\<br>    &amp;&#x3D;D _{ii}f _i-w _{i:}f<br>\end{align*}<br>$$</p>
+<p>式中，$D _{ii}$为顶点$v_i$的度，$w _{i:}$为顶点$v_i$的邻接边的权重向量，维度为$N$。对于整张图，则为：</p>
+<p>$$<br>\begin{align*}<br>    \Delta f<br>    &amp;&#x3D;<br>\begin{pmatrix}<br>    \Delta f_1\\<br>    \Delta f_2\\<br>    ...\\<br>    \Delta f_N<br>\end{pmatrix}&#x3D;<br>\begin{pmatrix}<br>    D _{11}f _1-w _{1:}f\\<br>    D _{22}f _2-w _{2:}f\\<br>    ...\\<br>    D _{NN}f _N-w _{N:}f<br>\end{pmatrix}\\<br>    &amp;&#x3D;<br>\begin{pmatrix}<br>    D _{11}&amp;\cdots&amp;0\\<br>    \vdots&amp;\ddots&amp;0\\<br>    0&amp;\cdots&amp;D _{NN}<br>\end{pmatrix}f-<br>\begin{pmatrix}<br>    W _{11}&amp;\cdots&amp;W _{1N}\\<br>    \vdots&amp;\ddots&amp;\vdots\\<br>    W _{N1}&amp;\cdots&amp;W _{NN}<br>\end{pmatrix}f\\<br>    &amp;&#x3D;(D-W)f\\<br>    &amp;&#x3D;Lf<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>$L$称拉普拉斯矩阵。若$W$不表示权重，只表示邻接关系，则$W$即为邻接矩阵$A$。</p>
+<p>拉普拉斯矩阵是半正定矩阵，即对于任意不为0的实列向量$x$，有$x^TLx\ge0$。</p>
+<p>此处不以符号区别行&#x2F;列向量，均假设其自适应。</p>
 </blockquote>
-</li>
-<li>Assign points to its closest cluster centroids;<blockquote>
-<p>If there are no points assigned to a centroid, just reduce the number of centroids to $K-1$ or reinitialize the centroids.</p>
-</blockquote>
-</li>
-<li>Move each cluster centroid to the average of all the points $(\bar{x},\bar{y},..., \bar{z})$ that were assigned to it;</li>
-<li>Keep doing so until the movements of centroids are small enough;</li>
-<li>Reinitialize all the centroids and train another set of $\mu$ 50-1000 times, choose the set with the lowest $J$ as the final result of clustering.</li>
-</ul>
-<p><img src="/2023/04/16/UnsupervisedLearning/1.png" alt="1"></p>
-<center style="font-size:12px;font-weight:bold">Fig. 1. K-means</center>
-
-<h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><p>Definition of some notations:</p>
-<ul>
-<li>$c^{(i)}$ &#x3D; index of cluster (1, 2,..., $K$) where example $x^{(i)}$ is currently assigned;</li>
-<li>$\mu_k$ &#x3D; cluster centroid $k$;</li>
-<li>$\mu_{c^{(i)}}$ &#x3D; cluster centroid of cluster to which $x^{(i)}$ has been assigned</li>
-</ul>
-<p>Distortion cost function $J$:<br>$$J(c^{(1)},...,c^{(m)},\mu_1,...,\mu_k)&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(x^{(i)}-\mu_{c^{(i)}})^2$$</p>
-<p>The way to minimize $J$ is repeatedly moving $\mu_k$ to the centre of cluster $k$.</p>
-<h3 id="Choosing-a-K"><a href="#Choosing-a-K" class="headerlink" title="Choosing a $K$"></a>Choosing a $K$</h3><p>Elbow method: Choose the value at the elbow of $J-K$ curve as $K$ on elbow is the position where the slope of a function rapidly decreases.</p>
-<p><img src="/2023/04/16/UnsupervisedLearning/2.png" alt="2"></p>
-<center style="font-size:12px;font-weight:bold">Fig. 2. Elbow method</center><br>
-
-<p>More generally, the choice of $K$ depends on the downstream purpose.</p>
-<h1 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h1><p>Anomaly detection is another type of unsupervised learning that automatically identifies rare or anomalous events which are suspicous or harmful because they differ significantly from standard behaviors or patterns. The key algorithm in anomaly detection is density estimation that builds the model of $p(x)$ which is the probability density of $x$. The most commonly used probability density model is Gaussian (Normal or Bell shaped) distribution:<br>$$p(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</p>
-<p>For multiple features $\vec{x}$, assuming features are independent of each other:<br>$$p(\vec{x})&#x3D;\prod\limits_{j&#x3D;1}^{n}p(x_j; \mu_j, \sigma_j^2)$$</p>
-<p>The followings are procedures of anomaly detection:</p>
-<ul>
-<li>Choose $n$ features $x_j$ that you think might be indicative of anomalous examples;</li>
-<li>Fit parameters $\mu_1,...,\mu_n,\sigma_1^2,...,\sigma_n^2$;<br>$$\mu_j&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}x_j^{(i)}$$<br>$$\sigma_j&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(x_j^{(i)}-\mu_j)^2$$</li>
-<li>Given new example $\vec{x}$, compute $p(\vec{x})$;</li>
-<li>Anomaly if $p(\vec{x})&lt;\epsilon$.</li>
-</ul>
-<h2 id="Evaluating-anomaly-detection-system"><a href="#Evaluating-anomaly-detection-system" class="headerlink" title="Evaluating anomaly detection system"></a>Evaluating anomaly detection system</h2><p>In anomaly detection, we actually know which example is positive and which is not, that is, we have labeled data. However, we train the model using only normal examples, cross validate model with both anomalous and normal examples to determine $\epsilon$, test model with both anomalous and normal examples. When the data set is too small, it is feasible to remove test set.</p>
-<p>We only need to train the model one time as $\mu$ and $\sigma$ totally depend on the training set. Dev set is used to choose the best $\epsilon$. For skewed datasets, precission and recall may also be used in addition to the accurary of prediction.</p>
-<h2 id="Anomaly-detection-and-supervised-learning"><a href="#Anomaly-detection-and-supervised-learning" class="headerlink" title="Anomaly detection and supervised learning"></a>Anomaly detection and supervised learning</h2><style>
-    table th {
-        width: 160px;
-    }
-</style>
-<table>
-<thead>
-<tr>
-<th align="center">type</th>
-<th align="center">Anomaly detection</th>
-<th align="center">Supervised learning</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">number of positive examples</td>
-<td align="center">small</td>
-<td align="center">large</td>
-</tr>
-<tr>
-<td align="center">number of negative examples</td>
-<td align="center">large</td>
-<td align="center">large</td>
-</tr>
-<tr>
-<td align="center">focus</td>
-<td align="center">detect negative examples</td>
-<td align="center">detect both negative and positive examples</td>
-</tr>
-<tr>
-<td align="center">new types of anomalies</td>
-<td align="center">easy to detect</td>
-<td align="center">hard to detect</td>
-</tr>
-</tbody></table>
-<p>The core idea of anomaly detection is to learn under what circumstances one example is normal. Therefore, anomaly detection is more robust if the types of anomaly keep changing while the standard of normal is stable.</p>
-<p>Though supervised learning is also feasible when the number of positive examples is small, it can&#39;t learn much from positive examples. In contrast, since supervised learning learns what positive and negative examples look like from previous examples, it can&#39;t deal with the types of anomaly that didn&#39;t occur before well.</p>
-<h2 id="Choosing-good-features"><a href="#Choosing-good-features" class="headerlink" title="Choosing good features"></a>Choosing good features</h2><p>Choosing good features is more important in anomaly detection than in supervised learning since supervised learning can rescale and take the best advantage of the features we give while anomaly detection treats each feature independent and equally important. To choose good features, there are several methods: </p>
-<ul>
-<li><p>Choose more gaussian features or <strong>make</strong> features more gaussian (e.g. $\log(x+c)$ instead of $x$);<br><img src="/2023/04/16/UnsupervisedLearning/3.png" alt="3"></p>
-<center style="font-size:12px;font-weight:bold">Fig. 3. Variable transformation</center><br>
-</li>
-<li><p>Error analysis of dev set to find new features or create new features based on exsiting features.</p>
-</li>
+<h2 id="邻接矩阵探讨"><a href="#邻接矩阵探讨" class="headerlink" title="邻接矩阵探讨"></a>邻接矩阵探讨</h2><p>邻接矩阵$A$实际上也相当于一个算子，如：</p>
+<p>$$<br>\begin{align*}<br>    g&amp;&#x3D;Af\\<br>    g(i)&amp;&#x3D;\sum _{j} ^{A _{ij}&#x3D;1}f _j<br>\end{align*}<br>$$</p>
+<p>$g(i)$表示$i$的邻接顶点的特征和。又如：</p>
+<p>$$<br>\begin{align*}<br>    f ^Tg<br>    &amp;&#x3D;f ^TAf\\<br>    &amp;&#x3D;\sum\limits _{i,j} ^{A _{ij}&#x3D;1}f _if _j ^T<br>\end{align*}<br>$$</p>
+<p>最终维度为$F\times F$，其中F为单个顶点特征的维度（假设$f_i$为列向量）。</p>
+<h2 id="关联矩阵"><a href="#关联矩阵" class="headerlink" title="关联矩阵"></a>关联矩阵</h2><p>关联矩阵$\nabla$展现了边和其两端顶点的关系。一般地，有向图的关联矩阵更有意义，因此，对于无向图，我们可以为每条边随意规定一个方向，并定义其关联矩阵（形状为$|E|\times|V|$）为：<br>$$<br>\nabla&#x3D;<br>\begin{cases}<br>    \nabla _{ev}&#x3D;-1,&amp;\text{if v is the initial vextex of e}\\<br>    \nabla _{ev}&#x3D;1,&amp;\text{if v is the terminal vextex of e}\\<br>    \nabla _{ev}&#x3D;0,&amp;\text{otherwise}<br>\end{cases}<br>$$</p>
+<p>关联矩阵与拉普拉斯矩阵存在关系：</p>
+<p>$$<br>L&#x3D;\nabla^T\nabla<br>$$</p>
+<h2 id="拉普拉斯谱分解"><a href="#拉普拉斯谱分解" class="headerlink" title="拉普拉斯谱分解"></a>拉普拉斯谱分解</h2><p>特征分解也叫谱分解，即将矩阵分解为特征值和特征向量的乘积。因为拉普拉斯矩阵$L$为对称矩阵，因此它有$N$个特征值，$N$个相互正交的特征向量：</p>
+<p>$$<br>\begin{align*}<br>    Lu_k&amp;&#x3D;\lambda_ku_k\\<br>    L&#x3D;Q^{-1}\Lambda&amp;Q&#x3D;Q^T\Lambda Q<br>\end{align*}<br>$$</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/zvideo/1440673926157991936">拉普拉斯方程</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1799419?areaSource=106000.9&traceId=BMewvJtoWh3KSO_SjKvfw">【图神经网络】数学基础篇</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/85287578">拉普拉斯矩阵与拉普拉斯算子的关系</a></li>
 </ul>
 
     </div>
@@ -332,27 +306,20 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\22\Scikit-learn\" rel="bookmark">Scikit-learn</a></div>
+      <div class="popular-posts-title"><a href="\2023\06\13\MaximumMeanDiscrepancy\" rel="bookmark">Maximum Mean Discrepancy</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\06\02\OptimizationAlgorithms\" rel="bookmark">Optimization Algorithms</a></div>
+      <div class="popular-posts-title"><a href="\2023\05\10\FourierTransformAndCNN\" rel="bookmark">Fourier transform and CNN</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\19\ReinforcementLearning\" rel="bookmark">Reinforcement learning</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\17\RecommenderSystem\" rel="bookmark">Recommender system</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\16\DecisionTrees\" rel="bookmark">Decision trees</a></div>
+      <div class="popular-posts-title"><a href="\2023\05\10\FourierTransform\" rel="bookmark">Fourier transform</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Machine-learning/" rel="tag"># Machine learning</a>
-              <a href="/tags/Unsupervised-learning/" rel="tag"># Unsupervised learning</a>
+              <a href="/tags/Math/" rel="tag"># Math</a>
           </div>
 
           <script type="text/javascript">
@@ -374,13 +341,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/04/16/DecisionTrees/" rel="prev" title="Decision trees">
-      <i class="fa fa-chevron-left"></i> Decision trees
+    <a href="/2023/07/02/GCN/" rel="prev" title="Graph Neural Networks & Graph Convolutional Networks">
+      <i class="fa fa-chevron-left"></i> Graph Neural Networks & Graph Convolutional Networks
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/04/17/RecommenderSystem/" rel="next" title="Recommender system">
-      Recommender system <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -439,7 +403,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Clustering"><span class="nav-number">1.</span> <span class="nav-text">Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#K-means-algorithm"><span class="nav-number">1.1.</span> <span class="nav-text">K-means algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function"><span class="nav-number">1.1.1.</span> <span class="nav-text">Cost function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Choosing-a-K"><span class="nav-number">1.1.2.</span> <span class="nav-text">Choosing a $K$</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Anomaly-detection"><span class="nav-number">2.</span> <span class="nav-text">Anomaly detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluating-anomaly-detection-system"><span class="nav-number">2.1.</span> <span class="nav-text">Evaluating anomaly detection system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anomaly-detection-and-supervised-learning"><span class="nav-number">2.2.</span> <span class="nav-text">Anomaly detection and supervised learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Choosing-good-features"><span class="nav-number">2.3.</span> <span class="nav-text">Choosing good features</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%AF%86%E9%A1%BF%E7%AE%97%E5%AD%90"><span class="nav-number">1.1.</span> <span class="nav-text">哈密顿算子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">梯度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%A3%E5%BA%A6"><span class="nav-number">1.3.</span> <span class="nav-text">散度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">1.4.</span> <span class="nav-text">拉普拉斯算子的意义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%9F%A9%E9%98%B5"><span class="nav-number">2.</span> <span class="nav-text">拉普拉斯矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E5%92%8C%E4%BA%8C%E7%BB%B4%E7%A6%BB%E6%95%A3%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">一维和二维离散函数的导数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%9F%A9%E9%98%B5"><span class="nav-number">2.2.</span> <span class="nav-text">图拉普拉斯矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E6%8E%A2%E8%AE%A8"><span class="nav-number">2.3.</span> <span class="nav-text">邻接矩阵探讨</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E7%9F%A9%E9%98%B5"><span class="nav-number">2.4.</span> <span class="nav-text">关联矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E8%B0%B1%E5%88%86%E8%A7%A3"><span class="nav-number">2.5.</span> <span class="nav-text">拉普拉斯谱分解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
