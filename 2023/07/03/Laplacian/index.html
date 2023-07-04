@@ -31,8 +31,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/3.png">
 <meta property="article:published_time" content="2023-07-03T05:33:14.000Z">
-<meta property="article:modified_time" content="2023-07-03T14:39:36.773Z">
+<meta property="article:modified_time" content="2023-07-04T15:21:41.566Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
@@ -197,10 +198,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-07-03 13:33:14 / Modified: 22:39:36" itemprop="dateCreated datePublished" datetime="2023-07-03T13:33:14+08:00">2023-07-03</time>
+              <time title="Created: 2023-07-03 13:33:14" itemprop="dateCreated datePublished" datetime="2023-07-03T13:33:14+08:00">2023-07-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-07-04 23:21:41" itemprop="dateModified" datetime="2023-07-04T23:21:41+08:00">2023-07-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -274,7 +281,7 @@
 <p>$$<br>w _{ij}(f_i-f_j)<br>$$</p>
 <p>于是，对某一个顶点$v_i$，其拉普拉斯算子为：</p>
 <p>$$<br>\begin{align*}<br>    \Delta f_i<br>    &amp;&#x3D;\sum\limits _{j&#x3D;1} ^Nw _{ij}(f_i-f_j)\\<br>    &amp;&#x3D;\sum\limits _{j&#x3D;1} ^Nw _{ij}f_i-\sum\limits _{j&#x3D;1} ^Nw _{ij}f_j\\<br>    &amp;&#x3D;D _{ii}f _i-w _{i:}f<br>\end{align*}<br>$$</p>
-<p>式中，$D _{ii}$为顶点$v_i$的度，$w _{i:}$为顶点$v_i$的邻接边的权重向量，维度为$N$。对于整张图，则为：</p>
+<p>式中，$D _{ii}$为顶点$v_i$的度（有权则为带权的度），$w _{i:}$为顶点$v_i$的邻接边的权重向量，维度为$N$。对于整张图，则为：</p>
 <p>$$<br>\begin{align*}<br>    \Delta f<br>    &amp;&#x3D;<br>\begin{pmatrix}<br>    \Delta f_1\\<br>    \Delta f_2\\<br>    ...\\<br>    \Delta f_N<br>\end{pmatrix}&#x3D;<br>\begin{pmatrix}<br>    D _{11}f _1-w _{1:}f\\<br>    D _{22}f _2-w _{2:}f\\<br>    ...\\<br>    D _{NN}f _N-w _{N:}f<br>\end{pmatrix}\\<br>    &amp;&#x3D;<br>\begin{pmatrix}<br>    D _{11}&amp;\cdots&amp;0\\<br>    \vdots&amp;\ddots&amp;0\\<br>    0&amp;\cdots&amp;D _{NN}<br>\end{pmatrix}f-<br>\begin{pmatrix}<br>    W _{11}&amp;\cdots&amp;W _{1N}\\<br>    \vdots&amp;\ddots&amp;\vdots\\<br>    W _{N1}&amp;\cdots&amp;W _{NN}<br>\end{pmatrix}f\\<br>    &amp;&#x3D;(D-W)f\\<br>    &amp;&#x3D;Lf<br>\end{align*}<br>$$</p>
 <blockquote>
 <p>$L$称拉普拉斯矩阵。若$W$不表示权重，只表示邻接关系，则$W$即为邻接矩阵$A$。</p>
@@ -284,13 +291,21 @@
 <h2 id="邻接矩阵探讨"><a href="#邻接矩阵探讨" class="headerlink" title="邻接矩阵探讨"></a>邻接矩阵探讨</h2><p>邻接矩阵$A$实际上也相当于一个算子，如：</p>
 <p>$$<br>\begin{align*}<br>    g&amp;&#x3D;Af\\<br>    g(i)&amp;&#x3D;\sum _{j} ^{A _{ij}&#x3D;1}f _j<br>\end{align*}<br>$$</p>
 <p>$g(i)$表示$i$的邻接顶点的特征和。又如：</p>
-<p>$$<br>\begin{align*}<br>    f ^Tg<br>    &amp;&#x3D;f ^TAf\\<br>    &amp;&#x3D;\sum\limits _{i,j} ^{A _{ij}&#x3D;1}f _if _j ^T<br>\end{align*}<br>$$</p>
-<p>最终维度为$F\times F$，其中F为单个顶点特征的维度（假设$f_i$为列向量）。</p>
+<p>$$<br>\begin{align*}<br>    f ^Tg<br>    &amp;&#x3D;f ^TAf\\<br>    &amp;&#x3D;\sum\limits _{i,j} ^{A _{ij}&#x3D;1}2f _i\cdot f _j<br>\end{align*}<br>$$</p>
+<p>邻接矩阵必是对称矩阵，因此这实际上是个二次形。</p>
+<h2 id="拉普拉斯矩阵探讨"><a href="#拉普拉斯矩阵探讨" class="headerlink" title="拉普拉斯矩阵探讨"></a>拉普拉斯矩阵探讨</h2><p>类似地，拉普拉斯矩阵$L$和$f$也能形成二次型：</p>
+<p>$$<br>\begin{align*}<br>    f^TLf<br>    &amp;&#x3D;\sum _{i,j} ^{A _{ij}&#x3D;1}(f _i - f _j)^2\tag{4}<br>\end{align*}<br>$$</p>
+<p>该式具有实际的物理意义：</p>
+<p><img src="/2023/07/03/Laplacian/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Spring network</center><br>
+
+<p>在上图所示弹簧网络中，有5个质子，假设两端（黑球）固定，并给予中间的三个振子一定程度的扰动，则当系统重新平衡时，三个振子和两端会停留在让系统总弹性势能最小的位置，假设连接质子$i$和质子$j$的弹簧的弹性系数为$k _{ij}$（$k _{ji}$），则系统的总弹性势能为：</p>
+<p>$$<br>E&#x3D;\frac{1}{2}\sum <em>{(i,j)\in E}k</em>{ij}(x(i)-x(j))^2\tag{5}<br>$$<br>式中，$i$和$j$表示质子，$x(i)$为质子$i$的绝对位置，$E$是边集（即弹簧集）。最终质子的位置将使得$E$最小。将上述弹簧网络扩展为更一般的图，那么式$(5)$便能很轻易地被扩展为式$(4)$，只不过省略了一些对结果不造成影响的项（e.g. $\frac{1}{2}$），且一些项的含义发生了变化（e.g. $k _{ij}$成了图的边的权，若图的边无权，则可忽略该项）。式$(4)$显然是一个凸函数，因此它可以作为图神经网络的损失函数（但一般作为正则项）。</p>
 <h2 id="关联矩阵"><a href="#关联矩阵" class="headerlink" title="关联矩阵"></a>关联矩阵</h2><p>关联矩阵$\nabla$展现了边和其两端顶点的关系。一般地，有向图的关联矩阵更有意义，因此，对于无向图，我们可以为每条边随意规定一个方向，并定义其关联矩阵（形状为$|E|\times|V|$）为：<br>$$<br>\nabla&#x3D;<br>\begin{cases}<br>    \nabla _{ev}&#x3D;-1,&amp;\text{if v is the initial vextex of e}\\<br>    \nabla _{ev}&#x3D;1,&amp;\text{if v is the terminal vextex of e}\\<br>    \nabla _{ev}&#x3D;0,&amp;\text{otherwise}<br>\end{cases}<br>$$</p>
 <p>关联矩阵与拉普拉斯矩阵存在关系：</p>
 <p>$$<br>L&#x3D;\nabla^T\nabla<br>$$</p>
 <h2 id="拉普拉斯谱分解"><a href="#拉普拉斯谱分解" class="headerlink" title="拉普拉斯谱分解"></a>拉普拉斯谱分解</h2><p>特征分解也叫谱分解，即将矩阵分解为特征值和特征向量的乘积。因为拉普拉斯矩阵$L$为对称矩阵，因此它有$N$个特征值，$N$个相互正交的特征向量：</p>
-<p>$$<br>\begin{align*}<br>    Lu_k&amp;&#x3D;\lambda_ku_k\\<br>    L&#x3D;Q^{-1}\Lambda&amp;Q&#x3D;Q^T\Lambda Q<br>\end{align*}<br>$$</p>
+<p>$$<br>\begin{align*}<br>    Lu_k&amp;&#x3D;\lambda_ku_k\\<br>    L&#x3D;U^{-1}\Lambda&amp;U&#x3D;U^T\Lambda U<br>\end{align*}<br>$$</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://www.zhihu.com/zvideo/1440673926157991936">拉普拉斯方程</a></li>
 <li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1799419?areaSource=106000.9&traceId=BMewvJtoWh3KSO_SjKvfw">【图神经网络】数学基础篇</a></li>
@@ -305,6 +320,9 @@
       
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\04\GraphFourierTransform\" rel="bookmark">Graph Fourier Transform</a></div>
+    </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\06\13\MaximumMeanDiscrepancy\" rel="bookmark">Maximum Mean Discrepancy</a></div>
     </li>
@@ -344,7 +362,10 @@
     <a href="/2023/07/02/GCN/" rel="prev" title="Graph Neural Networks & Graph Convolutional Networks">
       <i class="fa fa-chevron-left"></i> Graph Neural Networks & Graph Convolutional Networks
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/07/04/GraphFourierTransform/" rel="next" title="Graph Fourier Transform">
+      Graph Fourier Transform <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -403,7 +424,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%AF%86%E9%A1%BF%E7%AE%97%E5%AD%90"><span class="nav-number">1.1.</span> <span class="nav-text">哈密顿算子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">梯度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%A3%E5%BA%A6"><span class="nav-number">1.3.</span> <span class="nav-text">散度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">1.4.</span> <span class="nav-text">拉普拉斯算子的意义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%9F%A9%E9%98%B5"><span class="nav-number">2.</span> <span class="nav-text">拉普拉斯矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E5%92%8C%E4%BA%8C%E7%BB%B4%E7%A6%BB%E6%95%A3%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">一维和二维离散函数的导数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%9F%A9%E9%98%B5"><span class="nav-number">2.2.</span> <span class="nav-text">图拉普拉斯矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E6%8E%A2%E8%AE%A8"><span class="nav-number">2.3.</span> <span class="nav-text">邻接矩阵探讨</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E7%9F%A9%E9%98%B5"><span class="nav-number">2.4.</span> <span class="nav-text">关联矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E8%B0%B1%E5%88%86%E8%A7%A3"><span class="nav-number">2.5.</span> <span class="nav-text">拉普拉斯谱分解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%AF%86%E9%A1%BF%E7%AE%97%E5%AD%90"><span class="nav-number">1.1.</span> <span class="nav-text">哈密顿算子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">梯度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%A3%E5%BA%A6"><span class="nav-number">1.3.</span> <span class="nav-text">散度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%AE%97%E5%AD%90%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">1.4.</span> <span class="nav-text">拉普拉斯算子的意义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%9F%A9%E9%98%B5"><span class="nav-number">2.</span> <span class="nav-text">拉普拉斯矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E5%92%8C%E4%BA%8C%E7%BB%B4%E7%A6%BB%E6%95%A3%E5%87%BD%E6%95%B0%E7%9A%84%E5%AF%BC%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">一维和二维离散函数的导数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%9F%A9%E9%98%B5"><span class="nav-number">2.2.</span> <span class="nav-text">图拉普拉斯矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E6%8E%A2%E8%AE%A8"><span class="nav-number">2.3.</span> <span class="nav-text">邻接矩阵探讨</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E7%9F%A9%E9%98%B5%E6%8E%A2%E8%AE%A8"><span class="nav-number">2.4.</span> <span class="nav-text">拉普拉斯矩阵探讨</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E7%9F%A9%E9%98%B5"><span class="nav-number">2.5.</span> <span class="nav-text">关联矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E8%B0%B1%E5%88%86%E8%A7%A3"><span class="nav-number">2.6.</span> <span class="nav-text">拉普拉斯谱分解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -419,7 +440,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -456,7 +477,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-mechanism/" rel="tag">Attention mechanism</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-distillation/" rel="tag">Dataset distillation</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-mechanism/" rel="tag">Attention mechanism</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-distillation/" rel="tag">Dataset distillation</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>
