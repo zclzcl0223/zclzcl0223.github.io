@@ -22,29 +22,25 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Attention mechanisms is a layer of neural networks added to deep learning models to focus their attention to specific parts of data, based on different weights assigned to different parts. Just as the">
+  <meta name="description" content="谱方法是图卷积神经网络的理论依据，理解它对理解各种基于图卷积的神经网络有很大的帮助。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Attention Mechanisms: More Targeted Information Extraction">
-<meta property="og:url" content="https://zclzcl0223.github.io/2023/06/06/Attention/index.html">
+<meta property="og:title" content="Spectral Approaches">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Attention mechanisms is a layer of neural networks added to deep learning models to focus their attention to specific parts of data, based on different weights assigned to different parts. Just as the">
+<meta property="og:description" content="谱方法是图卷积神经网络的理论依据，理解它对理解各种基于图卷积的神经网络有很大的帮助。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/1.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/2.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/3.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/4.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/5.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/6.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/7.png">
-<meta property="article:published_time" content="2023-06-05T21:29:23.000Z">
-<meta property="article:modified_time" content="2023-06-09T08:13:15.174Z">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/2.png">
+<meta property="article:published_time" content="2023-07-06T03:19:28.000Z">
+<meta property="article:modified_time" content="2023-07-06T16:24:04.596Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="Attention mechanism">
-<meta property="article:tag" content="Deep learning">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="GNN">
+<meta property="article:tag" content="GCN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/06/06/Attention/1.png">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/1.png">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/2023/06/06/Attention/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/">
 
 
 <script id="page-configurations">
@@ -57,7 +53,7 @@
   };
 </script>
 
-  <title>Attention Mechanisms: More Targeted Information Extraction | JourneyToCoding</title>
+  <title>Spectral Approaches | JourneyToCoding</title>
   
 
 
@@ -181,7 +177,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/06/06/Attention/">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -194,7 +190,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Attention Mechanisms: More Targeted Information Extraction
+          Spectral Approaches
         </h1>
 
         <div class="post-meta">
@@ -204,14 +200,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2023-06-06 05:29:23" itemprop="dateCreated datePublished" datetime="2023-06-06T05:29:23+08:00">2023-06-06</time>
+              <time title="Created: 2023-07-06 11:19:28" itemprop="dateCreated datePublished" datetime="2023-07-06T11:19:28+08:00">2023-07-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-06-09 16:13:15" itemprop="dateModified" datetime="2023-06-09T16:13:15+08:00">2023-06-09</time>
+                <time title="Modified: 2023-07-07 00:24:04" itemprop="dateModified" datetime="2023-07-07T00:24:04+08:00">2023-07-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -219,12 +215,12 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Dive-into-deep-learning/" itemprop="url" rel="index"><span itemprop="name">Dive into deep learning</span></a>
+                  <a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">Attention mechanisms is a layer of neural networks added to deep learning models to focus their attention to specific parts of data, based on different weights assigned to different parts. Just as the neural network is an effort to mimic human brain actions in a simplified manner, the attention mechanism is also an attempt to implement the same action of selectively concentrating on a few relevant things while ignoring others in neural networks.</div>
+            <div class="post-description">谱方法是图卷积神经网络的理论依据，理解它对理解各种基于图卷积的神经网络有很大的帮助。</div>
 
         </div>
       </header>
@@ -237,66 +233,88 @@
       
         <span id="more"></span>
 
-<h1 id="Attention-in-Biology"><a href="#Attention-in-Biology" class="headerlink" title="Attention in Biology"></a>Attention in Biology</h1><p>In biology, there are two kinds of cues that affect our attention: volitional cue (自主性提示) and nonvolitional cue (非自主性提示).</p>
-<p><img align="left" src="/2023/06/06/Attention/1.png" style=" width:380px; padding: 0px 0px; "> <img align="mid" src="/2023/06/06/Attention/2.png" style=" width:380px; padding: 0px 0px; "></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. Nonvolitional cue (left) and Volitional cue (right)</center><br>
-
-<p>The nonvolitional cue is based on the saliency of objects in the environment. It&#39;s unconscous. As the above picture shows, when there is a red cup among several white objects, we will unconsciously choose the red cup as its color is more prominent. The volitional cue is controlled by our awareness and our decisions are led by our consciousness. For example, after drinking a cup of coffee, we may want to relax, because of which we choose a book to read.</p>
-<h1 id="Attention-Mechanisms"><a href="#Attention-Mechanisms" class="headerlink" title="Attention Mechanisms"></a>Attention Mechanisms</h1><p>The nonvolitional cue and volitional cue inspire us to take the environment as input and use volitional cue to focus the attention to a certain object or feature.</p>
-<h2 id="Queries-Keys-and-Values"><a href="#Queries-Keys-and-Values" class="headerlink" title="Queries, Keys and Values"></a>Queries, Keys and Values</h2><p>In attention mechanisms, the volitional cue is also called <strong>query</strong>. It reflects the tendency of feature extraction. The nonvolitional cue is actually our perception of the environment. The characteristics of the environment can be represented by several <strong>key-value pairs</strong>. These three things consist of the input of the attention mechanism. Giving queries and keys, the attention mechanism will aggregate values and choose the most prominent and suitable value as output. Such a process is also called <em>attention pooling</em>. It is queries that distinguish attention pooling from dense layers.</p>
-<p><img src="/2023/06/06/Attention/3.png" alt="3"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 2. Attention pooling</center>
-
-<h2 id="Mathematical-Representation-of-Attention"><a href="#Mathematical-Representation-of-Attention" class="headerlink" title="Mathematical Representation of Attention"></a>Mathematical Representation of Attention</h2><p>Our attention to a certain object reflects how much we care about it, or, mathematically, the weight we give it. When a certain query is offered to us, it is natural for us to think of finding something similar to this query to get the answer. That is, for a key-value pair, the more similar the key is to the query, the higher proportion its value should take up in the answer. This is how <em><strong>Nadaraya-Watson kernel regression</strong></em> works:</p>
-<p>$$<br>f(\mathbf{q})&#x3D;\sum\limits _{i&#x3D;1} ^n \frac{K(\mathbf{q}-\mathbf{k}_i)}{\sum\limits _{j&#x3D;1} ^n K(\mathbf{q}-\mathbf{k}_j)}\mathbf{v}_i<br>$$</p>
-<p>where $K$ is a kernel. Such an estimator assigns different weight to different keys for a certain query. More generally, attention is defined as:</p>
-<p>$$<br>\text{Attention}(\mathbf{q},\mathbf{k},\mathbf{v})&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i<br>$$</p>
-<p>where $\alpha(\mathbf{q},\mathbf{k}_i)$ is <em>attention weight</em>. It is non-negative and its sum is $1$. The output is a weighted sum of the values for each key-value pair.</p>
-<p><img src="/2023/06/06/Attention/4.png" alt="4"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 3. Mathematical representation of attention pooling</center> <br>
-
-<p>It is noteworthy that Nadaraya-Watson kernel regression is a nonparametric model (<em>nonparametric attention pooling</em>). Therefore, it is consistent. With enough data, it will converge to the optimum result. However, in machine learning, the agent needs parameters to learn so that it could improve its performance. For instance, if we set $K$ as a gaussian kernel and add learned parameter $\mathbf{w}$, we get a formula that looks like softmax:</p>
-<p>$$<br>\begin{align*}<br>K(\mathbf{u})&amp;&#x3D;\frac{1}{\sqrt{2\pi}}\exp(-\frac{\mathbf{u}^2}{2})\\<br>f(\mathbf{q})<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\frac{\exp[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]}{\sum\limits _{j&#x3D;1} ^n\exp[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]}\mathbf{v}_i\\<br>    &amp;&#x3D;\sum _{i&#x3D;1} ^n\text{softmax}[-\frac{1}{2}(\mathbf{q}-\mathbf{k}_i)^2\mathbf{w}^2]\mathbf{v}_i<br>\end{align*}<br>$$</p>
-<h2 id="Attention-Scoring-Function"><a href="#Attention-Scoring-Function" class="headerlink" title="Attention Scoring Function"></a>Attention Scoring Function</h2><p>The exponent of the gaussian kernel above ($-{\mathbf{u}^2}&#x2F;2$) is actually an attention scoring function ($a$) which evaluates the similarity between $\mathbf{q}$ and $\mathbf{k}_i$. Hence, the attention pooling can be also represented as:</p>
-<p>$$<br>\begin{align*}<br>    \text{Attention}(\mathbf{q},\mathbf{k},\mathbf{v})&amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\alpha(\mathbf{q},\mathbf{k}_i)\mathbf{v}_i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;1} ^n\text{softmax}[a(\mathbf{q},\mathbf{k}_i)]\mathbf{v}_i<br>\end{align*}<br>$$</p>
-<p><img src="/2023/06/06/Attention/5.png" alt="5"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 4. Computing the output of attention pooling</center> <br>
-
-<p>where $\text{softmax}$ generates attention weights. The more similar the key $\mathbf{k}_i$ is to the query $\mathbf{q}$, the higher weight its value $\mathbf{v}_i$ gets. The output is the weighted sum of values.</p>
-<p>More generally, query $\mathbf{q}$ and key $\mathbf{k}_i$ are both <strong>vectors</strong> of different length. The attention scoring function maps these two vectors to a scalar</p>
-<h3 id="Additive-Attention"><a href="#Additive-Attention" class="headerlink" title="Additive Attention"></a>Additive Attention</h3><p>Additive attention uses MLP to evaluate the similarity between $\mathbf{q}$ and $\mathbf{k}$, where $\mathbf{q}\in\mathbf{R}^q$ and $\mathbf{k}\in\mathbf{R}^k$:</p>
-<p>$$<br>a(\mathbf{q,k})&#x3D;[\tanh(\mathbf{q}\mathbf{W}_q+\mathbf{k}\mathbf{W}_k)]\mathbf{w}_v\in\mathbf{R}<br>$$</p>
-<p>where $\mathbf{W}_q\in\mathbf{R} ^{q\times h}$, $\mathbf{W}_k\in\mathbf{R} ^{k\times h}$ and $\mathbf{w}_v\in\mathbf{R} ^{h}$. All of them are learned parameters (here we ignore the bias) in one dense layer.</p>
+<h1 id="从卷积到傅里叶变换"><a href="#从卷积到傅里叶变换" class="headerlink" title="从卷积到傅里叶变换"></a>从卷积到傅里叶变换</h1><p>图的顶点$i$可表示为信号$f_i$，其中$f _i\in\mathbf{R} ^F$，假设图有$N$个顶点，则整张图可以表示为：</p>
+<p>$$<br>f&#x3D;[f_1,f_2,...,f_N]^T<br>$$</p>
+<p>基于卷积的理论及其与傅里叶变换的关系（<strong>卷积的傅里叶变换等于傅里叶变换的乘积</strong>），卷积操作可以定义为：</p>
+<p>$$<br>\begin{align*}<br>    g\star f<br>    &amp;&#x3D;\mathcal{F} ^{-1}[\mathcal{F}(g\star f)]\\<br>    &amp;&#x3D;\mathcal{F} ^{-1}(\mathcal{F}(g)\odot\mathcal{F}(f))\\<br>    &amp;&#x3D;U(U ^{T}g\odot U ^{T}f) \tag{1}<br>\end{align*}<br>$$</p>
+<p>式中，$g$是卷积核，用于提取、汇聚图的空间信息；$U$是图的拉普拉斯矩阵的特征向量矩阵，它被用作离散形式的傅里叶变换的傅里叶基。具体细节见<a href="/2023/07/04/GraphFourierTransform/">Graph Fourier Transform</a>。式子中$U ^{T}g$称为滤波器（filter）。由于$U ^Tg$实际上是对$g$的傅里叶变换，因此：</p>
+<p>$$<br>U ^{T}g&#x3D;\hat{g}&#x3D;[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]^T<br>$$</p>
+<p>即，它是由$g$所包含的各个特征值$\lambda _i$所对应的正交基$u _i$（相当于连续形式的傅里叶变换的不同频率的正弦波形）在$g$中所占的比重所组成的向量。同样地，$U ^Tf$可转化为：</p>
+<p>$$<br>U ^{T}f&#x3D;\hat{f}&#x3D;[\hat{f}(\lambda _1),...,\hat{f}(\lambda _N)]^T<br>$$</p>
+<p>于是它们的哈达玛积（$\odot$）就为：</p>
+<p>$$<br>\begin{align*}<br>    U ^{T}g\odot U ^{T}f<br>    &amp;&#x3D;\hat{g}\odot\hat{f}\\<br>    &amp;&#x3D;<br>    \begin{bmatrix}<br>        \hat{g}({\lambda _1})\times\hat{f}({\lambda _1})\\<br>        \vdots\\<br>        \hat{g}({\lambda _N})\times\hat{f}({\lambda _N})<br>    \end{bmatrix}<br>\end{align*}<br>$$</p>
+<p>而：</p>
+<p>$$<br>\begin{bmatrix}<br>    \hat{g}(\lambda _1) &amp;\\<br>    &amp; \ddots \\<br>    &amp; &amp; \hat{g}(\lambda _N)<br>\end{bmatrix} \cdot<br>\begin{bmatrix}<br>    \hat{f}({\lambda _1})\\<br>    \vdots\\<br>    \hat{f}({\lambda _N})<br>\end{bmatrix} &#x3D;<br>\begin{bmatrix}<br>    \hat{g}({\lambda _1})\times\hat{f}({\lambda _1})\\<br>    \vdots\\<br>    \hat{g}({\lambda _N})\times\hat{f}({\lambda _N})<br>\end{bmatrix}<br>$$</p>
+<p>因此，式$(1)$可以变为：</p>
+<p>$$<br>\begin{align*}<br>    g\star f<br>    &amp;&#x3D;U(U ^{T}g\odot U ^{T}f)\\<br>    &amp;&#x3D;U(\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]U ^{T}f)\\<br>    &amp;&#x3D;U\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)] U ^{T}f\tag{2}<br>\end{align*}<br>$$</p>
 <blockquote>
-<p>In practice, each batch may have several queries and key-value pairs. And there are always more than one batches. In this case, the shape of $\mathbf{q}$ is <code>(batch_size, num_queries, q)</code> and the shape of $\mathbf{k}$ is <code>(batch_size, num_kv_pairs, k)</code>. The shape of $\mathbf{q}\mathbf{W}_q$ is <code>(batch_size, num_queries, h)</code> and the shape of $\mathbf{k}\mathbf{W}_k$ is <code>(batch_size, num_kv_pairs, h)</code>. <code>num_queries</code> and <code>num_kv_pairs</code> are always different, which means that we can&#39;t add $\mathbf{q}\mathbf{W}_q$ and $\mathbf{k}\mathbf{W}_k$ directly. </p>
-<p>To solve this, we always use <code>queries.unsqueeze(2)</code> and <code>keys.unsqueeze(1)</code> (<code>queries</code> and <code>keys</code> are both tensor) to expand their dimensions. After <code>unsqueeze</code>, the shape of <code>queries</code> is <code>(batch_size, num_queries, 1, h)</code> and the shape of <code>keys</code> is <code>(batch_size, 1, num_kv_pairs, h)</code>. Now broadcasting can make $\mathbf{q}\mathbf{W}_q+\mathbf{k}\mathbf{W}_k$ legal. The nature of this operation is that each query should take all the keys into account so the $2$-th dimension of <code>queries</code> is expanded to <code>num_kv_pairs</code>, so is <code>keys</code>. </p>
+<p>矩阵结合律是成立的</p>
 </blockquote>
-<h3 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h3><p>If the shape of $\mathbf{q}$ and $\mathbf{k}$ are the same (both are $d$), we could just use dot-product to evaluate their similarity:</p>
-<p>$$<br>a(\mathbf{q,k})&#x3D;\mathbf{q}^\text{T}\mathbf{k}&#x2F;\sqrt{d}<br>$$</p>
-<p>where $\sqrt{d}$ is to make sure that the value of $a(\mathbf{q,k})$ will not change significantly when the shape changes.</p>
-<p>If considering SGD, the output of attention pooling is:</p>
-<p>$$<br>\text{softmax}(\mathbf{Q}\mathbf{K}^\text{T}&#x2F;\sqrt{d})\mathbf{V}<br>$$</p>
-<p>where $d$ is still the shape of each query or each key.</p>
-<h1 id="Different-Types-of-Attention"><a href="#Different-Types-of-Attention" class="headerlink" title="Different Types of Attention"></a>Different Types of Attention</h1><p>Depending on the number of attention pooling and the relationship among queries, keys and values, there are various forms of attention mechanisms.</p>
-<h2 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h2><p>Just as different convolutional output channels can extract different types of features, different attention pooling will also learn various behaviors. Hence, we can use multi-head attention to generate multiple attention pooling outputs $\mathbf{h}_1...\mathbf{h}_i$ in parallel and concatenate them together to form $(\mathbf{h}_1,...,\mathbf{h}_i)$.</p>
-<p><img src="/2023/06/06/Attention/6.png" alt="6"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 5. Multi-head attention</center>
-
-<h2 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h2><p>Self-attention (intra-attention) is a special kind of attention, whose queries, keys and values are all the same things.</p>
-<h1 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h1><p>When dealing with sequence information, RNNs operate each token in sequence. Therefore, the location information of the sequence is used. However, the attention pooling operates all the inputs in parallel, because of which, the location information is wasted.</p>
-<p>Positional encoding is the location information added to the keys, values and queries. In computer science, we use binary string to represent position (e.g. 0: 000, 1: 001, ..., 7: 111). As can be seen, the bit on each position alternates at diferent frequencies respectively. Higher bits alternate less frequently than lower bits. Such alternating changes can represent discrete positional information.</p>
-<h2 id="Absolute-Positional-Information"><a href="#Absolute-Positional-Information" class="headerlink" title="Absolute Positional Information"></a>Absolute Positional Information</h2><p>For the input $\mathbf{X}\in\mathbf{R} ^{n\times d}$ which contains $n$ tokens and $d$ features for each token, we can use positional embedding matrix $\mathbf{P}\in\mathbf{R} ^{n\times d}$ to offer it positional information:</p>
-<p>$$<br>\begin{align*}<br>    \mathbf{X&#39;}&amp;&#x3D;\mathbf{X}+\mathbf{P}\\<br>    \mathbf{P} _{i,2j}&amp;&#x3D;\sin(\frac{i}{10000 ^{2j&#x2F;d}})\\<br>    \mathbf{P} _{i,2j+1}&amp;&#x3D;\cos(\frac{i}{10000 ^{2j&#x2F;d}})<br>\end{align*}<br>$$</p>
-<p>It works because different columns, which are similar to the bit position in binary string, oscillate at different frequencies. It is just like the binary string but the value is continuous.</p>
-<p><img src="/2023/06/06/Attention/7.png" alt="7"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 6. Oscillating frequency of different columns</center>
-
-<h2 id="Relative-Positional-Information"><a href="#Relative-Positional-Information" class="headerlink" title="Relative Positional Information"></a>Relative Positional Information</h2><p>The positional information we add to $\mathbf{X}$ is called absolute positional information. What&#39;s more, we can also get the relative positional information for different rows in the same column:</p>
-<p>$$<br>\begin{align*}<br>    (\mathbf{P} _{i,2j}, \mathbf{P} _{i,2j+1})&amp;&#x3D;(\sin\frac{i}{10000 ^{2j&#x2F;d}},\cos\frac{i}{10000 ^{2j&#x2F;d}})\\<br>    (\mathbf{P} _{i+\delta,2j}, \mathbf{P} _{i+\delta,2j+1})&amp;&#x3D;(\sin\frac{i+\delta}{10000 ^{2j&#x2F;d}},\cos\frac{i+\delta}{10000 ^{2j&#x2F;d}})\\<br>    &amp;&#x3D;({\begin{bmatrix}<br>           \cos\delta\omega_j\space\space \sin\delta\omega_j\\<br>           -\sin\delta\omega_j\space\space \cos\delta\omega_j<br>       \end{bmatrix}}<br>      {\begin{bmatrix}<br>           \mathbf{P} _{i,2j}\\<br>           \mathbf{P} _{i,2j+1}<br>       \end{bmatrix}})^\text{T}\\<br>    &amp;&#x3D;[\sin(i+\delta)\omega_j,\cos(i+\delta)\omega_j]\\<br>\end{align*}<br>$$</p>
-<p>where $\omega_j&#x3D;1&#x2F;10000^{2j&#x2F;d}$.</p>
+<p>另一种角度，若从右向左看式$(2)$的最后一个等式，上述卷积操作其实就是一次对图信号$f$的<strong>滤波</strong>：</p>
+<ol>
+<li>$U^T f$将时域的图信号转换为频域的图信号；</li>
+<li>$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)](U^T f)$对频域的图信号进行滤波，提取特征；</li>
+<li>$U(\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]U ^{T}f)$将经过滤波的频域图信号转换回时域。</li>
+</ol>
+<p>基于谱方法（Spectral approaches）的图神经网络的发展实际上就是一个设计更好的滤波器$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]$的过程。</p>
+<h1 id="第一代GCN"><a href="#第一代GCN" class="headerlink" title="第一代GCN"></a>第一代GCN</h1><p>为了使得滤波器能够被学习，第一代GCN直接将式$(2)$中的滤波器的对角元素替换为了可学习的参数$w$，于是第一代GCN的卷积操作就变为：</p>
+<p>$$<br>Z&#x3D;\sigma(Ug_wU ^{T}f)\tag{3}<br>$$</p>
+<p>其中激活函数用于赋予非线性性。上述操作的思路很简单：输入$f$经过第一个卷积层后得到$Z$，$Z$再作为下一个卷积层的输入，逐层地学习、提取信息。然而，缺点也显而易见：需要对拉普拉斯矩阵进行特征分解以得到$U$，而当图顶点数很多时，这样的特征分解是十分困难的。</p>
+<h1 id="第二代GCN"><a href="#第二代GCN" class="headerlink" title="第二代GCN"></a>第二代GCN</h1><p>鉴于$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]$是特征值对角矩阵$\Lambda$的函数，第二代GCN采用k阶多项式来近似的拟合这个函数，即：</p>
+<p>$$<br>g _w(\Lambda)\approx\sum\limits _{k&#x3D;0} ^Kw _k\Lambda ^k<br>$$</p>
+<p>将其带入式$(3)$，则第二代GCN为：</p>
+<p>$$<br>\begin{align*}<br>    Z<br>    &amp;&#x3D;\sigma(Ug_w(\Lambda)U ^{T}f)\\<br>    &amp;&#x3D;\sigma(U\sum\limits _{k&#x3D;0} ^Kw _k\Lambda ^kU ^{T}f)\\<br>    &amp;&#x3D;\sigma(\sum\limits _{k&#x3D;0} ^Kw _kL ^kf)<br>\end{align*}<br>$$</p>
 <blockquote>
-<p>Positional information is information added to the input $\mathbf{X}$, including keys, values and queries, it could be fixed positional encoding like what we do above or learned one.</p>
+<p>$U\Lambda ^k U ^T&#x3D;L^k$，其中，$L$为拉普拉斯矩阵。</p>
 </blockquote>
+<p>不难看出，第二代GCN不对拉普拉斯矩阵进行特征分解，而是直接用拉普拉斯矩阵对$f$进行变换。同时，可学习的参数个数也有原来的$N$个下降为$K+1$个。与第一代相比，第二代GCN的计算复杂度明显更低。虽然如此，仍然需要计算$L ^k$，时间复杂度为$O(N ^2)$。</p>
+<p>事实上，由于：</p>
+<p>$$<br>L&#x3D;D-A\tag{4}<br>$$</p>
+<p>其中$A$为邻接矩阵，式$(4)$的证明见<a href="/2023/07/03/Laplacian/#图拉普拉斯矩阵">图拉普拉斯矩阵</a>。因此:</p>
+<p>$$<br>L ^k&#x3D;C_k ^0D ^k-C_k ^1D ^{k-1}A+...+(-1) ^kC _k ^kA ^k<br>$$</p>
+<p>式中，由于$D$和$A$都是对称矩阵，所以$DA&#x3D;AD$。邻接矩阵的$k$次幂的各个元素$A ^k[i][j]$表示的是从$i$到$j$路径长度为$k$的路径的条数。$D$为对角矩阵，只会改变与其相乘的矩阵的非零元素的值。因此，$L ^k$中的$k$实际上就是本次卷积感受野的大小，即距离中心顶点$k+1$-hop以内的邻居顶点都会被用来更新中心顶点的特征表示。</p>
+<blockquote>
+<p>接下来的两类GCN的$L$均代表正则化后的拉普拉斯矩阵。</p>
+</blockquote>
+<h1 id="ChebyNet"><a href="#ChebyNet" class="headerlink" title="ChebyNet"></a>ChebyNet</h1><p>不同于第二代GCN，2016年被提出的<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1606.09375.pdf">ChebyNet</a>使用切比雪夫多项式来近似拟合滤波器：</p>
+<p>$$<br>\begin{cases}<br>    g _w&#x3D;\sum\limits _{k&#x3D;0} ^{K}w _kT _k(\hat{\Lambda})\tag{5}\\<br>    \hat{\Lambda}&#x3D;\frac{2}{\lambda _{max}}\Lambda-I _N<br>\end{cases}<br>$$</p>
+<p>其中，$\lambda _{max}$是正则化的拉普拉斯矩阵$L$的最大特征值，而正则化拉普拉斯矩阵的特征值介于0和2之间，因此，$\hat{\Lambda}$的作用是让特征值矩阵的值介于-1和1之间。切比雪夫多项式是递归定义的：</p>
+<p>$$<br>\begin{cases}<br>    T _0(x)&#x3D;1 \\<br>    T _1(x)&#x3D;x \\<br>    T _{n+1}(x)&#x3D;2xT _n(x)- T _{n-1}(x)<br>\end{cases}<br>$$</p>
+<p>切比雪夫多项式各个幂次项的系数实际上是余弦函数$\cos nx$展开为$\cos x$的函数后的各个幂次的$\cos x$的系数。因此，相比于普通的多项式，切比雪夫多项式具有很多特殊的性质：</p>
+<ol>
+<li>在$[-1,1]$有$n$个零点；</li>
+<li>在$[-1,1]$的值在$[-1,1]$之间震荡。</li>
+<li>...</li>
+</ol>
+<p><img src="/2023/07/06/SpectralApproach/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Chebyshev polynomials</center><br>
+
+<p>这使得它与正弦波形十分相似，但是又更为简单。将式子带入$(3)$，可得：</p>
+<p>$$<br>\begin{cases}<br>    Z&#x3D;\sigma(\sum\limits _{k&#x3D;0} ^Kw _kT _k(\hat{L})f)\\<br>    \hat{L}&#x3D;\frac{2}{\lambda _{max}}L-I _N<br>\end{cases}<br>$$</p>
+<p>因为切比雪夫多项式本质上仍是多项式，所以$k$仍然表示的是感受野的大小，这与第二代GCN一致。</p>
+<h1 id="GCN"><a href="#GCN" class="headerlink" title="GCN"></a>GCN</h1><p>目前常规的<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1609.02907.pdf">GCN</a>源于2017年Kipf等发表的论文。它是在ChebyNet的基础上进一步简化而来的，它取$K$为1，即，只取切比雪夫多项式的前两项：</p>
+<p>$$<br>g _w&#x3D;w_0+w_1\hat{L}\tag{6}<br>$$</p>
+<p>进一步地，它固定$\lambda _{max}$为2，并且限制$w_0&#x3D;-w_1&#x3D;w$，于是式$(6)$变为：</p>
+<p>$$<br>\begin{align*}<br>    g _w<br>    &amp;&#x3D;w-w(L-I _N)\\<br>    &amp;&#x3D;-w(L-2I _N)\\<br>    &amp;&#x3D;-w[D ^{-\frac{1}{2}}(D-A)D ^{-\frac{1}{2}}-2I _N]\\<br>    &amp;&#x3D;-w(I _N-D ^{-\frac{1}{2}}AD ^{-\frac{1}{2}}-2I _N)\\<br>    &amp;&#x3D;w(I _N+D ^{-\frac{1}{2}}AD ^{-\frac{1}{2}})\tag{7}<br>\end{align*}<br>$$</p>
+<p>不难看出，如此，卷积层的感受野就只有1，即中心顶点只会聚合与其直接邻接的顶点的信息。但是，由于$A$的对角线均为0，在卷积过程中，中心顶点会丢失自己的信息。因此，GCN为每个顶点增加了自旋边，即：</p>
+<p>$$<br>\tilde{A}&#x3D;A+I _N<br>$$</p>
+<p>相应地，拉普拉斯矩阵$L$和和度矩阵$D$分别变成了$\tilde{L}$和$\tilde{D}$。如此，$k$为0的切比雪夫项$I _N$就不再被需要了，因为$\tilde{A}$使得中心顶点能够保留自己的信息，故式$(7)$进一步简化为：</p>
+<p>$$<br>g _w&#x3D;w\tilde{D} ^{-\frac{1}{2}}\tilde{A}\tilde{D} ^{-\frac{1}{2}}<br>$$</p>
+<p>为了增加可学习的参数，GCN将$w$扩充为矩阵$W$，并定义了卷积层的最终操作为：</p>
+<p>$$<br>Z&#x3D;\sigma(\tilde{D} ^{-\frac{1}{2}}\tilde{A}\tilde{D} ^{-\frac{1}{2}}fW)<br>$$</p>
+<p>以上就是GCN，它是ChebyNet的简化，但实际效果却远优于更复杂的ChebyNet。但是，GCN不能叠加很多层，因为它是个低通滤波器，即它会过滤掉高频的信号，因此当GCN的层数过高时，最终的信号就只剩低频信号了，相应地网络的效果也会变差：</p>
+<p><img src="/2023/07/06/SpectralApproach/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Low pass filter</center><br>
+
+<blockquote>
+<p>图中的$h$就是文中的$g$。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/ftp/arxiv/papers/1812/1812.08434.pdf">Graph neural networks: A review of methods and applications</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Me4y1c7kj/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">谱域图神经网络理论基础</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/121090537">GCN中的等式证明</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/35212baf6671">图卷积网络(GCN)原理解析</a></li>
+</ul>
 
     </div>
 
@@ -307,27 +325,28 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\06\07\Transformer\" rel="bookmark">Transformer: Self-Attention and Parallelization</a></div>
+      <div class="popular-posts-title"><a href="\2023\07\04\GraphFourierTransform\" rel="bookmark">Graph Fourier Transform</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\06\02\OptimizationAlgorithms\" rel="bookmark">Optimization Algorithms</a></div>
+      <div class="popular-posts-title"><a href="\2023\07\03\Laplacian\" rel="bookmark">Laplacian</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\05\31\EncoderDecoder\" rel="bookmark">The Encoder-Decoder Architecture</a></div>
+      <div class="popular-posts-title"><a href="\2023\07\02\GCN\" rel="bookmark">Graph Neural Networks & Graph Convolutional Networks</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\05\29\CommonRNNModels\" rel="bookmark">Common RNN models</a></div>
+      <div class="popular-posts-title"><a href="\2023\06\13\MaximumMeanDiscrepancy\" rel="bookmark">Maximum Mean Discrepancy</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\05\25\RNN\" rel="bookmark">RNN: a special kind of MLP</a></div>
+      <div class="popular-posts-title"><a href="\2023\05\10\FourierTransformAndCNN\" rel="bookmark">Fourier transform and CNN</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Attention-mechanism/" rel="tag"># Attention mechanism</a>
-              <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
+              <a href="/tags/Math/" rel="tag"># Math</a>
+              <a href="/tags/GNN/" rel="tag"># GNN</a>
+              <a href="/tags/GCN/" rel="tag"># GCN</a>
           </div>
 
           <script type="text/javascript">
@@ -349,13 +368,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/06/02/OptimizationAlgorithms/" rel="prev" title="Optimization Algorithms">
-      <i class="fa fa-chevron-left"></i> Optimization Algorithms
+    <a href="/2023/07/04/GraphFourierTransform/" rel="prev" title="Graph Fourier Transform">
+      <i class="fa fa-chevron-left"></i> Graph Fourier Transform
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/06/07/Transformer/" rel="next" title="Transformer: Self-Attention and Parallelization">
-      Transformer: Self-Attention and Parallelization <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -414,7 +430,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-in-Biology"><span class="nav-number">1.</span> <span class="nav-text">Attention in Biology</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-Mechanisms"><span class="nav-number">2.</span> <span class="nav-text">Attention Mechanisms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Queries-Keys-and-Values"><span class="nav-number">2.1.</span> <span class="nav-text">Queries, Keys and Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mathematical-Representation-of-Attention"><span class="nav-number">2.2.</span> <span class="nav-text">Mathematical Representation of Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-Scoring-Function"><span class="nav-number">2.3.</span> <span class="nav-text">Attention Scoring Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Additive-Attention"><span class="nav-number">2.3.1.</span> <span class="nav-text">Additive Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scaled-Dot-Product-Attention"><span class="nav-number">2.3.2.</span> <span class="nav-text">Scaled Dot-Product Attention</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Different-Types-of-Attention"><span class="nav-number">3.</span> <span class="nav-text">Different Types of Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-Head-Attention"><span class="nav-number">3.1.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Self-Attention"><span class="nav-number">3.2.</span> <span class="nav-text">Self-Attention</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Positional-Encoding"><span class="nav-number">4.</span> <span class="nav-text">Positional Encoding</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Absolute-Positional-Information"><span class="nav-number">4.1.</span> <span class="nav-text">Absolute Positional Information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relative-Positional-Information"><span class="nav-number">4.2.</span> <span class="nav-text">Relative Positional Information</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E5%8D%B7%E7%A7%AF%E5%88%B0%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">从卷积到傅里叶变换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%BB%A3GCN"><span class="nav-number">2.</span> <span class="nav-text">第一代GCN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E4%BB%A3GCN"><span class="nav-number">3.</span> <span class="nav-text">第二代GCN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ChebyNet"><span class="nav-number">4.</span> <span class="nav-text">ChebyNet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCN"><span class="nav-number">5.</span> <span class="nav-text">GCN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
