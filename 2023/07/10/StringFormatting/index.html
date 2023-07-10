@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="An anonymous function in Python is the one that has no name when it is defined. In Python, the lambda keyword is used to define anonymous functions rather than the def keyword, which is used for norma">
+  <meta name="description" content="类似于C的printf和scanf，Python也支持字符串的格式化输出。但是，Python格式化字符串的能力更强，因为格式化实际上是Python的string对象的内置函数，而该函数的返回值是格式化后的字符串。换句话说，Python的格式化字符串操作产生一个新的字符串，而该字符串就是个string对象。Python格式化字符串常用的运算符&#x2F;函数是%和format">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lambda: anomymous functions">
-<meta property="og:url" content="https://zclzcl0223.github.io/2023/05/05/PythonLambda/index.html">
+<meta property="og:title" content="Python String Formatting">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/10/StringFormatting/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="An anonymous function in Python is the one that has no name when it is defined. In Python, the lambda keyword is used to define anonymous functions rather than the def keyword, which is used for norma">
+<meta property="og:description" content="类似于C的printf和scanf，Python也支持字符串的格式化输出。但是，Python格式化字符串的能力更强，因为格式化实际上是Python的string对象的内置函数，而该函数的返回值是格式化后的字符串。换句话说，Python的格式化字符串操作产生一个新的字符串，而该字符串就是个string对象。Python格式化字符串常用的运算符&#x2F;函数是%和format">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-05-05T09:57:41.000Z">
-<meta property="article:modified_time" content="2023-05-06T14:52:25.212Z">
+<meta property="article:published_time" content="2023-07-10T07:56:09.000Z">
+<meta property="article:modified_time" content="2023-07-10T08:41:38.176Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/2023/05/05/PythonLambda/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/07/10/StringFormatting/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>lambda: anomymous functions | JourneyToCoding</title>
+  <title>Python String Formatting | JourneyToCoding</title>
   
 
 
@@ -172,7 +172,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/05/05/PythonLambda/">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/07/10/StringFormatting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -185,7 +185,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          lambda: anomymous functions
+          Python String Formatting
         </h1>
 
         <div class="post-meta">
@@ -194,16 +194,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-05-05 17:57:41" itemprop="dateCreated datePublished" datetime="2023-05-05T17:57:41+08:00">2023-05-05</time>
+              <time title="Created: 2023-07-10 15:56:09 / Modified: 16:41:38" itemprop="dateCreated datePublished" datetime="2023-07-10T15:56:09+08:00">2023-07-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-06 22:52:25" itemprop="dateModified" datetime="2023-05-06T22:52:25+08:00">2023-05-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -215,7 +209,7 @@
             </span>
 
           
-            <div class="post-description">An anonymous function in Python is the one that has no name when it is defined. In Python, the lambda keyword is used to define anonymous functions rather than the def keyword, which is used for normal functions.</div>
+            <div class="post-description">类似于C的printf和scanf，Python也支持字符串的格式化输出。但是，Python格式化字符串的能力更强，因为格式化实际上是Python的string对象的内置函数，而该函数的返回值是格式化后的字符串。换句话说，Python的格式化字符串操作产生一个新的字符串，而该字符串就是个string对象。Python格式化字符串常用的运算符/函数是%和format</div>
 
         </div>
       </header>
@@ -228,30 +222,28 @@
       
         <span id="more"></span>
 
-<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p>Lambda functions are defined by <code>lambda</code> keyword, which could only have one expression but multiple arguments. We can assign the lambda function to any variable so that we can use it as a function. More generally, we use <code>lambda</code> together with <code>map</code>, <code>reduce</code> or <code>filter</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">lambda [arguments] : [expression]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># zero argument</span></span><br><span class="line">a = <span class="keyword">lambda</span> : <span class="built_in">print</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"><span class="comment"># one argument</span></span><br><span class="line">b = <span class="keyword">lambda</span> x : x**<span class="number">2</span></span><br><span class="line"><span class="comment"># multiple arguments</span></span><br><span class="line">c = <span class="keyword">lambda</span> x, y : x + y</span><br><span class="line">a()</span><br><span class="line"><span class="built_in">print</span>(b(<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(c(<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">hello</span></span><br><span class="line"><span class="string">4</span></span><br><span class="line"><span class="string">5</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>In addition to the basic usage above, there are 4 ways to make use of <code>lambda</code> in general.</p>
-<h2 id="Functions-nested-lambda"><a href="#Functions-nested-lambda" class="headerlink" title="Functions nested lambda"></a>Functions nested lambda</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">new_func</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> y : x + y</span><br><span class="line">t = new_func(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(t(<span class="number">3</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">6</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>Anomymous functions are also functions and they have their own scope, because of which, anomymous function will use variables of enclosing function or global variables once they can&#39;t find the specific variable in the local scope.</p>
-<h2 id="map-and-lambda"><a href="#map-and-lambda" class="headerlink" title="map and lambda"></a>map and lambda</h2><p><code>map</code> funtion makes use the idea of <strong>SIMD</strong>. It maps a certain function to all the elements of input list and return a iterator which can be turned to list using <code>list()</code>.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">map(func_to_apply, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x : x**<span class="number">2</span>, a)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[1, 4, 9, 16, 25]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p><code>map</code> can also deal with two or more lists as long as the length of lists is the same and the function supports more than one arguments:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">map</span>(<span class="keyword">lambda</span> x, y : x + y, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">5</span></span><br><span class="line"><span class="string">7</span></span><br><span class="line"><span class="string">9</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>What&#39;s more, the element of list could even be function:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sq</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x**<span class="number">2</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">doub</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * x</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x : x(i), [sq, doub])))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 0]</span></span><br><span class="line"><span class="string">[1, 2]</span></span><br><span class="line"><span class="string">[4, 4]</span></span><br><span class="line"><span class="string">[9, 6]</span></span><br><span class="line"><span class="string">[16, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h1 id="格式化"><a href="#格式化" class="headerlink" title="%格式化"></a>%格式化</h1><p>运算符<code>%</code>可用于格式化字符串：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;%s world %d&#x27;</span> % (<span class="string">&#x27;Hello&#x27;</span>, <span class="number">12</span>)</span><br><span class="line"><span class="string">&#x27;Hello world 12&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="reduce-and-lambda"><a href="#reduce-and-lambda" class="headerlink" title="reduce and lambda"></a>reduce and lambda</h2><p><code>reduce</code> firstly passes the first two elements of list to the function. Then, take the result of function as the new first argument and pass it to the function with the third element of list and so on until the last element:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">reduce(func, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(reduce(<span class="keyword">lambda</span> x, y : x + y, a)) <span class="comment"># equal to 1 + 2 + 3 + 4 + 5</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">15</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>The element of list could also be function.</p>
-</blockquote>
-<h2 id="filter-and-lambda"><a href="#filter-and-lambda" class="headerlink" title="filter and lambda"></a>filter and lambda</h2><p><code>filter</code> returns a iterator that contains elements in the input_list that match the criteria of the function:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">filter(func, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">a = <span class="built_in">filter</span>(<span class="keyword">lambda</span> x: x % <span class="number">2</span> == <span class="number">0</span>, <span class="built_in">range</span>(<span class="number">10</span>)) <span class="comment"># get even number</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(a))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>filter</code> is easily replaced by <code>for</code> or <code>for if</code> comprehension:</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>其中前半段<code>&#39;&#39;</code>内的是原字符串，<code>%s</code>和<code>%d</code>是占位符，最后<code>()</code>内的是占位符的实际内容（若是变量则将输出其值，即若令<code>a=&#39;Hello&#39;</code>，并将<code>Hello</code>替换为<code>a</code>，则上面代码的输出结果不变）。占位符的用法与C语言的一致，如<code>%d</code>表<code>int</code>，<code>%f</code>表<code>float</code>，<code>%s</code>表<code>string</code>，<code>%5s</code>表右对齐占5位（不够则用空格补齐），<code>%.2s</code>表取2位（超出则截断，对于<code>%.f</code>是指保留2位小数），<code>%-s</code>表字符串左对齐，等等，此处不再赘述。</p>
+<h1 id="format格式化"><a href="#format格式化" class="headerlink" title="format格式化"></a>format格式化</h1><p><code>format</code>是<code>string</code>对象的成员函数，功能是格式化原字符串，并返回格式化后的字符串：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#123;&#125; &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>)  <span class="comment"># 不带字段</span></span><br><span class="line"><span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#123;0&#125; &#123;1&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>)  <span class="comment"># 带位置编号</span></span><br><span class="line"><span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#123;0&#125; &#123;1&#125; &#123;0&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>)  <span class="comment"># 打乱顺序</span></span><br><span class="line"><span class="string">&#x27;hello world hello&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#123;a&#125; &#123;b&#125; &#123;a&#125;&#x27;</span>.<span class="built_in">format</span>(b=<span class="string">&#x27;hello&#x27;</span>,a=<span class="string">&#x27;world&#x27;</span>)  <span class="comment"># 带关键字</span></span><br><span class="line"><span class="string">&#x27;world hello world&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>原字符串中的<code>&#123;&#125;</code>起着占位的作用，占位的方式有三种：</p>
+<ol>
+<li>不带任何字段的占位，即第一种。这种情况下，传给<code>format</code>的参数将顺序替换掉占位的<code>&#123;&#125;</code>；</li>
+<li>带位置编号的占位，即第二、三种。这种情况下，位置编号代表传给<code>format</code>的参数的先后次序（如<code>&#39;hello&#39;</code>为0），传入参数将按编号替换掉占位符；</li>
+<li>带关键字的占位，即第四种。这种最直观，直接用变量名来占位。</li>
+</ol>
+<p><code>format</code>格式化的占位符也可以结合<code>%</code>格式化的占位符，不过要用<code>:</code>区分开，如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#123;a&#125; &#123;b&#125; &#123;a:.2s&#125;&#x27;</span>.<span class="built_in">format</span>(b=<span class="string">&#x27;hello&#x27;</span>,a=<span class="string">&#x27;world&#x27;</span>)</span><br><span class="line"><span class="string">&#x27;world hello wo&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&#123;a:.2s&#125;</code>表示按字符串输出但是只保留两位。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fat39/p/7159881.html">python基础_格式化输出（%用法和format用法）</a></li>
+</ul>
+
     </div>
 
     
@@ -302,13 +294,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/05/03/ModelSelection/" rel="prev" title="Model selection & hyperparameter optimization">
-      <i class="fa fa-chevron-left"></i> Model selection & hyperparameter optimization
+    <a href="/2023/07/08/LinuxCommandLine/" rel="prev" title="Linux Command Line">
+      <i class="fa fa-chevron-left"></i> Linux Command Line
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/05/05/GammaAndFactorial/" rel="next" title="gamma and factorial">
-      gamma and factorial <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -367,7 +356,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Definition"><span class="nav-number">1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Usage"><span class="nav-number">2.</span> <span class="nav-text">Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions-nested-lambda"><span class="nav-number">2.1.</span> <span class="nav-text">Functions nested lambda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map-and-lambda"><span class="nav-number">2.2.</span> <span class="nav-text">map and lambda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduce-and-lambda"><span class="nav-number">2.3.</span> <span class="nav-text">reduce and lambda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filter-and-lambda"><span class="nav-number">2.4.</span> <span class="nav-text">filter and lambda</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">%格式化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#format%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">format格式化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
