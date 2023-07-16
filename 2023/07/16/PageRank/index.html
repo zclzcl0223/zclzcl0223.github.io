@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="谷歌的搜索引擎发家算法--PageRank。虽然现在谷歌的搜索引擎中PageRank占比已经很少，但PageRank仍是一个重要的算法，且与图相关的邻域发挥着余热，如APPNP就是用PageRank的衍生算法Topic-Sensitive PageRank优化了消息传递过程的图神经网络。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PageRank">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/16/PageRank/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="谷歌的搜索引擎发家算法--PageRank。虽然现在谷歌的搜索引擎中PageRank占比已经很少，但PageRank仍是一个重要的算法，且与图相关的邻域发挥着余热，如APPNP就是用PageRank的衍生算法Topic-Sensitive PageRank优化了消息传递过程的图神经网络。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/16/PageRank/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/16/PageRank/2.jpg">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/16/PageRank/3.jpg">
+<meta property="article:published_time" content="2023-07-16T07:44:41.000Z">
+<meta property="article:modified_time" content="2023-07-16T13:16:21.280Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="GNN">
+<meta property="article:tag" content="Recommender system">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/07/16/PageRank/1.png">
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/07/16/PageRank/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>PageRank | JourneyToCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JourneyToCoding</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/07/16/PageRank/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PageRank
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-07-16 15:44:41 / Modified: 21:16:21" itemprop="dateCreated datePublished" datetime="2023-07-16T15:44:41+08:00">2023-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/GNN/" itemprop="url" rel="index"><span itemprop="name">GNN</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">谷歌的搜索引擎发家算法--PageRank。虽然现在谷歌的搜索引擎中PageRank占比已经很少，但PageRank仍是一个重要的算法，且与图相关的邻域发挥着余热，如APPNP就是用PageRank的衍生算法Topic-Sensitive PageRank优化了消息传递过程的图神经网络。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="PageRank"><a href="#PageRank" class="headerlink" title="PageRank"></a>PageRank</h1><p>PageRank将互联网视作由HTML网页组成的有向图（现在不行了，因为有许多不能被外部访问的内部网页，如朋友圈等），并为所有网页的重要性进行打分。当用户搜索相关网页时，PageRank便将得分高的网页放在搜索结果的前面。PageRank将互联网结点$i$的重要性定义为$r_i$，并将$i$的一条入度边视作另一个网页对$i$结点的引用，而将出度边视作$i$结点对其他网页的引用。PageRank的评分逻辑可以从三个角度进行理解。</p>
+<h2 id="解线性方程组"><a href="#解线性方程组" class="headerlink" title="解线性方程组"></a>解线性方程组</h2><p>这是理解PageRank的第一个角度，也是最原理性的数学角度。一个很符合生活常识的逻辑是：某篇论文的重要性，不应该看这篇论文引用了什么论文，而应该看什么论文引用了这篇论文和这些引用了它的论文的重要性。对于互联网网页组成的图，也是如此。假设网页结点$j$的重要性为$r_j$，出度为$d_j$，其出度边平均地将$j$的重要性分给了它引用的网页，而$j$的重要性又是引用了$j$的网页分给$j$的重要性之和。</p>
+<p><img src="/2023/07/16/PageRank/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Rank of j</center><br>
+
+<p>很自然地，$r_j$可以表示为：</p>
+<p>$$<br>r_j&#x3D;\frac{r_i}{3}+\frac{r_k}{4}<br>$$</p>
+<p>其中，3和4分别是$i$和$k$的出度。若将所有结点的重要性都用这种方式表示，我们便可以得到一个关于所有结点重要性的方程组：</p>
+<p>$$<br>\begin{cases}<br>    \vdots \\<br>    r_j&#x3D;\sum _{i\to j} \frac{r _i}{d _i}\tag{1}\\<br>    \vdots<br>\end{cases}<br>$$</p>
+<p>假设图的总结点数为$n$，那么这就是一个$n$元的线性方程组。我们有$n$个方程，然而实际有效的只有$n-1$个方程（很好理解，若$n$个方程都有效，我们将得到唯一解，但实际上将所有的$r$放大同样的倍数得到的值也是合理的），因此需要补充方程：</p>
+<p>$$<br>\sum _{i\in G}r_i&#x3D;1<br>$$</p>
+<p>以限制重要性的取值，其中$i\in G$指结点$i$是图中的结点。</p>
+<p>以上便是PageRank的数学逻辑。若图的结点数量较少，我们可以用上面的联立方程组很快地得到解析解，但实际上$n$的值是十分大的，直接求解会很麻烦，因此只能采用近似的方法：<strong>假设每个结点的初始重要性都是$\frac{1}{n}$，将初始重要性代入式$(1)$中，可以得到更新后的重要性，这视作一次迭代。重复上述过程足够多次，所有结点的重要性都将收敛为一个稳定值。</strong> 这样的迭代是很合理的，因为所有网页诞生之初，其重要性都是一致的，只不过在后续网页间互相引用的过程中，其他网页为其引用的网页贡献了重要性，使得被引用的网页变得更加重要，而上述的迭代操作便是对这一过程的模拟。</p>
+<h3 id="矩阵形式的方程组"><a href="#矩阵形式的方程组" class="headerlink" title="矩阵形式的方程组"></a>矩阵形式的方程组</h3><p>式$(1)$的方程组可以很容易地被转变为一个矩阵$\mathbf{M}$，其中：</p>
+<p>$$<br>\mathbf{M} _{ji}&#x3D;\frac{1}{d _i}<br>$$</p>
+<p>表示结点$i$因为引用结点$j$而流向$j$的重要性占$i$自身重要性的比例。再令结点的初始重要性为向量$\mathbf{r}$：</p>
+<p>$$<br>r&#x3D;[\frac{1}{n},...,\frac{1}{n}] _{1\times n} ^T<br>$$</p>
+<p>于是，一次迭代便可视为$\mathbf{r}$左乘一次$\mathbf{M}$：</p>
+<p>$$<br>\mathbf{r} ^{(k+1)}&#x3D;\mathbf{M}\mathbf{r} ^{(k)}<br>$$</p>
+<p>其中，$\mathbf{r} ^{(k)}$表示$\mathbf{r}$第$k$次迭代的结果。</p>
+<blockquote>
+<p>矩阵$\mathbf{M}$又称<em>Stochastic adjacency matrix</em>（随机邻接矩阵），而这种迭代的方法称<em>Power iteration</em>（幂迭代）。从矩阵$\mathbf{M}$的名称不难看出其与邻接矩阵$A$具有不可分的关系，而这也是PageRank能被用于GNN的消息传递的原因之一（我猜的）。</p>
+</blockquote>
+<p>当$k\to+\infty$时，$\mathbf{r}$将收敛为一个稳定的结果（事实上，$k$为50时就已经基本收敛）。计算机很擅长矩阵运算，因此这也是最常用来计算PageRank的方法。</p>
+<h2 id="随机游走"><a href="#随机游走" class="headerlink" title="随机游走"></a>随机游走</h2><p>另外一种理解角度是随机游走（Random walk），即假设图中有一个随机游走的surfer，在$t$时刻，它位于网页$i$；在$t+1$时刻，它将随机点击网页$i$中的超链接并到达网页$j$。初始时刻，surfer点击任何一个网页的概率相同：</p>
+<p>$$<br>\mathbf{p}(0)&#x3D;[\frac{1}{n},...,\frac{1}{n}] _{1\times n} ^T<br>$$</p>
+<p>此后，每经过一次随机游走，surfer到达任意一个网页的概率都将发生变化：</p>
+<p>$$<br>\mathbf{p}(t+1)&#x3D;\mathbf{M}\mathbf{p}(t)<br>$$</p>
+<p>此时，$\mathbf{M} _{ji}$可以视为从网页$i$跳到网页$j$的概率；$\mathbf{p}(t+1) _j$则是$t+1$次随机游走后，仍然在网页$j$的概率，其在值上等于$t$次随机游走到达任意网页后又跳回网页$j$的数学期望。$t\to +\infty$后，$\mathbf{p}(t)$便可视为一开始surfer点击各个网页的概率向量，显然，概率越大的网页就越重要。</p>
+<blockquote>
+<p>这是一种更加合乎人们上网习惯的模拟，也是更好理解的一种角度。</p>
+</blockquote>
+<h2 id="马尔科夫链"><a href="#马尔科夫链" class="headerlink" title="马尔科夫链"></a>马尔科夫链</h2><p>第三种角度是马尔可夫链，其定义的状态转移实际上可以看作一种随机游走，因此与第二种角度基本上是互通的。</p>
+<h2 id="Google-Matrix"><a href="#Google-Matrix" class="headerlink" title="Google Matrix"></a>Google Matrix</h2><p>针对实际的网络，常规的$\mathbf{M}$并不是特别地好用，因为当图中包含以下这两类结点时，用$\mathbf{M}$计算得到的$\mathbf{r}$将失真：</p>
+<ol>
+<li><p>Dead ends</p>
+<p> 此类结点只有入度，没有出度：</p>
+<p> <img src="/2023/07/16/PageRank/2.jpg" alt="2"></p>
+ <center style="font-size:12px; font-weight:bold">Fig. 2. Dead ends</center><br>
+
+<p> surfer一旦走入这类结点，将被永远地困在里面，导致重要性消失。</p>
+</li>
+<li><p>Spider traps</p>
+<p> 此类结点的唯一出度边是个自旋边：</p>
+<p> <img src="/2023/07/16/PageRank/3.jpg" alt="3"></p>
+ <center style="font-size:12px; font-weight:bold">Fig. 3. Spider traps</center><br>
+
+<p> Spider traps会导致所有的重要性被这一类结点吸收。</p>
+</li>
+</ol>
+<p>对于这两类结点，PageRank给出的解决方案是：1）Dead ends，人为地为其添加$n$条出度边，使其重要性能够流向所有的结点（包括自己）；2）Spider traps，在每一次迭代任意结点时，令其有$\beta$的概率按照原来的出度边流动，有$1-\beta$的概率随机流向所有结点（包括自己）的任意一个。于是，在处理完Dead ends后，一次迭代后$r_j$变为：</p>
+<p>$$<br>\begin{align*}<br>    r_j<br>    &amp;&#x3D;\sum\limits _{i&#x3D;0} ^{n-1} [\beta \mathbf{M} _{ji}+(1-\beta)\frac{1}{n}]r _i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;0} ^{n-1} \beta \mathbf{M} _{ji}r _i+(1-\beta)\frac{1}{n}\tag{2}<br>\end{align*}<br>$$</p>
+<p>上式成立因为$\sum\limits _{i&#x3D;0} ^{n-1}r_i&#x3D;1$。为了方便计算，PageRank定义了Google Matrix $\mathbf{G}$：</p>
+<p>$$<br>    \mathbf{G}&#x3D;\beta\mathbf{M}+(1-\beta)[\frac{1}{n}] _{n\times n}<br>$$<br>$$<br>\begin{align*}<br>        \mathbf{r} ^{(k+1)}<br>        &amp;&#x3D;\mathbf{G}\mathbf{r} ^{(k)}\\<br>        &amp;&#x3D;\beta\mathbf{M}\mathbf{r} ^{(k)}+(1-\beta)[\frac{1}{n}] _{n\times 1}\\<br>        &amp;&#x3D;\beta\mathbf{M}\mathbf{r} ^{(k)}+(1-\beta)\mathbf{S}\tag{3}<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>从随机游走的角度，式$(2)$可视为人为地提高到达Non-spider traps结点的概率，使得surfer能够跳出Spider traps，但是仍保持总概率和为1。</p>
+</blockquote>
+<h1 id="Personalized-PageRank"><a href="#Personalized-PageRank" class="headerlink" title="Personalized PageRank"></a>Personalized PageRank</h1><p>与PageRank是要计算图中所有结点的重要性不同，Personalized PageRank的目标是要计算所有结点与结点$j$的关联度。从随机游走的角度出发，我们就必须要让随机游走到达$j$的可能性最大，因为任何一个结点肯定与自身的关联性最大，由此，从$j$到达的结点分到的可能性也会增大，进而与$j$关联性大的结点就会被筛选出来。</p>
+<p>要想达到这个目标，我们只能人为地引导surfer向$j$结点跳转，即，将式$(3)$中的$\mathbf{S}$更改为：</p>
+<p>$$<br>\mathbf{S}&#x3D;<br>\begin{cases}<br>    \mathbf{S}_j&#x3D;1\\<br>    \mathbf{S}_i&#x3D;0,i\ne j<br>\end{cases}<br>$$</p>
+<p>使得任意结点不再是随机跳转到任意一个结点，而是随机跳转到指定结点$j$。</p>
+<blockquote>
+<p>Personalized PageRank是PPNP（原始版的APPNP）的理论基础。</p>
+</blockquote>
+<h1 id="Topic-Sensitive-PageRank"><a href="#Topic-Sensitive-PageRank" class="headerlink" title="Topic-Sensitive PageRank"></a>Topic-Sensitive PageRank</h1><p>Topic-Sensitive PageRank可视为拓展版的Personalized PageRank。Topic-Sensitive PageRank的目标是基于用户的个人信息，为其提供更加个性化的搜索结果，如：当一个平时喜欢搜索篮球领域相关问题的人搜索“科比”时，搜索引擎便会为其提供更多有关篮球领域的“科比”而不是其他领域的“科比”的信息。</p>
+<p>为达到这个目的，Topic-Sensitive PageRank也是在向量$\mathbf{S}$上做文章，不过它既不像PageRank那样广撒网，也不像Personalized PageRank“钟情于一人”，而是给予已知的拥有目标主题的网页更大的跳转机会，既：</p>
+<p>$$<br>\mathbf{S}&#x3D;\frac{[1,0,0,...,0,1,0] ^T}{\sum\limits _{i&#x3D;0} ^{n-1}\mathbf{S} _i}<br>$$</p>
+<blockquote>
+<p>Topic-Sensitive PageRank是APPNP的理论基础。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1uP411K7yN/?spm_id_from=333.337.search-card.all.click&vd_source=2d980a0365f3ebea674b32924d8a4ce8">改变世界的谷歌PageRank算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/450267809?utm_id=0">图表示学习系列4——PageRank</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/509849231">【CS224W】04链接分析算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/likeyou1314918273/article/details/106895794">个性化PageRank算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/insistGoGo/article/details/9885037">Topic-Sensitive PageRank(主题敏感的PageRank )</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\15\ExpressivePowerofGNNs\" rel="bookmark">Expressive Power of GNNs</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\06\SpectralApproach\" rel="bookmark">Spectral Approaches</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\04\GraphFourierTransform\" rel="bookmark">Graph Fourier Transform</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\03\Laplacian\" rel="bookmark">Laplacian</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\02\GCN\" rel="bookmark">Graph Neural Networks & Graph Convolutional Networks</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GNN/" rel="tag"># GNN</a>
+              <a href="/tags/Recommender-system/" rel="tag"># Recommender system</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/07/15/ExpressivePowerofGNNs/" rel="prev" title="Expressive Power of GNNs">
+      <i class="fa fa-chevron-left"></i> Expressive Power of GNNs
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PageRank"><span class="nav-number">1.</span> <span class="nav-text">PageRank</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.1.</span> <span class="nav-text">解线性方程组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%BD%A2%E5%BC%8F%E7%9A%84%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">矩阵形式的方程组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0"><span class="nav-number">1.2.</span> <span class="nav-text">随机游走</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E9%93%BE"><span class="nav-number">1.3.</span> <span class="nav-text">马尔科夫链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Google-Matrix"><span class="nav-number">1.4.</span> <span class="nav-text">Google Matrix</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Personalized-PageRank"><span class="nav-number">2.</span> <span class="nav-text">Personalized PageRank</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Topic-Sensitive-PageRank"><span class="nav-number">3.</span> <span class="nav-text">Topic-Sensitive PageRank</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChaosTsang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ChaosTsang</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-mechanism/" rel="tag">Attention mechanism</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-analysis/" rel="tag">Data analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-distillation/" rel="tag">Dataset distillation</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-trees/" rel="tag">Decision trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-learning/" rel="tag">Deep learning</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-learning/" rel="tag">Machine learning</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-language/" rel="tag">Markup language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-system/" rel="tag">Recommender system</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-learning/" rel="tag">Reinforcement learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-learning/" rel="tag">Supervised learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-learning/" rel="tag">Unsupervised learning</a><span class="tag-list-count">3</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fas fa-star-of-david"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {  // 2023-04-04 00:16:51
+        var grt= new Date("04/04/2023 00:16:51");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/zclzcl0223/my_medium-zoom@master/medium-zoom-v7.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>
