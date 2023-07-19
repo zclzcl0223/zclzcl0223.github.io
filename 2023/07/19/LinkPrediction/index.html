@@ -22,21 +22,20 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Conda is an open-source,cross-platform, language-agnostic package manager and environment management system.">
+  <meta name="description" content="链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等应用中都需要进行链接预测。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Conda">
-<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/11/Conda/index.html">
+<meta property="og:title" content="LinkPrediction">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/19/LinkPrediction/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Conda is an open-source,cross-platform, language-agnostic package manager and environment management system.">
+<meta property="og:description" content="链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等应用中都需要进行链接预测。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-04-11T14:21:08.000Z">
-<meta property="article:modified_time" content="2023-07-07T13:39:51.053Z">
+<meta property="article:published_time" content="2023-07-19T10:14:00.000Z">
+<meta property="article:modified_time" content="2023-07-19T11:51:04.960Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="Tool">
+<meta property="article:tag" content="GNN">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/11/Conda/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/07/19/LinkPrediction/">
 
 
 <script id="page-configurations">
@@ -49,7 +48,7 @@
   };
 </script>
 
-  <title>Conda | JourneyToCoding</title>
+  <title>LinkPrediction | JourneyToCoding</title>
   
 
 
@@ -173,7 +172,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/11/Conda/">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/07/19/LinkPrediction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -186,7 +185,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Conda
+          LinkPrediction
         </h1>
 
         <div class="post-meta">
@@ -195,28 +194,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-04-11 22:21:08" itemprop="dateCreated datePublished" datetime="2023-04-11T22:21:08+08:00">2023-04-11</time>
+              <time title="Created: 2023-07-19 18:14:00 / Modified: 19:51:04" itemprop="dateCreated datePublished" datetime="2023-07-19T18:14:00+08:00">2023-07-19</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-07-07 21:39:51" itemprop="dateModified" datetime="2023-07-07T21:39:51+08:00">2023-07-07</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+                  <a href="/categories/GNN/" itemprop="url" rel="index"><span itemprop="name">GNN</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">Conda is an open-source,cross-platform, language-agnostic package manager and environment management system.</div>
+            <div class="post-description">链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等应用中都需要进行链接预测。</div>
 
         </div>
       </header>
@@ -229,48 +222,49 @@
       
         <span id="more"></span>
 
-<h1 id="Environment-amp-Library"><a href="#Environment-amp-Library" class="headerlink" title="Environment &amp; Library"></a>Environment &amp; Library</h1><p>Create a new environment:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n [newevname] python=[YourVersion]</span><br></pre></td></tr></table></figure>
+<h1 id="链接预测的基本方法"><a href="#链接预测的基本方法" class="headerlink" title="链接预测的基本方法"></a>链接预测的基本方法</h1><p>当前，在图机器学习领域，链接预测的主流方法有三种：</p>
+<ol>
+<li><strong>启发式方法（Heuristic methods）</strong><br> 这种方法认为存在链接关系的结点的特征存在某种共同的特性，这种特性使得它们间有更大的相似度。启发式方法通过定义一种映射来衡量这样的相似度，如结点的共同邻居（Common neighor）、Katz Index等，但是这样的映射不一定对所有的图都有效。</li>
+<li><strong>结点嵌入（Node embedding）</strong><br> 这种方法与结点分类（Node classification）中的方法一致，即基于游走的方法学习结点的embedding，常见的方法有：DeepWalk、Node2vec等。这样的方法，没有直接将链接预测任务嵌入到有监督学习的流程中，并且无法较好的利用用户的节点属性，无法达到较好的预测精度。</li>
+<li><strong>图神经网络（GNN）</strong><br> 基于基本的图神经网络架构，如GCN、GraphSAGE、GAT等，通过对邻居结点的聚合得到融合了图结构信息的结点表示，再以类似于启发式方法的方式求任意两结点的“相似度”，进而判断两结点间边的有无。最后的判断本质上是个逻辑回归，即二分类问题（有边为1，无边为0）。</li>
+</ol>
+<h1 id="基于PyG的GCN链接预测"><a href="#基于PyG的GCN链接预测" class="headerlink" title="基于PyG的GCN链接预测"></a>基于PyG的GCN链接预测</h1><p>PyG（PyTorch Geometry）是个建立在PyTorch基础上的图神经网络库，它为训练不同任务（结点分类、链接预测、图分类等）、不同架构（GCN、GraphSAGE、GAT等）的图神经网络提供了方便。使用PyG来完成链路预测，可以省去很多复杂的操作，特别是在数据预处理阶段。事实上，结点分类和链接预测最大的区别就在数据预处理阶段。</p>
+<h2 id="数据集的划分"><a href="#数据集的划分" class="headerlink" title="数据集的划分"></a>数据集的划分</h2><p>前面提到过，链接预测本质上是一个二分类问题，只不过它二分类的单位不是一个结点，而是<strong>一对结点</strong>，分类的结果是这对结点间存在（1）或不存在（0）边。这样的不同决定了我们需要对数据集进行额外的处理，以获得训练样本，包括：正采样和负采样，前者采样存在边的结点对，后者采样不存在边的结点对。在结点分类用到的数据集的基础上，使用PyG提供的<code>torch_geometric.transforms.RandomLinkSplit</code>函数可以很方便地完成对训练集、验证集和测试集的采样。</p>
+<p><code>torch_geometric.transforms.RandomLinkSplit(num_val, num_test,...)</code>，以下为几个常用参数的说明：</p>
+<ol>
+<li><code>num_val</code>：验证集中边占所有边比例，默认为0.1。</li>
+<li><code>num_test</code>：测试集中边占所有边的比例，默认为0.1。</li>
+<li><code>is_undirected</code>：<code>True</code>则假定图是无向图，反之为有向图。</li>
+<li><code>add_negative_train_samples</code>：是否为训练集添加负训练样本。一般设置为<code>False</code>（默认也是<code>False</code>），也就是使得训练集中不包含负样本，这样每一轮训练时在训练集中可以重新采样与正样本相同数量的负样本进行训练，这样可以保证每一轮训练中采样得到的负样本都是不一样的，可以有效提高模型泛化能力。验证集和测试集则默认会自动完成负样本的采样。</li>
+<li><code>neg_sampling_ratio</code>：采样中正负样本的比例，默认为1。即正负样本个数一致（对验证集、测试集和<code>add_negative_train_samples</code>设置为<code>True</code>后的训练集）。</li>
+</ol>
+<blockquote>
+<p>更多资料见<a target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.transforms.RandomLinkSplit.html#torch-geometric-transforms-randomlinksplit">RandomLinkSplit</a></p>
+</blockquote>
+<p><code>RandomLinkSplit</code>的使用方法很简单，因为它被包含在<code>transforms</code>中，所以可以在读数据的时候作为一个参数传入读数据的函数中，以读取<code>Cora</code>数据集为例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch_geometric.transforms <span class="keyword">as</span> T</span><br><span class="line"><span class="keyword">from</span> torch_geometric.datasets <span class="keyword">import</span> Planetoid</span><br><span class="line">train_data, val_data, test_data = Planetoid(root=<span class="string">&#x27;./data/Cora&#x27;</span>, name=<span class="string">&quot;Cora&quot;</span>, </span><br><span class="line">    transform=T.RandomLinkSplit(num_val=<span class="number">0.1</span>, num_test=<span class="number">0.1</span>, is_undirected=<span class="literal">True</span>, add_negative_train_samples=<span class="literal">False</span>))[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
 
-<p>Switch to another environment:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate [evname]</span><br></pre></td></tr></table></figure>
+<p>而一般结点分类任务用到的数据集形式为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = Planetoid(root=<span class="string">&#x27;./data/Cora&#x27;</span>, name=<span class="string">&quot;Cora&quot;</span>)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p><code>conda deactivate</code> will make you exit the current environment and turn back to <code>base</code> environment.</p>
+<p>注意<code>Planetoid</code>是PyG定义的<code>InMemoryDataset</code>的子类，<code>InMemoryDataset</code>所返回的是数据集中所有的图结构，因此要用下标来读取指定的图。<code>Planetoid</code>能加载的数据集都只有一张图，所以用<code>Planetoid()[0]</code>即可。</p>
 </blockquote>
-<p>Rename an environment:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n [newevname] --<span class="built_in">clone</span> [oldenvname]</span><br><span class="line">conda remove -n [oldevname] --all</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>If there are some packages or programs related to the environment name (e.g. jupyter notebook), avoid renaming or copying. Actually, the commands above are <code>clone</code> and <code>remove</code> commands.</p>
-</blockquote>
-<p>Install a new library:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install [libname]</span><br></pre></td></tr></table></figure>
+<p>我们不妨来看看这四种data的区别：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(train_data, <span class="string">&quot;\n&quot;</span>, val_data, <span class="string">&quot;\n&quot;</span>, test_data, <span class="string">&quot;\n&quot;</span>, data)</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">8448</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">4224</span>], edge_label_index=[<span class="number">2</span>, <span class="number">4224</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">8448</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">1054</span>], edge_label_index=[<span class="number">2</span>, <span class="number">1054</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">9502</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">1054</span>], edge_label_index=[<span class="number">2</span>, <span class="number">1054</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">10556</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>])</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p><code>pip</code> can also be used to install new libraries. Use <code>uninstall</code> to uninstall the library you don&#39;t need.</p>
-</blockquote>
-<h1 id="Information"><a href="#Information" class="headerlink" title="Information"></a>Information</h1><p>List all installed libraries in the current environment:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure>
-
-<p>List all the virtual environments you have created:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure>
-
-<h1 id="Sharing"><a href="#Sharing" class="headerlink" title="Sharing"></a>Sharing</h1><p>To share your environment with others, you should first export your configuration to a <code>yml</code> file:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">env</span> <span class="built_in">export</span> &gt; [filename].yml</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>The <code>yml</code> file will be created in your current folder.</p>
-</blockquote>
-<p>Then, the <code>yml</code> file can be used to create an environment that is the same as yours:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">env</span> create -f [filename].yml</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>The first line of the <code>yml</code> file is the name of the created environment. You should make sure that the <code>yml</code> file is in your current folder.</p>
-</blockquote>
-<h1 id="More-information"><a href="#More-information" class="headerlink" title="More information"></a>More information</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/">Conda docs</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/index.html">Basic conda commands</a></li>
+<p>不难看出，图都是同一张图，只不过链接预测用到的数据集中多了<code>edge_label</code>和<code>edge_label_index</code>这两个量：</p>
+<ul>
+<li><code>edge_label</code>：<code>Tensor</code>，数据集的标签，即<code>y</code>，值为1或0，对于<code>val_data</code>和<code>test_data</code>（<code>train_data</code>未进行负采样），既包含了正样本的标签，也包含了负样本的标签，因此对于上文的数据集，正样本数为527，负样本数也为527。</li>
+<li><code>edge_label_index</code>：<code>Tensor</code>，数据集的样本，即<code>X</code>，但是，此处<code>X</code>的内容并不是边的特征，而是边的两个结点的编号，因而也不是用来训练的，其中<code>edge_label_index[0]</code>为起始结点的编号，<code>edge_label_index[1]</code>为终点结点的编号。</li>
 </ul>
+<blockquote>
+<p><code>train_data</code>的负采样可以使用PyG提供的<code>torch_geometric.utils.negative_sampling</code>函数，见<a target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/modules/utils.html#torch-geometric-utils">torch_geometric.utils</a>，此处不再赘述。要特别注意把负样本加入<code>edge_label</code>和<code>edge_label_index</code>中。</p>
+</blockquote>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>链接预测图神经网络的训练与结点分类图神经网络的训练并没有本质的不同。若将<code>Node embedding</code>的过程称为编码过程，最后的链接预测&#x2F;结点分类称为解码过程，那么两者的编码过程是<strong>一致的</strong>，即卷积和消息传递的过程是一致的。两者的不同在解码过程。对于结点分类任务，解码是对得到<code>Node embedding</code>做一次softmax，因此最后的结点的特征维度也被限定为了结点类别的数量；对于链接预测任务，解码是对<code>edge_label_index</code>所选定的边两端的结点计算相似度后求sigmoid，即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">decoder</span>(<span class="params">self, X, edge_label_index</span>):  <span class="comment"># X为编码后的结点特征</span></span><br><span class="line">    src_node = X[edge_label_index[<span class="number">0</span>]]  <span class="comment"># 取出边起始结点的特征，shape (N x F)</span></span><br><span class="line">    end_node = X[edge_label_index[<span class="number">1</span>]]  <span class="comment"># 取出边终点结点的特征，shape (N x F)</span></span><br><span class="line">    <span class="keyword">return</span> (src_node * end_node).<span class="built_in">sum</span>(dim=<span class="number">1</span>)  <span class="comment"># 向量内积求相似度，shape (N)，此处没有直接sigmoid，放在网络外面做也是一样的</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="精度分析"><a href="#精度分析" class="headerlink" title="精度分析"></a>精度分析</h2><p>AUC</p>
 
     </div>
 
@@ -281,27 +275,26 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\07\08\BugAndUsageOfTorch\" rel="bookmark">Bug and Usage of Torch</a></div>
+      <div class="popular-posts-title"><a href="\2023\07\16\PageRank\" rel="bookmark">PageRank</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\28\PyTorch\" rel="bookmark">PyTorch</a></div>
+      <div class="popular-posts-title"><a href="\2023\07\15\ExpressivePowerofGNNs\" rel="bookmark">Expressive Power of GNNs</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\12\Tensorflow\" rel="bookmark">Tensorflow</a></div>
+      <div class="popular-posts-title"><a href="\2023\07\06\SpectralApproach\" rel="bookmark">Spectral Approaches</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\24\Matplotlib\" rel="bookmark">Matplotlib</a></div>
+      <div class="popular-posts-title"><a href="\2023\07\04\GraphFourierTransform\" rel="bookmark">Graph Fourier Transform</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\04\22\Scikit-learn\" rel="bookmark">Scikit-learn</a></div>
+      <div class="popular-posts-title"><a href="\2023\07\03\Laplacian\" rel="bookmark">Laplacian</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
-              <a href="/tags/Tool/" rel="tag"># Tool</a>
+              <a href="/tags/GNN/" rel="tag"># GNN</a>
           </div>
 
           <script type="text/javascript">
@@ -323,13 +316,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/04/10/NeuralNetwork/" rel="prev" title="Neural network">
-      <i class="fa fa-chevron-left"></i> Neural network
+    <a href="/2023/07/16/PageRank/" rel="prev" title="PageRank">
+      <i class="fa fa-chevron-left"></i> PageRank
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/04/12/Tensorflow/" rel="next" title="Tensorflow">
-      Tensorflow <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -388,7 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Environment-amp-Library"><span class="nav-number">1.</span> <span class="nav-text">Environment &amp; Library</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Information"><span class="nav-number">2.</span> <span class="nav-text">Information</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sharing"><span class="nav-number">3.</span> <span class="nav-text">Sharing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#More-information"><span class="nav-number">4.</span> <span class="nav-text">More information</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E9%A2%84%E6%B5%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">链接预测的基本方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EPyG%E7%9A%84GCN%E9%93%BE%E6%8E%A5%E9%A2%84%E6%B5%8B"><span class="nav-number">2.</span> <span class="nav-text">基于PyG的GCN链接预测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%92%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">数据集的划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">2.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">2.3.</span> <span class="nav-text">精度分析</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
