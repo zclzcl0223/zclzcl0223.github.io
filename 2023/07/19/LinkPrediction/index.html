@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等应用中都需要进行链接预测。">
+  <meta name="description" content="链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等领域中都有广泛的应用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LinkPrediction">
+<meta property="og:title" content="Link Prediction">
 <meta property="og:url" content="https://zclzcl0223.github.io/2023/07/19/LinkPrediction/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等应用中都需要进行链接预测。">
+<meta property="og:description" content="链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等领域中都有广泛的应用。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-19T10:14:00.000Z">
-<meta property="article:modified_time" content="2023-07-19T11:51:04.960Z">
+<meta property="article:modified_time" content="2023-07-20T05:28:26.849Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="GNN">
 <meta name="twitter:card" content="summary">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>LinkPrediction | JourneyToCoding</title>
+  <title>Link Prediction | JourneyToCoding</title>
   
 
 
@@ -185,7 +185,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LinkPrediction
+          Link Prediction
         </h1>
 
         <div class="post-meta">
@@ -194,10 +194,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-07-19 18:14:00 / Modified: 19:51:04" itemprop="dateCreated datePublished" datetime="2023-07-19T18:14:00+08:00">2023-07-19</time>
+              <time title="Created: 2023-07-19 18:14:00" itemprop="dateCreated datePublished" datetime="2023-07-19T18:14:00+08:00">2023-07-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-07-20 13:28:26" itemprop="dateModified" datetime="2023-07-20T13:28:26+08:00">2023-07-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -209,7 +215,7 @@
             </span>
 
           
-            <div class="post-description">链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等应用中都需要进行链接预测。</div>
+            <div class="post-description">链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等领域中都有广泛的应用。</div>
 
         </div>
       </header>
@@ -228,18 +234,18 @@
 <li><strong>结点嵌入（Node embedding）</strong><br> 这种方法与结点分类（Node classification）中的方法一致，即基于游走的方法学习结点的embedding，常见的方法有：DeepWalk、Node2vec等。这样的方法，没有直接将链接预测任务嵌入到有监督学习的流程中，并且无法较好的利用用户的节点属性，无法达到较好的预测精度。</li>
 <li><strong>图神经网络（GNN）</strong><br> 基于基本的图神经网络架构，如GCN、GraphSAGE、GAT等，通过对邻居结点的聚合得到融合了图结构信息的结点表示，再以类似于启发式方法的方式求任意两结点的“相似度”，进而判断两结点间边的有无。最后的判断本质上是个逻辑回归，即二分类问题（有边为1，无边为0）。</li>
 </ol>
-<h1 id="基于PyG的GCN链接预测"><a href="#基于PyG的GCN链接预测" class="headerlink" title="基于PyG的GCN链接预测"></a>基于PyG的GCN链接预测</h1><p>PyG（PyTorch Geometry）是个建立在PyTorch基础上的图神经网络库，它为训练不同任务（结点分类、链接预测、图分类等）、不同架构（GCN、GraphSAGE、GAT等）的图神经网络提供了方便。使用PyG来完成链路预测，可以省去很多复杂的操作，特别是在数据预处理阶段。事实上，结点分类和链接预测最大的区别就在数据预处理阶段。</p>
+<h1 id="基于PyG的GNN链接预测"><a href="#基于PyG的GNN链接预测" class="headerlink" title="基于PyG的GNN链接预测"></a>基于PyG的GNN链接预测</h1><p>PyG（PyTorch Geometric）是个建立在PyTorch基础上的图神经网络库，它为训练不同任务（结点分类、链接预测、图分类等）、不同架构（GCN、GraphSAGE、GAT等）的图神经网络提供了方便。使用PyG来完成链接预测，可以省去很多复杂的操作，特别是在数据预处理阶段。事实上，结点分类和链接预测最大的区别就在数据预处理阶段。</p>
 <h2 id="数据集的划分"><a href="#数据集的划分" class="headerlink" title="数据集的划分"></a>数据集的划分</h2><p>前面提到过，链接预测本质上是一个二分类问题，只不过它二分类的单位不是一个结点，而是<strong>一对结点</strong>，分类的结果是这对结点间存在（1）或不存在（0）边。这样的不同决定了我们需要对数据集进行额外的处理，以获得训练样本，包括：正采样和负采样，前者采样存在边的结点对，后者采样不存在边的结点对。在结点分类用到的数据集的基础上，使用PyG提供的<code>torch_geometric.transforms.RandomLinkSplit</code>函数可以很方便地完成对训练集、验证集和测试集的采样。</p>
 <p><code>torch_geometric.transforms.RandomLinkSplit(num_val, num_test,...)</code>，以下为几个常用参数的说明：</p>
 <ol>
 <li><code>num_val</code>：验证集中边占所有边比例，默认为0.1。</li>
 <li><code>num_test</code>：测试集中边占所有边的比例，默认为0.1。</li>
 <li><code>is_undirected</code>：<code>True</code>则假定图是无向图，反之为有向图。</li>
-<li><code>add_negative_train_samples</code>：是否为训练集添加负训练样本。一般设置为<code>False</code>（默认也是<code>False</code>），也就是使得训练集中不包含负样本，这样每一轮训练时在训练集中可以重新采样与正样本相同数量的负样本进行训练，这样可以保证每一轮训练中采样得到的负样本都是不一样的，可以有效提高模型泛化能力。验证集和测试集则默认会自动完成负样本的采样。</li>
+<li><code>add_negative_train_samples</code>：是否为训练集添加负训练样本。一般设置为<code>False</code>（默认也是<code>False</code>），也就是使得训练集中不包含负样本，这样每一轮训练时在训练集中可以重新采样负样本进行训练，由此可以保证每一轮训练中采样得到的负样本都是不一样的，可以有效提高模型泛化能力。验证集和测试集则默认会自动完成负样本的采样。</li>
 <li><code>neg_sampling_ratio</code>：采样中正负样本的比例，默认为1。即正负样本个数一致（对验证集、测试集和<code>add_negative_train_samples</code>设置为<code>True</code>后的训练集）。</li>
 </ol>
 <blockquote>
-<p>更多资料见<a target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.transforms.RandomLinkSplit.html#torch-geometric-transforms-randomlinksplit">RandomLinkSplit</a></p>
+<p>更多资料见<a target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.transforms.RandomLinkSplit.html#torch-geometric-transforms-randomlinksplit">RandomLinkSplit</a>。</p>
 </blockquote>
 <p><code>RandomLinkSplit</code>的使用方法很简单，因为它被包含在<code>transforms</code>中，所以可以在读数据的时候作为一个参数传入读数据的函数中，以读取<code>Cora</code>数据集为例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch_geometric.transforms <span class="keyword">as</span> T</span><br><span class="line"><span class="keyword">from</span> torch_geometric.datasets <span class="keyword">import</span> Planetoid</span><br><span class="line">train_data, val_data, test_data = Planetoid(root=<span class="string">&#x27;./data/Cora&#x27;</span>, name=<span class="string">&quot;Cora&quot;</span>, </span><br><span class="line">    transform=T.RandomLinkSplit(num_val=<span class="number">0.1</span>, num_test=<span class="number">0.1</span>, is_undirected=<span class="literal">True</span>, add_negative_train_samples=<span class="literal">False</span>))[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
@@ -255,16 +261,23 @@
 
 <p>不难看出，图都是同一张图，只不过链接预测用到的数据集中多了<code>edge_label</code>和<code>edge_label_index</code>这两个量：</p>
 <ul>
-<li><code>edge_label</code>：<code>Tensor</code>，数据集的标签，即<code>y</code>，值为1或0，对于<code>val_data</code>和<code>test_data</code>（<code>train_data</code>未进行负采样），既包含了正样本的标签，也包含了负样本的标签，因此对于上文的数据集，正样本数为527，负样本数也为527。</li>
+<li><code>edge_label</code>：<code>Tensor</code>，数据集的标签，即<code>y</code>，值为1或0，对于<code>val_data</code>和<code>test_data</code>（<code>train_data</code>未进行负采样），既包含了正样本的标签，又包含了负样本的标签，因此对于上文的数据集，正样本数为527，负样本数也为527。</li>
 <li><code>edge_label_index</code>：<code>Tensor</code>，数据集的样本，即<code>X</code>，但是，此处<code>X</code>的内容并不是边的特征，而是边的两个结点的编号，因而也不是用来训练的，其中<code>edge_label_index[0]</code>为起始结点的编号，<code>edge_label_index[1]</code>为终点结点的编号。</li>
 </ul>
 <blockquote>
 <p><code>train_data</code>的负采样可以使用PyG提供的<code>torch_geometric.utils.negative_sampling</code>函数，见<a target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/modules/utils.html#torch-geometric-utils">torch_geometric.utils</a>，此处不再赘述。要特别注意把负样本加入<code>edge_label</code>和<code>edge_label_index</code>中。</p>
 </blockquote>
-<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>链接预测图神经网络的训练与结点分类图神经网络的训练并没有本质的不同。若将<code>Node embedding</code>的过程称为编码过程，最后的链接预测&#x2F;结点分类称为解码过程，那么两者的编码过程是<strong>一致的</strong>，即卷积和消息传递的过程是一致的。两者的不同在解码过程。对于结点分类任务，解码是对得到<code>Node embedding</code>做一次softmax，因此最后的结点的特征维度也被限定为了结点类别的数量；对于链接预测任务，解码是对<code>edge_label_index</code>所选定的边两端的结点计算相似度后求sigmoid，即：</p>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>链接预测图神经网络的训练与结点分类图神经网络的训练并没有本质的不同。若将<em>Node embedding</em>的过程称为编码过程，最后的链接预测&#x2F;结点分类称为解码过程，那么两者的编码过程是<strong>一致的</strong>，即卷积和消息传递的过程是一致的。两者的不同在解码过程。对于结点分类任务，解码是对得到<em>Node embedding</em>做一次softmax，因此最后的结点的特征维度也被限定为了结点类别的数量；对于链接预测任务，解码是对<code>edge_label_index</code>所选定的边两端的结点计算相似度后求sigmoid，即：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">decoder</span>(<span class="params">self, X, edge_label_index</span>):  <span class="comment"># X为编码后的结点特征</span></span><br><span class="line">    src_node = X[edge_label_index[<span class="number">0</span>]]  <span class="comment"># 取出边起始结点的特征，shape (N x F)</span></span><br><span class="line">    end_node = X[edge_label_index[<span class="number">1</span>]]  <span class="comment"># 取出边终点结点的特征，shape (N x F)</span></span><br><span class="line">    <span class="keyword">return</span> (src_node * end_node).<span class="built_in">sum</span>(dim=<span class="number">1</span>)  <span class="comment"># 向量内积求相似度，shape (N)，此处没有直接sigmoid，放在网络外面做也是一样的</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="精度分析"><a href="#精度分析" class="headerlink" title="精度分析"></a>精度分析</h2><p>AUC</p>
+<h2 id="精度分析"><a href="#精度分析" class="headerlink" title="精度分析"></a>精度分析</h2><p>由于链接预测是一个二分类问题，因此精度分析采用AUC。</p>
+<blockquote>
+<p>AUC的含义和计算方法见<a href="/2023/04/13/MachineLearningDiagnostics/#Skewed-datasets">F1 score and ROC &amp; AUC</a>。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Cyril_KI/article/details/125956540">PyG搭建GCN实现链接预测</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41601540/article/details/121500949">Link Prediction Note</a></li>
+</ul>
 
     </div>
 
@@ -378,7 +391,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E9%A2%84%E6%B5%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">链接预测的基本方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EPyG%E7%9A%84GCN%E9%93%BE%E6%8E%A5%E9%A2%84%E6%B5%8B"><span class="nav-number">2.</span> <span class="nav-text">基于PyG的GCN链接预测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%92%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">数据集的划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">2.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">2.3.</span> <span class="nav-text">精度分析</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E9%A2%84%E6%B5%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">链接预测的基本方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EPyG%E7%9A%84GNN%E9%93%BE%E6%8E%A5%E9%A2%84%E6%B5%8B"><span class="nav-number">2.</span> <span class="nav-text">基于PyG的GNN链接预测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%92%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">数据集的划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">2.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">2.3.</span> <span class="nav-text">精度分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

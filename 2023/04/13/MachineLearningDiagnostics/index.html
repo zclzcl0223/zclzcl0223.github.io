@@ -38,8 +38,9 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/7.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/8.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/9.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/10.png">
 <meta property="article:published_time" content="2023-04-13T13:25:19.000Z">
-<meta property="article:modified_time" content="2023-05-30T12:54:40.896Z">
+<meta property="article:modified_time" content="2023-07-20T05:17:59.832Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep learning">
 <meta property="article:tag" content="Machine learning">
@@ -213,7 +214,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-30 20:54:40" itemprop="dateModified" datetime="2023-05-30T20:54:40+08:00">2023-05-30</time>
+                <time title="Modified: 2023-07-20 13:17:59" itemprop="dateModified" datetime="2023-07-20T13:17:59+08:00">2023-07-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -355,20 +356,52 @@
 </blockquote>
 <h2 id="Error-analysis"><a href="#Error-analysis" class="headerlink" title="Error analysis"></a>Error analysis</h2><p>Error analysis is another useful diagnostics method when training a model. In error analysis, we take the examples that the model has wrongly predicted or inferred into account and group them into common themes or common properties. These categories can be overlapping. Sometimes, the error set may be too large for us to deal with. In this case, it is advisable to randomly sample a subset (usually 100 examples).</p>
 <p>In the next step, we can modify the model according to these categories. It is advisable to process the categories that are large enough but just ignore those small categories.</p>
-<h2 id="Skewed-datasets"><a href="#Skewed-datasets" class="headerlink" title="Skewed datasets"></a>Skewed datasets</h2><p>Skewed datasets are datasets that have an uneven subset distribution. That is, the number of one output is much more than the others. In this case, we can&#39;t simply judge the performance of model using $J$ as we may get a good result even if the model just predicts this output all the time. </p>
-<p>The solution is to count precision and recall of the model. In binary regression, we can display the true value and predict value in the form of 2*2 matrix: </p>
+<h2 id="Skewed-datasets"><a href="#Skewed-datasets" class="headerlink" title="Skewed datasets"></a>Skewed datasets</h2><p>Skewed datasets are datasets that have an uneven subset distribution. That is, the number of one output is much more than the others. In this case, we can&#39;t simply judge the performance of model using $J$ as we may get a good result even if the model just predicts this label all the time. </p>
+<p>The solution is to count <em>precision</em> and <em>recall</em> of the model. In binary regression (for multiclass classfication, we set the real label <code>1</code> and the others <code>0</code>), we can display the true value and predict value in the form of 2*2 matrix: </p>
 <p><img src="/2023/04/13/MachineLearningDiagnostics/8.png" alt="8"></p>
 <center style="font-size:12px;font-weight:bold">Fig. 8. Output distribution</center><br>
 
-<p>Then precision is defined as the fraction that are actually 1 among all examples where we predicted $y&#x3D;1$:<br>$${Precision}&#x3D;\frac{TruePos}{TruePos+FalsePos}$$</p>
-<p>Recall is defined as the fraction that are correctly predicted among all examples that are actually 1:<br>$${Recall}&#x3D;\frac{TruePos}{TruePos+FalseNeg}$$</p>
-<p>A good model should have both high precision and recall. Once precision or recall is 0, chances are that the model <code>print(&quot;y=0&quot;)</code> all the time.</p>
-<h3 id="Trading-off-precision-and-recall"><a href="#Trading-off-precision-and-recall" class="headerlink" title="Trading off precision and recall"></a>Trading off precision and recall</h3><p>For logistic regression, threshold is the boundary value used to separate 0 and 1. If raising the threshold, we will get higher precision but lower recall. If decreasing the threshold, we will get higher recall but lower precision. We can&#39;t keep both precision and recall high. What&#39;s more, we can&#39;t solve this problem using dev set as threshold is defined by us.</p>
+<p>Then <em>precision</em> is defined as the fraction that are actually 1 among all examples where we predicted $y&#x3D;1$:<br>$${Precision}&#x3D;\frac{TruePos}{TruePos+FalsePos}$$</p>
+<p><em>Recall</em> is defined as the fraction that are correctly predicted among all examples that are actually 1:<br>$${Recall}&#x3D;\frac{TruePos}{TruePos+FalseNeg}$$</p>
+<p>A good model should have both high <em>precision</em> and <em>recall</em>. Once <em>precision</em> or <em>recall</em> is 0, chances are that the model <code>print(&quot;y=0&quot;)</code> all the time.</p>
+<h3 id="F-1-score-Trading-off-precision-and-recall"><a href="#F-1-score-Trading-off-precision-and-recall" class="headerlink" title="$F_1 score$: Trading off precision and recall"></a>$F_1 score$: Trading off precision and recall</h3><p>For logistic regression, threshold is the boundary value used to separate 0 and 1. If raising the threshold, we will get higher <em>precision</em> but lower <em>recall</em>. If decreasing the threshold, we will get higher <em>recall</em> but lower <em>precision</em>. We can&#39;t keep both <em>precision</em> and <em>recall</em> high. What&#39;s more, we can&#39;t solve this problem using dev set as threshold is defined by us.</p>
 <p><img src="/2023/04/13/MachineLearningDiagnostics/9.png" alt="9"></p>
 <center style="font-size:12px;font-weight:bold">Fig. 9. Precision and recall</center><br>
 
-<p>The method to compare precision&#x2F;recall numbers is to calculate $F_1\space{score}$:<br>$$F_1\space{score}&#x3D;\frac{1}{\frac{1}{2}(\frac{1}{P}+\frac{1}{R})}&#x3D;\frac{2PR}{P+R}$$</p>
-<p>The larger the $F_1\space{score}$ is , the better the model is.</p>
+<p>The method to compare <em>precision</em> and <em>recall</em> is to calculate $F_1 \space score$:<br>$$F_1\space{score}&#x3D;\frac{1}{\frac{1}{2}(\frac{1}{P}+\frac{1}{R})}&#x3D;\frac{2PR}{P+R}$$</p>
+<p>The larger the $F_1 \space score$ is , the better the model is.</p>
+<h3 id="ROC-amp-AUC"><a href="#ROC-amp-AUC" class="headerlink" title="ROC &amp; AUC"></a>ROC &amp; AUC</h3><p>$F_1 \space score$ requires us to choose a threshold to judge the performance of the classifier while <em>ROC</em> and <em>AUC</em> are more intelligent.</p>
+<p>Receiver operating characteristic curve (ROC) is a curve whose $x$ axis is False positive rate (FPR) and $y$ axis is True positive rate (TPR)：</p>
+<p>$$<br>\begin{align*}<br>    TPR&#x3D;Recall&amp;&#x3D;\frac{TruePos}{TruePos+FalseNeg}\\<br>    FPR&#x3D;&amp;\frac{FalsePos}{FalsePos+TrueNeg}<br>\end{align*}<br>$$</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/10.png" alt="10"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 10. ROC</center><br>
+
+<p>Each point on ROC represent a $(FPR, TPR)$ pair under a certain threshold. For example:</p>
+<ul>
+<li>If threshold is 0, all the samples will be predicted as 1. In this case, both FPR and TPR is 1;</li>
+<li>If threshold is 1, all the samples will be predicted as 0. In this case, both FPR and TPR is 0;</li>
+<li>With threshold decreasing, points on ROC moves to the top right (or right&#x2F;or up), or remains stationary;</li>
+<li>When points on ROC are on $y&#x3D;x$, the classifier has no difference with random guesses. The closer the points are to the upper left corner, the better the classifier is;</li>
+<li>Points on ROC should always be above $y&#x3D;x$ as when points on ROC are below $y&#x3D;x$, just letting the classifier make the opposite conclusion will make these points on top of $y&#x3D;x$.</li>
+</ul>
+<p>Area under curve (AUC) is the area below ROC. If we randomly pick a positive sample and a negative sample, AUC represents the probability that the classifier predicts the value of the positive sample is bigger than the value of the negative sample. Taking AUC as an indicator to measure the performance of a classifier helps us dismiss the influence of skewed datasets and threshold. In other words, AUC measures the ability of the classifier to correctly sort samples. That&#39;s why AUC is a more commonly used indicator.</p>
+<p>Since we can&#39;t take all the values of threshold into account, we can only use the approximate method to calculate AUC, that is, computing the rate that the value of the positive sample is bigger than the value of the negative sample among all the postive-negative pairs. For a dataset with $M$ positive sample and $N$ negative samples, the number of positive-negative pairs is $M\times N$:</p>
+<ol>
+<li>Sort the values of all the positive and negative samples from largest to smallest;</li>
+<li>Score them from $N+M$ to $1$;</li>
+<li>Sum the score of positive samples;</li>
+<li>Subtract $M(M+1)&#x2F;2$;</li>
+<li>Divide by $M\times N$:<br> $$AUC&#x3D;\frac{\sum _{i\in\text{positive}}\text{score}_i-M(M+1)&#x2F;2}{MN}\tag{1}$$</li>
+</ol>
+<p>Such a process works as $\text{score} _i$ is the score of the $i$-th biggest positive sample ($i&#x3D;1,...,M$) and</p>
+<p>$$<br>N+M-\text{score}_i-(i-1)<br>$$</p>
+<p>is the number of negative samples whose score is higher than it. Then</p>
+<p>$$<br>\begin{align*}<br>    N-[N+M-\text{score}_i-(i-1)]<br>    &amp;&#x3D;\text{score}_i+(i-1)-M\\<br>    &amp;&#x3D;\text{score}_i-(M+1-i)<br>\end{align*}<br>$$</p>
+<p>is the number of positive-negative pairs that consist of the $i$-th positive sample and negative samples whose values are smaller than the positive sample. As a result, the number of positive-negative pairs that meet our requirement is</p>
+<p>$$<br>\sum\limits _{i&#x3D;1} ^{M}[\text{score}_i-(M+1-i)]&#x3D;\sum _{i\in\text{positive}}\text{score}_i-M(M+1)&#x2F;2<br>$$</p>
+<blockquote>
+<p>In sklearn, function <code>sklearn.metrics.roc_auc_score</code> could calculate the AUC of a classifier.</p>
+</blockquote>
 
     </div>
 
@@ -486,7 +519,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Evaluating-a-model"><span class="nav-number">1.</span> <span class="nav-text">Evaluating a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-sets"><span class="nav-number">1.1.</span> <span class="nav-text">Two sets</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Choosing-a-model"><span class="nav-number">2.</span> <span class="nav-text">Choosing a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Three-sets"><span class="nav-number">2.1.</span> <span class="nav-text">Three sets</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Diagnostics"><span class="nav-number">3.</span> <span class="nav-text">Diagnostics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-and-variance"><span class="nav-number">3.1.</span> <span class="nav-text">Bias and variance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Choosing-a-good-lambda"><span class="nav-number">3.1.1.</span> <span class="nav-text">Choosing a good $\lambda$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quantitative-indicators"><span class="nav-number">3.1.2.</span> <span class="nav-text">Quantitative indicators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-curve"><span class="nav-number">3.1.3.</span> <span class="nav-text">Learning curve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fixing-bias-variance"><span class="nav-number">3.1.4.</span> <span class="nav-text">Fixing bias variance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DL-and-bias-variance"><span class="nav-number">3.1.5.</span> <span class="nav-text">DL and bias variance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Error-analysis"><span class="nav-number">3.2.</span> <span class="nav-text">Error analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skewed-datasets"><span class="nav-number">3.3.</span> <span class="nav-text">Skewed datasets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trading-off-precision-and-recall"><span class="nav-number">3.3.1.</span> <span class="nav-text">Trading off precision and recall</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Evaluating-a-model"><span class="nav-number">1.</span> <span class="nav-text">Evaluating a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-sets"><span class="nav-number">1.1.</span> <span class="nav-text">Two sets</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Choosing-a-model"><span class="nav-number">2.</span> <span class="nav-text">Choosing a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Three-sets"><span class="nav-number">2.1.</span> <span class="nav-text">Three sets</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Diagnostics"><span class="nav-number">3.</span> <span class="nav-text">Diagnostics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-and-variance"><span class="nav-number">3.1.</span> <span class="nav-text">Bias and variance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Choosing-a-good-lambda"><span class="nav-number">3.1.1.</span> <span class="nav-text">Choosing a good $\lambda$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quantitative-indicators"><span class="nav-number">3.1.2.</span> <span class="nav-text">Quantitative indicators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-curve"><span class="nav-number">3.1.3.</span> <span class="nav-text">Learning curve</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fixing-bias-variance"><span class="nav-number">3.1.4.</span> <span class="nav-text">Fixing bias variance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DL-and-bias-variance"><span class="nav-number">3.1.5.</span> <span class="nav-text">DL and bias variance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Error-analysis"><span class="nav-number">3.2.</span> <span class="nav-text">Error analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skewed-datasets"><span class="nav-number">3.3.</span> <span class="nav-text">Skewed datasets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#F-1-score-Trading-off-precision-and-recall"><span class="nav-number">3.3.1.</span> <span class="nav-text">$F_1 score$: Trading off precision and recall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROC-amp-AUC"><span class="nav-number">3.3.2.</span> <span class="nav-text">ROC &amp; AUC</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
