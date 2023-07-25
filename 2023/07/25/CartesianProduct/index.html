@@ -22,25 +22,21 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Hyperparameters are parameters of neural networks other than w and b, including learning rate, depth of layer, size of each layer and so on. Compared to model parameters w and b, hyperparameters are d">
+  <meta name="description" content="笛卡尔乘积（Cartesian product），又称笛卡尔积、直积，是一个在计算机领域很常用的集合操作。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Model selection &amp; hyperparameter optimization">
-<meta property="og:url" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/index.html">
+<meta property="og:title" content="Cartesian Product in Python">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/25/CartesianProduct/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Hyperparameters are parameters of neural networks other than w and b, including learning rate, depth of layer, size of each layer and so on. Compared to model parameters w and b, hyperparameters are d">
+<meta property="og:description" content="笛卡尔乘积（Cartesian product），又称笛卡尔积、直积，是一个在计算机领域很常用的集合操作。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/1.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/2.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/3.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/4.png">
-<meta property="article:published_time" content="2023-05-03T13:58:31.000Z">
-<meta property="article:modified_time" content="2023-05-30T13:06:29.943Z">
+<meta property="article:published_time" content="2023-07-25T07:19:39.000Z">
+<meta property="article:modified_time" content="2023-07-25T08:32:57.546Z">
 <meta property="article:author" content="ChaosTsang">
-<meta property="article:tag" content="Deep learning">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/05/03/ModelSelection/1.png">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/2023/05/03/ModelSelection/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/07/25/CartesianProduct/">
 
 
 <script id="page-configurations">
@@ -53,7 +49,7 @@
   };
 </script>
 
-  <title>Model selection & hyperparameter optimization | JourneyToCoding</title>
+  <title>Cartesian Product in Python | JourneyToCoding</title>
   
 
 
@@ -177,7 +173,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/05/03/ModelSelection/">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/07/25/CartesianProduct/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -190,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Model selection & hyperparameter optimization
+          Cartesian Product in Python
         </h1>
 
         <div class="post-meta">
@@ -199,28 +195,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-05-03 21:58:31" itemprop="dateCreated datePublished" datetime="2023-05-03T21:58:31+08:00">2023-05-03</time>
+              <time title="Created: 2023-07-25 15:19:39 / Modified: 16:32:57" itemprop="dateCreated datePublished" datetime="2023-07-25T15:19:39+08:00">2023-07-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-30 21:06:29" itemprop="dateModified" datetime="2023-05-30T21:06:29+08:00">2023-05-30</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Dive-into-deep-learning/" itemprop="url" rel="index"><span itemprop="name">Dive into deep learning</span></a>
+                  <a href="/categories/Programming-language/" itemprop="url" rel="index"><span itemprop="name">Programming language</span></a>
                 </span>
             </span>
 
           
-            <div class="post-description">Hyperparameters are parameters of neural networks other than w and b, including learning rate, depth of layer, size of each layer and so on. Compared to model parameters w and b, hyperparameters are determined entirely by ourselves. Tuning a model is to find better hyperparameters.</div>
+            <div class="post-description">笛卡尔乘积（Cartesian product），又称笛卡尔积、直积，是一个在计算机领域很常用的集合操作。</div>
 
         </div>
       </header>
@@ -233,53 +223,27 @@
       
         <span id="more"></span>
 
-<h1 id="Evaluating-a-model"><a href="#Evaluating-a-model" class="headerlink" title="Evaluating a model"></a>Evaluating a model</h1><p>See <a href="/2023/04/13/MachineLearningDiagnostics/">Machine learning diagnostics</a> to know the basic methods of evaluating a model.</p>
-<p>When evaluating a model, we sometimes may not have enough data for cross validation. The method we use to solve this problem is <strong>K-fold Cross Validation</strong>.</p>
-<h2 id="K-fold-Cross-Validation"><a href="#K-fold-Cross-Validation" class="headerlink" title="K-fold Cross Validation"></a>K-fold Cross Validation</h2><p>K-fold Cross Validation is a technique used for hyperparameter tuning such that the model with the most optimal value of hyperparameters can be trained in a rather small data set. The advantage of this approach is that each example is used for validation exactly once in each test fold and all examples will be used for validation finally. The following are steps in K-fold Cross Validation:</p>
-<ol>
-<li>Split the dataset into training set and test set;</li>
-<li>Split training set into K-folds;</li>
-<li>Choose K-1 folds for training and 1 fold for validation;</li>
-<li>Train the model with specific hyperparameters in K-1 folds and validate it using the 1 fold;</li>
-<li>Record its performance;</li>
-<li>Choose another K-1 folds for training and 1 fold for validation;</li>
-<li>Repeat 4, 5, 6 until each of the K-fold get used for validation purpose;</li>
-<li>Evaluate the mean performance of K models;</li>
-<li>Step 3-8 for different hyperparameters; (optional)</li>
-<li>Choose the hyperparameters which result in best performance; (optional)</li>
-<li>Train the model using the whole training set.</li>
-</ol>
-<p><img src="/2023/05/03/ModelSelection/1.png" alt="1"></p>
-<center style="font-size:12px;font-weight:bold">Fig. 1. K-fold Cross Validation</center><br>
-
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>笛卡尔乘积（Cartesian product）定义，两个集合$X$和$Y$的笛卡尔积$X\times Y$为第一个对象是$X$的成员而第二个对象是$Y$的成员的所有有序对所组成的集合，如：</p>
+<p>$$<br>\begin{align*}<br>    A\space&#x3D;&amp;\space\space\left\{a,b\right\}\\<br>    B\space&#x3D;&amp;\space\space\left\{0,1\right\}\\<br>    A\times B\space&#x3D;&amp;\left\{(a,0),(a,1),(b,0),(b,1)\right\}<br>\end{align*}<br>$$</p>
 <blockquote>
-<p>In general, we seldom use K-fold since it is time-consuming. We often set K 5 or 10.</p>
+<p>笛卡尔积也可以扩展为$n$个集合。</p>
 </blockquote>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://vitalflux.com/k-fold-cross-validation-python-example/">K-Fold Cross Validation – Python Example</a></li>
-</ul>
-<h1 id="Model-capacity-and-data"><a href="#Model-capacity-and-data" class="headerlink" title="Model capacity and data"></a>Model capacity and data</h1><p>The <strong>model capacity</strong> is a model&#39;s ability to fit the function. It&#39;s very close for model complexity. High model capacity always means a deeper and larger neural network or more complex polynomials. Data or the complexity of data is determined by the size of dataset, the features number of each data, the diversity of samples, etc. Model capacity and data together determine the performance of a model:</p>
-<p><img src="/2023/05/03/ModelSelection/2.png" alt="2"></p>
-<center style="font-size:12px;font-weight:bold">Fig. 2. Model capacity and data</center><br>
+<h1 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h1><p>Python中有很多能产生笛卡尔积的库函数，它们在与有序对相关的运算中很有用，如GNN中的邻接矩阵等，一些常见的有：</p>
+<h2 id="product"><a href="#product" class="headerlink" title="product"></a>product</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> product</span><br><span class="line">product(*iterables, repeat=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
-<p>For neural networks, a simple way to evaluate model capacity is to compute the number of model parameters that the neural network can learn, or to evaluate the range of each parameter (w, b):</p>
-<p><img src="/2023/05/03/ModelSelection/3.png" alt="3"></p>
-<center style="font-size:12px;font-weight:bold">Fig. 3. Evaluating model capacity</center>
+<p><code>product</code>接受$n$个可迭代对象，并生成它们的笛卡尔积，生成的笛卡尔积也是个可迭代对象，其每个元素是一个元组，代表一个有序对，可以用<code>list</code>将其转化为列表，如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="built_in">list</span>(product(a, b)))</span><br><span class="line">[(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">1</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;b&#x27;</span>)]</span><br></pre></td></tr></table></figure>
 
-<h2 id="VC-dimension"><a href="#VC-dimension" class="headerlink" title="VC dimension*"></a>VC dimension*</h2><p>The VC dimension of a model is the maximum number of points that can be arranged so that shatters them. More formally, it is the maximum cardinal such that there exists a generally positioned data point set of cardinality can be shattered by. -- From Google</p>
-<p>For a perceptron with inputs of N dimensions, its VC dimension is $N+1$ or $O(N\log_2N)$, that is, it can classify $N+1$ ($O(N\log_2N)$) points. VC dimension can be used to evaluate the model capacity though it doesn&#39;t work well.</p>
-<h1 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h1><p>Dropout is another method of regularization besides <a href="/2023/04/05/SupervisedLearning/#Weight-decay">weight decay</a>. The motivation of dropout is that a good model should be robust to input perturbations. Dropout achieves this by adding noise to the ouptout of hidden layers:<br>$$<br>\text{dropout}[x]&#x3D;x&#39;<br>$$<br>where:<br>$$<br>x_i&#39;&#x3D;<br>\begin{cases}<br>    0, &amp;p \\<br>    \frac{x_i}{1-p}, &amp;1-p<br>\end{cases}<br>$$<br>$p$ is a hyperparameter that controls the probability of dropout. Usually, we set $p$ to 0.1, 0.5 or 0.9. The meaning of the formula above is that dropout layer randomly sets the output of the neurons in a hidden layer to 0 (with probability $p$) or $\frac{1}{1-p}$ times as much as the origin value (with probability $1-p$). This works because when one value is set to 0, it is equivalent to remove a neuron from the hidden layer, which makes the neural network a sub neural network. Since dropout is totally random, we are actually training a model using multiple neural networks, which will make the model more robust.</p>
-<p><img src="/2023/05/03/ModelSelection/4.png" alt="4"></p>
-<center style="font-size:12px;font-weight:bold">Fig. 4. Dropout</center><br>
+<p><code>repeat</code>代表将前面的可迭代对象重复的次数。如，<code>product(a, b, a, b)</code>等价于<code>product(a, b, repeat=2)</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="string">&#x27;a&#x27;</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="built_in">list</span>(product(a, b, a, b)))</span><br><span class="line">[(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="built_in">list</span>(product(a, b, repeat=<span class="number">2</span>)))</span><br><span class="line">[(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>)]</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>To ensure the accuracy, we must make sure that the expectation of dropout is equivalent to its original value:<br>$$\text{E}[x&#39;]&#x3D;x$$</p>
-</blockquote>
-<p>Since dropout is a kind of regularization, it only works when training models. When making predictions, we don&#39;t use dropout layer, like weight decay.</p>
-<blockquote>
-<p>In general, we use dropout in the dense layer of MLP.</p>
-</blockquote>
+<h2 id="np-ix"><a href="#np-ix" class="headerlink" title="np.ix_"></a>np.ix_</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">np.ix_(*args)</span><br></pre></td></tr></table></figure>
 
+<p><code>*args</code>是两个及以上的一维数组，这些数组的数据类型要么是整型<code>int</code>，要么是布尔型<code>bool</code>。<code>np.ix_</code>会返回一个元组，元组的每个元素是一个$n$维的矩阵（取决于输入数组的个数，如果输入两个数组，那么就是$2$维的矩阵），这些元素通过广播机制（broadcasting）生成笛卡尔积。因为这个元组实际上没什么用，所以<code>np.ix_</code>总是被用来进行切片操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">2</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(np.ix_(a, b))</span><br><span class="line">(array([[<span class="number">1</span>],</span><br><span class="line">       [<span class="number">5</span>],</span><br><span class="line">       [<span class="number">7</span>],</span><br><span class="line">       [<span class="number">2</span>]]), array([[<span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>]]))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x=np.arange(<span class="number">32</span>).reshape((<span class="number">8</span>,<span class="number">4</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(x)</span><br><span class="line">[[ <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>]</span><br><span class="line"> [ <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>]</span><br><span class="line"> [ <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span> <span class="number">11</span>]</span><br><span class="line"> [<span class="number">12</span> <span class="number">13</span> <span class="number">14</span> <span class="number">15</span>]</span><br><span class="line"> [<span class="number">16</span> <span class="number">17</span> <span class="number">18</span> <span class="number">19</span>]</span><br><span class="line"> [<span class="number">20</span> <span class="number">21</span> <span class="number">22</span> <span class="number">23</span>]</span><br><span class="line"> [<span class="number">24</span> <span class="number">25</span> <span class="number">26</span> <span class="number">27</span>]</span><br><span class="line"> [<span class="number">28</span> <span class="number">29</span> <span class="number">30</span> <span class="number">31</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span> (x[np.ix_([<span class="number">1</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">2</span>],[<span class="number">0</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>])])</span><br><span class="line">[[ <span class="number">4</span>  <span class="number">7</span>  <span class="number">5</span>  <span class="number">6</span>]</span><br><span class="line"> [<span class="number">20</span> <span class="number">23</span> <span class="number">21</span> <span class="number">22</span>]</span><br><span class="line"> [<span class="number">28</span> <span class="number">31</span> <span class="number">29</span> <span class="number">30</span>]</span><br><span class="line"> [ <span class="number">8</span> <span class="number">11</span>  <span class="number">9</span> <span class="number">10</span>]]</span><br></pre></td></tr></table></figure>
+
+<p>其中，最后的<code>x[np.ix_([1,5,7,2],[0,3,1,2])]</code>使得<code>x</code>被切片出对应下标的元素，如<code>[1, 0]</code>切出<code>4</code>，<code>[1, 3]</code>切出<code>7</code>，最后的<code>[2, 2]</code>切出<code>10</code>。当输入<code>np.ix_</code>的数组的元素类型为<code>bool</code>时，这些数组会被先转化为其<code>True</code>元素的下标所形成的数组，即先进行一次<code>np.nonzero(boolean_sequence)</code>，所以下面这两种切片是等价的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(x[np.ix_([<span class="literal">False</span>, <span class="literal">True</span>, <span class="literal">True</span>],[<span class="literal">True</span>, <span class="literal">True</span>, <span class="literal">True</span>, <span class="literal">True</span>])])</span><br><span class="line">[[ <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>]</span><br><span class="line"> [ <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span> <span class="number">11</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(x[np.ix_([<span class="number">1</span>, <span class="number">2</span>],[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])])</span><br><span class="line">[[ <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>]</span><br><span class="line"> [ <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span> <span class="number">11</span>]]</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -292,23 +256,24 @@
       <div class="popular-posts-title"><a href="\2023\07\08\BugAndUsageOfTorch\" rel="bookmark">Bug and Usage of Torch</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\06\07\Transformer\" rel="bookmark">Transformer: Self-Attention and Parallelization</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\28\PyTorch\" rel="bookmark">PyTorch</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\06\06\Attention\" rel="bookmark">Attention Mechanisms: More Targeted Information Extraction</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\12\Tensorflow\" rel="bookmark">Tensorflow</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\06\02\OptimizationAlgorithms\" rel="bookmark">Optimization Algorithms</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\24\Matplotlib\" rel="bookmark">Matplotlib</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\05\31\EncoderDecoder\" rel="bookmark">The Encoder-Decoder Architecture</a></div>
+      <div class="popular-posts-title"><a href="\2023\04\22\Scikit-learn\" rel="bookmark">Scikit-learn</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Math/" rel="tag"># Math</a>
           </div>
 
           <script type="text/javascript">
@@ -330,13 +295,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/05/02/Splat/" rel="prev" title="Splat">
-      <i class="fa fa-chevron-left"></i> Splat
+    <a href="/2023/07/19/LinkPrediction/" rel="prev" title="Link Prediction">
+      <i class="fa fa-chevron-left"></i> Link Prediction
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/05/05/PythonLambda/" rel="next" title="lambda: anomymous functions">
-      lambda: anomymous functions <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -395,7 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Evaluating-a-model"><span class="nav-number">1.</span> <span class="nav-text">Evaluating a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#K-fold-Cross-Validation"><span class="nav-number">1.1.</span> <span class="nav-text">K-fold Cross Validation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-capacity-and-data"><span class="nav-number">2.</span> <span class="nav-text">Model capacity and data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VC-dimension"><span class="nav-number">2.1.</span> <span class="nav-text">VC dimension*</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dropout"><span class="nav-number">3.</span> <span class="nav-text">Dropout</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#product"><span class="nav-number">2.1.</span> <span class="nav-text">product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#np-ix"><span class="nav-number">2.2.</span> <span class="nav-text">np.ix_</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
