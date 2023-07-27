@@ -22,21 +22,19 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="参考 The Linux Command Line 中文版 第十八章：查找文件   Fig. 1.">
+  <meta name="description" content="在计算机中，一切皆文件，高效的文件查找不仅能够帮助我们快速地定位bug、要删除的文件，也能够在一定程度上帮助我们确定bug的来源。Linux提供了两个强大的查找程序locate和find来助力高效查找。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="File Searching">
 <meta property="og:url" content="https://zclzcl0223.github.io/2023/07/25/FileSearching/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="参考 The Linux Command Line 中文版 第十八章：查找文件   Fig. 1.">
+<meta property="og:description" content="在计算机中，一切皆文件，高效的文件查找不仅能够帮助我们快速地定位bug、要删除的文件，也能够在一定程度上帮助我们确定bug的来源。Linux提供了两个强大的查找程序locate和find来助力高效查找。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zclzcl0223.github.io/1.png">
 <meta property="article:published_time" content="2023-07-25T10:19:35.000Z">
-<meta property="article:modified_time" content="2023-07-25T10:30:35.114Z">
+<meta property="article:modified_time" content="2023-07-27T05:35:43.605Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Tool">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/1.png">
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2023/07/25/FileSearching/">
 
@@ -197,10 +195,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-07-25 18:19:35 / Modified: 18:30:35" itemprop="dateCreated datePublished" datetime="2023-07-25T18:19:35+08:00">2023-07-25</time>
+              <time title="Created: 2023-07-25 18:19:35" itemprop="dateCreated datePublished" datetime="2023-07-25T18:19:35+08:00">2023-07-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-07-27 13:35:43" itemprop="dateModified" datetime="2023-07-27T13:35:43+08:00">2023-07-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -212,6 +216,7 @@
             </span>
 
           
+            <div class="post-description">在计算机中，一切皆文件，高效的文件查找不仅能够帮助我们快速地定位bug、要删除的文件，也能够在一定程度上帮助我们确定bug的来源。Linux提供了两个强大的查找程序locate和find来助力高效查找。</div>
 
         </div>
       </header>
@@ -225,11 +230,94 @@
         <span id="more"></span>
 
 
+<h1 id="locate：通过名字查找文件"><a href="#locate：通过名字查找文件" class="headerlink" title="locate：通过名字查找文件"></a><code>locate</code>：通过名字查找文件</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate [OPTION]... [PATTERN]...</span><br></pre></td></tr></table></figure>
+
+<p><code>locate</code>程序会快速地搜索其内部的<strong>路径名数据库</strong>，然后输出每个绝对路径中包含了<code>[PATTERN]</code>的文件的绝对路径。<code>[PATTERN]</code>一般为普通的字符串，但有些版本还会包括正则表达式匹配和通配符匹配。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]<span class="comment"># locate bin/zip</span></span><br><span class="line">/usr/bin/zip</span><br><span class="line">/usr/bin/zipcloak</span><br><span class="line">/usr/bin/zipgrep</span><br><span class="line">/usr/bin/zipinfo</span><br><span class="line">/usr/bin/zipnote</span><br><span class="line">/usr/bin/zipsplit</span><br></pre></td></tr></table></figure>
+
+<p><code>locate</code>的路径名数据库由<code>updatedb</code>程序创建。该程序会在特定的时间间隔（如每次开机）被守护进程<code>cron</code>执行，因此一些新创建的文件可能无法用<code>locate</code>进行搜索，但是我们也可以以超级用户的身份手动运行<code>updatedb</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Playground]# updatedb</span><br></pre></td></tr></table></figure>
+
+<h1 id="find：在目录层次结构中搜索文件"><a href="#find：在目录层次结构中搜索文件" class="headerlink" title="find：在目录层次结构中搜索文件"></a><code>find</code>：在目录层次结构中搜索文件</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find [path...] [expression]</span><br></pre></td></tr></table></figure>
+
+<p><code>locate</code>可以让我们简单地用文件名找到文件的位置，而<code>find</code>则可以让我们在指定的目录<code>[path]</code>（绝对或相对路径）下，用文件的各种<strong>属性</strong>匹配相应的文件。在了解<code>find</code>之前，我们先在当前目录下创建100个子目录，并在每个子目录下创建24个普通文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">mkdir</span> <span class="built_in">dir</span>-&#123;00&#123;1..9&#125;,0&#123;10..99&#125;,100&#125;</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">dir-001  ...  dir-100</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> <span class="built_in">dir</span>-&#123;00&#123;1..9&#125;,0&#123;10..99&#125;,100&#125;/file-&#123;A..Z&#125;</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> dir-001</span><br><span class="line">file-A  ...  file-Z</span><br><span class="line"></span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> dir-002</span><br><span class="line">file-A  ...  file-Z</span><br></pre></td></tr></table></figure>
+
+<p>在最基本的用法里，<code>find</code>会输出所查目录及其子目录的所有文件路径，其中，相对路径查找则输出相对路径，绝对路径查找则输出绝对路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001</span><br><span class="line">./dir-001</span><br><span class="line">...</span><br><span class="line">./dir-001/file-Z</span><br><span class="line">[meme@localhost Playground]$ find /home/meme/Playground/dir-001</span><br><span class="line">/home/meme/Playground/dir-001</span><br><span class="line">...</span><br><span class="line">/home/meme/Playground/dir-001/file-Z</span><br></pre></td></tr></table></figure>
+
+<h2 id="Tests：测试条件"><a href="#Tests：测试条件" class="headerlink" title="Tests：测试条件"></a>Tests：测试条件</h2><p><code>find</code>拥有众多的测试条件，每个测试条件都一定程度上对应着文件的一项属性。<code>find</code>在指定目录中遍历文件元数据时，会使用用户指定的测试条件来筛选对应的文件。</p>
+<h3 id="type"><a href="#type" class="headerlink" title="-type"></a><code>-type</code></h3><p><code>-type</code>选择文件的类别：<code>b</code>块设备文件、<code>c</code>字符设备文件、<code>d</code>目录、<code>f</code>普通文件、<code>l</code>符号链接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001 -<span class="built_in">type</span> f</span><br><span class="line">./dir-001/file-A</span><br><span class="line">...</span><br><span class="line">./dir-001/file-Z</span><br><span class="line">[meme@localhost Playground]$ find ./dir-001 -<span class="built_in">type</span> d</span><br><span class="line">./dir-001</span><br></pre></td></tr></table></figure>
+
+<h3 id="name"><a href="#name" class="headerlink" title="-name"></a><code>-name</code></h3><p><code>-name</code>选择文件的名字。此处的名字只是名字，而不包含路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001 -name <span class="string">&#x27;*1&#x27;</span></span><br><span class="line">./dir-001</span><br></pre></td></tr></table></figure>
+
+<h3 id="size"><a href="#size" class="headerlink" title="-size"></a><code>-size</code></h3><p><code>-size</code>选择文件的大小，后面跟着的字符串，<code>+1M</code>表示只选择大于1M的文件，<code>-1M</code>表示只选择小于1M的文件，<code>1M</code>表示只选择大小等于1M的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001 -size <span class="string">&#x27;1M&#x27;</span></span><br><span class="line">./dir-001</span><br><span class="line">[meme@localhost Playground]$ find ./dir-001 -size <span class="string">&#x27;-1M&#x27;</span></span><br><span class="line">./dir-001/file-A</span><br><span class="line">...</span><br><span class="line">./dir-001/file-Z</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>除了上面这三个常用的测试条件，<code>find</code>还支撑很多其他的测试条件，如<code>-perm mode</code>选择指定权限<code>mode</code>的文件等。</p>
+<h2 id="Operators：操作符"><a href="#Operators：操作符" class="headerlink" title="Operators：操作符"></a>Operators：操作符</h2><p><code>find</code>的测试条件实际上相当于程序语言中的条件语句，因此，它很自然地也能支持各种条件语句的逻辑组合，这些组合与变成语言中的一样，通过逻辑操作符<em>与</em><code>-and</code>、<em>或</em><code>-or</code>、<em>非</em><code>-not</code>来实现。这些逻辑操作符的运算逻辑和执行特性和一般程序语言中没有任何区别。通常地，逻辑操作符连接的两个测试条件应该分别用<code>()</code>括起来。在命令行中，<code>()</code>有特殊的意义，因此实际上要为<code>()</code>加上转义字符，即实际应使用<code>\(\)</code>。</p>
+<ul>
+<li><code>-and</code>：<code>find</code>的默认操作符，即若测试条件之间没有操作符，那么其连接符号默认是<code>-and</code>。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . -<span class="built_in">type</span> f -name <span class="string">&#x27;*A&#x27;</span></span><br><span class="line"> ./dir-001/file-A</span><br><span class="line"> ...</span><br><span class="line"> ./dir-100/file-A</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . \( -<span class="built_in">type</span> f \) -and \( -name <span class="string">&#x27;*A&#x27;</span> \)</span><br><span class="line">./dir-001/file-A</span><br><span class="line">...</span><br><span class="line">./dir-100/file-A</span><br></pre></td></tr></table></figure>
+上面两个命令是等价的。</li>
+<li><code>-or</code>：表<em>或</em>，用法与<code>-and</code>相同。</li>
+<li><code>-not</code>：表<em>非</em>，用在想要取<em>非</em>的测试条件之前。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001 -not -<span class="built_in">type</span> f</span><br><span class="line">./dir-001</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Actions：行为"><a href="#Actions：行为" class="headerlink" title="Actions：行为"></a>Actions：行为</h2><p><code>find</code>允许用户对筛选结果立即进行操作，即，将筛选结果作为其他<strong>命令</strong>的输入参数。</p>
+<ul>
+<li><code>-delete</code>：删除当前匹配到的文件；</li>
+<li><code>-ls</code>：对当前匹配到的文件执行<code>ls</code>操作；</li>
+<li><code>-print</code>：将当前匹配文件的路径打印出来，是<code>find</code>的默认操作；</li>
+<li><code>-quit</code>：一旦找到一个匹配项就退出。</li>
+</ul>
+<p>以上四个是<code>find</code>内部自带的操作，如<code>-delete</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001 -<span class="built_in">type</span> f -delete</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> ./dir-001</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要注意的是，<code>Tests</code>和<code>Actions</code>在<code>find</code>看来是同优先级的，而<code>find</code>又是顺序过滤的，因此不同的<code>Tests</code>和<code>Actions</code>的顺序很重要。</p>
+</blockquote>
+<h3 id="用户自定义行为"><a href="#用户自定义行为" class="headerlink" title="用户自定义行为"></a>用户自定义行为</h3><p>除了<code>find</code>自带的这几种行为，<code>find</code>还允许用户自由地使用所有合法的Linux命令，一般的格式为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="built_in">exec</span> [<span class="built_in">command</span>] <span class="string">&#x27;&#123;&#125;&#x27;</span> <span class="string">&#x27;;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>因为<code>&#123;&#125;</code>和<code>;</code>在命令行中有特殊意义，所以必须被引用为字符串或者转义。</p>
+</blockquote>
+<p>如，对筛选出来的文件使用<code>rm -r</code>操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*1&#x27;</span></span><br><span class="line">./dir-001</span><br><span class="line">...</span><br><span class="line">./dir-091</span><br><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*1&#x27;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -r <span class="string">&#x27;&#123;&#125;&#x27;</span> <span class="string">&#x27;;&#x27;</span></span><br><span class="line">find: <span class="string">&#x27;./dir-001&#x27;</span>: No such file or directory</span><br><span class="line">...</span><br><span class="line">find: <span class="string">&#x27;./dir-091&#x27;</span>: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>有时为了安全起见，我们会想要一个个地确认<code>Actions</code>的效果，此时我们可以使用<code>-ok</code>来代替<code>-exec</code>。使用<code>-ok</code>后，<code>[command]</code>在执行前会先向用户进行确认：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*2&#x27;</span> -ok <span class="built_in">rm</span> -r <span class="string">&#x27;&#123;&#125;&#x27;</span> <span class="string">&#x27;;&#x27;</span></span><br><span class="line">&lt; <span class="built_in">rm</span> ... ./dir-002 &gt; ? n</span><br><span class="line">&lt; <span class="built_in">rm</span> ... ./dir-012 &gt; ? n</span><br><span class="line">&lt; <span class="built_in">rm</span> ... ./dir-022 &gt; ? n</span><br><span class="line">&lt; <span class="built_in">rm</span> ... ./dir-032 &gt; ? y</span><br><span class="line">find: <span class="string">&#x27;./dir-032&#x27;</span>: No such file or directory</span><br><span class="line">&lt; <span class="built_in">rm</span> ... ./dir-042 &gt; ? n</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>当我们使用<code>&#39;;&#39;</code>时，我们在告诉<code>find</code>：对于每一个匹配的文件，运行一次<code>[command]</code>，这样会导致当匹配结果有$n$个文件时，<code>[command]</code>被运行$n$次。要想避免这种情况，我们可以将<code>&#39;;&#39;</code>替换为<code>+</code>，这样就是在告诉<code>find</code>：将所有的结果合成一个列表：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*2&#x27;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -r <span class="string">&#x27;&#123;&#125;&#x27;</span> +</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意，此时只能用<code>-exec</code>而不能用<code>-ok</code>。</p>
+</blockquote>
+<h1 id="辅助命令"><a href="#辅助命令" class="headerlink" title="辅助命令"></a>辅助命令</h1><p>有许多的辅助命令能够让<code>locate</code>和<code>find</code>的功能更强大。</p>
+<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a><code>xargs</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xargs [OPTION]... COMMAND INITIAL-ARGS...</span><br></pre></td></tr></table></figure>
+
+<p><code>xargs</code>从标准输入中接受输入，并将输入转换为一个<em>命令行参数列表</em>，这个参数列表可以直接作为其他指令的参数，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*13&#x27;</span></span><br><span class="line">./dir-013</span><br><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*13&#x27;</span> | xargs <span class="built_in">ls</span> -l</span><br><span class="line">total 0</span><br><span class="line">-rw-rw-r--. 1 meme meme 0 Jul 26 19:50 file-A</span><br><span class="line">...</span><br><span class="line">-rw-rw-r--. 1 meme meme 0 Jul 26 19:50 file-Z</span><br></pre></td></tr></table></figure>
+
+<p><code>xargs</code>将<code>./dir-013</code>管道为了<code>ls -l</code>的命令行参数。</p>
+<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a><code>touch</code></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch [OPTION]... FILE...</span><br></pre></td></tr></table></figure>
+
+<p>当<code>touch</code>后的文件不存在时，<code>touch</code>相当于一个创建文件操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ locate taylor</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> taylor</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> taylor</span><br><span class="line">taylor</span><br></pre></td></tr></table></figure>
+
+<p>若文件已存在，则<code>touch</code>会将其修改时间设置为当前时间：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">stat</span> taylor</span><br><span class="line">  File: ‘taylor’</span><br><span class="line">...</span><br><span class="line">Access: 2023-07-26 22:32:26.809464671 -0700</span><br><span class="line">Modify: 2023-07-26 22:32:26.809464671 -0700</span><br><span class="line">Change: 2023-07-26 22:32:26.809464671 -0700</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> taylor</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">stat</span> taylor</span><br><span class="line">  File: ‘taylor’</span><br><span class="line">...</span><br><span class="line">Access: 2023-07-26 22:33:54.850140719 -0700</span><br><span class="line">Modify: 2023-07-26 22:33:54.850140719 -0700</span><br><span class="line">Change: 2023-07-26 22:33:54.850140719 -0700</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>stat</code>相当于加强版的<code>ls</code>。</p>
+</blockquote>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39449">The Linux Command Line 中文版 第十八章：查找文件</a></li>
 </ul>
-<p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>
+
     </div>
 
     
@@ -346,7 +434,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#locate%EF%BC%9A%E9%80%9A%E8%BF%87%E5%90%8D%E5%AD%97%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">locate：通过名字查找文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#find%EF%BC%9A%E5%9C%A8%E7%9B%AE%E5%BD%95%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E4%B8%AD%E6%90%9C%E7%B4%A2%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">find：在目录层次结构中搜索文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tests%EF%BC%9A%E6%B5%8B%E8%AF%95%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">Tests：测试条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#type"><span class="nav-number">2.1.1.</span> <span class="nav-text">-type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#name"><span class="nav-number">2.1.2.</span> <span class="nav-text">-name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#size"><span class="nav-number">2.1.3.</span> <span class="nav-text">-size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">2.1.4.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operators%EF%BC%9A%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-number">2.2.</span> <span class="nav-text">Operators：操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Actions%EF%BC%9A%E8%A1%8C%E4%B8%BA"><span class="nav-number">2.3.</span> <span class="nav-text">Actions：行为</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%8C%E4%B8%BA"><span class="nav-number">2.3.1.</span> <span class="nav-text">用户自定义行为</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">辅助命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xargs"><span class="nav-number">3.1.</span> <span class="nav-text">xargs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#touch"><span class="nav-number">3.2.</span> <span class="nav-text">touch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
