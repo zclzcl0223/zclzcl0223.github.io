@@ -732,7 +732,7 @@
 <center style="font-size:12px; font-weight:bold">Fig. 2. Left: Original dataset distillation. Mid: Gradient matching. Right: Expert trajectories</center><br>
 
 <p>原始的数据蒸馏只考虑结果，因此性能不是太好；梯度匹配过于追求过程，是一种贪心的思想，可能不能得到全局最优且计算量偏大；本文提出的专家轨迹则可视为对前两者的折中。</p>
-<h1 id="重要代码"><a href="#重要代码" class="headerlink" title="重要代码"></a>重要代码</h1><h1 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h1>]]></content>
+]]></content>
       <categories>
         <category>Paper</category>
       </categories>
