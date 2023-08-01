@@ -377,9 +377,9 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep learning</tag>
-        <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
+        <tag>Deep learning</tag>
       </tags>
   </entry>
   <entry>
@@ -952,8 +952,8 @@
         <category>Dive into deep learning</category>
       </categories>
       <tags>
-        <tag>Attention mechanism</tag>
         <tag>Deep learning</tag>
+        <tag>Attention mechanism</tag>
       </tags>
   </entry>
   <entry>
@@ -1026,8 +1026,8 @@
         <category>Dive into deep learning</category>
       </categories>
       <tags>
-        <tag>Attention mechanism</tag>
         <tag>Deep learning</tag>
+        <tag>Attention mechanism</tag>
       </tags>
   </entry>
   <entry>
@@ -3246,12 +3246,65 @@
     <url>/2023/07/25/NetworkRemoteInteraction/</url>
     <content><![CDATA[<span id="more"></span>
 
+<h1 id="netstat：Network-Statistics，查看本机网络信息"><a href="#netstat：Network-Statistics，查看本机网络信息" class="headerlink" title="netstat：Network Statistics，查看本机网络信息"></a><code>netstat</code>：Network Statistics，查看本机网络信息</h1><p><code>netstat</code>程序被用来检测各种各样的本机网络设置。通过选用不同的选项，我们可以查看有关本机的不同网络信息。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">netstat [OPTION]</span><br></pre></td></tr></table></figure>
 
+<p>如，<code>-ie</code>选项使得我们可以查看本系统的所有网络接口：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[meme@localhost ~]$ netstat -ie</span><br><span class="line">Kernel Interface table</span><br><span class="line">ens33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.115.128  netmask 255.255.255.0  broadcast 192.168.115.255</span><br><span class="line">        inet6 fe80::9b04:dd5e:b9d5:202f  prefixlen 64  scopeid 0x20&lt;<span class="built_in">link</span>&gt;</span><br><span class="line">        ether 00:0c:29:0a:87:bc  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 3440  bytes 258371 (252.3 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 654  bytes 80314 (78.4 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536</span><br><span class="line">        inet 127.0.0.1  netmask 255.0.0.0</span><br><span class="line">        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br><span class="line">        loop  txqueuelen 1  (Local Loopback)</span><br><span class="line">        RX packets 456  bytes 95634 (93.3 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 456  bytes 95634 (93.3 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>上述两个网络接口中，第一个<code>ens33</code>是因特网接口，主要信息有IPv4地址、掩码以及IPv6地址等；第二个接口<code>lo</code>就是我们常说的内部回环网络接口，其IPv4地址以<code>127</code>开头。</p>
+<blockquote>
+<p>除<code>-ie</code>外还有许多选项，如<code>-r</code>选项可以查看本机的路由表等。</p>
+</blockquote>
+<h1 id="wget：World-Wide-Web-Get，从网页中下载文件"><a href="#wget：World-Wide-Web-Get，从网页中下载文件" class="headerlink" title="wget：World Wide Web Get，从网页中下载文件"></a><code>wget</code>：World Wide Web Get，从网页中下载文件</h1><p><code>wget</code>程序将互联网上的文件下载到当前目录，它的使用很简单，一般为<code>wget</code>+目标文件的域名（URL）。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget [OPTION]... [URL]...</span><br></pre></td></tr></table></figure>
+
+<h1 id="ssh：Secure-Shell，安全的远程登陆"><a href="#ssh：Secure-Shell，安全的远程登陆" class="headerlink" title="ssh：Secure Shell，安全的远程登陆"></a><code>ssh</code>：Secure Shell，安全的远程登陆</h1><p><code>ssh</code>既是一个互联网协议，又是Linux命令行中的一个程序。在SSH之前，常用的远程登录协议有Rlogin和Telnet，这两个协议的重大缺陷是所有的通讯信息均以<strong>明文</strong>的方式传播，因而十分地不安全。SSH从两个方面解决了这个问题：</p>
+<ol>
+<li>SSH客户端所连接的远程主机必须为客户端所知，由此阻止了中间人攻击；</li>
+<li>SSH对本地客户端主机和远程主机之间的通信进行了加密。</li>
+</ol>
+<p>SSH由两部分组成，运行在本地的SSH客户端和运行在远端主机的SSH服务器。一般来说，Linux发行版会自带一个提供SSH功能的软件包OpenSSH，它包括OpenSSH-client和OpenSSH-server两个分别提供客户端和服务器服务的程序，但是有些发行版（如Ubuntu）的OpenSSH只包含了OpenSSH-client。要想让系统能够接受远程客户端的连接，则必须手动安装OpenSSH-server。</p>
+<h2 id="SSH配置"><a href="#SSH配置" class="headerlink" title="SSH配置"></a>SSH配置</h2><p>无论是想让系统充当远程的服务器还是想让系统能够作为客户端连接远程主机，都必须要正确地配置相关的SSH文件。对于Linux系统，SSH服务器的配置文件通常是<code>/etc/ssh/sshd_config</code>，SSH客户端的配置文件通常是<code>~/.ssh/config</code>，以上两个文件若没有则需要自己创建。</p>
+<h3 id="SSH客户端配置与连接"><a href="#SSH客户端配置与连接" class="headerlink" title="SSH客户端配置与连接"></a>SSH客户端配置与连接</h3><p>对于一般用户来说，SSH客户端是更常用的一方，因此只介绍SSH客户端的配置。通常，有4个主要配置项：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">Host</span> [<span class="string">HOST</span> <span class="string">NAME</span>]</span><br><span class="line">    <span class="string">HostName</span> [<span class="string">HOST</span> <span class="string">IP</span>]</span><br><span class="line">    <span class="string">User</span> [<span class="string">USER</span> <span class="string">NAME</span>]</span><br><span class="line">    <span class="string">Port</span> [<span class="string">PORT</span>]</span><br></pre></td></tr></table></figure>
+<p>其中，<code>Host</code>是用户为该远程主机指定的标识符，可任意；<code>HostName</code>是该远程主机的公网IP地址；<code>User</code>则是用户登录远程主机时的默认身份，该身份必须是远程主机上有且允许远程登录的用户；<code>Port</code>是要连接的SSH服务器监听的端口，要与远程主机SSH服务器配置文件中的端口匹配。配置完成后，我们便可用命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh [HOST NAME] 或</span><br><span class="line">ssh [HOST IP]</span><br></pre></td></tr></table></figure>
+
+<p>连接远程主机。当然，我们也可以以远程主机允许的其他用户身份登录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh [OTHER USER NAME]@[HOST NAME]</span><br></pre></td></tr></table></figure>
+
+<p>一般来说，我们登录远程主机的验证方式默认为输入登录用户的密码，当然也可以在配置文件中增加<code>IdentityFile</code>选项使得我们能以私钥文件的形式实现免密登录。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[meme@localhost ~]$ ssh remote-sys</span><br><span class="line">The authenticity of host <span class="string">&#x27;remote-sys (xxx.xxx.xxx.xxx)&#x27;</span> can<span class="string">&#x27;t be</span></span><br><span class="line"><span class="string">established.</span></span><br><span class="line"><span class="string">ECDSA key fingerprint is xxxxxxxxxxxxxxxxxxx.</span></span><br><span class="line"><span class="string">ECDSA key fingerprint is xxxxxxxxxxxxxxxxxxx.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?yes</span></span><br><span class="line"><span class="string">Warning: Permanently added &#x27;</span>remote-sys,xxx.xxx.xxx.xxx<span class="string">&#x27; (RSA) to the list</span></span><br><span class="line"><span class="string">of known hosts.</span></span><br><span class="line"><span class="string">Bob@xxx.xxx.xxx.xxx&#x27;</span>s password: </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>第一次登录未曾登录过的远程主机时，客户端会启动保护机制，如上面的<code>Are you sure...</code>。成功输入密码后，我们便进入了远端的shell会话，直到我们输入<code>exit</code>，该会话都会一直存在。</p>
+<p>需要注意的是，有时远程登录会报错<code>Bad owner or permissions on ~/.ssh/config</code>，这是因为有其他的用户拥有了对<code>~/.ssh/config</code>的使用权限，我们只要用<code>chmod 600 ~/.ssh/config</code>使得该文件只能由文件拥有者操作即可。</p>
+</blockquote>
+<p>若没有可用的远程主机，则可以用<code>localhost</code>作为远端主机名，此时计算机会和自己建立“远程连接”且无需输入密码。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[meme@localhost ~]$ ssh localhost</span><br><span class="line">Last login: Tue Aug  1 03:58:03 2023 from localhost</span><br><span class="line">[meme@localhost ~]$ <span class="built_in">date</span></span><br><span class="line">Tue Aug  1 04:00:53 PDT 2023</span><br><span class="line">[meme@localhost ~]$ <span class="built_in">exit</span></span><br><span class="line"><span class="built_in">logout</span></span><br><span class="line">Connection to localhost closed.</span><br><span class="line">[meme@localhost ~]$ <span class="built_in">date</span></span><br><span class="line">Tue Aug  1 04:01:04 PDT 2023</span><br></pre></td></tr></table></figure>
+
+<p>有时，我们只想用远程主机执行个位数的命令，那么我们就没有必要登录又退出远程主机，而是可以直接在连接过程中就发送我们想要执行的命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[meme@localhost ~]$ ssh remote-sys <span class="string">&#x27;ls ..&#x27;</span></span><br><span class="line">Bob@xxx.xxx.xxx.xxx<span class="string">&#x27;s password: </span></span><br><span class="line"><span class="string">dev</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string">var</span></span><br><span class="line"><span class="string">Killed by signal 1.</span></span><br><span class="line"><span class="string">[meme@localhost ~]$ </span></span><br></pre></td></tr></table></figure>
+
+<p>上面的<code>ls ..</code>让远程主机执行<code>ls</code>命令列出默认登录目录的父目录的内容，然后就退出登录。特别需要注意的是，引号表示该命令由远程主机执行，因此下面两个命令得到的是完全不同的结果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[meme@localhost ~]$ ssh remote-sys <span class="string">&#x27;ls ..&#x27;</span> &gt; dirlist.txt</span><br><span class="line">[meme@localhost ~]$ ssh remote-sys <span class="string">&#x27;ls .. &gt; dirlist.txt&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，第一个命令是让远程主机列出父目录的内容并将结果重定向至本地的<code>dirlist.txt</code>文件；而第二个命令则是让远程主机列出父目录的内容并将结果重定向至<strong>远程主机</strong>的<code>dirlist.txt</code>文件。</p>
+<h2 id="scp：Secure-Copy，安全的远程复制"><a href="#scp：Secure-Copy，安全的远程复制" class="headerlink" title="scp：Secure Copy，安全的远程复制"></a><code>scp</code>：Secure Copy，安全的远程复制</h2><p><code>scp</code>是OpenSSH的内置程序，它基于SSH实现安全的远程复制：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">scp [[USER@]HOST:]FILE</span><br></pre></td></tr></table></figure>
+
+<p>它的用法很简单，<code>scp</code>+SSH远程服务器+目标文件。程序运行的结果是远程的目标文件被复制到本地目录。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[meme@localhost ~]$ scp remote-sys:document.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="sftp：Secure-FTP，安全的FTP"><a href="#sftp：Secure-FTP，安全的FTP" class="headerlink" title="sftp：Secure FTP，安全的FTP"></a><code>sftp</code>：Secure FTP，安全的FTP</h2><p><code>sftp</code>是用SSH强化了安全性的FTP协议，它也是OpenSSH的内置程序，同样也是基于SSH实现的。其用法与常规的<code>ftp</code>命令完全一样，只不过远程的SSH服务器充当了FTP服务器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[meme@localhost ~]$ sftp remote-sys</span><br><span class="line">Connecting to remote-sys...</span><br><span class="line">me@remote-sys<span class="string">&#x27;s password:</span></span><br><span class="line"><span class="string">sftp&gt; ls</span></span><br><span class="line"><span class="string">ubuntu-8.04-desktop-i386.iso</span></span><br><span class="line"><span class="string">sftp&gt; lcd Desktop</span></span><br><span class="line"><span class="string">sftp&gt; get ubuntu-8.04-desktop-i386.iso</span></span><br><span class="line"><span class="string">Fetching /home/me/ubuntu-8.04-desktop-i386.iso to ubuntu-8.04-</span></span><br><span class="line"><span class="string">desktop-i386.iso</span></span><br><span class="line"><span class="string">/home/me/ubuntu-8.04-desktop-i386.iso 100% 699MB 7.4MB/s 01:35</span></span><br><span class="line"><span class="string">sftp&gt; bye</span></span><br></pre></td></tr></table></figure>
+
+<p>输入密码后，我们将登录远程的shell。<code>lcd</code>指令即“Local Change Directory”，是指切换本地主机，即客户端主机的目录，而<code>cd</code>才是切换远程服务器的目录。<code>get</code>使得远程的文件被传输到本地主机的<code>Desktop</code>目录下。输入<code>bye</code>或<code>exit</code>或<code>quit</code>我们将退出远程服务器。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a href="https://www.kancloud.cn/thinkphp/linux-command-line/39448">The Linux Command Line 中文版 第十七章：网络系统</a></li>
 </ul>
-<p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+]]></content>
       <categories>
         <category>Tool</category>
       </categories>
@@ -3947,9 +4000,9 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep learning</tag>
-        <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
+        <tag>Deep learning</tag>
         <tag>Machine learning</tag>
       </tags>
   </entry>
@@ -4052,9 +4105,9 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep learning</tag>
-        <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
+        <tag>Deep learning</tag>
         <tag>Machine learning</tag>
       </tags>
   </entry>
@@ -4248,8 +4301,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
         <tag>Data analysis</tag>
       </tags>
   </entry>
@@ -4281,8 +4334,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
         <tag>Machine learning</tag>
         <tag>Supervised learning</tag>
         <tag>Unsupervised learning</tag>
@@ -4398,8 +4451,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
         <tag>Data analysis</tag>
       </tags>
   </entry>
@@ -4857,8 +4910,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
