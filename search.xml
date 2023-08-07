@@ -317,7 +317,7 @@
 
 <p>得到的是行最大值。该函数可以很容易地得到softmax的最终结果，也可用于分析分类的准确性。</p>
 <blockquote>
-<p>此类操作属于PyTorch中的张量降维操作，更多类似的操作见<a href="https://pytorch.org/docs/stable/torch.html#reduction-ops">reduction-ops</a>。</p>
+<p>此类操作属于PyTorch中的张量降维操作，更多类似的操作见<a href="https://pytorch.org/docs/stable/torch.html#reduction-ops">reduction-ops</a></p>
 </blockquote>
 <h2 id="torch-eq"><a href="#torch-eq" class="headerlink" title="torch.eq"></a>torch.eq</h2><p><code>torch.eq(input, other, *, out=None)</code>或者<code>a.eq(other, *, out=None)</code></p>
 <p>该函数将两个张量（<code>input</code>和<code>other</code>）进行逐元素比较，若相同位置的两个元素相同，则返回<code>True</code>；否则，返回<code>False</code>。最终结果是个<code>bool</code>张量：</p>
@@ -328,7 +328,7 @@
 
 <p>以上<code>y_hat</code>为softmax结果，而<code>y</code>为实际的标签。上面的代码首先求出softmax的预测结果（假设标签为0，1，……，n-1，那么<code>dim</code>的下标就是预测值），然后再比较预测值与实际值是否相同，将正确的个数相加就得到了最终预测正确的个数。</p>
 <blockquote>
-<p>此类操作属于PyTorch中的数值比较操作，更多类似的操作见<a href="https://pytorch.org/docs/stable/torch.html#comparison-ops">comparison-ops</a>。</p>
+<p>此类操作属于PyTorch中的数值比较操作，更多类似的操作见<a href="https://pytorch.org/docs/stable/torch.html#comparison-ops">comparison-ops</a></p>
 </blockquote>
 <h2 id="torch-dtype"><a href="#torch-dtype" class="headerlink" title="torch.dtype"></a>torch.dtype</h2><p><code>torch.dtype</code>指的是张量元素的数据类型。PyTorch支持张量元素类型的随意转换：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = torch.normal(<span class="number">0</span>, <span class="number">1</span>, size=(<span class="number">1</span>,<span class="number">3</span>))  <span class="comment"># PyTorch默认使用float32</span></span><br><span class="line">x = a.<span class="built_in">type</span>(torch.<span class="built_in">int</span>)  <span class="comment"># float32 -&gt; int</span></span><br><span class="line">y = a.<span class="built_in">type</span>(torch.<span class="built_in">bool</span>)  <span class="comment"># float32 -&gt; bool</span></span><br></pre></td></tr></table></figure>
@@ -337,7 +337,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = a.<span class="built_in">int</span>()  <span class="comment"># float32 -&gt; int</span></span><br><span class="line">y = a.<span class="built_in">bool</span>()  <span class="comment"># float32 -&gt; bool</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>更多Tensor数据类型见<a href="https://pytorch.org/docs/stable/tensor_attributes.html#torch-dtype">torch-dtype</a>。</p>
+<p>更多Tensor数据类型见<a href="https://pytorch.org/docs/stable/tensor_attributes.html#torch-dtype">torch-dtype</a></p>
 </blockquote>
 <h2 id="torch-nn-NLLLoss-amp-torch-nn-CrossEntropyLoss"><a href="#torch-nn-NLLLoss-amp-torch-nn-CrossEntropyLoss" class="headerlink" title="torch.nn.NLLLoss &amp; torch.nn.CrossEntropyLoss"></a>torch.nn.NLLLoss &amp; torch.nn.CrossEntropyLoss</h2><p>两者本质上都是交叉熵损失函数，但是覆盖的范围不同：</p>
 <ol>
@@ -348,7 +348,7 @@
 <h2 id="torch-nn-parameter-Parameter"><a href="#torch-nn-parameter-Parameter" class="headerlink" title="torch.nn.parameter.Parameter"></a>torch.nn.parameter.Parameter</h2><p><code>torch.nn.parameter.Parameter(Tensor: data=None, requires_grad=True)</code></p>
 <p>它属于<code>Tensor</code>的子类，但是，不同于<code>Tensor</code>的是，<code>Parameter</code>默认有梯度，且当其与<code>nn.Module</code>类一起使用时，会被自动添加进参数列表，并出现在<code>parameters()</code>迭代器中。当我们自定义的网络需要额外的可训练参数时，可以使用<code>Parameter</code>，但是要记得单独对其进行初始化且<code>data</code>应该以<code>torch.empty(shape)</code>的形式传入（<code>troch.empty</code>将生成未被初始化的张量）。</p>
 <blockquote>
-<p>更多信息详见<a href="https://pytorch.org/docs/stable/generated/torch.nn.parameter.Parameter.html#torch.nn.parameter.Parameter">PARAMETER</a>。</p>
+<p>更多信息详见<a href="https://pytorch.org/docs/stable/generated/torch.nn.parameter.Parameter.html#torch.nn.parameter.Parameter">PARAMETER</a></p>
 </blockquote>
 <h2 id="torch-bmm"><a href="#torch-bmm" class="headerlink" title="torch.bmm"></a>torch.bmm</h2><p><code>torch.bmm(input, mat2, *, out=None)</code></p>
 <p>其中<code>input</code>的形状为$b\times n\times m$，<code>mat2</code>的形状为$b\times m\times k$，最后输出的形状为$b\times n\times k$。换句话说，<code>torch.bmm</code>是对每个<code>batch</code>单独做了矩阵乘法：</p>
@@ -361,7 +361,7 @@
 <blockquote>
 <p>需要特别注意<code>permute</code>与<code>reshape</code>和<code>view</code>的区别。<code>reshape</code>和<code>view</code>的运行机理是将原张量从低维到高维拉成一个向量，然后再以新维度分布从高维到低维切割、堆叠，所以<code>reshape</code>和<code>view</code>前后，张量拉成的向量都是一样的，但是<code>permute</code>前后则不是。</p>
 </blockquote>
-<h1 id="torch-nonzero"><a href="#torch-nonzero" class="headerlink" title="torch.nonzero"></a>torch.nonzero</h1><p><code>torch.nonzero(input, *, out=None, as_tuple=False)</code></p>
+<h2 id="torch-nonzero"><a href="#torch-nonzero" class="headerlink" title="torch.nonzero"></a>torch.nonzero</h2><p><code>torch.nonzero(input, *, out=None, as_tuple=False)</code></p>
 <p>其中，<code>input</code>是任意维度的张量。当<code>as_tuple=False</code>时，上述操作会以二维张量的形式返回<code>input</code>中所有值不为0的元素的下标，在该二维张量中，每一行是一个非0元素的完整下标，如：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.nonzero(torch.tensor([[<span class="number">0.6</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>],</span><br><span class="line"><span class="meta">... </span>                            [<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.4</span>, <span class="number">0.0</span>],</span><br><span class="line"><span class="meta">... </span>                            [<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.2</span>, <span class="number">0.0</span>],</span><br><span class="line"><span class="meta">... </span>                            [<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>,-<span class="number">0.4</span>]]))</span><br><span class="line">tensor([[ <span class="number">0</span>,  <span class="number">0</span>],</span><br><span class="line">        [ <span class="number">1</span>,  <span class="number">2</span>],</span><br><span class="line">        [ <span class="number">2</span>,  <span class="number">2</span>],</span><br><span class="line">        [ <span class="number">3</span>,  <span class="number">3</span>]])</span><br></pre></td></tr></table></figure>
 
@@ -372,7 +372,26 @@
 <blockquote>
 <p><code>torch.nonzero</code>是PyTorch中丰富的切片操作中的一种，更多详细的切片操作见<a href="https://pytorch.org/docs/stable/torch.html#indexing-slicing-joining-mutating-ops">Indexing, Slicing, Joining, Mutating Ops</a></p>
 </blockquote>
-]]></content>
+<h2 id="torch-randperm"><a href="#torch-randperm" class="headerlink" title="torch.randperm"></a>torch.randperm</h2><p><code>torch.randperm(n, *, generator=None, out=None, dtype=torch.int64, layout=torch.strided, device=None, requires_grad=False, pin_memory=False) → Tensor</code></p>
+<p>一般来说，有用的参数只有<code>n</code>，该参数表明对<code>0</code>到<code>n-1</code>的所有下标随机排序。整个函数会返回随机排序后的下标张量。由于<code>random</code>库中的<code>random.shuffle</code>无法用于<code>Tensor</code>，我们只能使用<code>torch.randperm</code>来生成随机排序的下标，再通过切片来达到对原张量随机排序的目的。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.randperm(<span class="number">4</span>)</span><br><span class="line">tensor([<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>torch.randperm</code>是PyTorch中丰富的随机采样操作中的一种，更多的随机操作见<a href="https://pytorch.org/docs/stable/torch.html#random-sampling">Random sampling</a></p>
+</blockquote>
+<h2 id="torch-triu-indices-amp-torch-tril-indices"><a href="#torch-triu-indices-amp-torch-tril-indices" class="headerlink" title="torch.triu_indices &amp; torch.tril_indices"></a>torch.triu_indices &amp; torch.tril_indices</h2><p><code>torch.triu_indices(row, col, offset=0, *, dtype=torch.long, device=&#39;cpu&#39;, layout=torch.strided) → Tensor</code></p>
+<p>此处只列出<code>torch.triu_indices</code>的用法，因为两个函数用法是一致的，只不过前者取上三角下标而后者取下三角下标。</p>
+<ul>
+<li>参数<code>row</code>和<code>col</code>表示矩阵的行数和列数；</li>
+<li><code>offset</code>是待取三角相对于主对角线的偏移，上为<code>+</code>，下为<code>-</code>，当取<code>0</code>时表示得到的下标包括主对角线。对于上三角，若想去掉主对角线，则需令<code>offset=1</code>；对于下三角，则需令<code>offset=-1</code>。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.triu_indices(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">tensor([[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.triu_indices(<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">tensor([[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.tril_indices(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">tensor([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，上三角下标的排列顺序是：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">|---&gt;</span><br><span class="line">| --&gt;</span><br><span class="line">V  -&gt;</span><br></pre></td></tr></table></figure>
+
+<p>而下三角下标是：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">--&gt;</span><br><span class="line">|</span><br><span class="line">||</span><br><span class="line">|||</span><br><span class="line">VVV</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Tool</category>
       </categories>
@@ -4808,6 +4827,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Python Package</title>
+    <url>/2023/06/15/PythonPackage/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
+<blockquote>
+<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
+</blockquote>
+<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
+<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Configuration</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>zip: Make Aggregation Easier</title>
     <url>/2023/05/06/ZipMakeLifeEasier/</url>
     <content><![CDATA[<span id="more"></span>
@@ -4877,26 +4916,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python Package</title>
-    <url>/2023/06/15/PythonPackage/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
-<blockquote>
-<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
-</blockquote>
-<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
-<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Configuration</tag>
       </tags>
   </entry>
   <entry>
