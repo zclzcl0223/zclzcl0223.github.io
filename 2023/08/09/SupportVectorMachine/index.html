@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/4.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/5.png">
 <meta property="article:published_time" content="2023-08-09T05:43:09.000Z">
-<meta property="article:modified_time" content="2023-08-09T12:00:01.628Z">
+<meta property="article:modified_time" content="2023-08-10T13:21:46.280Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Machine Learning">
 <meta property="article:tag" content="Supervised Learning">
@@ -230,10 +230,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-08-09 13:43:09 / Modified: 20:00:01" itemprop="dateCreated datePublished" datetime="2023-08-09T13:43:09+08:00">2023-08-09</time>
+              <time title="Created: 2023-08-09 13:43:09" itemprop="dateCreated datePublished" datetime="2023-08-09T13:43:09+08:00">2023-08-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-10 21:21:46" itemprop="dateModified" datetime="2023-08-10T21:21:46+08:00">2023-08-10</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -258,13 +264,13 @@
       
         <span id="more"></span>
 
-<h1 id="方法论"><a href="#方法论" class="headerlink" title="方法论"></a>方法论</h1><p>对于一个普通的线性二分类问题，我们期望找到这么一个决策边界$\omega ^Tx+b&#x3D;0$（式中$\omega$与$x$均为向量），使得该决策边界能够完全地把数据集中正类和负类完全隔开：</p>
+<h1 id="方法论"><a href="#方法论" class="headerlink" title="方法论"></a>方法论</h1><p>对于一个普通的线性二分类问题，我们期望找到这么一个决策边界$\omega ^Tx+b&#x3D;0$（式中$\omega$与$x$均为向量），使得该决策边界能够完全地把数据集中正类和负类隔开：</p>
 <p><img src="/2023/08/09/SupportVectorMachine/1.png" alt="1"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. Linear binary classification</center><br>
 
-<p>在逻辑回归（Logistic Regression）中，我们用的方法本质上是通过凸优化找到该边界的参数，使得正负类分别位于直线两侧：</p>
+<p>在逻辑回归（Logistic Regression）中，我们用的方法本质上是通过凸优化逐步拟合该边界的参数，使得正负类分别位于直线两侧：</p>
 <p>$$<br>\begin{align*}<br>    \hat{y}^{(i)}&#x3D;&amp;\frac{1}{1+\exp(-\omega ^Tx-b)}\\<br>    L&#x3D;\frac{1}{m}\sum _{i&#x3D;1} ^{m}[-y ^{(i)}\log&amp;(\hat{y}^{(i)})-(1-y ^{(i)})log(1-\hat{y}^{(i)})]<br>\end{align*}<br>$$</p>
-<p>式中，$m$为训练集样本数。由于所有的样本点都将参与到损失函数$L$中，任何一个样本点的偏移都会产生新的梯度而导致决策边界发生一定的偏移。然而，样本终究只是数据的观测值，总会存在一定的噪声使得观测值与真实值存在一定的偏差，假设该噪声表现为最一般的高斯噪声，则一个样本的真实数据值实际上在该样本值的附近：</p>
+<p>式中，$m$为训练集样本数。由于所有的样本点都将参与到损失函数$L$中，任何一个样本点的偏移都会产生新的梯度而导致决策边界发生一定的偏移。然而，样本终究只是数据的观测值，总会存在一定的噪声使得观测值与真实值存在偏差，假设该噪声表现为最一般的高斯噪声，则一个样本的真实数据值实际上在该样本值的附近：</p>
 <p><img src="/2023/08/09/SupportVectorMachine/2.png" alt="2"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 2. Gaussian noise</center><br>
 
@@ -297,7 +303,7 @@
 <p>此时，$\omega$的取值将不再受到限制。更进一步地：<br>$$<br>\min _{i&#x3D;1,...,m}\frac{\hat{\gamma} ^{(i)}}{||\omega||}<br>$$</p>
 <p>可以直接用$\hat{\gamma}&#x2F;{||\omega||}$表示，其中：</p>
 <p>$$<br>y ^{(i)}(\omega ^Tx ^{(i)}+b)\ge\hat{\gamma},\space\space i&#x3D;1,...,m<br>$$</p>
-<p>若将上式视作一个限定条件，限定$\omega$与$b$必须在一个指定的集合中：</p>
+<p>上式可被视作一个限定条件，限定$\omega$与$b$必须在一个指定的集合中：</p>
 <p><img src="/2023/08/09/SupportVectorMachine/5.png" alt="6"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 6. Inequality field</center><br>
 
@@ -307,8 +313,12 @@
 <p>则我们实际上可以简单地令$\hat{\gamma}&#x3D;1$，于是式$(1)$便简化为：</p>
 <p>$$<br>\max _{\omega,b}\frac{1}{||\omega||} \tag{2}<br>$$</p>
 <p>进一步地将$\omega$放在分母，我们可得：</p>
-<p>$$<br>\begin{align*}<br>    \min _{\omega,b}&amp;\frac</p>
-
+<p>$$<br>\min _{\omega,b} \frac{||\omega|| ^2}{2}\space\space\text{s.t} \space\space y ^{(i)}(\omega ^Tx ^{(i)}+b)\ge 1,\space\space i&#x3D;1,...,m \tag{3}<br>$$</p>
+<blockquote>
+<p>平方与分母中的$2$是为了方便求导。</p>
+</blockquote>
+<p>采用拉格朗日乘数法分别求解限定条件下边界和内部的极值便可得到决策边界的解析解。这就是SVM，它实际上是一种最大间隔分类（Maximum Margin Classification）。</p>
+<h1 id="软边距"><a href="#软边距" class="headerlink" title="软边距"></a>软边距</h1><h1 id="非线性分类"><a href="#非线性分类" class="headerlink" title="非线性分类"></a>非线性分类</h1>
     </div>
 
     
@@ -415,7 +425,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">方法论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">线性分类</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">方法论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">线性分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E8%BE%B9%E8%B7%9D"><span class="nav-number">3.</span> <span class="nav-text">软边距</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%9E%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB"><span class="nav-number">4.</span> <span class="nav-text">非线性分类</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
