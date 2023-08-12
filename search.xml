@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>GPT</title>
+    <url>/2023/08/11/GPT/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h1><p>Chat Generative Pre-trained Transformer</p>
+<p>ChatGPT：文本生成，即续写用户的提问。GPT有记忆性是因为最终输入GPT的文本还包含过去的对话信息。</p>
+<p>语言模型：文本生成（文字接龙）模型。</p>
+<p>ChatGPT部署后并不连网。</p>
+<h1 id="ChatGPT预训练与监督学习"><a href="#ChatGPT预训练与监督学习" class="headerlink" title="ChatGPT预训练与监督学习"></a>ChatGPT预训练与监督学习</h1><p>预训练（Pre-train），又称自监督学习（Self-supervised Learning），得到的模型称基石模型（Foundation Model）。自监督学习区别于监督学习的地方在于，自监督模型的Key-value Pair是通过程序自生成的，它可以没有逻辑，可以不符合实际情况。</p>
+<p>用网络资料制作成对资料（Key-value Pair），所有文本都可以作为Key-value Pair。GPT1-GPT3都用这种方式训练，但这样训练的结果是GPT给出的答案不可控。</p>
+<p>若将用网络资料训练的GPT3作为一个预训练模型，再用人类提供的资料做监督学习、微调（Finetune），便得到了GPT3.5，也就是ChatGPT。</p>
+<h1 id="ChatGPT强化学习"><a href="#ChatGPT强化学习" class="headerlink" title="ChatGPT强化学习"></a>ChatGPT强化学习</h1><h1 id><a href="#" class="headerlink" title></a></h1><p>催眠ChatGPT，Prompting</p>
+<p><img src="/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+      <categories>
+        <category>Advanced Model</category>
+      </categories>
+      <tags>
+        <tag>Attention Mechanism</tag>
+        <tag>Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Support Vector Machine</title>
     <url>/2023/08/09/SupportVectorMachine/</url>
     <content><![CDATA[<span id="more"></span>
@@ -58,8 +81,41 @@
 <blockquote>
 <p>平方与分母中的$2$是为了方便求导。</p>
 </blockquote>
-<p>采用拉格朗日乘数法分别求解限定条件下边界和内部的极值便可得到决策边界的解析解。这就是SVM，它实际上是一种最大间隔分类（Maximum Margin Classification）。</p>
-<h1 id="软边距"><a href="#软边距" class="headerlink" title="软边距"></a>软边距</h1><h1 id="非线性分类"><a href="#非线性分类" class="headerlink" title="非线性分类"></a>非线性分类</h1>]]></content>
+<p>采用拉格朗日乘数法分别求解限定条件下边界和内部的极值便可得到决策边界的解析解。得到解析解后，对任意点$x$计算$\text{sign}(\omega ^Tx+b)$便可得到它的分类结果。这就是SVM，它实际上是一种最大间隔分类（Maximum Margin Classification）。</p>
+<blockquote>
+<p>实际求解要更加复杂，常用的方法有内点法（Interior Point Method, IPM）和序列最小优化（Sequential Minimal Optimization, SMO）。</p>
+</blockquote>
+<h1 id="软边距"><a href="#软边距" class="headerlink" title="软边距"></a>软边距</h1><p>式$(3)$对于Fig. 1（Fig. 4）所示的样本分布实际上是无解的，因为负例中有一个点混入了正例中，导致无法得到一个能够完全划分正例和负例的决策边界。为了解决这个问题，可以在式$(3)$的限定条件中加入松弛变量$\xi$（Slack Variable），使得某些样本点到决策边界的距离不一定严格地大于$1$，甚至可以小于$0$：</p>
+<p>$$<br>\begin{align*}<br>    y ^{(i)}(\omega ^Tx ^{(i)}&amp;+b)\ge 1-\xi _i,\space\space i&#x3D;1,...,m\\<br>    &amp;\xi _i \ge0\space\space i&#x3D;1,...,m<br>\end{align*}<br>$$</p>
+<p>引入松弛变量后，式$(3)$变为：</p>
+<p>$$<br>\min _{\omega,b, \xi} (\frac{||\omega|| ^2}{2}+C\sum _1 ^m \xi _i) \tag{4}<br>$$</p>
+<p>$$<br>\space\space\text{s.t} \space\space y ^{(i)}(\omega ^Tx ^{(i)}+b)\ge 1-\xi _i,\space\space \xi _i \ge 0,\space\space i&#x3D;1,...,m<br>$$</p>
+<p>式中$C$是一个超参数，新加入的项$\sum _1 ^m \xi _i$是一个正则项，称L1 regularization。该正则项是一类关于模型“先验知识”，可以提高SVM分类的鲁棒性和效率。</p>
+<p>这样的SVM称软边距SVM，而之前的则称硬边距SVM。</p>
+<h1 id="非线性分类"><a href="#非线性分类" class="headerlink" title="非线性分类"></a>非线性分类</h1><p>非线性分类问题，即仅用一条直线无法将正负类区分开的问题，如下图所示，我们必须用两条直线才能将这四个交叉分布的样本点区分开（1、3象限为负，2、4象限为正）：</p>
+<p><img src="/2023/08/09/SupportVectorMachine/6.png" alt="7"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 7. Inequality field</center><br>
+
+<p>对于这样的问题，常规的线性SVM是无法解的。一个很自然的想法是用函数$\phi(x)$将$x$映射到新空间，使得$x$在新空间线性可分，这时，式$(4)$便变为：</p>
+<p>$$<br>\begin{align*}<br>    \min _{\omega,b, \xi} &amp;(\frac{||\omega|| ^2}{2}+C\sum _1 ^m \xi _i) \tag{5} \\<br>    \text{s.t} \space\space y ^{(i)}[\omega ^T\phi(x ^{(i)})+b]&amp; \ge 1-\xi _i,\space\space \xi _i \ge 0,\space\space i&#x3D;1,...,m<br>\end{align*}<br>$$</p>
+<p>但是，实际上我们并不会直接定义函数$\phi(x)$，而是定义核函数（Kernel Function）：</p>
+<p>$$<br>K(x ^{(i)},x ^{(j)})&#x3D;\phi(x ^{(i)}) ^T\phi(x ^{(j)})<br>$$</p>
+<p>使用核函数的原因是，对决策边界的求解可以转为对其对偶问题的求解：</p>
+<p>$$<br>\begin{align*}<br>    \max _\alpha \sum _{i&#x3D;1} ^m\alpha _i&amp;-\frac{1}{2}\sum _{i&#x3D;1} ^m \sum _{j&#x3D;1} ^m[\alpha _i \alpha _j y ^{(i)}\phi(x ^{(i)}) ^T\phi(x ^{(j)})y ^{(j)}]\\<br>    \text{s.t}\space\sum _{i&#x3D;1} ^m\alpha _i &amp;y ^{(i)}&#x3D;0,\space\space 0\le\alpha _i\le C,\space\space i&#x3D;1,...,m<br>\end{align*}<br>$$</p>
+<p>而后续的预测实际上用到的也只是$\phi(x ^{(i)}) ^T\phi(x)$：</p>
+<p>$$<br>\begin{align*}<br>    \omega^Tx+b&#x3D;&amp;[\sum _{i&#x3D;1} ^m \alpha _i y ^{(i)}\phi(x ^{i})] ^T\phi(x)+b\\<br>    &#x3D;&amp;\sum _{i&#x3D;1} ^m\alpha _i\phi(x ^{i})\phi(x)+b<br>\end{align*}<br>$$</p>
+<p>因此我们完全可以只定义核函数，而无需理会$\phi(x)$，只要保证核函数对各个$x ^{(i)}$和$x ^{(j)}$求值后得到的核矩阵$K$是半正定矩阵以保证$\phi(x)$的存在即可：</p>
+<p>$$<br>K _{ij} &#x3D;\phi(x ^{(i)}) ^T\phi(x ^{(j)})<br>$$</p>
+<blockquote>
+<p>核矩阵是半正定矩阵的核函数的$\phi(x)$存在的证明略。</p>
+</blockquote>
+<p>只定义核函数的另一个好处在于，一个很简单的核函数的$\phi(x)$可能十分复杂，如对于最常用的高斯核函数RBF Kernel：</p>
+<p>$$<br>K(x,z)&#x3D;\exp(-\frac{||x-z|| ^2}{2\sigma ^2})<br>$$</p>
+<p>其$\phi(x)$是无穷维的。</p>
+<blockquote>
+<p>不难看出$\phi(x)$与神经网络的编码器存在一定的等价性。</p>
+</blockquote>
+]]></content>
       <categories>
         <category>Kernel Method</category>
       </categories>
@@ -464,8 +520,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
       </tags>
   </entry>
@@ -1034,7 +1090,7 @@
 <blockquote>
 <p>By default, PyTorch treats the last dimension as the feature dimension.</p>
 </blockquote>
-<h1 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h1><h1 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h1>]]></content>
+]]></content>
       <categories>
         <category>Dive Into Deep Learning</category>
       </categories>
@@ -1758,8 +1814,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -1845,8 +1901,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -4363,8 +4419,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -4468,8 +4524,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -4896,42 +4952,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Lambda: Anomymous Functions</title>
-    <url>/2023/05/05/PythonLambda/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p>Lambda functions are defined by <code>lambda</code> keyword, which could only have one expression but multiple arguments. We can assign the lambda function to any variable so that we can use it as a function. More generally, we use <code>lambda</code> together with <code>map</code>, <code>reduce</code> or <code>filter</code>.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">lambda [arguments] : [expression]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># zero argument</span></span><br><span class="line">a = <span class="keyword">lambda</span> : <span class="built_in">print</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"><span class="comment"># one argument</span></span><br><span class="line">b = <span class="keyword">lambda</span> x : x**<span class="number">2</span></span><br><span class="line"><span class="comment"># multiple arguments</span></span><br><span class="line">c = <span class="keyword">lambda</span> x, y : x + y</span><br><span class="line">a()</span><br><span class="line"><span class="built_in">print</span>(b(<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(c(<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">hello</span></span><br><span class="line"><span class="string">4</span></span><br><span class="line"><span class="string">5</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>In addition to the basic usage above, there are 4 ways to make use of <code>lambda</code> in general.</p>
-<h2 id="Functions-nested-lambda"><a href="#Functions-nested-lambda" class="headerlink" title="Functions nested lambda"></a>Functions nested lambda</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">new_func</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> y : x + y</span><br><span class="line">t = new_func(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(t(<span class="number">3</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">6</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>Anomymous functions are also functions and they have their own scope, because of which, anomymous function will use variables of enclosing function or global variables once they can&#39;t find the specific variable in the local scope.</p>
-<h2 id="map-and-lambda"><a href="#map-and-lambda" class="headerlink" title="map and lambda"></a>map and lambda</h2><p><code>map</code> funtion makes use the idea of <strong>SIMD</strong>. It maps a certain function to all the elements of input list and return a iterator which can be turned to list using <code>list()</code>.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">map(func_to_apply, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x : x**<span class="number">2</span>, a)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[1, 4, 9, 16, 25]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p><code>map</code> can also deal with two or more lists as long as the length of lists is the same and the function supports more than one arguments:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">map</span>(<span class="keyword">lambda</span> x, y : x + y, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">5</span></span><br><span class="line"><span class="string">7</span></span><br><span class="line"><span class="string">9</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>What&#39;s more, the element of list could even be function:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sq</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x**<span class="number">2</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">doub</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * x</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x : x(i), [sq, doub])))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 0]</span></span><br><span class="line"><span class="string">[1, 2]</span></span><br><span class="line"><span class="string">[4, 4]</span></span><br><span class="line"><span class="string">[9, 6]</span></span><br><span class="line"><span class="string">[16, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="reduce-and-lambda"><a href="#reduce-and-lambda" class="headerlink" title="reduce and lambda"></a>reduce and lambda</h2><p><code>reduce</code> firstly passes the first two elements of list to the function. Then, take the result of function as the new first argument and pass it to the function with the third element of list and so on until the last element:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">reduce(func, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(reduce(<span class="keyword">lambda</span> x, y : x + y, a)) <span class="comment"># equal to 1 + 2 + 3 + 4 + 5</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">15</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>The element of list could also be function.</p>
-</blockquote>
-<h2 id="filter-and-lambda"><a href="#filter-and-lambda" class="headerlink" title="filter and lambda"></a>filter and lambda</h2><p><code>filter</code> returns a iterator that contains elements in the input_list that match the criteria of the function:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">filter(func, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">a = <span class="built_in">filter</span>(<span class="keyword">lambda</span> x: x % <span class="number">2</span> == <span class="number">0</span>, <span class="built_in">range</span>(<span class="number">10</span>)) <span class="comment"># get even number</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(a))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>filter</code> is easily replaced by <code>for</code> or <code>for if</code> comprehension:</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python Package</title>
     <url>/2023/06/15/PythonPackage/</url>
     <content><![CDATA[<span id="more"></span>
@@ -4980,6 +5000,42 @@
 
 <h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lambda: Anomymous Functions</title>
+    <url>/2023/05/05/PythonLambda/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p>Lambda functions are defined by <code>lambda</code> keyword, which could only have one expression but multiple arguments. We can assign the lambda function to any variable so that we can use it as a function. More generally, we use <code>lambda</code> together with <code>map</code>, <code>reduce</code> or <code>filter</code>.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">lambda [arguments] : [expression]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># zero argument</span></span><br><span class="line">a = <span class="keyword">lambda</span> : <span class="built_in">print</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"><span class="comment"># one argument</span></span><br><span class="line">b = <span class="keyword">lambda</span> x : x**<span class="number">2</span></span><br><span class="line"><span class="comment"># multiple arguments</span></span><br><span class="line">c = <span class="keyword">lambda</span> x, y : x + y</span><br><span class="line">a()</span><br><span class="line"><span class="built_in">print</span>(b(<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(c(<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">hello</span></span><br><span class="line"><span class="string">4</span></span><br><span class="line"><span class="string">5</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>In addition to the basic usage above, there are 4 ways to make use of <code>lambda</code> in general.</p>
+<h2 id="Functions-nested-lambda"><a href="#Functions-nested-lambda" class="headerlink" title="Functions nested lambda"></a>Functions nested lambda</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">new_func</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> y : x + y</span><br><span class="line">t = new_func(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(t(<span class="number">3</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">6</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>Anomymous functions are also functions and they have their own scope, because of which, anomymous function will use variables of enclosing function or global variables once they can&#39;t find the specific variable in the local scope.</p>
+<h2 id="map-and-lambda"><a href="#map-and-lambda" class="headerlink" title="map and lambda"></a>map and lambda</h2><p><code>map</code> funtion makes use the idea of <strong>SIMD</strong>. It maps a certain function to all the elements of input list and return a iterator which can be turned to list using <code>list()</code>.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">map(func_to_apply, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x : x**<span class="number">2</span>, a)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[1, 4, 9, 16, 25]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><code>map</code> can also deal with two or more lists as long as the length of lists is the same and the function supports more than one arguments:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">map</span>(<span class="keyword">lambda</span> x, y : x + y, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">5</span></span><br><span class="line"><span class="string">7</span></span><br><span class="line"><span class="string">9</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>What&#39;s more, the element of list could even be function:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sq</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x**<span class="number">2</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">doub</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * x</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x : x(i), [sq, doub])))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 0]</span></span><br><span class="line"><span class="string">[1, 2]</span></span><br><span class="line"><span class="string">[4, 4]</span></span><br><span class="line"><span class="string">[9, 6]</span></span><br><span class="line"><span class="string">[16, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="reduce-and-lambda"><a href="#reduce-and-lambda" class="headerlink" title="reduce and lambda"></a>reduce and lambda</h2><p><code>reduce</code> firstly passes the first two elements of list to the function. Then, take the result of function as the new first argument and pass it to the function with the third element of list and so on until the last element:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">reduce(func, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(reduce(<span class="keyword">lambda</span> x, y : x + y, a)) <span class="comment"># equal to 1 + 2 + 3 + 4 + 5</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">15</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The element of list could also be function.</p>
+</blockquote>
+<h2 id="filter-and-lambda"><a href="#filter-and-lambda" class="headerlink" title="filter and lambda"></a>filter and lambda</h2><p><code>filter</code> returns a iterator that contains elements in the input_list that match the criteria of the function:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">filter(func, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">a = <span class="built_in">filter</span>(<span class="keyword">lambda</span> x: x % <span class="number">2</span> == <span class="number">0</span>, <span class="built_in">range</span>(<span class="number">10</span>)) <span class="comment"># get even number</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(a))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>filter</code> is easily replaced by <code>for</code> or <code>for if</code> comprehension:</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Programming Language</category>
       </categories>

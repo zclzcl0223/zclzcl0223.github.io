@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/07/Transformer/3.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/06/07/Transformer/4.png">
 <meta property="article:published_time" content="2023-06-07T12:34:57.000Z">
-<meta property="article:modified_time" content="2023-08-09T06:00:13.194Z">
+<meta property="article:modified_time" content="2023-08-11T05:45:56.906Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Attention Mechanism">
 <meta property="article:tag" content="Deep Learning">
@@ -237,7 +237,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-09 14:00:13" itemprop="dateModified" datetime="2023-08-09T14:00:13+08:00">2023-08-09</time>
+                <time title="Modified: 2023-08-11 13:45:56" itemprop="dateModified" datetime="2023-08-11T13:45:56+08:00">2023-08-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -323,7 +323,7 @@
 <blockquote>
 <p>By default, PyTorch treats the last dimension as the feature dimension.</p>
 </blockquote>
-<h1 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h1><h1 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h1>
+
     </div>
 
     
@@ -332,6 +332,9 @@
       
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\08\11\GPT\" rel="bookmark">GPT</a></div>
+    </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\06\06\Attention\" rel="bookmark">Attention Mechanisms: More Targeted Information Extraction</a></div>
     </li>
@@ -343,9 +346,6 @@
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\05\31\EncoderDecoder\" rel="bookmark">The Encoder-Decoder Architecture</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\05\29\CommonRNNModels\" rel="bookmark">Common RNN Models</a></div>
     </li>
   </ul>
 
@@ -430,7 +430,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">1.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Layer-Normalization"><span class="nav-number">1.1.</span> <span class="nav-text">Layer Normalization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Encoder"><span class="nav-number">2.</span> <span class="nav-text">Encoder</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedding-amp-Positional-Encoding"><span class="nav-number">2.1.</span> <span class="nav-text">Embedding &amp; Positional Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Encoder-Block"><span class="nav-number">2.2.</span> <span class="nav-text">Encoder Block</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-Head-Attention"><span class="nav-number">2.2.1.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Position-wise-Feed-Forward-Networks"><span class="nav-number">2.2.2.</span> <span class="nav-text">Position-wise Feed-Forward Networks</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Decoder"><span class="nav-number">3.</span> <span class="nav-text">Decoder</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedding-amp-Positional-Encoding-1"><span class="nav-number">3.1.</span> <span class="nav-text">Embedding &amp; Positional Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decoder-Block"><span class="nav-number">3.2.</span> <span class="nav-text">Decoder Block</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Masked-Multi-Head-Attention"><span class="nav-number">3.2.1.</span> <span class="nav-text">Masked Multi-Head Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-Head-Attention-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Position-wise-Feed-Forward-Networks-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">Position-wise Feed-Forward Networks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dense-Layer"><span class="nav-number">3.3.</span> <span class="nav-text">Dense Layer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BERT"><span class="nav-number">4.</span> <span class="nav-text">BERT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GPT"><span class="nav-number">5.</span> <span class="nav-text">GPT</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">1.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Layer-Normalization"><span class="nav-number">1.1.</span> <span class="nav-text">Layer Normalization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Encoder"><span class="nav-number">2.</span> <span class="nav-text">Encoder</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedding-amp-Positional-Encoding"><span class="nav-number">2.1.</span> <span class="nav-text">Embedding &amp; Positional Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Encoder-Block"><span class="nav-number">2.2.</span> <span class="nav-text">Encoder Block</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-Head-Attention"><span class="nav-number">2.2.1.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Position-wise-Feed-Forward-Networks"><span class="nav-number">2.2.2.</span> <span class="nav-text">Position-wise Feed-Forward Networks</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Decoder"><span class="nav-number">3.</span> <span class="nav-text">Decoder</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedding-amp-Positional-Encoding-1"><span class="nav-number">3.1.</span> <span class="nav-text">Embedding &amp; Positional Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decoder-Block"><span class="nav-number">3.2.</span> <span class="nav-text">Decoder Block</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Masked-Multi-Head-Attention"><span class="nav-number">3.2.1.</span> <span class="nav-text">Masked Multi-Head Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-Head-Attention-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Position-wise-Feed-Forward-Networks-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">Position-wise Feed-Forward Networks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dense-Layer"><span class="nav-number">3.3.</span> <span class="nav-text">Dense Layer</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -446,14 +446,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -483,7 +483,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">3</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">3</span></li></ul>
             </canvas>
           </div>
         </div>
