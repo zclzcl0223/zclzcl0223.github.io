@@ -5,16 +5,28 @@
     <url>/2023/08/11/GPT/</url>
     <content><![CDATA[<span id="more"></span>
 
-<h1 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h1><p>Chat Generative Pre-trained Transformer</p>
-<p>ChatGPT：文本生成，即续写用户的提问。GPT有记忆性是因为最终输入GPT的文本还包含过去的对话信息。</p>
-<p>语言模型：文本生成（文字接龙）模型。</p>
-<p>ChatGPT部署后并不连网。</p>
-<h1 id="ChatGPT预训练与监督学习"><a href="#ChatGPT预训练与监督学习" class="headerlink" title="ChatGPT预训练与监督学习"></a>ChatGPT预训练与监督学习</h1><p>预训练（Pre-train），又称自监督学习（Self-supervised Learning），得到的模型称基石模型（Foundation Model）。自监督学习区别于监督学习的地方在于，自监督模型的Key-value Pair是通过程序自生成的，它可以没有逻辑，可以不符合实际情况。</p>
-<p>用网络资料制作成对资料（Key-value Pair），所有文本都可以作为Key-value Pair。GPT1-GPT3都用这种方式训练，但这样训练的结果是GPT给出的答案不可控。</p>
+<h1 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h1><p>ChatGPT，全称Chat Generative Pre-trained Transformer，是一个文本生成模型，即用于续写用户的提问、要求的模型。ChatGPT会拥有记忆性是因为最终输入到模型中的文本还包含了过去的对话信息。ChatGPT在部署后不联网，它生成的回答都是基于用户提问的续写，而不是对网络资料的复制粘贴。</p>
+<blockquote>
+<p>文本生成模型实际上就是语言模型。虽然ChatGPT的名字带“Transformer”，但它实际上只用了Transformer的解码器，因为它的任务是文本生成，而不需要理解文本的意思。</p>
+</blockquote>
+<h1 id="ChatGPT预训练与监督学习"><a href="#ChatGPT预训练与监督学习" class="headerlink" title="ChatGPT预训练与监督学习"></a>ChatGPT预训练与监督学习</h1><p>预训练（Pre-train），又称自监督学习（Self-supervised Learning）。通过预训练得到的模型一般被称为基石模型（Foundation Model）。自监督学习区别于监督学习的地方在于，自监督学习的Key-value Pair是通过程序自生成的，它可以没有逻辑，可以不符合实际情况。</p>
+<p>网络上的所有资料都可以作为自监督学习的训练集。通过程序自动划分文本、生成键值对（Key-value Pair）后，这些键值对就可以作为训练样本来训练语言模型。GPT1-GPT3都用这种方式训练，但这样训练的结果是GPT给出的答案不可控。</p>
 <p>若将用网络资料训练的GPT3作为一个预训练模型，再用人类提供的资料做监督学习、微调（Finetune），便得到了GPT3.5，也就是ChatGPT。</p>
-<h1 id="ChatGPT强化学习"><a href="#ChatGPT强化学习" class="headerlink" title="ChatGPT强化学习"></a>ChatGPT强化学习</h1><h1 id><a href="#" class="headerlink" title></a></h1><p>催眠ChatGPT，Prompting</p>
-<p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+<p><img src="/2023/08/11/GPT/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Pre-train and supervised learning</center><br>
+
+<p>GPT具有很强的泛化能力。只要在预训练时采用不同语言的文本，GPT就能具有处理这些不同语言文本的能力。</p>
+<p><img src="/2023/08/11/GPT/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Multilingual pre-train</center>
+
+<h1 id="ChatGPT强化学习"><a href="#ChatGPT强化学习" class="headerlink" title="ChatGPT强化学习"></a>ChatGPT强化学习</h1><p>经过预训练、监督学习后的GPT又会经过一定的强化学习训练。</p>
+<p><img src="/2023/08/11/GPT/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Reinforcement learning</center><br>
+
+<blockquote>
+<p>鉴于ChatGPT本质上是一个文本生成（续写）模型，用户向ChatGPT所提的问题对ChatGPT的回答质量有很大的影响。因此，要学会催眠ChatGPT，即使用正确的Prompting。</p>
+</blockquote>
+]]></content>
       <categories>
         <category>Advanced Model</category>
       </categories>
@@ -88,13 +100,12 @@
 <h1 id="软边距"><a href="#软边距" class="headerlink" title="软边距"></a>软边距</h1><p>式$(3)$对于Fig. 1（Fig. 4）所示的样本分布实际上是无解的，因为负例中有一个点混入了正例中，导致无法得到一个能够完全划分正例和负例的决策边界。为了解决这个问题，可以在式$(3)$的限定条件中加入松弛变量$\xi$（Slack Variable），使得某些样本点到决策边界的距离不一定严格地大于$1$，甚至可以小于$0$：</p>
 <p>$$<br>\begin{align*}<br>    y ^{(i)}(\omega ^Tx ^{(i)}&amp;+b)\ge 1-\xi _i,\space\space i&#x3D;1,...,m\\<br>    &amp;\xi _i \ge0\space\space i&#x3D;1,...,m<br>\end{align*}<br>$$</p>
 <p>引入松弛变量后，式$(3)$变为：</p>
-<p>$$<br>\min _{\omega,b, \xi} (\frac{||\omega|| ^2}{2}+C\sum _1 ^m \xi _i) \tag{4}<br>$$</p>
-<p>$$<br>\space\space\text{s.t} \space\space y ^{(i)}(\omega ^Tx ^{(i)}+b)\ge 1-\xi _i,\space\space \xi _i \ge 0,\space\space i&#x3D;1,...,m<br>$$</p>
+<p>$$<br>\begin{align*}<br>    \min _{\omega,b, \xi} (\frac{||\omega|| ^2}{2}&amp;+C\sum _1 ^m \xi _i) \tag{4}  \\<br>    \text{s.t} \space\space y ^{(i)}(\omega ^Tx ^{(i)}+b)\ge 1-&amp;\xi _i,\space\space  \xi _i \ge 0,\space\space i&#x3D;1,...,m<br>\end{align*}<br>$$</p>
 <p>式中$C$是一个超参数，新加入的项$\sum _1 ^m \xi _i$是一个正则项，称L1 regularization。该正则项是一类关于模型“先验知识”，可以提高SVM分类的鲁棒性和效率。</p>
 <p>这样的SVM称软边距SVM，而之前的则称硬边距SVM。</p>
 <h1 id="非线性分类"><a href="#非线性分类" class="headerlink" title="非线性分类"></a>非线性分类</h1><p>非线性分类问题，即仅用一条直线无法将正负类区分开的问题，如下图所示，我们必须用两条直线才能将这四个交叉分布的样本点区分开（1、3象限为负，2、4象限为正）：</p>
 <p><img src="/2023/08/09/SupportVectorMachine/6.png" alt="7"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 7. Inequality field</center><br>
+<center style="font-size:12px; font-weight:bold">Fig. 7. Non-linear classification</center><br>
 
 <p>对于这样的问题，常规的线性SVM是无法解的。一个很自然的想法是用函数$\phi(x)$将$x$映射到新空间，使得$x$在新空间线性可分，这时，式$(4)$便变为：</p>
 <p>$$<br>\begin{align*}<br>    \min _{\omega,b, \xi} &amp;(\frac{||\omega|| ^2}{2}+C\sum _1 ^m \xi _i) \tag{5} \\<br>    \text{s.t} \space\space y ^{(i)}[\omega ^T\phi(x ^{(i)})+b]&amp; \ge 1-\xi _i,\space\space \xi _i \ge 0,\space\space i&#x3D;1,...,m<br>\end{align*}<br>$$</p>
@@ -102,6 +113,9 @@
 <p>$$<br>K(x ^{(i)},x ^{(j)})&#x3D;\phi(x ^{(i)}) ^T\phi(x ^{(j)})<br>$$</p>
 <p>使用核函数的原因是，对决策边界的求解可以转为对其对偶问题的求解：</p>
 <p>$$<br>\begin{align*}<br>    \max _\alpha \sum _{i&#x3D;1} ^m\alpha _i&amp;-\frac{1}{2}\sum _{i&#x3D;1} ^m \sum _{j&#x3D;1} ^m[\alpha _i \alpha _j y ^{(i)}\phi(x ^{(i)}) ^T\phi(x ^{(j)})y ^{(j)}]\\<br>    \text{s.t}\space\sum _{i&#x3D;1} ^m\alpha _i &amp;y ^{(i)}&#x3D;0,\space\space 0\le\alpha _i\le C,\space\space i&#x3D;1,...,m<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>对偶问题我也不太懂。</p>
+</blockquote>
 <p>而后续的预测实际上用到的也只是$\phi(x ^{(i)}) ^T\phi(x)$：</p>
 <p>$$<br>\begin{align*}<br>    \omega^Tx+b&#x3D;&amp;[\sum _{i&#x3D;1} ^m \alpha _i y ^{(i)}\phi(x ^{i})] ^T\phi(x)+b\\<br>    &#x3D;&amp;\sum _{i&#x3D;1} ^m\alpha _i\phi(x ^{i})\phi(x)+b<br>\end{align*}<br>$$</p>
 <p>因此我们完全可以只定义核函数，而无需理会$\phi(x)$，只要保证核函数对各个$x ^{(i)}$和$x ^{(j)}$求值后得到的核矩阵$K$是半正定矩阵以保证$\phi(x)$的存在即可：</p>
@@ -520,8 +534,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Python</tag>
+        <tag>Deep Learning</tag>
         <tag>Tool</tag>
       </tags>
   </entry>
@@ -1814,8 +1828,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1901,8 +1915,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -4419,8 +4433,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Python</tag>
+        <tag>Deep Learning</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -4524,8 +4538,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Python</tag>
+        <tag>Deep Learning</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -4952,26 +4966,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python Package</title>
-    <url>/2023/06/15/PythonPackage/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
-<blockquote>
-<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
-</blockquote>
-<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
-<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Configuration</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Zip: Make Aggregation Easier</title>
     <url>/2023/05/06/ZipMakeLifeEasier/</url>
     <content><![CDATA[<span id="more"></span>
@@ -5041,6 +5035,26 @@
       </categories>
       <tags>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python Package</title>
+    <url>/2023/06/15/PythonPackage/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
+<blockquote>
+<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
+</blockquote>
+<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
+<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Configuration</tag>
       </tags>
   </entry>
   <entry>

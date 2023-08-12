@@ -22,21 +22,23 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="ChatGPTChat Generative Pre-trained Transformer ChatGPT：文本生成，即续写用户的提问。GPT有记忆性是因为最终输入GPT的文本还包含过去的对话信息。 语言模型：文本生成（文字接龙）模型。 ChatGPT部署后并不连网。 ChatGPT预训练与监督学习预训练（Pre-train），又称自监督学习（Self-supervised Learning">
+  <meta name="description" content="ChatGPT，时下（2022~2023）最火的语言模型，本质上是个Transformer解码器。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GPT">
 <meta property="og:url" content="https://zclzcl0223.github.io/2023/08/11/GPT/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="ChatGPTChat Generative Pre-trained Transformer ChatGPT：文本生成，即续写用户的提问。GPT有记忆性是因为最终输入GPT的文本还包含过去的对话信息。 语言模型：文本生成（文字接龙）模型。 ChatGPT部署后并不连网。 ChatGPT预训练与监督学习预训练（Pre-train），又称自监督学习（Self-supervised Learning">
+<meta property="og:description" content="ChatGPT，时下（2022~2023）最火的语言模型，本质上是个Transformer解码器。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zclzcl0223.github.io/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/08/11/GPT/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/08/11/GPT/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/08/11/GPT/3.png">
 <meta property="article:published_time" content="2023-08-11T05:46:24.000Z">
-<meta property="article:modified_time" content="2023-08-12T08:19:36.927Z">
+<meta property="article:modified_time" content="2023-08-12T10:31:23.045Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Attention Mechanism">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/1.png">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/08/11/GPT/1.png">
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2023/08/11/GPT/">
 
@@ -233,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-08-12 16:19:36" itemprop="dateModified" datetime="2023-08-12T16:19:36+08:00">2023-08-12</time>
+                <time title="Modified: 2023-08-12 18:31:23" itemprop="dateModified" datetime="2023-08-12T18:31:23+08:00">2023-08-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,6 +248,7 @@
             </span>
 
           
+            <div class="post-description">ChatGPT，时下（2022~2023）最火的语言模型，本质上是个Transformer解码器。</div>
 
         </div>
       </header>
@@ -258,16 +261,28 @@
       
         <span id="more"></span>
 
-<h1 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h1><p>Chat Generative Pre-trained Transformer</p>
-<p>ChatGPT：文本生成，即续写用户的提问。GPT有记忆性是因为最终输入GPT的文本还包含过去的对话信息。</p>
-<p>语言模型：文本生成（文字接龙）模型。</p>
-<p>ChatGPT部署后并不连网。</p>
-<h1 id="ChatGPT预训练与监督学习"><a href="#ChatGPT预训练与监督学习" class="headerlink" title="ChatGPT预训练与监督学习"></a>ChatGPT预训练与监督学习</h1><p>预训练（Pre-train），又称自监督学习（Self-supervised Learning），得到的模型称基石模型（Foundation Model）。自监督学习区别于监督学习的地方在于，自监督模型的Key-value Pair是通过程序自生成的，它可以没有逻辑，可以不符合实际情况。</p>
-<p>用网络资料制作成对资料（Key-value Pair），所有文本都可以作为Key-value Pair。GPT1-GPT3都用这种方式训练，但这样训练的结果是GPT给出的答案不可控。</p>
+<h1 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h1><p>ChatGPT，全称Chat Generative Pre-trained Transformer，是一个文本生成模型，即用于续写用户的提问、要求的模型。ChatGPT会拥有记忆性是因为最终输入到模型中的文本还包含了过去的对话信息。ChatGPT在部署后不联网，它生成的回答都是基于用户提问的续写，而不是对网络资料的复制粘贴。</p>
+<blockquote>
+<p>文本生成模型实际上就是语言模型。虽然ChatGPT的名字带“Transformer”，但它实际上只用了Transformer的解码器，因为它的任务是文本生成，而不需要理解文本的意思。</p>
+</blockquote>
+<h1 id="ChatGPT预训练与监督学习"><a href="#ChatGPT预训练与监督学习" class="headerlink" title="ChatGPT预训练与监督学习"></a>ChatGPT预训练与监督学习</h1><p>预训练（Pre-train），又称自监督学习（Self-supervised Learning）。通过预训练得到的模型一般被称为基石模型（Foundation Model）。自监督学习区别于监督学习的地方在于，自监督学习的Key-value Pair是通过程序自生成的，它可以没有逻辑，可以不符合实际情况。</p>
+<p>网络上的所有资料都可以作为自监督学习的训练集。通过程序自动划分文本、生成键值对（Key-value Pair）后，这些键值对就可以作为训练样本来训练语言模型。GPT1-GPT3都用这种方式训练，但这样训练的结果是GPT给出的答案不可控。</p>
 <p>若将用网络资料训练的GPT3作为一个预训练模型，再用人类提供的资料做监督学习、微调（Finetune），便得到了GPT3.5，也就是ChatGPT。</p>
-<h1 id="ChatGPT强化学习"><a href="#ChatGPT强化学习" class="headerlink" title="ChatGPT强化学习"></a>ChatGPT强化学习</h1><h1 id><a href="#" class="headerlink" title></a></h1><p>催眠ChatGPT，Prompting</p>
-<p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>
+<p><img src="/2023/08/11/GPT/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Pre-train and supervised learning</center><br>
+
+<p>GPT具有很强的泛化能力。只要在预训练时采用不同语言的文本，GPT就能具有处理这些不同语言文本的能力。</p>
+<p><img src="/2023/08/11/GPT/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Multilingual pre-train</center>
+
+<h1 id="ChatGPT强化学习"><a href="#ChatGPT强化学习" class="headerlink" title="ChatGPT强化学习"></a>ChatGPT强化学习</h1><p>经过预训练、监督学习后的GPT又会经过一定的强化学习训练。</p>
+<p><img src="/2023/08/11/GPT/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Reinforcement learning</center><br>
+
+<blockquote>
+<p>鉴于ChatGPT本质上是一个文本生成（续写）模型，用户向ChatGPT所提的问题对ChatGPT的回答质量有很大的影响。因此，要学会催眠ChatGPT，即使用正确的Prompting。</p>
+</blockquote>
+
     </div>
 
     
@@ -374,7 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ChatGPT"><span class="nav-number">1.</span> <span class="nav-text">ChatGPT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ChatGPT%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%8E%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">ChatGPT预训练与监督学习</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ChatGPT%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.</span> <span class="nav-text">ChatGPT强化学习</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text"></span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ChatGPT"><span class="nav-number">1.</span> <span class="nav-text">ChatGPT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ChatGPT%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%8E%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">ChatGPT预训练与监督学习</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ChatGPT%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.</span> <span class="nav-text">ChatGPT强化学习</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
