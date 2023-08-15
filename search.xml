@@ -1,6 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Graph Neural Tangent Kernel</title>
+    <url>/2023/08/14/GraphNeuralTangentKernel/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Neural-Tangent-Kernel"><a href="#Neural-Tangent-Kernel" class="headerlink" title="Neural Tangent Kernel"></a>Neural Tangent Kernel</h1><p>对于一个参数$\theta$随机初始化的神经网络$f(x;\theta)$，在小批量随机梯度下降SGD的过程中，训练样本$(x&#39;,y&#39;)$（此处假设批量大小为1）会使得$f(x;\theta)$向着减小$f(x&#39;;\theta)$和$y&#39;$之间误差的方向移动：</p>
+<p><img src="/2023/08/14/GraphNeuralTangentKernel/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. SGD</center><br>
+
+<p>而Neural Tangent Kernel就是一个用于衡量曲线$f(x;\theta)$变化的函数，其定义为：</p>
+<p>$$<br>\eta \mathcal{K}(x,x&#39;)&#x3D;f(x;\theta+\eta \frac{df(x&#39;;\theta)}{d\theta})-f(x;\theta)<br>$$</p>
+<p>式中，$\eta$是一个更新步长，即学习率。当学习率无限小时，我们便得到$f(x;\theta)$变化曲线：</p>
+<p>$$<br>\mathcal{K}(x,x&#39;)&#x3D;\text{lim} _{\eta \to0} \frac{f(x;\theta+\eta \frac{df(x&#39;;\theta)}{d\theta})-f(x;\theta)}{\eta}<br>$$</p>
+<p>使用一阶泰勒展开，我们可以得到：</p>
+<p>$$<br>\begin{align*}<br>    \mathcal{K}(x,x&#39;)<br>    &#x3D;&amp;\text{lim} _{\eta \to0} \frac{f(x;\theta)+f&#39;(x;\theta)\eta \frac{df(x&#39;;\theta)}{d\theta}-f(x;\theta)}{\eta}\\<br>    &#x3D;&amp;f&#39;(x;\theta)\frac{df(x&#39;;\theta)}{d\theta}\\<br>    &#x3D;&amp;&lt;\frac{df(x;\theta)}{d\theta},\frac{df(x&#39;;\theta)}{d\theta}&gt;<br>\end{align*}<br>$$</p>
+<p>对于Fig. 1，其变化曲线为：</p>
+<p><img src="/2023/08/14/GraphNeuralTangentKernel/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Changing curve</center><br>
+
+<blockquote>
+<p>此处假设$(x&#39;,y&#39;)&#x3D;(10,50)$。除$\mathcal{K(10,10)}$只是为了标准化。</p>
+</blockquote>
+<p>如果不断地进行SGD，那么最终，$\mathcal{K}(x,x&#39;)$和$f(x;\theta)$均会收敛到一个稳定的曲线：</p>
+<p><img src="/2023/08/14/GraphNeuralTangentKernel/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. SGD</center><br>
+
+<p>另一方面，若神经网络的宽度足够大，则在SGD的过程中，参数$\theta$的变化将会十分小，$\mathcal{K}$的变化也会非常小，整个神经网络实际上可以用$f(x;\theta)$的一阶泰勒函数拟合：</p>
+<p>$$<br>f(x;\theta)\approx f(x;\theta _0)+\frac{df(x;\theta _0)}{d\theta}(\theta - \theta _0)<br>$$</p>
+<p>上式中，对于确定的初始化$\theta _0$，$f(x;\theta _0)$是常数，而$\frac{df(x;\theta _0)}{d\theta}$是$x$的函数，也就是说，若将$\frac{df(x;\theta _0)}{d\theta}$视作一个整体，则$f(x;\theta)$实际上成为了一个线性函数。而这个将非线性空间的回归转化为线性空间回归的$\frac{df(x;\theta _0)}{d\theta}$就是核方法中的映射函数$\phi(x)$：</p>
+<p>$$<br>\begin{align*}<br>    \phi(x)&#x3D;&amp;\frac{df(x;\theta _0)}{d\theta}\\<br>    \mathcal{K(x,z)}&#x3D;\phi(x) ^T\phi(z)&#x3D;&amp;&lt;\frac{df(x;\theta)}{d\theta},\frac{df(z;\theta)}{d\theta}&gt;<br>\end{align*}<br>$$</p>
+<p>Neural Tangent Kernel的作用在于，对于无限宽的网络（能拟合任何函数的神经网络），只要参数$\theta$以某种合适的方式初始化，$\mathcal{K}(x,x&#39;)$一开始就是收敛值；而对于一般的网络，$\mathcal{K}(x,x&#39;)$在训练过程中也会最终收敛，此时，神经网络的训练实际上就是一个Kernel Gradient Descent的过程。即，用SGD训练神经网络等同于拟合核函数。换句话说，此时的神经网络（的隐藏层）本质上是一个映射函数$\phi(x)$。这也解释了为什么复杂的神经网络不仅没有过拟合，反而得到了很强的泛化精度，因为其最终的收敛值无限地接近核方法得到的解析解。</p>
+<h1 id="Graph-Neural-Tangent-Kernel"><a href="#Graph-Neural-Tangent-Kernel" class="headerlink" title="Graph Neural Tangent Kernel"></a>Graph Neural Tangent Kernel</h1><p>Graph Neural Tangent Kernel是Neural Tangent Kernel在GNN上的应用。它定义：</p>
+<p>$$<br>\mathcal{K}(G,G&#39;)&#x3D;&lt;\frac{df(G;\theta)}{d\theta},\frac{df(G&#39;;\theta)}{d\theta}&gt;<br>$$</p>
+<p>其中$G$和$G&#39;$是两张不同的图，$G&#x3D;(V,E)$，$G&#39;&#x3D;(V&#39;,E&#39;)$。最终$\mathcal{K}(G,G&#39;)$是个核矩阵，维度为$|V|\times|V&#39;|$。此时，若把$G$当作测试集，而$G&#39;$当作训练集，根据SVM中的预测算法：</p>
+<p>$$<br>\mathcal{K}(G,G&#39;)Y&#39;<br>$$</p>
+<p>就是对测试集的预测。</p>
+<p>考虑正则则为：</p>
+<p>$$<br>\mathcal{K}(G,G&#39;)[\mathcal{K}(G&#39;,G&#39;)+\lambda I] ^{-1}Y&#39;<br>$$</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/339971642">直观理解Neural Tangent Kernel</a></li>
+<li><a href="https://rajatvd.github.io/NTK/">Understanding the Neural Tangent Kernel</a></li>
+<li><a href="https://www.cnblogs.com/manuscript-of-nomad/p/17243296.html">Neural Tangent Kernel（NTK）基础推导</a></li>
+<li><a href="https://arxiv.org/abs/1905.13192">Graph Neural Tangent Kernel: Fusing Graph Neural Networks with Graph Kernels</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Kernel Method</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+        <tag>GNN</tag>
+        <tag>Paper</tag>
+        <tag>SVM</tag>
+        <tag>Dataset Distillation</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Generative AI</title>
+    <url>/2023/08/14/GenerativeAI/</url>
+    <content><![CDATA[<span id="more"></span>
+
+
+<p>各个击破 Autoregressive (AR) model：一次生成一个元素，每一个字（像素）都要等前面的字（像素）生成，常用于文字。生成质量好。<br>一次到位 Non-autoregressive (NAR) model：一次生成所有元素，只要有足够的并行运算能力，可以很快，因而在影像生成中更常用。生成质量差。</p>
+<p>复合方法：<br>先各个击破再一次到位</p>
+<p>一次到位-&gt;N次到位</p>
+]]></content>
+      <categories>
+        <category>Advanced Model</category>
+      </categories>
+      <tags>
+        <tag>Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BERT</title>
+    <url>/2023/08/14/BERT/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="BERT自监督学习"><a href="#BERT自监督学习" class="headerlink" title="BERT自监督学习"></a>BERT自监督学习</h1><p>类似于GPT，BERT也是一个预训练（自监督学习）的模型，它使用的训练样本是没有标签的文本，这些文本的一部分作为Key，另一部分作为Value。</p>
+<p>BERT自监督学习的方式是“填字游戏练习”。由于BERT只是Transformer的编码器，它的输出序列与输入序列的长度是一模一样的，故在自监督学习的过程中，BERT会通过掩码或者替换遮盖住输入序列的一些信息，再通过最后的输出重新找出这些被遮盖的信息。换句话说，BERT以挖去了一些单词的序列作为Key，而以原序列作为Value。</p>
+<p><img src="/2023/08/14/BERT/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. BERT pre-train</center> <br>
+
+<blockquote>
+<p>还有其他预训练BERT的方法，如Next Sentence Prediction（被证明没什么用）、Sentence Order Prediction等。</p>
+</blockquote>
+<h1 id="BERT微调"><a href="#BERT微调" class="headerlink" title="BERT微调"></a>BERT微调</h1><p>预训练后的BERT嫁接上其他模块并微调后，可以被用于完成各种各样的下游任务（Downstream Tasks）。下游任务的训练属于监督学习。</p>
+<h2 id="文本情感分类（Text-Sentiment-Analysis）"><a href="#文本情感分类（Text-Sentiment-Analysis）" class="headerlink" title="文本情感分类（Text Sentiment Analysis）"></a>文本情感分类（Text Sentiment Analysis）</h2><p>文本情感分类是一个用于判断语句感情色彩的分类问题。使用BERT+softmax分类器能够很轻易地完成这个任务。具体来说，输入模型的是待分析文本，它以特殊的字符<code>[CLS]</code>开头，最后的分类也只对<code>[CLS]</code>经过BERT后的编码结果进行：</p>
+<p><img src="/2023/08/14/BERT/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Text sentiment analysis</center>
+
+<h2 id="词性标注（Pos-Tagging）"><a href="#词性标注（Pos-Tagging）" class="headerlink" title="词性标注（Pos Tagging）"></a>词性标注（Pos Tagging）</h2><p>词性标注，即给句子中的每个单词标注词性，也是一个能用BERT完成的下游任务。该任务下，模型的输入是待标注文本，输出是所有待标注文本单词编码结果的softmax：</p>
+<p><img src="/2023/08/14/BERT/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Pos tagging</center>
+
+<h2 id="自然语言推理（Natural-Language-Inference）"><a href="#自然语言推理（Natural-Language-Inference）" class="headerlink" title="自然语言推理（Natural Language Inference）"></a>自然语言推理（Natural Language Inference）</h2><p>顾名思义，自然语言推理就是让机器推理两个句子间的关系。该任务下，模型的输入是两个待分析文本，文本间用特殊字符<code>[SEP]</code>隔开，最后的分类只对<code>[CLS]</code>经过BERT后的编码结果进行：</p>
+<p><img src="/2023/08/14/BERT/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Natural language inference</center>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2023-spring.php">李宏毅机器学习</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Advanced Model</category>
+      </categories>
+      <tags>
+        <tag>Attention Mechanism</tag>
+        <tag>Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GPT</title>
     <url>/2023/08/11/GPT/</url>
     <content><![CDATA[<span id="more"></span>
@@ -26,6 +137,9 @@
 <blockquote>
 <p>鉴于ChatGPT本质上是一个文本生成（续写）模型，用户向ChatGPT所提的问题对ChatGPT的回答质量有很大的影响。因此，要学会催眠ChatGPT，即使用正确的Prompting。</p>
 </blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2023-spring.php">李宏毅机器学习</a></li>
+</ul>
 ]]></content>
       <categories>
         <category>Advanced Model</category>
@@ -33,6 +147,7 @@
       <tags>
         <tag>Attention Mechanism</tag>
         <tag>Deep Learning</tag>
+        <tag>Reinforcement Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -117,7 +232,7 @@
 <p>对偶问题我也不太懂。</p>
 </blockquote>
 <p>而后续的预测实际上用到的也只是$\phi(x ^{(i)}) ^T\phi(x)$：</p>
-<p>$$<br>\begin{align*}<br>    \omega^Tx+b&#x3D;&amp;[\sum _{i&#x3D;1} ^m \alpha _i y ^{(i)}\phi(x ^{i})] ^T\phi(x)+b\\<br>    &#x3D;&amp;\sum _{i&#x3D;1} ^m\alpha _i\phi(x ^{i})\phi(x)+b<br>\end{align*}<br>$$</p>
+<p>$$<br>\begin{align*}<br>    \omega^Tx+b&#x3D;&amp;[\sum _{i&#x3D;1} ^m \alpha _i y ^{(i)}\phi(x ^{(i)})] ^T\phi(x)+b\\<br>    &#x3D;&amp;\sum _{i&#x3D;1} ^m\alpha _iy ^{(i)}\phi(x ^{(i)})^T\phi(x)+b<br>\end{align*}<br>$$</p>
 <p>因此我们完全可以只定义核函数，而无需理会$\phi(x)$，只要保证核函数对各个$x ^{(i)}$和$x ^{(j)}$求值后得到的核矩阵$K$是半正定矩阵以保证$\phi(x)$的存在即可：</p>
 <p>$$<br>K _{ij} &#x3D;\phi(x ^{(i)}) ^T\phi(x ^{(j)})<br>$$</p>
 <blockquote>
@@ -135,6 +250,7 @@
       </categories>
       <tags>
         <tag>Machine Learning</tag>
+        <tag>SVM</tag>
         <tag>Supervised Learning</tag>
       </tags>
   </entry>
@@ -2159,9 +2275,9 @@
         <category>Machine Learning by AndrewNg</category>
       </categories>
       <tags>
+        <tag>Reinforcement Learning</tag>
         <tag>Lab</tag>
         <tag>Unsupervised Learning</tag>
-        <tag>Reinforcement Learning</tag>
         <tag>Recommender System</tag>
       </tags>
   </entry>
