@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Transductive Learning and Inductive Learning</title>
+    <url>/2023/08/24/TransductiveInductiveLearning/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Semi-supervised-Learning"><a href="#Semi-supervised-Learning" class="headerlink" title="Semi-supervised Learning"></a>Semi-supervised Learning</h1><p>Transductive Learning（直推式学习）是Semi-supervised Learning（半监督学习）的一种。一般来说，半监督学习分为纯半监督学习（Pure&#x2F;Inductive Semi-supervised Learning）和直推式学习（Transductive Learning）：</p>
+<p><img src="/2023/08/24/TransductiveInductiveLearning/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Semi-supervised learning</center>
+
+
+<h2 id="Pure-x2F-Inductive-Semi-supervised-Learning"><a href="#Pure-x2F-Inductive-Semi-supervised-Learning" class="headerlink" title="Pure&#x2F;Inductive Semi-supervised Learning"></a>Pure&#x2F;Inductive Semi-supervised Learning</h2><p>半监督学习出现的一大诱因是现实世界中带标签的数据往往很少，大多数的数据都是无标签的。充分利用这些无标签数据来提高神经网络的性能就是半监督学习的目的。</p>
+<p>纯半监督学习是最原始的半监督学习。在纯半监督学习中，训练集为$\mathcal{D}&#x3D;\left\{\mathbf{X} _\text{tr},\mathbf{Y} _\text{tr}, \mathbf{X} _\text{unlabelled} \right\}$，测试集为$\mathcal{T}&#x3D;\left\{\mathbf{X} _\text{te},\mathbf{Y} _\text{te}\right\}$。在训练的过程中，半监督学习的神经网络能够利用无标签样本$\mathbf{X} _\text{unlabelled}$的信息，但是计算损失$\mathcal{L}$时利用的只是$\mathbf{X} _\text{tr}$和$\mathbf{T} _\text{tr}$，且测试集在训练过程中仍是不可见的。因为目前很多的神经网络都是基于消息传递的，如Attention Mechanism、GCN等，这样的设置使得神经网络在训练过程中能够获得$\mathbf{X} _\text{unlabelled}$传来的信息，这能在一定程度上提高网络的性能。</p>
+<h2 id="Transductive-Learning"><a href="#Transductive-Learning" class="headerlink" title="Transductive Learning"></a>Transductive Learning</h2><p>直推式学习是另外一种形式的半监督学习，但是它学习的目的与纯半监督学习完全不同。纯半监督学习的目的是利用无标签的数据来提高模型性能、<strong>泛化能力</strong>，它从训练样本中归纳出数据间的<strong>潜在规律</strong>，以期能预测未知的样本。</p>
+<p>不同于纯半监督学习，直推式在训练过程中就已经知道将来要预测什么，因为它并不要求在整个样本分布上都达到很好的性能，而只是期望在<strong>给定的预测样本</strong>上达到最好的性能。</p>
+<p>在直推式学习中，训练集为$\mathcal{D}&#x3D;\left\{\mathbf{X} _\text{tr},\mathbf{Y} _\text{tr}, \mathbf{X} _\text{te} \right\}$，测试集为$\mathcal{T}&#x3D;\left\{\mathbf{X} _\text{te},\mathbf{Y} _\text{te}\right\}$。它在训练的过程中已经看过的测试样本的特征，只是没有用其标签来计算损失函数$\mathcal{L}$。在GNN中，直推式学习是很普遍的，常见的GCN、SGC等都是基于直推式学习的。</p>
+<h1 id="Inductive-Learning"><a href="#Inductive-Learning" class="headerlink" title="Inductive Learning"></a>Inductive Learning</h1><p>一般的深度学习都属于Inductive Learning（归纳式学习），即训练集是$\mathcal{D}&#x3D;\left\{\mathbf{X} _\text{tr},\mathbf{Y} _\text{tr} \right\}$，测试集是$\mathcal{T}&#x3D;\left\{\mathbf{X} _\text{te},\mathbf{Y} _\text{te}\right\}$。测试样本在训练的过程中完全不可知。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/349107869">半监督学习</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/336560612">transductive、inductive理解</a></li>
+<li><a href="https://blog.csdn.net/weixin_44465396/article/details/129480093">Inductive &amp; Transductive</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>GNN</category>
+      </categories>
+      <tags>
+        <tag>Deep Learning</tag>
+        <tag>GNN</tag>
+        <tag>Dataset Distillation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Graph Neural Tangent Kernel</title>
     <url>/2023/08/14/GraphNeuralTangentKernel/</url>
     <content><![CDATA[<span id="more"></span>
@@ -61,10 +92,20 @@
     <url>/2023/08/14/GenerativeAI/</url>
     <content><![CDATA[<span id="more"></span>
 
-
-<p>各个击破 Autoregressive (AR) model：一次生成一个元素，每一个字（像素）都要等前面的字（像素）生成，常用于文字。生成质量好。<br>一次到位 Non-autoregressive (NAR) model：一次生成所有元素，只要有足够的并行运算能力，可以很快，因而在影像生成中更常用。生成质量差。</p>
+<h1 id="生成方式"><a href="#生成方式" class="headerlink" title="生成方式"></a>生成方式</h1><p>各个击破 Autoregressive (AR) model：一次生成一个元素，每一个字（像素）都要等前面的字（像素）生成，常用于文字。生成质量好。<br>一次到位 Non-autoregressive (NAR) model：一次生成所有元素，只要有足够的并行运算能力，可以很快，因而在影像生成中更常用。生成质量差。</p>
 <p>复合方法：<br>先各个击破再一次到位</p>
 <p>一次到位-&gt;N次到位</p>
+<h1 id="常见的图像生成模型"><a href="#常见的图像生成模型" class="headerlink" title="常见的图像生成模型"></a>常见的图像生成模型</h1><p>Raster order：一个pixel一个pixel地生成图片。如OpenAI的影像版GPT，它将图片拉成序列，用GPT的模型来完成图像生成。</p>
+<p>输入不仅是文字，还有一个从特定的分布中随机取出的向量</p>
+<h2 id="Variational-Auto-encoder-VAE"><a href="#Variational-Auto-encoder-VAE" class="headerlink" title="Variational Auto-encoder (VAE)"></a>Variational Auto-encoder (VAE)</h2><p>Encoder-Decoder，Encoder接受图片输入，生成指定分布的向量编码，Encoder接受向量输入，还原出图片</p>
+<h2 id="Flow-based-Generative-Model"><a href="#Flow-based-Generative-Model" class="headerlink" title="Flow-based Generative Model"></a>Flow-based Generative Model</h2><p>Encoder接受图片输入，生成指定分布的向量编码。该模型特殊的点在于，Encoder被设计成一个具有“反函数”的架构，因此，将Encoder“反过来”就是Decoder，要达到这个目的，首先要保证输出向量与输入向量的维度一致。</p>
+<h2 id="Diffusion-Model"><a href="#Diffusion-Model" class="headerlink" title="Diffusion Model"></a>Diffusion Model</h2><p>图片一直加噪音，然后一直降噪，降噪后的图片就是最终结果</p>
+<p>Denoise：接受带噪音的图片和标志除噪阶段数值，产生噪音，再把生成的噪音从输入图片中减去。Noise Predictor的训练。</p>
+<p>Text-to-Image：将文字信息加入Denoise模块。<br>训练：在之前的基础上加入文字信息</p>
+<h2 id="Generative-Adversarial-Network-GAN"><a href="#Generative-Adversarial-Network-GAN" class="headerlink" title="Generative Adversarial Network (GAN)"></a>Generative Adversarial Network (GAN)</h2><p>只有Decoder（Generator），Decoder接受原图片输入生成新图片，再用Discriminator来比较新图片和原图片。</p>
+<h1 id="Text-to-Image"><a href="#Text-to-Image" class="headerlink" title="Text-to-Image"></a>Text-to-Image</h1><p>Text Encoder + Generation Model + Decoder，分开训练再组合。</p>
+<p>e.g. Stable Diffusion，DALL-E series，Imagen</p>
+<p>Text Encoder对结果的影响很大，一般越大效果越好，而Generation Model的影响则没那么大</p>
 ]]></content>
       <categories>
         <category>Advanced Model</category>
@@ -645,7 +686,18 @@
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">|---&gt;</span><br><span class="line">| --&gt;</span><br><span class="line">V  -&gt;</span><br></pre></td></tr></table></figure>
 
 <p>而下三角下标是：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">--&gt;</span><br><span class="line">|</span><br><span class="line">||</span><br><span class="line">|||</span><br><span class="line">VVV</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">--&gt;</span><br><span class="line">|</span><br><span class="line">||</span><br><span class="line">|||</span><br><span class="line">VVV</span><br></pre></td></tr></table></figure>
+
+<h2 id="torch-clone-amp-torch-Tensor-detach"><a href="#torch-clone-amp-torch-Tensor-detach" class="headerlink" title="torch.clone() &amp; torch.Tensor.detach()"></a>torch.clone() &amp; torch.Tensor.detach()</h2><p>对<code>torch.clone()</code>，用法为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">torch.clone(input, *, memory_format=torch.preserve_format)`</span><br><span class="line">或者</span><br><span class="line">a.clone()</span><br></pre></td></tr></table></figure>
+<p>对<code>torch.Tensor.detach()</code>，用法为：<code>a.detach()</code></p>
+<p>两者看似很像，但其实是作用完全不同的两个函数：</p>
+<ul>
+<li><code>torch.clone()</code>是对张量的深拷贝，它将产生一个全新的张量，这个张量拥有原张量的所有属性，但是存储空间不重叠，新、旧张量互不影响；</li>
+<li><code>torch.Tensor.detach()</code>的作用是产生一个不属于原张量计算图、<code>grad_fn=None</code>且<code>requires_grad=False</code>但是<strong>与原张量共享内存</strong>的张量。也就是说，原张量的变化会影响detach后的张量；</li>
+<li>可以这样理解，张量就是一个结构体，它有<code>requires_grad</code>、<code>grad_fn</code>以及数据等属性。<code>torch.clone()</code>创建了一个全新的结构体，<code>torch.Tensor.detach()</code>也创建了一个结构体，但是数据是指向原张量的指针。</li>
+</ul>
+]]></content>
       <categories>
         <category>Tool</category>
       </categories>
@@ -1944,8 +1996,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -2031,8 +2083,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -4761,7 +4813,7 @@
 </ul>
 <h2 id="Stack-plot"><a href="#Stack-plot" class="headerlink" title="Stack plot"></a>Stack plot</h2><p>Stack plot (area plot), which shows the change of items over something (e.g. time) as well as the quantitative relationship between them, is a very useful kind of chart, especially when the sum of items is constant. To draw a stack plot, what we use is <code>plt.stackplot</code></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.style.use(<span class="string">&quot;seaborn-v0_8-paper&quot;</span>)</span><br><span class="line"></span><br><span class="line">minutes = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">player1 = [<span class="number">8</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">player2 = [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line">player3 = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">labels = [<span class="string">&#x27;player1&#x27;</span>, <span class="string">&#x27;player2&#x27;</span>, <span class="string">&#x27;player3&#x27;</span>]</span><br><span class="line">colors = [<span class="string">&#x27;#6d904f&#x27;</span>, <span class="string">&#x27;#fc4f30&#x27;</span>, <span class="string">&#x27;#008fd5&#x27;</span>]</span><br><span class="line"></span><br><span class="line">plt.stackplot(minutes, player1, player2, player3, labels=labels, colors=colors)</span><br><span class="line"></span><br><span class="line">plt.legend(loc=(<span class="number">0.07</span>, <span class="number">0.05</span>))</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&quot;My Awesome Stack Plot&quot;</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img align="left" src="/2023/04/24/Matplotlib/10.png" style=" width:380px; padding: 0px 0px; ">
+<img align="right" src="/2023/04/24/Matplotlib/10.png" style=" width:400px; padding: 0px 0px; ">
 
 <p>The picture shows the stack plot we get. Compared to other charts, it is quite simple and does&#39;t have many things to format. One thing worth noticing is <code>plt.legend(loc(0.07, 0.05))</code>. It means putting the tab to the position that 7% from left and 5% from bottom.</p>
 <h3 id="Reference-4"><a href="#Reference-4" class="headerlink" title="Reference"></a>Reference</h3><ul>
