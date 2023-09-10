@@ -96,16 +96,17 @@
 <p>复合方法：<br>先各个击破再一次到位</p>
 <p>一次到位-&gt;N次到位</p>
 <h1 id="常见的图像生成模型"><a href="#常见的图像生成模型" class="headerlink" title="常见的图像生成模型"></a>常见的图像生成模型</h1><p>Raster order：一个pixel一个pixel地生成图片。如OpenAI的影像版GPT，它将图片拉成序列，用GPT的模型来完成图像生成。</p>
-<p>输入不仅是文字，还有一个从特定的分布中随机取出的向量</p>
-<h2 id="Variational-Auto-encoder-VAE"><a href="#Variational-Auto-encoder-VAE" class="headerlink" title="Variational Auto-encoder (VAE)"></a>Variational Auto-encoder (VAE)</h2><p>Encoder-Decoder，Encoder接受图片输入，生成指定分布的向量编码，Encoder接受向量输入，还原出图片</p>
+<p>输入不仅是文字，还有一个从特定的分布中随机取出的向量。</p>
+<h2 id="Variational-Auto-encoder-VAE"><a href="#Variational-Auto-encoder-VAE" class="headerlink" title="Variational Auto-encoder (VAE)"></a>Variational Auto-encoder (VAE)</h2><p>Encoder-Decoder，Encoder接受图片输入，生成指定分布的向量编码，Encoder接受向量输入，还原出图片。</p>
 <h2 id="Flow-based-Generative-Model"><a href="#Flow-based-Generative-Model" class="headerlink" title="Flow-based Generative Model"></a>Flow-based Generative Model</h2><p>Encoder接受图片输入，生成指定分布的向量编码。该模型特殊的点在于，Encoder被设计成一个具有“反函数”的架构，因此，将Encoder“反过来”就是Decoder，要达到这个目的，首先要保证输出向量与输入向量的维度一致。</p>
-<h2 id="Diffusion-Model"><a href="#Diffusion-Model" class="headerlink" title="Diffusion Model"></a>Diffusion Model</h2><p>图片一直加噪音，然后一直降噪，降噪后的图片就是最终结果</p>
+<h2 id="Diffusion-Model"><a href="#Diffusion-Model" class="headerlink" title="Diffusion Model"></a>Diffusion Model</h2><p>图片一直加噪音，然后一直降噪，降噪后的图片就是最终结果。</p>
 <p>Denoise：接受带噪音的图片和标志除噪阶段数值，产生噪音，再把生成的噪音从输入图片中减去。Noise Predictor的训练。</p>
-<p>Text-to-Image：将文字信息加入Denoise模块。<br>训练：在之前的基础上加入文字信息</p>
+<p>Text-to-Image：将文字信息加入Denoise模块。</p>
+<p>训练：在之前的基础上加入文字信息。</p>
 <h2 id="Generative-Adversarial-Network-GAN"><a href="#Generative-Adversarial-Network-GAN" class="headerlink" title="Generative Adversarial Network (GAN)"></a>Generative Adversarial Network (GAN)</h2><p>只有Decoder（Generator），Decoder接受原图片输入生成新图片，再用Discriminator来比较新图片和原图片。</p>
 <h1 id="Text-to-Image"><a href="#Text-to-Image" class="headerlink" title="Text-to-Image"></a>Text-to-Image</h1><p>Text Encoder + Generation Model + Decoder，分开训练再组合。</p>
-<p>e.g. Stable Diffusion，DALL-E series，Imagen</p>
-<p>Text Encoder对结果的影响很大，一般越大效果越好，而Generation Model的影响则没那么大</p>
+<p>e.g. Stable Diffusion，DALL-E series，Imagen...</p>
+<p>Text Encoder对结果的影响很大，一般越大效果越好，而Generation Model的影响则没那么大。</p>
 ]]></content>
       <categories>
         <category>Advanced Model</category>
@@ -1996,8 +1997,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2083,8 +2084,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -3402,6 +3403,43 @@
       </tags>
   </entry>
   <entry>
+    <title>Bash Script</title>
+    <url>/2023/09/02/BashScript/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Basic-Concept"><a href="#Basic-Concept" class="headerlink" title="Basic Concept"></a>Basic Concept</h1><p>一些关于Bash和Shell的基本概念。</p>
+<h2 id="Bash-amp-Shell"><a href="#Bash-amp-Shell" class="headerlink" title="Bash &amp; Shell"></a>Bash &amp; Shell</h2><p>Shell是用户和操作系统的接口。它是一个命令解释器。Bash（Bourne Again SHell）是Shell的一个类型，由GNU开发，是对Bourne Shell（sh）的改进和扩展，同时也是当今Linux和MacOS的默认Shell。</p>
+<blockquote>
+<p>更通俗地来说，Shell相当于Linux操作系统，而Bash则是Linux操作系统的一个发行版，如Ubuntu。</p>
+</blockquote>
+<h2 id="Bash-Script-amp-Shell-Script"><a href="#Bash-Script-amp-Shell-Script" class="headerlink" title="Bash Script &amp; Shell Script"></a>Bash Script &amp; Shell Script</h2><p>脚本（Script），也就是我们常说的解释性编程语言，常见的Python、JavaScript都是脚本语言。Bash脚本和Shell脚本都是让Shell能够执行一连串命令行指令的程序，它们的关系就类似于Bash和Shell的关系：</p>
+<ul>
+<li>Bash脚本只能用Bash语言编写，其语法也是Bash的语法，而Shell脚本则能用任何的Shell语法编写；</li>
+<li>Bash脚本的文件后缀为<code>.sh</code>，而Shell脚本就是一个普通的文本文件，不需要任何后缀，只要可执行即可。</li>
+</ul>
+<blockquote>
+<p>无论是Bash脚本还是Shell脚本，都需要相应的Shell解释器来执行。使用<code>cat /etc/shells</code>能够查看本机所拥有的Shell解释器。</p>
+</blockquote>
+<h1 id="Execution-amp-Comment"><a href="#Execution-amp-Comment" class="headerlink" title="Execution &amp; Comment"></a>Execution &amp; Comment</h1><p>对于任何一个Bash脚本，编写时首先要指定其要使用的解释器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br></pre></td></tr></table></figure>
+
+<p>上述行指定该Bash脚本将使用解释器<code>/bin/bash</code>运行。运行Bash脚本时，我们可以以文件名运行，也可以以<code>bash</code>加文件名运行，如一个最简单的Bash脚本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">touch</span> helloScript.sh</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">helloScript.sh</span><br><span class="line">[zclzcl@localhost Playground]$ vim helloScript.sh</span><br><span class="line"><span class="comment">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Goodbye, world&quot;</span></span><br><span class="line">[zclzcl@localhost Playground]$ ./helloScript.sh</span><br><span class="line">Goodbye, world</span><br><span class="line">[zclzcl@localhost Playground]$ bash ./helloScript.sh</span><br><span class="line">Goodbye, world</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>最简单的Bash脚本就是一系列Linux命令行指令的组合。此时，运行该Bash脚本相当于在当前目录下串行地运行这些指令。要想运行Bash脚本，首先要确保脚本文件是可执行的，若用户无执行脚本文件的权限，则需要用<code>chmod +x [Script File]</code>增加权限。</p>
+</blockquote>
+<p>与其他编程语言一样，我们也能在脚本文件中增加注释来增强脚本文件的可读性。在Bash脚本中，单行注释用<code>#</code>，多行注释用<code>: &#39;&#39;</code>（引号内是注释内容）。</p>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Tool</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Regular Expressions</title>
     <url>/2023/08/04/RegularExpressions/</url>
     <content><![CDATA[<span id="more"></span>
@@ -4268,6 +4306,16 @@
 <blockquote>
 <p><code>cat</code>有许多有趣的<code>[OPTION]</code>选项，如<code>-n</code>会给输出加入行号。用<code>cat --help</code>来查看更多有趣的选项操作。</p>
 </blockquote>
+<h3 id="Here-document"><a href="#Here-document" class="headerlink" title="Here-document"></a>Here-document</h3><p>Here-document是Shell中一种特殊形式的重定向。Here-document，可以解释为“立即文档”。在这种特殊形式的重定向中，Here-document就是一段字符串，这段字符串的长度很短，以至于将其单独放在一个文件中有点“大动干戈”，不如直接放在命令或者脚本代码中。Here-document的基本用法为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[<span class="built_in">command</span>] &lt;&lt; [Here Tag]</span><br><span class="line">[Your Here-document]</span><br><span class="line">[Here Tag] <span class="comment"># 终止符[Here Tag]必须独占一行，且要顶格写</span></span><br></pre></td></tr></table></figure>
+
+<p>其中<code>[command]</code>是任意的能够接受输入文档的指令，<code>[Your Here-document]</code>是用户想要输入的字符串，<code>[Here Tag]</code>则用于标志用户输入的开始和终止，可以是任何的字符串，一般用<code>EOF</code>。以<code>cat</code>为例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">&gt; Hello World</span></span><br><span class="line"><span class="string">&gt; EOF</span></span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+<p>此时，<code>Hello World</code>充当了输入文件的内容。</p>
+<blockquote>
+<p>Here-document常被用于Bash脚本中。</p>
+</blockquote>
 <h2 id="：管道线"><a href="#：管道线" class="headerlink" title="|：管道线"></a><code>|</code>：管道线</h2><p><code>|</code>运算符可用于连接两个命令，它会自动地将前一个命令的输出管道为后一个命令的输入：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> 22.txt | <span class="built_in">cat</span> &gt;&gt; 22.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> 22.txt</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br></pre></td></tr></table></figure>
 
@@ -4315,6 +4363,8 @@
 <li><a href="https://www.kancloud.cn/thinkphp/linux-command-line/39437">The Linux Command Line 中文版 第七章：重定向</a></li>
 <li><a href="https://www.kancloud.cn/thinkphp/linux-command-line/39451">The Linux Command Line 中文版 第二十章：正则表达式</a></li>
 <li><a href="https://www.kancloud.cn/thinkphp/linux-command-line/39452">The Linux Command Line 中文版 第二十一章：文本处理</a></li>
+<li><a href="https://blog.csdn.net/oqqHuTu12345678/article/details/129282059">Shell高级——Here Document、Here String</a></li>
+<li><a href="https://www.zadmei.com/bzdc.html">Bash 中的 Cat EOF</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -4345,6 +4395,7 @@
 <li><a href="/2023/07/25/ProgramCompilation/">Program Compilation：程序编译</a></li>
 <li><a href="/2023/08/03/WildcardsPatternMatching/">Wildcards and Pattern Matching：通配符</a></li>
 <li><a href="/2023/08/04/RegularExpressions/">Regular Expressions：正则表达式</a></li>
+<li><a href="/2023/09/02/BashScript/">Bash Script：Bash脚本</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -5156,20 +5207,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Gamma and Factorial</title>
-    <url>/2023/05/05/GammaAndFactorial/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Lambda: Anomymous Functions</title>
     <url>/2023/05/05/PythonLambda/</url>
     <content><![CDATA[<span id="more"></span>
@@ -5223,6 +5260,20 @@
       <tags>
         <tag>Python</tag>
         <tag>Configuration</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gamma and Factorial</title>
+    <url>/2023/05/05/GammaAndFactorial/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
