@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ComputationalComplexityTimeComp</title>
+    <url>/2023/09/12/ComputationalComplexityTimeComp/</url>
+    <content><![CDATA[<span id="more"></span>]]></content>
+      <categories>
+        <category>CS7313: Computational Complexity</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Computational Complexity Introduction</title>
+    <url>/2023/09/12/ComputationalComplexityIntro/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>计算复杂性（Computational Complexity），即<strong>使用数学方法对计算中所需的各种资源的耗费（主要是时间和空间）作定量的分析，并研究各类问题之间在计算复杂程度上的相互关系和基本性质</strong>。课程中涉及到的数学方法主要有：</p>
+<ul>
+<li>Algebraic Method，代数方法；</li>
+<li>Probalilistic Method，概率统计方法；</li>
+<li>Combinatorial Method，组合方法；</li>
+<li>...</li>
+</ul>
+<h1 id="四类问题"><a href="#四类问题" class="headerlink" title="四类问题"></a>四类问题</h1><p>计算复杂性中的四类问题，即求解的时间复杂度逐级递增的四类问题：</p>
+<ol>
+<li>P（Polynomial）问题：有多项式时间的算法，时间复杂度O(P(n))；</li>
+<li>NP（Nondeterminism Polynomial）问题：能在多项式的时间内得到个别特殊的正确解，但是不知道是否也能在多项式时间内得到所有解；</li>
+<li>NPC（Nondeterminism Polynomial Complete）问题：一类特殊的NP问题，所有的NP问题都能约化（复杂化，如用二元一次方程的方法来解一元一次方程问题）成它。那么，只要解决了这个问题，所有能约化成它的NP问题也就解决了；</li>
+<li>NP-Hard问题：所有的NP问题都能约化为NP-Hard问题，但是NP-Hard问题本身不一定是一个NP问题。换句话说，NPC问题是NP-Hard问题的子集。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>CS7313: Computational Complexity</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Transductive Learning and Inductive Learning</title>
     <url>/2023/08/24/TransductiveInductiveLearning/</url>
     <content><![CDATA[<span id="more"></span>
@@ -1454,8 +1494,8 @@
       </categories>
       <tags>
         <tag>Deep Learning</tag>
-        <tag>CNN</tag>
         <tag>RNN</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -1997,8 +2037,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -2084,8 +2124,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -3435,8 +3475,8 @@
         <category>Programming Language</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -3539,8 +3579,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -3624,8 +3664,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -3733,8 +3773,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -3863,8 +3903,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -3881,8 +3921,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -3953,8 +3993,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4143,8 +4183,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4245,8 +4285,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4371,8 +4411,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4402,8 +4442,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5185,20 +5225,12 @@
       </tags>
   </entry>
   <entry>
-    <title>Zip: Make Aggregation Easier</title>
-    <url>/2023/05/06/ZipMakeLifeEasier/</url>
+    <title>Gamma and Factorial</title>
+    <url>/2023/05/05/GammaAndFactorial/</url>
     <content><![CDATA[<span id="more"></span>
 
-<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>We can even use zip to generate a dictionary:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-]]></content>
+<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Programming Language</category>
       </categories>
@@ -5263,12 +5295,20 @@
       </tags>
   </entry>
   <entry>
-    <title>Gamma and Factorial</title>
-    <url>/2023/05/05/GammaAndFactorial/</url>
+    <title>Zip: Make Aggregation Easier</title>
+    <url>/2023/05/06/ZipMakeLifeEasier/</url>
     <content><![CDATA[<span id="more"></span>
 
-<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
+<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>We can even use zip to generate a dictionary:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>Programming Language</category>
       </categories>
