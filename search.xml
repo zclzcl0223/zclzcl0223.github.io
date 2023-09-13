@@ -1,9 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ComputationalComplexityTimeComp</title>
+    <title>Computational Complexity: Time Complexity</title>
     <url>/2023/09/12/ComputationalComplexityTimeComp/</url>
-    <content><![CDATA[<span id="more"></span>]]></content>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Notation：记号约定"><a href="#Notation：记号约定" class="headerlink" title="Notation：记号约定"></a>Notation：记号约定</h1><ul>
+<li>$\log x$默认为$\log _2x$。</li>
+<li>若$S$是有限的符号集，如$\left\{0,1\right\}$，则$S ^n$表示所有长度为$n$的由$S$中字符组成的字符串集合，$S ^*$表示任意长度的字符串集合。对于单个符号$x$，$x ^n$则表示$n$个$x$组成的字符串。</li>
+<li>字符串$x$的长度记为$|x|$或$n$，这一节及后续的相关章节都会用$n$。</li>
+<li>记$\llcorner x\lrcorner$为$x$的二进制编码。</li>
+<li>记$1^n$为长度为$n$的任意$01$串。</li>
+</ul>
+<h1 id="Turing-Machine：图灵机模型"><a href="#Turing-Machine：图灵机模型" class="headerlink" title="Turing Machine：图灵机模型"></a>Turing Machine：图灵机模型</h1><p>图灵机（Turing Machine），又称图灵计算机，指一个抽象的机器，是英国数学家艾伦・麦席森・图灵于1936年提出的一种抽象的计算模型，即将人们使用纸笔进行数学运算的过程进行抽象，由一个虚拟的机器替代人类进行数学运算。它有多条无限长的纸带，纸带分成了一个一个的小方格，每个方格有不同的内容。有一个机器头在纸带上移来移去。机器头有一组内部状态，还有一些固定的程序。在每个时刻，机器头都要从当前纸带上读入一个方格信息，然后结合自己的内部状态查找程序表，根据程序输出信息到纸带方格上，并转换自己的内部状态，然后进行移动。</p>
+<h2 id="K-Tap-Turing-Machine"><a href="#K-Tap-Turing-Machine" class="headerlink" title="$K$-Tap Turing Machine"></a>$K$-Tap Turing Machine</h2><p>$k$带图灵机$\mathcal{M}$有$k$条纸带，其中：</p>
+<ul>
+<li>第一条纸带是<strong>只读纸带</strong>（Input Tape），它包含了输入图灵机的问题或数据规模；</li>
+<li>其他纸带是<strong>可读写</strong>的工作纸带（Work Tape），其中最后一条纸带又同时作为记录最后输出的纸带（Output Tape）；</li>
+<li>各纸带的<strong>带头</strong>（Tape Head）指明了正在读&#x2F;写的纸带信息。</li>
+</ul>
+<p><img src="/2023/09/12/ComputationalComplexityTimeComp/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. K-tape turing machine</center><br>
+
+<blockquote>
+<p>不难看出，图灵机模拟了人类解题时<strong>读题（Input）</strong>、<strong>打草稿（Work）</strong>和<strong>写答案（Output）</strong>的过程。</p>
+</blockquote>
+<p>一个$k$带的图灵机$\mathcal{M}$可由一个三元组$(\Gamma,Q,\delta)$唯一描述：</p>
+<ul>
+<li>$\Gamma$是一个有限的符号集，称<em>Alphabet</em>。我们规定，符号集必须只由$\left\{0,1,\square,\triangleright\right\}$组成，其中$\left\{0,1\right\}$是有效字符，而$\left\{\square,\triangleright\right\}$则是分别表示<em>空白字符</em>和<em>纸带开始</em>的功能字符；</li>
+<li>$Q$是一个有限状态集，包含了该图灵机的所有状态，包括起始状态$q _{start}$和停机状态$q _{halt}$；</li>
+<li>$\delta$是一个转移函数（Transition Function），实际上相当于烧至在图灵机中的一个<em>程序</em>。</li>
+</ul>
+<p>图灵机当前的状态（State）会被记录在一个状态寄存器$q$中。在任何时刻$t$，图灵机都能够获取图灵机在这个时刻的快照（Snapshot）：每个纸带的符号$\Gamma ^k$以及图灵机当前的状态$q _t$，记该快照为$Q\times\Gamma ^k$，那么转移函数$\delta$便可指挥图灵机进入新的快照$Q\times\Gamma ^{k-1}\times\left\{L,S,R\right\} ^k$，即：</p>
+<p>$$<br>Q\times\Gamma ^k\to Q\times\Gamma ^{k-1}\times\left\{L,S,R\right\} ^k<br>$$</p>
+<p>其中，$Q\times\Gamma ^{k-1}\times\left\{L,S,R\right\} ^k$分别表示“图灵机进入什么状态，$k-1$个读写纸带写入什么内容，$k$个带头分别怎么移动”。我们规定，带头一次只能向左或向右移动一个位置或者不移动。图灵机初始化时，状态为$q _{start}$，每个带头都在左边，带子上都写着$\triangleright$，除输入带以外，其他带子的其他位置都写着$\square$。</p>
+<p>图灵机在每个时刻的信息除了快照，还有格局（Configuration），格局拥有比快照更加丰富的内容：</p>
+<ul>
+<li>图灵机当前的状态；</li>
+<li>所有纸带的内容；</li>
+<li>当前带头的位置。</li>
+</ul>
+<p>不难看出，格局包含了一次转移函数计算所需要的全部内容（带头位置结合纸带内容唯一确定了当前纸带的符号），因此，一次转移函数计算就是由<strong>一个格局到另一个格局</strong>的过程，这也称一次计算（Computation）。</p>
+<h2 id="Function、Problem、Language：函数、问题、语言"><a href="#Function、Problem、Language：函数、问题、语言" class="headerlink" title="Function、Problem、Language：函数、问题、语言"></a>Function、Problem、Language：函数、问题、语言</h2><p><strong>一个问题就是一个函数</strong>。对于任何一个问题，它都有解决的前提条件以及根据这些条件得到的问题答案，而函数接受输入，得到输出，两者在本质上是具有同一性的。在图灵机中，任何问题的前提条件（规模、数据结构、数据等）都可以用有限个$01$串表示，记为$\left\{0,1\right\}^*$。</p>
+<p>故而，<strong>问题</strong>（Problem）就是一个<strong>函数</strong>（Function）：</p>
+<p>$$<br>f:\left\{0,1\right\}^* \to<br> \left\{0,1\right\}^*<br>$$</p>
+<p>这个函数实现了对问题的回答，即由问题的$01$串表示得到对这个问题答案的$01$串表示。</p>
+<p>我们称图灵机$\mathcal{M}$计算&#x2F;解决（Compute&#x2F;Solve）了问题$f$，当且仅当对于任意的$x\in\left\{0,1\right\}^*$均有$\mathcal{M}(x)&#x3D;f(x)$。其中$\mathcal{M}(x)$的含义是：如果$x$在$f$的定义域内，当给图灵机$\mathcal{M}$的输入带上写上$x$并进行计算时，它最终会停机，且输出带上写着$\mathcal{M}(x)$；如果$x$不在$f$的定义域内，则图灵机永不停机（死循环）。图灵机会停机记为$\mathcal{M}(x)\uparrow$，永不停机记为$\mathcal{M}(x)\downarrow$。</p>
+<h3 id="Decision-Problem：判定问题"><a href="#Decision-Problem：判定问题" class="headerlink" title="Decision Problem：判定问题"></a>Decision Problem：判定问题</h3><p>判定问题是一个特殊的问题，它的输出是个布尔值，即只有$0$或$1$：</p>
+<p>$$<br>d:\left\{0,1\right\}^* \to<br> \left\{0,1\right\}<br>$$</p>
+<p>对于判定问题，我们不再用解决问题，而称图灵机$\mathcal{M}$判定（Decide）了问题$d$。</p>
+<h3 id="Language：语言"><a href="#Language：语言" class="headerlink" title="Language：语言"></a>Language：语言</h3><p>语言（Language）$L$是一个字符串集合$L\subseteq \left\{0,1\right\}^*$。若：</p>
+<p>$$<br>\begin{align*}<br>    &amp;\forall x\in L,\mathcal{M}(x)&#x3D;1\\<br>    &amp;\forall x\notin L,\mathcal{M}(x)&#x3D;0<br>\end{align*}<br>$$<br>我们则称图灵机$\mathcal{M}$接受（Accept）了语言$L$。换句话说，图灵机$\mathcal{M}$能够识别出$L$及其子集。</p>
+<h3 id="语言与判定问题"><a href="#语言与判定问题" class="headerlink" title="语言与判定问题"></a>语言与判定问题</h3><p>不难看出，一个语言就是一类判定问题：</p>
+<p>$$<br>d(x)&#x3D;<br>\begin{cases}<br>    1,&amp;x\in L\\<br>    0,&amp;x\notin L<br>\end{cases}<br>$$</p>
+<h2 id="Time-Function：时间函数"><a href="#Time-Function：时间函数" class="headerlink" title="Time Function：时间函数"></a>Time Function：时间函数</h2><p>时间函数与时间复杂度有着近乎相同的含义，它们都不是现实世界中连续的时间，而是图灵&#x2F;计算机世界中离散的时间。对于时间函数，其单位是一步计算，即一次转移函数；对时间复杂度，其单位是计算机的一次基本操作，如加、乘等。由于我们并不能知道图灵机$\mathcal{M}$在解决某个问题时转移函数的执行次数，我们就需要一个计时器，这个计时器也是一个图灵机$\mathcal{T}$，它与$\mathcal{M}$同启同停，并在结果输出$\mathcal{M}$转移函数执行的次数。这样的计时器定义的函数就称为时间函数：</p>
+<p>$$<br>T: N \to N<br>$$</p>
+<p>它实现问题的规模（输入串的<strong>长度</strong>$n$）到转移函数执行步数$T(n)$的映射。时间函数定义了图灵机解决某一问题时间的上限，即：若图灵机$\mathcal{M}$解决输入长度为$n$的$f$需要<strong>至多</strong>$T(n)$步，那么我们称$\mathcal{M}$<strong>在</strong>$T(n)$<strong>的时间内解决了</strong>$f$。</p>
+<h3 id="Time-Constructible-Function：时间可构造函数"><a href="#Time-Constructible-Function：时间可构造函数" class="headerlink" title="Time Constructible Function：时间可构造函数"></a>Time Constructible Function：时间可构造函数</h3><p>用图灵机$\mathcal{T}$实现时间函数要求：</p>
+<ol>
+<li>图灵机$\mathcal{T}$的执行步数为$T(n)$；</li>
+<li>图灵机$\mathcal{T}$的输出结果$\mathcal{T}(n)$为$T(n)$。</li>
+</ol>
+<p>如，若定义$T(n)&#x3D;n^2$，则该图灵机必须在$n^2$步由初始状态$\llcorner n\lrcorner$转变为停止状态$\llcorner n^2 \lrcorner$，然而这样的图灵机是不一定存在的。</p>
+<p>时间可构造函数是为了尽量避免上述的问题而采用的退而求其次的方法。它不同于时间函数的地方在于：</p>
+<ol>
+<li>时间可构造函数$T$不要求输入串为$\llcorner n \lrcorner$，任意的$01$串$1^n$均可；</li>
+<li>时间可构造函数$T$不要求步数严格为$T(n)$，只要是同一个数量级即可，即$O(T(n))$即可。</li>
+</ol>
+<p>只要存在这么一个$1 ^n$，使得图灵机$\mathcal{T}$能在$O(T(n))$步下转移到$\llcorner T(n) \lrcorner$状态并且停机，那么我们就称$T$是可构造时间函数。若将条件2升级为时间函数的条件，则称$T$为完全时间可构造的（Fully Time Constructible Function），即$T$转移到$\llcorner T(n) \lrcorner$状态的步数严格为$T(n)$。</p>
+<blockquote>
+<p>一般情况下，我们要求$T(n)\ge n$，以保证图灵机能够完整地读取输入数据。</p>
+</blockquote>
+]]></content>
       <categories>
         <category>CS7313: Computational Complexity</category>
       </categories>
@@ -744,8 +812,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -1494,8 +1562,8 @@
       </categories>
       <tags>
         <tag>Deep Learning</tag>
-        <tag>RNN</tag>
         <tag>CNN</tag>
+        <tag>RNN</tag>
       </tags>
   </entry>
   <entry>
@@ -2037,8 +2105,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2124,8 +2192,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -4693,8 +4761,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -4798,8 +4866,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
