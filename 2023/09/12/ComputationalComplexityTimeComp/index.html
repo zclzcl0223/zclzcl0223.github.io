@@ -32,9 +32,9 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/2.jpg">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/3.jpg">
-<meta property="og:image" content="https://zclzcl0223.github.io/4.jpg">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/4.png">
 <meta property="article:published_time" content="2023-09-12T09:51:52.000Z">
-<meta property="article:modified_time" content="2023-09-17T12:07:55.108Z">
+<meta property="article:modified_time" content="2023-09-17T12:39:43.735Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Math">
 <meta property="article:tag" content="Theoretical Computer Science">
@@ -236,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-17 20:07:55" itemprop="dateModified" datetime="2023-09-17T20:07:55+08:00">2023-09-17</time>
+                <time title="Modified: 2023-09-17 20:39:43" itemprop="dateModified" datetime="2023-09-17T20:39:43+08:00">2023-09-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -408,7 +408,7 @@
 <h3 id="时间分析"><a href="#时间分析" class="headerlink" title="时间分析"></a>时间分析</h3><p>模拟$\mathcal{M}_\alpha$的一步计算时，主要的开销在主工作带的移动上，因此只用考虑主工作带移动的开销即可：$\mathcal{M}_\alpha$的时间函数是$T(n)$，因此$\mathcal{M}_\alpha$的工作带上可能出现的最长字符串量级为$O(T(n))$（即每一步都在记录新的数据），字符串、$k-2$元组在主工作带上的编码不会超过$c$（$c$为$|\alpha|$的多项式），$\mathcal{M} _\alpha$每移动一次带头，可能引起主工作带的带头在某一层上移动一整层，时间复杂度为$O(cT(n))$。</p>
 <p>因此，$\mathcal{U}(\alpha,x)$模拟$\mathcal{M} _\alpha$的时间复杂度为$O(cT(n))*O(T(n))&#x3D;O(c T^2 (n))$</p>
 <h2 id="Proof-of-Hennie-and-Stearns"><a href="#Proof-of-Hennie-and-Stearns" class="headerlink" title="Proof of Hennie and Stearns"></a>Proof of Hennie and Stearns</h2><p>Hennie和Stearns在1966年给出了$O(cT(n)\log T(n))$的证明。在他们的证明中，通用图灵机的构造基本不变，只不过增加了一条草稿工作带，并在主工作带中的有效字符间插入了新的缓冲符号$\boxtimes$，这些缓冲符号可以被其他有效符号覆盖，如下图所示：</p>
-<p><img src="/4.jpg" alt="4"></p>
+<p><img src="/2023/09/12/ComputationalComplexityTimeComp/4.png" alt="4"></p>
 <center style="font-size:12px;font-weight:bold">Fig. 4. Main working tape</center><br>
 
 <p>此外，还进一步地将无限长的双向带作了左右分区，每个分区$R _i$的范围为$[2 ^{i+1}-1,2 ^{i+2-2}]$，$L _i$的范围为$[-2 ^{i+1}+2, -2^{i+1}+1]$，长度均为$2 ^{i+1}$，$R_0$和$L_0$以0号为分界。并且规定：</p>
