@@ -30,8 +30,11 @@
 <meta property="og:description" content="本篇是计算复杂性（CS7313)的第一章，主要研究时间复杂度问题。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/2.jpg">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/3.jpg">
+<meta property="og:image" content="https://zclzcl0223.github.io/4.jpg">
 <meta property="article:published_time" content="2023-09-12T09:51:52.000Z">
-<meta property="article:modified_time" content="2023-09-13T11:30:07.481Z">
+<meta property="article:modified_time" content="2023-09-17T12:07:55.108Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Math">
 <meta property="article:tag" content="Theoretical Computer Science">
@@ -233,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-13 19:30:07" itemprop="dateModified" datetime="2023-09-13T19:30:07+08:00">2023-09-13</time>
+                <time title="Modified: 2023-09-17 20:07:55" itemprop="dateModified" datetime="2023-09-17T20:07:55+08:00">2023-09-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -299,7 +302,7 @@
 <p>故而，<strong>问题</strong>（Problem）就是一个<strong>函数</strong>（Function）：</p>
 <p>$$<br>f:\left\{0,1\right\}^* \to<br> \left\{0,1\right\}^*<br>$$</p>
 <p>这个函数实现了对问题的回答，即由问题的$01$串表示得到对这个问题答案的$01$串表示。</p>
-<p>我们称图灵机$\mathcal{M}$计算&#x2F;解决（Compute&#x2F;Solve）了问题$f$，当且仅当对于任意的$x\in\left\{0,1\right\}^*$均有$\mathcal{M}(x)&#x3D;f(x)$。其中$\mathcal{M}(x)$的含义是：如果$x$在$f$的定义域内，当给图灵机$\mathcal{M}$的输入带上写上$x$并进行计算时，它最终会停机，且输出带上写着$\mathcal{M}(x)$；如果$x$不在$f$的定义域内，则图灵机永不停机（死循环）。图灵机会停机记为$\mathcal{M}(x)\uparrow$，永不停机记为$\mathcal{M}(x)\downarrow$。</p>
+<p>我们称图灵机$\mathcal{M}$计算&#x2F;解决（Compute&#x2F;Solve）了问题$f$，当且仅当对于任意的$x\in\left\{0,1\right\}^*$均有$\mathcal{M}(x)&#x3D;f(x)$。其中$\mathcal{M}(x)$的含义是：如果$x$在$f$的定义域内，当给图灵机$\mathcal{M}$的输入带上写上$x$并进行计算时，它最终会停机，且输出带上写着$\mathcal{M}(x)$；如果$x$不在$f$的定义域内，则图灵机永不停机（死循环）。图灵机会停机记为$\mathcal{M}(x)\downarrow$，永不停机记为$\mathcal{M}(x)\uparrow$。</p>
 <h3 id="Decision-Problem：判定问题"><a href="#Decision-Problem：判定问题" class="headerlink" title="Decision Problem：判定问题"></a>Decision Problem：判定问题</h3><p>判定问题是一个特殊的问题，它的输出是个布尔值，即只有$0$或$1$：</p>
 <p>$$<br>d:\left\{0,1\right\}^* \to<br> \left\{0,1\right\}<br>$$</p>
 <p>对于判定问题，我们不再用解决问题，而称图灵机$\mathcal{M}$判定（Decide）了问题$d$。</p>
@@ -322,9 +325,109 @@
 <li>时间可构造函数$T$不要求步数严格为$T(n)$，只要是同一个数量级即可，即$O(T(n))$即可。</li>
 </ol>
 <p>只要存在这么一个$1 ^n$，使得图灵机$\mathcal{T}$能在$O(T(n))$步下转移到$\llcorner T(n) \lrcorner$状态并且停机，那么我们就称$T$是可构造时间函数。若将条件2升级为时间函数的条件，则称$T$为完全时间可构造的（Fully Time Constructible Function），即$T$转移到$\llcorner T(n) \lrcorner$状态的步数严格为$T(n)$。</p>
+<h2 id="计算复杂性与模型无关"><a href="#计算复杂性与模型无关" class="headerlink" title="计算复杂性与模型无关"></a>计算复杂性与模型无关</h2><p>在不同的模型、不同的图灵机上，计算同一个函数$f$所花的时间可能不同。但是直观上来看，问题&#x2F;函数的复杂性是其客观性质，应该与模型无关。</p>
+<ul>
+<li><em>强邱奇-图灵论题（Church-Turing Thesis）</em>：任何物理上可以实现的计算装置A，都可以被图灵机以多项式的代价模拟。即，A的$t$个步骤可以用图灵机的$t^c$个步骤模拟，其中$c$是常数，与A有关（即取决于将A编码的最简单方式）。直观地理解，只要正确地编码，简单的图灵机可以以时间为代价模拟复杂的图灵机。<em>另一种说法：物理上能实现的机器，其最大表达能力不会超过图灵机</em>。</li>
+</ul>
 <blockquote>
-<p>一般情况下，我们要求$T(n)\ge n$，以保证图灵机能够完整地读取输入数据。</p>
+<p>Oblivious Turing Machine（遗忘图灵机）：这种图灵机的读写头的位置只与输入字符串的长度$n$、当前步数$i$有关。换句话说，无论输入的字符串是什么，只要长度一致，那么它们在第$i$步时，读写头的位置就是固定的。</p>
 </blockquote>
+<h1 id="Turing-Machine-as-String：图灵机的编码"><a href="#Turing-Machine-as-String：图灵机的编码" class="headerlink" title="Turing Machine as String：图灵机的编码"></a>Turing Machine as String：图灵机的编码</h1><p>计算理论的核心：二进制位串可以编码任何有限的语法对象，如程序、图灵机、算法。一台图灵机是一个有限对象，因此也可以用$01$串对它进行编码。由于字母表$\Gamma$和状态集$Q$可以直接从转移函数$\delta$中获取，要编码一台图灵机，只要对它的所有转移函数进行编码即可。</p>
+<blockquote>
+<p>转移函数实际上就是计算机指令。</p>
+</blockquote>
+<p>如，对于一台TM：$|\Gamma|\le 32$，$|Q|\le 4$，设其中的一条指令$\delta$为：</p>
+<p>$$<br>&lt;q_1, a, b, c&gt;\to &lt;q_2, e, d, L, S, R&gt;<br>$$</p>
+<p>则，我们可以用5位$01$串对字母表进行编码，用4位$01$串对状态码进行编码（不用2位是为了更好区分？），用2位$01$串对带头的移动指令进行编码，在引入分隔符号$\dag$，可得到该指令的编码：</p>
+<p>$$<br>0001\dag 00001\dag 00010\dag 00011\dag\dag 0010\dag 00100 \dag 00101 \dag 10 \dag 00 \dag 01<br>$$</p>
+<p>记上面的指令为$\delta _i$。对于一台图灵机的全部指令，再用一个新的分隔符$\ddag$隔开，在将指令串起，就得到整台图灵机的编码：</p>
+<p>$$<br>\delta _1\ddag\delta _2\ddag ...\ddag\delta _n<br>$$</p>
+<p>上述编码形式中，我们一共使用了4种符号$\{0,1,\dag,\ddag\}$。此时，我们在将这些符号映射为$01$串：</p>
+<p>$$<br>\{0,1,\dag,\ddag\}\to\{01,10,00,11\}<br>$$</p>
+<p>我们便得到了一台图灵机$\mathcal{M}$的$01$串形式的编码。</p>
+<blockquote>
+<p>任何一台图灵机，只要我们知道它的转移函数，都可以用这种方式进行编码。</p>
+</blockquote>
+<h2 id="图灵机编码的性质"><a href="#图灵机编码的性质" class="headerlink" title="图灵机编码的性质"></a>图灵机编码的性质</h2><ol>
+<li>每一台图灵机都有无数个$01$串编码。</li>
+</ol>
+<p>这点很好理解。一台图灵机代表一种解决某个问题的方式。对于一台解决特定问题的图灵机，我们完全可以为其加上许多<strong>多余的、无用的</strong>状态或符号，此时图灵机的编码变长了，但是它还是在用相同的方法解决完全一样的问题，因而我们将前后两台图灵机视作<strong>同一台图灵机</strong>。</p>
+<ol start="2">
+<li>每一个$01$串编码都对应这一台图灵机。</li>
+</ol>
+<p>由于$01$串编码的任意性，某个$01$串对应的图灵机可能完全没有实际用处，如对于任意输入都直接停机的空图灵机。</p>
+<p>上述的两条规定有一定的方便性。它们使得我们可以将所有的图灵机及其对应的函数列举出来：</p>
+<ul>
+<li>记$\llcorner \mathcal{M}\lrcorner$为某台图灵机的编码；</li>
+<li>记$\mathcal{M} _\alpha$为编码$\alpha$所对应的图灵机；</li>
+<li>记一个特殊的双射函数将任意的$01$串映射为一个自然数：$\{ 0,1 \}^* \to N$。</li>
+</ul>
+<p>由此，我们可以得到所有图灵机的排列：</p>
+<p>$$<br>\mathcal{M}_0,\mathcal{M}_1,...,\mathcal{M}_i,...<br>$$</p>
+<p>以及其对应的所有可计算函数的排列：</p>
+<p>$$<br>\phi_0,\phi_1,...,\phi _i,...<br>$$</p>
+<blockquote>
+<p>由于一台图灵机有无数的$01$串编码，在这些排列中，每台图灵机都会出现无数次。</p>
+<p>一个函数是可计算的当且仅当有一台图灵机能实现这个函数。</p>
+</blockquote>
+<h1 id="Universal-Turing-Machine：通用图灵机（套娃开始）"><a href="#Universal-Turing-Machine：通用图灵机（套娃开始）" class="headerlink" title="Universal Turing Machine：通用图灵机（套娃开始）"></a>Universal Turing Machine：通用图灵机（套娃开始）</h1><p>如上所述，任何一台图灵机都可以用$01$串编码，而输入图灵机的数据的形式也是$01$串，那么，我们就可以把图灵机的$01$串形式<strong>输入到另一台图灵机中，这台图灵机是一台特殊的图灵机，它可以模拟输入图灵机的运行</strong>。这样的图灵机就称<strong>通用图灵机</strong>（UTM）。事实上，计算机就是这样一台通用图灵机。因为我们在计算机上所编写的每一个程序都可以被视为一台图灵机，而任何一个正确的程序（只要有相应的编码器）都可以在现代的计算机上运行。换句话说，现代的计算机能够模拟任何一台图灵机的运行。</p>
+<ul>
+<li><p>高效通用图灵机定理：存在通用图灵机$\mathcal{U}$，使得下面两个式子定理成立：</p>
+<ol>
+<li>对于任意的$x,\alpha \in \{0,1\} ^*$，均有$\mathcal{U}(\alpha,x)\simeq\mathcal{M}_\alpha(x)$；</li>
+<li>若$\mathcal{M}_\alpha(x)$的时间函数是$T(n)$，则$\mathcal{U}(\alpha,x)$的时间函数是$cT(n)\log T(n)$，其中$c$是$\alpha$的多项式$|\alpha| ^c$，但是与$\alpha,x$均无关。</li>
+</ol>
+<p>通俗地来讲，对于任意一台图灵机$\mathcal{M}_\alpha$，通用图灵机$\mathbin{U}$都可以模拟它的计算过程，且至多多耗费对数倍的时间。</p>
+</li>
+</ul>
+<p>下面两小节是对于定理$2$的简单证明。</p>
+<h2 id="Proof-of-Hartmanis-and-Stearns"><a href="#Proof-of-Hartmanis-and-Stearns" class="headerlink" title="Proof of Hartmanis and Stearns"></a>Proof of Hartmanis and Stearns</h2><p>Hartmanis和Stearns在1965年给出了通用图灵机$O(cT^2(n))$的证明。</p>
+<p>用通用图灵机$\mathcal{U}$模拟一台$k$带的图灵机$\mathcal{M}<em>{\alpha}$，通用图灵机的输入带上给出图灵机的编码$\alpha$以及图灵机的输入$x$，我们想要得到的效果是通用图灵机的输出带上输出结果$\mathcal{M}</em>{\alpha}(x)$或者如$\mathcal{M}_\alpha$一样永不停机。构造这样的通用图灵机需要<strong>5</strong>条带子：</p>
+<ol>
+<li>输入带：输入为被模拟图灵机的编码$\alpha$和被模拟图灵机的输入$x$；</li>
+<li>输出带：输出为$\mathcal{M}_{\alpha}(x)$；</li>
+<li>模型工作带：记录$\mathcal{M} _{\alpha}$的转移函数；</li>
+<li>状态工作带：记录$\mathcal{M} _{\alpha}$当前的工作状态；</li>
+<li>主工作带：通用图灵机的带子数目必须是确定的，我们不能用不能确定数目的$k-2$条带子去模拟被模拟图灵机的工作带，因此，主工作带上记录了被模拟图灵机工作带及其带头的内容。</li>
+</ol>
+<p><img src="/2023/09/12/ComputationalComplexityTimeComp/2.jpg" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. 5-tape universal turing machine</center><br>
+
+<p>这样的通用图灵机工作过程是很明确的：</p>
+<ol>
+<li>从输入带、输出带、主工作带、状态工作带获取$\mathcal{M}_{\alpha}$当前的快照：$k$条带子的值以及当前状态$q$；</li>
+<li>扫描模型工作带，获取转移函数$\delta$；</li>
+<li>模拟$\mathcal{M} _{\alpha}$的转移函数，向主工作带、输出带写入$k-1$个值，更改状态工作带上的状态；</li>
+<li>移动输入带、主工作带、输出带，以模拟$\mathcal{M} _{\alpha}$中$k$个带头的移动。</li>
+</ol>
+<h3 id="主工作带的构造"><a href="#主工作带的构造" class="headerlink" title="主工作带的构造"></a>主工作带的构造</h3><p>要使主工作带上能存放被模拟图灵机的$k-2$条工作带及其带头的信息，较好的方法是将主工作带横向划分为$k-2$层，每层存放一条带子的信息，并让带子双向无限延伸（线性代价）、读写图对齐与0号位，如下图所示：</p>
+<p><img src="/2023/09/12/ComputationalComplexityTimeComp/3.jpg" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Main working tape</center><br>
+
+<p>此时，主工作带的读写头为虚拟读写头，始终指向0号位，读写头的移动“虚拟地”转变为了<strong>各层带子的移动</strong>。但是，<strong>实际上主工作带仍然只有一个带头，每次要获取被模拟图灵机的快照时，带头便一层一层地扫描，每扫描完一层，便回归到0号位，再扫描下一层，并记录本层的数据。</strong>最终，$k-2$层纸带的数据组成的$k-2$元组被特殊编码记录在主工作带的特定区域上。</p>
+<h3 id="时间分析"><a href="#时间分析" class="headerlink" title="时间分析"></a>时间分析</h3><p>模拟$\mathcal{M}_\alpha$的一步计算时，主要的开销在主工作带的移动上，因此只用考虑主工作带移动的开销即可：$\mathcal{M}_\alpha$的时间函数是$T(n)$，因此$\mathcal{M}_\alpha$的工作带上可能出现的最长字符串量级为$O(T(n))$（即每一步都在记录新的数据），字符串、$k-2$元组在主工作带上的编码不会超过$c$（$c$为$|\alpha|$的多项式），$\mathcal{M} _\alpha$每移动一次带头，可能引起主工作带的带头在某一层上移动一整层，时间复杂度为$O(cT(n))$。</p>
+<p>因此，$\mathcal{U}(\alpha,x)$模拟$\mathcal{M} _\alpha$的时间复杂度为$O(cT(n))*O(T(n))&#x3D;O(c T^2 (n))$</p>
+<h2 id="Proof-of-Hennie-and-Stearns"><a href="#Proof-of-Hennie-and-Stearns" class="headerlink" title="Proof of Hennie and Stearns"></a>Proof of Hennie and Stearns</h2><p>Hennie和Stearns在1966年给出了$O(cT(n)\log T(n))$的证明。在他们的证明中，通用图灵机的构造基本不变，只不过增加了一条草稿工作带，并在主工作带中的有效字符间插入了新的缓冲符号$\boxtimes$，这些缓冲符号可以被其他有效符号覆盖，如下图所示：</p>
+<p><img src="/4.jpg" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Main working tape</center><br>
+
+<p>此外，还进一步地将无限长的双向带作了左右分区，每个分区$R _i$的范围为$[2 ^{i+1}-1,2 ^{i+2-2}]$，$L _i$的范围为$[-2 ^{i+1}+2, -2^{i+1}+1]$，长度均为$2 ^{i+1}$，$R_0$和$L_0$以0号为分界。并且规定：</p>
+<ol>
+<li>每个分区要么全是满（全是有效符号）的，要么全是空（全是缓冲符号）的，要么是半满的（有一般是有效符号）；</li>
+<li>$R_i$和$L_i$的有效符号之和始终为$2^{i+1}$；</li>
+<li>0号位上的符号只能是有效符号。</li>
+</ol>
+<p>假设初始时某层右半区的有效符号全部在$R _i$分区，$R_i$是全满的，那么自然地$L_0\sim L <em>{i-1}$也是全满的。若此时$\mathcal{M} <em>{\alpha}$进行了一步右移操作，则该层的纸带应“相对地左移”。此时，主工作带上的操作是：带头移动到$R_i$范围，在草稿带上记录下$2^i$个字符内容，分别覆盖掉$R_0,R_1\sim R</em>{i-1}$上$1,1\sim 2^{i-1}$个缓冲字符，使得右半区全部变成半满。对于左半区，相似的操作，不过是将$L_0\sim L</em>{i-1}$中的一半有效字符都放到$L_i$上，使得左半区变成全半满。这样便完成了整层左移（对应$\mathcal{M}_\alpha$右移）的操作。</p>
+<h3 id="时间分析-1"><a href="#时间分析-1" class="headerlink" title="时间分析"></a>时间分析</h3><p>同样地，只用考虑主工作带上的移动情况。在主工作带上，一次移动，最远要跑到$R_i$或者$L_i$。而当跑过一次$R_i$或者$L_i$后，其他的分区都变成了半满，此时考虑最坏的情况，即$\mathcal{M}_\alpha$一直往一个方向移动，则在某一层上要把左或右分区$0\sim i-1$的有效符号搬空，至少需要$1+2+...+2 ^{i-1}&#x3D;2^i-1$步，再下一次移动才会涉及到$R_i$或者$L_i$。换句话说，两次最远距离的移动间隔至少为$2^i$步。</p>
+<p>$\mathcal{M}_\alpha$至多有$T(n)$步，$\mathcal{U}(\alpha,x)$对最长区间的操作不超过$T&#x2F;2^i$次，操作最长区间时耗时$O(c2^i)$，而区间的总个数$i$不会超过$\log T(n)$，故时间复杂度为：</p>
+<p>$$<br>\sum\limits _{i&#x3D;1} ^{\log T(n)}\frac{T(n)}{2^i}O(c2^i)&#x3D;cT(n)\sum\limits _{i&#x3D;1} ^{\log T(n)}O(1)&#x3D;cT(n)\log T(n)<br>$$</p>
+<blockquote>
+<p>缓冲字符的作用在于，它使得每层纸带上的内容可以通过移动而聚集在带头，即0号位附近，使得单步下的局部扫描成为可能，不像之前那样每次可能都要扫描一整层。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/260217775">计算复杂性（2）——运行时间与效率</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/260512272">计算复杂性（3）——计算机的套娃：通用图灵机</a></li>
+</ul>
 
     </div>
 
@@ -432,7 +535,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Notation%EF%BC%9A%E8%AE%B0%E5%8F%B7%E7%BA%A6%E5%AE%9A"><span class="nav-number">1.</span> <span class="nav-text">Notation：记号约定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Turing-Machine%EF%BC%9A%E5%9B%BE%E7%81%B5%E6%9C%BA%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">Turing Machine：图灵机模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#K-Tap-Turing-Machine"><span class="nav-number">2.1.</span> <span class="nav-text">$K$-Tap Turing Machine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function%E3%80%81Problem%E3%80%81Language%EF%BC%9A%E5%87%BD%E6%95%B0%E3%80%81%E9%97%AE%E9%A2%98%E3%80%81%E8%AF%AD%E8%A8%80"><span class="nav-number">2.2.</span> <span class="nav-text">Function、Problem、Language：函数、问题、语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-Problem%EF%BC%9A%E5%88%A4%E5%AE%9A%E9%97%AE%E9%A2%98"><span class="nav-number">2.2.1.</span> <span class="nav-text">Decision Problem：判定问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Language%EF%BC%9A%E8%AF%AD%E8%A8%80"><span class="nav-number">2.2.2.</span> <span class="nav-text">Language：语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%88%A4%E5%AE%9A%E9%97%AE%E9%A2%98"><span class="nav-number">2.2.3.</span> <span class="nav-text">语言与判定问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Time-Function%EF%BC%9A%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0"><span class="nav-number">2.3.</span> <span class="nav-text">Time Function：时间函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Constructible-Function%EF%BC%9A%E6%97%B6%E9%97%B4%E5%8F%AF%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">2.3.1.</span> <span class="nav-text">Time Constructible Function：时间可构造函数</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Notation%EF%BC%9A%E8%AE%B0%E5%8F%B7%E7%BA%A6%E5%AE%9A"><span class="nav-number">1.</span> <span class="nav-text">Notation：记号约定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Turing-Machine%EF%BC%9A%E5%9B%BE%E7%81%B5%E6%9C%BA%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">Turing Machine：图灵机模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#K-Tap-Turing-Machine"><span class="nav-number">2.1.</span> <span class="nav-text">$K$-Tap Turing Machine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function%E3%80%81Problem%E3%80%81Language%EF%BC%9A%E5%87%BD%E6%95%B0%E3%80%81%E9%97%AE%E9%A2%98%E3%80%81%E8%AF%AD%E8%A8%80"><span class="nav-number">2.2.</span> <span class="nav-text">Function、Problem、Language：函数、问题、语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-Problem%EF%BC%9A%E5%88%A4%E5%AE%9A%E9%97%AE%E9%A2%98"><span class="nav-number">2.2.1.</span> <span class="nav-text">Decision Problem：判定问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Language%EF%BC%9A%E8%AF%AD%E8%A8%80"><span class="nav-number">2.2.2.</span> <span class="nav-text">Language：语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%88%A4%E5%AE%9A%E9%97%AE%E9%A2%98"><span class="nav-number">2.2.3.</span> <span class="nav-text">语言与判定问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Time-Function%EF%BC%9A%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0"><span class="nav-number">2.3.</span> <span class="nav-text">Time Function：时间函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Constructible-Function%EF%BC%9A%E6%97%B6%E9%97%B4%E5%8F%AF%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">2.3.1.</span> <span class="nav-text">Time Constructible Function：时间可构造函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E6%80%A7%E4%B8%8E%E6%A8%A1%E5%9E%8B%E6%97%A0%E5%85%B3"><span class="nav-number">2.4.</span> <span class="nav-text">计算复杂性与模型无关</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Turing-Machine-as-String%EF%BC%9A%E5%9B%BE%E7%81%B5%E6%9C%BA%E7%9A%84%E7%BC%96%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">Turing Machine as String：图灵机的编码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%81%B5%E6%9C%BA%E7%BC%96%E7%A0%81%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">3.1.</span> <span class="nav-text">图灵机编码的性质</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Universal-Turing-Machine%EF%BC%9A%E9%80%9A%E7%94%A8%E5%9B%BE%E7%81%B5%E6%9C%BA%EF%BC%88%E5%A5%97%E5%A8%83%E5%BC%80%E5%A7%8B%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">Universal Turing Machine：通用图灵机（套娃开始）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Proof-of-Hartmanis-and-Stearns"><span class="nav-number">4.1.</span> <span class="nav-text">Proof of Hartmanis and Stearns</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%B7%A5%E4%BD%9C%E5%B8%A6%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-number">4.1.1.</span> <span class="nav-text">主工作带的构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90"><span class="nav-number">4.1.2.</span> <span class="nav-text">时间分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Proof-of-Hennie-and-Stearns"><span class="nav-number">4.2.</span> <span class="nav-text">Proof of Hennie and Stearns</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">时间分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
