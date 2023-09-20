@@ -1,7 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Computational Complexity: Time Complexity</title>
+    <title>Dataset Distillation: A Summary</title>
+    <url>/2023/09/20/DDSummary/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<p>文中大多数内容都基于Yu et al.的论文<a href="https://arxiv.org/pdf/2301.07014.pdf">Dataset Distillation: A Comprehensive Review</a>。</p>
+<h1 id="Performance-Matching"><a href="#Performance-Matching" class="headerlink" title="Performance Matching"></a>Performance Matching</h1><p>Performance Matching，表现&#x2F;效果匹配，是最先被提出的一种基于机器学习的数据蒸馏方法。这种方法核心思想在于将<em>Synthetic Data</em>视作神经网络中的一个“超参数”，如学习率一般，但不同的是，它是可学习的超参数。其优化过程分两步：</p>
+<ol>
+<li>用<em>Synthetic Data</em>训练神经网络；</li>
+<li>将原训练集$\mathcal{T}$输入用<em>Synthetic Data</em>训练的神经网络，计算得到预测的<em>Loss</em>，以该<em>Loss</em>作为损失函数更新<em>Synthetic Data</em>。</li>
+</ol>
+<p>最初的基于Performance Matching的方法的精度和训练速度都不怎么样，但后来有学者将第一步中的神经网络替换为了核函数，反而使得Performance Matching超过了多数后来的方法。</p>
+<h2 id="Meta-Learning-Based-Methods"><a href="#Meta-Learning-Based-Methods" class="headerlink" title="Meta Learning Based Methods"></a>Meta Learning Based Methods</h2><p>该方法最先在Wang et al.的<a href="https://arxiv.org/pdf/1811.10959.pdf">DATASET DISTILLATION</a>中被提出，也是数据蒸馏开山立宗的方法，一般简称<em>DD</em>。<em>Meta Learning</em>也就是把<em>Synthetic Data</em>视作一个可学习的超参数。它获得<em>Synthetic Data</em>的思路就是上面所提到的，基本公式与流程如下：</p>
+<p>$$<br>\begin{align*}<br>    \theta ^{(t)}&amp;&#x3D;\theta ^{(t-1)}-\eta\nabla l(\mathcal{S};\theta ^{(t-1)})\tag{1}\<br>    \mathcal{S}^{(\tau)}&amp;&#x3D;\mathcal{S}^{(\tau-1)}-\eta&#39;\nabla L(\theta^{(T)},\mathcal{T})\tag{2}<br>\end{align*}<br>$$</p>
+<p>其中，式$(1)$是内层循环，用于更新神经网络，式$(2)$是外层循环，用于更新<em>Synthetic Data</em>。</p>
+<p><img src="/2023/09/20/DDSummary/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Meta Learning Based Methods</center><br>
+
+<p>显而易见，这是一种<em>Bi-level Optimization Algorithm</em>：内层循环更新神经网络，外层循环更新<em>Synthetic Data</em>。而内层循环又需要用到<em>Synthetic Data</em>来产生梯度以训练网络，因而<em>Synthetic Data</em>的更新内在地会包含一个二阶导，这是极耗内存和时间的。而实际上蒸馏出来的数据效果也不是特别好。</p>
+<h2 id="Kernel-Ridge-Regression-Based-Methods"><a href="#Kernel-Ridge-Regression-Based-Methods" class="headerlink" title="Kernel Ridge Regression Based Methods"></a>Kernel Ridge Regression Based Methods</h2><p>该方法最初在Nguyen et al.的<a href="https://arxiv.org/pdf/2011.00050.pdf">DATASET META-LEARNING FROM KERNEL RIDGEREGRESSION</a>中被提出，一般简称<em>KIP</em>。这种方法是建立在<strong>无限宽的全连接层可以用特殊的核函数来拟合</strong>这一研究成果的。<em>KIP</em>用到的核函数被称为<em>Neural Tangent Kernel</em>（NTK）。它本质上也是<em>Meta Learning</em>，只不过使用核函数来替代了内层循环，并用<em>Kernel Ridge Regression</em>计算损失函数，使得原本的双层优化变为了一层：</p>
+<p>$$<br>\begin{align*}<br>    L(\mathcal{S},\mathcal{T})&amp;&#x3D;||Y <em>\mathcal{T}-K</em>{X _\mathcal{T}X <em>\mathcal{S}}(K</em>{X _\mathcal{S}X _\mathcal{S}}+\lambda I)^{-1}Y _\mathcal{S}||^2\<br>    \mathcal{S}^{(\tau)}&amp;&#x3D;\mathcal{S}^{(\tau-1)}-\eta&#39;\nabla L(\mathcal{S},\mathcal{T})<br>\end{align*}<br>$$</p>
+<p>当然，还有使用其他核函数的版本，但一般用的都是<em>NTK</em>，此处就不再赘述了。</p>
+<blockquote>
+<p>文中还提到了另一个脱胎于<em>Kernel Ridge Regression</em>的方法<a href="https://arxiv.org/pdf/2206.00719.pdf"><em>FRePo</em></a>，该方法在目前来说取得了最好的蒸馏效果。</p>
+</blockquote>
+<h1 id="Parameter-Matching"><a href="#Parameter-Matching" class="headerlink" title="Parameter Matching"></a>Parameter Matching</h1><p>Parameter Matching，参数匹配，这种方法的想法很直观：要想<em>Synthetic Data</em>取得和训练集相近的泛化精度，只要<em>Synthetic Data</em>训练出来的网路的参数（Parameter）和训练集训练出来的网络的参数相近即可。不过实际上并没有人会直接匹配参数，而是转而去匹配训练过程中的梯度，即让<em>Synthetic Data</em>产生和训练集相近的梯度，因而这类方法也可以叫<em>Gradient Matching</em>。</p>
+<h2 id="Single-Step-Parameter-Matching"><a href="#Single-Step-Parameter-Matching" class="headerlink" title="Single-Step Parameter Matching"></a>Single-Step Parameter Matching</h2><p>Single-Step Parameter Matching在<a href="https://arxiv.org/pdf/2006.05929.pdf">DATASET CONDENSATION WITH GRADIENT MATCHING. Zhao et al</a>中被提出，是最先被提出的基于参数匹配的数据蒸馏方法，一般称<em>DC</em>。其核心思想很简单：</p>
+<ol>
+<li>训练集$\mathcal{T}$和<em>Synthetic Data</em> $\mathcal{S}$分别过一次神经网络；</li>
+<li>分别计算梯度；</li>
+<li>计算梯度差异，作为$Loss$；</li>
+<li>更新<em>Synthetic Data</em>，用更新后的<em>Synthetic Data</em>更新神经网络。</li>
+</ol>
+<p>文中用到的作为$Loss$的梯度差异函数为$\cos$函数，即更关心梯度的方向：</p>
+<p>$$<br>Loss(\mathcal{S},\mathcal{T})&#x3D;1-\frac{grad(\mathcal{S})\cdot grad(\mathcal{T})}{||grad(\mathcal{S})||\space||grad(\mathcal{T})||}<br>$$</p>
+<p>上面的$grad$是指输入数据在神经网络上所产生的梯度。基本流程如下：</p>
+<p><img src="/2023/09/20/DDSummary/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Meta Learning Based Methods</center><br>
+
+<blockquote>
+<p>后续有不少学者在损失函数$Loss$上做文章，如不仅关心方向，还关心大小（欧式距离）等，此处就不再赘述了。</p>
+</blockquote>
+<h2 id="Multi-Step-Parameter-Matching"><a href="#Multi-Step-Parameter-Matching" class="headerlink" title="Multi-Step Parameter Matching"></a>Multi-Step Parameter Matching</h2><p>有一步梯度匹配，就会有多步梯度匹配。Multi-Step Parameter Matching最先在<a href="https://arxiv.org/pdf/2203.11932.pdf">Dataset Distillation by Matching Training Trajectories. Cazenavette et al</a>中被提出，一般简称<em>MTT</em>。在Kernel Ridge Regression Based Methods出现之前，这是表现最好的方法。其本质上是对Single-Step的一种优化，因为单步的匹配本质上是一种<em>贪心</em>的算法，它不一定能够得到全局的最优，而用训练集的多步梯度下降来匹配<em>Synthetic Data</em>的一步或两步梯度下降能够为更新<em>Synthetic Data</em>带来更加全局的、稳定的优化路径。方法示意图如下：</p>
+<p><img src="/2023/09/20/DDSummary/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Multi-Step Parameter Matching</center><br>
+
+<p>此外，文中用到的损失函数也不同，作者使用的损失函数是规范化了的欧式距离（的平方）：</p>
+<p>$$<br>Loss(\mathcal{S},\mathcal{T})&#x3D;\frac{||\theta ^{\mathcal{S}} _{t+N}-\theta ^{\mathcal{T}} _{t+M}||^2 _2}{||\theta ^{\mathcal{T}} _{t}-\theta ^{\mathcal{T}} _{t+M}||^2 _2}<br>$$</p>
+<p><em>MTT</em>的另一大优点是蒸馏速度很快，因为其训练集训练的网络都是预先训练好的，这些预训练好的网络被称为<em>buffer</em>或者<em>teacher net</em>。后续也有不少的学者对<em>MTT</em>进行了优化，如：</p>
+<ul>
+<li><a href="https://arxiv.org/pdf/2211.11004.pdf"><em>FTD</em></a>：优化了<em>buffer</em>，使得生成的<em>buffer</em>能够提供更接近于<em>Synthetic Data</em>训练网络的优化路径；</li>
+<li><a href="https://arxiv.org/pdf/2209.14609.pdf"><em>DDPP</em></a>：优化了更新<em>Synthetic Data</em>的时机，即预先评估本次更新<em>Synthetic Data</em>能够带来的收益，根据收益大小来决定是否要执行本次更新。评估的方式是为$\theta ^{\mathcal{T}} _{t+M}&#x2F;\theta ^{\mathcal{S}} _{t+N}$设置一个阈值$\epsilon$，当两者的比例小于该阈值时就不执行本次<em>Synthetic Data</em>的更新。</li>
+<li>...</li>
+</ul>
+<h1 id="Distribution-Matching"><a href="#Distribution-Matching" class="headerlink" title="Distribution Matching"></a>Distribution Matching</h1><p>Distribution Matching，分布匹配，核心思想是让<em>Synthetic Data</em>的统计分布尽可能地接近训练集。接近程度的衡量指标一般用的是<em>Maximum Mean Discrepancy</em>（MMD），即用<em>高阶矩</em>来衡量两个分布的接近程度，而高级矩的计算则常以通过神经网络将输入特征映射到高维空间后，计算高维空间向量距离的方式进行。这种方法最大的优点就是蒸馏速度很快。</p>
+<h2 id="Single-Layer-Distribution-Matching"><a href="#Single-Layer-Distribution-Matching" class="headerlink" title="Single Layer Distribution Matching"></a>Single Layer Distribution Matching</h2><p>该方法是分布匹配最初的方法，由Zhao et al.在<a href="https://arxiv.org/pdf/2110.04181.pdf">Dataset Condensation with Distribution Matching</a>提出，一般简称<em>DM</em>。思路与前文提到的一致。其计算高阶矩所采用的神经网络是原来用于分类任务的神经网络，不过去掉了softmax操作。基本流程为：</p>
+<p><img src="/2023/09/20/DDSummary/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Single Layer Distribution Matching</center>
+
+<h2 id="Multi-Layer-Distribution-Matching"><a href="#Multi-Layer-Distribution-Matching" class="headerlink" title="Multi Layer Distribution Matching"></a>Multi Layer Distribution Matching</h2><p>该方法由Wang et al.在<a href="https://arxiv.org/pdf/2203.01531.pdf">Cafe: Learning to condense dataset by aligning features</a>上提出，一般简称<em>CAFE</em>。实际上是对<em>DM</em>的优化，主要的不同点在于：<em>DM</em>只对整个神经网络的输出向量进行匹配，而<em>CAFE</em>是对每一个隐藏层的输出向量进行匹配并相加。本质上差不多，没有跳出Distribution Matching的框架。</p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Computational Complexity: Time Complexity 1</title>
     <url>/2023/09/12/ComputationalComplexityTimeComp/</url>
     <content><![CDATA[<span id="more"></span>
 
@@ -81,14 +150,15 @@
 </blockquote>
 <p>如，对于一台TM：$|\Gamma|\le 32$，$|Q|\le 4$，设其中的一条指令$\delta$为：</p>
 <p>$$<br>&lt;q_1, a, b, c&gt;\to &lt;q_2, e, d, L, S, R&gt;<br>$$</p>
-<p>则，我们可以用5位$01$串对字母表进行编码，用4位$01$串对状态码进行编码（不用2位是为了更好区分？），用2位$01$串对带头的移动指令进行编码，在引入分隔符号$\dag$，可得到该指令的编码：</p>
-<p>$$<br>0001\dag 00001\dag 00010\dag 00011\dag\dag 0010\dag 00100 \dag 00101 \dag 10 \dag 00 \dag 01<br>$$</p>
-<p>记上面的指令为$\delta _i$。对于一台图灵机的全部指令，再用一个新的分隔符$\ddag$隔开，在将指令串起，就得到整台图灵机的编码：</p>
-<p>$$<br>\delta _1\ddag\delta _2\ddag ...\ddag\delta _n<br>$$</p>
-<p>上述编码形式中，我们一共使用了4种符号$\{0,1,\dag,\ddag\}$。此时，我们在将这些符号映射为$01$串：</p>
-<p>$$<br>\{0,1,\dag,\ddag\}\to\{01,10,00,11\}<br>$$</p>
+<p>则，我们可以用5位$01$串对字母表进行编码，用4位$01$串对状态码进行编码（不用2位是为了更好区分？），用2位$01$串对带头的移动指令进行编码，再引入分隔符号$-$，可得到该指令的编码：</p>
+<p>$$<br>0001- 00001- 00010- 00011-- 0010- 00100 - 00101 - 10 - 00 - 01<br>$$</p>
+<p>记上面的指令为$\delta _i$。对于一台图灵机的全部指令，再用一个新的分隔符$&#x3D;$隔开，在将指令串起，就得到整台图灵机的编码：</p>
+<p>$$<br>\delta _1&#x3D;\delta _2&#x3D; ...&#x3D;\delta _n<br>$$</p>
+<p>上述编码形式中，我们一共使用了4种符号$\{0,1,-,&#x3D;\}$。此时，我们在将这些符号映射为$01$串：</p>
+<p>$$<br>\{0,1,-,&#x3D; \}\to\{01,10,00,11\}<br>$$</p>
 <p>我们便得到了一台图灵机$\mathcal{M}$的$01$串形式的编码。</p>
 <blockquote>
+<p>由于此处打不出十字<code>\dag</code>和双十字<code>\ddag</code>，故用$-$和$&#x3D;$代替。</p>
 <p>任何一台图灵机，只要我们知道它的转移函数，都可以用这种方式进行编码。</p>
 </blockquote>
 <h2 id="图灵机编码的性质"><a href="#图灵机编码的性质" class="headerlink" title="图灵机编码的性质"></a>图灵机编码的性质</h2><ol>
@@ -125,7 +195,7 @@
 </ul>
 <p>下面两小节是对于定理$2$的简单证明。</p>
 <h2 id="Proof-of-Hartmanis-and-Stearns"><a href="#Proof-of-Hartmanis-and-Stearns" class="headerlink" title="Proof of Hartmanis and Stearns"></a>Proof of Hartmanis and Stearns</h2><p>Hartmanis和Stearns在1965年给出了通用图灵机$O(cT^2(n))$的证明。</p>
-<p>用通用图灵机$\mathcal{U}$模拟一台$k$带的图灵机$\mathcal{M}<em>{\alpha}$，通用图灵机的输入带上给出图灵机的编码$\alpha$以及图灵机的输入$x$，我们想要得到的效果是通用图灵机的输出带上输出结果$\mathcal{M}</em>{\alpha}(x)$或者如$\mathcal{M}_\alpha$一样永不停机。构造这样的通用图灵机需要<strong>5</strong>条带子：</p>
+<p>用通用图灵机$\mathcal{U}$模拟一台$k$带的图灵机$\mathcal{M} _{\alpha}$，通用图灵机的输入带上给出图灵机的编码$\alpha$以及图灵机的输入$x$，我们想要得到的效果是通用图灵机的输出带上输出结果$\mathcal{M} _{\alpha}(x)$或者如$\mathcal{M} _\alpha$一样永不停机。构造这样的通用图灵机需要<strong>5</strong>条带子：</p>
 <ol>
 <li>输入带：输入为被模拟图灵机的编码$\alpha$和被模拟图灵机的输入$x$；</li>
 <li>输出带：输出为$\mathcal{M}_{\alpha}(x)$；</li>
@@ -148,6 +218,9 @@
 <center style="font-size:12px;font-weight:bold">Fig. 3. Main working tape</center><br>
 
 <p>此时，主工作带的读写头为虚拟读写头，始终指向0号位，读写头的移动“虚拟地”转变为了<strong>各层带子的移动</strong>。但是，<strong>实际上主工作带仍然只有一个带头，每次要获取被模拟图灵机的快照时，带头便一层一层地扫描，每扫描完一层，便回归到0号位，再扫描下一层，并记录本层的数据。</strong>最终，$k-2$层纸带的数据组成的$k-2$元组被特殊编码记录在主工作带的特定区域上。</p>
+<blockquote>
+<p>实际上的主工作带上只有对齐后的$k-2$元组的编码。</p>
+</blockquote>
 <h3 id="时间分析"><a href="#时间分析" class="headerlink" title="时间分析"></a>时间分析</h3><p>模拟$\mathcal{M}_\alpha$的一步计算时，主要的开销在主工作带的移动上，因此只用考虑主工作带移动的开销即可：$\mathcal{M}_\alpha$的时间函数是$T(n)$，因此$\mathcal{M}_\alpha$的工作带上可能出现的最长字符串量级为$O(T(n))$（即每一步都在记录新的数据），字符串、$k-2$元组在主工作带上的编码不会超过$c$（$c$为$|\alpha|$的多项式），$\mathcal{M} _\alpha$每移动一次带头，可能引起主工作带的带头在某一层上移动一整层，时间复杂度为$O(cT(n))$。</p>
 <p>因此，$\mathcal{U}(\alpha,x)$模拟$\mathcal{M} _\alpha$的时间复杂度为$O(cT(n))*O(T(n))&#x3D;O(c T^2 (n))$</p>
 <h2 id="Proof-of-Hennie-and-Stearns"><a href="#Proof-of-Hennie-and-Stearns" class="headerlink" title="Proof of Hennie and Stearns"></a>Proof of Hennie and Stearns</h2><p>Hennie和Stearns在1966年给出了$O(cT(n)\log T(n))$的证明。在他们的证明中，通用图灵机的构造基本不变，只不过增加了一条草稿工作带，并在主工作带中的有效字符间插入了新的缓冲符号$\boxtimes$，这些缓冲符号可以被其他有效符号覆盖，如下图所示：</p>
@@ -160,7 +233,7 @@
 <li>$R_i$和$L_i$的有效符号之和始终为$2^{i+1}$；</li>
 <li>0号位上的符号只能是有效符号。</li>
 </ol>
-<p>假设初始时某层右半区的有效符号全部在$R _i$分区，$R_i$是全满的，那么自然地$L_0\sim L <em>{i-1}$也是全满的。若此时$\mathcal{M} <em>{\alpha}$进行了一步右移操作，则该层的纸带应“相对地左移”。此时，主工作带上的操作是：带头移动到$R_i$范围，在草稿带上记录下$2^i$个字符内容，分别覆盖掉$R_0,R_1\sim R</em>{i-1}$上$1,1\sim 2^{i-1}$个缓冲字符，使得右半区全部变成半满。对于左半区，相似的操作，不过是将$L_0\sim L</em>{i-1}$中的一半有效字符都放到$L_i$上，使得左半区变成全半满。这样便完成了整层左移（对应$\mathcal{M}_\alpha$右移）的操作。</p>
+<p>假设初始时某层右半区的有效符号全部在$R _i$分区，$R_i$是全满的，那么自然地$L_0\sim L _{i-1}$也是全满的。若此时$\mathcal{M} _{\alpha}$进行了一步右移操作，则该层的纸带应“相对地左移”。此时，主工作带上的操作是：带头移动到$R_i$范围，在草稿带上记录下$2^i$个字符内容，分别覆盖掉$R _0,R _1 \sim R _{i-1}$上$1,1\sim 2 ^{i-1}$个缓冲字符，使得右半区全部变成半满。对于左半区，相似的操作，不过是将$L _0 \sim L _{i-1}$中的一半有效字符都放到$L _i$上，使得左半区变成全半满。这样便完成了整层左移（对应$\mathcal{M} _\alpha$右移）的操作。</p>
 <h3 id="时间分析-1"><a href="#时间分析-1" class="headerlink" title="时间分析"></a>时间分析</h3><p>同样地，只用考虑主工作带上的移动情况。在主工作带上，一次移动，最远要跑到$R_i$或者$L_i$。而当跑过一次$R_i$或者$L_i$后，其他的分区都变成了半满，此时考虑最坏的情况，即$\mathcal{M}_\alpha$一直往一个方向移动，则在某一层上要把左或右分区$0\sim i-1$的有效符号搬空，至少需要$1+2+...+2 ^{i-1}&#x3D;2^i-1$步，再下一次移动才会涉及到$R_i$或者$L_i$。换句话说，两次最远距离的移动间隔至少为$2^i$步。</p>
 <p>$\mathcal{M}_\alpha$至多有$T(n)$步，$\mathcal{U}(\alpha,x)$对最长区间的操作不超过$T&#x2F;2^i$次，操作最长区间时耗时$O(c2^i)$，而区间的总个数$i$不会超过$\log T(n)$，故时间复杂度为：</p>
 <p>$$<br>\sum\limits _{i&#x3D;1} ^{\log T(n)}\frac{T(n)}{2^i}O(c2^i)&#x3D;cT(n)\sum\limits _{i&#x3D;1} ^{\log T(n)}O(1)&#x3D;cT(n)\log T(n)<br>$$</p>
@@ -235,8 +308,8 @@
       </categories>
       <tags>
         <tag>Deep Learning</tag>
-        <tag>GNN</tag>
         <tag>Dataset Distillation</tag>
+        <tag>GNN</tag>
       </tags>
   </entry>
   <entry>
@@ -288,11 +361,11 @@
         <category>Kernel Method</category>
       </categories>
       <tags>
+        <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
         <tag>Machine Learning</tag>
         <tag>GNN</tag>
-        <tag>Paper</tag>
         <tag>SVM</tag>
-        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -787,8 +860,8 @@
         <category>GNN</category>
       </categories>
       <tags>
-        <tag>GNN</tag>
         <tag>Paper</tag>
+        <tag>GNN</tag>
       </tags>
   </entry>
   <entry>
@@ -911,9 +984,9 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1271,8 +1344,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
       </tags>
   </entry>
   <entry>
@@ -1322,8 +1395,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
       </tags>
   </entry>
   <entry>
@@ -1412,8 +1485,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
       </tags>
   </entry>
   <entry>
@@ -4860,9 +4933,9 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -4965,9 +5038,9 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -5161,8 +5234,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
         <tag>Data Analysis</tag>
       </tags>
   </entry>
@@ -5194,8 +5267,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
         <tag>Machine Learning</tag>
         <tag>Supervised Learning</tag>
         <tag>Unsupervised Learning</tag>
@@ -5311,8 +5384,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
         <tag>Data Analysis</tag>
       </tags>
   </entry>
@@ -5770,8 +5843,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
