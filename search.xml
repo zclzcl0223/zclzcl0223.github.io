@@ -13,20 +13,20 @@
 </ol>
 <p>最初的基于Performance Matching的方法的精度和训练速度都不怎么样，但后来有学者将第一步中的神经网络替换为了核函数，反而使得Performance Matching超过了多数后来的方法。</p>
 <h2 id="Meta-Learning-Based-Methods"><a href="#Meta-Learning-Based-Methods" class="headerlink" title="Meta Learning Based Methods"></a>Meta Learning Based Methods</h2><p>该方法最先在Wang et al.的<a href="https://arxiv.org/pdf/1811.10959.pdf">DATASET DISTILLATION</a>中被提出，也是数据蒸馏开山立宗的方法，一般简称<em>DD</em>。<em>Meta Learning</em>也就是把<em>Synthetic Data</em>视作一个可学习的超参数。它获得<em>Synthetic Data</em>的思路就是上面所提到的，基本公式与流程如下：</p>
-<p>$$<br>\begin{align*}<br>    \theta ^{(t)}&amp;&#x3D;\theta ^{(t-1)}-\eta\nabla l(\mathcal{S};\theta ^{(t-1)})\tag{1}\<br>    \mathcal{S}^{(\tau)}&amp;&#x3D;\mathcal{S}^{(\tau-1)}-\eta&#39;\nabla L(\theta^{(T)},\mathcal{T})\tag{2}<br>\end{align*}<br>$$</p>
+<p>$$<br>\begin{align*}<br>    \theta ^{(t)}&amp;&#x3D;\theta ^{(t-1)}-\eta\nabla l(\mathcal{S};\theta ^{(t-1)})\tag{1}\\<br>    \mathcal{S}^{(\tau)}&amp;&#x3D;\mathcal{S}^{(\tau-1)}-\eta&#39;\nabla L(\theta^{(T)},\mathcal{T})\tag{2}<br>\end{align*}<br>$$</p>
 <p>其中，式$(1)$是内层循环，用于更新神经网络，式$(2)$是外层循环，用于更新<em>Synthetic Data</em>。</p>
 <p><img src="/2023/09/20/DDSummary/1.png" alt="1"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. Meta Learning Based Methods</center><br>
 
 <p>显而易见，这是一种<em>Bi-level Optimization Algorithm</em>：内层循环更新神经网络，外层循环更新<em>Synthetic Data</em>。而内层循环又需要用到<em>Synthetic Data</em>来产生梯度以训练网络，因而<em>Synthetic Data</em>的更新内在地会包含一个二阶导，这是极耗内存和时间的。而实际上蒸馏出来的数据效果也不是特别好。</p>
 <h2 id="Kernel-Ridge-Regression-Based-Methods"><a href="#Kernel-Ridge-Regression-Based-Methods" class="headerlink" title="Kernel Ridge Regression Based Methods"></a>Kernel Ridge Regression Based Methods</h2><p>该方法最初在Nguyen et al.的<a href="https://arxiv.org/pdf/2011.00050.pdf">DATASET META-LEARNING FROM KERNEL RIDGEREGRESSION</a>中被提出，一般简称<em>KIP</em>。这种方法是建立在<strong>无限宽的全连接层可以用特殊的核函数来拟合</strong>这一研究成果的。<em>KIP</em>用到的核函数被称为<em>Neural Tangent Kernel</em>（NTK）。它本质上也是<em>Meta Learning</em>，只不过使用核函数来替代了内层循环，并用<em>Kernel Ridge Regression</em>计算损失函数，使得原本的双层优化变为了一层：</p>
-<p>$$<br>\begin{align*}<br>    L(\mathcal{S},\mathcal{T})&amp;&#x3D;||Y <em>\mathcal{T}-K</em>{X _\mathcal{T}X <em>\mathcal{S}}(K</em>{X _\mathcal{S}X _\mathcal{S}}+\lambda I)^{-1}Y _\mathcal{S}||^2\<br>    \mathcal{S}^{(\tau)}&amp;&#x3D;\mathcal{S}^{(\tau-1)}-\eta&#39;\nabla L(\mathcal{S},\mathcal{T})<br>\end{align*}<br>$$</p>
+<p>$$<br>\begin{align*}<br>    L(\mathcal{S},\mathcal{T})&amp;&#x3D;||Y _\mathcal{T}-K _{X _\mathcal{T}X _\mathcal{S}}(K _{X _\mathcal{S}X _\mathcal{S}}+\lambda I)^{-1}Y _\mathcal{S}||^2\\<br>    \mathcal{S}^{(\tau)}&amp;&#x3D;\mathcal{S}^{(\tau-1)}-\eta&#39;\nabla L(\mathcal{S},\mathcal{T})<br>\end{align*}<br>$$</p>
 <p>当然，还有使用其他核函数的版本，但一般用的都是<em>NTK</em>，此处就不再赘述了。</p>
 <blockquote>
 <p>文中还提到了另一个脱胎于<em>Kernel Ridge Regression</em>的方法<a href="https://arxiv.org/pdf/2206.00719.pdf"><em>FRePo</em></a>，该方法在目前来说取得了最好的蒸馏效果。</p>
 </blockquote>
 <h1 id="Parameter-Matching"><a href="#Parameter-Matching" class="headerlink" title="Parameter Matching"></a>Parameter Matching</h1><p>Parameter Matching，参数匹配，这种方法的想法很直观：要想<em>Synthetic Data</em>取得和训练集相近的泛化精度，只要<em>Synthetic Data</em>训练出来的网路的参数（Parameter）和训练集训练出来的网络的参数相近即可。不过实际上并没有人会直接匹配参数，而是转而去匹配训练过程中的梯度，即让<em>Synthetic Data</em>产生和训练集相近的梯度，因而这类方法也可以叫<em>Gradient Matching</em>。</p>
-<h2 id="Single-Step-Parameter-Matching"><a href="#Single-Step-Parameter-Matching" class="headerlink" title="Single-Step Parameter Matching"></a>Single-Step Parameter Matching</h2><p>Single-Step Parameter Matching在<a href="https://arxiv.org/pdf/2006.05929.pdf">DATASET CONDENSATION WITH GRADIENT MATCHING. Zhao et al</a>中被提出，是最先被提出的基于参数匹配的数据蒸馏方法，一般称<em>DC</em>。其核心思想很简单：</p>
+<h2 id="Single-Step-Parameter-Matching"><a href="#Single-Step-Parameter-Matching" class="headerlink" title="Single-Step Parameter Matching"></a>Single-Step Parameter Matching</h2><p>Single-Step Parameter Matching在<a href="https://arxiv.org/pdf/2006.05929.pdf">DATASET CONDENSATION WITH GRADIENT MATCHING</a>中被Zhao et al.提出，是最先被提出的基于参数匹配的数据蒸馏方法，一般称<em>DC</em>。其核心思想很简单：</p>
 <ol>
 <li>训练集$\mathcal{T}$和<em>Synthetic Data</em> $\mathcal{S}$分别过一次神经网络；</li>
 <li>分别计算梯度；</li>
@@ -42,7 +42,7 @@
 <blockquote>
 <p>后续有不少学者在损失函数$Loss$上做文章，如不仅关心方向，还关心大小（欧式距离）等，此处就不再赘述了。</p>
 </blockquote>
-<h2 id="Multi-Step-Parameter-Matching"><a href="#Multi-Step-Parameter-Matching" class="headerlink" title="Multi-Step Parameter Matching"></a>Multi-Step Parameter Matching</h2><p>有一步梯度匹配，就会有多步梯度匹配。Multi-Step Parameter Matching最先在<a href="https://arxiv.org/pdf/2203.11932.pdf">Dataset Distillation by Matching Training Trajectories. Cazenavette et al</a>中被提出，一般简称<em>MTT</em>。在Kernel Ridge Regression Based Methods出现之前，这是表现最好的方法。其本质上是对Single-Step的一种优化，因为单步的匹配本质上是一种<em>贪心</em>的算法，它不一定能够得到全局的最优，而用训练集的多步梯度下降来匹配<em>Synthetic Data</em>的一步或两步梯度下降能够为更新<em>Synthetic Data</em>带来更加全局的、稳定的优化路径。方法示意图如下：</p>
+<h2 id="Multi-Step-Parameter-Matching"><a href="#Multi-Step-Parameter-Matching" class="headerlink" title="Multi-Step Parameter Matching"></a>Multi-Step Parameter Matching</h2><p>有一步梯度匹配，就会有多步梯度匹配。Multi-Step Parameter Matching最先在<a href="https://arxiv.org/pdf/2203.11932.pdf">Dataset Distillation by Matching Training Trajectories</a>中被Cazenavette et al.提出，一般简称<em>MTT</em>。在Kernel Ridge Regression Based Methods出现之前，这是表现最好的方法。其本质上是对Single-Step的一种优化，因为单步的匹配本质上是一种<em>贪心</em>的算法，它不一定能够得到全局的最优，而用训练集的多步梯度下降来匹配<em>Synthetic Data</em>的一步或两步梯度下降能够为更新<em>Synthetic Data</em>带来更加全局的、稳定的优化路径。方法示意图如下：</p>
 <p><img src="/2023/09/20/DDSummary/3.png" alt="3"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 3. Multi-Step Parameter Matching</center><br>
 
@@ -59,7 +59,7 @@
 <p><img src="/2023/09/20/DDSummary/4.png" alt="4"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 4. Single Layer Distribution Matching</center>
 
-<h2 id="Multi-Layer-Distribution-Matching"><a href="#Multi-Layer-Distribution-Matching" class="headerlink" title="Multi Layer Distribution Matching"></a>Multi Layer Distribution Matching</h2><p>该方法由Wang et al.在<a href="https://arxiv.org/pdf/2203.01531.pdf">Cafe: Learning to condense dataset by aligning features</a>上提出，一般简称<em>CAFE</em>。实际上是对<em>DM</em>的优化，主要的不同点在于：<em>DM</em>只对整个神经网络的输出向量进行匹配，而<em>CAFE</em>是对每一个隐藏层的输出向量进行匹配并相加。本质上差不多，没有跳出Distribution Matching的框架。</p>
+<h2 id="Multi-Layer-Distribution-Matching"><a href="#Multi-Layer-Distribution-Matching" class="headerlink" title="Multi Layer Distribution Matching"></a>Multi Layer Distribution Matching</h2><p>该方法由Wang et al.在<a href="https://arxiv.org/pdf/2203.01531.pdf">Cafe: Learning to condense dataset by aligning features</a>上提出，一般简称<em>CAFE</em>。实际上是对<em>DM</em>的优化，主要的不同点在于：<em>DM</em>只对整个神经网络的输出向量进行匹配，而<em>CAFE</em>则是对每一个隐藏层的输出向量进行匹配并相加。本质上差不多，没有跳出Distribution Matching的框架。</p>
 ]]></content>
       <categories>
         <category>Paper</category>
@@ -361,9 +361,9 @@
         <category>Kernel Method</category>
       </categories>
       <tags>
+        <tag>Machine Learning</tag>
         <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
-        <tag>Machine Learning</tag>
         <tag>GNN</tag>
         <tag>SVM</tag>
       </tags>
@@ -984,9 +984,9 @@
         <category>Tool</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>Deep Learning</tag>
         <tag>Tool</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -4933,9 +4933,9 @@
         <category>Tool</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>Deep Learning</tag>
         <tag>Tool</tag>
-        <tag>Python</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -5038,9 +5038,9 @@
         <category>Tool</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>Deep Learning</tag>
         <tag>Tool</tag>
-        <tag>Python</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -5234,8 +5234,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Python</tag>
+        <tag>Tool</tag>
         <tag>Data Analysis</tag>
       </tags>
   </entry>
@@ -5267,8 +5267,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Python</tag>
+        <tag>Tool</tag>
         <tag>Machine Learning</tag>
         <tag>Supervised Learning</tag>
         <tag>Unsupervised Learning</tag>
@@ -5384,8 +5384,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Python</tag>
+        <tag>Tool</tag>
         <tag>Data Analysis</tag>
       </tags>
   </entry>
@@ -5466,6 +5466,28 @@
       </tags>
   </entry>
   <entry>
+    <title>Zip: Make Aggregation Easier</title>
+    <url>/2023/05/06/ZipMakeLifeEasier/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>We can even use zip to generate a dictionary:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Gamma and Factorial</title>
     <url>/2023/05/05/GammaAndFactorial/</url>
     <content><![CDATA[<span id="more"></span>
@@ -5533,28 +5555,6 @@
       <tags>
         <tag>Python</tag>
         <tag>Configuration</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Zip: Make Aggregation Easier</title>
-    <url>/2023/05/06/ZipMakeLifeEasier/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>We can even use zip to generate a dictionary:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -5843,8 +5843,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Python</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
