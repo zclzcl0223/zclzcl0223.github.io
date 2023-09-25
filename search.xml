@@ -1,6 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MatrixTheory: Linear Space and Subspace</title>
+    <url>/2023/09/24/MatrixTheory1/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Linear-Space：线性空间"><a href="#Linear-Space：线性空间" class="headerlink" title="Linear Space：线性空间"></a>Linear Space：线性空间</h1><p>定义：设$V$为一个非空集合，$\mathbb{F}$为一个数域，$ V$中定义了一个封闭的加法运算“$+$”，对$\forall \alpha,\beta,\gamma\in V$,满足：</p>
+<ol>
+<li>结合律：$(\alpha+\beta)+\gamma&#x3D;\alpha+(\beta+\gamma)$</li>
+<li>交换律：$\alpha+\beta&#x3D;\beta+\alpha$</li>
+<li>存在<em>零向量</em>：$\alpha+0&#x3D;\alpha$</li>
+<li>存在<em>负向量</em>：$\alpha+(-\alpha)&#x3D;0$</li>
+</ol>
+<blockquote>
+<p>满足2、3、4的集合称<em>群</em>，满足1的<em>群</em>称<em>交换群</em>或<em>阿贝尔群</em>。</p>
+</blockquote>
+<p>定义了另一个封闭的数乘运算“$\cdot$”，对$\forall \alpha,\beta\in V,k _1,k _2\in\mathbb{F}$,满足：</p>
+<ol>
+<li>数乘的结合律：$k _1\cdot(k _2\cot\alpha)&#x3D;(k _1k _2)\cot\alpha$</li>
+<li>数乘关于向量加法的分配律：$k _1\cdot(\alpha+\beta)&#x3D;k _1\cdot\alpha+k _1\cdot\beta$</li>
+<li>数乘关于数的加法的分配律：$(k _1+k _2)\cot\alpha&#x3D;k _1\cot\alpha+k _2\cdot\alpha$</li>
+<li>数乘的初始条件：$1\cdot\alpha&#x3D;\alpha$</li>
+</ol>
+<p>则称$ V$为数域$\mathbb{F}$上的线性空间。</p>
+<blockquote>
+<p>若某个运算的结果仍处于运算子所在的集合，则该运算是封闭的。对不同的线性空间，其内部的基本元素可以是任意的，如标量、向量、矩阵、函数等。但是对于一个确定的线性空间，其内部的元素类型必须是一致的。</p>
+<p>加法和数乘只是一个符号或者说法，它们不一定是真的“$+$”和“$\cdot$”。</p>
+</blockquote>
+<h2 id="Proof-of-Linear-Space：线性空间的证明（重要）"><a href="#Proof-of-Linear-Space：线性空间的证明（重要）" class="headerlink" title="Proof of Linear Space：线性空间的证明（重要）"></a>Proof of Linear Space：线性空间的证明（重要）</h2><p>要想证明某个集合$V$是数域$\mathbb{F}$上的线性空间，只需要干两件事：</p>
+<ol>
+<li>证明加法和数乘运算的封闭性；</li>
+<li>证明上面的<strong>8</strong>项规则成立。</li>
+</ol>
+<h2 id="Properties-of-Linear-Space：线性空间的性质"><a href="#Properties-of-Linear-Space：线性空间的性质" class="headerlink" title="Properties of Linear Space：线性空间的性质"></a>Properties of Linear Space：线性空间的性质</h2><ol>
+<li><em>零向量</em>是唯一的。</li>
+<li><em>负向量</em>是唯一的。</li>
+<li>$\forall k\in\mathbb{F},\alpha\in V$，$k\cdot\alpha&#x3D;0$当且仅当$k&#x3D;0$或$\alpha&#x3D;0$。</li>
+</ol>
+<blockquote>
+<p>以上三个性质都可用反证法证明。</p>
+</blockquote>
+<h1 id="Subspace：子空间"><a href="#Subspace：子空间" class="headerlink" title="Subspace：子空间"></a>Subspace：子空间</h1><p>定义：$ V$是数域$\mathbb{F}$上的线性空间，$U\subset V$，若$U$对$V$上定义的两个运算仍构成$\mathbb{F}$上的线性空间，则称$U$为$V$的子空间。</p>
+<p>要判别一个集合$V$的子集$U$是否是原集合所构成线性空间的子空间，我们不再需要逐一地证明<strong>8</strong>项规则，只需要证明：</p>
+<ol>
+<li>加法和数乘运算在集合$U$中封闭；</li>
+<li>集合$U$不是空集。</li>
+</ol>
+<p>只要证明了上面这两项成立，则<strong>8</strong>项规则自动成立。这是因为：$U\subset V$，所以只要$U$中有元素，那么它们就自动地满足结合、交换律，<em>负向量</em>也相应地存在；若$U$的加法、数乘运算还是封闭的，那么由向量与其<em>负向量</em>的加法又可得出<em>零向量</em>存在，由此，<strong>8</strong>项规则成立。</p>
+<h1 id="Intersection-Space"><a href="#Intersection-Space" class="headerlink" title="Intersection Space"></a>Intersection Space</h1><p>对线性空间$V$的两个子空间$U$和$W$，若它们的交集非空，则其交空间$U\cap W$也是$V$的子空间。</p>
+<blockquote>
+<p>上述结论可以推广至$n$个子空间的交集。</p>
+</blockquote>
+<h1 id="Sum-Space"><a href="#Sum-Space" class="headerlink" title="Sum Space"></a>Sum Space</h1><p>对线性空间$V$的两个子空间$U$和$W$，它们的和空间定义为：</p>
+<p>$$<br>U+W&#x3D;\{\alpha+\beta;\alpha\in U,\beta\in W\}<br>$$</p>
+<p>和空间是$V$的子空间。</p>
+<blockquote>
+<p>上述结论可以推广至$n$个子空间的和。</p>
+<p>要注意把和空间和并空间$U\cup W$区分开来。并空间并不一定是$V$的子空间，只有两个空间之间存在包含关系时其并空间才是$V$的子空间。</p>
+</blockquote>
+<h1 id="Direct-Sum"><a href="#Direct-Sum" class="headerlink" title="Direct Sum"></a>Direct Sum</h1><p>定义：对线性空间$V$的两个子空间$U$和$W$，$\forall\alpha\in U+W$，即$\alpha&#x3D;\alpha _1+\alpha _2$，其中$\alpha _1\in U$，$\alpha _2 \in W$，若$\alpha _1$和$\alpha _2$唯一，则称这种和为<em>直和</em>，记作$U\oplus W$。</p>
+<p>直和也可以推广至$n$个子空间的和。我们有通用的方法来判定某个和是否是直和，但对于$n&#x3D;2$的情况，还有专门的特殊方法。</p>
+<h2 id="Judgment-of-Direct-Sum：-n-ge-2"><a href="#Judgment-of-Direct-Sum：-n-ge-2" class="headerlink" title="Judgment of Direct Sum：$n\ge 2$"></a>Judgment of Direct Sum：$n\ge 2$</h2><p>对线性空间$V$的$n$个子空间$U _1,...,U _n$，它们的和$(U _1+...+U _n)$是直和当且仅当其和空间的<em>零向量</em>只能表示为$0&#x3D;0+...+0$。</p>
+<blockquote>
+<ul>
+<li>必要性：<br>若$U _1+...+U _n$是直和$U _1\oplus ...\oplus U _n$，则其零<em>向量</em>的表示唯一。又$0&#x3D;0+...+0$，所以必要性显然成立。</li>
+<li>充分性：<br>不妨假设$\alpha\in U _1+...+U _n$，且$\alpha$存在两个表示$\alpha&#x3D;\alpha _1 + ... + \alpha _n$与$\alpha&#x3D;\beta _1 + .. + \beta _n$。令第二个表示取<em>逆向量</em>并与第一个表示相加，则有：<br>$$0&#x3D;(\alpha _1-\beta _1)+...+(\alpha _n - \beta _n)$$<br>因为$0$的表示唯一，所以：$\alpha _1 &#x3D;\beta _1,...,\alpha _n &#x3D;\beta _n$。证毕。</li>
+</ul>
+</blockquote>
+<h2 id="Judgment-of-Direct-Sum：-n-x3D-2"><a href="#Judgment-of-Direct-Sum：-n-x3D-2" class="headerlink" title="Judgment of Direct Sum：$n&#x3D; 2$"></a>Judgment of Direct Sum：$n&#x3D; 2$</h2><p>若$n&#x3D;2$，则有特殊的判别法：</p>
+<p>对线性空间$V$的$2$个子空间$U _1,U _2$，它们的和$(U _1 + U _2)$是直和当且仅当其它们的交空间只有<em>零向量</em>，即$U \cap W &#x3D; \{0\}$。</p>
+<blockquote>
+<ul>
+<li>必要性：<br>若$(U _1 + U _2)$是直和$U _1 \oplus U _2$，假设存在$\alpha \in U\cap W$，因为$U \cap W$是子空间，所以存在<em>负向量</em>使得：<br>$$0 &#x3D; \alpha + (-\alpha)$$<br>而$0&#x3D;0+0$，矛盾，所以必要性成立。</li>
+<li>充分性：<br>若$U \cap W &#x3D; \{0\}$，假设$\alpha \in U\cap W$存在两个不同的表示$\alpha &#x3D; \alpha _1 + \beta _1$和$\alpha &#x3D; \alpha _2 + \beta _2$，则：<br>$$\alpha _1 - \alpha _2 &#x3D; \beta _2 - \beta _1$$<br>易知$\alpha _1 - \alpha _2\in U$，$\beta _2 - \beta _1\in W$，所以它们是$U$和$W$的公共部分，而$U \cap W&#x3D;0$，所以只能$\alpha _1&#x3D;\alpha _2$，$\beta _1 &#x3D; \beta _2$。</li>
+</ul>
+</blockquote>
+<p>对$n&gt;2$，仅两两相交为<em>零向量</em>不行。</p>
+]]></content>
+      <categories>
+        <category>MATH6005: Matrix Theory</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ridge Regression</title>
+    <url>/2023/09/22/RidgeRegression/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="向量求导"><a href="#向量求导" class="headerlink" title="向量求导"></a>向量求导</h1><p>更确切地说是标量对向量求导，即，对：</p>
+<p>$$<br>x\in\mathbb{R}^n,f:\mathbb{R}^{n}\to \mathbb{R}<br>$$</p>
+<p>求标量$f(x)$对向量$x$的导数。与其一个个地展开，下列两个性质可以帮助我们快速地求解标量对向量的导数以及二阶导的海森矩阵：</p>
+<ol>
+<li>$\frac{\partial f(x)}{\partial v}&#x3D;v^T\nabla f(x)$</li>
+</ol>
+<blockquote>
+<p>其中$v$是方向向量，即$f(x)$对$v$的方向导数是$v^T\nabla f(x)$，这是很显然的，因为在二维的方向导数我们就有$\frac{\partial f}{\partial l}&#x3D;f _x\cos \alpha+f _y \cos \beta$。推广到$n$维，$\cos\alpha...\cos\gamma$就是$v$的各个元素。</p>
+<ul>
+<li>例1：求$f(x)&#x3D;x^T\mathbf{A}x$的梯度（$\mathbf{A}$是对称矩阵）：<br>$$<br>\begin{align*}<br>  \frac{\partial f(x)}{\partial v}&#x3D;v^T\nabla f(x)<br>  &amp;&#x3D;\lim_{t\to 0}\frac{f(x+tv)-f(x)}{t} \\<br>  &amp;&#x3D;\lim_{t\to 0}\frac{(x+tv)^T\mathbf{A}(x+tv)-x^T\mathbf{A}x}{t}\\<br>  &amp;&#x3D;\lim_{t\to 0}\frac{tv^t\mathbf{A}x+x^T\mathbf{A}tv}{t}\\<br>  &amp;&#x3D;v^t\mathbf{A}x+x^T\mathbf{A}v\\<br>  &amp;&#x3D;2v^t\mathbf{A}x<br>\end{align*}$$<br>由于$v$的任意性，$\nabla f(x)&#x3D;2\mathbf{A}x$</li>
+<li>例2：$f(\mathbf{\beta})&#x3D;||\mathbf{X}\beta-y||^2$，求其对$\mathbf{\beta}$的梯度。<br>$$<br>\begin{align*}<br>  \frac{\partial f(\beta)}{\partial v}&#x3D;v^T\nabla f(\beta)<br>  &amp;&#x3D;\lim_{t\to 0}\frac{f(\beta+tv)-f(\beta)}{t} \\<br>  &amp;&#x3D;\lim_{t\to 0}\frac{||\mathbf{X}(\beta+tv)-y||^2-||\mathbf{X}\beta-y||^2}{t}\\<br>  &amp;&#x3D;\lim_{t\to 0}\frac{||\mathbf{X}\beta-y+\mathbf{X}tv||^2-||\mathbf{X}\beta-y||^2}{t}\\<br>  &amp;&#x3D;\lim_{t\to 0}\frac{||\mathbf{X}tv||^2+2\sum((\mathbf{X}\beta-y)\odot (\mathbf{X}tv))}{t}\\<br>  &amp;&#x3D;2\sum((\mathbf{X}\beta-y)\odot (\mathbf{X}v))\\<br>  &amp;&#x3D;2(\mathbf{X}v)^T(\mathbf{X}\beta-y)\\<br>  &amp;&#x3D;2v^T\mathbf{X}^T(\mathbf{X}\beta-y)<br>\end{align*}$$<br>故$\nabla f(\beta)&#x3D;2\mathbf{X}^T(\mathbf{X}\beta-y)$</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li>$\nabla ^2f(x)\cdot v&#x3D;\frac{\partial \nabla f(x)}{\partial v}$</li>
+</ol>
+<blockquote>
+<p>其中$\nabla ^2f(x)$是海森矩阵$\mathbf{H}$，$\mathbb{H} _{[i,j]}&#x3D;\frac{\partial ^2 f}{\partial x _i \partial x_j}$。不难看出，$\nabla ^2f(x)\cdot v$是一个向量，其第$i$个元素为：$(\frac{\partial ^2 f}{\partial x _i \partial x_1},\frac{\partial ^2 f}{\partial x _i \partial x_2},...,\frac{\partial ^2 f}{\partial x _i \partial x_n})\cdot v$。</p>
+<p>若令$g(x _i)&#x3D;\frac{\partial f}{\partial x _i}$，则第$i$个元素实际上就是$\frac{\partial g(x _i)}{\partial v}$。</p>
+<p>继续推广，令$g(x)&#x3D;(\frac{\partial f}{\partial x _1},\frac{\partial f}{\partial x _2},...,\frac{\partial f}{\partial x _n})&#x3D;\nabla f(x)$，则有$\nabla ^2f(x)\cdot v&#x3D;\frac{\partial g(x)}{\partial v}&#x3D;\frac{\partial \nabla f(x)}{\partial v}$。</p>
+<ul>
+<li>例3：求$f(x)&#x3D;x^T\mathbf{A}x$的海森矩阵（$\mathbf{A}$是对称矩阵）：<br>$$<br>\begin{align*}<br>  \nabla ^2f(x)\cdot v&#x3D;\frac{\partial \nabla f(x)}{\partial v}<br>  &amp;&#x3D;\lim_{t\to 0}\frac{\nabla f(x+tv)-\nabla f(x)}{t} \\<br>  &amp;&#x3D;\lim_{t\to 0}\frac{2\mathbf{A}(x+tv)-2\mathbf{A}x}{t}\\<br>  &amp;&#x3D;\lim_{t\to 0}\frac{2\mathbf{A}tv}{t}\\<br>  &amp;&#x3D;2\mathbf{A}v<br>\end{align*}<br>$$<br>由于$v$的任意性，$\nabla  ^2 f(x)&#x3D;2\mathbf{A}$</li>
+</ul>
+</blockquote>
+<h1 id="矩阵求导"><a href="#矩阵求导" class="headerlink" title="矩阵求导"></a>矩阵求导</h1><p>前面提到的向量求导的性质可以很容易地推广到矩阵求导（标量对矩阵求导），对：</p>
+<p>$$<br>A\in\mathbb{R}^{n\times m},f:\mathbb{R}^{n\times m}\to \mathbb{R}<br>$$</p>
+<p>有：</p>
+<ol>
+<li>$\frac{\partial f(\mathbf{A})}{\partial D}&#x3D;&lt; D,\nabla f(\mathbf{A}) &gt;$</li>
+<li>$\nabla ^2f(\mathbf{A})\cdot D&#x3D;\frac{\partial \nabla f(\mathbf{A})}{\partial D}$</li>
+</ol>
+<p>其中，$D$是一个矩阵，$D\in \mathbb{R} ^{n\times m}$。由于内积是各元素相乘求和，故实际上$v^T\nabla f(x)$也可以表示为$&lt; v,  \nabla f(x)&gt;$。性质$1$是显然的，只要把$D$拉伸为一个长$n\times m$的方向向量即可。</p>
+<blockquote>
+<ul>
+<li>例4：$f(\mathbf{A})&#x3D;\text{tr}(\mathbf{AB})$，求其对$\mathbf{A}$的梯度。<br>$$<br>\begin{align*}<br>  \frac{\partial f(\mathbf{A})}{\partial D}&#x3D;&lt; D,\nabla f(\mathbf{A}) &gt;<br>  &amp;&#x3D;\lim_{t\to 0}\frac{f(\mathbf{A}+tD)-f(\mathbf{A})}{t} \\<br>  &amp;&#x3D;\lim_{t\to 0}\frac{\text{tr}[(\mathbf{A}+tD)\mathbf{B}]-\text{tr}(\mathbf{AB})}{t}\\<br>  &amp;&#x3D;\lim_{t\to 0}\frac{\text{tr}(tD\mathbf{B})}{t}\\<br>  &amp;&#x3D;\text{tr}(D\mathbf{B})\\<br>  &amp;&#x3D;&lt; D,\mathbf{B}^T &gt;<br>\end{align*}<br>$$<br>故$\nabla f(\mathbf{A})&#x3D;\mathbf{B}^T$。最后的等式成立因为$\text{tr}(D\mathbf{B})&#x3D;&lt;D_1,{\mathbf{B} ^T} _1&gt;+...+&lt;D_m,{\mathbf{B} ^T} _m&gt; &#x3D;&lt; D,\mathbf{B}^T &gt;$，其中$D_i$表$D$的第$i$个行向量。</li>
+</ul>
+</blockquote>
+<h1 id="Ridge-Regression：岭回归"><a href="#Ridge-Regression：岭回归" class="headerlink" title="Ridge Regression：岭回归"></a>Ridge Regression：岭回归</h1><p>岭回归（英文名：ridge regression, Tikhonov regularization）是一种专用于共线性数据分析的有偏估计回归方法，实质上是一种改良的最小二乘估计法，通过放弃最小二乘法的无偏性，以损失部分信息、降低精度为代价获得回归系数更为符合实际、更可靠的回归方法，对病态数据的拟合要强于最小二乘法。</p>
+<blockquote>
+<p>共线性数据是指一些相互间存在比例关系的数据，这些数据的存在会导致输入参数$\mathbf{X}^T\mathbf{X}$的行列式为0，进而导致其不可逆。</p>
+</blockquote>
+<p>例2中$f(\mathbf{\beta})&#x3D;||\mathbf{X}\beta-y||^2$实际上就是对分类问题的最小二乘估计函数。令其对$\beta$的梯度为0，我们就可以得到参数$\beta$的精确值：</p>
+<p>$$<br>\begin{align*}<br>\nabla f(\beta)&#x3D;2&amp;\mathbf{X}^T(\mathbf{X}\beta-y)&#x3D;0\\\<br>&amp;\downarrow\\<br>\hat{\beta}&#x3D;&amp;(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^Ty<br>\end{align*}<br>$$</p>
+<p>但是，由于上面提到的问题，$(\mathbf{X}^T\mathbf{X})^{-1}$不一定存在，因而上述式子也就不一定成立，且仅仅一阶导为0我们不能判定此时的$\beta$就是极小值点。岭回归就是为了解决这一问题而提出的。对岭回归，有两种合理的解释，其中第一种从特征值的角度出发，第二种从惩罚项（正则）的角度出发。两种解释的结果是一样的，但是第二种解释与神经网络中的正则项联系更加紧密。</p>
+<h2 id="特征值角度"><a href="#特征值角度" class="headerlink" title="特征值角度"></a>特征值角度</h2><p>由：</p>
+<p>$$<br>y^T\mathbf{X}^T\mathbf{X}y&#x3D;(\mathbf{X}y)^T(\mathbf{X}y)\ge 0<br>$$</p>
+<p>可知，$\mathbf{X}^T\mathbf{X}$是半正定矩阵，也就是说，其特征值$\lambda _i \ge 0$。要让$\mathbf{X}^T\mathbf{X}$可逆，我们只要使得其特征值$\lambda _i &gt; 0$即可。故，我们将$\hat{\beta}$更改为：</p>
+<p>$$<br>\hat{\beta}(k)&#x3D;(\mathbf{X}^T\mathbf{X}+k\mathbf{I})^{-1}\mathbf{X}^Ty,\quad k&gt;0\tag{1}<br>$$</p>
+<p>由此，我们可以确保$\mathbf{X}^T\mathbf{X}$是正定矩阵，也就可以保证其可逆。</p>
+<h2 id="惩罚项角度"><a href="#惩罚项角度" class="headerlink" title="惩罚项角度"></a>惩罚项角度</h2><p>回到最小二乘函数$f(\mathbf{\beta})&#x3D;||\mathbf{X}\beta-y||^2$，我们想从中确定一个$\hat{\beta}$，使得$f(\beta)$取最小值，即：</p>
+<p>$$<br>\hat{\beta}&#x3D;\text{arg}\min _{\beta}||\mathbf{X}\beta-y||^2<br>$$</p>
+<p>使用原始式子我们可以得到：</p>
+<p>$$<br>\hat{\beta}&#x3D;(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^Ty<br>$$</p>
+<p>而有些极端情况下$\mathbf{X}^T\mathbf{X}$的行列式即便不为0也是一个接近0的极小值。这将导致$(\mathbf{X}^T\mathbf{X})^{-1}$的行列式极大、内部元素的差异大，而这将间接地导致$\beta$数值的不稳定（这里面的关系不太懂）。为了限制$\beta$的波动，使其更稳定，我们需要对$\beta$的取值进行限制，即对其过大的取值进行一定程度的惩罚：</p>
+<p>$$<br>\hat{\beta}&#x3D;\text{arg}\min _{\beta}||\mathbf{X}\beta-y||^2+\lambda ||\beta||^2\tag{2}<br>$$</p>
+<p>式$(2)$中新加入的项就是惩罚项，实际上就是深度学习中的L2正则项，对上式求导并令梯度为0可得：</p>
+<p>$$<br>\begin{align*}<br>2\mathbf{X}^T(\mathbf{X}\beta-y)&amp;+2\lambda \beta&#x3D;0\\<br>\downarrow&amp;\\<br>\hat{\beta}&#x3D;(\mathbf{X}^T\mathbf{X}+&amp;\lambda\mathbf{I}) ^{-1}\mathbf{X}^Ty\tag{3}<br>\end{align*}<br>$$</p>
+<p>式$(3)$与式$(1)$完全一致。</p>
+<h2 id="极小值验证"><a href="#极小值验证" class="headerlink" title="极小值验证"></a>极小值验证</h2><p>进一步地，我们要验证$\hat{\beta}$就是极小值点，即我们要证明：</p>
+<p>$$<br>\nabla ^2f(\beta)&#x3D;\nabla ^2 (||\mathbf{X}\beta-y||^2+\lambda ||\beta||^2)<br>$$</p>
+<p>是正定矩阵。这可以由向量求导的性质2得出：</p>
+<p>$$<br>\begin{align*}<br>    \nabla ^2f(\beta)\cdot v&#x3D;\frac{\partial \nabla f(x)}{\partial v}<br>    &amp;&#x3D;\frac{\partial 2\mathbf{X}^T(\mathbf{X}\beta-y)+2\lambda \beta}{\partial v} \\<br>    &amp;&#x3D;\lim_{t\to 0}\frac{2\mathbf{X}^T(\mathbf{X}(\beta+tv)-y)+2\lambda (\beta+tv)-2\mathbf{X}^T(\mathbf{X}\beta-y)-2\lambda \beta}{t}\\<br>    &amp;&#x3D;\lim_{t\to 0}\frac{2\mathbf{X}^T\mathbf{X}tv+2\lambda tv}{t}\\<br>    &amp;&#x3D;2\mathbf{X}^T\mathbf{X}v+2\lambda v\\<br>    &amp;&#x3D;(2\mathbf{X}^T\mathbf{X}+2\lambda\mathbf{I})v<br>\end{align*}<br>$$</p>
+<p>即$\nabla ^2f(\beta)&#x3D;2\mathbf{X}^T\mathbf{X}+2\lambda\mathbf{I}$，易知这是正定矩阵。所以$\hat{\beta}$就是我们要求的极小值点。</p>
+<h2 id="岭回归的收缩性"><a href="#岭回归的收缩性" class="headerlink" title="岭回归的收缩性"></a>岭回归的收缩性</h2><p>有定理能够证明：</p>
+<p>$$<br>||\hat{\beta}(k)||\le ||\hat{\beta}||<br>$$</p>
+<p>是严格成立的。事实上，岭回归的作用在于：保留蕴含信息量多的维度（参数），而剔除包含信息量较少的维度（参数）。这表现为某些不重要的参数$\beta _i$的数值接近0。</p>
+<h1 id="LASSO"><a href="#LASSO" class="headerlink" title="LASSO"></a>LASSO</h1><p>LASSO采用的惩罚项是L1正则，即$\lambda \sum _{i&#x3D;1} ^{p}|\beta _i|$。惩罚项的不同使得LASSO表现出与岭回归不同的性质，如：</p>
+<ul>
+<li>LASSO会使得一些参数项变为0，让原参数向量变<strong>稀疏</strong>，而岭回归只会让参数向量收缩，并让一些接近0。</li>
+</ul>
+<p>它们之间的区别可以用下面的图表示：</p>
+<p><img src="/2023/09/22/RidgeRegression/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Ridge Regression</center>
+
+<p><img src="/2023/09/22/RidgeRegression/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. LASSO</center><br>
+
+<p>其中，上图为岭回归中的参数随$\lambda$的变化，下图为LASSO。横坐标均为$\lambda$，负轴方向为$\lambda$增大的方向。之所以会有这些的区别，是因为：若把岭回归和LASSO的最小二乘函数都视作拉格朗日函数，并将其惩罚项视作对$\beta$的约束条件，则其求解可转化为在约束条件下求$||\mathbf{X}\beta-y||^2$的最小值。最终的取值点表现为约束边界与$||\mathbf{X}\beta-y||^2$所确定等高线的切点：</p>
+<p><img src="/2023/09/22/RidgeRegression/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Lagrange</center><br>
+
+<p>而由于LASSO约束边界的不光滑性，切点更容易落在让某个参数分量为0的尖点上。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://www.bilibili.com/video/BV1Bg4y1i76R?p=3&vd_source=2d980a0365f3ebea674b32924d8a4ce8">手把手教会机器学习与数据挖掘理论：岭回归（Ridge Regression）与LASSO</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Computational Complexity: Time Complexity 3</title>
+    <url>/2023/09/22/ComputationalComplexityTimecom3/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Time-Hierarchy-Theorem：时间谱系理论"><a href="#Time-Hierarchy-Theorem：时间谱系理论" class="headerlink" title="Time Hierarchy Theorem：时间谱系理论"></a>Time Hierarchy Theorem：时间谱系理论</h1><p>*理论1：如果$f$和$g$都是时间可构造的，且$f(n)\log f(n)&#x3D;o(g(n))$，则$\text{TIME}(f(n))\subsetneq\text{TIME}(g(n))$*。</p>
+<blockquote>
+<p>小o表示算法运行时间的<strong>严格上限</strong>，$f&#x3D;o(g)$表示$f$运行的上限是$g$，换句话说，$f$的运行时间比$g$增长得慢。</p>
+</blockquote>
+<p>该理论表明若$g$的运行时间增长快于$f\log f$运行时间的增长，则$f(n)$时间内能接受的语言是$g(n)$时间内能接受语言的子集。该理论的证明如下：</p>
+<blockquote>
+<p>要证明$\text{TIME}(f(n))\subsetneq\text{TIME}(g(n))$，只要反证$\text{TIME}(g(n))\subsetneq\text{TIME}(f(n))$不成立即可。也就是说只要找到一个语言L，$L\in\text{TIME}(g(n))$，但是$L\notin\text{TIME}(f(n))$即可。</p>
+<p>假设存在TM $\mathbb{D}$，它接受语言L，并且：</p>
+<ul>
+<li>对于输入$x$，$\mathbb{D}$模拟$\mathbb{M} _x(x)$运行$g(|x|)$步（这是可行的，因为$g$是时间可构造的）；</li>
+<li>如果模拟可以在$g(|x|)$步内完成（即停机），则$\mathbb{D}(x)$输出$\overline{\mathbb{M} _x(x)}$，否则输出$0$（$1$也行，不影响）。<br>按照这样定义，$\mathbb{D}$会在$g(|x|)$停机，因此$L\in\text{TIME}(g(n))$。</li>
+</ul>
+<p>此时再假设$L\in\text{TIME}(f(n))$，且图灵机$\mathbb{M} _z$在至多$2f(n)$内接受L。由于图灵机编码的任意性，取足够长的$z$，使得$f(|z|)\log f(|z|)&lt; g(|z|)$严格成立，则会出现：</p>
+<ul>
+<li>$\mathbb{D}(z)&#x3D;\mathbb{M} _z(z)$，因为$\mathbb{D}$和$\mathbb{M} _z$都接受L；</li>
+<li>$\mathbb{D}(z)&#x3D;\overline{\mathbb{M} _z(z)}$，因为$\mathbb{M} _z(z)$可被通用图灵机在$O(f(|z|)\log f(|z|))$的时间内模拟，而$\mathbb{D}(x)$会模拟$\mathbb{M} _z (z)$进行$g(|x|)$步，又$f(|z|)\log f(|z|)&lt; g(|z|)$严格成立，所以在$\mathbb{D}(x)$模拟$\mathbb{M} _z (z)$进行的$g(|x|)$步内，$\mathbb{D}(x)$已经停机，即$\mathbb{D}(z)&#x3D;\overline{\mathbb{M} _z(z)}$。</li>
+</ul>
+<p>上述结论相互矛盾，原假设不成立，$L\notin\text{TIME}(f(n))$。证毕。</p>
+</blockquote>
+<p>上面的证明用到了对角线方法。</p>
+<p><img src="/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+      <categories>
+        <category>CS7313: Computational Complexity</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Computational Complexity: Time Complexity 2</title>
+    <url>/2023/09/21/ComputationalComplexityTimecom2/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Diagonal-Method：对角线方法"><a href="#Diagonal-Method：对角线方法" class="headerlink" title="Diagonal Method：对角线方法"></a>Diagonal Method：对角线方法</h1><p>通用图灵机$\mathbb{U}(\alpha, x)$能够模拟$\mathbb{M} _\alpha (x)$的计算，因此，我们可以枚举每一个$\alpha$和$x$的编码，并制定如下所示的表：</p>
+<p><img src="/2023/09/21/ComputationalComplexityTimecom2/1.jpg" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. UTM</center><br>
+
+<p>在上表中，每列从上到下枚举TM的编码 ，每行从左到右枚举输入$x$，使用UTM可以计算出每一格内的值。右表是一个假想的结果，其中$\uparrow$表示死循环。而这个表中，对角线上的值是一个特殊值，因为在对角线上，$\alpha&#x3D;x$，即UTM计算的是$\mathbb{M} _\alpha(\alpha)$。利用对角线做反证法，可以证明很多有趣的结论，这就是所谓的对角线方法（Diagonal Method）。</p>
+<blockquote>
+<p>通俗地来说，对角线方法就是用自己来推翻自己。</p>
+</blockquote>
+<p>下面给出了两个应用对角线方法的案例。</p>
+<h2 id="UC：不可计算函数"><a href="#UC：不可计算函数" class="headerlink" title="UC：不可计算函数"></a>UC：不可计算函数</h2><p>定义函数：</p>
+<p>$$<br>\text{UC}(\alpha) &#x3D;<br>\begin{cases}<br>    0,&amp; \text{if}\space \mathbb{M} _{\alpha} (\alpha)&#x3D;1\\<br>    1,&amp; \text{otherwise}<br>\end{cases}<br>$$</p>
+<p>利用对角线方法可以证明上述函数是不可解的，也就是说没有图灵机能够求解该函数：</p>
+<blockquote>
+<p>假设存在图灵机$\mathbb{W}$能够计算UC，那么我们有：<br>$$<br>UC(\alpha) &#x3D; \mathbb{M} _{\llcorner \mathbb{W} \lrcorner}(\alpha)<br>$$<br>若：<br>$$<br>\mathbb{M} _{\llcorner \mathbb{W} \lrcorner}(\llcorner \mathbb{W} \lrcorner)&#x3D;1<br>$$<br>则：<br>$$<br>UC(\llcorner \mathbb{W} \lrcorner)&#x3D;\mathbb{M} _{\llcorner \mathbb{W} \lrcorner}(\llcorner \mathbb{W} \lrcorner)&#x3D;0<br>$$<br>同理，若$\mathbb{M} _{\llcorner \mathbb{W} \lrcorner}(\llcorner \mathbb{W} \lrcorner)&#x3D;0$，我们也会推出$\mathbb{M} _{\llcorner \mathbb{W} \lrcorner}(\llcorner \mathbb{W} \lrcorner)&#x3D;1$。两者互相矛盾。<br>因此，不存在这么一个图灵机，也就是说UC是不可计算的。</p>
+</blockquote>
+<h2 id="HALT：停机问题"><a href="#HALT：停机问题" class="headerlink" title="HALT：停机问题"></a>HALT：停机问题</h2><p>HALT，停机问题是这样定义的：</p>
+<p>$$<br>\text{HALT}(\alpha,x) &#x3D;<br>\begin{cases}<br>    1,&amp; \text{if}\space \mathbb{M} _{\alpha} (x)\space \text{terminates}\\<br>    0,&amp; \text{otherwise}<br>\end{cases}<br>$$</p>
+<p>停机问题可以用UC函数来证明：</p>
+<blockquote>
+<p>假设存在$\mathbb{M} _H$计算了停机问题，则对于任意的$\alpha$都有：<br>$$<br>\mathbb{M} _H(\alpha,\alpha)&#x3D;\text{HALT}(\alpha,\alpha) &#x3D;<br>\begin{cases}<br>    1,&amp; \text{if}\space \mathbb{M} _{\alpha} (\alpha)\space \text{terminates}\\<br>    0,&amp; \text{otherwise}<br>\end{cases}<br>$$<br>于是我们可以定义一个新的函数$\text{MU}(\alpha)$：<br>$$<br>\text{MU}(\alpha) &#x3D;<br>\begin{cases}<br>    0,&amp; \text{if}\space \mathbb{M} _{H} (\alpha,\alpha)&#x3D;1\space\&amp;\space\mathbb{M} _{\alpha} (\alpha)&#x3D;1\\<br>    1,&amp; \text{otherwise}<br>\end{cases}<br>$$<br>在上述函数的定义下，如果$\mathbb{M} _{\alpha} (\alpha)$停机了，那么其值要么是$1$，要么是$0$，其中$1$会使得$\text{MU}(\alpha)$输出$0$；如不停机，则$\text{MU}(\alpha)$会和$\mathbb{M} _{\alpha} (\alpha)$值为$1$一样输出$1$。换句话说，条件$ \mathbb{M} _{H} (\alpha,\alpha)&#x3D;1$在$\text{MU}$中并不发挥作用，只要$\mathbb{M} _{\alpha} (\alpha)&#x3D;1$，$\text{MU}(\alpha)$就只会输出$1$。于是：<br>$$<br>\text{MU}(\alpha) &#x3D;\text{UC}(\alpha)<br>$$<br>而UC是不可计算的，所以上面的所有证明都不成立，所以不存在这么一个图灵机计算了停机问题。</p>
+</blockquote>
+<p>停机问题不可计算说明，对于任意的图灵机$\mathbb{M} _\alpha$和输入$x$，在实际运行之前我们无法预先知道$\mathbb{M} _\alpha(x)$是否能停机。</p>
+<blockquote>
+<p>实际上上面的证明还用了归约法（Reduction Method），即通过放宽判定条件，使得某一问题$q$成为另一个问题$Q$的子问题。此时我们若证明$Q$不可计算，那么$q$也就相应地无法计算了。</p>
+</blockquote>
+<h1 id="Speedup-Theorem：加速理论"><a href="#Speedup-Theorem：加速理论" class="headerlink" title="Speedup Theorem：加速理论"></a>Speedup Theorem：加速理论</h1><p>加速理论解决的是对于某个问题，是否存在最快的算法的问题。直觉告诉我们，这个答案是否定的，因为只要我们有足够的空间，我们就可以空间换时间，通过“打表”把每一种输入的答案都列举出来，那么对于所有的问题我们都可以用<strong>常量的时间</strong>解决。而实际上也正是如此，没有最快的算法，只有更快的算法（理论上）。</p>
+<blockquote>
+<p><em>Blum’s Speedup Theorem</em>是关于此的很强的一个结论，但它的具体内容和证明都比较复杂，课程中没有涉及，本文也只记录关于线性加速理论的内容。</p>
+</blockquote>
+<h2 id="Linear-Speedup-Theorem：线性加速理论"><a href="#Linear-Speedup-Theorem：线性加速理论" class="headerlink" title="Linear Speedup Theorem：线性加速理论"></a>Linear Speedup Theorem：线性加速理论</h2><p>Hartmanis和Stearns于1965年证明了线性加速理论：</p>
+<p><em>Linear Speedup Theorem：设图灵机$\mathbb{M}$在$T(n)$步内计算了$f$，任取$\epsilon &gt; 0$，总存在图灵机$\mathbb{M}&#39;$，它能在$\epsilon T(n)+n+2$步内计算$f$。</em></p>
+<p>这里用到的方法是“压缩带子”，即通过编码，使得$\mathbb{M}&#39;$上的一格能够记录$\mathbb{M}$上$m$格的内容，这样$\mathbb{M}&#39;$的一步就相当于$\mathbb{M}$上的$m$步，其证明如下：</p>
+<blockquote>
+<p>对于$\mathbb{M}(\Gamma,Q,\delta)$，用一个新的符号集$\Gamma &#39;$为$\Gamma$中的$m$个字符用$1$个字符编码。不难看出，这样的符号及$\Gamma &#39;$是巨大的，其字符种类至少为$|\Gamma &#39;| &gt; |\Gamma|^m$。我们用$\Gamma &#39;$构建一个新的图灵机$\mathbb{M}&#39;(\Gamma &#39;,Q&#39;,\delta &#39;)$，对该图灵机：</p>
+<ul>
+<li>使用与$\mathbb{M}$相同的带子数；</li>
+<li>对于$\mathbb{M}$纸带上长度为$n$的编码，$\mathbb{M}&#39;$可以在$n+2$步内将其转换为$n&#x2F;m$长的编码；（多出的2步是起始符和终止）</li>
+<li>$\mathbb{M}&#39;$在$n&#x2F;m$步可以将所有的带头回归到原点；</li>
+<li>$\mathbb{M}&#39;$纸带上的任何一个格子对应着$\mathbb{M}$上的$m$个格子。某一时刻$\mathbb{M}$在$m$个格子内<strong>任意一个格子</strong>上的*$m$步*在$\mathbb{M}&#39;$上至多会涉及到<strong>3</strong>个格子，因此$\mathbb{M}&#39;$只需要记录下这三个格子的值、做一步写入操作、移动一次带头，至多<strong>5</strong>步就可以模拟$\mathbb{M}$上的$m$步。<br>因此，总时间：<br>$$<br>n+2+\frac{n}{m}+5\frac{T(n)}{m}\ge n+2 + \frac{6}{m}T(n)<br>$$<br>我们可以取$\epsilon&#x3D;6&#x2F;m$，$m&#x3D;6&#x2F;\epsilon$，证毕。</li>
+</ul>
+</blockquote>
+<p><img src="/2023/09/21/ComputationalComplexityTimecom2/2.jpg" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. 1 -> m</center>
+
+<h1 id="Time-Complexity-Class：时间复杂性类"><a href="#Time-Complexity-Class：时间复杂性类" class="headerlink" title="Time Complexity Class：时间复杂性类"></a>Time Complexity Class：时间复杂性类</h1><p>对于语言L（即一个判定问题集合），如果存在图灵机$\mathbb{M}$和常数$c&gt;0$，使得$\mathbb{M}$能在$cT(n)$的时间内判定L，那么我们说$L\subseteq \text{TIME}(T(n))$。换句话说，$\text{TIME}(T(n))$中的语言都具有$O(T(n))$的算法。</p>
+<p>复杂性类（Complexity Class）是一些具有类似复杂度的问题的集合，或者说是一些<strong>具有类似复杂度解</strong>的问题的集合，因为对于大多数的问题，我们都能用简单或复杂的方法将其解出来。换句话说，我们不能定义问题的复杂性，我们只能定义<strong>解的复杂性</strong>。显然，上面提到的$\text{TIME}(T(n))$不是一个复杂性类，因为它是和模型相关的。比如，对于回文问题，我们可以在$O(n)$的时间内解决，此时回文问题在$\text{TIME}(n)$中，但我们也可以用$O(n^2)$的方法解决，此时回文问题在$\text{TIME}(n^2)$中。</p>
+<p>下面给出一些常见的时间复杂性类，这里面就有之前提到的P、NP问题。</p>
+<h2 id="Complexity-Class-P"><a href="#Complexity-Class-P" class="headerlink" title="Complexity Class P"></a>Complexity Class P</h2><p>$\text{P}$类，即多项式类，所有具有多项式时间算法的问题都属于这一类：</p>
+<p>$$<br>\text{P}&#x3D;\bigcup _{c\ge 1}\text{TIME}(n^c)<br>$$</p>
+<p>在承认强CT论题的情况下，$\text{P}$类是与模型无关的，也就是说它是一个复杂性类。</p>
+<blockquote>
+<p>强CT论题（Strong Church-Turing Thesis）：所有物理上可实现的机器都能在多项式的时间复杂度内被图灵机模拟。</p>
+</blockquote>
+<h2 id="Complexity-Class-EXP"><a href="#Complexity-Class-EXP" class="headerlink" title="Complexity Class EXP"></a>Complexity Class EXP</h2><p>$\text{EXP}$类，即指数时间复杂性类：</p>
+<p>$$<br>\text{EXP}&#x3D;\bigcup _{c\ge 1}\text{TIME}(2^{n^c})<br>$$</p>
+<p>底数是无关紧要的，既可以是2，也可以是任何数字。出于规定，$\text{P}\subseteq\text{EXP}$，所以$n^c$不可以写成$cn$，否则集合内部的封闭性复合运算将不被满足。如：$n^3\in\text{P}$，所以$n^3\in\text{EXP}$，$2^n\in\text{EXP}$，那么将$n^3$和$2^n$复合得到的$2 ^{n^3}$理应也在$\text{EXP}$中。若将$n^c$写成$cn$则$2 ^{n^3}$将不被包含在$\text{EXP}$中，这显然是错误的。</p>
+<h1 id="Nondeterministic-Turing-Machine：非确定图灵机"><a href="#Nondeterministic-Turing-Machine：非确定图灵机" class="headerlink" title="Nondeterministic Turing Machine：非确定图灵机"></a>Nondeterministic Turing Machine：非确定图灵机</h1><p>非确定性图灵机（Nondeterministic Turing Machine）具有两个迁移函数$\delta _1,\delta _2$，它在运行过程中会<strong>随机</strong>地选择一个迁移函数来执行，并产生相应的结果。不难看出，NDTM的计算路径可以被视为一棵二叉树，叶子结点表示某一条会停机并产生结果的执行路径，有些路径可能无限长：</p>
+<p><img src="/2023/09/21/ComputationalComplexityTimecom2/3.jpg" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. DTM and NDTM</center>
+
+<p>上述的非确定图灵机在物理上是无法实现的，而之前所提到的物理上可实现的图灵机都称为确定图灵机（Deterministic Turing Machine，DTM）。</p>
+<h2 id="Guessing：猜测"><a href="#Guessing：猜测" class="headerlink" title="Guessing：猜测"></a>Guessing：猜测</h2><p>NDTM通常被用来解决存在性问题。事实上，对于输入$x$，NDTM的每一条计算路径都在试图构造或者<strong>猜测</strong>一个对$x$存在性的证明，若构造&#x2F;猜测成功，则NDTM接受$x$，否则拒绝$x$。对于某一个决策问题或者语言，在NDTM中有如下规定：</p>
+<ul>
+<li>对于一台NDTM$\mathbb{N}$，当输入为$x$时，若$\mathbb{N}(x)$存在<strong>一条</strong>计算路径中止于接受格局（即$\mathbb{N}(x)&#x3D;1$），则称$\mathbb{N}$接受$x$；否则若所有的计算路径都失败，则称$\mathbb{N}$拒绝$x$。</li>
+<li>对于一语言L，如果$x\in L$当且仅当$\mathbb{N}$接受$x$，则称$\mathbb{N}$接受L。</li>
+</ul>
+<blockquote>
+<p>这实际上就是<strong>枚举</strong>，其中，有些解路径可能很短，能达到<strong>多项式的时间复杂度</strong>，而有些解路径可能很长，需要指数的时间复杂度。</p>
+</blockquote>
+<h2 id="Complexity-Class-NP-amp-NEXP"><a href="#Complexity-Class-NP-amp-NEXP" class="headerlink" title="Complexity Class NP &amp; NEXP"></a>Complexity Class NP &amp; NEXP</h2><p>类似于DTM，对于NDTM，我们也可以定义时间复杂性类：对于语言L（即一个判定问题集合），如果存在非确定图灵机$\mathbb{N}$和常数$c&gt;0$，使得$\mathbb{N}$能在$cT(n)$的时间内判定L，那么我们说$L\subseteq \text{NTIME}(T(n))$。换句话说，$\text{NTIME}(T(n))$中的语言都具有$O(T(n))$的算法。</p>
+<p>同样地，定义非确定多项式（Non-deterministic Polynomial）复杂性类$NP$：</p>
+<p>$$<br>\text{NP}&#x3D;\bigcup _{c\ge 1}\text{NTIME}(n^c)<br>$$</p>
+<p>非确定指数复杂性类$NEXP$：</p>
+<p>$$<br>\text{NEXP}&#x3D;\bigcup _{c\ge 1}\text{NTIME}(2^{n^c})<br>$$</p>
+<p>它们与DTM的关系为：</p>
+<p>$$<br>\text{P}\subseteq\text{NP}\subseteq\text{EXP}\subseteq\text{NEXP}<br>$$</p>
+<ul>
+<li>第一、三层包含是因为DTM是NDTM的特例，即$\delta_1&#x3D;\delta_2$；</li>
+<li>第二层包含是因为DTM可以用指数的时间将NDTM的所有路径走一遍。</li>
+</ul>
+<blockquote>
+<p>$\text{NP}$和$\text{P}$的区别在于，$\text{P}$的解的复杂度都是多项式的，而$\text{NP}$只是存在多项式复杂度的特解。能否证明$\text{P}&#x3D;\text{NP}$，是理论计算机科学界中的一大难题。</p>
+</blockquote>
+<h2 id="39-Universal-39-Nondeterministic-Turing-Machine：“通用”非确定图灵机"><a href="#39-Universal-39-Nondeterministic-Turing-Machine：“通用”非确定图灵机" class="headerlink" title="&#39;Universal&#39; Nondeterministic Turing Machine：“通用”非确定图灵机"></a>&#39;Universal&#39; Nondeterministic Turing Machine：“通用”非确定图灵机</h2><p>一个“通用”的非确定图灵机$\mathbb{V}$在模拟某个时间复杂度为$T(n)$的图灵机$\mathbb{M}$时需要四条带子：</p>
+<ol>
+<li>输入带；</li>
+<li>存放snapshot的工作带，该工作带存放$\mathbb{V}$对$\mathbb{M}$执行时产生的所有snapshot的<strong>猜测</strong>，快照数为$O(T(n))$；</li>
+<li>存放转移函数序列（即$01$串）的工作带，该工作带$01$串的长度也是$O(T(n))$，实际上就是$\delta_1$和$\delta_2$序列；</li>
+<li>存放对被模拟工作带验证结果的工作带，它会记录一些snapshot，以验证对某个被模拟带子的模拟是否正确，若正确则清空，验证下一个带子。</li>
+</ol>
+<p>快照个数$O(T(n))$，$01$串的个数也是$O(T(n))$，故模拟的时间复杂度也是$T(n)$。这是在正确猜测的情况下，但实际上猜测序列、快照不一定是正确的，$T(n)$也不一定时间可构造，所以这台“通用”的非确定图灵机甚至有可能不停机，故“通用”是带引号的。若$T(n)$时间可构造则可掐表，以确保$\mathbb{V}$会停机。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/348250098">计算复杂性（6）——世界难题：非确定型图灵机，NP类</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CS7313: Computational Complexity</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Dataset Distillation: A Summary</title>
     <url>/2023/09/20/DDSummary/</url>
     <content><![CDATA[<span id="more"></span>
@@ -82,7 +404,7 @@
 <li>记$1^n$为长度为$n$的任意$01$串。</li>
 </ul>
 <h1 id="Turing-Machine：图灵机模型"><a href="#Turing-Machine：图灵机模型" class="headerlink" title="Turing Machine：图灵机模型"></a>Turing Machine：图灵机模型</h1><p>图灵机（Turing Machine），又称图灵计算机，指一个抽象的机器，是英国数学家艾伦・麦席森・图灵于1936年提出的一种抽象的计算模型，即将人们使用纸笔进行数学运算的过程进行抽象，由一个虚拟的机器替代人类进行数学运算。它有多条无限长的纸带，纸带分成了一个一个的小方格，每个方格有不同的内容。有一个机器头在纸带上移来移去。机器头有一组内部状态，还有一些固定的程序。在每个时刻，机器头都要从当前纸带上读入一个方格信息，然后结合自己的内部状态查找程序表，根据程序输出信息到纸带方格上，并转换自己的内部状态，然后进行移动。</p>
-<h2 id="K-Tap-Turing-Machine"><a href="#K-Tap-Turing-Machine" class="headerlink" title="$K$-Tap Turing Machine"></a>$K$-Tap Turing Machine</h2><p>$k$带图灵机$\mathcal{M}$有$k$条纸带，其中：</p>
+<h2 id="K-Tap-Turing-Machine"><a href="#K-Tap-Turing-Machine" class="headerlink" title="$K$-Tap Turing Machine"></a>$K$-Tap Turing Machine</h2><p>$k$带图灵机$\mathbb{M}$有$k$条纸带，其中：</p>
 <ul>
 <li>第一条纸带是<strong>只读纸带</strong>（Input Tape），它包含了输入图灵机的问题或数据规模；</li>
 <li>其他纸带是<strong>可读写</strong>的工作纸带（Work Tape），其中最后一条纸带又同时作为记录最后输出的纸带（Output Tape）；</li>
@@ -94,7 +416,7 @@
 <blockquote>
 <p>不难看出，图灵机模拟了人类解题时<strong>读题（Input）</strong>、<strong>打草稿（Work）</strong>和<strong>写答案（Output）</strong>的过程。</p>
 </blockquote>
-<p>一个$k$带的图灵机$\mathcal{M}$可由一个三元组$(\Gamma,Q,\delta)$唯一描述：</p>
+<p>一个$k$带的图灵机$\mathbb{M}$可由一个三元组$(\Gamma,Q,\delta)$唯一描述：</p>
 <ul>
 <li>$\Gamma$是一个有限的符号集，称<em>Alphabet</em>。我们规定，符号集必须只由$\left\{0,1,\square,\triangleright\right\}$组成，其中$\left\{0,1\right\}$是有效字符，而$\left\{\square,\triangleright\right\}$则是分别表示<em>空白字符</em>和<em>纸带开始</em>的功能字符；</li>
 <li>$Q$是一个有限状态集，包含了该图灵机的所有状态，包括起始状态$q _{start}$和停机状态$q _{halt}$；</li>
@@ -110,25 +432,28 @@
 <li>当前带头的位置。</li>
 </ul>
 <p>不难看出，格局包含了一次转移函数计算所需要的全部内容（带头位置结合纸带内容唯一确定了当前纸带的符号），因此，一次转移函数计算就是由<strong>一个格局到另一个格局</strong>的过程，这也称一次计算（Computation）。</p>
+<blockquote>
+<p>格局不仅与$\mathbb{M}$有关，还与输入串的长度有关，而快照则只和$\mathbb{M}$有关。</p>
+</blockquote>
 <h2 id="Function、Problem、Language：函数、问题、语言"><a href="#Function、Problem、Language：函数、问题、语言" class="headerlink" title="Function、Problem、Language：函数、问题、语言"></a>Function、Problem、Language：函数、问题、语言</h2><p><strong>一个问题就是一个函数</strong>。对于任何一个问题，它都有解决的前提条件以及根据这些条件得到的问题答案，而函数接受输入，得到输出，两者在本质上是具有同一性的。在图灵机中，任何问题的前提条件（规模、数据结构、数据等）都可以用有限个$01$串表示，记为$\left\{0,1\right\}^*$。</p>
 <p>故而，<strong>问题</strong>（Problem）就是一个<strong>函数</strong>（Function）：</p>
 <p>$$<br>f:\left\{0,1\right\}^* \to<br> \left\{0,1\right\}^*<br>$$</p>
 <p>这个函数实现了对问题的回答，即由问题的$01$串表示得到对这个问题答案的$01$串表示。</p>
-<p>我们称图灵机$\mathcal{M}$计算&#x2F;解决（Compute&#x2F;Solve）了问题$f$，当且仅当对于任意的$x\in\left\{0,1\right\}^*$均有$\mathcal{M}(x)&#x3D;f(x)$。其中$\mathcal{M}(x)$的含义是：如果$x$在$f$的定义域内，当给图灵机$\mathcal{M}$的输入带上写上$x$并进行计算时，它最终会停机，且输出带上写着$\mathcal{M}(x)$；如果$x$不在$f$的定义域内，则图灵机永不停机（死循环）。图灵机会停机记为$\mathcal{M}(x)\downarrow$，永不停机记为$\mathcal{M}(x)\uparrow$。</p>
+<p>我们称图灵机$\mathbb{M}$计算&#x2F;解决（Compute&#x2F;Solve）了问题$f$，当且仅当对于任意的$x\in\left\{0,1\right\}^*$均有$\mathbb{M}(x)&#x3D;f(x)$。其中$\mathbb{M}(x)$的含义是：如果$x$在$f$的定义域内，当给图灵机$\mathbb{M}$的输入带上写上$x$并进行计算时，它最终会停机，且输出带上写着$\mathbb{M}(x)$；如果$x$不在$f$的定义域内，则图灵机永不停机（死循环）。图灵机会停机记为$\mathbb{M}(x)\downarrow$，永不停机记为$\mathbb{M}(x)\uparrow$。</p>
 <h3 id="Decision-Problem：判定问题"><a href="#Decision-Problem：判定问题" class="headerlink" title="Decision Problem：判定问题"></a>Decision Problem：判定问题</h3><p>判定问题是一个特殊的问题，它的输出是个布尔值，即只有$0$或$1$：</p>
 <p>$$<br>d:\left\{0,1\right\}^* \to<br> \left\{0,1\right\}<br>$$</p>
-<p>对于判定问题，我们不再用解决问题，而称图灵机$\mathcal{M}$判定（Decide）了问题$d$。</p>
+<p>对于判定问题，我们不再用解决问题，而称图灵机$\mathbb{M}$判定（Decide）了问题$d$。</p>
 <h3 id="Language：语言"><a href="#Language：语言" class="headerlink" title="Language：语言"></a>Language：语言</h3><p>语言（Language）$L$是一个字符串集合$L\subseteq \left\{0,1\right\}^*$。若：</p>
-<p>$$<br>\begin{align*}<br>    &amp;\forall x\in L,\mathcal{M}(x)&#x3D;1\\<br>    &amp;\forall x\notin L,\mathcal{M}(x)&#x3D;0<br>\end{align*}<br>$$<br>我们则称图灵机$\mathcal{M}$接受（Accept）了语言$L$。换句话说，图灵机$\mathcal{M}$能够识别出$L$及其子集。</p>
+<p>$$<br>\begin{align*}<br>    &amp;\forall x\in L,\mathbb{M}(x)&#x3D;1\\<br>    &amp;\forall x\notin L,\mathbb{M}(x)&#x3D;0<br>\end{align*}<br>$$<br>我们则称图灵机$\mathbb{M}$接受（Accept）了语言$L$。换句话说，图灵机$\mathbb{M}$能够识别出$L$及其子集。</p>
 <h3 id="语言与判定问题"><a href="#语言与判定问题" class="headerlink" title="语言与判定问题"></a>语言与判定问题</h3><p>不难看出，一个语言就是一类判定问题：</p>
 <p>$$<br>d(x)&#x3D;<br>\begin{cases}<br>    1,&amp;x\in L\\<br>    0,&amp;x\notin L<br>\end{cases}<br>$$</p>
-<h2 id="Time-Function：时间函数"><a href="#Time-Function：时间函数" class="headerlink" title="Time Function：时间函数"></a>Time Function：时间函数</h2><p>时间函数与时间复杂度有着近乎相同的含义，它们都不是现实世界中连续的时间，而是图灵&#x2F;计算机世界中离散的时间。对于时间函数，其单位是一步计算，即一次转移函数；对时间复杂度，其单位是计算机的一次基本操作，如加、乘等。由于我们并不能知道图灵机$\mathcal{M}$在解决某个问题时转移函数的执行次数，我们就需要一个计时器，这个计时器也是一个图灵机$\mathcal{T}$，它与$\mathcal{M}$同启同停，并在结果输出$\mathcal{M}$转移函数执行的次数。这样的计时器定义的函数就称为时间函数：</p>
+<h2 id="Time-Function：时间函数"><a href="#Time-Function：时间函数" class="headerlink" title="Time Function：时间函数"></a>Time Function：时间函数</h2><p>时间函数与时间复杂度有着近乎相同的含义，它们都不是现实世界中连续的时间，而是图灵&#x2F;计算机世界中离散的时间。对于时间函数，其单位是一步计算，即一次转移函数；对时间复杂度，其单位是计算机的一次基本操作，如加、乘等。由于我们并不能知道图灵机$\mathbb{M}$在解决某个问题时转移函数的执行次数，我们就需要一个计时器，这个计时器也是一个图灵机$\mathbb{T}$，它与$\mathbb{M}$同启同停，并在结果输出$\mathbb{M}$转移函数执行的次数。这样的计时器定义的函数就称为时间函数：</p>
 <p>$$<br>T: N \to N<br>$$</p>
-<p>它实现问题的规模（输入串的<strong>长度</strong>$n$）到转移函数执行步数$T(n)$的映射。时间函数定义了图灵机解决某一问题时间的上限，即：若图灵机$\mathcal{M}$解决输入长度为$n$的$f$需要<strong>至多</strong>$T(n)$步，那么我们称$\mathcal{M}$<strong>在</strong>$T(n)$<strong>的时间内解决了</strong>$f$。</p>
-<h3 id="Time-Constructible-Function：时间可构造函数"><a href="#Time-Constructible-Function：时间可构造函数" class="headerlink" title="Time Constructible Function：时间可构造函数"></a>Time Constructible Function：时间可构造函数</h3><p>用图灵机$\mathcal{T}$实现时间函数要求：</p>
+<p>它实现问题的规模（输入串的<strong>长度</strong>$n$）到转移函数执行步数$T(n)$的映射。时间函数定义了图灵机解决某一问题时间的上限，即：若图灵机$\mathbb{M}$解决输入长度为$n$的$f$需要<strong>至多</strong>$T(n)$步，那么我们称$\mathbb{M}$<strong>在</strong>$T(n)$<strong>的时间内解决了</strong>$f$。</p>
+<h3 id="Time-Constructible-Function：时间可构造函数"><a href="#Time-Constructible-Function：时间可构造函数" class="headerlink" title="Time Constructible Function：时间可构造函数"></a>Time Constructible Function：时间可构造函数</h3><p>用图灵机$\mathbb{T}$实现时间函数要求：</p>
 <ol>
-<li>图灵机$\mathcal{T}$的执行步数为$T(n)$；</li>
-<li>图灵机$\mathcal{T}$的输出结果$\mathcal{T}(n)$为$T(n)$。</li>
+<li>图灵机$\mathbb{T}$的执行步数为$T(n)$；</li>
+<li>图灵机$\mathbb{T}$的输出结果$\mathbb{T}(n)$为$T(n)$。</li>
 </ol>
 <p>如，若定义$T(n)&#x3D;n^2$，则该图灵机必须在$n^2$步由初始状态$\llcorner n\lrcorner$转变为停止状态$\llcorner n^2 \lrcorner$，然而这样的图灵机是不一定存在的。</p>
 <p>时间可构造函数是为了尽量避免上述的问题而采用的退而求其次的方法。它不同于时间函数的地方在于：</p>
@@ -136,7 +461,7 @@
 <li>时间可构造函数$T$不要求输入串为$\llcorner n \lrcorner$，任意的$01$串$1^n$均可；</li>
 <li>时间可构造函数$T$不要求步数严格为$T(n)$，只要是同一个数量级即可，即$O(T(n))$即可。</li>
 </ol>
-<p>只要存在这么一个$1 ^n$，使得图灵机$\mathcal{T}$能在$O(T(n))$步下转移到$\llcorner T(n) \lrcorner$状态并且停机，那么我们就称$T$是可构造时间函数。若将条件2升级为时间函数的条件，则称$T$为完全时间可构造的（Fully Time Constructible Function），即$T$转移到$\llcorner T(n) \lrcorner$状态的步数严格为$T(n)$。</p>
+<p>只要存在这么一个$1 ^n$，使得图灵机$\mathbb{T}$能在$O(T(n))$步下转移到$\llcorner T(n) \lrcorner$状态并且停机，那么我们就称$T$是可构造时间函数。若将条件2升级为时间函数的条件，则称$T$为完全时间可构造的（Fully Time Constructible Function），即$T$转移到$\llcorner T(n) \lrcorner$状态的步数严格为$T(n)$。</p>
 <h2 id="计算复杂性与模型无关"><a href="#计算复杂性与模型无关" class="headerlink" title="计算复杂性与模型无关"></a>计算复杂性与模型无关</h2><p>在不同的模型、不同的图灵机上，计算同一个函数$f$所花的时间可能不同。但是直观上来看，问题&#x2F;函数的复杂性是其客观性质，应该与模型无关。</p>
 <ul>
 <li><em>强邱奇-图灵论题（Church-Turing Thesis）</em>：任何物理上可以实现的计算装置A，都可以被图灵机以多项式的代价模拟。即，A的$t$个步骤可以用图灵机的$t^c$个步骤模拟，其中$c$是常数，与A有关（即取决于将A编码的最简单方式）。直观地理解，只要正确地编码，简单的图灵机可以以时间为代价模拟复杂的图灵机。<em>另一种说法：物理上能实现的机器，其最大表达能力不会超过图灵机</em>。</li>
@@ -156,7 +481,7 @@
 <p>$$<br>\delta _1&#x3D;\delta _2&#x3D; ...&#x3D;\delta _n<br>$$</p>
 <p>上述编码形式中，我们一共使用了4种符号$\{0,1,-,&#x3D;\}$。此时，我们在将这些符号映射为$01$串：</p>
 <p>$$<br>\{0,1,-,&#x3D; \}\to\{01,10,00,11\}<br>$$</p>
-<p>我们便得到了一台图灵机$\mathcal{M}$的$01$串形式的编码。</p>
+<p>我们便得到了一台图灵机$\mathbb{M}$的$01$串形式的编码。</p>
 <blockquote>
 <p>由于此处打不出十字<code>\dag</code>和双十字<code>\ddag</code>，故用$-$和$&#x3D;$代替。</p>
 <p>任何一台图灵机，只要我们知道它的转移函数，都可以用这种方式进行编码。</p>
@@ -171,12 +496,12 @@
 <p>由于$01$串编码的任意性，某个$01$串对应的图灵机可能完全没有实际用处，如对于任意输入都直接停机的空图灵机。</p>
 <p>上述的两条规定有一定的方便性。它们使得我们可以将所有的图灵机及其对应的函数列举出来：</p>
 <ul>
-<li>记$\llcorner \mathcal{M}\lrcorner$为某台图灵机的编码；</li>
-<li>记$\mathcal{M} _\alpha$为编码$\alpha$所对应的图灵机；</li>
+<li>记$\llcorner \mathbb{M}\lrcorner$为某台图灵机的编码；</li>
+<li>记$\mathbb{M} _\alpha$为编码$\alpha$所对应的图灵机；</li>
 <li>记一个特殊的双射函数将任意的$01$串映射为一个自然数：$\{ 0,1 \}^* \to N$。</li>
 </ul>
 <p>由此，我们可以得到所有图灵机的排列：</p>
-<p>$$<br>\mathcal{M}_0,\mathcal{M}_1,...,\mathcal{M}_i,...<br>$$</p>
+<p>$$<br>\mathbb{M}_0,\mathbb{M}_1,...,\mathbb{M}_i,...<br>$$</p>
 <p>以及其对应的所有可计算函数的排列：</p>
 <p>$$<br>\phi_0,\phi_1,...,\phi _i,...<br>$$</p>
 <blockquote>
@@ -185,22 +510,22 @@
 </blockquote>
 <h1 id="Universal-Turing-Machine：通用图灵机（套娃开始）"><a href="#Universal-Turing-Machine：通用图灵机（套娃开始）" class="headerlink" title="Universal Turing Machine：通用图灵机（套娃开始）"></a>Universal Turing Machine：通用图灵机（套娃开始）</h1><p>如上所述，任何一台图灵机都可以用$01$串编码，而输入图灵机的数据的形式也是$01$串，那么，我们就可以把图灵机的$01$串形式<strong>输入到另一台图灵机中，这台图灵机是一台特殊的图灵机，它可以模拟输入图灵机的运行</strong>。这样的图灵机就称<strong>通用图灵机</strong>（UTM）。事实上，计算机就是这样一台通用图灵机。因为我们在计算机上所编写的每一个程序都可以被视为一台图灵机，而任何一个正确的程序（只要有相应的编码器）都可以在现代的计算机上运行。换句话说，现代的计算机能够模拟任何一台图灵机的运行。</p>
 <ul>
-<li><p>高效通用图灵机定理：存在通用图灵机$\mathcal{U}$，使得下面两个式子定理成立：</p>
+<li><p>高效通用图灵机定理：存在通用图灵机$\mathbb{U}$，使得下面两个式子定理成立：</p>
 <ol>
-<li>对于任意的$x,\alpha \in \{0,1\} ^*$，均有$\mathcal{U}(\alpha,x)\simeq\mathcal{M}_\alpha(x)$；</li>
-<li>若$\mathcal{M}_\alpha(x)$的时间函数是$T(n)$，则$\mathcal{U}(\alpha,x)$的时间函数是$cT(n)\log T(n)$，其中$c$是$\alpha$的多项式$|\alpha| ^c$，但是与$\alpha,x$均无关。</li>
+<li>对于任意的$x,\alpha \in \{0,1\} ^*$，均有$\mathbb{U}(\alpha,x)\simeq\mathbb{M}_\alpha(x)$；</li>
+<li>若$\mathbb{M}_\alpha(x)$的时间函数是$T(n)$，则$\mathbb{U}(\alpha,x)$的时间函数是$cT(n)\log T(n)$，其中$c$是$\alpha$的多项式$|\alpha| ^c$，但是与$\alpha,x$均无关。</li>
 </ol>
-<p>通俗地来讲，对于任意一台图灵机$\mathcal{M}_\alpha$，通用图灵机$\mathbin{U}$都可以模拟它的计算过程，且至多多耗费对数倍的时间。</p>
+<p>通俗地来讲，对于任意一台图灵机$\mathbb{M}_\alpha$，通用图灵机$\mathbin{U}$都可以模拟它的计算过程，且至多多耗费对数倍的时间。</p>
 </li>
 </ul>
 <p>下面两小节是对于定理$2$的简单证明。</p>
 <h2 id="Proof-of-Hartmanis-and-Stearns"><a href="#Proof-of-Hartmanis-and-Stearns" class="headerlink" title="Proof of Hartmanis and Stearns"></a>Proof of Hartmanis and Stearns</h2><p>Hartmanis和Stearns在1965年给出了通用图灵机$O(cT^2(n))$的证明。</p>
-<p>用通用图灵机$\mathcal{U}$模拟一台$k$带的图灵机$\mathcal{M} _{\alpha}$，通用图灵机的输入带上给出图灵机的编码$\alpha$以及图灵机的输入$x$，我们想要得到的效果是通用图灵机的输出带上输出结果$\mathcal{M} _{\alpha}(x)$或者如$\mathcal{M} _\alpha$一样永不停机。构造这样的通用图灵机需要<strong>5</strong>条带子：</p>
+<p>用通用图灵机$\mathbb{U}$模拟一台$k$带的图灵机$\mathbb{M} _{\alpha}$，通用图灵机的输入带上给出图灵机的编码$\alpha$以及图灵机的输入$x$，我们想要得到的效果是通用图灵机的输出带上输出结果$\mathbb{M} _{\alpha}(x)$或者如$\mathbb{M} _\alpha$一样永不停机。构造这样的通用图灵机需要<strong>5</strong>条带子：</p>
 <ol>
 <li>输入带：输入为被模拟图灵机的编码$\alpha$和被模拟图灵机的输入$x$；</li>
-<li>输出带：输出为$\mathcal{M}_{\alpha}(x)$；</li>
-<li>模型工作带：记录$\mathcal{M} _{\alpha}$的转移函数；</li>
-<li>状态工作带：记录$\mathcal{M} _{\alpha}$当前的工作状态；</li>
+<li>输出带：输出为$\mathbb{M}_{\alpha}(x)$；</li>
+<li>模型工作带：记录$\mathbb{M} _{\alpha}$的转移函数；</li>
+<li>状态工作带：记录$\mathbb{M} _{\alpha}$当前的工作状态；</li>
 <li>主工作带：通用图灵机的带子数目必须是确定的，我们不能用不能确定数目的$k-2$条带子去模拟被模拟图灵机的工作带，因此，主工作带上记录了被模拟图灵机工作带及其带头的内容。</li>
 </ol>
 <p><img src="/2023/09/12/ComputationalComplexityTimeComp/2.jpg" alt="2"></p>
@@ -208,10 +533,10 @@
 
 <p>这样的通用图灵机工作过程是很明确的：</p>
 <ol>
-<li>从输入带、输出带、主工作带、状态工作带获取$\mathcal{M}_{\alpha}$当前的快照：$k$条带子的值以及当前状态$q$；</li>
+<li>从输入带、输出带、主工作带、状态工作带获取$\mathbb{M}_{\alpha}$当前的快照：$k$条带子的值以及当前状态$q$；</li>
 <li>扫描模型工作带，获取转移函数$\delta$；</li>
-<li>模拟$\mathcal{M} _{\alpha}$的转移函数，向主工作带、输出带写入$k-1$个值，更改状态工作带上的状态；</li>
-<li>移动输入带、主工作带、输出带，以模拟$\mathcal{M} _{\alpha}$中$k$个带头的移动。</li>
+<li>模拟$\mathbb{M} _{\alpha}$的转移函数，向主工作带、输出带写入$k-1$个值，更改状态工作带上的状态；</li>
+<li>移动输入带、主工作带、输出带，以模拟$\mathbb{M} _{\alpha}$中$k$个带头的移动。</li>
 </ol>
 <h3 id="主工作带的构造"><a href="#主工作带的构造" class="headerlink" title="主工作带的构造"></a>主工作带的构造</h3><p>要使主工作带上能存放被模拟图灵机的$k-2$条工作带及其带头的信息，较好的方法是将主工作带横向划分为$k-2$层，每层存放一条带子的信息，并让带子双向无限延伸（线性代价）、读写图对齐与0号位，如下图所示：</p>
 <p><img src="/2023/09/12/ComputationalComplexityTimeComp/3.jpg" alt="3"></p>
@@ -221,8 +546,8 @@
 <blockquote>
 <p>实际上的主工作带上只有对齐后的$k-2$元组的编码。</p>
 </blockquote>
-<h3 id="时间分析"><a href="#时间分析" class="headerlink" title="时间分析"></a>时间分析</h3><p>模拟$\mathcal{M}_\alpha$的一步计算时，主要的开销在主工作带的移动上，因此只用考虑主工作带移动的开销即可：$\mathcal{M}_\alpha$的时间函数是$T(n)$，因此$\mathcal{M}_\alpha$的工作带上可能出现的最长字符串量级为$O(T(n))$（即每一步都在记录新的数据），字符串、$k-2$元组在主工作带上的编码不会超过$c$（$c$为$|\alpha|$的多项式），$\mathcal{M} _\alpha$每移动一次带头，可能引起主工作带的带头在某一层上移动一整层，时间复杂度为$O(cT(n))$。</p>
-<p>因此，$\mathcal{U}(\alpha,x)$模拟$\mathcal{M} _\alpha$的时间复杂度为$O(cT(n))*O(T(n))&#x3D;O(c T^2 (n))$</p>
+<h3 id="时间分析"><a href="#时间分析" class="headerlink" title="时间分析"></a>时间分析</h3><p>模拟$\mathbb{M}_\alpha$的一步计算时，主要的开销在主工作带的移动上，因此只用考虑主工作带移动的开销即可：$\mathbb{M}_\alpha$的时间函数是$T(n)$，因此$\mathbb{M}_\alpha$的工作带上可能出现的最长字符串量级为$O(T(n))$（即每一步都在记录新的数据），字符串、$k-2$元组在主工作带上的编码不会超过$c$（$c$为$|\alpha|$的多项式），$\mathbb{M} _\alpha$每移动一次带头，可能引起主工作带的带头在某一层上移动一整层，时间复杂度为$O(cT(n))$。</p>
+<p>因此，$\mathbb{U}(\alpha,x)$模拟$\mathbb{M} _\alpha$的时间复杂度为$O(cT(n))*O(T(n))&#x3D;O(c T^2 (n))$</p>
 <h2 id="Proof-of-Hennie-and-Stearns"><a href="#Proof-of-Hennie-and-Stearns" class="headerlink" title="Proof of Hennie and Stearns"></a>Proof of Hennie and Stearns</h2><p>Hennie和Stearns在1966年给出了$O(cT(n)\log T(n))$的证明。在他们的证明中，通用图灵机的构造基本不变，只不过增加了一条草稿工作带，并在主工作带中的有效字符间插入了新的缓冲符号$\boxtimes$，这些缓冲符号可以被其他有效符号覆盖，如下图所示：</p>
 <p><img src="/2023/09/12/ComputationalComplexityTimeComp/4.png" alt="4"></p>
 <center style="font-size:12px;font-weight:bold">Fig. 4. Main working tape</center><br>
@@ -233,13 +558,18 @@
 <li>$R_i$和$L_i$的有效符号之和始终为$2^{i+1}$；</li>
 <li>0号位上的符号只能是有效符号。</li>
 </ol>
-<p>假设初始时某层右半区的有效符号全部在$R _i$分区，$R_i$是全满的，那么自然地$L_0\sim L _{i-1}$也是全满的。若此时$\mathcal{M} _{\alpha}$进行了一步右移操作，则该层的纸带应“相对地左移”。此时，主工作带上的操作是：带头移动到$R_i$范围，在草稿带上记录下$2^i$个字符内容，分别覆盖掉$R _0,R _1 \sim R _{i-1}$上$1,1\sim 2 ^{i-1}$个缓冲字符，使得右半区全部变成半满。对于左半区，相似的操作，不过是将$L _0 \sim L _{i-1}$中的一半有效字符都放到$L _i$上，使得左半区变成全半满。这样便完成了整层左移（对应$\mathcal{M} _\alpha$右移）的操作。</p>
-<h3 id="时间分析-1"><a href="#时间分析-1" class="headerlink" title="时间分析"></a>时间分析</h3><p>同样地，只用考虑主工作带上的移动情况。在主工作带上，一次移动，最远要跑到$R_i$或者$L_i$。而当跑过一次$R_i$或者$L_i$后，其他的分区都变成了半满，此时考虑最坏的情况，即$\mathcal{M}_\alpha$一直往一个方向移动，则在某一层上要把左或右分区$0\sim i-1$的有效符号搬空，至少需要$1+2+...+2 ^{i-1}&#x3D;2^i-1$步，再下一次移动才会涉及到$R_i$或者$L_i$。换句话说，两次最远距离的移动间隔至少为$2^i$步。</p>
-<p>$\mathcal{M}_\alpha$至多有$T(n)$步，$\mathcal{U}(\alpha,x)$对最长区间的操作不超过$T&#x2F;2^i$次，操作最长区间时耗时$O(c2^i)$，而区间的总个数$i$不会超过$\log T(n)$，故时间复杂度为：</p>
+<p>假设初始时某层右半区的有效符号全部在$R _i$分区，$R_i$是全满的，那么自然地$L_0\sim L _{i-1}$也是全满的。若此时$\mathbb{M} _{\alpha}$进行了一步右移操作，则该层的纸带应“相对地左移”。此时，主工作带上的操作是：带头移动到$R_i$范围，在草稿带上记录下$2^i$个字符内容，分别覆盖掉$R _0,R _1 \sim R _{i-1}$上$1,1\sim 2 ^{i-1}$个缓冲字符，使得右半区全部变成半满。对于左半区，相似的操作，不过是将$L _0 \sim L _{i-1}$中的一半有效字符都放到$L _i$上，使得左半区变成全半满。这样便完成了整层左移（对应$\mathbb{M} _\alpha$右移）的操作。</p>
+<h3 id="时间分析-1"><a href="#时间分析-1" class="headerlink" title="时间分析"></a>时间分析</h3><p>同样地，只用考虑主工作带上的移动情况。在主工作带上，一次移动，最远要跑到$R_i$或者$L_i$。而当跑过一次$R_i$或者$L_i$后，其他的分区都变成了半满，此时考虑最坏的情况，即$\mathbb{M}_\alpha$一直往一个方向移动，则在某一层上要把左或右分区$0\sim i-1$的有效符号搬空，至少需要$1+2+...+2 ^{i-1}&#x3D;2^i-1$步，再下一次移动才会涉及到$R_i$或者$L_i$。换句话说，两次最远距离的移动间隔至少为$2^i$步。</p>
+<p>$\mathbb{M}_\alpha$至多有$T(n)$步，$\mathbb{U}(\alpha,x)$对最长区间的操作不超过$T&#x2F;2^i$次，操作最长区间时耗时$O(c2^i)$，而区间的总个数$i$不会超过$\log T(n)$，故时间复杂度为：</p>
 <p>$$<br>\sum\limits _{i&#x3D;1} ^{\log T(n)}\frac{T(n)}{2^i}O(c2^i)&#x3D;cT(n)\sum\limits _{i&#x3D;1} ^{\log T(n)}O(1)&#x3D;cT(n)\log T(n)<br>$$</p>
 <blockquote>
 <p>缓冲字符的作用在于，它使得每层纸带上的内容可以通过移动而聚集在带头，即0号位附近，使得单步下的局部扫描成为可能，不像之前那样每次可能都要扫描一整层。</p>
 </blockquote>
+<h2 id="Oblivious-Turing-Machine-Theorem：遗忘图灵机理论"><a href="#Oblivious-Turing-Machine-Theorem：遗忘图灵机理论" class="headerlink" title="Oblivious Turing Machine Theorem：遗忘图灵机理论"></a>Oblivious Turing Machine Theorem：遗忘图灵机理论</h2><p>该理论的内容为：<em>假设语言L由一个在$O(T(n))$时间内运行的$T(n)$时间可构造的TM $\mathbb{M}$计算，那么存在一个遗忘图灵机$\mathbb{U}$，在$O(T(n) \log T(n))$时间内判定L</em>。</p>
+<p>上述的遗忘图灵机可以采用通用图灵机来构造。通用图灵机在划分区间$L_i$和$R_i$时，是按需划分的，也就是说它扫描到哪划分到哪，因为它并不知道要计算的函数的时间复杂度是多少，也就无法预先分配好足够的区间来完成函数的计算。而对于上述理论，由于$T(n)$是时间可构造的，所以：</p>
+<ul>
+<li>该通用图灵机可以先在$O(\log T(n))$的时间内计算出$logT(n)$（$T(n)$时间可构造则$\log T(n)$时间可构造），完成区间的划分。</li>
+</ul>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a href="https://zhuanlan.zhihu.com/p/260217775">计算复杂性（2）——运行时间与效率</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/260512272">计算复杂性（3）——计算机的套娃：通用图灵机</a></li>
@@ -361,9 +691,9 @@
         <category>Kernel Method</category>
       </categories>
       <tags>
-        <tag>Machine Learning</tag>
         <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Machine Learning</tag>
         <tag>GNN</tag>
         <tag>SVM</tag>
       </tags>
@@ -5466,28 +5796,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Zip: Make Aggregation Easier</title>
-    <url>/2023/05/06/ZipMakeLifeEasier/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>We can even use zip to generate a dictionary:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Gamma and Factorial</title>
     <url>/2023/05/05/GammaAndFactorial/</url>
     <content><![CDATA[<span id="more"></span>
@@ -5555,6 +5863,28 @@
       <tags>
         <tag>Python</tag>
         <tag>Configuration</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Zip: Make Aggregation Easier</title>
+    <url>/2023/05/06/ZipMakeLifeEasier/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>We can even use zip to generate a dictionary:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
