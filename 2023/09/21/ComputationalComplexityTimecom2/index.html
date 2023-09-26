@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/09/21/ComputationalComplexityTimecom2/2.jpg">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/09/21/ComputationalComplexityTimecom2/3.jpg">
 <meta property="article:published_time" content="2023-09-21T11:59:36.000Z">
-<meta property="article:modified_time" content="2023-09-22T11:47:07.905Z">
+<meta property="article:modified_time" content="2023-09-26T08:29:14.670Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Math">
 <meta property="article:tag" content="Theoretical Computer Science">
@@ -235,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-22 19:47:07" itemprop="dateModified" datetime="2023-09-22T19:47:07+08:00">2023-09-22</time>
+                <time title="Modified: 2023-09-26 16:29:14" itemprop="dateModified" datetime="2023-09-26T16:29:14+08:00">2023-09-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,19 +294,19 @@
 <p><em>Linear Speedup Theorem：设图灵机$\mathbb{M}$在$T(n)$步内计算了$f$，任取$\epsilon &gt; 0$，总存在图灵机$\mathbb{M}&#39;$，它能在$\epsilon T(n)+n+2$步内计算$f$。</em></p>
 <p>这里用到的方法是“压缩带子”，即通过编码，使得$\mathbb{M}&#39;$上的一格能够记录$\mathbb{M}$上$m$格的内容，这样$\mathbb{M}&#39;$的一步就相当于$\mathbb{M}$上的$m$步，其证明如下：</p>
 <blockquote>
-<p>对于$\mathbb{M}(\Gamma,Q,\delta)$，用一个新的符号集$\Gamma &#39;$为$\Gamma$中的$m$个字符用$1$个字符编码。不难看出，这样的符号及$\Gamma &#39;$是巨大的，其字符种类至少为$|\Gamma &#39;| &gt; |\Gamma|^m$。我们用$\Gamma &#39;$构建一个新的图灵机$\mathbb{M}&#39;(\Gamma &#39;,Q&#39;,\delta &#39;)$，对该图灵机：</p>
+<p>对于$\mathbb{M}(\Gamma,Q,\delta)$，用一个新的符号集$\Gamma &#39;$为$\Gamma$中的$m$个字符用$1$个字符编码。不难看出，这样的符号集$\Gamma &#39;$是巨大的，其字符种类至少为$|\Gamma &#39;| &gt; |\Gamma|^m$。我们用$\Gamma &#39;$构建一个新的图灵机$\mathbb{M}&#39;(\Gamma &#39;,Q&#39;,\delta &#39;)$，对该图灵机：</p>
 <ul>
 <li>使用与$\mathbb{M}$相同的带子数；</li>
 <li>对于$\mathbb{M}$纸带上长度为$n$的编码，$\mathbb{M}&#39;$可以在$n+2$步内将其转换为$n&#x2F;m$长的编码；（多出的2步是起始符和终止）</li>
 <li>$\mathbb{M}&#39;$在$n&#x2F;m$步可以将所有的带头回归到原点；</li>
-<li>$\mathbb{M}&#39;$纸带上的任何一个格子对应着$\mathbb{M}$上的$m$个格子。某一时刻$\mathbb{M}$在$m$个格子内<strong>任意一个格子</strong>上的*$m$步*在$\mathbb{M}&#39;$上至多会涉及到<strong>3</strong>个格子，因此$\mathbb{M}&#39;$只需要记录下这三个格子的值、做一步写入操作、移动一次带头，至多<strong>5</strong>步就可以模拟$\mathbb{M}$上的$m$步。<br>因此，总时间：<br>$$<br>n+2+\frac{n}{m}+5\frac{T(n)}{m}\ge n+2 + \frac{6}{m}T(n)<br>$$<br>我们可以取$\epsilon&#x3D;6&#x2F;m$，$m&#x3D;6&#x2F;\epsilon$，证毕。</li>
+<li>$\mathbb{M}&#39;$纸带上的任何一个格子对应着$\mathbb{M}$上的$m$个格子。某一时刻$\mathbb{M}$在$m$个格子内<strong>任意一个格子</strong>上的$m$步在$\mathbb{M}&#39;$上至多会涉及到<strong>3</strong>个格子，因此$\mathbb{M}&#39;$只需要记录下这三个格子的值、做一步写入操作、移动一次带头，至多<strong>5</strong>步就可以模拟$\mathbb{M}$上的$m$步。<br>因此，总时间：<br>$$<br>n+2+\frac{n}{m}+5\frac{T(n)}{m}\ge n+2 + \frac{6}{m}T(n)<br>$$<br>我们可以取$\epsilon&#x3D;6&#x2F;m$，$m&#x3D;6&#x2F;\epsilon$，证毕。</li>
 </ul>
 </blockquote>
 <p><img src="/2023/09/21/ComputationalComplexityTimecom2/2.jpg" alt="2"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 2. 1 -> m</center>
 
 <h1 id="Time-Complexity-Class：时间复杂性类"><a href="#Time-Complexity-Class：时间复杂性类" class="headerlink" title="Time Complexity Class：时间复杂性类"></a>Time Complexity Class：时间复杂性类</h1><p>对于语言L（即一个判定问题集合），如果存在图灵机$\mathbb{M}$和常数$c&gt;0$，使得$\mathbb{M}$能在$cT(n)$的时间内判定L，那么我们说$L\subseteq \text{TIME}(T(n))$。换句话说，$\text{TIME}(T(n))$中的语言都具有$O(T(n))$的算法。</p>
-<p>复杂性类（Complexity Class）是一些具有类似复杂度的问题的集合，或者说是一些<strong>具有类似复杂度解</strong>的问题的集合，因为对于大多数的问题，我们都能用简单或复杂的方法将其解出来。换句话说，我们不能定义问题的复杂性，我们只能定义<strong>解的复杂性</strong>。显然，上面提到的$\text{TIME}(T(n))$不是一个复杂性类，因为它是和模型相关的。比如，对于回文问题，我们可以在$O(n)$的时间内解决，此时回文问题在$\text{TIME}(n)$中，但我们也可以用$O(n^2)$的方法解决，此时回文问题在$\text{TIME}(n^2)$中。</p>
+<p>复杂性类（Complexity Class）是一些具有类似复杂度的问题的集合，或者说是一些<strong>具有类似复杂度解</strong>的问题的集合。因为对于大多数的问题，我们都能用简单或复杂的方法将其解出来，换句话说，我们不能定义问题的复杂性，我们只能定义<strong>解的复杂性</strong>。显然，上面提到的$\text{TIME}(T(n))$不是一个复杂性类，因为它是和模型相关的。比如，对于回文问题，我们可以在$O(n)$的时间内解决，此时回文问题在$\text{TIME}(n)$中，但我们也可以用$O(n^2)$的方法解决，此时回文问题在$\text{TIME}(n^2)$中。</p>
 <p>下面给出一些常见的时间复杂性类，这里面就有之前提到的P、NP问题。</p>
 <h2 id="Complexity-Class-P"><a href="#Complexity-Class-P" class="headerlink" title="Complexity Class P"></a>Complexity Class P</h2><p>$\text{P}$类，即多项式类，所有具有多项式时间算法的问题都属于这一类：</p>
 <p>$$<br>\text{P}&#x3D;\bigcup _{c\ge 1}\text{TIME}(n^c)<br>$$</p>
@@ -319,7 +319,7 @@
 <p>底数是无关紧要的，既可以是2，也可以是任何数字。出于规定，$\text{P}\subseteq\text{EXP}$，所以$n^c$不可以写成$cn$，否则集合内部的封闭性复合运算将不被满足。如：$n^3\in\text{P}$，所以$n^3\in\text{EXP}$，$2^n\in\text{EXP}$，那么将$n^3$和$2^n$复合得到的$2 ^{n^3}$理应也在$\text{EXP}$中。若将$n^c$写成$cn$则$2 ^{n^3}$将不被包含在$\text{EXP}$中，这显然是错误的。</p>
 <h1 id="Nondeterministic-Turing-Machine：非确定图灵机"><a href="#Nondeterministic-Turing-Machine：非确定图灵机" class="headerlink" title="Nondeterministic Turing Machine：非确定图灵机"></a>Nondeterministic Turing Machine：非确定图灵机</h1><p>非确定性图灵机（Nondeterministic Turing Machine）具有两个迁移函数$\delta _1,\delta _2$，它在运行过程中会<strong>随机</strong>地选择一个迁移函数来执行，并产生相应的结果。不难看出，NDTM的计算路径可以被视为一棵二叉树，叶子结点表示某一条会停机并产生结果的执行路径，有些路径可能无限长：</p>
 <p><img src="/2023/09/21/ComputationalComplexityTimecom2/3.jpg" alt="3"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 2. DTM and NDTM</center>
+<center style="font-size:12px; font-weight:bold">Fig. 3. DTM and NDTM</center><br>
 
 <p>上述的非确定图灵机在物理上是无法实现的，而之前所提到的物理上可实现的图灵机都称为确定图灵机（Deterministic Turing Machine，DTM）。</p>
 <h2 id="Guessing：猜测"><a href="#Guessing：猜测" class="headerlink" title="Guessing：猜测"></a>Guessing：猜测</h2><p>NDTM通常被用来解决存在性问题。事实上，对于输入$x$，NDTM的每一条计算路径都在试图构造或者<strong>猜测</strong>一个对$x$存在性的证明，若构造&#x2F;猜测成功，则NDTM接受$x$，否则拒绝$x$。对于某一个决策问题或者语言，在NDTM中有如下规定：</p>
@@ -331,9 +331,9 @@
 <p>这实际上就是<strong>枚举</strong>，其中，有些解路径可能很短，能达到<strong>多项式的时间复杂度</strong>，而有些解路径可能很长，需要指数的时间复杂度。</p>
 </blockquote>
 <h2 id="Complexity-Class-NP-amp-NEXP"><a href="#Complexity-Class-NP-amp-NEXP" class="headerlink" title="Complexity Class NP &amp; NEXP"></a>Complexity Class NP &amp; NEXP</h2><p>类似于DTM，对于NDTM，我们也可以定义时间复杂性类：对于语言L（即一个判定问题集合），如果存在非确定图灵机$\mathbb{N}$和常数$c&gt;0$，使得$\mathbb{N}$能在$cT(n)$的时间内判定L，那么我们说$L\subseteq \text{NTIME}(T(n))$。换句话说，$\text{NTIME}(T(n))$中的语言都具有$O(T(n))$的算法。</p>
-<p>同样地，定义非确定多项式（Non-deterministic Polynomial）复杂性类$NP$：</p>
+<p>同样地，定义非确定多项式（Non-deterministic Polynomial）复杂性类$\text{NP}$：</p>
 <p>$$<br>\text{NP}&#x3D;\bigcup _{c\ge 1}\text{NTIME}(n^c)<br>$$</p>
-<p>非确定指数复杂性类$NEXP$：</p>
+<p>非确定指数复杂性类$\text{NEXP}$：</p>
 <p>$$<br>\text{NEXP}&#x3D;\bigcup _{c\ge 1}\text{NTIME}(2^{n^c})<br>$$</p>
 <p>它们与DTM的关系为：</p>
 <p>$$<br>\text{P}\subseteq\text{NP}\subseteq\text{EXP}\subseteq\text{NEXP}<br>$$</p>
@@ -352,6 +352,9 @@
 <li>存放对被模拟工作带验证结果的工作带，它会记录一些snapshot，以验证对某个被模拟带子的模拟是否正确，若正确则清空，验证下一个带子。</li>
 </ol>
 <p>快照个数$O(T(n))$，$01$串的个数也是$O(T(n))$，故模拟的时间复杂度也是$T(n)$。这是在正确猜测的情况下，但实际上猜测序列、快照不一定是正确的，$T(n)$也不一定时间可构造，所以这台“通用”的非确定图灵机甚至有可能不停机，故“通用”是带引号的。若$T(n)$时间可构造则可掐表，以确保$\mathbb{V}$会停机。</p>
+<blockquote>
+<p>注意，以上的$T(n)$只对非确定图灵机的一条路径，即对非确定图灵机所“猜测”的任意一条路径，模拟它的时间复杂度可以到$T(n)$。</p>
+</blockquote>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348250098">计算复杂性（6）——世界难题：非确定型图灵机，NP类</a></li>
 </ul>

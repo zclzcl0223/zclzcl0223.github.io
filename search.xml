@@ -5,7 +5,9 @@
     <url>/2023/09/24/MatrixTheory1/</url>
     <content><![CDATA[<span id="more"></span>
 
-<h1 id="Linear-Space：线性空间"><a href="#Linear-Space：线性空间" class="headerlink" title="Linear Space：线性空间"></a>Linear Space：线性空间</h1><p>定义：设$V$为一个非空集合，$\mathbb{F}$为一个数域，$ V$中定义了一个封闭的加法运算“$+$”，对$\forall \alpha,\beta,\gamma\in V$,满足：</p>
+<h1 id="Linear-Space：线性空间"><a href="#Linear-Space：线性空间" class="headerlink" title="Linear Space：线性空间"></a>Linear Space：线性空间</h1><ul>
+<li>定义：设$V$为一个非空集合，$\mathbb{F}$为一个数域，$ V$中定义了一个封闭的加法运算“$+$”，对$\forall \alpha,\beta,\gamma\in V$,满足：</li>
+</ul>
 <ol>
 <li>结合律：$(\alpha+\beta)+\gamma&#x3D;\alpha+(\beta+\gamma)$</li>
 <li>交换律：$\alpha+\beta&#x3D;\beta+\alpha$</li>
@@ -17,9 +19,9 @@
 </blockquote>
 <p>定义了另一个封闭的数乘运算“$\cdot$”，对$\forall \alpha,\beta\in V,k _1,k _2\in\mathbb{F}$,满足：</p>
 <ol>
-<li>数乘的结合律：$k _1\cdot(k _2\cot\alpha)&#x3D;(k _1k _2)\cot\alpha$</li>
+<li>数乘的结合律：$k _1\cdot(k _2\cdot\alpha)&#x3D;(k _1k _2)\cdot\alpha$</li>
 <li>数乘关于向量加法的分配律：$k _1\cdot(\alpha+\beta)&#x3D;k _1\cdot\alpha+k _1\cdot\beta$</li>
-<li>数乘关于数的加法的分配律：$(k _1+k _2)\cot\alpha&#x3D;k _1\cot\alpha+k _2\cdot\alpha$</li>
+<li>数乘关于数的加法的分配律：$(k _1+k _2)\cdot\alpha&#x3D;k _1\cdot\alpha+k _2\cdot\alpha$</li>
 <li>数乘的初始条件：$1\cdot\alpha&#x3D;\alpha$</li>
 </ol>
 <p>则称$ V$为数域$\mathbb{F}$上的线性空间。</p>
@@ -40,34 +42,44 @@
 <blockquote>
 <p>以上三个性质都可用反证法证明。</p>
 </blockquote>
-<h1 id="Subspace：子空间"><a href="#Subspace：子空间" class="headerlink" title="Subspace：子空间"></a>Subspace：子空间</h1><p>定义：$ V$是数域$\mathbb{F}$上的线性空间，$U\subset V$，若$U$对$V$上定义的两个运算仍构成$\mathbb{F}$上的线性空间，则称$U$为$V$的子空间。</p>
+<h1 id="Subspace：子空间"><a href="#Subspace：子空间" class="headerlink" title="Subspace：子空间"></a>Subspace：子空间</h1><ul>
+<li>定义：$ V$是数域$\mathbb{F}$上的线性空间，$U\subset V$，若$U$对$V$上定义的两个运算仍构成$\mathbb{F}$上的线性空间，则称$U$为$V$的子空间。</li>
+</ul>
 <p>要判别一个集合$V$的子集$U$是否是原集合所构成线性空间的子空间，我们不再需要逐一地证明<strong>8</strong>项规则，只需要证明：</p>
 <ol>
 <li>加法和数乘运算在集合$U$中封闭；</li>
 <li>集合$U$不是空集。</li>
 </ol>
 <p>只要证明了上面这两项成立，则<strong>8</strong>项规则自动成立。这是因为：$U\subset V$，所以只要$U$中有元素，那么它们就自动地满足结合、交换律，<em>负向量</em>也相应地存在；若$U$的加法、数乘运算还是封闭的，那么由向量与其<em>负向量</em>的加法又可得出<em>零向量</em>存在，由此，<strong>8</strong>项规则成立。</p>
-<h1 id="Intersection-Space"><a href="#Intersection-Space" class="headerlink" title="Intersection Space"></a>Intersection Space</h1><p>对线性空间$V$的两个子空间$U$和$W$，若它们的交集非空，则其交空间$U\cap W$也是$V$的子空间。</p>
+<h1 id="Intersection-Space"><a href="#Intersection-Space" class="headerlink" title="Intersection Space"></a>Intersection Space</h1><ul>
+<li>对线性空间$V$的两个子空间$U$和$W$，若它们的交集非空，则其交空间$U\cap W$也是$V$的子空间。</li>
+</ul>
 <blockquote>
 <p>上述结论可以推广至$n$个子空间的交集。</p>
 </blockquote>
-<h1 id="Sum-Space"><a href="#Sum-Space" class="headerlink" title="Sum Space"></a>Sum Space</h1><p>对线性空间$V$的两个子空间$U$和$W$，它们的和空间定义为：</p>
+<h1 id="Sum-Space"><a href="#Sum-Space" class="headerlink" title="Sum Space"></a>Sum Space</h1><ul>
+<li>对线性空间$V$的两个子空间$U$和$W$，它们的和空间定义为：</li>
+</ul>
 <p>$$<br>U+W&#x3D;\{\alpha+\beta;\alpha\in U,\beta\in W\}<br>$$</p>
 <p>和空间是$V$的子空间。</p>
 <blockquote>
 <p>上述结论可以推广至$n$个子空间的和。</p>
 <p>要注意把和空间和并空间$U\cup W$区分开来。并空间并不一定是$V$的子空间，只有两个空间之间存在包含关系时其并空间才是$V$的子空间。</p>
 </blockquote>
-<h1 id="Direct-Sum"><a href="#Direct-Sum" class="headerlink" title="Direct Sum"></a>Direct Sum</h1><p>定义：对线性空间$V$的两个子空间$U$和$W$，$\forall\alpha\in U+W$，即$\alpha&#x3D;\alpha _1+\alpha _2$，其中$\alpha _1\in U$，$\alpha _2 \in W$，若$\alpha _1$和$\alpha _2$唯一，则称这种和为<em>直和</em>，记作$U\oplus W$。</p>
+<h1 id="Direct-Sum"><a href="#Direct-Sum" class="headerlink" title="Direct Sum"></a>Direct Sum</h1><ul>
+<li>定义：对线性空间$V$的两个子空间$U$和$W$，$\forall\alpha\in U+W$，即$\alpha&#x3D;\alpha _1+\alpha _2$，其中$\alpha _1\in U$，$\alpha _2 \in W$，若$\alpha _1$和$\alpha _2$唯一，则称这种和为<em>直和</em>，记作$U\oplus W$。</li>
+</ul>
 <p>直和也可以推广至$n$个子空间的和。我们有通用的方法来判定某个和是否是直和，但对于$n&#x3D;2$的情况，还有专门的特殊方法。</p>
 <h2 id="Judgment-of-Direct-Sum：-n-ge-2"><a href="#Judgment-of-Direct-Sum：-n-ge-2" class="headerlink" title="Judgment of Direct Sum：$n\ge 2$"></a>Judgment of Direct Sum：$n\ge 2$</h2><p>对线性空间$V$的$n$个子空间$U _1,...,U _n$，它们的和$(U _1+...+U _n)$是直和当且仅当其和空间的<em>零向量</em>只能表示为$0&#x3D;0+...+0$。</p>
 <blockquote>
 <ul>
 <li>必要性：<br>若$U _1+...+U _n$是直和$U _1\oplus ...\oplus U _n$，则其零<em>向量</em>的表示唯一。又$0&#x3D;0+...+0$，所以必要性显然成立。</li>
-<li>充分性：<br>不妨假设$\alpha\in U _1+...+U _n$，且$\alpha$存在两个表示$\alpha&#x3D;\alpha _1 + ... + \alpha _n$与$\alpha&#x3D;\beta _1 + .. + \beta _n$。令第二个表示取<em>逆向量</em>并与第一个表示相加，则有：<br>$$0&#x3D;(\alpha _1-\beta _1)+...+(\alpha _n - \beta _n)$$<br>因为$0$的表示唯一，所以：$\alpha _1 &#x3D;\beta _1,...,\alpha _n &#x3D;\beta _n$。证毕。</li>
+<li>充分性：<br>假设$\alpha\in U _1+...+U _n$，且$\alpha$存在两个表示$\alpha&#x3D;\alpha _1 + ... + \alpha _n$与$\alpha&#x3D;\beta _1 + .. + \beta _n$。令第二个表示取<em>逆向量</em>并与第一个表示相加，则有：<br>$$0&#x3D;(\alpha _1-\beta _1)+...+(\alpha _n - \beta _n)$$<br>因为$0$的表示唯一，所以：$\alpha _1 &#x3D;\beta _1,...,\alpha _n &#x3D;\beta _n$。证毕。</li>
 </ul>
 </blockquote>
-<h2 id="Judgment-of-Direct-Sum：-n-x3D-2"><a href="#Judgment-of-Direct-Sum：-n-x3D-2" class="headerlink" title="Judgment of Direct Sum：$n&#x3D; 2$"></a>Judgment of Direct Sum：$n&#x3D; 2$</h2><p>若$n&#x3D;2$，则有特殊的判别法：</p>
+<h2 id="Judgment-of-Direct-Sum：-n-x3D-2"><a href="#Judgment-of-Direct-Sum：-n-x3D-2" class="headerlink" title="Judgment of Direct Sum：$n&#x3D; 2$"></a>Judgment of Direct Sum：$n&#x3D; 2$</h2><ul>
+<li>若$n&#x3D;2$，则有特殊的判别法：</li>
+</ul>
 <p>对线性空间$V$的$2$个子空间$U _1,U _2$，它们的和$(U _1 + U _2)$是直和当且仅当其它们的交空间只有<em>零向量</em>，即$U \cap W &#x3D; \{0\}$。</p>
 <blockquote>
 <ul>
@@ -184,7 +196,7 @@
     <url>/2023/09/22/ComputationalComplexityTimecom3/</url>
     <content><![CDATA[<span id="more"></span>
 
-<h1 id="Time-Hierarchy-Theorem：时间谱系理论"><a href="#Time-Hierarchy-Theorem：时间谱系理论" class="headerlink" title="Time Hierarchy Theorem：时间谱系理论"></a>Time Hierarchy Theorem：时间谱系理论</h1><p>*理论1：如果$f$和$g$都是时间可构造的，且$f(n)\log f(n)&#x3D;o(g(n))$，则$\text{TIME}(f(n))\subsetneq\text{TIME}(g(n))$*。</p>
+<h1 id="Time-Hierarchy-Theorem：时间谱系理论"><a href="#Time-Hierarchy-Theorem：时间谱系理论" class="headerlink" title="Time Hierarchy Theorem：时间谱系理论"></a>Time Hierarchy Theorem：时间谱系理论</h1><p>理论：如果$f$和$g$都是时间可构造的，且$f(n)\log f(n)&#x3D;o(g(n))$，则$\text{TIME}(f(n))\subsetneq\text{TIME}(g(n))$。</p>
 <blockquote>
 <p>小o表示算法运行时间的<strong>严格上限</strong>，$f&#x3D;o(g)$表示$f$运行的上限是$g$，换句话说，$f$的运行时间比$g$增长得慢。</p>
 </blockquote>
@@ -204,8 +216,49 @@
 <p>上述结论相互矛盾，原假设不成立，$L\notin\text{TIME}(f(n))$。证毕。</p>
 </blockquote>
 <p>上面的证明用到了对角线方法。</p>
-<p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+<p>由时间谱系定理：</p>
+<p>$$<br>\begin{align*}<br>    \text{EXP}&#x3D;&amp;\bigcup _{c\ge 1}\text{TIME}(2^{n^c}) \\<br>    \text{2EXP}&#x3D;&amp;\bigcup _{c\ge 1}\text{TIME}(2 ^{2^{n^c}}) \\<br>    \vdots<br>\end{align*}<br>$$</p>
+<p>存在严格的包含关系，即$\text{EXP}\subset \text{2EXP}...$</p>
+<h1 id="Nondeterministic-Time-Hierarchy-Theorem：非确定时间谱系理论"><a href="#Nondeterministic-Time-Hierarchy-Theorem：非确定时间谱系理论" class="headerlink" title="Nondeterministic Time Hierarchy Theorem：非确定时间谱系理论"></a>Nondeterministic Time Hierarchy Theorem：非确定时间谱系理论</h1><p>理论：如果$f$和$g$都是时间可构造的，且$f(n+1)&#x3D;o(g(n))$，则$\text{NTIME}(f(n))\subsetneq\text{NTIME}(g(n))$。</p>
+<p>设有非确定图灵机$\mathbb{Z}$，只要证明$\mathbb{Z}$判定的语言L在$\text{NTIME}(g(n))$但不在$\text{NTIME}(f(n))$中即可。$\mathbb{Z}$的定义如下：</p>
+<ol>
+<li><strong>只</strong>处理长度大于1的全1串$1 ^n$；</li>
+<li>输入带和<strong>第一条工作带</strong>同步地移动，第一条工作带在第一个工作区写入1，然后在后续的工作区中持续写入0，期间偶尔写入1；</li>
+<li>用$h _0, h _1...$记录下所有写有1的工作区的下标；</li>
+<li>在<strong>第二条工作带</strong>上，枚举所有的和时钟$2f(n)$硬连接的非确定图灵机NDTMs（的编码），记这些图灵机为$\mathbb{L} _1,\mathbb{L} _2...$；</li>
+<li>在生成非确定图灵机$\mathbb{L} _i$后，$\mathbb{Z}$模拟计算$\mathbb{L} _{i-1}(1 ^{h _{i -1}+1})$，并将结果（0或1）写入第二条工作带上，<strong>同时</strong>，在<strong>第一条工作带</strong>的$h _i$位置写上1。<blockquote>
+<p>注意，因为$h _0&#x3D;1$，所以$\mathbb{L} _0(1 ^{h _0+1})$是一开始就可以确定的，不需要等第一条工作带运行。<br>$\mathbb{L} _{i-1}(1 ^{h _{i -1}+1})$中的$\mathbb{L} _{i-1}$和$1 ^{h _{i-1}+1}$都通过回溯之前的历史得到，回溯的时间复杂度为$O(n)$，因为$h _{i -1}$是单调递增的，故只需要局部回溯。而$\mathbb{L} _{i-1}(1 ^{h _{i -1}+1})$则用新的工作带（写入$\mathbb{L} _{i-1}$与$1 ^{h _{i-1}+1}$）、草稿带来计算（在$2f(n)$必内停机）。</p>
+</blockquote>
+</li>
+</ol>
+<p>$\mathbb{Z}$的输出规定为：</p>
+<ol>
+<li>如果在输入串$1 ^n$扫描结束时，最新的$h _i &#x3D; n$且$\mathbb{L} _{i-1}(1 ^{h _{i -1}+1})&#x3D;0$，则$\mathbb{Z}$接受$1 ^n$；</li>
+<li>反之如果$h _{i-1} &lt; n &lt; h _i$，则$\mathbb{Z}$模拟$\mathbb{L} _{i-1}$以非确定图灵机的方式计算$1 ^{n+1}$$g(n)$步，并以其结果作为最后的输出。</li>
+</ol>
+<p>矛盾性的证明：</p>
+<blockquote>
+<p>假设语言L被$\mathbb{Z}$接受：</p>
+<ul>
+<li>则L$\in \text{NTIME}(g(n))$，因为$\mathbb{Z}$运行的时间复杂度只由完全扫描完输入后的计算时间决定，而输出规定2可在$g(n)$时间内完成（输出规定1为常量时间）。</li>
+</ul>
+<p>再假定$\exists \mathbb{L} _i$在$f(n)$时间内接受L。于是，因为$f(n+1)&#x3D;o(g(n))$，所以输出规定2中$\mathbb{Z}$对$\mathbb{L} _i$（此处的$i$指输入扫描结束后计算的最后一个$h$的前一个）的模拟可以被完成。故，由于$\mathbb{L} _i$和$\mathbb{Z}$都接受L：<br>$$\mathbb{L} _i(1 ^{h _i + 1})&#x3D;\mathbb{Z}(1 ^{h _i + 1})$$<br>又由输出规定2：对输入串的长度$m&#x3D; h_i+1$，$\mathbb{Z}$的输出结果与$\mathbb{L} _i(1 ^{m+1})&#x3D;\mathbb{L} _i(1 ^{h _i + 1+1})$的结果相同：<br>$$\mathbb{Z}(1 ^{h _i + 1})&#x3D;\mathbb{L} _i(1 ^{h _i + 2})$$<br>又由两者都接受L：<br>$$\mathbb{L} _i(1 ^{h _i + 2})&#x3D;\mathbb{Z}(1 ^{h _i + 2})$$<br>若输入长度一直这样增加下去，则总会有一个时刻，$h _i +k&#x3D;h _{i+1}$，此时：<br>$$\mathbb{L} _i(1 ^{h _{i+1}})&#x3D;\mathbb{Z}(1 ^{h _{i+1}})$$<br>若$n&#x3D;h _{i+1}$，则由输出规定1：<br>$$\mathbb{Z}(1 ^{n})&#x3D;\mathbb{Z}(1 ^{h _{i+1}})\ne \mathbb{L} _i (1 ^{h _i+1})$$<br>出现矛盾，因此不存在这样的$\mathbb{L} _i$在$f(n)$时间内接受L。证毕。</p>
+</blockquote>
+<h1 id="Gap-Theorem：间隙定理"><a href="#Gap-Theorem：间隙定理" class="headerlink" title="Gap Theorem：间隙定理"></a>Gap Theorem：间隙定理</h1><p>描述：对任何一个可计算函数$r(x)\ge x$，一定存在一个可计算函数$b(x)$，使得$\text{TIME}(b(x))&#x3D;\text{TIME}(r(b(x)))$。</p>
+<p>时间谱系定理告诉我们$\text{TIME}(n ^c)\subsetneq \text{TIME}(2 ^{n ^c})$。而间隙定理说明，并不是对所有的$b(n)$，$\text{TIME}(b(n))\subsetneq \text{TIME}(2 ^{b(n)})$都成立，即有可能$\text{TIME}(b(n))&#x3D;\text{TIME}(2 ^{b(n)})$。证明如下：</p>
+<blockquote>
+<ul>
+<li>定义一个$r(x)\ge x$，以及$[0,r(k _x)]$上的$x+1$个不相交区间$[k _0, r(k _0)],...,[k _x, r(k _x)]$，其中：<br>$$<br>\begin{align*}<br>  k _0&#x3D;&amp;0 \\<br>  k _{i+1}&#x3D;&amp; r(k _i)+1,i &lt; x<br>\end{align*}$$</li>
+<li>再定义$P(i,k)$为：对所有的$j \le i$及其编码的图灵机$\mathbb{M} _j$，对长度为$i$的字符串输入$z$，若$\mathbb{M} _j(z)$在$k$步内停机或者在$r(k)$步仍未停机，则$P(i,k)&#x3D;\text{True}$；否则$P(i,k)&#x3D;\text{False}$。</li>
+</ul>
+<p>对这些图灵机$\mathbb{M} _0,...,\mathbb{M} _i$，它们能够接受总输入个数为：<br>$$n _i&#x3D;\sum ^i _{j&#x3D;0}|\Gamma _j| ^i$$<br>因此它们的运行时间有 $n _i$种可能。而$[0,r(k _{n _i})]$上有$n _i+1$个不相交区间$[k _0, r(k _0)],...,[k _{n _i}, r(k _{n _i})]$。也就是说，总会有那么几个区间，在这些区间，没有任何的$\mathbb{M} _j(z)$运行步数在它们的范围内。换句话说，在这些区间的左端点$k _m$上，$P(i,k _m)$是$\text{True}$的。<br>由此，我们可以定义一个函数$b(i)$，对任何一个$i$，它的值是这些区间中的某一个的左端点，即$b(i)&#x3D;k _m$。于是我们有$P(i,b(i))$对于所有的$i$都成立。</p>
+<ul>
+<li>进一步地，假设$\mathbb{M} _j$在$r(b(n))$的时间内接受L。</li>
+</ul>
+<p>则对于任何的输入$x$，若其长度$n \ge j$，由$P(n,b(n))&#x3D;\text{True}$，我们有：<br>$\mathbb{M} _j(x)$要么在$b(n)$步内停机，要么$r(b(n))$步还不停机。<br>然而，$\mathbb{M} _j$在$r(b(n))$的时间内接受L，所以$\mathbb{M} _j(x)$在$r(b(n))$步内一定已经停机，所以$\mathbb{M} _j(x)$在$b(n)$步内停机，所以$\mathbb{M} _j$在$b(n)$的时间内接受L，所以：<br>$$\text{TIME}(b(n))&#x3D;\text{TIME}(r(b(n)))$$</p>
+</blockquote>
+<p>我们可以确保$b(n)$和$r(b(n))$满足$f(n)$和$g(n)$的大小关系，因为$r(x)$可以是任意的，只要$r(x)\ge x$即可。但$b(n)$却不满足时间谱系定理，这说明这样的$b(n)$是时间不可构造的。</p>
+]]></content>
       <categories>
         <category>CS7313: Computational Complexity</category>
       </categories>
@@ -252,19 +305,19 @@
 <p><em>Linear Speedup Theorem：设图灵机$\mathbb{M}$在$T(n)$步内计算了$f$，任取$\epsilon &gt; 0$，总存在图灵机$\mathbb{M}&#39;$，它能在$\epsilon T(n)+n+2$步内计算$f$。</em></p>
 <p>这里用到的方法是“压缩带子”，即通过编码，使得$\mathbb{M}&#39;$上的一格能够记录$\mathbb{M}$上$m$格的内容，这样$\mathbb{M}&#39;$的一步就相当于$\mathbb{M}$上的$m$步，其证明如下：</p>
 <blockquote>
-<p>对于$\mathbb{M}(\Gamma,Q,\delta)$，用一个新的符号集$\Gamma &#39;$为$\Gamma$中的$m$个字符用$1$个字符编码。不难看出，这样的符号及$\Gamma &#39;$是巨大的，其字符种类至少为$|\Gamma &#39;| &gt; |\Gamma|^m$。我们用$\Gamma &#39;$构建一个新的图灵机$\mathbb{M}&#39;(\Gamma &#39;,Q&#39;,\delta &#39;)$，对该图灵机：</p>
+<p>对于$\mathbb{M}(\Gamma,Q,\delta)$，用一个新的符号集$\Gamma &#39;$为$\Gamma$中的$m$个字符用$1$个字符编码。不难看出，这样的符号集$\Gamma &#39;$是巨大的，其字符种类至少为$|\Gamma &#39;| &gt; |\Gamma|^m$。我们用$\Gamma &#39;$构建一个新的图灵机$\mathbb{M}&#39;(\Gamma &#39;,Q&#39;,\delta &#39;)$，对该图灵机：</p>
 <ul>
 <li>使用与$\mathbb{M}$相同的带子数；</li>
 <li>对于$\mathbb{M}$纸带上长度为$n$的编码，$\mathbb{M}&#39;$可以在$n+2$步内将其转换为$n&#x2F;m$长的编码；（多出的2步是起始符和终止）</li>
 <li>$\mathbb{M}&#39;$在$n&#x2F;m$步可以将所有的带头回归到原点；</li>
-<li>$\mathbb{M}&#39;$纸带上的任何一个格子对应着$\mathbb{M}$上的$m$个格子。某一时刻$\mathbb{M}$在$m$个格子内<strong>任意一个格子</strong>上的*$m$步*在$\mathbb{M}&#39;$上至多会涉及到<strong>3</strong>个格子，因此$\mathbb{M}&#39;$只需要记录下这三个格子的值、做一步写入操作、移动一次带头，至多<strong>5</strong>步就可以模拟$\mathbb{M}$上的$m$步。<br>因此，总时间：<br>$$<br>n+2+\frac{n}{m}+5\frac{T(n)}{m}\ge n+2 + \frac{6}{m}T(n)<br>$$<br>我们可以取$\epsilon&#x3D;6&#x2F;m$，$m&#x3D;6&#x2F;\epsilon$，证毕。</li>
+<li>$\mathbb{M}&#39;$纸带上的任何一个格子对应着$\mathbb{M}$上的$m$个格子。某一时刻$\mathbb{M}$在$m$个格子内<strong>任意一个格子</strong>上的$m$步在$\mathbb{M}&#39;$上至多会涉及到<strong>3</strong>个格子，因此$\mathbb{M}&#39;$只需要记录下这三个格子的值、做一步写入操作、移动一次带头，至多<strong>5</strong>步就可以模拟$\mathbb{M}$上的$m$步。<br>因此，总时间：<br>$$<br>n+2+\frac{n}{m}+5\frac{T(n)}{m}\ge n+2 + \frac{6}{m}T(n)<br>$$<br>我们可以取$\epsilon&#x3D;6&#x2F;m$，$m&#x3D;6&#x2F;\epsilon$，证毕。</li>
 </ul>
 </blockquote>
 <p><img src="/2023/09/21/ComputationalComplexityTimecom2/2.jpg" alt="2"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 2. 1 -> m</center>
 
 <h1 id="Time-Complexity-Class：时间复杂性类"><a href="#Time-Complexity-Class：时间复杂性类" class="headerlink" title="Time Complexity Class：时间复杂性类"></a>Time Complexity Class：时间复杂性类</h1><p>对于语言L（即一个判定问题集合），如果存在图灵机$\mathbb{M}$和常数$c&gt;0$，使得$\mathbb{M}$能在$cT(n)$的时间内判定L，那么我们说$L\subseteq \text{TIME}(T(n))$。换句话说，$\text{TIME}(T(n))$中的语言都具有$O(T(n))$的算法。</p>
-<p>复杂性类（Complexity Class）是一些具有类似复杂度的问题的集合，或者说是一些<strong>具有类似复杂度解</strong>的问题的集合，因为对于大多数的问题，我们都能用简单或复杂的方法将其解出来。换句话说，我们不能定义问题的复杂性，我们只能定义<strong>解的复杂性</strong>。显然，上面提到的$\text{TIME}(T(n))$不是一个复杂性类，因为它是和模型相关的。比如，对于回文问题，我们可以在$O(n)$的时间内解决，此时回文问题在$\text{TIME}(n)$中，但我们也可以用$O(n^2)$的方法解决，此时回文问题在$\text{TIME}(n^2)$中。</p>
+<p>复杂性类（Complexity Class）是一些具有类似复杂度的问题的集合，或者说是一些<strong>具有类似复杂度解</strong>的问题的集合。因为对于大多数的问题，我们都能用简单或复杂的方法将其解出来，换句话说，我们不能定义问题的复杂性，我们只能定义<strong>解的复杂性</strong>。显然，上面提到的$\text{TIME}(T(n))$不是一个复杂性类，因为它是和模型相关的。比如，对于回文问题，我们可以在$O(n)$的时间内解决，此时回文问题在$\text{TIME}(n)$中，但我们也可以用$O(n^2)$的方法解决，此时回文问题在$\text{TIME}(n^2)$中。</p>
 <p>下面给出一些常见的时间复杂性类，这里面就有之前提到的P、NP问题。</p>
 <h2 id="Complexity-Class-P"><a href="#Complexity-Class-P" class="headerlink" title="Complexity Class P"></a>Complexity Class P</h2><p>$\text{P}$类，即多项式类，所有具有多项式时间算法的问题都属于这一类：</p>
 <p>$$<br>\text{P}&#x3D;\bigcup _{c\ge 1}\text{TIME}(n^c)<br>$$</p>
@@ -277,7 +330,7 @@
 <p>底数是无关紧要的，既可以是2，也可以是任何数字。出于规定，$\text{P}\subseteq\text{EXP}$，所以$n^c$不可以写成$cn$，否则集合内部的封闭性复合运算将不被满足。如：$n^3\in\text{P}$，所以$n^3\in\text{EXP}$，$2^n\in\text{EXP}$，那么将$n^3$和$2^n$复合得到的$2 ^{n^3}$理应也在$\text{EXP}$中。若将$n^c$写成$cn$则$2 ^{n^3}$将不被包含在$\text{EXP}$中，这显然是错误的。</p>
 <h1 id="Nondeterministic-Turing-Machine：非确定图灵机"><a href="#Nondeterministic-Turing-Machine：非确定图灵机" class="headerlink" title="Nondeterministic Turing Machine：非确定图灵机"></a>Nondeterministic Turing Machine：非确定图灵机</h1><p>非确定性图灵机（Nondeterministic Turing Machine）具有两个迁移函数$\delta _1,\delta _2$，它在运行过程中会<strong>随机</strong>地选择一个迁移函数来执行，并产生相应的结果。不难看出，NDTM的计算路径可以被视为一棵二叉树，叶子结点表示某一条会停机并产生结果的执行路径，有些路径可能无限长：</p>
 <p><img src="/2023/09/21/ComputationalComplexityTimecom2/3.jpg" alt="3"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 2. DTM and NDTM</center>
+<center style="font-size:12px; font-weight:bold">Fig. 3. DTM and NDTM</center><br>
 
 <p>上述的非确定图灵机在物理上是无法实现的，而之前所提到的物理上可实现的图灵机都称为确定图灵机（Deterministic Turing Machine，DTM）。</p>
 <h2 id="Guessing：猜测"><a href="#Guessing：猜测" class="headerlink" title="Guessing：猜测"></a>Guessing：猜测</h2><p>NDTM通常被用来解决存在性问题。事实上，对于输入$x$，NDTM的每一条计算路径都在试图构造或者<strong>猜测</strong>一个对$x$存在性的证明，若构造&#x2F;猜测成功，则NDTM接受$x$，否则拒绝$x$。对于某一个决策问题或者语言，在NDTM中有如下规定：</p>
@@ -289,9 +342,9 @@
 <p>这实际上就是<strong>枚举</strong>，其中，有些解路径可能很短，能达到<strong>多项式的时间复杂度</strong>，而有些解路径可能很长，需要指数的时间复杂度。</p>
 </blockquote>
 <h2 id="Complexity-Class-NP-amp-NEXP"><a href="#Complexity-Class-NP-amp-NEXP" class="headerlink" title="Complexity Class NP &amp; NEXP"></a>Complexity Class NP &amp; NEXP</h2><p>类似于DTM，对于NDTM，我们也可以定义时间复杂性类：对于语言L（即一个判定问题集合），如果存在非确定图灵机$\mathbb{N}$和常数$c&gt;0$，使得$\mathbb{N}$能在$cT(n)$的时间内判定L，那么我们说$L\subseteq \text{NTIME}(T(n))$。换句话说，$\text{NTIME}(T(n))$中的语言都具有$O(T(n))$的算法。</p>
-<p>同样地，定义非确定多项式（Non-deterministic Polynomial）复杂性类$NP$：</p>
+<p>同样地，定义非确定多项式（Non-deterministic Polynomial）复杂性类$\text{NP}$：</p>
 <p>$$<br>\text{NP}&#x3D;\bigcup _{c\ge 1}\text{NTIME}(n^c)<br>$$</p>
-<p>非确定指数复杂性类$NEXP$：</p>
+<p>非确定指数复杂性类$\text{NEXP}$：</p>
 <p>$$<br>\text{NEXP}&#x3D;\bigcup _{c\ge 1}\text{NTIME}(2^{n^c})<br>$$</p>
 <p>它们与DTM的关系为：</p>
 <p>$$<br>\text{P}\subseteq\text{NP}\subseteq\text{EXP}\subseteq\text{NEXP}<br>$$</p>
@@ -310,6 +363,9 @@
 <li>存放对被模拟工作带验证结果的工作带，它会记录一些snapshot，以验证对某个被模拟带子的模拟是否正确，若正确则清空，验证下一个带子。</li>
 </ol>
 <p>快照个数$O(T(n))$，$01$串的个数也是$O(T(n))$，故模拟的时间复杂度也是$T(n)$。这是在正确猜测的情况下，但实际上猜测序列、快照不一定是正确的，$T(n)$也不一定时间可构造，所以这台“通用”的非确定图灵机甚至有可能不停机，故“通用”是带引号的。若$T(n)$时间可构造则可掐表，以确保$\mathbb{V}$会停机。</p>
+<blockquote>
+<p>注意，以上的$T(n)$只对非确定图灵机的一条路径，即对非确定图灵机所“猜测”的任意一条路径，模拟它的时间复杂度可以到$T(n)$。</p>
+</blockquote>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a href="https://zhuanlan.zhihu.com/p/348250098">计算复杂性（6）——世界难题：非确定型图灵机，NP类</a></li>
 </ul>
@@ -4046,8 +4102,8 @@
         <category>Programming Language</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4150,8 +4206,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4235,8 +4291,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4344,8 +4400,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4474,8 +4530,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4492,8 +4548,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4564,8 +4620,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4754,8 +4810,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4856,8 +4912,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4982,8 +5038,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5013,8 +5069,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5796,6 +5852,28 @@
       </tags>
   </entry>
   <entry>
+    <title>Zip: Make Aggregation Easier</title>
+    <url>/2023/05/06/ZipMakeLifeEasier/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>We can even use zip to generate a dictionary:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Gamma and Factorial</title>
     <url>/2023/05/05/GammaAndFactorial/</url>
     <content><![CDATA[<span id="more"></span>
@@ -5863,28 +5941,6 @@
       <tags>
         <tag>Python</tag>
         <tag>Configuration</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Zip: Make Aggregation Easier</title>
-    <url>/2023/05/06/ZipMakeLifeEasier/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>We can even use zip to generate a dictionary:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>

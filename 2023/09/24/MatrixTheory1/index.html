@@ -30,7 +30,7 @@
 <meta property="og:description" content="矩阵理论第一课。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-24T11:49:32.000Z">
-<meta property="article:modified_time" content="2023-09-25T13:24:20.653Z">
+<meta property="article:modified_time" content="2023-09-26T11:01:32.324Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-25 21:24:20" itemprop="dateModified" datetime="2023-09-25T21:24:20+08:00">2023-09-25</time>
+                <time title="Modified: 2023-09-26 19:01:32" itemprop="dateModified" datetime="2023-09-26T19:01:32+08:00">2023-09-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,7 +256,9 @@
       
         <span id="more"></span>
 
-<h1 id="Linear-Space：线性空间"><a href="#Linear-Space：线性空间" class="headerlink" title="Linear Space：线性空间"></a>Linear Space：线性空间</h1><p>定义：设$V$为一个非空集合，$\mathbb{F}$为一个数域，$ V$中定义了一个封闭的加法运算“$+$”，对$\forall \alpha,\beta,\gamma\in V$,满足：</p>
+<h1 id="Linear-Space：线性空间"><a href="#Linear-Space：线性空间" class="headerlink" title="Linear Space：线性空间"></a>Linear Space：线性空间</h1><ul>
+<li>定义：设$V$为一个非空集合，$\mathbb{F}$为一个数域，$ V$中定义了一个封闭的加法运算“$+$”，对$\forall \alpha,\beta,\gamma\in V$,满足：</li>
+</ul>
 <ol>
 <li>结合律：$(\alpha+\beta)+\gamma&#x3D;\alpha+(\beta+\gamma)$</li>
 <li>交换律：$\alpha+\beta&#x3D;\beta+\alpha$</li>
@@ -268,9 +270,9 @@
 </blockquote>
 <p>定义了另一个封闭的数乘运算“$\cdot$”，对$\forall \alpha,\beta\in V,k _1,k _2\in\mathbb{F}$,满足：</p>
 <ol>
-<li>数乘的结合律：$k _1\cdot(k _2\cot\alpha)&#x3D;(k _1k _2)\cot\alpha$</li>
+<li>数乘的结合律：$k _1\cdot(k _2\cdot\alpha)&#x3D;(k _1k _2)\cdot\alpha$</li>
 <li>数乘关于向量加法的分配律：$k _1\cdot(\alpha+\beta)&#x3D;k _1\cdot\alpha+k _1\cdot\beta$</li>
-<li>数乘关于数的加法的分配律：$(k _1+k _2)\cot\alpha&#x3D;k _1\cot\alpha+k _2\cdot\alpha$</li>
+<li>数乘关于数的加法的分配律：$(k _1+k _2)\cdot\alpha&#x3D;k _1\cdot\alpha+k _2\cdot\alpha$</li>
 <li>数乘的初始条件：$1\cdot\alpha&#x3D;\alpha$</li>
 </ol>
 <p>则称$ V$为数域$\mathbb{F}$上的线性空间。</p>
@@ -291,34 +293,44 @@
 <blockquote>
 <p>以上三个性质都可用反证法证明。</p>
 </blockquote>
-<h1 id="Subspace：子空间"><a href="#Subspace：子空间" class="headerlink" title="Subspace：子空间"></a>Subspace：子空间</h1><p>定义：$ V$是数域$\mathbb{F}$上的线性空间，$U\subset V$，若$U$对$V$上定义的两个运算仍构成$\mathbb{F}$上的线性空间，则称$U$为$V$的子空间。</p>
+<h1 id="Subspace：子空间"><a href="#Subspace：子空间" class="headerlink" title="Subspace：子空间"></a>Subspace：子空间</h1><ul>
+<li>定义：$ V$是数域$\mathbb{F}$上的线性空间，$U\subset V$，若$U$对$V$上定义的两个运算仍构成$\mathbb{F}$上的线性空间，则称$U$为$V$的子空间。</li>
+</ul>
 <p>要判别一个集合$V$的子集$U$是否是原集合所构成线性空间的子空间，我们不再需要逐一地证明<strong>8</strong>项规则，只需要证明：</p>
 <ol>
 <li>加法和数乘运算在集合$U$中封闭；</li>
 <li>集合$U$不是空集。</li>
 </ol>
 <p>只要证明了上面这两项成立，则<strong>8</strong>项规则自动成立。这是因为：$U\subset V$，所以只要$U$中有元素，那么它们就自动地满足结合、交换律，<em>负向量</em>也相应地存在；若$U$的加法、数乘运算还是封闭的，那么由向量与其<em>负向量</em>的加法又可得出<em>零向量</em>存在，由此，<strong>8</strong>项规则成立。</p>
-<h1 id="Intersection-Space"><a href="#Intersection-Space" class="headerlink" title="Intersection Space"></a>Intersection Space</h1><p>对线性空间$V$的两个子空间$U$和$W$，若它们的交集非空，则其交空间$U\cap W$也是$V$的子空间。</p>
+<h1 id="Intersection-Space"><a href="#Intersection-Space" class="headerlink" title="Intersection Space"></a>Intersection Space</h1><ul>
+<li>对线性空间$V$的两个子空间$U$和$W$，若它们的交集非空，则其交空间$U\cap W$也是$V$的子空间。</li>
+</ul>
 <blockquote>
 <p>上述结论可以推广至$n$个子空间的交集。</p>
 </blockquote>
-<h1 id="Sum-Space"><a href="#Sum-Space" class="headerlink" title="Sum Space"></a>Sum Space</h1><p>对线性空间$V$的两个子空间$U$和$W$，它们的和空间定义为：</p>
+<h1 id="Sum-Space"><a href="#Sum-Space" class="headerlink" title="Sum Space"></a>Sum Space</h1><ul>
+<li>对线性空间$V$的两个子空间$U$和$W$，它们的和空间定义为：</li>
+</ul>
 <p>$$<br>U+W&#x3D;\{\alpha+\beta;\alpha\in U,\beta\in W\}<br>$$</p>
 <p>和空间是$V$的子空间。</p>
 <blockquote>
 <p>上述结论可以推广至$n$个子空间的和。</p>
 <p>要注意把和空间和并空间$U\cup W$区分开来。并空间并不一定是$V$的子空间，只有两个空间之间存在包含关系时其并空间才是$V$的子空间。</p>
 </blockquote>
-<h1 id="Direct-Sum"><a href="#Direct-Sum" class="headerlink" title="Direct Sum"></a>Direct Sum</h1><p>定义：对线性空间$V$的两个子空间$U$和$W$，$\forall\alpha\in U+W$，即$\alpha&#x3D;\alpha _1+\alpha _2$，其中$\alpha _1\in U$，$\alpha _2 \in W$，若$\alpha _1$和$\alpha _2$唯一，则称这种和为<em>直和</em>，记作$U\oplus W$。</p>
+<h1 id="Direct-Sum"><a href="#Direct-Sum" class="headerlink" title="Direct Sum"></a>Direct Sum</h1><ul>
+<li>定义：对线性空间$V$的两个子空间$U$和$W$，$\forall\alpha\in U+W$，即$\alpha&#x3D;\alpha _1+\alpha _2$，其中$\alpha _1\in U$，$\alpha _2 \in W$，若$\alpha _1$和$\alpha _2$唯一，则称这种和为<em>直和</em>，记作$U\oplus W$。</li>
+</ul>
 <p>直和也可以推广至$n$个子空间的和。我们有通用的方法来判定某个和是否是直和，但对于$n&#x3D;2$的情况，还有专门的特殊方法。</p>
 <h2 id="Judgment-of-Direct-Sum：-n-ge-2"><a href="#Judgment-of-Direct-Sum：-n-ge-2" class="headerlink" title="Judgment of Direct Sum：$n\ge 2$"></a>Judgment of Direct Sum：$n\ge 2$</h2><p>对线性空间$V$的$n$个子空间$U _1,...,U _n$，它们的和$(U _1+...+U _n)$是直和当且仅当其和空间的<em>零向量</em>只能表示为$0&#x3D;0+...+0$。</p>
 <blockquote>
 <ul>
 <li>必要性：<br>若$U _1+...+U _n$是直和$U _1\oplus ...\oplus U _n$，则其零<em>向量</em>的表示唯一。又$0&#x3D;0+...+0$，所以必要性显然成立。</li>
-<li>充分性：<br>不妨假设$\alpha\in U _1+...+U _n$，且$\alpha$存在两个表示$\alpha&#x3D;\alpha _1 + ... + \alpha _n$与$\alpha&#x3D;\beta _1 + .. + \beta _n$。令第二个表示取<em>逆向量</em>并与第一个表示相加，则有：<br>$$0&#x3D;(\alpha _1-\beta _1)+...+(\alpha _n - \beta _n)$$<br>因为$0$的表示唯一，所以：$\alpha _1 &#x3D;\beta _1,...,\alpha _n &#x3D;\beta _n$。证毕。</li>
+<li>充分性：<br>假设$\alpha\in U _1+...+U _n$，且$\alpha$存在两个表示$\alpha&#x3D;\alpha _1 + ... + \alpha _n$与$\alpha&#x3D;\beta _1 + .. + \beta _n$。令第二个表示取<em>逆向量</em>并与第一个表示相加，则有：<br>$$0&#x3D;(\alpha _1-\beta _1)+...+(\alpha _n - \beta _n)$$<br>因为$0$的表示唯一，所以：$\alpha _1 &#x3D;\beta _1,...,\alpha _n &#x3D;\beta _n$。证毕。</li>
 </ul>
 </blockquote>
-<h2 id="Judgment-of-Direct-Sum：-n-x3D-2"><a href="#Judgment-of-Direct-Sum：-n-x3D-2" class="headerlink" title="Judgment of Direct Sum：$n&#x3D; 2$"></a>Judgment of Direct Sum：$n&#x3D; 2$</h2><p>若$n&#x3D;2$，则有特殊的判别法：</p>
+<h2 id="Judgment-of-Direct-Sum：-n-x3D-2"><a href="#Judgment-of-Direct-Sum：-n-x3D-2" class="headerlink" title="Judgment of Direct Sum：$n&#x3D; 2$"></a>Judgment of Direct Sum：$n&#x3D; 2$</h2><ul>
+<li>若$n&#x3D;2$，则有特殊的判别法：</li>
+</ul>
 <p>对线性空间$V$的$2$个子空间$U _1,U _2$，它们的和$(U _1 + U _2)$是直和当且仅当其它们的交空间只有<em>零向量</em>，即$U \cap W &#x3D; \{0\}$。</p>
 <blockquote>
 <ul>
