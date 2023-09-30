@@ -1,6 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Computational Complexity Space Complexity 1</title>
+    <url>/2023/09/28/ComputationalComplexitySpaceComp1/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Space-Bounded-Computation：空间边界的计算"><a href="#Space-Bounded-Computation：空间边界的计算" class="headerlink" title="Space Bounded Computation：空间边界的计算"></a>Space Bounded Computation：空间边界的计算</h1><p>空间是计算资源，是可重用的。研究空间复杂度，只考虑只有一条带子的图灵机即可。</p>
+<p>空间复杂性（函数）的定义：对函数$S: \mathbf{N}\to \mathbf{N}$和语言$L \in \{0,1\} ^ *$，如果存在常数$c$和图灵机$\mathbb{M}$能使用不超过$cS(n)$的非空工作带格子判定输入长度为$n$的$L$，则就称$L \in \text{SPACE}(S(n))$。</p>
+<blockquote>
+<p>不计算输入所占用的格子。空间可构造和完全空间可构造完全类比时间可构造和完全时间可构造。</p>
+</blockquote>
+<p>对非确定图灵机，$L \in \text{NSPACE}((S(n)))$当且仅当每条路径上使用的非空工作带格子都不超过$cS(n)$。</p>
+<h2 id="Configuration-Graph：格局图"><a href="#Configuration-Graph：格局图" class="headerlink" title="Configuration Graph：格局图"></a>Configuration Graph：格局图</h2><ul>
+<li>$C _{\text{start}}$：初始格局；</li>
+<li>$C _{\text{accept}}$：接受格局，图灵机中止且带子上的结果为1。</li>
+</ul>
+<p>格局图：一个图灵机$\mathbb{M}$的格局图$G _{\mathbb{M},x}$是一个有向图，它的结点是某个格局$C$，边是一次计算。若使用格局图，则$\mathbb{M}$接受$x$当且仅当在格局图$G _{\mathbb{M},x}$上存在从$C _{\text{start}}$到$C _{\text{accept}}$的路径。</p>
+<h3 id="Size-of-Configuration-Graph：格局图的大小"><a href="#Size-of-Configuration-Graph：格局图的大小" class="headerlink" title="Size of Configuration Graph：格局图的大小"></a>Size of Configuration Graph：格局图的大小</h3><p>对于一个时间复杂度为$S(n)$的图灵机$\mathbb{M}$，由于只考虑一条工作带，因此，某个长度为$n$输入$x$，其某一步的格局可用$O(S(n))个$比特编码。因此，整个格局图的结点个数就是$2 ^{O(S(n))}$。</p>
+<p>当我们想要判断某两个结点间是否存在边时，我们只需要判断某两个格局$C _1$和$C _2$是否存在一步到达的关系，即看能否通过仅修改某个格局$C _1$编码的$1$个bit和表示读写头的几个bit，就让$C _1&#x3D;C _2$。不难看出，该算法的时间复杂度是$O(S(n))$，空间复杂度是$O(\log S(n))$，因为我们只需要按位比较，并记录位置的编码即可，而$O(S(n))$个位置可用$O(\log S(n))$的二进制串表示。</p>
+<h2 id="Space-vs-Time"><a href="#Space-vs-Time" class="headerlink" title="Space vs Time"></a>Space vs Time</h2><p>设空间函数$S(n)$是空间可构造的，则：</p>
+<p>$$<br>\text{TIME}(S(n))\subseteq \text{SPACE}(S(n))\subseteq \text{NSPACE}(S(n))\subseteq \text{TIME}(2 ^{O(S(n))})<br>$$</p>
+<blockquote>
+<p>第一个包含关系：一步最多多用一个格子；<br>第二个包含关系：确定是非确定的特例；<br>第三个包含关系：判定一个非确定图灵机能否在$O(S(n))$的空间内判定每个问题，等价于验证格局图中是否存在由$C _\text{start}$到$C _{\text{accept}}$的路径，而这可通过BFS在多项式时间复杂度内完成。格局图中总结点数为$2 ^{O(S(n))}$，因此第三个包含关系成立。</p>
+</blockquote>
+<p>注意：以上相互包含的都是<strong>问题集合</strong>，如第一个包含关系意为：时间复杂度为$S(n)$的问题是空间复杂度为$S(n)$问题的子集。</p>
+<blockquote>
+<p>对所有的空间可构造的$S(n)$，$\text{TIME}(S(n))\subseteq \text{SPACE}(S(n)&#x2F; \log S(n))$</p>
+</blockquote>
+<h2 id="Space-Complexity-Class"><a href="#Space-Complexity-Class" class="headerlink" title="Space Complexity Class"></a>Space Complexity Class</h2><ul>
+<li>$\text{L}$类：$\text{SPACE}(\log (n))$</li>
+<li>$\text{NL}$类：$\text{NSPACE}(\log (n))$</li>
+<li>$\text{PSPACE}$类：$\bigcup _{c&gt;0} \text{SPACE}(n ^c)$</li>
+<li>$\text{NPSPACE}$类：$\bigcup _{c&gt;0} \text{NSPACE}(n ^c)$</li>
+</ul>
+<p>$$<br>\text{NP}\subseteq \text{PSPACE}<br>$$</p>
+<p>上式成立是因为空间是可以重复利用的，故我们可以用<strong>相同</strong>的空间在<em>多项式时间内</em>（<em>空间</em>）验证<strong>不同</strong>的路径是否成立。</p>
+<h3 id="PATH-is-in-NL"><a href="#PATH-is-in-NL" class="headerlink" title="PATH is in NL"></a>PATH is in NL</h3><p>$\text{PATH}&#x3D;\{&lt;G,s,t&gt;\}$定义为判断在图$G$中是否存在从$s$到$t$的路径。</p>
+<p>$$\text{PATH}\in \text{NL}$$</p>
+<p>这是因为：在有$n$个结点的图中，不考虑重复边，$s$到$t$的最长路径长度为$n-1$。因此，我们总可以不断地从$s$做$n-1$次猜测，每次猜测选择一个邻居，走到邻居，并继续猜测。总会有那么一个猜测路径，使得我们可以到达$t$（若$s$和$t$之间确实存在路径）。这一过程中，我们需要记录当前结点，而当前结点可用$\log n$的空间编码，还要记录步数，而步数可用$\log (n-1)$的空间编码，又因为空间是可以重用的，所以总的空间复杂度为$O(\log n)$。</p>
+<blockquote>
+<p>对空间复杂度为$S(n)$的图灵机，通用图灵机模拟它的空间复杂度为$O(S(n))$。</p>
+</blockquote>
+<h2 id="Space-Hierarchy-Theorem：空间谱系定理"><a href="#Space-Hierarchy-Theorem：空间谱系定理" class="headerlink" title="Space Hierarchy Theorem：空间谱系定理"></a>Space Hierarchy Theorem：空间谱系定理</h2><p>若$f$和$g$都是空间可构造的，且$f(n)&#x3D;o(g(n))$，则：</p>
+<p>$$<br>\text{SPACE}(f(n)) \subsetneq \text{SPACE}(g(n))<br>$$</p>
+<blockquote>
+<p>证明类似时间谱系定理。</p>
+</blockquote>
+<h1 id="Logspace-Reduction：对数空间归约"><a href="#Logspace-Reduction：对数空间归约" class="headerlink" title="Logspace Reduction：对数空间归约"></a>Logspace Reduction：对数空间归约</h1><p>隐式对数空间可计算（Implicitly Logspacec Computable）函数$f:\{0,1\} ^ *\to \{0,1\} ^ *$满足如下三个性质：</p>
+<ol>
+<li>输出长度有限：$\exists c,\forall x,|f(x)|\le c |x| ^c$</li>
+<li>输出长度可在对数空间内计算：$\{&lt;x,i&gt;|i \le |f(x)|\}\in L$</li>
+<li>输出结果可确定：$\{&lt;x,i&gt;|f(x) _i &#x3D; 1\}\in L$</li>
+</ol>
+<p>以上三个性质的推断都依赖于前一个性质。如果存在这么一个函数$f$，使得对于问题$B$和问题$C$，$x\in B$当且仅当$f(x) \in C$，那么我们称$B$是可在对数空间归约于$C$的，即$B \le _L C$。</p>
+]]></content>
+      <categories>
+        <category>CS7313: Computational Complexity</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Contrastive Learning</title>
+    <url>/2023/09/27/ContrastiveLearning/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="CV领域的对比学习发展路径"><a href="#CV领域的对比学习发展路径" class="headerlink" title="CV领域的对比学习发展路径"></a>CV领域的对比学习发展路径</h1><p>什么是对比学习？对比学习是属于无监督&#x2F;自监督学习范式的。在监督学习的分类问题中，我们希望模型能够精确地预测输入属于的类别，而在对比学习中，模型不需要知道数据的真实标签，只要最终的输出能够把不同的类别区分开就好。因而，对比学习的模型就是一个特征提取器，其模型将输入的特征提取出来作为输出，使得在输出的特征空间中，相似的数据尽可能地相邻，而不相似的数据尽可能地远离，如下图所示</p>
+<p><img src="/2023/09/27/ContrastiveLearning/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Contrastive Learning</center><br>
+
+<p>对比学习的典型范式是<strong>代理任务</strong>+<strong>目标函数</strong>。</p>
+<ul>
+<li>代理任务：代理任务是一些不像分类、目标检测一样具有实际意义的应用场景，但我们假定该模型是为了解决这个代理问题而训练的，而实际上它只是用于生成自监督信号以更新特征提取器，从而能够让我们获得更好的预训练模型。在NLP中，BERT预训练中用到的填词等任务就可以被视为代理任务。在CV中，如下面会提到的九宫格图像相对位置预测、图片着色等都属于代理任务。不过，在CV的对比学习中，更常用的代理任务是个体判别（Instance discrimination），即将同类的个体与其他个体区分开来。&gt; 更通俗地来说，代理任务是为了生成类似监督学习的“标签”，使得无监督学习也有比较的对象（像监督学习中的Ground Truth和prediction一样），有了比较对象，我们才能用合适的metric构建目标函数。</li>
+<li>目标函数：产生梯度。<ol>
+<li>生成式网络：用生成的图片与原图片做对比，可以是$L1$或$L2$ losses。</li>
+<li>判别式网络：对图片本身做划分，如作九宫格划分，用一个格子预测另一个格子在其哪个方位，实际上转化为了一个交叉熵损失。</li>
+<li>对比式：衡量被提取的数据特征间在特征空间的相似性，不同于前两种的是（特别是生成式），由于编码器是在不断更新的，被提取的数据特征也是在不断被更新的，因而对比的对象不像前两者是固定的。</li>
+<li>对抗性：衡量概率分布的差异。（不太懂）</li>
+</ol>
+</li>
+</ul>
+<h2 id="百花齐放"><a href="#百花齐放" class="headerlink" title="百花齐放"></a>百花齐放</h2><ol>
+<li>InstDisc: Memory bank。字典内容一致性不好。</li>
+<li>InvaSpread: 端到端，两个编码器都梯度下降。字典大小受限。</li>
+<li>CPC: InfoNCE。</li>
+<li>CMC: 多视角。</li>
+</ol>
+<h2 id="CV双雄"><a href="#CV双雄" class="headerlink" title="CV双雄"></a>CV双雄</h2><ol>
+<li>MoCoV1: 动态编码器、Memory bank变队列。</li>
+<li>SimCLRV1: 端到端。</li>
+<li>MoCoV2</li>
+<li>SimCLRV2</li>
+<li>SWaV</li>
+</ol>
+<h2 id="不用负样本"><a href="#不用负样本" class="headerlink" title="不用负样本"></a>不用负样本</h2><ol>
+<li>BYOL: MSE LOSS，一个编码器预测另一个编码器。</li>
+<li>SimSiam</li>
+</ol>
+<h2 id="基于Transformer"><a href="#基于Transformer" class="headerlink" title="基于Transformer"></a>基于Transformer</h2><ol>
+<li>MoCoV3</li>
+<li>DINO</li>
+</ol>
+<blockquote>
+<p>骨干网络由ResNet换为ViT。</p>
+</blockquote>
+<p><img src="/2023/09/27/ContrastiveLearning/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. </center>
+
+<h1 id="MoCo"><a href="#MoCo" class="headerlink" title="MoCo"></a>MoCo</h1><p>对比学习是一次字典查询的过程。</p>
+<ol>
+<li><p>字典要大；</p>
+</li>
+<li><p>字典的内容连续性要好。</p>
+</li>
+<li><p>队列作为字典的数据结构：每个mini batch，老key出去，更新后的key作为new key进来。</p>
+</li>
+<li><p>动量编码器：$\theta _k &#x3D; m*\theta _k+(1-m)*\theta _q$，保证字典中key的一致性。</p>
+</li>
+</ol>
+<blockquote>
+<p>$m$很大，文中取$0.99$或$0.999$。</p>
+</blockquote>
+<h2 id="NCE-Noise-Contrastive-Estimation"><a href="#NCE-Noise-Contrastive-Estimation" class="headerlink" title="NCE(Noise Contrastive Estimation)"></a>NCE(Noise Contrastive Estimation)</h2><p>当分类任务的类别很多时，交叉熵的计算时间是难以承受的，因为交叉熵的分母必须对样本在<strong>所有类别</strong>上出现的可能进行求和。对于Instance discrimination，每个样本就是一个类，在这种情况下，用交叉熵是不现实的。<br>NCE(Noise Contrastive Estimation)将多分类问题转化为了多个<strong>二分类</strong>问题，所有的样本都只有两类：来自data samples的<strong>正类</strong>和来自noise samples的负类。</p>
+<h2 id="InfoNCE"><a href="#InfoNCE" class="headerlink" title="InfoNCE"></a>InfoNCE</h2><p>InfoNCE是对NCE的改进，它比NCE更加接近交叉熵。InfoNCE将正例视作一类，将单个的负例也视作一类。因此，对于$1$正例$K$负例的采样，总类别数是$K+1$。InfoNCE实际上就是类别数为$K+1$且带温度参数$\tau$的交叉熵。还有一点特殊的是，由于我们想匹配的只是$q$和正例$k _+$，所以$\mathcal{L} _q$的分子永远都只会是$\exp(q\cdot k _+ &#x2F; \tau)$。</p>
+<p>$$<br>\mathcal{L} _q&#x3D;-\log \frac{\exp(q\cdot k _+ &#x2F; \tau)}{\sum _ {i&#x3D;0} ^K\exp(q\cdot k _i &#x2F; \tau)}<br>$$</p>
+<p>上式中，$k _0$即为$k _+$。$\mathcal{L} _q$很好地体现了我们的优化目标：**$q$和正例的相似性出现在分子，所以越大越好，相应地，分母上$q$与负例的相似性越小越好**。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># f_q, f_k: encoder networks for query and key</span></span><br><span class="line"><span class="comment"># queue: dictionary as a queue of K keys (CxK)</span></span><br><span class="line"><span class="comment"># m: momentum</span></span><br><span class="line"><span class="comment"># t: temperature</span></span><br><span class="line"></span><br><span class="line">f_k.params = f_q.params <span class="comment"># initialize</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> loader: <span class="comment"># load a minibatch x with N samples</span></span><br><span class="line">   x_q = aug(x) <span class="comment"># a randomly augmented version</span></span><br><span class="line">   x_k = aug(x) <span class="comment"># another randomly augmented version</span></span><br><span class="line"></span><br><span class="line">   q = f_q.forward(x_q) <span class="comment"># queries: NxC  256x128</span></span><br><span class="line">   k = f_k.forward(x_k) <span class="comment"># keys: NxC  256x128</span></span><br><span class="line">   k = k.detach() <span class="comment"># no gradient to keys</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># positive logits: Nx1  256x1</span></span><br><span class="line">   l_pos = bmm(q.view(N,<span class="number">1</span>,C), k.view(N,C,<span class="number">1</span>))</span><br><span class="line">   <span class="comment"># negative logits: NxK  256x65536</span></span><br><span class="line">   l_neg = mm(q.view(N,C), queue.view(C,K))</span><br><span class="line"></span><br><span class="line">   <span class="comment"># logits: Nx(1+K)  256x65537</span></span><br><span class="line">   logits = cat([l_pos, l_neg], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">   <span class="comment"># contrastive loss, Eqn.(1)</span></span><br><span class="line">   labels = zeros(N) <span class="comment"># positives are the 0-th</span></span><br><span class="line">   loss = CrossEntropyLoss(logits/t, labels)</span><br><span class="line"></span><br><span class="line">   <span class="comment"># SGD update: query network</span></span><br><span class="line">   loss.backward()</span><br><span class="line">   update(f_q.params)</span><br><span class="line"></span><br><span class="line">   <span class="comment"># momentum update: key network</span></span><br><span class="line">   f_k.params = m*f_k.params+(<span class="number">1</span>-m)*f_q.params</span><br><span class="line"></span><br><span class="line">   <span class="comment"># update dictionary</span></span><br><span class="line">   enqueue(queue, k) <span class="comment"># enqueue the current minibatch</span></span><br><span class="line">   dequeue(queue) <span class="comment"># dequeue the earliest minibatch</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>Paper</tag>
+        <tag>Unsupervised Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MatrixTheory: Finite Dimensional Linear Space</title>
+    <url>/2023/09/27/MatrixTheory2/</url>
+    <content><![CDATA[<span id="more"></span>
+
+
+<h1 id="有限维线性空间"><a href="#有限维线性空间" class="headerlink" title="有限维线性空间"></a>有限维线性空间</h1><ul>
+<li>线性组合：对数域$\mathbb{F}$上的线性空间$V$，对$\alpha _1,...,\alpha _k \in V$，$x _1,...,x _k \in \mathbb{F}$，称：<br>$$<br>x _1 \cdot\alpha _1+x _2\cdot \alpha + ...+x _k\cdot\alpha _k<br>$$为其线性组合。</li>
+</ul>
+<blockquote>
+<p>注意，“$\cdot$”为该线性空间所定义的数乘运算。</p>
+</blockquote>
+<ul>
+<li>定义$\text{span}[\alpha _1,...,\alpha _k]&#x3D;\{x _1 \cdot\alpha _1+x _2\cdot \alpha + ...+x _k\cdot\alpha _k\}$为向量组$\alpha _1,...,\alpha _k$的张成子空间。该子空间为包含了$\alpha _1,...,\alpha _k$的最小子空间。</li>
+</ul>
+<p>对某个线性空间，若其可以由有限个向量张成，则称该线性空间为<em>有限维线性空间</em>，反之为<em>无限维线性空间</em>。</p>
+<h2 id="线性无关-amp-线性相关"><a href="#线性无关-amp-线性相关" class="headerlink" title="线性无关 &amp; 线性相关"></a>线性无关 &amp; 线性相关</h2><ul>
+<li>对某个张成$\text{span}[\alpha _1,...,\alpha _k]$，$\forall \alpha \in \text{span}[\alpha _1,...,\alpha _k]$，若$\alpha &#x3D; x _1 \cdot\alpha _1+x _2\cdot \alpha + ...+x _k\cdot\alpha _k$的系数$x _1,x _2,...,x _k$唯一，则称$\alpha _1,...,\alpha _k$线性无关。</li>
+</ul>
+<p><strong>判断的充要条件：$x _1 \cdot\alpha _1+x _2\cdot \alpha + ...+x _k\cdot\alpha _k&#x3D;0$当且仅当$x _1&#x3D;x _2&#x3D;...&#x3D;x _k&#x3D;0$。</strong> 反之若$x _i$不全为0，则称线性相关。</p>
+<h3 id="线性相关定理"><a href="#线性相关定理" class="headerlink" title="线性相关定理"></a>线性相关定理</h3><p>若$\alpha _1,...,\alpha _m$线性相关：</p>
+<ol>
+<li>$\exists j \in \{1,...,m\}$，使得$\alpha _j \in \text{span}[\alpha _1,...,\alpha _{j-1}]$；<blockquote>
+<p>证明：<br>$x _1 \cdot\alpha _1+x _2\cdot \alpha _2 + ...+x _m\cdot\alpha _m&#x3D;0$<br>假设$x _i$不为零的最大下标为$j$，则：<br>$x _1 \cdot\alpha _1+x _2\cdot \alpha _2 + ...+x _j\cdot\alpha _j&#x3D;0$<br>则：<br>$x _j\cdot\alpha _j&#x3D;-x _1 \cdot\alpha _1-x _2\cdot \alpha _2 - ...-x _{j-1}\cdot\alpha _{j-1}$<br>则：<br>$\alpha _j&#x3D;-x _1&#x2F;x _j \cdot\alpha _1-x _2 &#x2F;x _j \cdot \alpha _2 - ...-x _{j-1} &#x2F;x _j \cdot\alpha _{j-1}$</p>
+</blockquote>
+</li>
+<li>如果将$\alpha _j$从向量组中删除，则剩余的向量组成的张成与原张成一样。</li>
+</ol>
+<blockquote>
+<p>$j&#x3D;1$时说明$\alpha _1$是零向量。</p>
+</blockquote>
+<h2 id="基"><a href="#基" class="headerlink" title="基"></a>基</h2><ul>
+<li>基：一组线性无关的向量$\alpha _1,...,\alpha _k$张成的空间$V$。这组向量称为该张成的<em>基</em>。</li>
+</ul>
+<p>有限维线性空间一定存在一组基。</p>
+<ul>
+<li>易由线性相关定理推出，即删除法；</li>
+<li>也可由基的扩充定理推出，即添加法：$\alpha _1,...,\alpha _k$，但$\text{span}[\alpha _1,...,\alpha _k]&lt; V$，则可在其后添加向量，使之成为$V$的一组基。</li>
+</ul>
+<p>基向量的数目$k$则称为该空间的维数$\text{dim}$。$\{0\}$的维数为0。</p>
+<ul>
+<li>补空间：$U\oplus W&#x3D;V$，则称$U$为$W$补空间。补空间可以有无穷多个，除非$U&#x3D;W$，则其补空间只能为$\{0\}$。</li>
+</ul>
+<h2 id="维数公式"><a href="#维数公式" class="headerlink" title="维数公式"></a>维数公式</h2><p>空间$V$，子空间$U$、$W$，则：</p>
+<p>$$<br>\text{dim}(U+W)&#x3D;\text{dim}(U)+\text{dim}(W)-\text{dim}(U\cap W)<br>$$</p>
+<p>$$<br>\text{dim}(U _1\oplus U _2 \oplus...\oplus U _n)&#x3D;\text{dim}(U _1)+\text{dim}(U _2)+...+\text{dim}(U _n)<br>$$</p>
+<h2 id="与矩阵相关的空间"><a href="#与矩阵相关的空间" class="headerlink" title="与矩阵相关的空间"></a>与矩阵相关的空间</h2><p>$A _{m\times n}$：</p>
+<ul>
+<li>$N(A)$：零空间，$Ax&#x3D;0$，$R ^n$的子空间；</li>
+<li>$C(A)$：列空间，列向量张成的空间，$R ^m$的子空间；</li>
+<li>$R(A)$：行空间，行向量张成的空间，$R ^n$的子空间；</li>
+<li>$N(A ^T)$：左零空间，$A ^Tx&#x3D;0$，$R ^m$的子空间。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>MATH6005: Matrix Theory</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MatrixTheory: Linear Space and Subspace</title>
     <url>/2023/09/24/MatrixTheory1/</url>
     <content><![CDATA[<span id="more"></span>
@@ -443,8 +641,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -747,8 +945,8 @@
         <category>Kernel Method</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
         <tag>Machine Learning</tag>
         <tag>GNN</tag>
         <tag>SVM</tag>
@@ -1370,8 +1568,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
       </tags>
   </entry>
@@ -1730,8 +1928,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -1781,8 +1979,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -1871,8 +2069,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -2995,9 +3193,9 @@
         <category>Machine Learning by AndrewNg</category>
       </categories>
       <tags>
+        <tag>Unsupervised Learning</tag>
         <tag>Reinforcement Learning</tag>
         <tag>Lab</tag>
-        <tag>Unsupervised Learning</tag>
         <tag>Recommender System</tag>
       </tags>
   </entry>
@@ -3378,8 +3576,8 @@
         <category>Machine Learning by AndrewNg</category>
       </categories>
       <tags>
-        <tag>Machine Learning</tag>
         <tag>Unsupervised Learning</tag>
+        <tag>Machine Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -5319,8 +5517,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -5424,8 +5622,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -5655,9 +5853,9 @@
       <tags>
         <tag>Python</tag>
         <tag>Tool</tag>
+        <tag>Unsupervised Learning</tag>
         <tag>Machine Learning</tag>
         <tag>Supervised Learning</tag>
-        <tag>Unsupervised Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -5852,28 +6050,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Zip: Make Aggregation Easier</title>
-    <url>/2023/05/06/ZipMakeLifeEasier/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>We can even use zip to generate a dictionary:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Gamma and Factorial</title>
     <url>/2023/05/05/GammaAndFactorial/</url>
     <content><![CDATA[<span id="more"></span>
@@ -5941,6 +6117,28 @@
       <tags>
         <tag>Python</tag>
         <tag>Configuration</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Zip: Make Aggregation Easier</title>
+    <url>/2023/05/06/ZipMakeLifeEasier/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>We can even use zip to generate a dictionary:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
