@@ -806,7 +806,7 @@
 <p><img src="/2023/09/12/ComputationalComplexityTimeComp/4.png" alt="4"></p>
 <center style="font-size:12px;font-weight:bold">Fig. 4. Main working tape</center><br>
 
-<p>此外，还进一步地将无限长的双向带作了左右分区，每个分区$R _i$的范围为$[2 ^{i+1}-1,2 ^{i+2-2}]$，$L _i$的范围为$[-2 ^{i+1}+2, -2^{i+1}+1]$，长度均为$2 ^{i+1}$，$R_0$和$L_0$以0号为分界。并且规定：</p>
+<p>此外，还进一步地将无限长的双向带作了左右分区，每个分区$R _i$的范围为$[2 ^{i+1}-1,2 ^{i+2}-2]$，$L _i$的范围为$[-2 ^{i+2}+2, -2^{i+1}+1]$，长度均为$2 ^{i+1}$，$R_0$和$L_0$以0号为分界。并且规定：</p>
 <ol>
 <li>每个分区要么全是满（全是有效符号）的，要么全是空（全是缓冲符号）的，要么是半满的（有一般是有效符号）；</li>
 <li>$R_i$和$L_i$的有效符号之和始终为$2^{i+1}$；</li>
@@ -1568,8 +1568,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Python</tag>
+        <tag>Deep Learning</tag>
         <tag>Tool</tag>
       </tags>
   </entry>
@@ -5517,8 +5517,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Python</tag>
+        <tag>Deep Learning</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -5622,8 +5622,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Python</tag>
+        <tag>Deep Learning</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
