@@ -6,11 +6,11 @@
     <content><![CDATA[<span id="more"></span>
 
 <h1 id="Space-Bounded-Computation：空间边界的计算"><a href="#Space-Bounded-Computation：空间边界的计算" class="headerlink" title="Space Bounded Computation：空间边界的计算"></a>Space Bounded Computation：空间边界的计算</h1><p>空间是计算资源，是可重用的。研究空间复杂度，只考虑只有一条带子的图灵机即可。</p>
-<p>空间复杂性（函数）的定义：对函数$S: \mathbf{N}\to \mathbf{N}$和语言$L \in \{0,1\} ^ *$，如果存在常数$c$和图灵机$\mathbb{M}$能使用不超过$cS(n)$的非空工作带格子判定输入长度为$n$的$L$，则就称$L \in \text{SPACE}(S(n))$。</p>
+<p>空间复杂性（函数）的定义：对函数$S: \mathbf{N}\to \mathbf{N}$和语言$L \in \{0,1\} ^ *$，如果存在常数$c$和图灵机$\mathbb{M}$能使用不超过$cS(n)$的非空工作带格子判定输入长度为$n$的$L$，就称$L \in \textbf{SPACE}(S(n))$。</p>
 <blockquote>
 <p>不计算输入所占用的格子。空间可构造和完全空间可构造完全类比时间可构造和完全时间可构造。</p>
 </blockquote>
-<p>对非确定图灵机，$L \in \text{NSPACE}((S(n)))$当且仅当每条路径上使用的非空工作带格子都不超过$cS(n)$。</p>
+<p>对非确定图灵机，$L \in \textbf{NSPACE}((S(n)))$当且仅当每条路径上使用的非空工作带格子都不超过$cS(n)$。</p>
 <h2 id="Configuration-Graph：格局图"><a href="#Configuration-Graph：格局图" class="headerlink" title="Configuration Graph：格局图"></a>Configuration Graph：格局图</h2><ul>
 <li>$C _{\text{start}}$：初始格局；</li>
 <li>$C _{\text{accept}}$：接受格局，图灵机中止且带子上的结果为1。</li>
@@ -18,31 +18,34 @@
 <p>格局图：一个图灵机$\mathbb{M}$的格局图$G _{\mathbb{M},x}$是一个有向图，它的结点是某个格局$C$，边是一次计算。若使用格局图，则$\mathbb{M}$接受$x$当且仅当在格局图$G _{\mathbb{M},x}$上存在从$C _{\text{start}}$到$C _{\text{accept}}$的路径。</p>
 <h3 id="Size-of-Configuration-Graph：格局图的大小"><a href="#Size-of-Configuration-Graph：格局图的大小" class="headerlink" title="Size of Configuration Graph：格局图的大小"></a>Size of Configuration Graph：格局图的大小</h3><p>对于一个时间复杂度为$S(n)$的图灵机$\mathbb{M}$，由于只考虑一条工作带，因此，某个长度为$n$输入$x$，其某一步的格局可用$O(S(n))个$比特编码。因此，整个格局图的结点个数就是$2 ^{O(S(n))}$。</p>
 <p>当我们想要判断某两个结点间是否存在边时，我们只需要判断某两个格局$C _1$和$C _2$是否存在一步到达的关系，即看能否通过仅修改某个格局$C _1$编码的$1$个bit和表示读写头的几个bit，就让$C _1&#x3D;C _2$。不难看出，该算法的时间复杂度是$O(S(n))$，空间复杂度是$O(\log S(n))$，因为我们只需要按位比较，并记录位置的编码即可，而$O(S(n))$个位置可用$O(\log S(n))$的二进制串表示。</p>
+<blockquote>
+<p>但要求$C _1$和$C _2$交叉输入，否则带头的来回移动会让时间复杂度为平方。</p>
+</blockquote>
 <h2 id="Space-vs-Time"><a href="#Space-vs-Time" class="headerlink" title="Space vs Time"></a>Space vs Time</h2><p>设空间函数$S(n)$是空间可构造的，则：</p>
-<p>$$<br>\text{TIME}(S(n))\subseteq \text{SPACE}(S(n))\subseteq \text{NSPACE}(S(n))\subseteq \text{TIME}(2 ^{O(S(n))})<br>$$</p>
+<p>$$<br>\textbf{TIME}(S(n))\subseteq \textbf{SPACE}(S(n))\subseteq \textbf{NSPACE}(S(n))\subseteq \textbf{TIME}(2 ^{O(S(n))})<br>$$</p>
 <blockquote>
 <p>第一个包含关系：一步最多多用一个格子；<br>第二个包含关系：确定是非确定的特例；<br>第三个包含关系：判定一个非确定图灵机能否在$O(S(n))$的空间内判定每个问题，等价于验证格局图中是否存在由$C _\text{start}$到$C _{\text{accept}}$的路径，而这可通过BFS在多项式时间复杂度内完成。格局图中总结点数为$2 ^{O(S(n))}$，因此第三个包含关系成立。</p>
 </blockquote>
 <p>注意：以上相互包含的都是<strong>问题集合</strong>，如第一个包含关系意为：时间复杂度为$S(n)$的问题是空间复杂度为$S(n)$问题的子集。</p>
 <blockquote>
-<p>对所有的空间可构造的$S(n)$，$\text{TIME}(S(n))\subseteq \text{SPACE}(S(n)&#x2F; \log S(n))$</p>
+<p>对所有的空间可构造的$S(n)$，$\textbf{TIME}(S(n))\subseteq \textbf{SPACE}(S(n)&#x2F; \log S(n))$</p>
 </blockquote>
 <h2 id="Space-Complexity-Class"><a href="#Space-Complexity-Class" class="headerlink" title="Space Complexity Class"></a>Space Complexity Class</h2><ul>
-<li>$\text{L}$类：$\text{SPACE}(\log (n))$</li>
-<li>$\text{NL}$类：$\text{NSPACE}(\log (n))$</li>
-<li>$\text{PSPACE}$类：$\bigcup _{c&gt;0} \text{SPACE}(n ^c)$</li>
-<li>$\text{NPSPACE}$类：$\bigcup _{c&gt;0} \text{NSPACE}(n ^c)$</li>
+<li>$\textbf{L}$类：$\textbf{SPACE}(\log (n))$</li>
+<li>$\textbf{NL}$类：$\textbf{NSPACE}(\log (n))$</li>
+<li>$\textbf{PSPACE}$类：$\bigcup _{c&gt;0} \textbf{SPACE}(n ^c)$</li>
+<li>$\textbf{NPSPACE}$类：$\bigcup _{c&gt;0} \textbf{NSPACE}(n ^c)$</li>
 </ul>
-<p>$$<br>\text{NP}\subseteq \text{PSPACE}<br>$$</p>
+<p>$$<br>\textbf{NP}\subseteq \textbf{PSPACE}<br>$$</p>
 <p>上式成立是因为空间是可以重复利用的，故我们可以用<strong>相同</strong>的空间在<em>多项式时间内</em>（<em>空间</em>）验证<strong>不同</strong>的路径是否成立。</p>
 <h3 id="PATH-is-in-NL"><a href="#PATH-is-in-NL" class="headerlink" title="PATH is in NL"></a>PATH is in NL</h3><p>$\text{PATH}&#x3D;\{&lt;G,s,t&gt;\}$定义为判断在图$G$中是否存在从$s$到$t$的路径。</p>
-<p>$$\text{PATH}\in \text{NL}$$</p>
+<p>$$\text{PATH}\in \textbf{NL}$$</p>
 <p>这是因为：在有$n$个结点的图中，不考虑重复边，$s$到$t$的最长路径长度为$n-1$。因此，我们总可以不断地从$s$做$n-1$次猜测，每次猜测选择一个邻居，走到邻居，并继续猜测。总会有那么一个猜测路径，使得我们可以到达$t$（若$s$和$t$之间确实存在路径）。这一过程中，我们需要记录当前结点，而当前结点可用$\log n$的空间编码，还要记录步数，而步数可用$\log (n-1)$的空间编码，又因为空间是可以重用的，所以总的空间复杂度为$O(\log n)$。</p>
 <blockquote>
 <p>对空间复杂度为$S(n)$的图灵机，通用图灵机模拟它的空间复杂度为$O(S(n))$。</p>
 </blockquote>
 <h2 id="Space-Hierarchy-Theorem：空间谱系定理"><a href="#Space-Hierarchy-Theorem：空间谱系定理" class="headerlink" title="Space Hierarchy Theorem：空间谱系定理"></a>Space Hierarchy Theorem：空间谱系定理</h2><p>若$f$和$g$都是空间可构造的，且$f(n)&#x3D;o(g(n))$，则：</p>
-<p>$$<br>\text{SPACE}(f(n)) \subsetneq \text{SPACE}(g(n))<br>$$</p>
+<p>$$<br>\textbf{SPACE}(f(n)) \subsetneq \textbf{SPACE}(g(n))<br>$$</p>
 <blockquote>
 <p>证明类似时间谱系定理。</p>
 </blockquote>
@@ -53,6 +56,46 @@
 <li>输出结果可确定：$\{&lt;x,i&gt;|f(x) _i &#x3D; 1\}\in L$</li>
 </ol>
 <p>以上三个性质的推断都依赖于前一个性质。如果存在这么一个函数$f$，使得对于问题$B$和问题$C$，$x\in B$当且仅当$f(x) \in C$，那么我们称$B$是可在对数空间归约于$C$的，即$B \le _L C$。</p>
+<blockquote>
+<p>$f(x)$作为$C$的输入，是不能被直接写到$C$的输入带上的，因为$f(x)$的长度是多项式的。不过，$f(x)$的三个性质使得图灵机可以在对数空间内计算出$f(x)$任意位置的值，由于空间的可重用性，输入$f(x)$实际只用了对数空间（每次一位一位地输入）。</p>
+<p>$B$对数空间归约到$C$，说明在<strong>不消耗更多空间资源</strong>的情况下，$C$是更复杂的问题。</p>
+<p>对数空间归约具有传递性，即，若$B \le _L C$，$C \le _L D$，则$B \le _L D$。证明：</p>
+<ul>
+<li>$B \le _L C$，所以对$x \in B$，可在对数空间$O(\log |x|)$内计算$f(x)$。</li>
+<li>$C \le _L D$，所以对$f(x) \in C$，可在对数空间$O(\log |f(x)|)$内计算$g(f(x))$。</li>
+<li>又由于空间的可重复利用性，用于计算$f(x)$的对数空间可被重复用于计算$g(f(x))$，因此$O(\log |f(x)|)&#x3D;O(\log |x|)$。</li>
+</ul>
+</blockquote>
+<h1 id="text-PSPACE-Completeness"><a href="#text-PSPACE-Completeness" class="headerlink" title="$\text{PSPACE}$ Completeness"></a>$\text{PSPACE}$ Completeness</h1><p>空间完备性（Space Completeness）：如果$\forall L \in \textbf{PSPACE}$，$L \le _L L&#39;$，则称语言$L&#39;$是$\textbf{PSPACE}-\text{hard}$的。如果进一步地，$L &#39; \in \textbf{PSPACE}$，则称语言$L&#39;$是$\textbf{PSPACE}-\text{complete}$的。某个完备的（Complete）语言是这个空间复杂性类中最难的语言&#x2F;问题。</p>
+<h2 id="Quantified-Boolen-Formula"><a href="#Quantified-Boolen-Formula" class="headerlink" title="Quantified Boolen Formula"></a>Quantified Boolen Formula</h2><p>量化布尔公式（Quantified Boolen Formula，QBF）被定义为这样的式子：</p>
+<p>$$<br>Q _1 x _1 Q _2 x _2...Q _n x _n.\space \phi(x _1,...,x _n)<br>$$</p>
+<p>其中，$Q _i$是量词（Quantifier），要么是$\forall$，要么是$\exists$；$x _i$是布尔值，要么是$0$，要么是$1$；$\phi$是不包含$x _1,...,x _n$以外的任何自由变量的布尔公式，该公式要么为$\text{True}$，要么为$\text{False}$，如：</p>
+<p>$$<br>\forall x,\exists y,x&#x3D;y<br>$$</p>
+<p>显然，上述公式值为$True$。</p>
+<p>空间复杂度两个原则：格局图、深度优先</p>
+<h2 id="Stockmeyer-Meyer-Theorem"><a href="#Stockmeyer-Meyer-Theorem" class="headerlink" title="Stockmeyer-Meyer Theorem"></a>Stockmeyer-Meyer Theorem</h2><p>定理：TQBF是$\textbf{PSPACE}-\text{complete}$的。定理中，$\text{TQBF}$是所有值为$\text{True}$的QBF集合。定理的证明如下：</p>
+<blockquote>
+<p>要证明上述定理，即要证明$\forall L \in \textbf{PSPACE}$，$L \le _L $TQBF，且TQBF$\in \textbf{PSPACE}$。</p>
+<p>1.TQBF$\in \textbf{PSPACE}$</p>
+<p>假定某个QBF为$\psi &#x3D; Q _1 x _1 Q _2 x _2...Q _n x _n.\space \phi(x _1,...,x _n)$，由于$x _i$只有两种取值可能，因此我们可以将$\psi$所有可能的形式表示为一棵二叉树：<br><img src="/2023/09/28/ComputationalComplexitySpaceComp1/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. QBF</center><br>
+
+<p>对该二叉树使用一次深度优先遍历（实际上应该使用<strong>后序遍历</strong>）即可判定该问题。DFS过程中，我们可以自下而上求出所有非叶子结点的值，最终根结点的值就是QBF的判定结果，整个过程中，我们最多需要记录$n$个祖先，因而该算法的空间复杂度实际上为$O(n)$。因此TQBF$\in \textbf{PSPACE}$。证毕。</p>
+<p>2.$\forall L \in \textbf{PSPACE}$，$L \le _L $TQBF</p>
+<p>$L \in \textbf{PSPACE}$说明存在图灵机$\mathbb{M}$，对输入$x \in L$，它能在多项式空间内输出$\mathbb{M}(x)&#x3D;1$以及格局图中存在$C _{\text{start}}$到$C _{\text{accept}}$的路径。</p>
+<p>要证明条件2，我们只需要证明对$x \in L$，存在$\phi(x)\in $TQBF。不妨令$\phi(x)&#x3D;\psi _i (C,C&#39;)$，其中，当格局$C$和$C&#39;$之间存在长度不超过$2 ^i$的路径时$\psi _i (C,C&#39;)&#x3D;1$。</p>
+<p>对于$\psi _i (C,C&#39;)$，若其值为$1$，则在$C$和$C&#39;$之间一定存在一个格局$C&#39;&#39;$，它到这两个格局的路径长度不超过$2 ^{i - 1}$，因此$\psi _i (C,C&#39;)$就可以被转换为$\psi _{i-1} (C,C&#39;&#39;) \lor  \psi _{i-1} (C&#39;,C&#39;&#39;)$。该问题可被表示为：<br>$$<br>\exists C&#39;&#39; \forall D ^1 \forall D ^2.((D ^1&#x3D;C \land D ^2 &#x3D;C&#39;))\lor ((D ^1&#x3D;C&#39;&#39; \land D ^2 &#x3D;C)) \rightarrow \psi _{i-1}(D ^1, D ^2)<br>$$<br>只要我们能够判断上面前蕴含后的关系成立，则$\psi _i (C,C&#39;)&#x3D;1$成立。判别上式的空间复杂度为$|\psi _i|&#x3D;|\psi _{i-1}(D ^1, D ^2)|+cS(|x|)$，其中，后一项是用于记录箭头前的格局的空间（每个格局空间复杂度$S(|x|)$）。那么对于空间复杂度为$S(|x|)$的$L$，它的格局图中最多有$2 ^{S(|x|)}$个结点，于是判断$L$，就可以转为判断$\psi _{S(|x|)}$，即判断QBF$\phi (x)$。$|\phi (x)|&#x3D;|\psi _{S(|x|)}|&#x3D;O(S(|x|) ^2)$，多项式的平方仍然是多项式，所以$x\in L$，$\phi (x) \in $TQBF，证毕。前面的式子能成立是因为最终$\psi _{S(|x|)}$会被转化为$\psi _{1}$，期间会多出$S(|x|)$个$c S(|x|)$。</p>
+</blockquote>
+<h1 id="Savitch-Theorem"><a href="#Savitch-Theorem" class="headerlink" title="Savitch Theorem"></a>Savitch Theorem</h1><p>定理：如果$S$是空间可构造的，那么$\textbf{NSPACE}(S(n)) \subseteq \textbf{SPACE}(S(n) ^2)$。证明如下：</p>
+<blockquote>
+<p>该定理的证明与上面的条件2证明几乎一致。对于空间复杂度为$S(n)$的非确定图灵机$\mathbb{N}$，它可以在$S(n)$的空间内判定$L$，其格局图的大小为$2 ^{S(n)}$。很自然地，判定$L$可以被转换为判定格局图中是否存在$C _{\text{start}}$到$C _{\text{accept}}$的路径。该问题可以被$\phi (x)$在$c S(n) ^2$空间内解决。所以$\textbf{NSPACE}(S(n)) \subseteq \textbf{SPACE}(S(n) ^2)$。证毕。</p>
+</blockquote>
+<p>由于多项式的平方还是多项式，所以由上述定理，我们可以得到：</p>
+<p>$$<br>\textbf{NPSPACE} \subseteq\textbf{PSPACE}<br>$$</p>
+<p>又因为确定图灵机是非确定图灵机的特例：</p>
+<p>$$<br>\textbf{PSPACE} \subseteq \textbf{NPSPACE}<br>$$</p>
+<p>所以：</p>
+<p>$$<br>\textbf{PSPACE} &#x3D; \textbf{NPSPACE}<br>$$</p>
 ]]></content>
       <categories>
         <category>CS7313: Computational Complexity</category>
@@ -508,7 +551,7 @@
 <li>使用与$\mathbb{M}$相同的带子数；</li>
 <li>对于$\mathbb{M}$纸带上长度为$n$的编码，$\mathbb{M}&#39;$可以在$n+2$步内将其转换为$n&#x2F;m$长的编码；（多出的2步是起始符和终止）</li>
 <li>$\mathbb{M}&#39;$在$n&#x2F;m$步可以将所有的带头回归到原点；</li>
-<li>$\mathbb{M}&#39;$纸带上的任何一个格子对应着$\mathbb{M}$上的$m$个格子。某一时刻$\mathbb{M}$在$m$个格子内<strong>任意一个格子</strong>上的$m$步在$\mathbb{M}&#39;$上至多会涉及到<strong>3</strong>个格子，因此$\mathbb{M}&#39;$只需要记录下这三个格子的值、做一步写入操作、移动一次带头，至多<strong>5</strong>步就可以模拟$\mathbb{M}$上的$m$步。<br>因此，总时间：<br>$$<br>n+2+\frac{n}{m}+5\frac{T(n)}{m}\ge n+2 + \frac{6}{m}T(n)<br>$$<br>我们可以取$\epsilon&#x3D;6&#x2F;m$，$m&#x3D;6&#x2F;\epsilon$，证毕。</li>
+<li>$\mathbb{M}&#39;$纸带上的任何一个格子对应着$\mathbb{M}$上的$m$个格子。某一时刻$\mathbb{M}$在$m$个格子内<strong>任意一个格子</strong>上的$m$步在$\mathbb{M}&#39;$上至多会涉及到<strong>3</strong>个格子，因此$\mathbb{M}&#39;$只需要记录下这三个格子的值、做一步写入操作、移动一次带头，至多<strong>5</strong>步就可以模拟$\mathbb{M}$上的$m$步。<br>因此，总时间：<br>$$<br>n+2+\frac{n}{m}+5\frac{T(n)}{m}\le n+2 + \frac{6}{m}T(n)<br>$$<br>我们可以取$\epsilon&#x3D;6&#x2F;m$，$m&#x3D;6&#x2F;\epsilon$，证毕。</li>
 </ul>
 </blockquote>
 <p><img src="/2023/09/21/ComputationalComplexityTimecom2/2.jpg" alt="2"></p>
@@ -4300,8 +4343,8 @@
         <category>Programming Language</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4404,8 +4447,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4489,8 +4532,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4598,8 +4641,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4728,8 +4771,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4746,8 +4789,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4818,8 +4861,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5008,8 +5051,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5110,8 +5153,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5236,8 +5279,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5267,8 +5310,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>

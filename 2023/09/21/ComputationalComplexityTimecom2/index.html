@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/09/21/ComputationalComplexityTimecom2/2.jpg">
 <meta property="og:image" content="https://zclzcl0223.github.io/2023/09/21/ComputationalComplexityTimecom2/3.jpg">
 <meta property="article:published_time" content="2023-09-21T11:59:36.000Z">
-<meta property="article:modified_time" content="2023-09-26T08:29:14.670Z">
+<meta property="article:modified_time" content="2023-10-04T01:41:39.974Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Math">
 <meta property="article:tag" content="Theoretical Computer Science">
@@ -235,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-26 16:29:14" itemprop="dateModified" datetime="2023-09-26T16:29:14+08:00">2023-09-26</time>
+                <time title="Modified: 2023-10-04 09:41:39" itemprop="dateModified" datetime="2023-10-04T09:41:39+08:00">2023-10-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -299,7 +299,7 @@
 <li>使用与$\mathbb{M}$相同的带子数；</li>
 <li>对于$\mathbb{M}$纸带上长度为$n$的编码，$\mathbb{M}&#39;$可以在$n+2$步内将其转换为$n&#x2F;m$长的编码；（多出的2步是起始符和终止）</li>
 <li>$\mathbb{M}&#39;$在$n&#x2F;m$步可以将所有的带头回归到原点；</li>
-<li>$\mathbb{M}&#39;$纸带上的任何一个格子对应着$\mathbb{M}$上的$m$个格子。某一时刻$\mathbb{M}$在$m$个格子内<strong>任意一个格子</strong>上的$m$步在$\mathbb{M}&#39;$上至多会涉及到<strong>3</strong>个格子，因此$\mathbb{M}&#39;$只需要记录下这三个格子的值、做一步写入操作、移动一次带头，至多<strong>5</strong>步就可以模拟$\mathbb{M}$上的$m$步。<br>因此，总时间：<br>$$<br>n+2+\frac{n}{m}+5\frac{T(n)}{m}\ge n+2 + \frac{6}{m}T(n)<br>$$<br>我们可以取$\epsilon&#x3D;6&#x2F;m$，$m&#x3D;6&#x2F;\epsilon$，证毕。</li>
+<li>$\mathbb{M}&#39;$纸带上的任何一个格子对应着$\mathbb{M}$上的$m$个格子。某一时刻$\mathbb{M}$在$m$个格子内<strong>任意一个格子</strong>上的$m$步在$\mathbb{M}&#39;$上至多会涉及到<strong>3</strong>个格子，因此$\mathbb{M}&#39;$只需要记录下这三个格子的值、做一步写入操作、移动一次带头，至多<strong>5</strong>步就可以模拟$\mathbb{M}$上的$m$步。<br>因此，总时间：<br>$$<br>n+2+\frac{n}{m}+5\frac{T(n)}{m}\le n+2 + \frac{6}{m}T(n)<br>$$<br>我们可以取$\epsilon&#x3D;6&#x2F;m$，$m&#x3D;6&#x2F;\epsilon$，证毕。</li>
 </ul>
 </blockquote>
 <p><img src="/2023/09/21/ComputationalComplexityTimecom2/2.jpg" alt="2"></p>
