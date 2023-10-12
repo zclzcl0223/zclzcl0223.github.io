@@ -273,12 +273,12 @@
 <li>$N(A ^T)$：左零空间，$A ^Tx&#x3D;0$，$R ^m$的子空间，也可用行变换。</li>
 </ul>
 <p>Hermite标准型：阶梯阵的基础上令行第一个非零为$1$，且其所在列的其他位置都是$0$。Hermite标准化后，行空间即为Hermite的线性无关行，但列空间由原列向量组成。求左零空间时，可求$(A|E)$的行变换，得到$(\frac{H}{0}|P)$，则$PA&#x3D;\frac{H}{0}$。</p>
-<h2 id="满秩分解"><a href="#满秩分解" class="headerlink" title="满秩分解"></a>满秩分解</h2><p>对$A _{m\times n},r(A)&#x3D;r$，$A _{m\times n}&#x3D;P <em>{m\times r} \times Q</em>{r\times n}$，其中$P$列满秩，$Q$行满秩，这样的分解称<em>满秩分解</em>。</p>
-<h3 id="存在性"><a href="#存在性" class="headerlink" title="存在性"></a>存在性</h3><p>$$<br>P _1 A Q _1 &#x3D;<br>\begin{pmatrix*}<br>    E _r&amp; 0 \\<br>    0&amp; 0<br>\end{pmatrix*}<br>$$</p>
+<h2 id="满秩分解"><a href="#满秩分解" class="headerlink" title="满秩分解"></a>满秩分解</h2><p>对$A _{m\times n},r(A)&#x3D;r$，$A _{m\times n}&#x3D;P _{m\times r} \times Q _{r\times n}$，其中$P$列满秩，$Q$行满秩，这样的分解称<em>满秩分解</em>。</p>
+<h3 id="存在性"><a href="#存在性" class="headerlink" title="存在性"></a>存在性</h3><p>$$<br>P _1 A Q _1 &#x3D;<br>\begin{pmatrix}<br>    E _r&amp; 0 \\<br>    0&amp; 0<br>\end{pmatrix}<br>$$</p>
 <p>则：</p>
-<p>$$<br>\begin{align*}<br>    A<br>    &amp;&#x3D;<br>P _1 ^{-1}<br>\begin{pmatrix*}<br>    E _r&amp; 0 \\<br>    0&amp; 0<br>\end{pmatrix*}<br>Q _1 ^{-1}\\<br>    &amp;&#x3D;<br>P _1 ^{-1}<br>\begin{pmatrix*}<br>    E _r\\<br>    0<br>\end{pmatrix*}<br>\begin{pmatrix*}<br>    E _r\space 0<br>\end{pmatrix*}<br>Q _1 ^{-1}<br>\end{align*}<br>$$</p>
+<p>$$<br>\begin{align*}<br>    A<br>    &amp;&#x3D;<br>P _1 ^{-1}<br>\begin{pmatrix}<br>    E _r&amp; 0 \\<br>    0&amp; 0<br>\end{pmatrix}<br>Q _1 ^{-1}\\<br>    &amp;&#x3D;<br>P _1 ^{-1}<br>\begin{pmatrix}<br>    E _r\\<br>    0<br>\end{pmatrix}<br>\begin{pmatrix}<br>    E _r\space 0<br>\end{pmatrix}<br>Q _1 ^{-1}<br>\end{align*}<br>$$</p>
 <p>则：</p>
-<p>$$<br>\begin{align*}<br>    P &#x3D; P _1 ^{-1}<br>\begin{pmatrix*}<br>    E _r\\<br>    0<br>\end{pmatrix*}\\<br>    Q &#x3D;\begin{pmatrix*}<br>    E _r\space 0<br>\end{pmatrix*}<br>Q _1 ^{-1}<br>\end{align*}<br>$$</p>
+<p>$$<br>\begin{align*}<br>    P &#x3D; P _1 ^{-1}<br>\begin{pmatrix}<br>    E _r\\<br>    0<br>\end{pmatrix}\\<br>    Q &#x3D;\begin{pmatrix}<br>    E _r\space 0<br>\end{pmatrix}<br>Q _1 ^{-1}<br>\end{align*}<br>$$</p>
 <h3 id="唯一性"><a href="#唯一性" class="headerlink" title="唯一性"></a>唯一性</h3><p>$$<br>A &#x3D; P \times Q&#x3D;P \times E _r \times Q&#x3D;P\times U ^{-1}\times U \times Q<br>$$</p>
 <p>所以一定不唯一。</p>
 <h3 id="求法"><a href="#求法" class="headerlink" title="求法"></a>求法</h3><p>求Hermite标准型$H _A$，则非零行所组成矩阵即为$Q$，线性无关列所对应的$A$的列向量组成的矩阵即为$P$</p>
@@ -760,8 +760,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
       </tags>
   </entry>
   <entry>
@@ -1064,8 +1064,8 @@
         <category>Kernel Method</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
         <tag>Machine Learning</tag>
         <tag>GNN</tag>
         <tag>SVM</tag>
@@ -2047,8 +2047,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
       </tags>
   </entry>
   <entry>
@@ -2098,8 +2098,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
       </tags>
   </entry>
   <entry>
@@ -2188,8 +2188,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
       </tags>
   </entry>
   <entry>
@@ -2981,8 +2981,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -3068,8 +3068,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -4419,8 +4419,8 @@
         <category>Programming Language</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4523,8 +4523,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4608,8 +4608,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4717,8 +4717,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4847,8 +4847,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4865,8 +4865,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4937,8 +4937,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5127,8 +5127,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5229,8 +5229,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5355,8 +5355,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5386,8 +5386,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
