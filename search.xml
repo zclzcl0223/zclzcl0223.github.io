@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Computational Complexity NP-Completeness</title>
+    <url>/2023/10/10/ComputationalComplexityNPComp/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="textbf-NP-Completeness"><a href="#textbf-NP-Completeness" class="headerlink" title="$\textbf{NP}-$Completeness"></a>$\textbf{NP}-$Completeness</h1><p>判定一个问题是否是NP问题，证据、验证</p>
+<p><img src="/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+      <categories>
+        <category>CS7313: Computational Complexity</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Computational Complexity Space Complexity 1</title>
     <url>/2023/09/28/ComputationalComplexitySpaceComp1/</url>
     <content><![CDATA[<span id="more"></span>
@@ -96,6 +112,29 @@
 <p>$$<br>\textbf{PSPACE} \subseteq \textbf{NPSPACE}<br>$$</p>
 <p>所以：</p>
 <p>$$<br>\textbf{PSPACE} &#x3D; \textbf{NPSPACE}<br>$$</p>
+<h1 id="NL-Completeness"><a href="#NL-Completeness" class="headerlink" title="NL Completeness"></a>NL Completeness</h1><p>如果$C \in \textbf{NL}$，且对$\forall B \in \textbf{NL}$，$B \le _L C$，则$C$是$\textbf{NL}-$ complete。</p>
+<p>定理：$\text{PATH}$是$\textbf{NL}$完全的。证明如下：</p>
+<blockquote>
+<p>由于前面已经证明$\text{PATH} \in \textbf{NL}$，所以要证明上述结论，即要证明对$\forall L \in \textbf{NL}$，$L \le _L \text{PATH}$，即要证明$\forall x \in L$，$\exists f$，$f(x) \in \text{PATH}$。</p>
+<p>与前面的证明类似，对在$\log(n)$空间内判定$L$的非确定图灵机$\mathbb{N}$，设其输入为$x$，则该问题可以被转换为在格局图$G _{\mathbb{N},x}$中判断$C _\text{start}$和$C _\text{accept}$间是否存在路径，即：<br>$$<br>x \to &lt; G _{\mathbb{N},x},C _\text{start},C _\text{accept} &gt;<br>$$<br>由于$\mathbb{N}$的空间复杂度是$\log (n)$，所以格局图中的每一个格局都可以用$\log (n)$的bit编码，且共有多项式个格局（顶点）。用邻接矩阵$A$表示格局图$G _{\mathbb{N},x}$的结构关系，由于各个顶点的编码长度为$\log (n)$，所以任意两个顶点的一步可达性可在对数空间内判定，又由于空间的可重复利用性，整个邻接矩阵可以在对数空间内被构造出来，而起始格局和终止格局都是固定的$01$串，所以$&lt; G _{\mathbb{N},x},C _\text{start},C _\text{accept} &gt;$可以在对数空间内被构造出来，而$&lt; G _{\mathbb{N},x},C _\text{start},C _\text{accept} &gt; \in \text{PATH}$，所以$L \le _L \text{PATH}$。证毕。</p>
+</blockquote>
+<p>有向无环图的$\text{PATH}$问题也是$\textbf{NL}$完全的。</p>
+<h1 id="Immerman-Szelepcsenyi-Theorem"><a href="#Immerman-Szelepcsenyi-Theorem" class="headerlink" title="Immerman-Szelepcsenyi Theorem"></a>Immerman-Szelepcsenyi Theorem</h1><p>补类（补问题）：一个类的补类指在所有类中刨去改类后剩下的类，如，对$\textbf{T}$类，其补类记为$\text{co}\textbf{T}$或$\overline{\textbf{T}}$，定义为：</p>
+<p>$$<br>\text{co}\textbf{T}&#x3D;\overline{\textbf{T}}&#x3D;\{\{0,1 ^*\}-L \in \textbf{T}\}<br>$$</p>
+<p>一个有趣的结论：</p>
+<p>$$<br>\begin{align*}<br>    \text{co}\textbf{NPSPACE}<br>    &amp;&#x3D;\overline{\textbf{NPSPACE}} \\<br>    &amp;&#x3D;\overline{\textbf{PSPACE}}\\<br>    &amp;&#x3D;\textbf{PSPACE}\\<br>    &amp;&#x3D;\textbf{NPSPACE}<br>\end{align*}<br>$$</p>
+<p>定理：$\overline{\text{PATH}}\in \textbf{NL}$。$\overline{\text{PATH}}$的含义为：从$A$出发到不了$B$。的证明如下：</p>
+<blockquote>
+<p>???????</p>
+</blockquote>
+<p>由上述定理，我们可以得到$\overline{\textbf{NL}}&#x3D; \textbf{NL}$：</p>
+<blockquote>
+<p>$A \le _L B$，则$\overline{A} \le _L \overline{B}$</p>
+<p>因为$L \le _L \text{PATH}$，所以$\overline{L} \le _L \overline{\text{PATH}}$，所以$\overline{\text{PATH}}$是$\overline{\textbf{NL}}$完全的，而$\overline{\text{PATH}}\in \textbf{NL}$，所以$\overline{\textbf{NL}}&#x3D; \textbf{NL}$。</p>
+</blockquote>
+<p>事实上，对$\forall S(n) \ge \log (n)$，若$S(n)$时间可构造，则：</p>
+<p>$$<br>\overline{\textbf{NSPACE}(S(n))}&#x3D;\textbf{NSPACE}(S(n))<br>$$</p>
+<p>$$<br>\textbf{L}\subseteq \textbf{NL}\subseteq \textbf{P}\subseteq \textbf{NP}\subseteq \textbf{PSPACE}\subseteq \textbf{EXP}<br>$$</p>
 ]]></content>
       <categories>
         <category>CS7313: Computational Complexity</category>
@@ -228,11 +267,48 @@
 <p>$$<br>\text{dim}(U _1\oplus U _2 \oplus...\oplus U _n)&#x3D;\text{dim}(U _1)+\text{dim}(U _2)+...+\text{dim}(U _n)<br>$$</p>
 <h2 id="与矩阵相关的空间"><a href="#与矩阵相关的空间" class="headerlink" title="与矩阵相关的空间"></a>与矩阵相关的空间</h2><p>$A _{m\times n}$：</p>
 <ul>
-<li>$N(A)$：零空间，$Ax&#x3D;0$，$R ^n$的子空间；</li>
-<li>$C(A)$：列空间，列向量张成的空间，$R ^m$的子空间；</li>
-<li>$R(A)$：行空间，行向量张成的空间，$R ^n$的子空间；</li>
-<li>$N(A ^T)$：左零空间，$A ^Tx&#x3D;0$，$R ^m$的子空间。</li>
+<li>$N(A)$：零空间，$Ax&#x3D;0$，$R ^n$的子空间，可用行变换求解。</li>
+<li>$C(A)$：列空间，列向量张成的空间，$R ^m$的子空间，也可用行变换求解。因为行变换不会改变列向量的相关性。</li>
+<li>$R(A)$：行空间，行向量张成的空间，$R ^n$的子空间，可用行变换求解。</li>
+<li>$N(A ^T)$：左零空间，$A ^Tx&#x3D;0$，$R ^m$的子空间，也可用行变换。</li>
 </ul>
+<p>Hermite标准型：阶梯阵的基础上令行第一个非零为$1$，且其所在列的其他位置都是$0$。Hermite标准化后，行空间即为Hermite的线性无关行，但列空间由原列向量组成。求左零空间时，可求$(A|E)$的行变换，得到$(\frac{H}{0}|P)$，则$PA&#x3D;\frac{H}{0}$。</p>
+<h2 id="满秩分解"><a href="#满秩分解" class="headerlink" title="满秩分解"></a>满秩分解</h2><p>对$A _{m\times n},r(A)&#x3D;r$，$A _{m\times n}&#x3D;P <em>{m\times r} \times Q</em>{r\times n}$，其中$P$列满秩，$Q$行满秩，这样的分解称<em>满秩分解</em>。</p>
+<h3 id="存在性"><a href="#存在性" class="headerlink" title="存在性"></a>存在性</h3><p>$$<br>P _1 A Q _1 &#x3D;<br>\begin{pmatrix*}<br>    E _r&amp; 0 \\<br>    0&amp; 0<br>\end{pmatrix*}<br>$$</p>
+<p>则：</p>
+<p>$$<br>\begin{align*}<br>    A<br>    &amp;&#x3D;<br>P _1 ^{-1}<br>\begin{pmatrix*}<br>    E _r&amp; 0 \\<br>    0&amp; 0<br>\end{pmatrix*}<br>Q _1 ^{-1}\\<br>    &amp;&#x3D;<br>P _1 ^{-1}<br>\begin{pmatrix*}<br>    E _r\\<br>    0<br>\end{pmatrix*}<br>\begin{pmatrix*}<br>    E _r\space 0<br>\end{pmatrix*}<br>Q _1 ^{-1}<br>\end{align*}<br>$$</p>
+<p>则：</p>
+<p>$$<br>\begin{align*}<br>    P &#x3D; P _1 ^{-1}<br>\begin{pmatrix*}<br>    E _r\\<br>    0<br>\end{pmatrix*}\\<br>    Q &#x3D;\begin{pmatrix*}<br>    E _r\space 0<br>\end{pmatrix*}<br>Q _1 ^{-1}<br>\end{align*}<br>$$</p>
+<h3 id="唯一性"><a href="#唯一性" class="headerlink" title="唯一性"></a>唯一性</h3><p>$$<br>A &#x3D; P \times Q&#x3D;P \times E _r \times Q&#x3D;P\times U ^{-1}\times U \times Q<br>$$</p>
+<p>所以一定不唯一。</p>
+<h3 id="求法"><a href="#求法" class="headerlink" title="求法"></a>求法</h3><p>求Hermite标准型$H _A$，则非零行所组成矩阵即为$Q$，线性无关列所对应的$A$的列向量组成的矩阵即为$P$</p>
+<h1 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h1><p>对$\mathbb{F}$上的线性空间$U$和$V$，若：</p>
+<ol>
+<li>$\forall \alpha,\beta \in U$，$T(\alpha + \beta)&#x3D;T(\alpha)+T(\beta)$</li>
+<li>$\forall k \in \mathbb{F}$，$\alpha \in U$，$T(k \cdot \alpha)&#x3D;k\cdot T(\alpha)$</li>
+</ol>
+<p>则称$T$是线性空间$U$到$V$的线性变换。</p>
+<h2 id="线性变换的性质"><a href="#线性变换的性质" class="headerlink" title="线性变换的性质"></a>线性变换的性质</h2><ol>
+<li>$T(0)\to 0$。证明：$T(0)&#x3D;T(0+0)&#x3D;T(0)+T(0)$</li>
+<li>$T(-\alpha) &#x3D; 1T(\alpha)$</li>
+<li>设$\alpha _1,\alpha _2,...,\alpha _k \in U$线性相关，则$T(\alpha _1),T(\alpha _2),...,T(\alpha _k)$线性相关</li>
+<li>线性变换由一组基的像<strong>唯一</strong>确定</li>
+</ol>
+<h2 id="线性变换的运算"><a href="#线性变换的运算" class="headerlink" title="线性变换的运算"></a>线性变换的运算</h2><p>对线性空间$U$和$V$的线性变换集合$L(U,V)$，$T _1,T _2 \in L(U,V)$，定义：</p>
+<ul>
+<li>$(T _1 + T _2)(\alpha)&#x3D;T _1(\alpha)+T _2 (\alpha)$</li>
+<li>$k \in \mathbb{F}$，$(k\cdot T _1)(\alpha)&#x3D;k\cdot T _1(\alpha)$</li>
+</ul>
+<blockquote>
+<p>$(T _1 + T _2)$和$(k\cdot T _1)$也是$U\to V$的线性变换。换句话说，集合$L(U,V)$的加法和数乘运算是封闭的。<br>零变换是零向量。<br>负变换是负函数。</p>
+</blockquote>
+<p>因此，集合$L(U,V)$是一个线性空间。</p>
+<p>$T \in L(U,V),S\in L (V,W)$，定义：</p>
+<p>$$<br>(S\cdot T)(\alpha)&#x3D;S(T(\alpha))<br>$$</p>
+<p>类似于复合函数的定义。易证$S\cdot T$是$U\to W$的线性变换。</p>
+<blockquote>
+<p>上述复合运算的结合律成立，即$(T _1\cdot T _2)\cdot T _3&#x3D; T _1\cdot (T _2\cdot T _3)$。<br>分配律亦成立。但交换律不一定成立。</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>MATH6005: Matrix Theory</category>
@@ -1611,8 +1687,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
       </tags>
   </entry>
@@ -5560,8 +5636,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -5665,8 +5741,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
