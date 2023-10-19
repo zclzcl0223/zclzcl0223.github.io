@@ -1,13 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MatrixTheory:  Linear Transformation Matrix</title>
+    <url>/2023/10/18/MatrixTheory3/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="线性变换与矩阵"><a href="#线性变换与矩阵" class="headerlink" title="线性变换与矩阵"></a>线性变换与矩阵</h1><p>$T:U \to V$</p>
+<p>零空间：$\text{null}\space T&#x3D;\{\alpha \in U:T(\alpha)&#x3D;0\}$</p>
+<p>单射$\quad\text{iff}\quad\text{null}\space T &#x3D; {0}$。</p>
+<p>像空间：$\text{range}\space T&#x3D;\{\beta \in V:\exists \alpha \in U,T(\alpha)&#x3D;\beta\}$</p>
+<p>满射$\quad\text{iff}\quad\text{range}\space T &#x3D; V$。</p>
+<p>维数公式：$\text{dim}(\text{range})+\text{dim}(\text{null})&#x3D;\text{dim}(U)$</p>
+<blockquote>
+<p>前提：有限维、线性变换。</p>
+</blockquote>
+<h2 id="线性变换矩阵"><a href="#线性变换矩阵" class="headerlink" title="线性变换矩阵"></a>线性变换矩阵</h2><p>对$\text{dim}U&#x3D;n,\text{dim}V&#x3D;m$，$T(\alpha _1,..., \alpha _n)&#x3D;(\beta _1, ...,\beta _m)C _{m\times n}$，其中$\alpha _1,...,\alpha _n$和$\beta _1,...,\beta _m$分别为$U$和$V$的基，称$C _{m\times n}$为线性变换$T$在给定基$\alpha _1,...,\alpha _n:\beta _1,...,\beta _m$下的矩阵。</p>
+<blockquote>
+<p>线性变换由一组基的变换唯一确定。</p>
+<p>自身到自身的线性变换称为“算子”：$T \in L(U)$。此时，线性变换前后的基可以取一样的。</p>
+<p>矩阵就是线性变换，线性变换就是矩阵·。</p>
+</blockquote>
+<h2 id="线性变换矩阵求零、像空间"><a href="#线性变换矩阵求零、像空间" class="headerlink" title="线性变换矩阵求零、像空间"></a>线性变换矩阵求零、像空间</h2><p>$T(\alpha) &#x3D; T((\alpha _1,...,\alpha _n)X)&#x3D; T(\alpha _1,...,\alpha _n)X&#x3D;(\beta _1,...,\beta _m)AX$</p>
+<ul>
+<li><p>求零空间<br>$T(\alpha)&#x3D;0\to \text{null}T\to N(A)$，此时得出的是能让$T(\alpha) &#x3D; 0$的$X$的基，记为$X&#39;$，再用$(\alpha _1,...,\alpha _n)X&#39;$即可得到零空间的基。</p>
+</li>
+<li><p>求像空间<br>此时要求的是像空间的基，而$AX$相当于对$A$进行列变换，因而$A$的秩就是像空间的维数，列变换得到列空间$C&#39;$，计算$(\beta _1,...,\beta _m)C&#39;$即可得到像空间的基。故$\text{range}T\to C(A)$</p>
+</li>
+</ul>
+<blockquote>
+<p>核心：什么样的基能够使得线性变化矩阵最简单。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>MATH6005: Matrix Theory</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Computational Complexity NP-Completeness</title>
     <url>/2023/10/10/ComputationalComplexityNPComp/</url>
     <content><![CDATA[<span id="more"></span>
 
-<h1 id="textbf-NP-Completeness"><a href="#textbf-NP-Completeness" class="headerlink" title="$\textbf{NP}-$Completeness"></a>$\textbf{NP}-$Completeness</h1><p>判定一个问题是否是NP问题，证据、验证</p>
-<p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+<h1 id="textbf-NP-Completeness"><a href="#textbf-NP-Completeness" class="headerlink" title="$\textbf{NP}-$Completeness"></a>$\textbf{NP}-$Completeness</h1><p>判定一个问题是否是NP问题，需要证据与验证，即：</p>
+<blockquote>
+<p>当存在一个多项式$p: \textbf{N}\to \textbf{N}$和一个$\text{P}-\text{time}$图灵机$\mathbb{M}$，使得对于语言$L$以及$x \in \{0,1\} ^*$：<br>$$<br>x \in L \space\text{iff}\space \exists u\in \{0,1\} ^{p(|x|)},\mathbb{M}(x,u)&#x3D;1<br>$$<br>则称$L$是一个$\textbf{NP}$问题，并称这个图灵机$\mathbb{M}$为一个验证器。</p>
+</blockquote>
+<p>上面的定理中，$u$就称为能够证明$L$是一个$\textbf{NP}$问题的“证据”。该定理说明，若某个问题是$\textbf{NP}$问题，则一定存在一个确定图灵机$\mathbb{M}$，它能通过不超过多项式长度的证据判定该问题在$\textbf{NP}$中。</p>
+<blockquote>
+<p>事实上，$u$就是非确定图灵机$\mathbb{N}$正确判断$x$的一条路径。因为要验证的是$\textbf{NP}$，所以要求路径长度（即$u$的长度）为多项式。</p>
+</blockquote>
+<h2 id="Karp-Reduction"><a href="#Karp-Reduction" class="headerlink" title="Karp Reduction"></a>Karp Reduction</h2><p>Karp Reduction即为多项式时间归约，其定义为：</p>
+<blockquote>
+<p>若存在一个多项式时间的可计算函数$r:\{0,1\} ^* \to \{0,1\} ^*$，使得对所有的$x \in \{0,1\} ^*$，<br>$$<br>x \in L \space \text{iff} \space r(x) \in L &#39;<br>$$<br>则称$L$可多项式归约到$L&#39;$，记为$L \le _K L&#39;$。</p>
+</blockquote>
+<p>多项式归约也具有传递性。</p>
+<ul>
+<li>如果$L \in \text{NP}$且$L \le _K L&#39;$，则称$L&#39;$是$\textbf{NP}$难的；</li>
+<li>若$L&#39; \in \textbf{NP}$，则称$L &#39;$是$\textbf{NP}$完全的。</li>
+</ul>
+<p>若P &#x3D; NP，则EXP &#x3D; NEXP。底层相等，上层也相等。</p>
+<h1 id="Propositional-Logic：命题逻辑"><a href="#Propositional-Logic：命题逻辑" class="headerlink" title="Propositional Logic：命题逻辑"></a>Propositional Logic：命题逻辑</h1><p>命题公式，即一个逻辑公式，是由真假值（0&#x2F;1）、命题变量和逻辑操作子通过归纳构造的。一个命题变量$x$是一个布尔量，也称作“字（Literal）”，其否定形式为$\overline{x}$。逻辑运算符包括$\lor$（或、析取），$\land$（与、合取）。若干个“字”的析取称<em>语句</em>，若干个“字”的合取称<em>单项式</em>。</p>
+<ul>
+<li>合取范式（Conjunctive Normal Form，CNF）：若干语句的合取，记作$\lor _{i}(\land _j v _{ij})$。</li>
+<li>析取范式（Disjunctive Normal Form，DNF）：若干单向式的析取，记作$\land _{i}(\lor _j v _{ij})$。</li>
+</ul>
+<p>对于某一公式（合取或析取，记作$\phi$），若存在$v _{ij}$的某种真值指派，使得$\phi$为真，则称该公式是可满足的（Satisfiable）。对于所有可满足的合取范式组成的集合$\textbf{SAT}$，存在如下定理：</p>
+<p>$$<br>\textbf{SAT} \in \textbf{NP}<br>$$</p>
+<p>$k\textbf{SAT}$是指每个语句只含有$k$个字的合取范式。对于$k\textbf{SAT}$，有如下结论：</p>
+<ol>
+<li>$2\textbf{SAT}\in \textbf{P}$</li>
+<li>$\textbf{SAT}\le _K 3\textbf{SAT}$</li>
+</ol>
+<p>结论2表明，$k$（$k \ge 3$）$\textbf{SAT}$可由$3\textbf{SAT}$表示。</p>
+<p>布尔函数$f:\{0,1\} ^\ell \to \{0,1\}$将$\ell$长的$01$串映射为一个布尔值，它可以被表示为一个合取范式，且该合取范式的大小不会超过$\ell 2 ^\ell$。</p>
+<h2 id="Cook-Levin-Theorem"><a href="#Cook-Levin-Theorem" class="headerlink" title="Cook-Levin Theorem"></a>Cook-Levin Theorem</h2><p>定理：$\textbf{SAT}$是$\textbf{NP}$完全的。该定理证明如下：</p>
+<blockquote>
+<p>由于$\textbf{SAT}\in \textbf{NP}$，故要证上述定理成立，只需要证明$\forall L \in \textbf{NP}$，$L \le _K \textbf{SAT}$，即证明$x \in L$当且仅当$\phi(x) \in \textbf{SAT}$，又$x \in L$等价于$\exists u \in \{0,1\} ^{ ^{p (|x|)}},\mathbb{M}(x,u)&#x3D;1$，所以即证明：<br>$$<br>\phi(x) \in \textbf{SAT}\space \text{iff}\space \exists u \in \{0,1\} ^{ ^{p (|x|)}},\mathbb{M}(x,u)&#x3D;1<br>$$<br>要证明上式，即证明<strong>图灵机的计算过程可以一个合取范式表示</strong>。</p>
+<p>由于任何多带的图灵机都可以单带图灵机在多项式的代价下模拟，所以此处只考虑一条带子。则对于图灵机的整个计算过程，其产生的所有格局中的每一个格子、带头是否在该格子、当前的状态可用$1+\log \Gamma +\log Q$个比特编码，记其长度为$\ell$。对于格局$C _{i+1}$和其上一个格局$C _{i}$，$C _{i + 1}$的每一个格子的值只会受到其正上方、左上方、右上方三个$C _{i}$格子的影响。所以，对于$C _i \to C _{i+1}$每一个格子的转移函数可以表示为$f:\{0,1\} ^{3\ell}\to \{0,1\} ^\ell$，其等价于$f:\{0,1\} ^{4\ell} \to \{0,1\}$，转换为合取范式，其大小为$4\ell 2 ^{4 \ell}$，由于$\ell$为常量，所以前式为常数。前后格局所有格子的转换都可用上式表示，记该转移函数为$C$。终止格局数为多项式，格局的大小也是多项式，所以$x \to \phi(x)$的转换是多项式的。证毕。</p>
+</blockquote>
+<p>此外，计算$C _{ij}$的空间是对数的，只需要记录$i$和$j$即可。</p>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ol>
+<li>库克-莱文归约是个<em>莱文归约</em>（Levin Reduction），即使得$\phi(x)$成立的一组真值指派$u$就是使得$\mathbb{M}(x,u)&#x3D;1$的证据$u$。</li>
+<li>归约是对数空间的。</li>
+</ol>
+<p>判定问题有多项式时间算法，则相应的计算问题也有。</p>
+<h1 id="Karp-Theorem"><a href="#Karp-Theorem" class="headerlink" title="Karp Theorem"></a>Karp Theorem</h1><h2 id="Berman-Hartmanis-Conjecture"><a href="#Berman-Hartmanis-Conjecture" class="headerlink" title="Berman-Hartmanis Conjecture"></a>Berman-Hartmanis Conjecture</h2><p>猜测：任何的NP完全问题都是多项式同构的，即只有一个NP完全问题。若该猜测为真，则$\textbf{P} \neq \textbf{NP}$。</p>
+<p>多项式同构：$A \le _K ^1 B$表存在从$A$到$B$的单射归约，若$A \le _K ^1 B \le _K ^1 A$，则称$A$和$B$是多项式同构的，即$A \simeq _P B$</p>
+<h1 id="Ladner-Theorem"><a href="#Ladner-Theorem" class="headerlink" title="Ladner Theorem"></a>Ladner Theorem</h1><p>定理：若$\textbf{NP} \neq \textbf{P}$，则存在介于$\textbf{P}$和$\textbf{NP}$之间的语言。</p>
+]]></content>
       <categories>
         <category>CS7313: Computational Complexity</category>
       </categories>
@@ -760,8 +842,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -1064,8 +1146,8 @@
         <category>Kernel Method</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
         <tag>Machine Learning</tag>
         <tag>GNN</tag>
         <tag>SVM</tag>
@@ -1687,8 +1769,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Python</tag>
+        <tag>Deep Learning</tag>
         <tag>Tool</tag>
       </tags>
   </entry>
@@ -2047,8 +2129,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -2098,8 +2180,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -2188,8 +2270,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -4419,8 +4501,8 @@
         <category>Programming Language</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4523,8 +4605,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4608,8 +4690,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4717,8 +4799,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4847,8 +4929,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4865,8 +4947,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4937,8 +5019,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5127,8 +5209,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5229,8 +5311,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5355,8 +5437,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5386,8 +5468,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5636,8 +5718,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Python</tag>
+        <tag>Deep Learning</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -5741,8 +5823,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Python</tag>
+        <tag>Deep Learning</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -6169,20 +6251,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Gamma and Factorial</title>
-    <url>/2023/05/05/GammaAndFactorial/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Lambda: Anomymous Functions</title>
     <url>/2023/05/05/PythonLambda/</url>
     <content><![CDATA[<span id="more"></span>
@@ -6253,6 +6321,20 @@
 <h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gamma and Factorial</title>
+    <url>/2023/05/05/GammaAndFactorial/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Programming Language</category>
       </categories>
