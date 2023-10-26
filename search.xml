@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>MatrixTheory:  Linear Transformation Matrix</title>
+    <title>MatrixTheory: Linear Transformation Matrix</title>
+    <url>/2023/10/25/MatrixTheory4/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<p><img src="/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+      <categories>
+        <category>MATH6005: Matrix Theory</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Computational Complexity Polynomial Hierarchy</title>
+    <url>/2023/10/25/PolynomialHierarchy/</url>
+    <content><![CDATA[<span id="more"></span>
+
+]]></content>
+      <categories>
+        <category>CS7313: Computational Complexity</category>
+      </categories>
+      <tags>
+        <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MatrixTheory: Linear Transformation Matrix</title>
     <url>/2023/10/18/MatrixTheory3/</url>
     <content><![CDATA[<span id="more"></span>
 
@@ -20,7 +48,7 @@
 <p>自身到自身的线性变换称为“算子”：$T \in L(U)$。此时，线性变换前后的基可以取一样的。</p>
 <p>矩阵就是线性变换，线性变换就是矩阵·。</p>
 </blockquote>
-<h2 id="线性变换矩阵求零、像空间"><a href="#线性变换矩阵求零、像空间" class="headerlink" title="线性变换矩阵求零、像空间"></a>线性变换矩阵求零、像空间</h2><p>$T(\alpha) &#x3D; T((\alpha _1,...,\alpha _n)X)&#x3D; T(\alpha _1,...,\alpha _n)X&#x3D;(\beta _1,...,\beta _m)AX$</p>
+<h3 id="线性变换矩阵求零、像空间"><a href="#线性变换矩阵求零、像空间" class="headerlink" title="线性变换矩阵求零、像空间"></a>线性变换矩阵求零、像空间</h3><p>$T(\alpha) &#x3D; T((\alpha _1,...,\alpha _n)X)&#x3D; T(\alpha _1,...,\alpha _n)X&#x3D;(\beta _1,...,\beta _m)AX$</p>
 <ul>
 <li><p>求零空间<br>$T(\alpha)&#x3D;0\to \text{null}T\to N(A)$，此时得出的是能让$T(\alpha) &#x3D; 0$的$X$的基，记为$X&#39;$，再用$(\alpha _1,...,\alpha _n)X&#39;$即可得到零空间的基。</p>
 </li>
@@ -30,6 +58,47 @@
 <blockquote>
 <p>核心：什么样的基能够使得线性变化矩阵最简单。</p>
 </blockquote>
+<h3 id="线性变换与相似"><a href="#线性变换与相似" class="headerlink" title="线性变换与相似"></a>线性变换与相似</h3><p>同一个线性变换（算子）在不同基下的矩阵相似：</p>
+<blockquote>
+<p>对$T: U\to U$，$T (\alpha _1,...,\alpha _n) &#x3D; (\alpha _1,...,\alpha _n)A$；对$T: V \to V$，$T (\beta _1,...,\beta _m) &#x3D; (\beta _1,...,\beta _m)B$；对两个基，有过渡矩阵$P$，使得$(\beta _1,...,\beta _m)&#x3D;(\alpha _1,...,\alpha _n)P$，则：<br>$$<br>\begin{align*}<br>T (\beta _1,...,\beta _m)<br>&amp;&#x3D; (\beta _1,...,\beta _m)B \\<br>&amp;&#x3D; (\alpha _1,...,\alpha _n)PB \\<br>&amp;&#x3D; T((\alpha _1,...,\alpha _n)P) \\<br>&amp;&#x3D; (\alpha _1,...,\alpha _n)AP<br>\end{align*}<br>$$<br>故有：$PB&#x3D;AP$，若$P$可逆，则易知$A$和$B$是相似的。</p>
+</blockquote>
+<h2 id="逆变换"><a href="#逆变换" class="headerlink" title="逆变换"></a>逆变换</h2><p>若存在线性变换$T: U \to V$和$S: V\to U$，使得$ST &#x3D; I$，$TS&#x3D;I$，则称$S$为$T$的逆变换，其中$ST$和$TS$是之前定义的线性变换的乘法运算，$I$为恒等变换。逆变换若存在则是唯一的。</p>
+<p>线性变换$T$可逆的充要条件：$T$单射且满射。</p>
+<h2 id="同构"><a href="#同构" class="headerlink" title="同构"></a>同构</h2><p>若存在一个$T \in L(U,V)$，且$T$可逆，则称线性空间$U$和$V$是同构的。</p>
+<p>两线性空间$U$、$V$同构的充要条件：$\text{dim}U&#x3D;\text{dim}V$。</p>
+<ul>
+<li>找同构映射：</li>
+</ul>
+<ol>
+<li>定义一个映射$T$；</li>
+<li>证明映射$T$是线性变换；</li>
+<li>证明映射$T$单射且满射。</li>
+</ol>
+<ul>
+<li>$V$为$\mathbb{F}$上的$n$维线性空间，则$V \simeq \mathbb{F} ^n$</li>
+<li>$L(U,V)\simeq \mathbb{F} ^{n \times n}$</li>
+</ul>
+<p>线性变换就是矩阵。两个线性空间的线性变换空间的维数是者两个线性空间维数的乘积：</p>
+<p>$$<br>\text{dim}L(U,V)&#x3D;\text{dim}U\cdot \text{dim}V<br>$$</p>
+<h2 id="乘积空间"><a href="#乘积空间" class="headerlink" title="乘积空间"></a>乘积空间</h2><p>$V _1, V _2,..., V _k$为$\mathbb{F}$上的线性空间，则$V _1\times V _2\times ...\times V _k&#x3D;\{(\alpha _1,\alpha _2,...,\alpha _k):\alpha _i\in V _i \}$就称为$V _1, V _2,..., V _k$的乘积空间。乘积空间还是线性空间。</p>
+<blockquote>
+<p>$V _1, V _2,..., V _k$可以是元素类型不同的空间。乘积空间的加法、数乘仍是各元素在原空间的加法和数乘。<br>乘积空间的维数为各成员空间的维数和。</p>
+</blockquote>
+<h2 id="商空间"><a href="#商空间" class="headerlink" title="商空间"></a>商空间</h2><p>$V$是$\mathbb{F}$上的线性空间，$U$是$V$的子空间，$\alpha \in V$，定义$\alpha + U &#x3D; \{\alpha + \beta:\beta \in U\}$，则商空间为$V&#x2F;U&#x3D;{\alpha + U:\alpha \in V}$。</p>
+<ul>
+<li>商空间的加法：$(\alpha + U) + (\beta + U) &#x3D; (\alpha + \beta) + U$</li>
+<li>商空间的数乘：$k\cdot (\beta + U) &#x3D; k\cdot \alpha+ U$</li>
+</ul>
+<p>下列三个公式等价：</p>
+<ol>
+<li>$\alpha - \beta \in U$</li>
+<li>$\alpha + U &#x3D; \beta \ U$</li>
+<li>$(\alpha + U) \cap (\beta + U) \ne \emptyset$</li>
+</ol>
+<blockquote>
+<p>平行线</p>
+</blockquote>
+<p>商空间也是线性空间，零向量是$\{\alpha + U,\alpha \in U\}$。</p>
 ]]></content>
       <categories>
         <category>MATH6005: Matrix Theory</category>
@@ -86,16 +155,88 @@
 <li>归约是对数空间的。</li>
 </ol>
 <p>判定问题有多项式时间算法，则相应的计算问题也有。</p>
-<h1 id="Karp-Theorem"><a href="#Karp-Theorem" class="headerlink" title="Karp Theorem"></a>Karp Theorem</h1><h2 id="Berman-Hartmanis-Conjecture"><a href="#Berman-Hartmanis-Conjecture" class="headerlink" title="Berman-Hartmanis Conjecture"></a>Berman-Hartmanis Conjecture</h2><p>猜测：任何的NP完全问题都是多项式同构的，即只有一个NP完全问题。若该猜测为真，则$\textbf{P} \neq \textbf{NP}$。</p>
-<p>多项式同构：$A \le _K ^1 B$表存在从$A$到$B$的单射归约，若$A \le _K ^1 B \le _K ^1 A$，则称$A$和$B$是多项式同构的，即$A \simeq _P B$</p>
+<blockquote>
+<p>判定（Decision）和计算（Search）问题在是否有高效算法上是等价的，即若我们能在多项式时间内判定某个问题，我们就能在多项式时间内计算其对应的计算问题。</p>
+</blockquote>
+<h1 id="Karp-Theorem"><a href="#Karp-Theorem" class="headerlink" title="Karp Theorem"></a>Karp Theorem</h1><p>Karp证明了21个NP完全问题，如$\textbf{THEOREM}$——能否在多项式的公式长度的行内证明某公式是NP完全的。</p>
+<h2 id="Berman-Hartmanis-Conjecture"><a href="#Berman-Hartmanis-Conjecture" class="headerlink" title="Berman-Hartmanis Conjecture"></a>Berman-Hartmanis Conjecture</h2><p>猜测（Conjecture）：任何的NP完全问题都是多项式同构的，即只有一个NP完全问题。若该猜测为真，则$\textbf{P} \neq \textbf{NP}$。</p>
+<blockquote>
+<p>多项式同构：$A \le _K ^1 B$表存在从$A$到$B$的单射Karp归约，若$A \le _K ^1 B \le _K ^1 A$，则称$A$和$B$是多项式同构的，即$A \simeq _P B$</p>
+</blockquote>
+<p>对于集合$S \subseteq \{0,1\} ^* $，若$S$内部长度不超过$n$的串有指数个，即$|S ^{\le n}|&#x3D; 2 ^{n ^{O(1)}}$，则称该集合是稠密的；反之若只有多项式个，即$|S ^{\le n}|&#x3D; {n ^{O(1)}}$，则称该集合是稀疏的。$\textbf{SAT}$是稠密的，而$\textbf{P}$类问题是稀疏的，稠密集合不可能和稀疏集合同构，因为大的映射小的或小的映射大的不可能是单射的，所以$\textbf{SAT} \ne \textbf{P}$。</p>
 <h1 id="Ladner-Theorem"><a href="#Ladner-Theorem" class="headerlink" title="Ladner Theorem"></a>Ladner Theorem</h1><p>定理：若$\textbf{NP} \neq \textbf{P}$，则存在介于$\textbf{P}$和$\textbf{NP}$之间的语言。</p>
+<p>证明的基本思路：从$\textbf{SAT}$中排除一些元素，但不至于退化为$2\textbf{SAT}$，则新的语言就介于$\textbf{NP}$和$\textbf{P}$之间。记该新语言为$\textbf{SAT} _H$。</p>
+<p>$$<br>\textbf{SAT} _H(x)&#x3D;<br>\begin{cases}<br>    1, &amp;x \in \textbf{SAT} _H\\<br>    0, &amp;x \notin \textbf{SAT} _H<br>\end{cases}<br>$$</p>
+<p>$$<br>H(n)&#x3D;<br>\begin{cases}<br>    i, &amp;\text{对}|x|\le \log n\text{可在}i |x| ^i\text{时间内判定}\textbf{SAT} _H(x)\text{的最小图灵机下标}\\<br>    \log \log n, &amp;\text{otherwise}<br>\end{cases}<br>$$</p>
+<p>$H(n)$是单调不减的，其时间复杂度为：</p>
+<p>$$<br>T(n)&#x3D;(\log\log n)2 ^{\log n}(c\cdot C\log C+ 2 ^{\log n}+ T(\log n)+...)<br>$$</p>
+<ul>
+<li>$\log\log n$是因为我们要枚举所有的$i &lt; \log \log n$以找到下标最小的图灵机；</li>
+<li>$2 ^{\log n}$是因为对于每一次枚举，我们都要验证所有长度小于$\log n$的序列，共有指数个；</li>
+<li>$c\cdot C\log C$是用通用图灵机模拟$\mathbb{M} _i(x)$计算$i |x| ^i$步的时间；</li>
+<li>$2 ^{\log n}$是暴力计算$\textbf{SAT} _H(x)$的时间；</li>
+<li>后面这两项需要是因为我们要将模拟结果与$textbf{SAT} _H(x)$的真实值进行比较；</li>
+<li>$T(\log n)$是因为在计算$\textbf{SAT} _H(x)$时还要计算$H(|\psi|)$，而$\psi$的长度为$\log n$。</li>
+<li>可以算得$T(n) &#x3D; o(n ^3)$。</li>
+</ul>
+<h2 id="H-n-的性质"><a href="#H-n-的性质" class="headerlink" title="$H(n)$的性质"></a>$H(n)$的性质</h2><ol>
+<li>如果$H(n)$是有限的，由于$H(n)$是非递减的，$H(n)$最终会收敛到$i$，即$\exists n \ge N$，使$H(n)&#x3D;i$恒成立。于是$\exists$图灵机$\mathbb{M}_i$，它在多项式时间$i|x| ^i$内判定$\textbf{SAT} _H$。</li>
+<li>$\textbf{SAT} _H \in \textbf{P}\space \space \text{iff} \space \space H(n)$是有限的。右到左即性质1，左到右：</li>
+</ol>
+<blockquote>
+<p>设图灵机$\mathbb{M} _i$在$c n ^c$内判定$\textbf{SAT}_H$。由于图灵机编码的任意性，我们可以取$i \ge c$，而$H(n)$输出的是图灵机的最小编码，所以一定有$H(n) \le i$。</p>
+</blockquote>
+<h2 id="两个方向的证明"><a href="#两个方向的证明" class="headerlink" title="两个方向的证明"></a>两个方向的证明</h2><p>推论1：如果$\textbf{P} \ne \textbf{NP}$，则$\textbf{SAT} _H \notin \textbf{P}$。</p>
+<blockquote>
+<p>因为若$\textbf{SAT} _H \in \textbf{P}$，则由$\textbf{SAT} _H$的定义，$\textbf{SAT}\le _K \textbf{SAT} _H$。</p>
+</blockquote>
+<p>推论2：如果$\textbf{P} \ne \textbf{NP}$，则$\textbf{SAT} _H$不是NP完全的。</p>
+<blockquote>
+<p>不懂</p>
+</blockquote>
+<h1 id="Baker-Gill-Solovay-Theorem"><a href="#Baker-Gill-Solovay-Theorem" class="headerlink" title="Baker-Gill-Solovay Theorem"></a>Baker-Gill-Solovay Theorem</h1><p>定理：存在$A$使得$\textbf{P} ^A &#x3D; \textbf{NP} ^A$，也存在$B$$\textbf{P} ^B \ne \textbf{NP} ^B$</p>
+<blockquote>
+<p>对前项的证明：<br>$$<br>\textbf{PSPACE}&#x3D;\textbf{P} ^{\textbf{PSPACE}} \subset \textbf{NP} ^{\textbf{PSPACE}} &#x3D; \textbf{PSPACE}<br>$$<br>于是$\textbf{P} ^{\textbf{PSPACE}} &#x3D; \textbf{NP} ^{\textbf{PSPACE}}$。该项说明，若$A$的表达能力足够强，则$\textbf{P} ^A$会与$\textbf{NP} ^A$的表达能力相当。</p>
+<p>对后项的证明：<br>令$B _0 &#x3D; \{\}$，$n _0 &#x3D; 0$，并使得$B _{i + 1}$和$B _i$存在如下递推关系：</p>
+<ul>
+<li>让图灵机$\mathbb{M} _i ^{B _i}$在问题$1 ^{n _i + 1}$上运行$2 ^{n _{i+1}-1}$步；</li>
+<li>若不停机，则令$B _{i+1} &#x3D; B _i$；</li>
+<li>若接受，则令$B _{i+1} &#x3D; B _i$；</li>
+<li>若拒绝，则令$B _{i+1} &#x3D; B _i \cup \{s\}$，其中$s$是长度为$n _{i+1}$的字符串，且在图灵机运行的过程中没有被用于问子程序$B _i$（因为图灵机只运行$2 ^{n _{i+1}-1}$步，不能枚举完所有的长度为$n _{i+1}$的串）。</li>
+</ul>
+<p>此外，还规定$n _{i+1}$是严格递增的，且必须大于所有的会被作为图灵机$\mathbb{M} _0 ^{B _0}(x _1)...\mathbb{M} _{i-1} ^{b _{i-1}}(x _i)$的输入串$x$。<br>最终，$B$就定义为$B &#x3D; \bigcup _{i \in \textbf{N}} B _i$。</p>
+<p>再定义$U _B &#x3D; \{1 ^n | B \text{包含长度为}n\text{的串}\}$，即，若$B$包含长度为$n$的串，则$U _B$包含长度为$n$的全1串。对于任意的全1串，我们可证$U _B \in \textbf{NP} ^B,U _B \notin \textbf{P} ^B$。左边易证，我们只需枚举所有长度为$n$的字符串并询问$B$即可，对于右边：</p>
+<p>假设存在$\mathbb{M} _i ^B$在多项式时间判定$U _B$，则，如果：</p>
+<ul>
+<li>$\mathbb{M} _i ^B(1 ^{n+1})&#x3D;0$，那么$B$中不包含长度为$n + 1$的字符串，而长度为$n + 1$的字符串只能在$B _{i+1} &#x3D; B _i \cup \{s\}$被加入到$B _{i+1}$中，所以$B _{i+1}$中不包含长度为$n+1$的串。</li>
+</ul>
+<p>由此我们可以推出矛盾：</p>
+<ul>
+<li>$\mathbb{M} _i ^{B _i}(1 ^{n+1})&#x3D;1\to B _{i+1} &#x3D; B _i \to\mathbb{M} _i ^{B _{i+1}}(1 ^{n+1})&#x3D;1 \to \mathbb{M} _i ^B(1 ^{n+1})&#x3D;1$</li>
+</ul>
+<p>证毕。</p>
+</blockquote>
+<h2 id="Oracle-Turing-Machine：神谕图灵机"><a href="#Oracle-Turing-Machine：神谕图灵机" class="headerlink" title="Oracle Turing Machine：神谕图灵机"></a>Oracle Turing Machine：神谕图灵机</h2><p>神谕图灵机$\mathbb{M} ^?$是一种特殊的图灵机，它有一条额外的读写带和新的三种状态$q _{text{query}}, q _{\text{yes}}, q _{\text{no}}$。</p>
+<blockquote>
+<p>这条额外的带子实际上就是“子程序”。“$?$”可被替换为一个实际的问题&#x2F;语言，如$B$。</p>
+</blockquote>
+<p>神谕图灵机通过进入$q _{\text{query}}$状态来询问某个字符串$b$是否属于$B$，这相当于一次“子程序”调用。如果$b \in B$，则进入$q _\text{yes}$状态；否则，进入$q _{\text{no}}$状态</p>
+<blockquote>
+<p>子程序调用只算作一次计算！</p>
+</blockquote>
+<p>对神谕图灵机的编码是对机器的编码，与神谕无关。</p>
+<h2 id="Cook-Reduction"><a href="#Cook-Reduction" class="headerlink" title="Cook Reduction"></a>Cook Reduction</h2><p>如果存在一个多项式时间复杂度的神谕图灵机$\mathbb{M} ^?$，使得语言$L$可以被图灵机$\mathbb{M} ^{L&#39;}$判定，则称语言$L$可以Cook归约到$L&#39;$，记作$L \le _C L&#39;$。</p>
+<h2 id="Lowness"><a href="#Lowness" class="headerlink" title="Lowness"></a>Lowness</h2><p>如果$\textbf{A} ^{\textbf{B}}&#x3D;\textbf{A}$，则称复杂性类$\textbf{B}$相对于复杂性类$\textbf{A}$是低的。</p>
+<blockquote>
+<p>换句话说，$\textbf{A}$调用$\textbf{B}$并不能增强自身判定问题的能力，这说明相对于$\textbf{A}$，$\textbf{B}$解决的问题是更简单的问题。</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -222,8 +363,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -662,8 +803,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -773,8 +914,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1034,8 +1175,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1062,8 +1203,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -3063,8 +3204,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -3150,8 +3291,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
