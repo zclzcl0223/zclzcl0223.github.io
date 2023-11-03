@@ -1,10 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>MatrixTheory: Linear Transformation Matrix</title>
+    <title>Computational Complexity: CircuitComplexity</title>
+    <url>/2023/10/31/CircuitComplexity/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Boolean-Circuit-Model"><a href="#Boolean-Circuit-Model" class="headerlink" title="Boolean Circuit Model"></a>Boolean Circuit Model</h1><p>Boolean Circuit</p>
+<p>电路能算的图灵机不一定能算。</p>
+<h2 id="香农定理"><a href="#香农定理" class="headerlink" title="香农定理"></a>香农定理</h2><p>大多数$n$个输入的布尔函数的复杂性其电路复杂性一般大于$\frac{2 ^n}{n}-O(\frac{2 ^n}{n})$</p>
+<h2 id="Circuit-Hierachy-Theorem"><a href="#Circuit-Hierachy-Theorem" class="headerlink" title="Circuit Hierachy Theorem"></a>Circuit Hierachy Theorem</h2><p>如果对$\epsilon &gt; 0$，$n &lt; (2+\epsilon)S(n) &lt; S&#39;(n) &lt;&lt; 2 ^n &#x2F;n$，则$\textbf{SIZE}(S(n)) \subsetneq \textbf{SIZE}(S&#39;(n))$</p>
+<h1 id="Uniform-Circuit"><a href="#Uniform-Circuit" class="headerlink" title="Uniform Circuit"></a>Uniform Circuit</h1><p><img src="/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+      <categories>
+        <category>CS7313: Computational Complexity</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MatrixTheory: 特征值、特征向量</title>
     <url>/2023/10/25/MatrixTheory4/</url>
     <content><![CDATA[<span id="more"></span>
 
+<h1 id="不变子空间"><a href="#不变子空间" class="headerlink" title="不变子空间"></a>不变子空间</h1><p>$V: \mathbb{F}上$线性空间，$T \in L(V)$，$U$是$V$的子空间。若$\forall \alpha \in U$，$T(\alpha) \in U$，即$T(U) \subseteq U$，则称$U$是$V$的关于$T$的不变子空间。</p>
+<h1 id="特征值、特征向量"><a href="#特征值、特征向量" class="headerlink" title="特征值、特征向量"></a>特征值、特征向量</h1><p>若$V &#x3D; U _1 \oplus U _2 \oplus U _3$，其中$U _1...U _3$均为不变子空间，则以不变子空间的基为基向量的线性变换矩阵为分块对角矩阵。进一步地，若存在$\text{dim}V$个不变子空间且这些子空间的直和为$V$，则线性变换矩阵就是对角矩阵，对角线的值为特征值，不变子空间的基为特征向量。</p>
+<p>$T(\alpha _i) &#x3D; \lambda _i \alpha _i$，$\lambda _i$为特征值，$\alpha _i$为特征向量，其中$\lambda \in \mathbb{F}$，$\alpha \not &#x3D;{0}$。</p>
+<blockquote>
+<p>这和$Ax &#x3D; \lambda x$是等价的，只不过矩阵的只能是有限维的。</p>
+<p>不同特征值对应的特征向量线性无关。</p>
+<p>$T\in L(V)$，$\mathbb{F}&#x3D;C$，$\text{dim}V&#x3D;n$，则$T$在<em>复数域</em>内一定有特征值。</p>
+</blockquote>
+<p>$T \in L(V)$，$U$是不变子空间</p>
+<ol>
+<li>$T | _U \in L(U)$，缩小算子$T$的定义域。</li>
+<li>$T &#x2F; U: V&#x2F;U \to V&#x2F;U$，商空间到商空间的映射，只有在不变子空间下才合理。如$(T&#x2F;U)(\alpha + U) &#x3D; T(\alpha) + U$</li>
+</ol>
+<h1 id="简单的基下矩阵"><a href="#简单的基下矩阵" class="headerlink" title="简单的基下矩阵"></a>简单的基下矩阵</h1><p>对$T \in L(V)$，$\mathbb{F}&#x3D;C$，$\text{dim}V &#x3D; n$，一定存在一组基，使得基下的矩阵是上三角。</p>
+<blockquote>
+<p>证明：即证$T(\alpha _i) \in \text{span}[\alpha _1, ...,\alpha _i]$。要用到商空间和商空间的线性变换。</p>
+</blockquote>
+<p>等价地，复数域上的任意一个方阵一定相似于一个上三角。</p>
 <p><img src="/1.png" alt="1"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
       <categories>
@@ -15,7 +52,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Computational Complexity Polynomial Hierarchy</title>
+    <title>Computational Complexity: Polynomial Hierarchy</title>
     <url>/2023/10/25/PolynomialHierarchy/</url>
     <content><![CDATA[<span id="more"></span>
 
@@ -45,6 +82,19 @@
 <h2 id="Alternating-Turing-Machine"><a href="#Alternating-Turing-Machine" class="headerlink" title="Alternating Turing Machine"></a>Alternating Turing Machine</h2><p>交替图灵机：非确定图灵机的推广，每个状态都被标注为$\{\exists,\forall,\text{halt}\}$之一。交替图灵机$\text{ATM}$接受$x$当且仅当交替图灵机的执行序列中存在一个<em>接受子树</em>。</p>
 <blockquote>
 <p>接受子树：所有叶子结点标记$\text{halt}$且均为$1$，若某个非叶子结点被标记为$\exists$则它只有一个孩子在接受子树中，若被标记为$\forall$则有两个孩子接受子树中。</p>
+</blockquote>
+<p>$\text{TQBF}$可用$\text{ATM}$在平方时间和线性空间判定。</p>
+<ul>
+<li>$\textbf{NSPACE}(S(n)) \subseteq \textbf{ATIME}(S ^2 (n))$：格局图、路径，$\exists$则猜测，$forall$则并行计算，共猜测$S$次，每次耗时$S$。</li>
+<li>$\textbf{ATIME}(T(n)) \subseteq \textbf{SPACE}(T (n))$：DFS。</li>
+<li>$\textbf{ASPACE}(S(n)) \subseteq \bigcup _ {c \ge 0}\textbf{TIME}(c ^{S(n)})$：格局图，枚举。</li>
+<li>$\textbf{TIME}(T(n)) \subseteq \textbf{ASPACE}(\log T(n))$：Cook-Levin证明一的图从下往上，猜测$\exist$，并行地验证$\forall$。每条路径空间为对数空间。</li>
+</ul>
+<p><img src="/2023/10/25/PolynomialHierarchy/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1.</center>
+
+<blockquote>
+<p>无穷谱系猜测是比$\textbf{NP}&#x3D;\textbf{P}$更强的假设，它假设多项式谱系间存在严格的包含关系。</p>
 </blockquote>
 ]]></content>
       <categories>
@@ -114,18 +164,23 @@
 <h2 id="商空间"><a href="#商空间" class="headerlink" title="商空间"></a>商空间</h2><p>$V$是$\mathbb{F}$上的线性空间，$U$是$V$的子空间，$\alpha \in V$，定义$\alpha + U &#x3D; \{\alpha + \beta:\beta \in U\}$，则商空间为$V&#x2F;U&#x3D;{\alpha + U:\alpha \in V}$。</p>
 <ul>
 <li>商空间的加法：$(\alpha + U) + (\beta + U) &#x3D; (\alpha + \beta) + U$</li>
-<li>商空间的数乘：$k\cdot (\beta + U) &#x3D; k\cdot \alpha+ U$</li>
+<li>商空间的数乘：$k\cdot (\beta + U) &#x3D; k\cdot \beta + U$</li>
 </ul>
 <p>下列三个公式等价：</p>
 <ol>
 <li>$\alpha - \beta \in U$</li>
-<li>$\alpha + U &#x3D; \beta \ U$</li>
+<li>$\alpha + U &#x3D; \beta + \ U$</li>
 <li>$(\alpha + U) \cap (\beta + U) \ne \emptyset$</li>
 </ol>
 <blockquote>
 <p>平行线</p>
 </blockquote>
 <p>商空间也是线性空间，零向量是$\{\alpha + U,\alpha \in U\}$。</p>
+<p>$\text{dim}(V&#x2F;U)&#x3D;n-k$，其中$\text{dim}V &#x3D; N$，$\text{dim}U&#x3D;k$</p>
+<blockquote>
+<p>证明：定义$T: V \to V &#x2F;U$，则对$\alpha \in V$，$T(\alpha) &#x3D; \alpha + U$（证明线性变换略）。</p>
+<p>易知这个线性变换是满射的，即$\text{dim}\text{range}T&#x3D;\text{dim}(V&#x2F;U)$。而零空间，$T(\alpha) &#x3D; 0$，满足该条件的$\alpha$即$U$中的所有元素，故$\text{dim}\text{null}T &#x3D; \text{dim}U$。又$\text{dim}V &#x3D; \text{dim}\text{range}T + \text{dim}\text{null}T$，故$\text{dim}(V&#x2F;U) &#x3D; \text{dim}V - \text{dim}U$。</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>MATH6005: Matrix Theory</category>
@@ -3231,8 +3286,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -3318,8 +3373,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -6419,6 +6474,20 @@
       </tags>
   </entry>
   <entry>
+    <title>Gamma and Factorial</title>
+    <url>/2023/05/05/GammaAndFactorial/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Lambda: Anomymous Functions</title>
     <url>/2023/05/05/PythonLambda/</url>
     <content><![CDATA[<span id="more"></span>
@@ -6489,20 +6558,6 @@
 <h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 ]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Gamma and Factorial</title>
-    <url>/2023/05/05/GammaAndFactorial/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Programming Language</category>
       </categories>

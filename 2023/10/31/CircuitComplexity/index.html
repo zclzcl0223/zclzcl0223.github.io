@@ -22,17 +22,23 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Start of Something New">
-<meta property="og:type" content="website">
-<meta property="og:title" content="JourneyToCoding">
-<meta property="og:url" content="https://zclzcl0223.github.io/archives/2023/06/index.html">
+  <meta name="description" content="本篇是计算复杂性（CS7313）的第四章，主要研究多项式谱系问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computational Complexity: CircuitComplexity">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/10/31/CircuitComplexity/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="Start of Something New">
+<meta property="og:description" content="本篇是计算复杂性（CS7313）的第四章，主要研究多项式谱系问题。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/1.png">
+<meta property="article:published_time" content="2023-10-31T06:08:15.000Z">
+<meta property="article:modified_time" content="2023-10-31T07:28:38.602Z">
 <meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="Theoretical Computer Science">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/1.png">
 
-<link rel="canonical" href="https://zclzcl0223.github.io/archives/2023/06/">
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/10/31/CircuitComplexity/">
 
 
 <script id="page-configurations">
@@ -40,12 +46,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Archive | JourneyToCoding</title>
+  <title>Computational Complexity: CircuitComplexity | JourneyToCoding</title>
   
 
 
@@ -190,211 +196,123 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">Good! 94 posts in total. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/10/31/CircuitComplexity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Computational Complexity: CircuitComplexity
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-10-31 14:08:15 / Modified: 15:28:38" itemprop="dateCreated datePublished" datetime="2023-10-31T14:08:15+08:00">2023-10-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS7313-Computational-Complexity/" itemprop="url" rel="index"><span itemprop="name">CS7313: Computational Complexity</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">本篇是计算复杂性（CS7313）的第四章，主要研究多项式谱系问题。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+        <span id="more"></span>
+
+<h1 id="Boolean-Circuit-Model"><a href="#Boolean-Circuit-Model" class="headerlink" title="Boolean Circuit Model"></a>Boolean Circuit Model</h1><p>Boolean Circuit</p>
+<p>电路能算的图灵机不一定能算。</p>
+<h2 id="香农定理"><a href="#香农定理" class="headerlink" title="香农定理"></a>香农定理</h2><p>大多数$n$个输入的布尔函数的复杂性其电路复杂性一般大于$\frac{2 ^n}{n}-O(\frac{2 ^n}{n})$</p>
+<h2 id="Circuit-Hierachy-Theorem"><a href="#Circuit-Hierachy-Theorem" class="headerlink" title="Circuit Hierachy Theorem"></a>Circuit Hierachy Theorem</h2><p>如果对$\epsilon &gt; 0$，$n &lt; (2+\epsilon)S(n) &lt; S&#39;(n) &lt;&lt; 2 ^n &#x2F;n$，则$\textbf{SIZE}(S(n)) \subsetneq \textbf{SIZE}(S&#39;(n))$</p>
+<h1 id="Uniform-Circuit"><a href="#Uniform-Circuit" class="headerlink" title="Uniform Circuit"></a>Uniform Circuit</h1><p><img src="/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\10\25\PolynomialHierarchy\" rel="bookmark">Computational Complexity: Polynomial Hierarchy</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\10\10\ComputationalComplexityNPComp\" rel="bookmark">Computational Complexity NP-Completeness</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\09\28\ComputationalComplexitySpaceComp1\" rel="bookmark">Computational Complexity Space Complexity 1</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\09\22\ComputationalComplexityTimecom3\" rel="bookmark">Computational Complexity: Time Complexity 3</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\09\21\ComputationalComplexityTimecom2\" rel="bookmark">Computational Complexity: Time Complexity 2</a></div>
+    </li>
+  </ul>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-15T15:56:01+08:00"
-              content="2023-06-15">
-          06-15
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/15/PythonPackage/" itemprop="url">
-            <span itemprop="name">Python Package</span>
-          </a>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Math/" rel="tag"># Math</a>
+              <a href="/tags/Theoretical-Computer-Science/" rel="tag"># Theoretical Computer Science</a>
+          </div>
 
-    </header>
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+      </footer>
+    
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-14T14:25:34+08:00"
-              content="2023-06-14">
-          06-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/14/P003/" itemprop="url">
-            <span itemprop="name">Paper003: Dataset Distillation by Matching Training Trajectories</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-13T13:40:37+08:00"
-              content="2023-06-13">
-          06-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/13/MaximumMeanDiscrepancy/" itemprop="url">
-            <span itemprop="name">Maximum Mean Discrepancy</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-13T10:30:39+08:00"
-              content="2023-06-13">
-          06-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/13/P002/" itemprop="url">
-            <span itemprop="name">Paper002: Dataset Condensation with Distribution Matching</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-12T13:21:10+08:00"
-              content="2023-06-12">
-          06-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/12/P001/" itemprop="url">
-            <span itemprop="name">Paper001: Dataset Condensation with Gradient Matching</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-07T22:18:52+08:00"
-              content="2023-06-07">
-          06-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/07/PaperReading/" itemprop="url">
-            <span itemprop="name">找论文，读论文，用论文，写论文</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-07T20:34:57+08:00"
-              content="2023-06-07">
-          06-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/07/Transformer/" itemprop="url">
-            <span itemprop="name">Transformer: Self-Attention and Parallelization</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-06T05:29:23+08:00"
-              content="2023-06-06">
-          06-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/06/Attention/" itemprop="url">
-            <span itemprop="name">Attention Mechanisms: More Targeted Information Extraction</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-06-02T15:39:10+08:00"
-              content="2023-06-02">
-          06-02
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/06/02/OptimizationAlgorithms/" itemprop="url">
-            <span itemprop="name">Optimization Algorithms</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -447,6 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Boolean-Circuit-Model"><span class="nav-number">1.</span> <span class="nav-text">Boolean Circuit Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%99%E5%86%9C%E5%AE%9A%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">香农定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Circuit-Hierachy-Theorem"><span class="nav-number">1.2.</span> <span class="nav-text">Circuit Hierachy Theorem</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Uniform-Circuit"><span class="nav-number">2.</span> <span class="nav-text">Uniform Circuit</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -605,6 +524,59 @@ setInterval("createtime()",250);
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
