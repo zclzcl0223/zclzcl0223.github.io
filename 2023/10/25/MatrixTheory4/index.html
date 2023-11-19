@@ -22,16 +22,16 @@
     var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="矩阵理论第五课，主要讲特征值与特征向量。">
+  <meta name="description" content="矩阵理论第五课，主要讲特征值、特征向量与内积。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MatrixTheory: 特征值、特征向量">
 <meta property="og:url" content="https://zclzcl0223.github.io/2023/10/25/MatrixTheory4/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="矩阵理论第五课，主要讲特征值与特征向量。">
+<meta property="og:description" content="矩阵理论第五课，主要讲特征值、特征向量与内积。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/1.png">
 <meta property="article:published_time" content="2023-10-25T04:52:41.000Z">
-<meta property="article:modified_time" content="2023-11-02T03:17:12.243Z">
+<meta property="article:modified_time" content="2023-11-18T07:57:14.936Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-11-02 11:17:12" itemprop="dateModified" datetime="2023-11-02T11:17:12+08:00">2023-11-02</time>
+                <time title="Modified: 2023-11-18 15:57:14" itemprop="dateModified" datetime="2023-11-18T15:57:14+08:00">2023-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,7 +245,7 @@
             </span>
 
           
-            <div class="post-description">矩阵理论第五课，主要讲特征值与特征向量。</div>
+            <div class="post-description">矩阵理论第五课，主要讲特征值、特征向量与内积。</div>
 
         </div>
       </header>
@@ -259,7 +259,10 @@
         <span id="more"></span>
 
 <h1 id="不变子空间"><a href="#不变子空间" class="headerlink" title="不变子空间"></a>不变子空间</h1><p>$V: \mathbb{F}上$线性空间，$T \in L(V)$，$U$是$V$的子空间。若$\forall \alpha \in U$，$T(\alpha) \in U$，即$T(U) \subseteq U$，则称$U$是$V$的关于$T$的不变子空间。</p>
-<h1 id="特征值、特征向量"><a href="#特征值、特征向量" class="headerlink" title="特征值、特征向量"></a>特征值、特征向量</h1><p>若$V &#x3D; U _1 \oplus U _2 \oplus U _3$，其中$U _1...U _3$均为不变子空间，则以不变子空间的基为基向量的线性变换矩阵为分块对角矩阵。进一步地，若存在$\text{dim}V$个不变子空间且这些子空间的直和为$V$，则线性变换矩阵就是对角矩阵，对角线的值为特征值，不变子空间的基为特征向量。</p>
+<blockquote>
+<p>平凡子空间$\{0\}$和$V$是不变子空间。线性变换的零空间和像空间也是不变子空间。</p>
+</blockquote>
+<h2 id="特征值、特征向量"><a href="#特征值、特征向量" class="headerlink" title="特征值、特征向量"></a>特征值、特征向量</h2><p>若$V &#x3D; U _1 \oplus U _2 \oplus U _3$，其中$U _1...U _3$均为不变子空间，则以不变子空间的基为基向量的线性变换矩阵为分块对角矩阵。进一步地，若存在$\text{dim}V$个不变子空间且这些子空间的直和为$V$，则线性变换矩阵就是对角矩阵，对角线的值为特征值，不变子空间的基为特征向量。</p>
 <p>$T(\alpha _i) &#x3D; \lambda _i \alpha _i$，$\lambda _i$为特征值，$\alpha _i$为特征向量，其中$\lambda \in \mathbb{F}$，$\alpha \not &#x3D;{0}$。</p>
 <blockquote>
 <p>这和$Ax &#x3D; \lambda x$是等价的，只不过矩阵的只能是有限维的。</p>
@@ -271,13 +274,96 @@
 <li>$T | _U \in L(U)$，缩小算子$T$的定义域。</li>
 <li>$T &#x2F; U: V&#x2F;U \to V&#x2F;U$，商空间到商空间的映射，只有在不变子空间下才合理。如$(T&#x2F;U)(\alpha + U) &#x3D; T(\alpha) + U$</li>
 </ol>
-<h1 id="简单的基下矩阵"><a href="#简单的基下矩阵" class="headerlink" title="简单的基下矩阵"></a>简单的基下矩阵</h1><p>对$T \in L(V)$，$\mathbb{F}&#x3D;C$，$\text{dim}V &#x3D; n$，一定存在一组基，使得基下的矩阵是上三角。</p>
+<h2 id="简单的基下矩阵"><a href="#简单的基下矩阵" class="headerlink" title="简单的基下矩阵"></a>简单的基下矩阵</h2><p>对$T \in L(V)$，$\mathbb{F}&#x3D;C$，$\text{dim}V &#x3D; n$，一定存在一组基，使得基下的矩阵是上三角。</p>
 <blockquote>
 <p>证明：即证$T(\alpha _i) \in \text{span}[\alpha _1, ...,\alpha _i]$。要用到商空间和商空间的线性变换。</p>
 </blockquote>
 <p>等价地，复数域上的任意一个方阵一定相似于一个上三角。</p>
 <p><img src="/1.png" alt="1"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>
+
+<h2 id="特征子空间"><a href="#特征子空间" class="headerlink" title="特征子空间"></a>特征子空间</h2><p>特征子空间$E(T, \lambda) &#x3D; \text{null}(T - \lambda I)$，内部元素为所有的特征向量+零向量。不同特征值的特征子空间的和是直和。</p>
+<p>$$<br>E(T,\lambda _1) \oplus E(T, \lambda _2) \oplus...\oplus E(T, \lambda _m) \le V<br>$$</p>
+<blockquote>
+<p>取等当且仅当存在一组基使得基下的矩阵为对角矩阵；<br>也当且仅当$V$可以分成$n$个一维不变子空间的直和。</p>
+</blockquote>
+<h1 id="内积空间"><a href="#内积空间" class="headerlink" title="内积空间"></a>内积空间</h1><p>内积空间：定义了内积的线性空间。其中，内积满足：</p>
+<ol>
+<li>$(\alpha, \beta)&#x3D;(\beta, \alpha)$</li>
+<li>$(\alpha+\beta,\gamma)&#x3D;(\alpha, \gamma)+(\beta,\gamma)$</li>
+<li>$(k\cdot\alpha, \beta)&#x3D;k(\beta, \alpha)$</li>
+<li>$(\alpha,\alpha)\ge 0,\text{iff}\space \alpha&#x3D;0\space \text{取等}。$</li>
+</ol>
+<p>对复数域，坐标相乘相加的内积要对第二项取共轭，即：</p>
+<p>$$<br>(\alpha, \beta)&#x3D;\alpha \overline{\beta}<br>$$</p>
+<blockquote>
+<p>实数域的内积空间称<em>欧式空间</em>，复数域上的称<em>酉空间</em>。</p>
+</blockquote>
+<h2 id="内积的性质"><a href="#内积的性质" class="headerlink" title="内积的性质"></a>内积的性质</h2><ol>
+<li>设$\beta \in V$，$\beta$固定。定义$T: V \to \mathbb{F}$，$\forall \alpha \in V$，$T(\alpha) &#x3D; (\alpha, \beta)$，$T \in L(V,\mathbb{F})$</li>
+<li>$(0,\beta) &#x3D; (\beta,0)&#x3D;0$</li>
+<li>$(\alpha, \beta + \gamma)&#x3D;(\alpha, \beta)+(\alpha,\gamma)$</li>
+<li>$(\alpha, k\cdot\beta)&#x3D;\overline{k}(\alpha, \beta)$</li>
+<li>$(\sum _{i&#x3D;1} ^m x _i \alpha _i,\sum _{j&#x3D;1} ^n \gamma _j \beta _j )&#x3D;\sum\sum x _i \overline{y _j}(\alpha _i, \beta _j)$</li>
+</ol>
+<h2 id="向量的长度"><a href="#向量的长度" class="headerlink" title="向量的长度"></a>向量的长度</h2><p>$$<br>||\alpha|| &#x3D; \sqrt{(\alpha, \alpha)}<br>$$</p>
+<ol>
+<li>$||k\alpha|| &#x3D; |k|\sqrt{(\alpha, \alpha)}$</li>
+<li>$|(\alpha, \beta)|\le ||\alpha||||\beta||$（柯西不等式）。当且仅当两者线性相关等号成立。</li>
+<li>$||\alpha + \beta||\le ||\alpha||+||\beta||$（三角不等式）。当且仅当两者共线等号成立。</li>
+</ol>
+<h1 id="正交向量组、标准正交向量组、标准正交基"><a href="#正交向量组、标准正交向量组、标准正交基" class="headerlink" title="正交向量组、标准正交向量组、标准正交基"></a>正交向量组、标准正交向量组、标准正交基</h1><p>正交向量组：向量间两两正交。正交向量组一定线性无关。</p>
+<p>校准正交组：单位化的正交向量组。</p>
+<p>标准正交基：可由一组线性无关的基经过斯密特正交化得到。</p>
+<blockquote>
+<p>斯密特正交化前后的基张成的空间是相同的空间。所以$\exists$标准正交基，使得基下的矩阵为上三角。</p>
+<p>实数域的转置等价于复数域的共轭转置。</p>
+<p>向量$\alpha$在标准正交基下的线性表示系数为$(\alpha, \gamma _i)$。</p>
+</blockquote>
+<h2 id="正交补空间"><a href="#正交补空间" class="headerlink" title="正交补空间"></a>正交补空间</h2><p>$V$内积空间，$U$子空间，定义：</p>
+<p>$$<br>U ^{\perp} &#x3D; \{\alpha \in V: \forall \beta \in U, (\alpha,\beta)&#x3D;0\}<br>$$</p>
+<p>$U ^{\perp}$是$V$的子空间，是$U$的正交不空间，且$V&#x3D;U \oplus U ^{\perp}$。</p>
+<h3 id="度量矩阵"><a href="#度量矩阵" class="headerlink" title="度量矩阵"></a>度量矩阵</h3><p>$$<br>G &#x3D;<br>\begin{pmatrix*}<br>    (\alpha _1, \alpha _1)...(\alpha _n, \alpha _1)\\<br>    ... &amp;\\\<br>    (\alpha _1, \alpha _n)...(\alpha _n, \alpha _n)<br>\end{pmatrix*}<br>$$</p>
+<p>则任意两个向量在指定基$\alpha _1,...,\alpha _n$下的内积为：</p>
+<p>$$<br>(\alpha, \beta)&#x3D;\overline{y}Gx<br>$$</p>
+<p>其中$y$是$\beta$在基下的坐标，$x$是$\alpha$在基下的坐标。</p>
+<blockquote>
+<p>实数域的$G$是个对称的正定矩阵。<br>复数域的$G$是个共轭对称的正定矩阵。（共轭转置：$G ^*&#x3D;G$）<br>正定一定对称。</p>
+</blockquote>
+<p>一个正定矩阵定义一个内积。不同基下的$G$矩阵合同。</p>
+<h3 id="投影变换"><a href="#投影变换" class="headerlink" title="投影变换"></a>投影变换</h3><p>$V &#x3D; U \oplus U ^\perp,\forall \alpha \in V,\alpha &#x3D; \beta + \gamma,\beta \in U, \gamma \in U ^\perp$。定义$P _U: V \to V,\forall \alpha \in V, \alpha &#x3D; \beta + \gamma,P _U(\alpha)&#x3D;\beta$。$P _U$即为$V$中的向量$\alpha$到$U$的投影变换。投影变换有性质：</p>
+<ol>
+<li>$\text{null}P _U &#x3D; U ^\perp$</li>
+<li>$\text{range}P _U &#x3D; U$</li>
+<li>$P ^2 _U &#x3D; P _U$</li>
+<li>设$\epsilon _1,...,\epsilon _k$为$U$的一组标准正交基，则$P _U (\alpha) &#x3D; (\alpha, \epsilon _1) \epsilon _1+...+(\alpha, \epsilon _k) \epsilon _k$</li>
+</ol>
+<h3 id="最佳近似向量"><a href="#最佳近似向量" class="headerlink" title="最佳近似向量"></a>最佳近似向量</h3><p>内积空间$V$，子空间$U$，$\beta \in V$，$\beta \notin U$，若有$\alpha \in U$，使得$\forall \gamma \in U$，$||(\beta - \alpha)|| \le ||\beta -\gamma||$，则称$\alpha$为$\beta$在$U$的最佳近似向量。</p>
+<blockquote>
+<p>即距离最小的。实际上$\alpha$就是$\beta$的正交投影向量。</p>
+<p>用途：求矛盾方程的最佳近似解（又称最小二乘解）。如$Ax&#x3D;b$没有解，则$A ^TAx&#x3D;A^Tb$求出来的$x$就是最佳近似解。因为没有解，所以$b$不在列空间$C$中，列空间的正交补空间为$N(A ^T)$，设$A x _0$为最佳近似向量，则b在正交补空间的投影可表示为$b - A x _0$，正交补空间为$N(A ^T)$，所以有$A ^T(b - Ax _0)&#x3D;0$。</p>
+</blockquote>
+<h2 id="内积空间的线性变换"><a href="#内积空间的线性变换" class="headerlink" title="内积空间的线性变换"></a>内积空间的线性变换</h2><p>内积空间$V$，算子$T \in L(V)$。若$\forall \alpha,\beta \in V,(\alpha,\beta)&#x3D;(T(\alpha),T(\beta))$，则称该变换为等积变换。对应地，有：</p>
+<ul>
+<li>$||\alpha||&#x3D;||T(\alpha)||$，等长变换；</li>
+<li>$||\alpha-\beta||&#x3D;||T(\alpha)-T(\beta)||$，等距变换；</li>
+<li>$\epsilon _1,...,\epsilon _k$为$V$的标准正交基，$T(\epsilon _1),...,T(\epsilon _k)$也是标准正交基；</li>
+<li>$T(\epsilon _1,..,\epsilon _n)&#x3D;(\epsilon _1,..,\epsilon _n)A _{n\times n},A ^* A &#x3D; A A ^* &#x3D;E$，这种变换称正交变换，即保持内积的变换。</li>
+</ul>
+<p>这几个都是等价的，也称正交变换。</p>
+<blockquote>
+<p>伴随变换：$(T(\alpha),\beta)&#x3D;(\alpha,S(\beta))$，其基下矩阵满足$A &#x3D; B ^*$。</p>
+<p>自伴随$T&#x3D;S$，此时$A ^*&#x3D;A$</p>
+</blockquote>
+<h1 id="广义特征向量"><a href="#广义特征向量" class="headerlink" title="广义特征向量"></a>广义特征向量</h1><p>对$T\in L(V)$，$\lambda$为特征值，$(T -\lambda I) ^j (\alpha) &#x3D; 0$，$j$为正整数，$\alpha \ne 0$，则称$\alpha$为特征值$\lambda$的广义特征向量。$G(T,\lambda)$为广义特征子空间。</p>
+<ol>
+<li>$\{0\}&#x3D;\text{null}T ^0 \subseteq \text{null}T _1\subseteq ... \subseteq \text{null}T ^k$</li>
+<li>若$\text{null}T ^{k+1} &#x3D;\text{null} ^k$，则$\text{null} ^{n+k+1}&#x3D;\text{null} ^{n+k}$</li>
+<li>$\text{dim}V&#x3D;n$，则$\text{null}T ^n&#x3D;\text{null} T ^{n+1}$</li>
+<li>$\text{dim}V&#x3D;n$，则$V &#x3D; \text{null} T ^n \oplus \text{range}T ^n$</li>
+</ol>
+<p>$G(T,\lambda)&#x3D;\text{null}(T-\lambda I) ^{\text{dim}V}$</p>
+<h1 id="Jordan标准型"><a href="#Jordan标准型" class="headerlink" title="Jordan标准型"></a>Jordan标准型</h1>
     </div>
 
     
@@ -287,7 +373,7 @@
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\10\31\CircuitComplexity\" rel="bookmark">Computational Complexity: CircuitComplexity</a></div>
+      <div class="popular-posts-title"><a href="\2023\10\31\CircuitComplexity\" rel="bookmark">Computational Complexity: Circuit Complexity</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\10\25\PolynomialHierarchy\" rel="bookmark">Computational Complexity: Polynomial Hierarchy</a></div>
@@ -383,7 +469,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E5%8F%98%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text">不变子空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E5%80%BC%E3%80%81%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">特征值、特征向量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E5%9F%BA%E4%B8%8B%E7%9F%A9%E9%98%B5"><span class="nav-number">3.</span> <span class="nav-text">简单的基下矩阵</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E5%8F%98%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text">不变子空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E5%80%BC%E3%80%81%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text">特征值、特征向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E5%9F%BA%E4%B8%8B%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.</span> <span class="nav-text">简单的基下矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E5%AD%90%E7%A9%BA%E9%97%B4"><span class="nav-number">1.3.</span> <span class="nav-text">特征子空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4"><span class="nav-number">2.</span> <span class="nav-text">内积空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E7%A7%AF%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">2.1.</span> <span class="nav-text">内积的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="nav-number">2.2.</span> <span class="nav-text">向量的长度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F%E7%BB%84%E3%80%81%E6%A0%87%E5%87%86%E6%AD%A3%E4%BA%A4%E5%90%91%E9%87%8F%E7%BB%84%E3%80%81%E6%A0%87%E5%87%86%E6%AD%A3%E4%BA%A4%E5%9F%BA"><span class="nav-number">3.</span> <span class="nav-text">正交向量组、标准正交向量组、标准正交基</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E8%A1%A5%E7%A9%BA%E9%97%B4"><span class="nav-number">3.1.</span> <span class="nav-text">正交补空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%A6%E9%87%8F%E7%9F%A9%E9%98%B5"><span class="nav-number">3.1.1.</span> <span class="nav-text">度量矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2"><span class="nav-number">3.1.2.</span> <span class="nav-text">投影变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E8%BF%91%E4%BC%BC%E5%90%91%E9%87%8F"><span class="nav-number">3.1.3.</span> <span class="nav-text">最佳近似向量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%E7%9A%84%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2"><span class="nav-number">3.2.</span> <span class="nav-text">内积空间的线性变换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%BF%E4%B9%89%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F"><span class="nav-number">4.</span> <span class="nav-text">广义特征向量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Jordan%E6%A0%87%E5%87%86%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">Jordan标准型</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -399,7 +485,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">96</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -436,7 +522,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
             </canvas>
           </div>
         </div>

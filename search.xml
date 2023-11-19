@@ -1,16 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Computational Complexity: CircuitComplexity</title>
+    <title>Graphs of  Different Types</title>
+    <url>/2023/11/07/DifferentTypesofGraph/</url>
+    <content><![CDATA[<span id="more"></span>
+
+
+<h1 id="同配图-amp-异配图"><a href="#同配图-amp-异配图" class="headerlink" title="同配图 &amp; 异配图"></a>同配图 &amp; 异配图</h1><ul>
+<li>同配图（Homophilic&#x2F;Homophilous Graph）：具有相似特征或相同标签的结点趋向于连接在一起，即相连的结点一般属于同一个类别；</li>
+<li>异配图（Heterophilic&#x2F;Heterophilous Graph）：相连的结点的特征或标签不具有相似性。</li>
+</ul>
+<p><img src="/2023/11/07/DifferentTypesofGraph/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Homophilic Graph and Heterophilic Graph</center>
+
+<h1 id="同构图-amp-异构图"><a href="#同构图-amp-异构图" class="headerlink" title="同构图 &amp; 异构图"></a>同构图 &amp; 异构图</h1><ul>
+<li>同构图（Homogeneous Graph）：结点和边都只有一个类型，即结点只有一类，结点间若存在关系，则该关系是确定的。</li>
+<li>异构图（Heterogeneous Graph）：结点或边有多种类型，即结点的类型不定，结点间若存在关系，关系的类型也是不定的。</li>
+</ul>
+<p><img src="/2023/11/07/DifferentTypesofGraph/2.jpg" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Homogeneous Graph and Heterogeneous Graph</center>
+
+<h1 id="时序图、时空图"><a href="#时序图、时空图" class="headerlink" title="时序图、时空图"></a>时序图、时空图</h1><ul>
+<li>时序图（Temporal&#x2F;Dynamic graph）：结点和边的信息随时间变化的图。</li>
+<li>时空图（Spatio-temporal graph）：在时序图的基础上，图的结构信息还反映了空间信息。</li>
+</ul>
+<p><img src="/2023/11/07/DifferentTypesofGraph/3.jpg" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Dynamic graph</center><br>
+
+<p><img src="/2023/11/07/DifferentTypesofGraph/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Spatio-temporal graph</center>
+
+<h1 id="二部图"><a href="#二部图" class="headerlink" title="二部图"></a>二部图</h1><ul>
+<li>二部图（Bipartite graph）：节点可以分为两个子集的图，每一个边都连接属于不同子集的节点。</li>
+</ul>
+<p><img src="/2023/11/07/DifferentTypesofGraph/5.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Bipartite graph</center>]]></content>
+      <categories>
+        <category>GNN</category>
+      </categories>
+      <tags>
+        <tag>GNN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Computational Complexity: Circuit Complexity</title>
     <url>/2023/10/31/CircuitComplexity/</url>
     <content><![CDATA[<span id="more"></span>
 
-<h1 id="Boolean-Circuit-Model"><a href="#Boolean-Circuit-Model" class="headerlink" title="Boolean Circuit Model"></a>Boolean Circuit Model</h1><p>Boolean Circuit</p>
+<h1 id="Boolean-Circuit-Model"><a href="#Boolean-Circuit-Model" class="headerlink" title="Boolean Circuit Model"></a>Boolean Circuit Model</h1><p>布尔电路（Boolean Circuit）是一种不一致模型，对于同一个算法，不同的输入大小对应不同的布尔电路。（每个结点都有输入，也有对应的布尔运算，与、或、非）</p>
+<blockquote>
+<p>单调电路：不包含非门的电路。</p>
+</blockquote>
+<h2 id="电路复杂性"><a href="#电路复杂性" class="headerlink" title="电路复杂性"></a>电路复杂性</h2><p>电路复杂性即电路$C$包含的<em>门</em>的个数$|C|$。</p>
+<blockquote>
+<p>布尔电路族：解决同一个算法的不同大小的输入的一群电路称布尔电路族（Boolean Circuit Family）$\{C _n\} _{n \in \text{N}}$，其复杂度$S(n)$定义为$\forall n, |C _n| \le S(n)$。</p>
 <p>电路能算的图灵机不一定能算。</p>
-<h2 id="香农定理"><a href="#香农定理" class="headerlink" title="香农定理"></a>香农定理</h2><p>大多数$n$个输入的布尔函数的复杂性其电路复杂性一般大于$\frac{2 ^n}{n}-O(\frac{2 ^n}{n})$</p>
+</blockquote>
+<h2 id="Nonuniform-Complexity-Class"><a href="#Nonuniform-Complexity-Class" class="headerlink" title="Nonuniform Complexity Class"></a>Nonuniform Complexity Class</h2><p>电路族判定问题：如果存在一个$S(n)$大小的电路族$\{C _n\} _{n\in \text{N}}$，使得对任意$x \in \{0,1\} ^n$，$x \in L$当且仅当$C _n(x)&#x3D;1$，则称该电路族判定了问题$L$，也即问题$L$是在$\textbf{SIZE}(S(n))$中的。</p>
+<blockquote>
+<p>对非一致模型，$\textbf{SIZE}(cS(n)) \ne \textbf{SIZE}(S(n)),c &gt; 2$。</p>
+</blockquote>
+<h2 id="香农定理"><a href="#香农定理" class="headerlink" title="香农定理"></a>香农定理</h2><p>大多数$n$个输入的布尔函数，其电路复杂性一般大于$\frac{2 ^n}{n}-O(\frac{2 ^n}{n})$。证明的说明：</p>
+<ol>
+<li>$S$为电路门的个数。$3 ^S$表门有与、或、非三种，$2S$表每个门有0或1两种输入，$S+n+2$表不同的输入来源（直接输入、别的门的输出），故大小为$S$的电路个数约为$(S+n+2) ^{2S} 3 ^S$；</li>
+<li>$(S-1)!$表不同排列但功能相同的电路；</li>
+<li>$2 ^{2 ^n}$表具有$n$个输入的布尔函数的个数。</li>
+</ol>
 <h2 id="Circuit-Hierachy-Theorem"><a href="#Circuit-Hierachy-Theorem" class="headerlink" title="Circuit Hierachy Theorem"></a>Circuit Hierachy Theorem</h2><p>如果对$\epsilon &gt; 0$，$n &lt; (2+\epsilon)S(n) &lt; S&#39;(n) &lt;&lt; 2 ^n &#x2F;n$，则$\textbf{SIZE}(S(n)) \subsetneq \textbf{SIZE}(S&#39;(n))$</p>
-<h1 id="Uniform-Circuit"><a href="#Uniform-Circuit" class="headerlink" title="Uniform Circuit"></a>Uniform Circuit</h1><p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+<h1 id="Uniform-Circuit"><a href="#Uniform-Circuit" class="headerlink" title="Uniform Circuit"></a>Uniform Circuit</h1><p>一致电路族：可在对数空间内由$1 ^n$生成$C _n$。</p>
+<blockquote>
+<p>一致电路族能判定的问题就是$\text{P}$。</p>
+</blockquote>
+<p>右往左：Cook-Levin归约的用条带表示的格局图可视为一个电路。</p>
+<h2 id="Circuit-Satisfability"><a href="#Circuit-Satisfability" class="headerlink" title="Circuit Satisfability"></a>Circuit Satisfability</h2><p>电路可满足问题$\textbf{CKT}-\textbf{SAT}$：一个代表输入大小为$n$的电路$C$的字符串$s$，若$\exists u \in \{0,1\} ^n$，使得$C(u)&#x3D;1$，则该字符串是在$\textbf{CKT}-\textbf{SAT}$里面的。</p>
+<blockquote>
+<p>$\textbf{CKT}-\textbf{SAT}$是$\text{NP}$完全的。</p>
+<p>引申开来，任何NP问题都可以对数空间归约到SAT，因为CKT-SAT可以对数空间归约到SAT。</p>
+</blockquote>
+<h1 id="P-x2F-poly"><a href="#P-x2F-poly" class="headerlink" title="P &#x2F;poly"></a>P &#x2F;poly</h1><p>带advice的图灵机：</p>
+<ul>
+<li>$\text{P} _{&#x2F;\text{poly}}$</li>
+<li>$\text{NP} _{&#x2F;\text{poly}}$</li>
+<li>...</li>
+</ul>
+<p>其中advice即$\alpha _n \in \{0,1\} ^{a(n)}$。</p>
+<ul>
+<li>对于$L \in \text{P} _{&#x2F;\text{poly}}$，$x \in L \iff \mathbb{M}(x,\alpha(n))&#x3D;1$，且判定时间为多项式时间，$a(n)$亦为多项式。</li>
+<li>对于$L \in \text{NP} _{&#x2F;\text{poly}}$，$x \in L \iff \mathbb{N}(x,\alpha(n))&#x3D;1$，且判定时间为多项式时间，$a(n)$亦为多项式。</li>
+</ul>
+<p>定理：<br>$$<br>\text{P} _{&#x2F;\text{poly}}&#x3D;\bigcup _c \textbf{SIZE}(cn ^c)<br>$$</p>
+<blockquote>
+<p>证明：</p>
+<p>右到左：用对$C _n$的描述作为advice，由于$C _n$是多项式的，对它的描述也是多项式的；</p>
+<p>左到右：将格局图的计算过程翻译成电路图，并把advice烧进电路。</p>
+</blockquote>
+<h1 id="Karp-Lipton-Theorem"><a href="#Karp-Lipton-Theorem" class="headerlink" title="Karp-Lipton Theorem"></a>Karp-Lipton Theorem</h1><p>显然$\textbf{P} \subseteq \textbf{P} _{&#x2F;\text{poly}}$。</p>
+<p>定理：若$\textbf{NP} \subseteq \textbf{P} _{&#x2F;\text{poly}}$，则$\textbf{PH}&#x3D; \Sigma _2 ^p$</p>
+<p>只需要证明$\Pi _2 ^p\subseteq \Sigma _2 ^p$，即证明$\Pi _2 ^p-\text{SAT}\subseteq \Sigma _2 ^p-\text{SAT}$。</p>
+<h1 id="NC-and-AC"><a href="#NC-and-AC" class="headerlink" title="NC and AC"></a>NC and AC</h1><p>电路模型研究并行运算--同一层的门可以并行运算。</p>
+<ul>
+<li><p>有效的并行算法（Efficient Parallel Algorithm）：用多项式个处理器可以加速到对数的多项式时间的算法。</p>
+</li>
+<li><p>$\text{NC} ^d$：可被大小为$p(n)$，深度为$\log ^d (n)$的一致电路族$\{C _n\} _{n \in N}$判定的问题类。</p>
+</li>
+</ul>
+<p>$$<br>\textbf{NC} &#x3D; \bigcup _{d \in \text{N}} \textbf{NC} ^d<br>$$</p>
+<blockquote>
+<p>$\textbf{NC} \in \textbf{P}$</p>
+</blockquote>
+<p>$\textbf{AC}$是$\textbf{NC}$的扩展，它可以接受无数个输入，但事实上：</p>
+<p>$$<br>\textbf{AC}&#x3D;\textbf{NC}<br>$$</p>
+<p>可达性就是布尔矩阵连乘（$A ^n$），故$\text{Reachability} \in \textbf{NC} ^2$。</p>
+<h1 id="textbf-P-完全"><a href="#textbf-P-完全" class="headerlink" title="$\textbf{P}$完全"></a>$\textbf{P}$完全</h1><p>对数空间归约保持<em>高效可并行性</em>，即若$L \le _L L&#39; \in \textbf{AC}$，则$L \in \textbf{AC}$。</p>
+<ul>
+<li>对数空间归约时，每一位的输出都可并行计算；</li>
+<li>格局图矩阵（多项式大小）的每一位都可并行计算，可在对数空间输出；</li>
+<li>$\text{Reachability} \in \textbf{NC} ^2$。</li>
+</ul>
+<h2 id="textbf-P-完全-1"><a href="#textbf-P-完全-1" class="headerlink" title="$\textbf{P}$完全"></a>$\textbf{P}$完全</h2><p>$L&#39; \in \textbf{PC}$，如果$\forall L \in \textbf{P}$，$L \le _L L&#39;$。</p>
+<blockquote>
+<p>$\text{Circuit-Eval}$ 是$\textbf{PC}$的。单调电路也是$\textbf{PC}$的。</p>
+</blockquote>
+<p>$$<br>\textbf{NC} ^1 \subseteq \textbf{L} \subseteq \textbf{NL} \subseteq \textbf{NC} ^2...\textbf{NC} ^i \subseteq \textbf{P}<br>$$</p>
+<ul>
+<li>$\textbf{NL} \in \textbf{NC} ^2$，因为$\text{Reachability} \in \textbf{NC} ^2$。</li>
+</ul>
+]]></content>
       <categories>
         <category>CS7313: Computational Complexity</category>
       </categories>
@@ -25,7 +140,10 @@
     <content><![CDATA[<span id="more"></span>
 
 <h1 id="不变子空间"><a href="#不变子空间" class="headerlink" title="不变子空间"></a>不变子空间</h1><p>$V: \mathbb{F}上$线性空间，$T \in L(V)$，$U$是$V$的子空间。若$\forall \alpha \in U$，$T(\alpha) \in U$，即$T(U) \subseteq U$，则称$U$是$V$的关于$T$的不变子空间。</p>
-<h1 id="特征值、特征向量"><a href="#特征值、特征向量" class="headerlink" title="特征值、特征向量"></a>特征值、特征向量</h1><p>若$V &#x3D; U _1 \oplus U _2 \oplus U _3$，其中$U _1...U _3$均为不变子空间，则以不变子空间的基为基向量的线性变换矩阵为分块对角矩阵。进一步地，若存在$\text{dim}V$个不变子空间且这些子空间的直和为$V$，则线性变换矩阵就是对角矩阵，对角线的值为特征值，不变子空间的基为特征向量。</p>
+<blockquote>
+<p>平凡子空间$\{0\}$和$V$是不变子空间。线性变换的零空间和像空间也是不变子空间。</p>
+</blockquote>
+<h2 id="特征值、特征向量"><a href="#特征值、特征向量" class="headerlink" title="特征值、特征向量"></a>特征值、特征向量</h2><p>若$V &#x3D; U _1 \oplus U _2 \oplus U _3$，其中$U _1...U _3$均为不变子空间，则以不变子空间的基为基向量的线性变换矩阵为分块对角矩阵。进一步地，若存在$\text{dim}V$个不变子空间且这些子空间的直和为$V$，则线性变换矩阵就是对角矩阵，对角线的值为特征值，不变子空间的基为特征向量。</p>
 <p>$T(\alpha _i) &#x3D; \lambda _i \alpha _i$，$\lambda _i$为特征值，$\alpha _i$为特征向量，其中$\lambda \in \mathbb{F}$，$\alpha \not &#x3D;{0}$。</p>
 <blockquote>
 <p>这和$Ax &#x3D; \lambda x$是等价的，只不过矩阵的只能是有限维的。</p>
@@ -37,13 +155,96 @@
 <li>$T | _U \in L(U)$，缩小算子$T$的定义域。</li>
 <li>$T &#x2F; U: V&#x2F;U \to V&#x2F;U$，商空间到商空间的映射，只有在不变子空间下才合理。如$(T&#x2F;U)(\alpha + U) &#x3D; T(\alpha) + U$</li>
 </ol>
-<h1 id="简单的基下矩阵"><a href="#简单的基下矩阵" class="headerlink" title="简单的基下矩阵"></a>简单的基下矩阵</h1><p>对$T \in L(V)$，$\mathbb{F}&#x3D;C$，$\text{dim}V &#x3D; n$，一定存在一组基，使得基下的矩阵是上三角。</p>
+<h2 id="简单的基下矩阵"><a href="#简单的基下矩阵" class="headerlink" title="简单的基下矩阵"></a>简单的基下矩阵</h2><p>对$T \in L(V)$，$\mathbb{F}&#x3D;C$，$\text{dim}V &#x3D; n$，一定存在一组基，使得基下的矩阵是上三角。</p>
 <blockquote>
 <p>证明：即证$T(\alpha _i) \in \text{span}[\alpha _1, ...,\alpha _i]$。要用到商空间和商空间的线性变换。</p>
 </blockquote>
 <p>等价地，复数域上的任意一个方阵一定相似于一个上三角。</p>
 <p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>
+
+<h2 id="特征子空间"><a href="#特征子空间" class="headerlink" title="特征子空间"></a>特征子空间</h2><p>特征子空间$E(T, \lambda) &#x3D; \text{null}(T - \lambda I)$，内部元素为所有的特征向量+零向量。不同特征值的特征子空间的和是直和。</p>
+<p>$$<br>E(T,\lambda _1) \oplus E(T, \lambda _2) \oplus...\oplus E(T, \lambda _m) \le V<br>$$</p>
+<blockquote>
+<p>取等当且仅当存在一组基使得基下的矩阵为对角矩阵；<br>也当且仅当$V$可以分成$n$个一维不变子空间的直和。</p>
+</blockquote>
+<h1 id="内积空间"><a href="#内积空间" class="headerlink" title="内积空间"></a>内积空间</h1><p>内积空间：定义了内积的线性空间。其中，内积满足：</p>
+<ol>
+<li>$(\alpha, \beta)&#x3D;(\beta, \alpha)$</li>
+<li>$(\alpha+\beta,\gamma)&#x3D;(\alpha, \gamma)+(\beta,\gamma)$</li>
+<li>$(k\cdot\alpha, \beta)&#x3D;k(\beta, \alpha)$</li>
+<li>$(\alpha,\alpha)\ge 0,\text{iff}\space \alpha&#x3D;0\space \text{取等}。$</li>
+</ol>
+<p>对复数域，坐标相乘相加的内积要对第二项取共轭，即：</p>
+<p>$$<br>(\alpha, \beta)&#x3D;\alpha \overline{\beta}<br>$$</p>
+<blockquote>
+<p>实数域的内积空间称<em>欧式空间</em>，复数域上的称<em>酉空间</em>。</p>
+</blockquote>
+<h2 id="内积的性质"><a href="#内积的性质" class="headerlink" title="内积的性质"></a>内积的性质</h2><ol>
+<li>设$\beta \in V$，$\beta$固定。定义$T: V \to \mathbb{F}$，$\forall \alpha \in V$，$T(\alpha) &#x3D; (\alpha, \beta)$，$T \in L(V,\mathbb{F})$</li>
+<li>$(0,\beta) &#x3D; (\beta,0)&#x3D;0$</li>
+<li>$(\alpha, \beta + \gamma)&#x3D;(\alpha, \beta)+(\alpha,\gamma)$</li>
+<li>$(\alpha, k\cdot\beta)&#x3D;\overline{k}(\alpha, \beta)$</li>
+<li>$(\sum _{i&#x3D;1} ^m x _i \alpha _i,\sum _{j&#x3D;1} ^n \gamma _j \beta _j )&#x3D;\sum\sum x _i \overline{y _j}(\alpha _i, \beta _j)$</li>
+</ol>
+<h2 id="向量的长度"><a href="#向量的长度" class="headerlink" title="向量的长度"></a>向量的长度</h2><p>$$<br>||\alpha|| &#x3D; \sqrt{(\alpha, \alpha)}<br>$$</p>
+<ol>
+<li>$||k\alpha|| &#x3D; |k|\sqrt{(\alpha, \alpha)}$</li>
+<li>$|(\alpha, \beta)|\le ||\alpha||||\beta||$（柯西不等式）。当且仅当两者线性相关等号成立。</li>
+<li>$||\alpha + \beta||\le ||\alpha||+||\beta||$（三角不等式）。当且仅当两者共线等号成立。</li>
+</ol>
+<h1 id="正交向量组、标准正交向量组、标准正交基"><a href="#正交向量组、标准正交向量组、标准正交基" class="headerlink" title="正交向量组、标准正交向量组、标准正交基"></a>正交向量组、标准正交向量组、标准正交基</h1><p>正交向量组：向量间两两正交。正交向量组一定线性无关。</p>
+<p>校准正交组：单位化的正交向量组。</p>
+<p>标准正交基：可由一组线性无关的基经过斯密特正交化得到。</p>
+<blockquote>
+<p>斯密特正交化前后的基张成的空间是相同的空间。所以$\exists$标准正交基，使得基下的矩阵为上三角。</p>
+<p>实数域的转置等价于复数域的共轭转置。</p>
+<p>向量$\alpha$在标准正交基下的线性表示系数为$(\alpha, \gamma _i)$。</p>
+</blockquote>
+<h2 id="正交补空间"><a href="#正交补空间" class="headerlink" title="正交补空间"></a>正交补空间</h2><p>$V$内积空间，$U$子空间，定义：</p>
+<p>$$<br>U ^{\perp} &#x3D; \{\alpha \in V: \forall \beta \in U, (\alpha,\beta)&#x3D;0\}<br>$$</p>
+<p>$U ^{\perp}$是$V$的子空间，是$U$的正交不空间，且$V&#x3D;U \oplus U ^{\perp}$。</p>
+<h3 id="度量矩阵"><a href="#度量矩阵" class="headerlink" title="度量矩阵"></a>度量矩阵</h3><p>$$<br>G &#x3D;<br>\begin{pmatrix*}<br>    (\alpha _1, \alpha _1)...(\alpha _n, \alpha _1)\\<br>    ... &amp;\\\<br>    (\alpha _1, \alpha _n)...(\alpha _n, \alpha _n)<br>\end{pmatrix*}<br>$$</p>
+<p>则任意两个向量在指定基$\alpha _1,...,\alpha _n$下的内积为：</p>
+<p>$$<br>(\alpha, \beta)&#x3D;\overline{y}Gx<br>$$</p>
+<p>其中$y$是$\beta$在基下的坐标，$x$是$\alpha$在基下的坐标。</p>
+<blockquote>
+<p>实数域的$G$是个对称的正定矩阵。<br>复数域的$G$是个共轭对称的正定矩阵。（共轭转置：$G ^*&#x3D;G$）<br>正定一定对称。</p>
+</blockquote>
+<p>一个正定矩阵定义一个内积。不同基下的$G$矩阵合同。</p>
+<h3 id="投影变换"><a href="#投影变换" class="headerlink" title="投影变换"></a>投影变换</h3><p>$V &#x3D; U \oplus U ^\perp,\forall \alpha \in V,\alpha &#x3D; \beta + \gamma,\beta \in U, \gamma \in U ^\perp$。定义$P _U: V \to V,\forall \alpha \in V, \alpha &#x3D; \beta + \gamma,P _U(\alpha)&#x3D;\beta$。$P _U$即为$V$中的向量$\alpha$到$U$的投影变换。投影变换有性质：</p>
+<ol>
+<li>$\text{null}P _U &#x3D; U ^\perp$</li>
+<li>$\text{range}P _U &#x3D; U$</li>
+<li>$P ^2 _U &#x3D; P _U$</li>
+<li>设$\epsilon _1,...,\epsilon _k$为$U$的一组标准正交基，则$P _U (\alpha) &#x3D; (\alpha, \epsilon _1) \epsilon _1+...+(\alpha, \epsilon _k) \epsilon _k$</li>
+</ol>
+<h3 id="最佳近似向量"><a href="#最佳近似向量" class="headerlink" title="最佳近似向量"></a>最佳近似向量</h3><p>内积空间$V$，子空间$U$，$\beta \in V$，$\beta \notin U$，若有$\alpha \in U$，使得$\forall \gamma \in U$，$||(\beta - \alpha)|| \le ||\beta -\gamma||$，则称$\alpha$为$\beta$在$U$的最佳近似向量。</p>
+<blockquote>
+<p>即距离最小的。实际上$\alpha$就是$\beta$的正交投影向量。</p>
+<p>用途：求矛盾方程的最佳近似解（又称最小二乘解）。如$Ax&#x3D;b$没有解，则$A ^TAx&#x3D;A^Tb$求出来的$x$就是最佳近似解。因为没有解，所以$b$不在列空间$C$中，列空间的正交补空间为$N(A ^T)$，设$A x _0$为最佳近似向量，则b在正交补空间的投影可表示为$b - A x _0$，正交补空间为$N(A ^T)$，所以有$A ^T(b - Ax _0)&#x3D;0$。</p>
+</blockquote>
+<h2 id="内积空间的线性变换"><a href="#内积空间的线性变换" class="headerlink" title="内积空间的线性变换"></a>内积空间的线性变换</h2><p>内积空间$V$，算子$T \in L(V)$。若$\forall \alpha,\beta \in V,(\alpha,\beta)&#x3D;(T(\alpha),T(\beta))$，则称该变换为等积变换。对应地，有：</p>
+<ul>
+<li>$||\alpha||&#x3D;||T(\alpha)||$，等长变换；</li>
+<li>$||\alpha-\beta||&#x3D;||T(\alpha)-T(\beta)||$，等距变换；</li>
+<li>$\epsilon _1,...,\epsilon _k$为$V$的标准正交基，$T(\epsilon _1),...,T(\epsilon _k)$也是标准正交基；</li>
+<li>$T(\epsilon _1,..,\epsilon _n)&#x3D;(\epsilon _1,..,\epsilon _n)A _{n\times n},A ^* A &#x3D; A A ^* &#x3D;E$，这种变换称正交变换，即保持内积的变换。</li>
+</ul>
+<p>这几个都是等价的，也称正交变换。</p>
+<blockquote>
+<p>伴随变换：$(T(\alpha),\beta)&#x3D;(\alpha,S(\beta))$，其基下矩阵满足$A &#x3D; B ^*$。</p>
+<p>自伴随$T&#x3D;S$，此时$A ^*&#x3D;A$</p>
+</blockquote>
+<h1 id="广义特征向量"><a href="#广义特征向量" class="headerlink" title="广义特征向量"></a>广义特征向量</h1><p>对$T\in L(V)$，$\lambda$为特征值，$(T -\lambda I) ^j (\alpha) &#x3D; 0$，$j$为正整数，$\alpha \ne 0$，则称$\alpha$为特征值$\lambda$的广义特征向量。$G(T,\lambda)$为广义特征子空间。</p>
+<ol>
+<li>$\{0\}&#x3D;\text{null}T ^0 \subseteq \text{null}T _1\subseteq ... \subseteq \text{null}T ^k$</li>
+<li>若$\text{null}T ^{k+1} &#x3D;\text{null} ^k$，则$\text{null} ^{n+k+1}&#x3D;\text{null} ^{n+k}$</li>
+<li>$\text{dim}V&#x3D;n$，则$\text{null}T ^n&#x3D;\text{null} T ^{n+1}$</li>
+<li>$\text{dim}V&#x3D;n$，则$V &#x3D; \text{null} T ^n \oplus \text{range}T ^n$</li>
+</ol>
+<p>$G(T,\lambda)&#x3D;\text{null}(T-\lambda I) ^{\text{dim}V}$</p>
+<h1 id="Jordan标准型"><a href="#Jordan标准型" class="headerlink" title="Jordan标准型"></a>Jordan标准型</h1>]]></content>
       <categories>
         <category>MATH6005: Matrix Theory</category>
       </categories>
@@ -1065,8 +1266,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
       </tags>
   </entry>
   <entry>
@@ -1369,10 +1570,10 @@
         <category>Kernel Method</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
-        <tag>Machine Learning</tag>
+        <tag>Paper</tag>
         <tag>GNN</tag>
+        <tag>Machine Learning</tag>
         <tag>SVM</tag>
       </tags>
   </entry>
@@ -1992,8 +2193,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
       </tags>
   </entry>
@@ -2352,8 +2553,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
       </tags>
   </entry>
   <entry>
@@ -2403,8 +2604,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
       </tags>
   </entry>
   <entry>
@@ -2493,8 +2694,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Paper</tag>
       </tags>
   </entry>
   <entry>
@@ -5941,8 +6142,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -6046,8 +6247,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -7265,6 +7466,39 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Computational Complexity: Randomized Computation</title>
+    <url>/2023/11/13/RandomizedComputation/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Probabilistic-Turing-Machine"><a href="#Probabilistic-Turing-Machine" class="headerlink" title="Probabilistic Turing Machine"></a>Probabilistic Turing Machine</h1><p>$\textbf{PTM}$是$\textbf{NP}$的升级，其以确定的概率选择$\delta _0$和$\delta _1$。故概率图灵机的输出$\mathbb{P}(x)$是一个随机分布。</p>
+<p>一个函数$\phi$是概率可计算的，若：</p>
+<p>$$<br>\phi(x)&#x3D;<br>\begin{cases}<br>    y,\text{if}\space \text{Pr}[\mathbb{P}(x)&#x3D;y] &gt; 1&#x2F;2 \\<br>    \uparrow, \text{if no such y exists}<br>\end{cases}<br>$$</p>
+<p>一个语言$L$能被$\textbf{PTM}$判定，当且仅当：</p>
+<p>$$<br>\text{Pr}[\mathbb{P}(x)&#x3D;L(x)] &gt; 1&#x2F;2<br>$$</p>
+<h2 id="Average-Case-Time-Complexity"><a href="#Average-Case-Time-Complexity" class="headerlink" title="Average Case Time Complexity"></a>Average Case Time Complexity</h2><p>概率图灵机可以定义平均时间复杂性。</p>
+<p>With bounded error:</p>
+<p>$$<br>\phi(x)&#x3D;<br>\begin{cases}<br>    y,\text{if}\space \text{Pr}[\mathbb{P}(x)&#x3D;y] \ge 1&#x2F;2 + \epsilon \\<br>    \uparrow, \text{if no such y exists}<br>\end{cases}<br>$$</p>
+<h2 id="Polynomial-Identity-Testing"><a href="#Polynomial-Identity-Testing" class="headerlink" title="Polynomial Identity Testing"></a>Polynomial Identity Testing</h2><p>等价性测试：测试两个电路是否是等价的。</p>
+<h1 id="textbf-PP"><a href="#textbf-PP" class="headerlink" title="$\textbf{PP}$"></a>$\textbf{PP}$</h1><p>若$\forall x \in \{0,1\} ^*$，$\text{PR}[\mathbb{P}(x)&#x3D;L(x)] &gt; 1&#x2F;2$且对任意的选择，$\mathbb{P}$在$T(|x|)$步内停机，则$\mathbb{P}$在$T(n)$时间内判定$L$。--最坏时间复杂性</p>
+<p>上面的定义等价于$\textbf{PP}$类：有个多项式时间的普通图灵机$\mathbb{M}$，使得：</p>
+<p>$$<br>\text{PR} _{r \in \{0,1\} ^{p(|x|)}}[\mathbb{M}(x,r)&#x3D;L(x)] &gt; 1&#x2F;2<br>$$</p>
+<p>$$<br>\textbf{NP},\text{co}\textbf{NP} \subseteq \textbf{PP} \subseteq \textbf{PSPACE}<br>$$</p>
+<h2 id="PP完全"><a href="#PP完全" class="headerlink" title="PP完全"></a>PP完全</h2><p>都是$\textbf{SAT}$的变形。</p>
+<p>$\textbf{PP}$是封闭的，所以对$A \in \textbf{PP}$，$B \in \textbf{PP}$，有$A\cap B \in \textbf{PP}$，$A \cup B \in \textbf{PP}$。</p>
+<h1 id="textbf-BPP"><a href="#textbf-BPP" class="headerlink" title="$\textbf{BPP}$"></a>$\textbf{BPP}$</h1><p>B：Bounded-Error</p>
+<p>接受标准：With bounded-error。时间复杂度：最坏时间复杂度与平均时间复杂度都行，两者定义出来的是等价的。相比$\textbf{PP}$的标准是$1&#x2F;2$，$\textbf{BPP}$的标准是$2&#x2F;3$。</p>
+<p>$$<br>\textbf{BPP} ^{\textbf{BPP}} &#x3D; \textbf{BPP}<br>$$</p>
+<h2 id="textbf-BPP-完全"><a href="#textbf-BPP-完全" class="headerlink" title="$\textbf{BPP}$完全"></a>$\textbf{BPP}$完全</h2><p>不存在。如果$\textbf{BPP}&#x3D;\textbf{PP}$，则存在。</p>
+]]></content>
+      <categories>
+        <category>CS7313: Computational Complexity</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
