@@ -1266,8 +1266,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -1570,10 +1570,10 @@
         <category>Kernel Method</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
-        <tag>GNN</tag>
+        <tag>Dataset Distillation</tag>
         <tag>Machine Learning</tag>
+        <tag>GNN</tag>
         <tag>SVM</tag>
       </tags>
   </entry>
@@ -2553,8 +2553,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -2604,8 +2604,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -2694,8 +2694,8 @@
         <category>Paper</category>
       </categories>
       <tags>
-        <tag>Dataset Distillation</tag>
         <tag>Paper</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -4925,8 +4925,8 @@
         <category>Programming Language</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5029,8 +5029,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5114,8 +5114,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5223,8 +5223,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5353,8 +5353,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5371,8 +5371,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5443,8 +5443,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5633,8 +5633,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5735,8 +5735,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5861,8 +5861,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5892,8 +5892,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7492,6 +7492,21 @@
 <p>接受标准：With bounded-error。时间复杂度：最坏时间复杂度与平均时间复杂度都行，两者定义出来的是等价的。相比$\textbf{PP}$的标准是$1&#x2F;2$，$\textbf{BPP}$的标准是$2&#x2F;3$。</p>
 <p>$$<br>\textbf{BPP} ^{\textbf{BPP}} &#x3D; \textbf{BPP}<br>$$</p>
 <h2 id="textbf-BPP-完全"><a href="#textbf-BPP-完全" class="headerlink" title="$\textbf{BPP}$完全"></a>$\textbf{BPP}$完全</h2><p>不存在。如果$\textbf{BPP}&#x3D;\textbf{PP}$，则存在。</p>
+<p>$$<br>\textbf{BPP} \subseteq \textbf{P} _{\text{poly}}<br>$$</p>
+<blockquote>
+<p>错误压缩定理：可以把错误压缩到指数的倒数</p>
+</blockquote>
+<h1 id="textbf-ZPP"><a href="#textbf-ZPP" class="headerlink" title="$\textbf{ZPP}$"></a>$\textbf{ZPP}$</h1><p>平均运行时间为P且不出错的概率图灵机：</p>
+<p>$$<br>\textbf{ZPP}&#x3D;\bigcup _{c \in \text{N}}\textbf{ZTIME}(n ^c)<br>$$</p>
+<blockquote>
+<p>如一些排序算法</p>
+</blockquote>
+<p>$L \in \textbf{ZPP}$等价于存在最坏时间为P的概率图灵机，其在多项式时间内输出$\{0,1,?\}$，其中$?$表示算不出来，要求算不出来的概率小于1&#x2F;3。</p>
+<blockquote>
+<p>单向出错算法：回答是一定对，回答否可能错。</p>
+</blockquote>
+<p>$$<br>\textbf{RP}&#x3D;\bigcup _{c \in \text{N}} \textbf{RTIME}(n ^c)<br>$$</p>
+<p>$$<br>\textbf{ZPP}&#x3D;\textbf{RP}\cap \textbf{coRP}<br>$$</p>
 ]]></content>
       <categories>
         <category>CS7313: Computational Complexity</category>
