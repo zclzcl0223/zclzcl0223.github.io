@@ -1,6 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Computational Complexity: Complexity of Counting</title>
+    <url>/2023/12/02/CountingComplexity/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Counting-Problem"><a href="#Counting-Problem" class="headerlink" title="Counting Problem"></a>Counting Problem</h1><p>一些计数问题：</p>
+<ul>
+<li>$\sharp \text{CYCLE}$：计算有向图G中环的个数。</li>
+<li>$\sharp \text{SAT}$：使得该公式为真的真值指派的个数。</li>
+</ul>
+<blockquote>
+<p>计数问题要远难于判定问题。</p>
+</blockquote>
+<p>定理：如果$\sharp \text{CYCLE}$有多项式的算法，则$\textbf{P}&#x3D;\textbf{NP}$。</p>
+<h1 id="sharp-textbf-P"><a href="#sharp-textbf-P" class="headerlink" title="$\sharp \textbf{P}$"></a>$\sharp \textbf{P}$</h1><p>对函数$f:\{0,1\} ^* \to \textbf{N}$，如果$\exists p : \textbf{N} \to \textbf{N}$和一个多项式图灵机$\mathbb{M}$使得$\forall x \in \{0,1\}  ^*$，有：</p>
+<p>$$<br>f(x)&#x3D;|\{y \in \{0,1\} ^{p(|x|)}| \mathbb{M}(x,y)&#x3D;1\}|<br>$$</p>
+<p>其中，右边表示使得括号成立的$y$的个数。这样的$f$是在$\sharp \textbf{P}$中的。</p>
+<blockquote>
+<p>上述定义可视为用“证据”定义的，因而也可用非确定图灵机定义$\sharp \textbf{P}$，此时$f$的值即为非确定图灵机回答YES的路径数。</p>
+<p>$\textbf{PP}$可视为$\sharp \textbf{P}$的决策版本。</p>
+</blockquote>
+<h2 id="textbf-FP"><a href="#textbf-FP" class="headerlink" title="$\textbf{FP}$"></a>$\textbf{FP}$</h2><p>函数$(f:\{0,1\} ^*\to \textbf{N}) \in \textbf{FP}$，如果该函数可由多项式图灵机计算。</p>
+<blockquote>
+<p>$\textbf{FP} \subseteq \sharp\textbf{P}$</p>
+</blockquote>
+<h2 id="sharp-textbf-P-完全"><a href="#sharp-textbf-P-完全" class="headerlink" title="$\sharp \textbf{P}$完全"></a>$\sharp \textbf{P}$完全</h2><p>$f \in \sharp \textbf{P}\text{-complete}$如果$f \in \sharp \textbf{P}$且$\sharp \textbf{P} \in \textbf{FP} ^f$。</p>
+<blockquote>
+<p>即$\sharp \textbf{P}$中的问题都可以通过调用$f$解决。</p>
+</blockquote>
+<p>$\sharp \textbf{SAT}$是$\sharp \textbf{P}\text{-complete}$的。还是C-L归约。</p>
+<blockquote>
+<p>$\sharp \textbf{SAT}$：$&lt;\varphi, i&gt;$，其中$\varphi$是可取范式，$i$是使得$\varphi$为真的真值指派的个数。</p>
+</blockquote>
+<h1 id="Valiant-Theorem"><a href="#Valiant-Theorem" class="headerlink" title="Valiant Theorem"></a>Valiant Theorem</h1><p>Perm是$\sharp \textbf{P}$完全的。</p>
+<p>Perm转换为有向图中包含所有结点的环。</p>
+<p>把3CNF的变量和语句表示为图。</p>
+<blockquote>
+<p>最终Perm&#x3D;$4 ^{3m}\sharp \varphi$。</p>
+</blockquote>
+<p>还要证明Perm$\le _K$0-1Perm：把边转为$k$条权为1的平行边。</p>
+<h1 id="Universal-Hash-Function"><a href="#Universal-Hash-Function" class="headerlink" title="Universal Hash Function"></a>Universal Hash Function</h1><p>$\mathcal{H} \subseteq B ^A$，其中$B ^A$表示从$A$到$B$的函数。$\mathcal{H}$是通用哈希函数族，如果：</p>
+<p>$$\text{Pr} _{h \in _R \mathcal{H}}[h(x)&#x3D;h(x&#39;)]\le \frac{1}{|B|}$$</p>
+<p>其中$x,x&#39; \in A,x \ne x&#39;$。</p>
+<h2 id="m-wise-Independent-Hash-Function-Family"><a href="#m-wise-Independent-Hash-Function-Family" class="headerlink" title="m-wise Independent Hash Function Family"></a>m-wise Independent Hash Function Family</h2><p>$$<br>\text{Pr} _{h \in _R \mathcal{H} _{n,k}}[\land _{i&#x3D;1} ^m h(x _i)&#x3D; y _i]&#x3D;\frac{1}{2 ^{mk}}<br>$$</p>
+<p>则称$\mathcal{H} _{n,k}$是m-independent的。其中，$x _i$互不相等。$\mathcal{H} _{n,k}$将长度为$n$的串映射为长度为$k$的串。换句话说，$\mathcal{H} _{n,k}$能保证对$m$个串，其对每一位的映射都是独立的。</p>
+<blockquote>
+<p>多项式线性方程的解，因为只有唯一解，所以能求出唯一的系数$a _0,...,a _{m-1}$。范德蒙德式。</p>
+</blockquote>
+<h1 id="Valiant-Vazirani-Theorem"><a href="#Valiant-Vazirani-Theorem" class="headerlink" title="Valiant-Vazirani Theorem"></a>Valiant-Vazirani Theorem</h1><p>$\textbf{UP}$，对其中的类，非确定图灵机的所有路径中，至多有一条路径接受它。$\textbf{P}\subseteq \textbf{UP} \subseteq \textbf{NP}$。</p>
+<blockquote>
+<p>$\textbf{USAT}$：只有唯一的真值指派使之为真。</p>
+</blockquote>
+<p>定理：$\forall n$变量的$\phi$，存在多项式概率图灵机$\mathbb{A}$：</p>
+<p>$$<br>\begin{align*}<br>    &amp;\phi \in \textbf{SAT} \to \text{Pr}[\mathbb{A}(\phi)\in \textbf{USAT}] \ge 1&#x2F;(8n) \\<br>    &amp;\phi \notin \textbf{SAT} \to \text{Pr}[\mathbb{A}(\phi)\in \textbf{SAT}] &#x3D;0<br>\end{align*}<br>$$</p>
+<p>证明：对$\phi(x,y...,z)$，定义归约$\phi \land x&#x3D;c _1 \land y&#x3D; c _2\land...\land z &#x3D; c _n$。由于$\phi$没有多项式算法，所以$c _1,...,c _n$是满足合取范式的猜测。</p>
+<blockquote>
+<p>详细证明：集合并公式的拆分。<br>不能通过重复实验来提高概率，因为每次随机算法$\mathbb{A}$生成的都是随机的公式。</p>
+</blockquote>
+<h2 id="oplus-textbf-P"><a href="#oplus-textbf-P" class="headerlink" title="$\oplus \textbf{P}$"></a>$\oplus \textbf{P}$</h2><p>$\oplus\textbf{P}$，对其中的类，非确定图灵机的所有路径中，只有奇数条路径接受它（或者0条则表拒绝）。$\textbf{UP} \subseteq \oplus \textbf{P}$。</p>
+<blockquote>
+<p>$\oplus \textbf{SAT}$是$\oplus \textbf{P}$完全的。</p>
+</blockquote>
+<p>将前面的$\textbf{USAT}$换成$\oplus \textbf{SAT}$也是对的，且能重复实验提高精度，这就是Toda Theorem。</p>
+<p>Toda Theorem：任何$\textbf{PH}$问题都能通过调用多项式次$\sharp \textbf{P}$完成，即：</p>
+<p>$$<br>\textbf{PH} \subseteq \textbf{P} ^{\sharp \textbf{P}}<br>$$</p>
+]]></content>
+      <categories>
+        <category>CS7313: Computational Complexity</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Computational Complexity: Randomized Computation</title>
+    <url>/2023/11/13/RandomizedComputation/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Probabilistic-Turing-Machine"><a href="#Probabilistic-Turing-Machine" class="headerlink" title="Probabilistic Turing Machine"></a>Probabilistic Turing Machine</h1><p>$\textbf{PTM}$是$\textbf{NDTM}$的升级，其以确定的概率（一般均为0.5）选择$\delta _0$和$\delta _1$。故概率图灵机的输出$\mathbb{P}(x)$是一个随机分布（变量）。$<br>\text{Pr}[\mathbb{P}(x)&#x3D;y]$表示给定输入$x$，该概率图灵机输出$y$的概率。</p>
+<p>一个函数$\phi$是概率可计算的（能被概率图灵机$\mathbb{P}$计算），若：</p>
+<p>$$<br>\phi(x)&#x3D;<br>\begin{cases}<br>    y,\text{if}\space \text{Pr}[\mathbb{P}(x)&#x3D;y] &gt; 1&#x2F;2 \\<br>    \uparrow, \text{if no such y exists}<br>\end{cases}<br>$$</p>
+<p>一个语言$L$能被$\textbf{PTM}$判定，当且仅当：</p>
+<p>$$<br>\text{Pr}[\mathbb{P}(x)&#x3D;L(x)] &gt; 1&#x2F;2<br>$$</p>
+<blockquote>
+<p>概率图灵机可计算的函数就是可计算函数。</p>
+</blockquote>
+<h2 id="Average-Case-Time-Complexity"><a href="#Average-Case-Time-Complexity" class="headerlink" title="Average Case Time Complexity"></a>Average Case Time Complexity</h2><p>概率图灵机可以定义平均时间复杂性。</p>
+<p>With bounded error:</p>
+<p>$$<br>\phi(x)&#x3D;<br>\begin{cases}<br>    y,\text{if}\space \text{Pr}[\mathbb{P}(x)&#x3D;y] \ge 1&#x2F;2 + \epsilon \\<br>    \uparrow, \text{if no such y exists}<br>\end{cases}<br>$$</p>
+<blockquote>
+<p>带bounded error是为了避免出现任何问题都能平均两步解决的错误结论。</p>
+</blockquote>
+<h2 id="Polynomial-Identity-Testing"><a href="#Polynomial-Identity-Testing" class="headerlink" title="Polynomial Identity Testing"></a>Polynomial Identity Testing</h2><p>著名随机算法——等价性测试：测试两个电路是否是等价的。</p>
+<blockquote>
+<p>在有限域中随机取值，直接输入该电路。</p>
+</blockquote>
+<h1 id="textbf-PP"><a href="#textbf-PP" class="headerlink" title="$\textbf{PP}$"></a>$\textbf{PP}$</h1><p>若$\forall x \in \{0,1\} ^*$，$\text{Pr}[\mathbb{P}(x)&#x3D;L(x)] &gt; 1&#x2F;2$，且对任意的选择，$\mathbb{P}$在$T(|x|)$步内停机，则$\mathbb{P}$在$T(n)$时间内判定$L$。（$T$为最坏时间复杂性）</p>
+<p>上面的定义即为$\textbf{PP}$类，其等价定义为：有个多项式时间的普通图灵机$\mathbb{M}$，使得：</p>
+<p>$$<br>\text{Pr} _{r \in \{0,1\} ^{p(|x|)}}[\mathbb{M}(x,r)&#x3D;L(x)] &gt; 1&#x2F;2<br>$$</p>
+<p>其中$r$为一个随机串。</p>
+<p>$$<br>\textbf{NP},\text{co}\textbf{NP} \subseteq \textbf{PP} \subseteq \textbf{PSPACE}<br>$$</p>
+<h2 id="PP完全"><a href="#PP完全" class="headerlink" title="PP完全"></a>PP完全</h2><p>都是$\textbf{SAT}$的变形。</p>
+<p>$\phi \in \text{MajSAT}$如果有超过一半的真值指派，使得$\phi&#x3D;1$。</p>
+<blockquote>
+<p>C-L归约，$\delta$的选择转变为一个个真值指派。</p>
+</blockquote>
+<p>$\textbf{PP}$是封闭的，所以对$A \in \textbf{PP}$，$B \in \textbf{PP}$，有$A\cap B \in \textbf{PP}$，$A \cup B \in \textbf{PP}$。</p>
+<h1 id="textbf-BPP"><a href="#textbf-BPP" class="headerlink" title="$\textbf{BPP}$"></a>$\textbf{BPP}$</h1><p>B：Bounded-Error</p>
+<p>接受标准：With bounded-error，即要严格大于$1&#x2F;2$。时间复杂度：最坏时间复杂度与平均时间复杂度都行（马尔可夫不等式），两者定义出来的是等价的。$\textbf{BPP}$一般用的标准是$2&#x2F;3$。</p>
+<p>$$<br>\textbf{P} \subseteq \textbf{BPP} \subseteq \textbf{PP}<br>$$</p>
+<p>$$<br>\textbf{BPP}&#x3D; \textbf{coBPP}<br>$$</p>
+<blockquote>
+<p>$\textbf{BPP}$是很鲁棒的，出错概率大和出错概率小的$\textbf{BPP}$定义的是同一个类。（出错概率高，则多运行几次，取出现多的为最终值）。</p>
+<p>错误压缩定理：可以把错误压缩到指数的倒数。</p>
+</blockquote>
+<h2 id="带神谕的BPP"><a href="#带神谕的BPP" class="headerlink" title="带神谕的BPP"></a>带神谕的BPP</h2><p>$$<br>\textbf{BPP} ^{\textbf{BPP}} &#x3D; \textbf{BPP}<br>$$</p>
+<blockquote>
+<p>错误压缩，让子程序的调用几乎不出错。</p>
+</blockquote>
+<h2 id="textbf-BPP-完全"><a href="#textbf-BPP-完全" class="headerlink" title="$\textbf{BPP}$完全"></a>$\textbf{BPP}$完全</h2><p>不存在。如果$\textbf{BPP}&#x3D;\textbf{P}$，则存在。</p>
+<p>Adleman Theorem：</p>
+<p>$$<br>\textbf{BPP} \subseteq \textbf{P} _{\text{poly}}<br>$$</p>
+<p>定理：</p>
+<p>$$<br>\textbf{BPP} \subseteq \Sigma _2 ^p \cap \Pi _2 ^p<br>$$</p>
+<blockquote>
+<p>用错误压缩定理证明。</p>
+</blockquote>
+<h1 id="textbf-ZPP"><a href="#textbf-ZPP" class="headerlink" title="$\textbf{ZPP}$"></a>$\textbf{ZPP}$</h1><p>平均运行时间为P且不出错的概率图灵机：</p>
+<p>$$<br>\textbf{ZPP}&#x3D;\bigcup _{c \in \text{N}}\textbf{ZTIME}(n ^c)<br>$$</p>
+<blockquote>
+<p>如一些排序算法</p>
+</blockquote>
+<p>$L \in \textbf{ZPP}$等价于存在最坏时间为$\textbf{P}$的概率图灵机，其在多项式时间内输出$\{0,1,?\}$，其中$?$表示算不出来，要求算不出来的概率小于等于1&#x2F;3。</p>
+<blockquote>
+<p>单向出错算法：回答是一定对，回答否可能错。</p>
+</blockquote>
+<p>多项式时间的单向出错算法：<br>$$<br>\textbf{RP}&#x3D;\bigcup _{c \in \text{N}} \textbf{RTIME}(n ^c)<br>$$</p>
+<p>其与$\textbf{ZPP}$存在关系：</p>
+<p>$$<br>\textbf{ZPP}&#x3D;\textbf{RP}\cap \textbf{coRP}<br>$$</p>
+<blockquote>
+<p>左到右：若让$?$是始终回答NO，则ZPP就是RP；若始终回答YES，则ZPP就是coRP；<br>右到左：RP回答YES一定是对的，coRP回答NO一定是对的，因此交叉运行两个算法即可。</p>
+</blockquote>
+<p>RP也有错误压缩定理。类似地，ZPP也有错误压缩定理。</p>
+]]></content>
+      <categories>
+        <category>CS7313: Computational Complexity</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Graphs of  Different Types</title>
     <url>/2023/11/07/DifferentTypesofGraph/</url>
     <content><![CDATA[<span id="more"></span>
@@ -125,6 +278,16 @@
 <ul>
 <li>$\textbf{NL} \in \textbf{NC} ^2$，因为$\text{Reachability} \in \textbf{NC} ^2$。</li>
 </ul>
+<h1 id="Hastad-Switching-Lemma"><a href="#Hastad-Switching-Lemma" class="headerlink" title="Hastad Switching Lemma"></a>Hastad Switching Lemma</h1><p>$$<br>\textbf{NC} ^0 \subsetneq \textbf{AC} ^0 \subsetneq \textbf{NC} ^1<br>$$</p>
+<blockquote>
+<p>有些函数无法用常数高度的电路计算。即常数高度的电路严格弱于对数高度的电路。</p>
+</blockquote>
+<p>该引理专门用于研究电路复杂性的下界。</p>
+<p>Minterm：$x _1,...,x _n$组成的集合，可取非，可$\land$。</p>
+<p>$f$的极小项：$f _\rho (x _1,..., x _n)$恒等于1且不存在$\text{sub}-\rho$。</p>
+<blockquote>
+<p>极小项就是合取项。</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>CS7313: Computational Complexity</category>
@@ -6742,6 +6905,28 @@
       </tags>
   </entry>
   <entry>
+    <title>Zip: Make Aggregation Easier</title>
+    <url>/2023/05/06/ZipMakeLifeEasier/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>We can even use zip to generate a dictionary:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Gamma and Factorial</title>
     <url>/2023/05/05/GammaAndFactorial/</url>
     <content><![CDATA[<span id="more"></span>
@@ -6809,28 +6994,6 @@
       <tags>
         <tag>Python</tag>
         <tag>Configuration</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Zip: Make Aggregation Easier</title>
-    <url>/2023/05/06/ZipMakeLifeEasier/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>We can even use zip to generate a dictionary:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -7547,54 +7710,6 @@
       </categories>
       <tags>
         <tag>Math</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Computational Complexity: Randomized Computation</title>
-    <url>/2023/11/13/RandomizedComputation/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Probabilistic-Turing-Machine"><a href="#Probabilistic-Turing-Machine" class="headerlink" title="Probabilistic Turing Machine"></a>Probabilistic Turing Machine</h1><p>$\textbf{PTM}$是$\textbf{NP}$的升级，其以确定的概率选择$\delta _0$和$\delta _1$。故概率图灵机的输出$\mathbb{P}(x)$是一个随机分布。</p>
-<p>一个函数$\phi$是概率可计算的，若：</p>
-<p>$$<br>\phi(x)&#x3D;<br>\begin{cases}<br>    y,\text{if}\space \text{Pr}[\mathbb{P}(x)&#x3D;y] &gt; 1&#x2F;2 \\<br>    \uparrow, \text{if no such y exists}<br>\end{cases}<br>$$</p>
-<p>一个语言$L$能被$\textbf{PTM}$判定，当且仅当：</p>
-<p>$$<br>\text{Pr}[\mathbb{P}(x)&#x3D;L(x)] &gt; 1&#x2F;2<br>$$</p>
-<h2 id="Average-Case-Time-Complexity"><a href="#Average-Case-Time-Complexity" class="headerlink" title="Average Case Time Complexity"></a>Average Case Time Complexity</h2><p>概率图灵机可以定义平均时间复杂性。</p>
-<p>With bounded error:</p>
-<p>$$<br>\phi(x)&#x3D;<br>\begin{cases}<br>    y,\text{if}\space \text{Pr}[\mathbb{P}(x)&#x3D;y] \ge 1&#x2F;2 + \epsilon \\<br>    \uparrow, \text{if no such y exists}<br>\end{cases}<br>$$</p>
-<h2 id="Polynomial-Identity-Testing"><a href="#Polynomial-Identity-Testing" class="headerlink" title="Polynomial Identity Testing"></a>Polynomial Identity Testing</h2><p>等价性测试：测试两个电路是否是等价的。</p>
-<h1 id="textbf-PP"><a href="#textbf-PP" class="headerlink" title="$\textbf{PP}$"></a>$\textbf{PP}$</h1><p>若$\forall x \in \{0,1\} ^*$，$\text{PR}[\mathbb{P}(x)&#x3D;L(x)] &gt; 1&#x2F;2$且对任意的选择，$\mathbb{P}$在$T(|x|)$步内停机，则$\mathbb{P}$在$T(n)$时间内判定$L$。--最坏时间复杂性</p>
-<p>上面的定义等价于$\textbf{PP}$类：有个多项式时间的普通图灵机$\mathbb{M}$，使得：</p>
-<p>$$<br>\text{PR} _{r \in \{0,1\} ^{p(|x|)}}[\mathbb{M}(x,r)&#x3D;L(x)] &gt; 1&#x2F;2<br>$$</p>
-<p>$$<br>\textbf{NP},\text{co}\textbf{NP} \subseteq \textbf{PP} \subseteq \textbf{PSPACE}<br>$$</p>
-<h2 id="PP完全"><a href="#PP完全" class="headerlink" title="PP完全"></a>PP完全</h2><p>都是$\textbf{SAT}$的变形。</p>
-<p>$\textbf{PP}$是封闭的，所以对$A \in \textbf{PP}$，$B \in \textbf{PP}$，有$A\cap B \in \textbf{PP}$，$A \cup B \in \textbf{PP}$。</p>
-<h1 id="textbf-BPP"><a href="#textbf-BPP" class="headerlink" title="$\textbf{BPP}$"></a>$\textbf{BPP}$</h1><p>B：Bounded-Error</p>
-<p>接受标准：With bounded-error。时间复杂度：最坏时间复杂度与平均时间复杂度都行，两者定义出来的是等价的。相比$\textbf{PP}$的标准是$1&#x2F;2$，$\textbf{BPP}$的标准是$2&#x2F;3$。</p>
-<p>$$<br>\textbf{BPP} ^{\textbf{BPP}} &#x3D; \textbf{BPP}<br>$$</p>
-<h2 id="textbf-BPP-完全"><a href="#textbf-BPP-完全" class="headerlink" title="$\textbf{BPP}$完全"></a>$\textbf{BPP}$完全</h2><p>不存在。如果$\textbf{BPP}&#x3D;\textbf{PP}$，则存在。</p>
-<p>$$<br>\textbf{BPP} \subseteq \textbf{P} _{\text{poly}}<br>$$</p>
-<blockquote>
-<p>错误压缩定理：可以把错误压缩到指数的倒数</p>
-</blockquote>
-<h1 id="textbf-ZPP"><a href="#textbf-ZPP" class="headerlink" title="$\textbf{ZPP}$"></a>$\textbf{ZPP}$</h1><p>平均运行时间为P且不出错的概率图灵机：</p>
-<p>$$<br>\textbf{ZPP}&#x3D;\bigcup _{c \in \text{N}}\textbf{ZTIME}(n ^c)<br>$$</p>
-<blockquote>
-<p>如一些排序算法</p>
-</blockquote>
-<p>$L \in \textbf{ZPP}$等价于存在最坏时间为P的概率图灵机，其在多项式时间内输出$\{0,1,?\}$，其中$?$表示算不出来，要求算不出来的概率小于1&#x2F;3。</p>
-<blockquote>
-<p>单向出错算法：回答是一定对，回答否可能错。</p>
-</blockquote>
-<p>$$<br>\textbf{RP}&#x3D;\bigcup _{c \in \text{N}} \textbf{RTIME}(n ^c)<br>$$</p>
-<p>$$<br>\textbf{ZPP}&#x3D;\textbf{RP}\cap \textbf{coRP}<br>$$</p>
-]]></content>
-      <categories>
-        <category>CS7313: Computational Complexity</category>
-      </categories>
-      <tags>
-        <tag>Math</tag>
-        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>

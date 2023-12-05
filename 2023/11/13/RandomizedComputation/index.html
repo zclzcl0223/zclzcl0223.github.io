@@ -30,7 +30,7 @@
 <meta property="og:description" content="本篇是计算复杂性（CS7313）的第六章，主要研究随机计算。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-13T00:30:46.000Z">
-<meta property="article:modified_time" content="2023-11-19T05:39:26.366Z">
+<meta property="article:modified_time" content="2023-12-05T05:45:40.521Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Math">
 <meta property="article:tag" content="Theoretical Computer Science">
@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-11-19 13:39:26" itemprop="dateModified" datetime="2023-11-19T13:39:26+08:00">2023-11-19</time>
+                <time title="Modified: 2023-12-05 13:45:40" itemprop="dateModified" datetime="2023-12-05T13:45:40+08:00">2023-12-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,40 +257,71 @@
       
         <span id="more"></span>
 
-<h1 id="Probabilistic-Turing-Machine"><a href="#Probabilistic-Turing-Machine" class="headerlink" title="Probabilistic Turing Machine"></a>Probabilistic Turing Machine</h1><p>$\textbf{PTM}$是$\textbf{NP}$的升级，其以确定的概率选择$\delta _0$和$\delta _1$。故概率图灵机的输出$\mathbb{P}(x)$是一个随机分布。</p>
-<p>一个函数$\phi$是概率可计算的，若：</p>
+<h1 id="Probabilistic-Turing-Machine"><a href="#Probabilistic-Turing-Machine" class="headerlink" title="Probabilistic Turing Machine"></a>Probabilistic Turing Machine</h1><p>$\textbf{PTM}$是$\textbf{NDTM}$的升级，其以确定的概率（一般均为0.5）选择$\delta _0$和$\delta _1$。故概率图灵机的输出$\mathbb{P}(x)$是一个随机分布（变量）。$<br>\text{Pr}[\mathbb{P}(x)&#x3D;y]$表示给定输入$x$，该概率图灵机输出$y$的概率。</p>
+<p>一个函数$\phi$是概率可计算的（能被概率图灵机$\mathbb{P}$计算），若：</p>
 <p>$$<br>\phi(x)&#x3D;<br>\begin{cases}<br>    y,\text{if}\space \text{Pr}[\mathbb{P}(x)&#x3D;y] &gt; 1&#x2F;2 \\<br>    \uparrow, \text{if no such y exists}<br>\end{cases}<br>$$</p>
 <p>一个语言$L$能被$\textbf{PTM}$判定，当且仅当：</p>
 <p>$$<br>\text{Pr}[\mathbb{P}(x)&#x3D;L(x)] &gt; 1&#x2F;2<br>$$</p>
+<blockquote>
+<p>概率图灵机可计算的函数就是可计算函数。</p>
+</blockquote>
 <h2 id="Average-Case-Time-Complexity"><a href="#Average-Case-Time-Complexity" class="headerlink" title="Average Case Time Complexity"></a>Average Case Time Complexity</h2><p>概率图灵机可以定义平均时间复杂性。</p>
 <p>With bounded error:</p>
 <p>$$<br>\phi(x)&#x3D;<br>\begin{cases}<br>    y,\text{if}\space \text{Pr}[\mathbb{P}(x)&#x3D;y] \ge 1&#x2F;2 + \epsilon \\<br>    \uparrow, \text{if no such y exists}<br>\end{cases}<br>$$</p>
-<h2 id="Polynomial-Identity-Testing"><a href="#Polynomial-Identity-Testing" class="headerlink" title="Polynomial Identity Testing"></a>Polynomial Identity Testing</h2><p>等价性测试：测试两个电路是否是等价的。</p>
-<h1 id="textbf-PP"><a href="#textbf-PP" class="headerlink" title="$\textbf{PP}$"></a>$\textbf{PP}$</h1><p>若$\forall x \in \{0,1\} ^*$，$\text{PR}[\mathbb{P}(x)&#x3D;L(x)] &gt; 1&#x2F;2$且对任意的选择，$\mathbb{P}$在$T(|x|)$步内停机，则$\mathbb{P}$在$T(n)$时间内判定$L$。--最坏时间复杂性</p>
-<p>上面的定义等价于$\textbf{PP}$类：有个多项式时间的普通图灵机$\mathbb{M}$，使得：</p>
-<p>$$<br>\text{PR} _{r \in \{0,1\} ^{p(|x|)}}[\mathbb{M}(x,r)&#x3D;L(x)] &gt; 1&#x2F;2<br>$$</p>
+<blockquote>
+<p>带bounded error是为了避免出现任何问题都能平均两步解决的错误结论。</p>
+</blockquote>
+<h2 id="Polynomial-Identity-Testing"><a href="#Polynomial-Identity-Testing" class="headerlink" title="Polynomial Identity Testing"></a>Polynomial Identity Testing</h2><p>著名随机算法——等价性测试：测试两个电路是否是等价的。</p>
+<blockquote>
+<p>在有限域中随机取值，直接输入该电路。</p>
+</blockquote>
+<h1 id="textbf-PP"><a href="#textbf-PP" class="headerlink" title="$\textbf{PP}$"></a>$\textbf{PP}$</h1><p>若$\forall x \in \{0,1\} ^*$，$\text{Pr}[\mathbb{P}(x)&#x3D;L(x)] &gt; 1&#x2F;2$，且对任意的选择，$\mathbb{P}$在$T(|x|)$步内停机，则$\mathbb{P}$在$T(n)$时间内判定$L$。（$T$为最坏时间复杂性）</p>
+<p>上面的定义即为$\textbf{PP}$类，其等价定义为：有个多项式时间的普通图灵机$\mathbb{M}$，使得：</p>
+<p>$$<br>\text{Pr} _{r \in \{0,1\} ^{p(|x|)}}[\mathbb{M}(x,r)&#x3D;L(x)] &gt; 1&#x2F;2<br>$$</p>
+<p>其中$r$为一个随机串。</p>
 <p>$$<br>\textbf{NP},\text{co}\textbf{NP} \subseteq \textbf{PP} \subseteq \textbf{PSPACE}<br>$$</p>
 <h2 id="PP完全"><a href="#PP完全" class="headerlink" title="PP完全"></a>PP完全</h2><p>都是$\textbf{SAT}$的变形。</p>
+<p>$\phi \in \text{MajSAT}$如果有超过一半的真值指派，使得$\phi&#x3D;1$。</p>
+<blockquote>
+<p>C-L归约，$\delta$的选择转变为一个个真值指派。</p>
+</blockquote>
 <p>$\textbf{PP}$是封闭的，所以对$A \in \textbf{PP}$，$B \in \textbf{PP}$，有$A\cap B \in \textbf{PP}$，$A \cup B \in \textbf{PP}$。</p>
 <h1 id="textbf-BPP"><a href="#textbf-BPP" class="headerlink" title="$\textbf{BPP}$"></a>$\textbf{BPP}$</h1><p>B：Bounded-Error</p>
-<p>接受标准：With bounded-error。时间复杂度：最坏时间复杂度与平均时间复杂度都行，两者定义出来的是等价的。相比$\textbf{PP}$的标准是$1&#x2F;2$，$\textbf{BPP}$的标准是$2&#x2F;3$。</p>
-<p>$$<br>\textbf{BPP} ^{\textbf{BPP}} &#x3D; \textbf{BPP}<br>$$</p>
-<h2 id="textbf-BPP-完全"><a href="#textbf-BPP-完全" class="headerlink" title="$\textbf{BPP}$完全"></a>$\textbf{BPP}$完全</h2><p>不存在。如果$\textbf{BPP}&#x3D;\textbf{PP}$，则存在。</p>
-<p>$$<br>\textbf{BPP} \subseteq \textbf{P} _{\text{poly}}<br>$$</p>
+<p>接受标准：With bounded-error，即要严格大于$1&#x2F;2$。时间复杂度：最坏时间复杂度与平均时间复杂度都行（马尔可夫不等式），两者定义出来的是等价的。$\textbf{BPP}$一般用的标准是$2&#x2F;3$。</p>
+<p>$$<br>\textbf{P} \subseteq \textbf{BPP} \subseteq \textbf{PP}<br>$$</p>
+<p>$$<br>\textbf{BPP}&#x3D; \textbf{coBPP}<br>$$</p>
 <blockquote>
-<p>错误压缩定理：可以把错误压缩到指数的倒数</p>
+<p>$\textbf{BPP}$是很鲁棒的，出错概率大和出错概率小的$\textbf{BPP}$定义的是同一个类。（出错概率高，则多运行几次，取出现多的为最终值）。</p>
+<p>错误压缩定理：可以把错误压缩到指数的倒数。</p>
+</blockquote>
+<h2 id="带神谕的BPP"><a href="#带神谕的BPP" class="headerlink" title="带神谕的BPP"></a>带神谕的BPP</h2><p>$$<br>\textbf{BPP} ^{\textbf{BPP}} &#x3D; \textbf{BPP}<br>$$</p>
+<blockquote>
+<p>错误压缩，让子程序的调用几乎不出错。</p>
+</blockquote>
+<h2 id="textbf-BPP-完全"><a href="#textbf-BPP-完全" class="headerlink" title="$\textbf{BPP}$完全"></a>$\textbf{BPP}$完全</h2><p>不存在。如果$\textbf{BPP}&#x3D;\textbf{P}$，则存在。</p>
+<p>Adleman Theorem：</p>
+<p>$$<br>\textbf{BPP} \subseteq \textbf{P} _{\text{poly}}<br>$$</p>
+<p>定理：</p>
+<p>$$<br>\textbf{BPP} \subseteq \Sigma _2 ^p \cap \Pi _2 ^p<br>$$</p>
+<blockquote>
+<p>用错误压缩定理证明。</p>
 </blockquote>
 <h1 id="textbf-ZPP"><a href="#textbf-ZPP" class="headerlink" title="$\textbf{ZPP}$"></a>$\textbf{ZPP}$</h1><p>平均运行时间为P且不出错的概率图灵机：</p>
 <p>$$<br>\textbf{ZPP}&#x3D;\bigcup _{c \in \text{N}}\textbf{ZTIME}(n ^c)<br>$$</p>
 <blockquote>
 <p>如一些排序算法</p>
 </blockquote>
-<p>$L \in \textbf{ZPP}$等价于存在最坏时间为P的概率图灵机，其在多项式时间内输出$\{0,1,?\}$，其中$?$表示算不出来，要求算不出来的概率小于1&#x2F;3。</p>
+<p>$L \in \textbf{ZPP}$等价于存在最坏时间为$\textbf{P}$的概率图灵机，其在多项式时间内输出$\{0,1,?\}$，其中$?$表示算不出来，要求算不出来的概率小于等于1&#x2F;3。</p>
 <blockquote>
 <p>单向出错算法：回答是一定对，回答否可能错。</p>
 </blockquote>
-<p>$$<br>\textbf{RP}&#x3D;\bigcup _{c \in \text{N}} \textbf{RTIME}(n ^c)<br>$$</p>
+<p>多项式时间的单向出错算法：<br>$$<br>\textbf{RP}&#x3D;\bigcup _{c \in \text{N}} \textbf{RTIME}(n ^c)<br>$$</p>
+<p>其与$\textbf{ZPP}$存在关系：</p>
 <p>$$<br>\textbf{ZPP}&#x3D;\textbf{RP}\cap \textbf{coRP}<br>$$</p>
+<blockquote>
+<p>左到右：若让$?$是始终回答NO，则ZPP就是RP；若始终回答YES，则ZPP就是coRP；<br>右到左：RP回答YES一定是对的，coRP回答NO一定是对的，因此交叉运行两个算法即可。</p>
+</blockquote>
+<p>RP也有错误压缩定理。类似地，ZPP也有错误压缩定理。</p>
 
     </div>
 
@@ -300,6 +331,9 @@
       
   <div class="popular-posts-header">Related Posts</div>
   <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\12\02\CountingComplexity\" rel="bookmark">Computational Complexity: Complexity of Counting</a></div>
+    </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\10\31\CircuitComplexity\" rel="bookmark">Computational Complexity: Circuit Complexity</a></div>
     </li>
@@ -311,9 +345,6 @@
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\09\28\ComputationalComplexitySpaceComp1\" rel="bookmark">Computational Complexity Space Complexity 1</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\09\22\ComputationalComplexityTimecom3\" rel="bookmark">Computational Complexity: Time Complexity 3</a></div>
     </li>
   </ul>
 
@@ -398,7 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Probabilistic-Turing-Machine"><span class="nav-number">1.</span> <span class="nav-text">Probabilistic Turing Machine</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Average-Case-Time-Complexity"><span class="nav-number">1.1.</span> <span class="nav-text">Average Case Time Complexity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polynomial-Identity-Testing"><span class="nav-number">1.2.</span> <span class="nav-text">Polynomial Identity Testing</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#textbf-PP"><span class="nav-number">2.</span> <span class="nav-text">$\textbf{PP}$</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PP%E5%AE%8C%E5%85%A8"><span class="nav-number">2.1.</span> <span class="nav-text">PP完全</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#textbf-BPP"><span class="nav-number">3.</span> <span class="nav-text">$\textbf{BPP}$</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#textbf-BPP-%E5%AE%8C%E5%85%A8"><span class="nav-number">3.1.</span> <span class="nav-text">$\textbf{BPP}$完全</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#textbf-ZPP"><span class="nav-number">4.</span> <span class="nav-text">$\textbf{ZPP}$</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Probabilistic-Turing-Machine"><span class="nav-number">1.</span> <span class="nav-text">Probabilistic Turing Machine</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Average-Case-Time-Complexity"><span class="nav-number">1.1.</span> <span class="nav-text">Average Case Time Complexity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polynomial-Identity-Testing"><span class="nav-number">1.2.</span> <span class="nav-text">Polynomial Identity Testing</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#textbf-PP"><span class="nav-number">2.</span> <span class="nav-text">$\textbf{PP}$</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PP%E5%AE%8C%E5%85%A8"><span class="nav-number">2.1.</span> <span class="nav-text">PP完全</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#textbf-BPP"><span class="nav-number">3.</span> <span class="nav-text">$\textbf{BPP}$</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E7%A5%9E%E8%B0%95%E7%9A%84BPP"><span class="nav-number">3.1.</span> <span class="nav-text">带神谕的BPP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#textbf-BPP-%E5%AE%8C%E5%85%A8"><span class="nav-number">3.2.</span> <span class="nav-text">$\textbf{BPP}$完全</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#textbf-ZPP"><span class="nav-number">4.</span> <span class="nav-text">$\textbf{ZPP}$</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -414,7 +445,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -451,7 +482,7 @@
         <div class="widget-wrap">
           <div id="myCanvasContainer" class="widget tagcloud">
             <canvas width="250" height="250" id="resCanvas" style="width:100%">
-              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
             </canvas>
           </div>
         </div>
