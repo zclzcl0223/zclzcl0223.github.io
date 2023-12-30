@@ -29,13 +29,11 @@
 <meta property="og:site_name" content="JourneyToCoding">
 <meta property="og:description" content="矩阵理论第五课，主要讲特征值、特征向量与内积。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zclzcl0223.github.io/1.png">
 <meta property="article:published_time" content="2023-10-25T04:52:41.000Z">
-<meta property="article:modified_time" content="2023-12-01T07:02:08.843Z">
+<meta property="article:modified_time" content="2023-12-17T10:51:11.607Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/1.png">
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2023/10/25/MatrixTheory4/">
 
@@ -232,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-12-01 15:02:08" itemprop="dateModified" datetime="2023-12-01T15:02:08+08:00">2023-12-01</time>
+                <time title="Modified: 2023-12-17 18:51:11" itemprop="dateModified" datetime="2023-12-17T18:51:11+08:00">2023-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,9 +277,6 @@
 <p>证明：即证$T(\alpha _i) \in \text{span}[\alpha _1, ...,\alpha _i]$。要用到商空间和商空间的线性变换。</p>
 </blockquote>
 <p>等价地，复数域上的任意一个方阵一定相似于一个上三角。</p>
-<p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>
-
 <h2 id="特征子空间"><a href="#特征子空间" class="headerlink" title="特征子空间"></a>特征子空间</h2><p>特征子空间$E(T, \lambda) &#x3D; \text{null}(T - \lambda I)$，内部元素为所有的特征向量+零向量。不同特征值的特征子空间的和是直和。</p>
 <p>$$<br>E(T,\lambda _1) \oplus E(T, \lambda _2) \oplus...\oplus E(T, \lambda _m) \le V<br>$$</p>
 <blockquote>
@@ -398,7 +393,7 @@
 <p>$$<br>\begin{align*}<br>    &amp;N ^{k _1}(\alpha _1), ... , N(\alpha _1), \alpha _1 \\<br>    &amp;N ^{k _2}(\alpha _2), ... , N(\alpha _2), \alpha _2 \\<br>    &amp;...\\<br>    &amp;N ^{k _m}(\alpha _m), ... , N(\alpha _m), \alpha _m \\<br>    &amp;N ^{K _i + 1}(\alpha _i)&#x3D;0<br>\end{align*}<br>$$</p>
 <p>化为$V$的一组基。其中$m$为Jordan块个数。</p>
 <blockquote>
-<p>同一个特征值的Jordan块个数等于几何重数。</p>
+<p>同一个特征值的Jordan块个数等于几何重数。<br>相似于Jordan标准型的特征向量为广义特征向量。</p>
 </blockquote>
 <h2 id="Hamilton-Cayley-Them"><a href="#Hamilton-Cayley-Them" class="headerlink" title="Hamilton-Cayley Them"></a>Hamilton-Cayley Them</h2><p>线性变换的特征多项式：</p>
 <p>$$<br>f _{\tau}(\lambda) &#x3D; (\lambda - \lambda _1) ^{n _1}...(\lambda - \lambda _m) ^{n _m}<br>$$</p>
@@ -443,6 +438,9 @@
       <div class="popular-posts-title"><a href="\2023\12\02\CountingComplexity\" rel="bookmark">Computational Complexity: Complexity of Counting</a></div>
     </li>
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\11\24\MatrixTheory5\" rel="bookmark">MatrixTheory: 特殊矩阵与矩阵分解</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\11\13\RandomizedComputation\" rel="bookmark">Computational Complexity: Randomized Computation</a></div>
     </li>
     <li class="popular-posts-item">
@@ -450,9 +448,6 @@
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2023\10\25\PolynomialHierarchy\" rel="bookmark">Computational Complexity: Polynomial Hierarchy</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2023\10\18\MatrixTheory3\" rel="bookmark">MatrixTheory: Linear Transformation Matrix</a></div>
     </li>
   </ul>
 
