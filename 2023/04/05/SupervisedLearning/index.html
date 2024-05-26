@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Supervised learning is the most commonly used type of machine learning. This post includes the course notes of supervised learning course by Andrew Ng.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Supervised Learning">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Supervised learning is the most commonly used type of machine learning. This post includes the course notes of supervised learning course by Andrew Ng.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/7.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/8.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/9.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/10.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/11.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/12.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/13.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/14.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/15.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/16.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/17.png">
+<meta property="article:published_time" content="2023-04-05T15:34:48.000Z">
+<meta property="article:modified_time" content="2023-08-09T06:00:36.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Supervised Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/1.png">
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Supervised Learning | JourneyToCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JourneyToCoding</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Supervised Learning
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-04-05 23:34:48" itemprop="dateCreated datePublished" datetime="2023-04-05T23:34:48+08:00">2023-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-09 14:00:36" itemprop="dateModified" datetime="2023-08-09T14:00:36+08:00">2023-08-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning-by-AndrewNg/" itemprop="url" rel="index"><span itemprop="name">Machine Learning by AndrewNg</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Supervised learning is the most commonly used type of machine learning. This post includes the course notes of supervised learning course by Andrew Ng.</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="Regression-model"><a href="#Regression-model" class="headerlink" title="Regression model"></a>Regression model</h1><p>The steps in regression model are as follow:</p>
+<p><img src="/2023/04/05/SupervisedLearning/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Steps of regression model</center><br>
+
+<p>$f$ is the <strong>function</strong> or <strong>model</strong> getting from the learning algorithm, which can be used to predict the output. $\widehat{y}$, the value of $f$, is the prediction of $y$.</p>
+<h2 id="Linear-regression-model"><a href="#Linear-regression-model" class="headerlink" title="Linear regression model"></a>Linear regression model</h2><p>Linear regression model is the most simple model in regression model, in which, $f$ is just a linear function:</p>
+<p>$${f}_{w,b}(x)&#x3D;wx+b$$</p>
+<center>or</center>
+
+<p>$$f(x)&#x3D;wx+b$$</p>
+<p>$w$ and $b$ are the <em>parameters</em> that we (the learning algorithms) can adjust to make $f$ more accurate.</p>
+<blockquote>
+<p>Linear regression with single input is also called <em>univariate linear regression</em>.</p>
+</blockquote>
+<h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><p>Cost function compares $\widehat{y}$ to $y$. <strong>The better the model is, the smaller the value of the cost function is</strong>. The simplest and most commonly used cost function in linear regression is:</p>
+<p>$$J_{(w,b)}&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^{m}(\widehat{y}^{(i)}-y^{(i)})^2$$</p>
+<p>which is called <em><strong>mean squared error cost function</strong></em>.</p>
+<blockquote>
+<p>Why $2m$?</p>
+<p><em>This is for the convenience of later calculations. When deriving $J$ using the gradient descent method, if it is $2m$, there will not be any constant in the derivative function</em>:</p>
+<p>$$\frac{\partial{J_{(w,b)}}}{\partial{w}}&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(\widehat{y}^{(i)}-y^{(i)})\frac{\partial{\widehat{y}^{(i)}}}{\partial{w}}$$</p>
+</blockquote>
+<p>Since the training set is constant, $J$ is just the function of $w$ and $b$. Therefore, <strong>our goal is to find $w$ and $b$ that minimize $J_{(w,b)}$</strong>.</p>
+<blockquote>
+<p>The 3D bowl-shaped surface plot, which is the plot of $J$, can also be visualized as a contour plot. In the contour plot, each oval contains the choices of $w$ and $b$ that result in the same value of $J$.</p>
+</blockquote>
+<p><img src="/2023/04/05/SupervisedLearning/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. 3D plot and contour plot</center>
+
+<h3 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h3><p>Gradient descent is an algorithm that can be used to minimize any function. The steps of gradient descent are:</p>
+<ol>
+<li><p>Start with some parameters (just set them to 0 is ok);</p>
+</li>
+<li><p>Keep changing the parameters to reduce $J$:<br>$$w&#x3D;w-\alpha\frac{\partial{J_{(w,b)}}}{\partial{w}}$$<br>$\alpha$: learning rate, (0,1], which is used to control the speed of gradient descent.</p>
+<p>$w$: any parameter.</p>
+<p>All the parameters should be updated <strong>simultaneously</strong>, which means that when updating one parameter, the value of other parameters should be their original values.</p>
+<blockquote>
+<p>Principle: The ${grad(f)}$ at a certain point is the direction in which the function changes the fastest.</p>
+</blockquote>
+</li>
+<li><p>Get a minimum or near minimum $J$.</p>
+</li>
+</ol>
+<p>To achieve this, $J$ has to be a <strong>bowl shape function (convex function)</strong> or <strong>a function with local minima</strong>.</p>
+<p><img src="/2023/04/05/SupervisedLearning/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Function with locak minima</center><br>
+
+<p>In linear regression, <em>mean squared error cost function</em> is always a bowl shape function because it squares the loss. If $\alpha$ is too small, the gradient descent will work but may be very slow.</p>
+<p><img src="/2023/04/05/SupervisedLearning/4.png" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Model with small learning rate</center><br>
+
+<p>If $\alpha$ is too large, the gradient descent may not work, which means it may fail to converge but diverge.</p>
+<p><img src="/2023/04/05/SupervisedLearning/5.png" alt="5"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 5. Model with large learning rate</center><br>
+
+<blockquote>
+<p><em>Batch gradient descent</em>: Each step of gradient descent uses all the training examples.</p>
+</blockquote>
+<h2 id="Multiple-linear-regression-model"><a href="#Multiple-linear-regression-model" class="headerlink" title="Multiple linear regression model"></a>Multiple linear regression model</h2><p>When there are more than one features determining the output, it is advisable for us to use <em>vector</em>.</p>
+<blockquote>
+<p>Feature engineering: Using intuition to design new features by <strong>transforming</strong> or <strong>combining</strong> original features. Good features will make the model better.</p>
+</blockquote>
+<h3 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h3><ul>
+<li>$x_j$ &#x3D; $j^{th}$ feature;</li>
+<li>$n$ &#x3D; number of features;</li>
+<li>${\vec{x}^{(i)}}$ &#x3D; features of $i^{th}$ training example.</li>
+<li>$x_j^{(i)}$ &#x3D; value of feature $j$ in $i^{th}$ training example ($x$ can also be $\vec{x}$).</li>
+</ul>
+<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><p>$$f_{w,b}(x_1,x_2,...,x_n)&#x3D;w_1x_1+w_2x_2+...+w_nx_n+b$$</p>
+<p>is equal to:</p>
+<p>$$f_{\vec{w},b}(\vec{x})&#x3D;\vec{w}\cdot\vec{x}+b$$</p>
+<p>where</p>
+<p>$$\vec{w}&#x3D;[w_1,w_2,...,w_n],\vec{x}&#x3D;[x_1,x_2,...,x_n]$$</p>
+<h3 id="Vectorization"><a href="#Vectorization" class="headerlink" title="Vectorization"></a>Vectorization</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">w = np.array([<span class="number">1.0</span>, <span class="number">2.5</span>, -<span class="number">3.3</span>])</span><br><span class="line">b = <span class="number">4</span></span><br><span class="line">x = np.array([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>])</span><br><span class="line"><span class="comment"># vectorization</span></span><br><span class="line">f = np.dot(w, x) + b</span><br></pre></td></tr></table></figure>
+
+<p><code>np.dot()</code> can make use of parallel hardwares, so it is much faster than <code>for loop</code>. (<em>SIMD</em>)</p>
+<blockquote>
+<p>GPU will help to deal with <strong>vectorized code</strong>.</p>
+</blockquote>
+<h3 id="Cost-function-1"><a href="#Cost-function-1" class="headerlink" title="Cost function"></a>Cost function</h3><p>The cost function can also be represented as $J(\vec{w},b)$. All the parameters $\vec{w}$ and $b$ should also be updated simultaneously.</p>
+<blockquote>
+<p>Normal equation: This method only works for linear regression. It sovles for $w,b$ without iterations. However, it does not generalize to other learning algorithms and it is slow when the number of features is too large (&gt;10,000). It may be useful on the backend.</p>
+</blockquote>
+<h2 id="More-about-gradient-descent"><a href="#More-about-gradient-descent" class="headerlink" title="More about gradient descent"></a>More about gradient descent</h2><h3 id="Feature-scaling"><a href="#Feature-scaling" class="headerlink" title="Feature scaling"></a>Feature scaling</h3><p>Feature scaling is a mothod to accelerate gradient descent. When the value of some features is too large, what may happen is that even though $\alpha$ is small, the changes of some parameters are still <strong>too significant</strong>, which slows down the convergence speed of gradient descent.</p>
+<p><img src="/2023/04/05/SupervisedLearning/6.png" alt="6"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 6. Unscaled features</center><br>
+
+<p>One useful method is <em>feature scaling</em>. By scaling down some features, we can make the convergence speed of different parameters basically the same.</p>
+<p><img src="/2023/04/05/SupervisedLearning/7.png" alt="7"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 7. Scaled features</center><br>
+
+<p>Ways to scale features:</p>
+<ul>
+<li>Dividing by the maximum of the feature;</li>
+<li>Mean normalization. This method may produce negative value, but the range of feature is always 1.To realize this:<ol>
+<li>Get the mean value of this feature in the training set $\mu$;</li>
+<li>Subtract $\mu$ from each example of this feature and divide the result by the difference between the maximum and minimum values of this feature.<br>$$x&#x3D;\frac{x-\mu}{max-min}$$</li>
+</ol>
+</li>
+<li>Z-score normalization. $\sigma$ is the <strong>standard deviation</strong> of this feature.<br>$$x&#x3D;\frac{x-\mu}{\sigma}$$<blockquote>
+<p>When predicting, the new $x$ should also be scaled using the same parameters as before.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Ways-to-check-convergence"><a href="#Ways-to-check-convergence" class="headerlink" title="Ways to check convergence"></a>Ways to check convergence</h3><ol>
+<li>Draw $J-iterations$ curve or learning curve.</li>
+</ol>
+<p><img src="/2023/04/05/SupervisedLearning/8.png" alt="8"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 8. Iterations curve</center>
+
+<ol start="2">
+<li>Automatic convergence test: Let $\epsilon$ be a small value. Once $J$ decreases by $\leqslant$ $\epsilon$ in one iteration, it converges.</li>
+</ol>
+<h3 id="Choose-a-better-alpha"><a href="#Choose-a-better-alpha" class="headerlink" title="Choose a better $\alpha$"></a>Choose a better $\alpha$</h3><p>Once the learning curve looks like these:</p>
+<p><img src="/2023/04/05/SupervisedLearning/9.png" alt="9"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 9. Model with large learning rate</center><br>
+
+<p>It indicates that $\alpha$ is too large. The way to choose a good $\alpha$ is starting with a relative <strong>small value</strong> (like 0.001). And check the astringency of $J$. If $J$ still does not converge, there may be <strong>some bugs</strong> in the code. Then, we can try to increase $\alpha$ by <strong>three times</strong>, until we find a relative large $\alpha$.</p>
+<h2 id="Polynomial-regression"><a href="#Polynomial-regression" class="headerlink" title="Polynomial regression"></a>Polynomial regression</h2><p>In polynomial regression, the model $f$ is a polynomial, which means that one feature may occur several times with different powers. For example:</p>
+<p>$$f(x)&#x3D;w_1x+w_2\sqrt{x}+b$$</p>
+<p>In fact, by changing the power, one feature can produce infinite features. That is, $x$ and $\sqrt{x}$ are two different features.</p>
+<blockquote>
+<p>Since they are actually different features, we can use another <em>variable</em> to represent them. Then, the function may become: $f(x,z)&#x3D;w_1x+w_2z+b$. It is a linear function formally.</p>
+</blockquote>
+<p>Compared to linear regression, in polynomial regression, feature scaling and the selection of feature are more important.</p>
+<h1 id="Classification-model"><a href="#Classification-model" class="headerlink" title="Classification model"></a>Classification model</h1><h2 id="Binary-classification-model"><a href="#Binary-classification-model" class="headerlink" title="Binary classification model"></a>Binary classification model</h2><p>When the output of classification model only has two possible values, such classification model can also be named <em><strong>binary classification</strong></em>. In binary classification, we always use 0 (false) and 1 (true) to represent the output. 0 is also called <em><strong>negative class</strong></em> and 1 is also called <em><strong>positive class</strong></em>.</p>
+<p><strong>Logistic regression</strong> is the most commonly used model in binary classification:</p>
+<p>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;g(\vec{w}\cdot\vec{x}+b)&#x3D;g(z)&#x3D;\frac{1}{1+e^{-(\vec{w}\cdot\vec{x}+b)}}$$</p>
+<p>where </p>
+<p>$$g(z)&#x3D;\frac{1}{1+e^{-z}},0&lt;g(z)&lt;1$$</p>
+<p>is called <em><strong>sigmoid function</strong></em> or <em><strong>logistic function</strong></em>.</p>
+<p><img src="/2023/04/05/SupervisedLearning/10.png" alt="10"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 10. Sigmoid function</center><br>
+
+<p>Actually, the output of logistic regression can also be regarded as the possibility of <code>y==1</code>, so $f$ can also be represented as:<br>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;P(y&#x3D;1|\vec{x};\vec{w},b)$$</p>
+<h3 id="Decision-boundary"><a href="#Decision-boundary" class="headerlink" title="Decision boundary"></a>Decision boundary</h3><p>Since the output of logistic regression should be either 0 or 1, we must turn the value between 0 and 1 to 0 or 1. That is, we should find a threshold. When $f \ge threshold$,$f&#x3D;1$, otherwise, $f&#x3D;0$. The threshold we choose is often 0.5. When $f \ge 0.5$ ($\widehat{y}&#x3D;1$):<br>$$g(z) \ge 0.5$$<br>$$\downarrow$$<br>$$z \ge 0$$<br>$$\downarrow$$<br>$$\vec{w}\cdot\vec{x}+b \ge 0$$<br>The curve $\vec{w}\cdot\vec{x}+b &#x3D; 0$ is called <em><strong>decision boundary</strong></em>, where $\widehat{y}$ could be 0 or 1. For example:</p>
+<p><img src="/2023/04/05/SupervisedLearning/11.png" alt="11"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 11. Decision boundary-line</center>
+
+<p><img src="/2023/04/05/SupervisedLearning/12.png" alt="12"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 12. Decision boundary-circle</center>
+
+<h3 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h3><p>In linear regression, the cost function:</p>
+<p>$$J_{(w,b)}&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
+<p>can also be represented as:</p>
+<p>$$J_{(w,b)}&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{1}{2}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
+<p>where:</p>
+<p>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;\frac{1}{2}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
+<p>is called <em><strong>loss function</strong></em>.</p>
+<p>Loss function indicates the error between the prediction value and real value of one example in training set. The convexity of cost function is actually determined by loss function. In logistic regression, <em>squared error loss function</em> is a non-convex function.</p>
+<p><img src="/2023/04/05/SupervisedLearning/13.png" alt="13"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 13. Non-convex loss function</center><br>
+
+<p>Therefore, a new convex function is needed in logistic regression, that is:<br>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;-y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))-(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))$$<br>where $y^{(i)}&#x3D;0,1$; $f_{\vec{w},b}(\vec{x}^{(i)})\in(0,1)$; $\log$ uses $\ln$.</p>
+<p>When $y^{(i)}&#x3D;1$, the curve of $L$ is:</p>
+<p><img src="/2023/04/05/SupervisedLearning/14.png" alt="14"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 14.</center><br>
+
+<p>Using gradient descent will make the loss close to 0.</p>
+<p>When $y^{(i)}&#x3D;0$,the curve of $L$ is:</p>
+<p><img src="/2023/04/05/SupervisedLearning/15.png" alt="15"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 15.</center><br>
+
+<p>Using gradient descent will also make the loss close to 0.</p>
+<h3 id="Cost-function-2"><a href="#Cost-function-2" class="headerlink" title="Cost function"></a>Cost function</h3><p>$$J_{(w,b)}&#x3D;-\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}[y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))+(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))]$$<br>The derivative of $J$ in logistic regression is actually the same as that in linear regression:<br>$$w_j&#x3D;w_j-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})x_j^{(i)}]$$<br>$$b&#x3D;b-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})]$$</p>
+<p>However, the model $f$ is different.</p>
+<blockquote>
+<p>Vectorization and feature scaling can also be used in losgistic regression.</p>
+</blockquote>
+<h2 id="Multiclass-classification-model"><a href="#Multiclass-classification-model" class="headerlink" title="Multiclass classification model"></a>Multiclass classification model</h2><p>See <a href="/2023/04/10/NeuralNetwork/#Softmax-regression">Softmax regression</a>.</p>
+<h2 id="Multi-layer-classification-model"><a href="#Multi-layer-classification-model" class="headerlink" title="Multi-layer classification model"></a>Multi-layer classification model</h2><p>See <a href="/2023/04/10/NeuralNetwork/#Multi-label-classification">Multi-label classification</a>.</p>
+<h1 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h1><h2 id="Underfitting"><a href="#Underfitting" class="headerlink" title="Underfitting"></a>Underfitting</h2><p>When a model does not fit the training set well, the model is underfitting,</p>
+<p><img src="/2023/04/05/SupervisedLearning/16.png" alt="16"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 16. Underfitting model</center><br>
+
+<p>An underfitting model is an algorithm having <strong>high bias</strong>. In this case, we need to change a model.</p>
+<h2 id="Overfitting"><a href="#Overfitting" class="headerlink" title="Overfitting"></a>Overfitting</h2><p>When a model fits the training set extremely well, that is, the errors are approximate 0, the model is overfitting.</p>
+<p><img src="/2023/04/05/SupervisedLearning/17.png" alt="17"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 17. Overfitting model</center><br>
+
+<p>An overfitting model is an algorithm having <strong>high variance</strong>. In this case, the model just fits the training set well, but it can not be generalized. This problem often occurs when the training set is too small. So, the first method to solve this problem is to <strong>collect more training examples</strong>. Besides, <strong>selecting more suitable features</strong> is also feasible (<em><strong>Feature Selection</strong></em>). However, this method may cause our model to lose some useful features. The most feasible and commonly used method is <strong>regularization</strong>.</p>
+<h2 id="Weight-decay"><a href="#Weight-decay" class="headerlink" title="Weight decay"></a>Weight decay</h2><p>Overfitting may occurs when some features have an overly large effect, that is, a little change of these features may cause large changes to the model, which can make the model unexpandable.</p>
+<p>The core idea of regularization is to <strong>reduce the weight of features with large value</strong>. When regularizing, the cost function $J$ becomes:</p>
+<p>$$J(\vec{w},b)&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})+\frac{\lambda}{2m}\sum\limits_{j&#x3D;1}^{n}w_j^2$$</p>
+<p>We just need to regularize $w_j$ as $b$ just makes $f$ move up or down.</p>
+<blockquote>
+<p>$\lambda$ (&gt;0) is an important parameter that balance fitting data and keeping $w_j$ small. In fact, this is <strong>Lagrange multiplier</strong>, a method to find local extremea of a multivariate function when its variables are constrained by one or more conditions. The restriction here is $\frac{1}{2m}\sum\limits_{j&#x3D;1}^{n}w_j^2&#x3D;0$. Since we have limited the value of $\lambda$, our function doesn&#39;t obey the constraint strictly but the constraint does make $w$ smaller and the curve more smooth.</p>
+</blockquote>
+<p>Since $J$ changes, the update of $w_j$ will also change:</p>
+<p>$$w_j&#x3D;w_j-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{\partial{L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})}}{\partial{w_j}}+\frac{\lambda}{m}w_j]$$<br>or<br>$$w_j&#x3D;(1-\alpha\frac{\lambda}{m})w_j-\alpha\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{\partial{L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})}}{\partial{w_j}}$$</p>
+<p>The second formula indicates that in each iteration, $w_j$ will be smaller than before. Therefore, this kind of normalization is also called <strong>weight decay</strong>.</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\08\09\SupportVectorMachine\" rel="bookmark">Support Vector Machine</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\22\Scikit-learn\" rel="bookmark">Scikit-learn</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\08\14\GraphNeuralTangentKernel\" rel="bookmark">Graph Neural Tangent Kernel</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\06\02\OptimizationAlgorithms\" rel="bookmark">Optimization Algorithms</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\04\19\ReinforcementLearning\" rel="bookmark">Reinforcement Learning</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+              <a href="/tags/Supervised-Learning/" rel="tag"># Supervised Learning</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Regression-model"><span class="nav-number">1.</span> <span class="nav-text">Regression model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-regression-model"><span class="nav-number">1.1.</span> <span class="nav-text">Linear regression model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function"><span class="nav-number">1.1.1.</span> <span class="nav-text">Cost function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-descent"><span class="nav-number">1.1.2.</span> <span class="nav-text">Gradient descent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-linear-regression-model"><span class="nav-number">1.2.</span> <span class="nav-text">Multiple linear regression model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Notation"><span class="nav-number">1.2.1.</span> <span class="nav-text">Notation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model"><span class="nav-number">1.2.2.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vectorization"><span class="nav-number">1.2.3.</span> <span class="nav-text">Vectorization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">Cost function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-about-gradient-descent"><span class="nav-number">1.3.</span> <span class="nav-text">More about gradient descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Feature-scaling"><span class="nav-number">1.3.1.</span> <span class="nav-text">Feature scaling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ways-to-check-convergence"><span class="nav-number">1.3.2.</span> <span class="nav-text">Ways to check convergence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Choose-a-better-alpha"><span class="nav-number">1.3.3.</span> <span class="nav-text">Choose a better $\alpha$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polynomial-regression"><span class="nav-number">1.4.</span> <span class="nav-text">Polynomial regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Classification-model"><span class="nav-number">2.</span> <span class="nav-text">Classification model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Binary-classification-model"><span class="nav-number">2.1.</span> <span class="nav-text">Binary classification model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-boundary"><span class="nav-number">2.1.1.</span> <span class="nav-text">Decision boundary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss-function"><span class="nav-number">2.1.2.</span> <span class="nav-text">Loss function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-function-2"><span class="nav-number">2.1.3.</span> <span class="nav-text">Cost function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiclass-classification-model"><span class="nav-number">2.2.</span> <span class="nav-text">Multiclass classification model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-layer-classification-model"><span class="nav-number">2.3.</span> <span class="nav-text">Multi-layer classification model</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Regularization"><span class="nav-number">3.</span> <span class="nav-text">Regularization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Underfitting"><span class="nav-number">3.1.</span> <span class="nav-text">Underfitting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overfitting"><span class="nav-number">3.2.</span> <span class="nav-text">Overfitting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weight-decay"><span class="nav-number">3.3.</span> <span class="nav-text">Weight decay</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChaosTsang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ChaosTsang</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fas fa-star-of-david"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {  // 2023-04-04 00:16:51
+        var grt= new Date("04/04/2023 00:16:51");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/zclzcl0223/my_medium-zoom@master/medium-zoom-v7.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>

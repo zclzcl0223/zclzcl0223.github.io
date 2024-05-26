@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本篇是计算复杂性（CS7313）的第二章的第一节，主要研究空间复杂性类、空间归约等问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computational Complexity Space Complexity 1">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/09/28/ComputationalComplexitySpaceComp1/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="本篇是计算复杂性（CS7313）的第二章的第一节，主要研究空间复杂性类、空间归约等问题。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/28/ComputationalComplexitySpaceComp1/1.png">
+<meta property="article:published_time" content="2023-09-28T02:04:17.000Z">
+<meta property="article:modified_time" content="2023-10-10T05:47:12.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Theoretical Computer Science">
+<meta property="article:tag" content="Math">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/09/28/ComputationalComplexitySpaceComp1/1.png">
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/09/28/ComputationalComplexitySpaceComp1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Computational Complexity Space Complexity 1 | JourneyToCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JourneyToCoding</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/09/28/ComputationalComplexitySpaceComp1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Computational Complexity Space Complexity 1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-09-28 10:04:17" itemprop="dateCreated datePublished" datetime="2023-09-28T10:04:17+08:00">2023-09-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-10-10 13:47:12" itemprop="dateModified" datetime="2023-10-10T13:47:12+08:00">2023-10-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS7313-Computational-Complexity/" itemprop="url" rel="index"><span itemprop="name">CS7313: Computational Complexity</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">本篇是计算复杂性（CS7313）的第二章的第一节，主要研究空间复杂性类、空间归约等问题。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="Space-Bounded-Computation：空间边界的计算"><a href="#Space-Bounded-Computation：空间边界的计算" class="headerlink" title="Space Bounded Computation：空间边界的计算"></a>Space Bounded Computation：空间边界的计算</h1><p>空间是计算资源，是可重用的。研究空间复杂度，只考虑只有一条带子的图灵机即可。</p>
+<p>空间复杂性（函数）的定义：对函数$S: \mathbf{N}\to \mathbf{N}$和语言$L \in \{0,1\} ^ *$，如果存在常数$c$和图灵机$\mathbb{M}$能使用不超过$cS(n)$的非空工作带格子判定输入长度为$n$的$L$，就称$L \in \textbf{SPACE}(S(n))$。</p>
+<blockquote>
+<p>不计算输入所占用的格子。空间可构造和完全空间可构造完全类比时间可构造和完全时间可构造。</p>
+</blockquote>
+<p>对非确定图灵机，$L \in \textbf{NSPACE}((S(n)))$当且仅当每条路径上使用的非空工作带格子都不超过$cS(n)$。</p>
+<h2 id="Configuration-Graph：格局图"><a href="#Configuration-Graph：格局图" class="headerlink" title="Configuration Graph：格局图"></a>Configuration Graph：格局图</h2><ul>
+<li>$C _{\text{start}}$：初始格局；</li>
+<li>$C _{\text{accept}}$：接受格局，图灵机中止且带子上的结果为1。</li>
+</ul>
+<p>格局图：一个图灵机$\mathbb{M}$的格局图$G _{\mathbb{M},x}$是一个有向图，它的结点是某个格局$C$，边是一次计算。若使用格局图，则$\mathbb{M}$接受$x$当且仅当在格局图$G _{\mathbb{M},x}$上存在从$C _{\text{start}}$到$C _{\text{accept}}$的路径。</p>
+<h3 id="Size-of-Configuration-Graph：格局图的大小"><a href="#Size-of-Configuration-Graph：格局图的大小" class="headerlink" title="Size of Configuration Graph：格局图的大小"></a>Size of Configuration Graph：格局图的大小</h3><p>对于一个时间复杂度为$S(n)$的图灵机$\mathbb{M}$，由于只考虑一条工作带，因此，某个长度为$n$输入$x$，其某一步的格局可用$O(S(n))个$比特编码。因此，整个格局图的结点个数就是$2 ^{O(S(n))}$。</p>
+<p>当我们想要判断某两个结点间是否存在边时，我们只需要判断某两个格局$C _1$和$C _2$是否存在一步到达的关系，即看能否通过仅修改某个格局$C _1$编码的$1$个bit和表示读写头的几个bit，就让$C _1&#x3D;C _2$。不难看出，该算法的时间复杂度是$O(S(n))$，空间复杂度是$O(\log S(n))$，因为我们只需要按位比较，并记录位置的编码即可，而$O(S(n))$个位置可用$O(\log S(n))$的二进制串表示。</p>
+<blockquote>
+<p>但要求$C _1$和$C _2$交叉输入，否则带头的来回移动会让时间复杂度为平方。</p>
+</blockquote>
+<h2 id="Space-vs-Time"><a href="#Space-vs-Time" class="headerlink" title="Space vs Time"></a>Space vs Time</h2><p>设空间函数$S(n)$是空间可构造的，则：</p>
+<p>$$<br>\textbf{TIME}(S(n))\subseteq \textbf{SPACE}(S(n))\subseteq \textbf{NSPACE}(S(n))\subseteq \textbf{TIME}(2 ^{O(S(n))})<br>$$</p>
+<blockquote>
+<p>第一个包含关系：一步最多多用一个格子；<br>第二个包含关系：确定是非确定的特例；<br>第三个包含关系：判定一个非确定图灵机能否在$O(S(n))$的空间内判定每个问题，等价于验证格局图中是否存在由$C _\text{start}$到$C _{\text{accept}}$的路径，而这可通过BFS在多项式时间复杂度内完成。格局图中总结点数为$2 ^{O(S(n))}$，因此第三个包含关系成立。</p>
+</blockquote>
+<p>注意：以上相互包含的都是<strong>问题集合</strong>，如第一个包含关系意为：时间复杂度为$S(n)$的问题是空间复杂度为$S(n)$问题的子集。</p>
+<blockquote>
+<p>对所有的空间可构造的$S(n)$，$\textbf{TIME}(S(n))\subseteq \textbf{SPACE}(S(n)&#x2F; \log S(n))$</p>
+</blockquote>
+<h2 id="Space-Complexity-Class"><a href="#Space-Complexity-Class" class="headerlink" title="Space Complexity Class"></a>Space Complexity Class</h2><ul>
+<li>$\textbf{L}$类：$\textbf{SPACE}(\log (n))$</li>
+<li>$\textbf{NL}$类：$\textbf{NSPACE}(\log (n))$</li>
+<li>$\textbf{PSPACE}$类：$\bigcup _{c&gt;0} \textbf{SPACE}(n ^c)$</li>
+<li>$\textbf{NPSPACE}$类：$\bigcup _{c&gt;0} \textbf{NSPACE}(n ^c)$</li>
+</ul>
+<p>$$<br>\textbf{NP}\subseteq \textbf{PSPACE}<br>$$</p>
+<p>上式成立是因为空间是可以重复利用的，故我们可以用<strong>相同</strong>的空间在<em>多项式时间内</em>（<em>空间</em>）验证<strong>不同</strong>的路径是否成立。</p>
+<h3 id="PATH-is-in-NL"><a href="#PATH-is-in-NL" class="headerlink" title="PATH is in NL"></a>PATH is in NL</h3><p>$\text{PATH}&#x3D;\{&lt;G,s,t&gt;\}$定义为判断在图$G$中是否存在从$s$到$t$的路径。</p>
+<p>$$\text{PATH}\in \textbf{NL}$$</p>
+<p>这是因为：在有$n$个结点的图中，不考虑重复边，$s$到$t$的最长路径长度为$n-1$。因此，我们总可以不断地从$s$做$n-1$次猜测，每次猜测选择一个邻居，走到邻居，并继续猜测。总会有那么一个猜测路径，使得我们可以到达$t$（若$s$和$t$之间确实存在路径）。这一过程中，我们需要记录当前结点，而当前结点可用$\log n$的空间编码，还要记录步数，而步数可用$\log (n-1)$的空间编码，又因为空间是可以重用的，所以总的空间复杂度为$O(\log n)$。</p>
+<blockquote>
+<p>对空间复杂度为$S(n)$的图灵机，通用图灵机模拟它的空间复杂度为$O(S(n))$。</p>
+</blockquote>
+<h2 id="Space-Hierarchy-Theorem：空间谱系定理"><a href="#Space-Hierarchy-Theorem：空间谱系定理" class="headerlink" title="Space Hierarchy Theorem：空间谱系定理"></a>Space Hierarchy Theorem：空间谱系定理</h2><p>若$f$和$g$都是空间可构造的，且$f(n)&#x3D;o(g(n))$，则：</p>
+<p>$$<br>\textbf{SPACE}(f(n)) \subsetneq \textbf{SPACE}(g(n))<br>$$</p>
+<blockquote>
+<p>证明类似时间谱系定理。</p>
+</blockquote>
+<h1 id="Logspace-Reduction：对数空间归约"><a href="#Logspace-Reduction：对数空间归约" class="headerlink" title="Logspace Reduction：对数空间归约"></a>Logspace Reduction：对数空间归约</h1><p>隐式对数空间可计算（Implicitly Logspacec Computable）函数$f:\{0,1\} ^ *\to \{0,1\} ^ *$满足如下三个性质：</p>
+<ol>
+<li>输出长度有限：$\exists c,\forall x,|f(x)|\le c |x| ^c$</li>
+<li>输出长度可在对数空间内计算：$\{&lt;x,i&gt;|i \le |f(x)|\}\in L$</li>
+<li>输出结果可确定：$\{&lt;x,i&gt;|f(x) _i &#x3D; 1\}\in L$</li>
+</ol>
+<p>以上三个性质的推断都依赖于前一个性质。如果存在这么一个函数$f$，使得对于问题$B$和问题$C$，$x\in B$当且仅当$f(x) \in C$，那么我们称$B$是可在对数空间归约于$C$的，即$B \le _L C$。</p>
+<blockquote>
+<p>$f(x)$作为$C$的输入，是不能被直接写到$C$的输入带上的，因为$f(x)$的长度是多项式的。不过，$f(x)$的三个性质使得图灵机可以在对数空间内计算出$f(x)$任意位置的值，由于空间的可重用性，输入$f(x)$实际只用了对数空间（每次一位一位地输入）。</p>
+<p>$B$对数空间归约到$C$，说明在<strong>不消耗更多空间资源</strong>的情况下，$C$是更复杂的问题。</p>
+<p>对数空间归约具有传递性，即，若$B \le _L C$，$C \le _L D$，则$B \le _L D$。证明：</p>
+<ul>
+<li>$B \le _L C$，所以对$x \in B$，可在对数空间$O(\log |x|)$内计算$f(x)$。</li>
+<li>$C \le _L D$，所以对$f(x) \in C$，可在对数空间$O(\log |f(x)|)$内计算$g(f(x))$。</li>
+<li>又由于空间的可重复利用性，用于计算$f(x)$的对数空间可被重复用于计算$g(f(x))$，因此$O(\log |f(x)|)&#x3D;O(\log |x|)$。</li>
+</ul>
+</blockquote>
+<h1 id="text-PSPACE-Completeness"><a href="#text-PSPACE-Completeness" class="headerlink" title="$\text{PSPACE}$ Completeness"></a>$\text{PSPACE}$ Completeness</h1><p>空间完备性（Space Completeness）：如果$\forall L \in \textbf{PSPACE}$，$L \le _L L&#39;$，则称语言$L&#39;$是$\textbf{PSPACE}-\text{hard}$的。如果进一步地，$L &#39; \in \textbf{PSPACE}$，则称语言$L&#39;$是$\textbf{PSPACE}-\text{complete}$的。某个完备的（Complete）语言是这个空间复杂性类中最难的语言&#x2F;问题。</p>
+<h2 id="Quantified-Boolen-Formula"><a href="#Quantified-Boolen-Formula" class="headerlink" title="Quantified Boolen Formula"></a>Quantified Boolen Formula</h2><p>量化布尔公式（Quantified Boolen Formula，QBF）被定义为这样的式子：</p>
+<p>$$<br>Q _1 x _1 Q _2 x _2...Q _n x _n.\space \phi(x _1,...,x _n)<br>$$</p>
+<p>其中，$Q _i$是量词（Quantifier），要么是$\forall$，要么是$\exists$；$x _i$是布尔值，要么是$0$，要么是$1$；$\phi$是不包含$x _1,...,x _n$以外的任何自由变量的布尔公式，该公式要么为$\text{True}$，要么为$\text{False}$，如：</p>
+<p>$$<br>\forall x,\exists y,x&#x3D;y<br>$$</p>
+<p>显然，上述公式值为$True$。</p>
+<p>空间复杂度两个原则：格局图、深度优先</p>
+<h2 id="Stockmeyer-Meyer-Theorem"><a href="#Stockmeyer-Meyer-Theorem" class="headerlink" title="Stockmeyer-Meyer Theorem"></a>Stockmeyer-Meyer Theorem</h2><p>定理：TQBF是$\textbf{PSPACE}-\text{complete}$的。定理中，$\text{TQBF}$是所有值为$\text{True}$的QBF集合。定理的证明如下：</p>
+<blockquote>
+<p>要证明上述定理，即要证明$\forall L \in \textbf{PSPACE}$，$L \le _L $TQBF，且TQBF$\in \textbf{PSPACE}$。</p>
+<p>1.TQBF$\in \textbf{PSPACE}$</p>
+<p>假定某个QBF为$\psi &#x3D; Q _1 x _1 Q _2 x _2...Q _n x _n.\space \phi(x _1,...,x _n)$，由于$x _i$只有两种取值可能，因此我们可以将$\psi$所有可能的形式表示为一棵二叉树：<br><img src="/2023/09/28/ComputationalComplexitySpaceComp1/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. QBF</center><br>
+
+<p>对该二叉树使用一次深度优先遍历（实际上应该使用<strong>后序遍历</strong>）即可判定该问题。DFS过程中，我们可以自下而上求出所有非叶子结点的值，最终根结点的值就是QBF的判定结果，整个过程中，我们最多需要记录$n$个祖先，因而该算法的空间复杂度实际上为$O(n)$。因此TQBF$\in \textbf{PSPACE}$。证毕。</p>
+<p>2.$\forall L \in \textbf{PSPACE}$，$L \le _L $TQBF</p>
+<p>$L \in \textbf{PSPACE}$说明存在图灵机$\mathbb{M}$，对输入$x \in L$，它能在多项式空间内输出$\mathbb{M}(x)&#x3D;1$以及格局图中存在$C _{\text{start}}$到$C _{\text{accept}}$的路径。</p>
+<p>要证明条件2，我们只需要证明对$x \in L$，存在$\phi(x)\in $TQBF。不妨令$\phi(x)&#x3D;\psi _i (C,C&#39;)$，其中，当格局$C$和$C&#39;$之间存在长度不超过$2 ^i$的路径时$\psi _i (C,C&#39;)&#x3D;1$。</p>
+<p>对于$\psi _i (C,C&#39;)$，若其值为$1$，则在$C$和$C&#39;$之间一定存在一个格局$C&#39;&#39;$，它到这两个格局的路径长度不超过$2 ^{i - 1}$，因此$\psi _i (C,C&#39;)$就可以被转换为$\psi _{i-1} (C,C&#39;&#39;) \lor  \psi _{i-1} (C&#39;,C&#39;&#39;)$。该问题可被表示为：<br>$$<br>\exists C&#39;&#39; \forall D ^1 \forall D ^2.((D ^1&#x3D;C \land D ^2 &#x3D;C&#39;))\lor ((D ^1&#x3D;C&#39;&#39; \land D ^2 &#x3D;C)) \rightarrow \psi _{i-1}(D ^1, D ^2)<br>$$<br>只要我们能够判断上面前蕴含后的关系成立，则$\psi _i (C,C&#39;)&#x3D;1$成立。判别上式的空间复杂度为$|\psi _i|&#x3D;|\psi _{i-1}(D ^1, D ^2)|+cS(|x|)$，其中，后一项是用于记录箭头前的格局的空间（每个格局空间复杂度$S(|x|)$）。那么对于空间复杂度为$S(|x|)$的$L$，它的格局图中最多有$2 ^{S(|x|)}$个结点，于是判断$L$，就可以转为判断$\psi _{S(|x|)}$，即判断QBF$\phi (x)$。$|\phi (x)|&#x3D;|\psi _{S(|x|)}|&#x3D;O(S(|x|) ^2)$，多项式的平方仍然是多项式，所以$x\in L$，$\phi (x) \in $TQBF，证毕。前面的式子能成立是因为最终$\psi _{S(|x|)}$会被转化为$\psi _{1}$，期间会多出$S(|x|)$个$c S(|x|)$。</p>
+</blockquote>
+<h1 id="Savitch-Theorem"><a href="#Savitch-Theorem" class="headerlink" title="Savitch Theorem"></a>Savitch Theorem</h1><p>定理：如果$S$是空间可构造的，那么$\textbf{NSPACE}(S(n)) \subseteq \textbf{SPACE}(S(n) ^2)$。证明如下：</p>
+<blockquote>
+<p>该定理的证明与上面的条件2证明几乎一致。对于空间复杂度为$S(n)$的非确定图灵机$\mathbb{N}$，它可以在$S(n)$的空间内判定$L$，其格局图的大小为$2 ^{S(n)}$。很自然地，判定$L$可以被转换为判定格局图中是否存在$C _{\text{start}}$到$C _{\text{accept}}$的路径。该问题可以被$\phi (x)$在$c S(n) ^2$空间内解决。所以$\textbf{NSPACE}(S(n)) \subseteq \textbf{SPACE}(S(n) ^2)$。证毕。</p>
+</blockquote>
+<p>由于多项式的平方还是多项式，所以由上述定理，我们可以得到：</p>
+<p>$$<br>\textbf{NPSPACE} \subseteq\textbf{PSPACE}<br>$$</p>
+<p>又因为确定图灵机是非确定图灵机的特例：</p>
+<p>$$<br>\textbf{PSPACE} \subseteq \textbf{NPSPACE}<br>$$</p>
+<p>所以：</p>
+<p>$$<br>\textbf{PSPACE} &#x3D; \textbf{NPSPACE}<br>$$</p>
+<h1 id="NL-Completeness"><a href="#NL-Completeness" class="headerlink" title="NL Completeness"></a>NL Completeness</h1><p>如果$C \in \textbf{NL}$，且对$\forall B \in \textbf{NL}$，$B \le _L C$，则$C$是$\textbf{NL}-$ complete。</p>
+<p>定理：$\text{PATH}$是$\textbf{NL}$完全的。证明如下：</p>
+<blockquote>
+<p>由于前面已经证明$\text{PATH} \in \textbf{NL}$，所以要证明上述结论，即要证明对$\forall L \in \textbf{NL}$，$L \le _L \text{PATH}$，即要证明$\forall x \in L$，$\exists f$，$f(x) \in \text{PATH}$。</p>
+<p>与前面的证明类似，对在$\log(n)$空间内判定$L$的非确定图灵机$\mathbb{N}$，设其输入为$x$，则该问题可以被转换为在格局图$G _{\mathbb{N},x}$中判断$C _\text{start}$和$C _\text{accept}$间是否存在路径，即：<br>$$<br>x \to &lt; G _{\mathbb{N},x},C _\text{start},C _\text{accept} &gt;<br>$$<br>由于$\mathbb{N}$的空间复杂度是$\log (n)$，所以格局图中的每一个格局都可以用$\log (n)$的bit编码，且共有多项式个格局（顶点）。用邻接矩阵$A$表示格局图$G _{\mathbb{N},x}$的结构关系，由于各个顶点的编码长度为$\log (n)$，所以任意两个顶点的一步可达性可在对数空间内判定，又由于空间的可重复利用性，整个邻接矩阵可以在对数空间内被构造出来，而起始格局和终止格局都是固定的$01$串，所以$&lt; G _{\mathbb{N},x},C _\text{start},C _\text{accept} &gt;$可以在对数空间内被构造出来，而$&lt; G _{\mathbb{N},x},C _\text{start},C _\text{accept} &gt; \in \text{PATH}$，所以$L \le _L \text{PATH}$。证毕。</p>
+</blockquote>
+<p>有向无环图的$\text{PATH}$问题也是$\textbf{NL}$完全的。</p>
+<h1 id="Immerman-Szelepcsenyi-Theorem"><a href="#Immerman-Szelepcsenyi-Theorem" class="headerlink" title="Immerman-Szelepcsenyi Theorem"></a>Immerman-Szelepcsenyi Theorem</h1><p>补类（补问题）：一个类的补类指在所有类中刨去改类后剩下的类，如，对$\textbf{T}$类，其补类记为$\text{co}\textbf{T}$或$\overline{\textbf{T}}$，定义为：</p>
+<p>$$<br>\text{co}\textbf{T}&#x3D;\overline{\textbf{T}}&#x3D;\{\{0,1 ^*\}-L \in \textbf{T}\}<br>$$</p>
+<p>一个有趣的结论：</p>
+<p>$$<br>\begin{align*}<br>    \text{co}\textbf{NPSPACE}<br>    &amp;&#x3D;\overline{\textbf{NPSPACE}} \\<br>    &amp;&#x3D;\overline{\textbf{PSPACE}}\\<br>    &amp;&#x3D;\textbf{PSPACE}\\<br>    &amp;&#x3D;\textbf{NPSPACE}<br>\end{align*}<br>$$</p>
+<p>定理：$\overline{\text{PATH}}\in \textbf{NL}$。$\overline{\text{PATH}}$的含义为：从$A$出发到不了$B$。的证明如下：</p>
+<blockquote>
+<p>???????</p>
+</blockquote>
+<p>由上述定理，我们可以得到$\overline{\textbf{NL}}&#x3D; \textbf{NL}$：</p>
+<blockquote>
+<p>$A \le _L B$，则$\overline{A} \le _L \overline{B}$</p>
+<p>因为$L \le _L \text{PATH}$，所以$\overline{L} \le _L \overline{\text{PATH}}$，所以$\overline{\text{PATH}}$是$\overline{\textbf{NL}}$完全的，而$\overline{\text{PATH}}\in \textbf{NL}$，所以$\overline{\textbf{NL}}&#x3D; \textbf{NL}$。</p>
+</blockquote>
+<p>事实上，对$\forall S(n) \ge \log (n)$，若$S(n)$时间可构造，则：</p>
+<p>$$<br>\overline{\textbf{NSPACE}(S(n))}&#x3D;\textbf{NSPACE}(S(n))<br>$$</p>
+<p>$$<br>\textbf{L}\subseteq \textbf{NL}\subseteq \textbf{P}\subseteq \textbf{NP}\subseteq \textbf{PSPACE}\subseteq \textbf{EXP}<br>$$</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\12\02\CountingComplexity\" rel="bookmark">Computational Complexity: Complexity of Counting</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\11\13\RandomizedComputation\" rel="bookmark">Computational Complexity: Randomized Computation</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\10\31\CircuitComplexity\" rel="bookmark">Computational Complexity: Circuit Complexity</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\10\25\PolynomialHierarchy\" rel="bookmark">Computational Complexity: Polynomial Hierarchy</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\10\10\ComputationalComplexityNPComp\" rel="bookmark">Computational Complexity NP-Completeness</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Theoretical-Computer-Science/" rel="tag"># Theoretical Computer Science</a>
+              <a href="/tags/Math/" rel="tag"># Math</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Space-Bounded-Computation%EF%BC%9A%E7%A9%BA%E9%97%B4%E8%BE%B9%E7%95%8C%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">Space Bounded Computation：空间边界的计算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuration-Graph%EF%BC%9A%E6%A0%BC%E5%B1%80%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">Configuration Graph：格局图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Size-of-Configuration-Graph%EF%BC%9A%E6%A0%BC%E5%B1%80%E5%9B%BE%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.1.1.</span> <span class="nav-text">Size of Configuration Graph：格局图的大小</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Space-vs-Time"><span class="nav-number">1.2.</span> <span class="nav-text">Space vs Time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Space-Complexity-Class"><span class="nav-number">1.3.</span> <span class="nav-text">Space Complexity Class</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PATH-is-in-NL"><span class="nav-number">1.3.1.</span> <span class="nav-text">PATH is in NL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Space-Hierarchy-Theorem%EF%BC%9A%E7%A9%BA%E9%97%B4%E8%B0%B1%E7%B3%BB%E5%AE%9A%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">Space Hierarchy Theorem：空间谱系定理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logspace-Reduction%EF%BC%9A%E5%AF%B9%E6%95%B0%E7%A9%BA%E9%97%B4%E5%BD%92%E7%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">Logspace Reduction：对数空间归约</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#text-PSPACE-Completeness"><span class="nav-number">3.</span> <span class="nav-text">$\text{PSPACE}$ Completeness</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quantified-Boolen-Formula"><span class="nav-number">3.1.</span> <span class="nav-text">Quantified Boolen Formula</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stockmeyer-Meyer-Theorem"><span class="nav-number">3.2.</span> <span class="nav-text">Stockmeyer-Meyer Theorem</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Savitch-Theorem"><span class="nav-number">4.</span> <span class="nav-text">Savitch Theorem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NL-Completeness"><span class="nav-number">5.</span> <span class="nav-text">NL Completeness</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Immerman-Szelepcsenyi-Theorem"><span class="nav-number">6.</span> <span class="nav-text">Immerman-Szelepcsenyi Theorem</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChaosTsang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ChaosTsang</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fas fa-star-of-david"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {  // 2023-04-04 00:16:51
+        var grt= new Date("04/04/2023 00:16:51");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/zclzcl0223/my_medium-zoom@master/medium-zoom-v7.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>

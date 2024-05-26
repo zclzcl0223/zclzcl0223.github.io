@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等领域中都有广泛的应用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Link Prediction">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/19/LinkPrediction/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等领域中都有广泛的应用。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-19T10:14:00.000Z">
+<meta property="article:modified_time" content="2023-07-25T08:28:16.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="GNN">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/07/19/LinkPrediction/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Link Prediction | JourneyToCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JourneyToCoding</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/07/19/LinkPrediction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Link Prediction
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-07-19 18:14:00" itemprop="dateCreated datePublished" datetime="2023-07-19T18:14:00+08:00">2023-07-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-07-25 16:28:16" itemprop="dateModified" datetime="2023-07-25T16:28:16+08:00">2023-07-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/GNN/" itemprop="url" rel="index"><span itemprop="name">GNN</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等领域中都有广泛的应用。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="链接预测的基本方法"><a href="#链接预测的基本方法" class="headerlink" title="链接预测的基本方法"></a>链接预测的基本方法</h1><p>当前，在图机器学习领域，链接预测的主流方法有三种：</p>
+<ol>
+<li><strong>启发式方法（Heuristic methods）</strong><br> 这种方法认为存在链接关系的结点的特征存在某种共同的特性，这种特性使得它们间有更大的相似度。启发式方法通过定义一种映射来衡量这样的相似度，如结点的共同邻居（Common neighor）、Katz Index等，但是这样的映射不一定对所有的图都有效。</li>
+<li><strong>结点嵌入（Node embedding）</strong><br> 这种方法与结点分类（Node classification）中的方法一致，即基于游走的方法学习结点的embedding，常见的方法有：DeepWalk、Node2vec等。这样的方法，没有直接将链接预测任务嵌入到有监督学习的流程中，并且无法较好的利用用户的节点属性，无法达到较好的预测精度。</li>
+<li><strong>图神经网络（GNN）</strong><br> 基于基本的图神经网络架构，如GCN、GraphSAGE、GAT等，通过对邻居结点的聚合得到融合了图结构信息的结点表示，再以类似于启发式方法的方式求任意两结点的“相似度”，进而判断两结点间边的有无。最后的判断本质上是个逻辑回归，即二分类问题（有边为1，无边为0）。</li>
+</ol>
+<h1 id="基于PyG的GNN链接预测"><a href="#基于PyG的GNN链接预测" class="headerlink" title="基于PyG的GNN链接预测"></a>基于PyG的GNN链接预测</h1><p>PyG（PyTorch Geometric）是个建立在PyTorch基础上的图神经网络库，它为训练不同任务（结点分类、链接预测、图分类等）、不同架构（GCN、GraphSAGE、GAT等）的图神经网络提供了方便。使用PyG来完成链接预测，可以省去很多复杂的操作，特别是在数据预处理阶段。事实上，结点分类和链接预测最大的区别就在数据预处理阶段。</p>
+<h2 id="数据集的划分"><a href="#数据集的划分" class="headerlink" title="数据集的划分"></a>数据集的划分</h2><p>前面提到过，链接预测本质上是一个二分类问题，只不过它二分类的单位不是一个结点，而是<strong>一对结点</strong>，分类的结果是这对结点间存在（1）或不存在（0）边。这样的不同决定了我们需要对数据集进行额外的处理，以获得训练样本，包括：正采样和负采样，前者采样存在边的结点对，后者采样不存在边的结点对。在结点分类用到的数据集的基础上，使用PyG提供的<code>torch_geometric.transforms.RandomLinkSplit</code>函数可以很方便地完成对训练集、验证集和测试集的采样。</p>
+<p><code>torch_geometric.transforms.RandomLinkSplit(num_val, num_test,...)</code>，以下为几个常用参数的说明：</p>
+<ol>
+<li><code>num_val</code>：验证集中边占所有边比例，默认为0.1。</li>
+<li><code>num_test</code>：测试集中边占所有边的比例，默认为0.1。</li>
+<li><code>is_undirected</code>：<code>True</code>则假定图是无向图，反之为有向图。</li>
+<li><code>add_negative_train_samples</code>：是否为训练集添加负训练样本。一般设置为<code>False</code>（默认也是<code>False</code>），也就是使得训练集中不包含负样本，这样每一轮训练时在训练集中可以重新采样负样本进行训练，由此可以保证每一轮训练中采样得到的负样本都是不一样的，可以有效提高模型泛化能力。验证集和测试集则默认会自动完成负样本的采样。</li>
+<li><code>neg_sampling_ratio</code>：采样中正负样本的比例，默认为1。即正负样本个数一致（对验证集、测试集和<code>add_negative_train_samples</code>设置为<code>True</code>后的训练集）。</li>
+</ol>
+<blockquote>
+<p>更多资料见<a target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.transforms.RandomLinkSplit.html#torch-geometric-transforms-randomlinksplit">RandomLinkSplit</a>。</p>
+</blockquote>
+<p><code>RandomLinkSplit</code>的使用方法很简单，因为它被包含在<code>transforms</code>中，所以可以在读数据的时候作为一个参数传入读数据的函数中，以读取<code>Cora</code>数据集为例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch_geometric.transforms <span class="keyword">as</span> T</span><br><span class="line"><span class="keyword">from</span> torch_geometric.datasets <span class="keyword">import</span> Planetoid</span><br><span class="line">train_data, val_data, test_data = Planetoid(root=<span class="string">&#x27;./data/Cora&#x27;</span>, name=<span class="string">&quot;Cora&quot;</span>, </span><br><span class="line">    transform=T.RandomLinkSplit(num_val=<span class="number">0.1</span>, num_test=<span class="number">0.1</span>, is_undirected=<span class="literal">True</span>, add_negative_train_samples=<span class="literal">False</span>))[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<p>而一般结点分类任务用到的数据集形式为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = Planetoid(root=<span class="string">&#x27;./data/Cora&#x27;</span>, name=<span class="string">&quot;Cora&quot;</span>)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意<code>Planetoid</code>是PyG定义的<code>InMemoryDataset</code>的子类，<code>InMemoryDataset</code>所返回的是数据集中所有的图结构，因此要用下标来读取指定的图。<code>Planetoid</code>能加载的数据集都只有一张图，所以用<code>Planetoid()[0]</code>即可。</p>
+</blockquote>
+<p>我们不妨来看看这四种data的区别：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(train_data, <span class="string">&quot;\n&quot;</span>, val_data, <span class="string">&quot;\n&quot;</span>, test_data, <span class="string">&quot;\n&quot;</span>, data)</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">8448</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">4224</span>], edge_label_index=[<span class="number">2</span>, <span class="number">4224</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">8448</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">1054</span>], edge_label_index=[<span class="number">2</span>, <span class="number">1054</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">9502</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">1054</span>], edge_label_index=[<span class="number">2</span>, <span class="number">1054</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">10556</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>])</span><br></pre></td></tr></table></figure>
+
+<p>不难看出，图都是同一张图，只不过链接预测用到的数据集中多了<code>edge_label</code>和<code>edge_label_index</code>这两个量：</p>
+<ul>
+<li><code>edge_label</code>：<code>Tensor</code>，数据集的标签，即<code>y</code>，值为1或0，对于<code>val_data</code>和<code>test_data</code>（<code>train_data</code>未进行负采样），既包含了正样本的标签，又包含了负样本的标签，因此对于上文的数据集，正样本数为527，负样本数也为527。</li>
+<li><code>edge_label_index</code>：<code>Tensor</code>，数据集的样本，即<code>X</code>，但是，此处<code>X</code>的内容并不是边的特征，而是边的两个结点的编号，因而也不是用来训练的，其中<code>edge_label_index[0]</code>为起始结点的编号，<code>edge_label_index[1]</code>为终点结点的编号。</li>
+</ul>
+<blockquote>
+<p><code>train_data</code>的负采样可以使用PyG提供的<code>torch_geometric.utils.negative_sampling</code>函数，见<a target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/modules/utils.html#torch-geometric-utils">torch_geometric.utils</a>，此处不再赘述。要特别注意把负样本加入<code>edge_label</code>和<code>edge_label_index</code>中。</p>
+</blockquote>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>链接预测图神经网络的训练与结点分类图神经网络的训练并没有本质的不同。若将<em>Node embedding</em>的过程称为编码过程，最后的链接预测&#x2F;结点分类称为解码过程，那么两者的编码过程是<strong>一致的</strong>，即卷积和消息传递的过程是一致的。两者的不同在解码过程。对于结点分类任务，解码是对得到<em>Node embedding</em>做一次softmax，因此最后的结点的特征维度也被限定为了结点类别的数量；对于链接预测任务，解码是对<code>edge_label_index</code>所选定的边两端的结点计算相似度后求sigmoid，即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">decoder</span>(<span class="params">self, X, edge_label_index</span>):  <span class="comment"># X为编码后的结点特征</span></span><br><span class="line">    src_node = X[edge_label_index[<span class="number">0</span>]]  <span class="comment"># 取出边起始结点的特征，shape (N x F)</span></span><br><span class="line">    end_node = X[edge_label_index[<span class="number">1</span>]]  <span class="comment"># 取出边终点结点的特征，shape (N x F)</span></span><br><span class="line">    <span class="keyword">return</span> (src_node * end_node).<span class="built_in">sum</span>(dim=<span class="number">1</span>)  <span class="comment"># 向量内积求相似度，shape (N)，此处没有直接sigmoid，放在网络外面做也是一样的</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="精度分析"><a href="#精度分析" class="headerlink" title="精度分析"></a>精度分析</h2><p>由于链接预测是一个二分类问题，因此精度分析采用AUC。</p>
+<blockquote>
+<p>AUC的含义和计算方法见<a href="/2023/04/13/MachineLearningDiagnostics/#Skewed-datasets">F1 score and ROC &amp; AUC</a>。</p>
+</blockquote>
+<h1 id="结点分类和链接预测的测试集泄露问题"><a href="#结点分类和链接预测的测试集泄露问题" class="headerlink" title="结点分类和链接预测的测试集泄露问题"></a>结点分类和链接预测的测试集泄露问题</h1><p>测试集泄露，即测试集中的样本特征或者标签在训练网络的过程中被使用了。对于GNN来说，测试集泄露是一个很普遍的问题，因为GNN的消息传递过程不可避免地要用到其他结点的信息，而这些结点就有可能包括测试集的结点。</p>
+<h2 id="结点分类"><a href="#结点分类" class="headerlink" title="结点分类"></a>结点分类</h2><p>对于最初的<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1609.02907.pdf">GCN</a>，其在训练模型参数时用到的是整个图的结点特征和邻接矩阵，因而不可避免地传递了测试集结点的特征信息。虽然可以把用来计算损失的训练集结点及其边、用于测试效果的测试集结点及其边从原图中单独拎出来形成两个互不相交的子图来从源头上避免数据泄露（即在训练过程中，只让消息在训练集结点间传递），但是这样做会导致精度下降，因为原图的整体结构被破坏了。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.02216.pdf">GraphSAGE</a>的出现使得大家对GNN的消息传递有了全新的理解，即：只要把<em>待预测结点</em>周围结点的信息传递给<em>待预测结点</em>即可。在这样的视角下，原本耦合于全图的各个结点实际上变成了一个个独立的<strong>子图</strong>，子图的中心结点是待预测结点，而其他结点是要将信息传递给中心结点的辅助结点。于是，单一结点的结点分类成为了可能（原先必须要将整个图喂进模型中），只要为该结点随机取样一个子图即可。相应地，数据泄露的影响也降到最低（此时网络学习的是一种利用邻居结点信息获得中心结点<em>Embedding</em>的方法&#x2F;模式，而不是学习怎样为每个结点生成一个<em>Embedding</em>）。这样的子图&#x2F;采样的方法对于GCN、SGC、GAT等也是成立的，因为它们本质上都是消息传递型的GNN。</p>
+<h2 id="链接预测"><a href="#链接预测" class="headerlink" title="链接预测"></a>链接预测</h2><p>类似地，对于链接预测，其在消息传递的过程中会用到结点间的连接信息，也就是结点间的边。但是，不同于结点分类的是，链接预测的对象是边，而边的泄露在消息传递的过程中是可以被规避掉的，因为被传递的消息是结点信息而不是边的信息。</p>
+<p>具体来说，如不对前面提到的<code>Cora</code>数据集进行负采样，则其链接预测的训练集、验证集、测试集（比例8：1：1）和全集依次为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(train_data, <span class="string">&quot;\n&quot;</span>, val_data, <span class="string">&quot;\n&quot;</span>, test_data, <span class="string">&quot;\n&quot;</span>, data)</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">8448</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">4224</span>], edge_label_index=[<span class="number">2</span>, <span class="number">4224</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">8448</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">527</span>], edge_label_index=[<span class="number">2</span>, <span class="number">527</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">9502</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">527</span>], edge_label_index=[<span class="number">2</span>, <span class="number">527</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">10556</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>])</span><br></pre></td></tr></table></figure>
+
+<p>事实上，上面四个数据集都代表着四张不同的图，其中前面三张图是最后一张（原图）的<em>生成子图</em>，即前面三张图包含原图的所有结点和部分边。这些信息体现在<code>edge_index</code>上。</p>
+<ul>
+<li>对于训练集，其不包含负样本的<code>edge_label_index</code>是<code>edge_index</code>的无向图形式（即在<code>edge_index</code>中，无向图的一条边被视为有向图的两条边，而<code>edge_label_index</code>只将其视为一条边，所以<code>edge_label_index</code>的边数是<code>edge_index</code>的一半）。在训练模型过程中，训练集的消息传递会用到所有的训练集边（<code>edge_index</code>），最终的预测也会用到所有的训练集边（<code>edge_label_index</code> &amp; <code>edge_label</code>）+负采样边；</li>
+<li>对于验证集，其消息传递的过程中不能使用验证集中特有的边，因此消息传递用到的是训练集的边，这也是为什么验证集的<code>edge_index</code>和训练集的<code>edge_index</code>是一样的。最终的分类过程只会用到验证集特有的边（<code>edge_label_index</code> &amp; <code>edge_label</code>）+负采样边；</li>
+<li>对于测试集，其消息传递的过程中也不能使用测试集中特有的边，但是可以使用验证集中特有的边，因此消息传递用到的是训练集和边+验证集特有的边（<code>8448+527*2=9502</code>）。最终的分类过程同样只会用到测试集特有的边+负采样边。</li>
+</ul>
+<blockquote>
+<p>需要特别注意的是，虽然负采样的边不会参与消息传递的过程，但是训练集、验证集和测试集在分类阶段的负采样边同样不能重叠。这很容易实现，只要让负采样在正采样的边所特有的结点间进行即可（e.g. <code>train_data</code>的在8848条边的结点间进行，<code>val_data</code>的在527条边的结点间进行）。</p>
+</blockquote>
+<p>综合来说，链接预测是可以保证数据完全不泄露的，只要保证训练集、验证集和测试集拥有<code>label</code>的边不同以及除训练集外的消息传递不用有<code>label</code>的边即可。</p>
+<blockquote>
+<p>在更严格的算法中（e.g. <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1802.09691.pdf">SEAL</a>），训练集的边还被进一步划分为<code>training_supervision_edges</code>和<code>training_message_edges</code>，其中前者是训练集特有的带<code>label</code>的边，而后者是用于消息传递的边。而一般的算法（e.g. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1611.07308">GAE</a>），对这两者不做区分。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Cyril_KI/article/details/125956540">PyG搭建GCN实现链接预测</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41601540/article/details/121500949">Link Prediction Note</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\11\07\DifferentTypesofGraph\" rel="bookmark">Graphs of  Different Types</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\08\24\TransductiveInductiveLearning\" rel="bookmark">Transductive Learning and Inductive Learning</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\08\14\GraphNeuralTangentKernel\" rel="bookmark">Graph Neural Tangent Kernel</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\16\PageRank\" rel="bookmark">PageRank</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\15\ExpressivePowerofGNNs\" rel="bookmark">Expressive Power of GNNs</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GNN/" rel="tag"># GNN</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E9%A2%84%E6%B5%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">链接预测的基本方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EPyG%E7%9A%84GNN%E9%93%BE%E6%8E%A5%E9%A2%84%E6%B5%8B"><span class="nav-number">2.</span> <span class="nav-text">基于PyG的GNN链接预测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%92%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">数据集的划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83"><span class="nav-number">2.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">2.3.</span> <span class="nav-text">精度分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E7%82%B9%E5%88%86%E7%B1%BB%E5%92%8C%E9%93%BE%E6%8E%A5%E9%A2%84%E6%B5%8B%E7%9A%84%E6%B5%8B%E8%AF%95%E9%9B%86%E6%B3%84%E9%9C%B2%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">结点分类和链接预测的测试集泄露问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E7%82%B9%E5%88%86%E7%B1%BB"><span class="nav-number">3.1.</span> <span class="nav-text">结点分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E9%A2%84%E6%B5%8B"><span class="nav-number">3.2.</span> <span class="nav-text">链接预测</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChaosTsang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ChaosTsang</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fas fa-star-of-david"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {  // 2023-04-04 00:16:51
+        var grt= new Date("04/04/2023 00:16:51");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/zclzcl0223/my_medium-zoom@master/medium-zoom-v7.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="矩阵理论第六课，主要讲特殊矩阵与矩阵分解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MatrixTheory: 特殊矩阵与矩阵分解">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/11/24/MatrixTheory5/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="矩阵理论第六课，主要讲特殊矩阵与矩阵分解。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-11-24T04:26:01.000Z">
+<meta property="article:modified_time" content="2023-12-30T12:38:50.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/11/24/MatrixTheory5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>MatrixTheory: 特殊矩阵与矩阵分解 | JourneyToCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JourneyToCoding</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/11/24/MatrixTheory5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MatrixTheory: 特殊矩阵与矩阵分解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-11-24 12:26:01" itemprop="dateCreated datePublished" datetime="2023-11-24T12:26:01+08:00">2023-11-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-12-30 20:38:50" itemprop="dateModified" datetime="2023-12-30T20:38:50+08:00">2023-12-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MATH6005-Matrix-Theory/" itemprop="url" rel="index"><span itemprop="name">MATH6005: Matrix Theory</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">矩阵理论第六课，主要讲特殊矩阵与矩阵分解。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="特殊矩阵"><a href="#特殊矩阵" class="headerlink" title="特殊矩阵"></a>特殊矩阵</h1><p>一些复数域的特殊矩阵。</p>
+<h2 id="正规矩阵"><a href="#正规矩阵" class="headerlink" title="正规矩阵"></a>正规矩阵</h2><p>复数域可酉对角化（不一定正交对角化）的矩阵。$Q^* &#x3D; Q ^{-1}$。</p>
+<p>$$<br>Q^* A Q &#x3D; \Lambda<br>$$</p>
+<p>定义：复数域上的方阵，满足$AA^*&#x3D;A^*A$</p>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><ol>
+<li>与正规矩阵酉相似的矩阵还是正规矩阵，即$B &#x3D; Q^*A Q$，其中$A$是正规矩阵，则$B$也是正规矩阵。</li>
+<li>$A$为正规三角矩阵，则$A$一定为对角矩阵。</li>
+<li>$A$为正规矩阵$\iff$$A$可酉对角化。</li>
+</ol>
+<blockquote>
+<p>左到右：舒尔定理——复数域的方阵一定可酉相似于三角矩阵。而正规三角矩阵一定为对角矩阵。</p>
+</blockquote>
+<p>实数域的正规矩阵：$A ^T &#x3D; A$，$A ^T &#x3D; -A$，$A ^T &#x3D; A ^{-1}$<br>复数域的正规矩阵：$A^* &#x3D; A$，$A^* &#x3D; -A$，$A^* &#x3D; A ^{-1}$</p>
+<h4 id="Hermite矩阵：-A-x3D-A"><a href="#Hermite矩阵：-A-x3D-A" class="headerlink" title="Hermite矩阵：$A^* &#x3D; A$"></a>Hermite矩阵：$A^* &#x3D; A$</h4><p>实对称矩阵的推广。性质：</p>
+<ol>
+<li>特征值都是实数，类似地，反Hermite矩阵的特征值都是纯虚数或0。</li>
+<li>复二次型：$x^* A x$（一定是实数），相应地，可定义正定、标准化。</li>
+</ol>
+<blockquote>
+<p>等积变换：正交变换、酉变换$x &#x3D; Qy$</p>
+</blockquote>
+<h4 id="酉矩阵：-AA-x3D-A-A-x3D-E"><a href="#酉矩阵：-AA-x3D-A-A-x3D-E" class="headerlink" title="酉矩阵：$AA^*&#x3D;A^*A&#x3D;E$"></a>酉矩阵：$AA^*&#x3D;A^*A&#x3D;E$</h4><ol>
+<li>特征值模为1。</li>
+</ol>
+<h1 id="矩阵分解（20-30分）"><a href="#矩阵分解（20-30分）" class="headerlink" title="矩阵分解（20~30分）"></a>矩阵分解（20~30分）</h1><h2 id="满秩分解"><a href="#满秩分解" class="headerlink" title="满秩分解"></a>满秩分解</h2><p>化埃尔米特标准型求。四个子空间。</p>
+<blockquote>
+<p>可能能用于求矩阵的次方。如$A ^2 &#x3D; PQPQ&#x3D;P(QP)Q$。特别是对于$A$的秩为1的时候，$P$和$Q$都是向量，此时$QP$是一个数。</p>
+</blockquote>
+<h2 id="正交三角分解"><a href="#正交三角分解" class="headerlink" title="正交三角分解"></a>正交三角分解</h2><p>$A _{m\times n}$：必须列满秩才有正交三角分解。</p>
+<p>$$<br>A _{m\times n}&#x3D; U _{m \times n}R _{n \times n}<br>$$</p>
+<p>其中$U$的列向量单位正交，$R$是主对角元大于0的上三角。</p>
+<blockquote>
+<p>$U$即为$A$的列向量的斯密特单位正交化。$R _{ij}&#x3D;(\alpha _i, \gamma _j)(i \ne j),R _{ii}&#x3D;||\beta _i||$且上三角。或者$R &#x3D; U^* A$。</p>
+<p>正交三角分解是唯一的。</p>
+<p>应用：解线性方程组。</p>
+</blockquote>
+<h2 id="谱分解"><a href="#谱分解" class="headerlink" title="谱分解"></a>谱分解</h2><p>$A _{n \times n}$：可对角化的方阵才有谱分解。</p>
+<p>$P&#x3D;(\alpha _1, \alpha _2,..., \alpha _n)$，其中$\alpha _i$为特征向量。</p>
+<p>最基本的谱分解：<br>$$<br>A &#x3D; (\alpha _1,...,\alpha _n)eye(\lambda _1,...,\lambda _n)(\beta _1 ^T,...,\beta _n ^T)<br>$$</p>
+<p>其中$P ^{-1}&#x3D;(\beta _1 ^T,...,\beta _n ^T)$（竖着的）</p>
+<p>于是：</p>
+<p>$$<br>A &#x3D; \lambda _1 \alpha _1 \beta _1 ^T +...+ \lambda _n \alpha _n \beta _n ^T<br>$$</p>
+<p>记$S _1,..., S _m$为不同的特征值，则：</p>
+<p>$$<br>A &#x3D; S _1 G _1+...+ S _m G _m<br>$$</p>
+<p>性质：</p>
+<ol>
+<li>$\sum _{i &#x3D; 1} ^m G _i &#x3D; E$</li>
+<li>$\beta _i ^T \alpha _j &#x3D; 1 (i &#x3D; j);0 (i \ne j)$。$(\alpha _i \beta _i ^T) ^2 &#x3D; \alpha _i \beta _i ^T$，$(\alpha _i \beta _i ^T)(\alpha _j \beta _j ^T) &#x3D; 0 (i \ne j)$。故$G _i ^2 &#x3D; G _i$，$G _i G _j &#x3D; 0 (i \ne j)$。</li>
+<li>$r (G _i) &#x3D; n _i (\text{特征值的代数重数})$。</li>
+<li>谱分解唯一。用性质1、2证明。</li>
+</ol>
+<p>正规矩阵的谱分解：不需要专门求逆矩阵。</p>
+<p>$$<br>A ^2 &#x3D; \sum \lambda _i ^2 G _i<br>$$</p>
+<h2 id="三角分解（cholesky分解）"><a href="#三角分解（cholesky分解）" class="headerlink" title="三角分解（cholesky分解）"></a>三角分解（cholesky分解）</h2><p>$A _{n\times n}$：秩为$r$的方阵，$A&#x3D;LU$，其中$L$为单位下三角，$U$是上三角。</p>
+<ul>
+<li>条件：1~r阶顺序主子式非零。</li>
+</ul>
+<p>本质是高斯消元：即行变换相当于左乘矩阵，让行变换后的矩阵是个上三角，此时左乘的矩阵一定是一个单位下三角。由于左乘的单位下三角是可逆的，故左乘其逆矩阵即可得到$A&#x3D;LU$。</p>
+<ul>
+<li>注：此时的行变换只能用上面的行去减下面的行。</li>
+</ul>
+<h3 id="实正定矩阵"><a href="#实正定矩阵" class="headerlink" title="实正定矩阵"></a>实正定矩阵</h3><p>首先，一定有三角分解，但是更特殊，称Cholesky分解：$A&#x3D;R ^T R$。$R$为主对角元大于零的上三角。</p>
+<p>因为正定矩阵一定是对称的，所以可以正交相似对角化：$Q ^TA Q&#x3D;\Lambda$，可得$A &#x3D; Q\Lambda Q ^T&#x3D;Q\sqrt{\Lambda}\sqrt{\Lambda}Q ^T&#x3D;(\sqrt{\Lambda}Q ^T) ^T (\sqrt{\Lambda}Q ^T)&#x3D;B ^T B&#x3D;(\sqrt{\Lambda}Q ^T) ^T Q ^T Q(\sqrt{\Lambda}Q ^T)&#x3D;(Q\sqrt{\Lambda}Q ^T) ^T(Q\sqrt{\Lambda}Q ^T) &#x3D;C ^TC$，显然，$C$是一个正定矩阵。</p>
+<p>而$B$是满秩的，所以一定有正交三角分解，即$B &#x3D; UR$，$U$为正交矩阵，于是$B ^TB&#x3D;(UR) ^T(UR)&#x3D;R ^TR$，即为所求。</p>
+<blockquote>
+<p>这样的分解是唯一的。</p>
+</blockquote>
+<p>求法：同时行列变换（仍然只能上减下、左减右），将$A$化为对角矩阵，分别左右乘逆矩阵，然后对角矩阵开根号，前两个当一个矩阵，后两个当一个矩阵即可。</p>
+<h2 id="奇异值分解（极分解）"><a href="#奇异值分解（极分解）" class="headerlink" title="奇异值分解（极分解）"></a>奇异值分解（极分解）</h2><p>$A _{m\times n}$，$r(A) &#x3D; r$，$A _{m\times n}&#x3D; U _{m\times m} D _{m\times n} V^* _{n\times n}$，其中$U,V$是酉矩阵，$D$的所有元素中只有主对角线上前面的元素$\delta _i$非零，$\delta _i &gt; 0,0\le i\le r$，$\delta _i$称为$A$的奇异值。</p>
+<ul>
+<li>奇异值：$A A^*$的特征值开根号。</li>
+<li>$U$：$A A^*$特征值的单位正交向量组成的矩阵。</li>
+<li>$V$：$A^* A$特征值的单位正交向量组成的矩阵。</li>
+</ul>
+<h3 id="一些性质"><a href="#一些性质" class="headerlink" title="一些性质"></a>一些性质</h3><ul>
+<li>$r(A) &#x3D; r (A^*) &#x3D; r (AA^*) &#x3D; r (A^* A)$：即证$N(A)&#x3D;N(AA^*)$。</li>
+<li>$AA^*$与$A^* A$的非零特征值完全一样：$A^* A$特征值为$\lambda$，特征向量为$\alpha$，则$AA^*$的特征值为$\lambda$，特征向量为$A \alpha$。</li>
+<li>$A^* A$和$A A^*$都是半正定矩阵，特征值开根号即为奇异值。</li>
+<li>设$\lambda$为$A^* A$的一个非零特征值，$\alpha _1,...,\alpha _k$为其单位正交特征向量，则$\lambda$为$A A^*$特征向量，$A\alpha _1,...,A\alpha _k$为其正交特征向量，但不是单位的，要除以$\sqrt{\lambda}$（即奇异值）才是单位化的。</li>
+</ul>
+<h3 id="奇异值分解求法"><a href="#奇异值分解求法" class="headerlink" title="奇异值分解求法"></a>奇异值分解求法</h3><ol>
+<li>求$A^*A$<strong>大于0</strong>的特征值$\lambda _i$，及其对应的<strong>单位正交</strong>的特征向量$\alpha _i$；求0特征值对应的<strong>单位正交</strong>的特征向量$\alpha _{i+1}$。</li>
+<li>求$AA^*$<strong>大于0</strong>的特征值（和$A^*A$）相同，及其对应的<strong>单位正交</strong>的特征向量$\beta _i$（$\beta _i &#x3D; (A \alpha _i) &#x2F; \sqrt{\lambda _i}$）；求0特征值对应的<strong>单位正交</strong>的特征向量$(\beta _{i+1})$。（无特殊求法）</li>
+</ol>
+<p>$A(\alpha _1,..., \alpha _i, \alpha _{i+1}, ...,\alpha _n)&#x3D;(\beta _1,...,\beta _i,\beta _{i+1},..,\beta _n)\Lambda(\sqrt{\lambda _1},..,\sqrt{\lambda _i},0,...,0)$，故$A&#x3D;UDV^*$。其中$U&#x3D;(\beta _1,...,\beta _i,\beta _{i+1},..,\beta _n)$，$V&#x3D;(\alpha _1,..., \alpha _i, \alpha _{i+1}, ...,\alpha _n)$。</p>
+<blockquote>
+<p>先求$AA^*$还是$A^*A$看哪个阶数小。</p>
+</blockquote>
+<p>$\alpha _1,..,\alpha _i$是$A$的行空间中的向量，$\beta _1,..,\beta _i$是$A$的列空间中的向量；$\alpha _{i+1},...,\alpha _n$是$N(A)$的向量，$\beta _{i+1},..,\beta _n$是$N ^T(A)$中的向量。</p>
+<h3 id="极分解"><a href="#极分解" class="headerlink" title="极分解"></a>极分解</h3><p>若$A$是方阵，则$A&#x3D;UDV^*&#x3D;(UDU^*)(UV^*)$，其中，左边是一个半正定矩阵，右边是酉矩阵，这就是极分解。或者$A&#x3D;(UV^*)(VDV^*)$，其中左边是酉矩阵，右边是半正定矩阵。若$A$可逆，则为半正定变为正定。</p>
+<h3 id="A是正规矩阵"><a href="#A是正规矩阵" class="headerlink" title="A是正规矩阵"></a>A是正规矩阵</h3><p>原始式很重要。牢记，有些就是对原始式做变形。</p>
+<h1 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h1><h2 id="向量范数"><a href="#向量范数" class="headerlink" title="向量范数"></a>向量范数</h2><p>长度的推广。</p>
+<p>满足性质：</p>
+<ol>
+<li>$||\alpha|| &gt; 0$，正定性</li>
+<li>$||k \cdot \alpha|| &#x3D; |k| ||\alpha||$，齐次性</li>
+<li>$||\alpha + \beta|| \le ||\alpha|| + ||\beta||$，三角不等式</li>
+</ol>
+<p>非负函数。</p>
+<blockquote>
+<p>定义了范数的线性空间称<em>赋范线性空间</em>。</p>
+</blockquote>
+<ul>
+<li>$\mathcal{l} _1$：$\sum |x _i|$</li>
+<li>$\mathcal{l} _2$：$(\sum |x _i| ^2) ^{1&#x2F;2}$</li>
+<li>$\mathcal{l} _p$：$(\sum |x _i| ^p) ^{1&#x2F;p}(p \ge 1)$</li>
+<li>$\mathcal{l} _\infty$：$\max\{|x _i|,1\le i\le n\}$</li>
+</ul>
+<p>以上统称$p$范数。向量范数是等价的。等价：</p>
+<p>$$<br>c _1,c _2, c _2||\alpha|| _b \le ||\alpha|| _a\le c _1||\alpha|| _b<br>$$</p>
+<h2 id="矩阵范数"><a href="#矩阵范数" class="headerlink" title="矩阵范数"></a>矩阵范数</h2><p>除前面三条性质外，还有：</p>
+<ul>
+<li>$|||AB||| \le |||A|||\space |||B|||$</li>
+</ul>
+<p>F范数：</p>
+<ul>
+<li>$|||A||| _F&#x3D;(\sum |a _{ij}| ^2) ^{1&#x2F;2}&#x3D;\sqrt{\text{tr}(AA^*)}&#x3D;\sqrt{\text{tr}(A^*A)}$</li>
+</ul>
+<p>Schur不等式，$A &#x3D; (a _{ij}) _{n\times n},\lambda _1,...,\lambda _n$，则：</p>
+<p>$$<br>\sum |\lambda _i| ^2 \le \sum |a _{ij}| ^2\iff\text{A是正规矩阵取等号}<br>$$</p>
+<p>Schur定理：$Q^* A Q &#x3D; \text{diag}(\lambda _1, ...,\lambda _n)+\text{上三角}$，其中$Q^*&#x3D;Q ^{-1}$。</p>
+<h2 id="相容"><a href="#相容" class="headerlink" title="相容"></a>相容</h2><p>若</p>
+<p>$$<br>||A \alpha|| \le |||A|||\cdot ||\alpha||<br>$$<br>其中$A$是矩阵，$\alpha$是向量，则称这两个范数是相容的。</p>
+<h3 id="算子范数"><a href="#算子范数" class="headerlink" title="算子范数"></a>算子范数</h3><p>由向量范数$||\cdot|| _a$构造相容的矩阵范数：</p>
+<p>$$<br>|||A|||&#x3D;\max _{x \ne 0,x \in C ^n}\frac{||Ax|| _a}{||x|| _a}&#x3D;\max _{||x|| _a&#x3D;1}||Ax|| _a<br>$$</p>
+<p>如$||\alpha|| _2$导出的矩阵范数：</p>
+<p>$$<br>|||A||| _2&#x3D;&#x3D;\max _{||x|| _2&#x3D;1}||Ax|| _2<br>$$</p>
+<p>$$<br>||Ax|| _2 ^2&#x3D;(Ax,Ax)&#x3D;x^* A^* Ax<br>$$</p>
+<p>设$A^*A$的$n$个特征值为$\lambda _1\ge ...\ge \lambda _n \ge 0$，对应的单位正交特征向量为$\alpha _1,...,\alpha _n$。显然，这是$C ^n$的一组基，故：</p>
+<p>$$<br>x &#x3D; x _1\alpha _1+...+x _n \alpha _n<br>$$</p>
+<p>$$<br>x^*&#x3D; \overline{x} _1\alpha _1^*+...+\overline{x} _n \alpha _n^*<br>$$</p>
+<p>$$<br>x^* A^* A x&#x3D;(\overline{x} _1\alpha _1^*+...+\overline{x} _n \alpha _n^*)A^* A(x _1\alpha _1+...+x _n \alpha _n)<br>$$</p>
+<p>即：</p>
+<p>$$<br>\begin{align*}<br>x^* A^* A x<br>&amp;&#x3D;(\overline{x} _1\alpha _1^*+...+\overline{x} _n \alpha _n^*)(x _1\lambda _1\alpha _1+...+x _n\lambda _n \alpha _n)\\<br>&amp;&#x3D;\lambda _1 |x _1| ^2+...+\lambda _n |x _n| ^2\\<br>&amp;\le \lambda _1(|x _1| ^2+...+ |x _n| ^2)<br>\end{align*}<br>$$</p>
+<p>而可以取等，所以$x^* A^* Ax &#x3D; \lambda _1$，$|||A||| _2 &#x3D;\sqrt{\lambda _1}$。其中$\lambda _1$为最大特征值。<em>称谱范数</em>。</p>
+<blockquote>
+<p>作业：求$||\alpha|| _1$和$||\alpha|| _\infty$的导出的矩阵算子范数。（提示：矩阵行取模最大、列取模最大）。</p>
+</blockquote>
+<h2 id="向量、矩阵序列的收敛性"><a href="#向量、矩阵序列的收敛性" class="headerlink" title="向量、矩阵序列的收敛性"></a>向量、矩阵序列的收敛性</h2><p>向量序列$x ^{(k)}&#x3D;(x _1 ^{(k)},...,x _n ^{(k)}) ^T$，收敛：$\lim _{k \to \infty} x ^{(k)}&#x3D;x\iff \lim _{k\to \infty}||x ^{(k)}-x||&#x3D;0$。</p>
+<p>同理，可定义矩阵序列及其收敛。</p>
+<blockquote>
+<p>矩阵或向量的收敛是每个元素都收敛到一个值。</p>
+</blockquote>
+<p>矩阵的幂序列：$A ^{(k)}&#x3D; A ^k$。化为Jordan标准型，Jordan块的$k$次方，二项展开i即可，不用记公式。</p>
+<ul>
+<li>$|\lambda| _i &lt; 1$，收敛到0；</li>
+<li>$|\lambda| _i&#x3D;1$且$\lambda _i &#x3D; 1$且$m &#x3D; 1$，收敛；</li>
+<li>其他发散</li>
+</ul>
+<p>故，矩阵的谱半径小于$1$时幂矩阵序列幂收敛到0。</p>
+<h2 id="谱半径范数是最小的矩阵范数"><a href="#谱半径范数是最小的矩阵范数" class="headerlink" title="谱半径范数是最小的矩阵范数"></a>谱半径范数是最小的矩阵范数</h2><p>$\rho (A) \le |||A|||$</p>
+<blockquote>
+<p>证明：令$B &#x3D; A &#x2F; (|||A|||+\epsilon)$，则$|||B|||&#x3D;|||A|||&#x2F;(|||A|||+\epsilon) &lt; 1$。</p>
+</blockquote>
+<h2 id="矩阵级数"><a href="#矩阵级数" class="headerlink" title="矩阵级数"></a>矩阵级数</h2><p>向量&#x2F;矩阵序列的项相加。$\sum _{k&#x3D;0} ^{\infty}A ^{(k)}$。收敛即$\sum a _{ij} ^{(k)}$都收敛。</p>
+<h3 id="矩阵幂级数"><a href="#矩阵幂级数" class="headerlink" title="矩阵幂级数"></a>矩阵幂级数</h3><p>$\sum _{k&#x3D;0} ^\infty a _k A ^k$收敛性与$f(t)&#x3D;\sum _{k&#x3D;0} ^\infty a _k t ^k$有关。假设为Jordan块，则每一行的和就是$f(\lambda)$的泰勒级数。最终：</p>
+<p>$$<br>\sum a _k A ^k &#x3D; P\text{diag}(f(J _1),...,f(J _s))p ^{-1}<br>$$</p>
+<p>其中$\rho(A)&lt; r$，其中$r$为数项幂级数的收敛半径。</p>
+<h3 id="矩阵函数"><a href="#矩阵函数" class="headerlink" title="矩阵函数"></a>矩阵函数</h3><p>$e ^A$，$\sin A$,$\cos A$：可泰勒展开化为矩阵多项式求。而矩阵多项式又可用哈密尔顿凯勒定理求：</p>
+<ul>
+<li>哈密尔顿凯勒定理求：$A ^n$可由$A ^{n-1},...,E$线性表示。即$f(A)&#x3D;\varPhi(\lambda)g+\text{余式}$。其中$g$是某个零化多项式，$\text{余式}$是比它低一次的多项式。只要待定系数求出余式的系数即可，带入的数是零化多项式的根（缺少约束就两边求导）。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\12\02\CountingComplexity\" rel="bookmark">Computational Complexity: Complexity of Counting</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\11\13\RandomizedComputation\" rel="bookmark">Computational Complexity: Randomized Computation</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\10\31\CircuitComplexity\" rel="bookmark">Computational Complexity: Circuit Complexity</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\10\25\MatrixTheory4\" rel="bookmark">MatrixTheory: 特征值、特征向量</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\10\25\PolynomialHierarchy\" rel="bookmark">Computational Complexity: Polynomial Hierarchy</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Math/" rel="tag"># Math</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%9F%A9%E9%98%B5"><span class="nav-number">1.</span> <span class="nav-text">特殊矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E8%A7%84%E7%9F%A9%E9%98%B5"><span class="nav-number">1.1.</span> <span class="nav-text">正规矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hermite%E7%9F%A9%E9%98%B5%EF%BC%9A-A-x3D-A"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Hermite矩阵：$A^* &#x3D; A$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%89%E7%9F%A9%E9%98%B5%EF%BC%9A-AA-x3D-A-A-x3D-E"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">酉矩阵：$AA^*&#x3D;A^*A&#x3D;E$</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%EF%BC%8820-30%E5%88%86%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">矩阵分解（20~30分）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%A1%E7%A7%A9%E5%88%86%E8%A7%A3"><span class="nav-number">2.1.</span> <span class="nav-text">满秩分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E4%BA%A4%E4%B8%89%E8%A7%92%E5%88%86%E8%A7%A3"><span class="nav-number">2.2.</span> <span class="nav-text">正交三角分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%B1%E5%88%86%E8%A7%A3"><span class="nav-number">2.3.</span> <span class="nav-text">谱分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E5%88%86%E8%A7%A3%EF%BC%88cholesky%E5%88%86%E8%A7%A3%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">三角分解（cholesky分解）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5"><span class="nav-number">2.4.1.</span> <span class="nav-text">实正定矩阵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3%EF%BC%88%E6%9E%81%E5%88%86%E8%A7%A3%EF%BC%89"><span class="nav-number">2.5.</span> <span class="nav-text">奇异值分解（极分解）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%80%A7%E8%B4%A8"><span class="nav-number">2.5.1.</span> <span class="nav-text">一些性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3%E6%B1%82%E6%B3%95"><span class="nav-number">2.5.2.</span> <span class="nav-text">奇异值分解求法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%88%86%E8%A7%A3"><span class="nav-number">2.5.3.</span> <span class="nav-text">极分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A%E6%98%AF%E6%AD%A3%E8%A7%84%E7%9F%A9%E9%98%B5"><span class="nav-number">2.5.4.</span> <span class="nav-text">A是正规矩阵</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8C%83%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">范数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E8%8C%83%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">向量范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0"><span class="nav-number">3.2.</span> <span class="nav-text">矩阵范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%AE%B9"><span class="nav-number">3.3.</span> <span class="nav-text">相容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E5%AD%90%E8%8C%83%E6%95%B0"><span class="nav-number">3.3.1.</span> <span class="nav-text">算子范数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F%E3%80%81%E7%9F%A9%E9%98%B5%E5%BA%8F%E5%88%97%E7%9A%84%E6%94%B6%E6%95%9B%E6%80%A7"><span class="nav-number">3.4.</span> <span class="nav-text">向量、矩阵序列的收敛性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%B1%E5%8D%8A%E5%BE%84%E8%8C%83%E6%95%B0%E6%98%AF%E6%9C%80%E5%B0%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0"><span class="nav-number">3.5.</span> <span class="nav-text">谱半径范数是最小的矩阵范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%BA%A7%E6%95%B0"><span class="nav-number">3.6.</span> <span class="nav-text">矩阵级数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%B9%82%E7%BA%A7%E6%95%B0"><span class="nav-number">3.6.1.</span> <span class="nav-text">矩阵幂级数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E5%87%BD%E6%95%B0"><span class="nav-number">3.6.2.</span> <span class="nav-text">矩阵函数</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChaosTsang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ChaosTsang</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fas fa-star-of-david"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {  // 2023-04-04 00:16:51
+        var grt= new Date("04/04/2023 00:16:51");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/zclzcl0223/my_medium-zoom@master/medium-zoom-v7.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>

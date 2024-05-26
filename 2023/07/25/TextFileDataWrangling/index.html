@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Linux提供强大的能操作文本和文件的命令，通过使用这些命令及其组合，我们能够快速地处理文本、在文件中传递信息和进行数据整理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Text, File and Data Wrangling">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/25/TextFileDataWrangling/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Linux提供强大的能操作文本和文件的命令，通过使用这些命令及其组合，我们能够快速地处理文本、在文件中传递信息和进行数据整理。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-25T10:18:40.000Z">
+<meta property="article:modified_time" content="2023-09-02T10:03:26.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Tool">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/07/25/TextFileDataWrangling/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Text, File and Data Wrangling | JourneyToCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JourneyToCoding</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/07/25/TextFileDataWrangling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Text, File and Data Wrangling
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-07-25 18:18:40" itemprop="dateCreated datePublished" datetime="2023-07-25T18:18:40+08:00">2023-07-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-09-02 18:03:26" itemprop="dateModified" datetime="2023-09-02T18:03:26+08:00">2023-09-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Linux提供强大的能操作文本和文件的命令，通过使用这些命令及其组合，我们能够快速地处理文本、在文件中传递信息和进行数据整理。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>下面这些常用的命令可以帮助我们快速地处理文本、在文件中传递信息、进行数据整理。</p>
+<h2 id="I-x2F-O重定向"><a href="#I-x2F-O重定向" class="headerlink" title="I&#x2F;O重定向"></a>I&#x2F;O重定向</h2><p>与C语言中的I&#x2F;O重定向相同，Linux的I&#x2F;O重定向允许我们自由地更改标准输入、标准输出和标准错误文件。它们的默认对象分别为键盘、显示器和显示器，文件句柄为0，1和2。</p>
+<h3 id="gt-and-gt-gt-：输出重定向"><a href="#gt-and-gt-gt-：输出重定向" class="headerlink" title="&gt; and &gt;&gt;：输出重定向"></a><code>&gt;</code> and <code>&gt;&gt;</code>：输出重定向</h3><p><code>&gt;</code>重定向符允许我们将程序的输出重定向到指定的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l /dev/null</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l /dev/null &gt; ls-output.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output.txt</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将<code>cat</code>视作一个查看文件内容的命令即可，后面会有介绍。</p>
+</blockquote>
+<p>使用<code>&gt;</code>后，原本会被输出到显示器的信息被输出到了新文件<code>ls-output.txt</code>中。需要注意的是，作为重定向目标的文件如果不存在，则Linux会先在当前目录下创建该文件，若目标文件已存在，则Linux会先将文件内容清空：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ &gt; ls-output.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l ls-output.txt</span><br><span class="line">-rw-rw-r--. 1 meme meme 0 Jul 25 19:52 ls-output.txt</span><br></pre></td></tr></table></figure>
+
+<p>由于<code>&gt;</code>前没有程序输出，所以目标文件的内容会被直接清零。若想保持原文件内容不变，则应该使用<code>&gt;&gt;</code>重定向符，让输出被添加在目标文件末尾：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l /dev/null &gt;&gt; ls-output.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output.txt</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l /dev/null &gt;&gt; ls-output.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output.txt</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此处用到的文件<code>/dev/null</code>是Linux中的一个特殊文件，它是一个系统设备，称“位存储桶”，它可以接受输入，但是不输入任何东西。有时一些输出信息如果我们不想看到，我们可以直接把它们重定向到<code>/dev/null</code>。</p>
+</blockquote>
+<h3 id="标准错误重定向"><a href="#标准错误重定向" class="headerlink" title="标准错误重定向"></a>标准错误重定向</h3><p>标准错误显示的是程序执行过程中出现的错误信息，比如，若我们想用<code>ls</code>查看一个不存在的文件夹的信息，<code>ls</code>输出的就是标准错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l /ddd/ds</span><br><span class="line"><span class="built_in">ls</span>: cannot access /ddd/ds: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>标准错误缺乏专用的重定向符，我们只能用文件句柄+输出重定向来实现对标准错误的重定向，即：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l /ddd/ds 2&gt; ls-output-error.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output-error.txt</span><br><span class="line"><span class="built_in">ls</span>: cannot access /ddd/ds: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p><code>2</code>是Linux内部的标准错误文件句柄，<code>2&gt;</code>或<code>2&gt;&gt;</code>（添加到文件末尾）能够实现标准错误的重定向。</p>
+<h3 id="标准输出与错误同步"><a href="#标准输出与错误同步" class="headerlink" title="标准输出与错误同步"></a>标准输出与错误同步</h3><p>有时，我们会希望将标准输出和标准错误都重定向到一个文件。对于这个操作，Linux提供了两种方式。</p>
+<ol>
+<li>在输出重定向后将标准错误重定向到标准输出：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l /ddd/ds &gt;&gt; ls-output-error.txt 2&gt;&amp;1</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output-error.txt</span><br><span class="line"><span class="built_in">ls</span>: cannot access /ddd/ds: No such file or directory</span><br><span class="line"><span class="built_in">ls</span>: cannot access /ddd/ds: No such file or directory</span><br></pre></td></tr></table></figure>
+上面的<code>2&gt;&amp;1</code>将标准错误<code>2</code>重定向至标准输出<code>1</code>，而前面的<code>&gt;&gt;</code>则同时决定了两者的重定向方式。<code>&gt;&gt;</code>和<code>2&gt;&amp;1</code>的顺序不能颠倒，否则标准错误会被先重定向到原来的标准输出（显示器）。</li>
+<li>标准输出与标准错误同时重定向，这是一种更简洁的方法：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l /ddd/ds &amp;&gt; ls-output-error.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output-error.txt</span><br><span class="line"><span class="built_in">ls</span>: cannot access /ddd/ds: No such file or directory</span><br></pre></td></tr></table></figure>
+<code>&amp;&gt;</code>或<code>&amp;&gt;&gt;</code>同时将标准输出和标准错误重定向到同一个文件。</li>
+</ol>
+<h3 id="lt-：输入重定向"><a href="#lt-：输入重定向" class="headerlink" title="&lt;：输入重定向"></a><code>&lt;</code>：输入重定向</h3><p>在了解<code>&lt;</code>输入重定向符号之前，我们要先知道一个可以接受标准输入的命令，见<a href="/2023/07/25/TextFileDataWrangling/#cat：Concatenate，连接文件"><code>cat</code>：Concatenate，连接文件</a>。</p>
+<p>既然<code>cat</code>能够接受标准输入，那么我们就可以用<code>&lt;</code>将标准输入重定向为我们想要的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> &lt; ls-output.txt</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br></pre></td></tr></table></figure>
+
+<p>进一步地，可以同时进行输入和输出重定向：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> &lt; ls-output.txt &gt; ls-output-copy.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output-copy.txt</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br></pre></td></tr></table></figure>
+
+<h2 id="cat：Concatenate，连接文件"><a href="#cat：Concatenate，连接文件" class="headerlink" title="cat：Concatenate，连接文件"></a><code>cat</code>：Concatenate，连接文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> [OPTION]... [FILE]...</span><br></pre></td></tr></table></figure>
+
+<p><code>cat</code>，如其字面意思，是一个连接操作。它将依次读取输入文件<code>[FILE]</code>的内容，并复制到标准输出。由于<code>cat</code>输出的不同文件的内容之间不会分页，也不会有分隔符，所以如果此时把输出重定向到另一个文件，那么其作用就好像是把这几个文件拼合成了一个文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output.txt</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output.txt ls-output-error.txt</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br><span class="line"><span class="built_in">ls</span>: cannot access /ddd/ds: No such file or directory</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output.txt ls-output-error.txt &gt; ls-output-cat.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> ls-output-cat.txt</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br><span class="line">crw-rw-rw-. 1 root root 1, 3 Jul 25 18:19 /dev/null</span><br><span class="line"><span class="built_in">ls</span>: cannot access /ddd/ds: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p><code>cat</code>后面也可以不跟文件名，此时它将从标准输入中读取信息并复制到标准输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span></span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br></pre></td></tr></table></figure>
+
+<p>上面的指令中，我只输入了一次<code>I don&#39;t know about you but I&#39;m feeling 22.</code>，但是回车后<code>cat</code>将会复制并再次输出一行相同的文本，直到我们<code>Ctrl+D</code>示意标准输入已经到达文件末尾。当然，我们也可以将<code>cat</code>输出的标准输入内容重定向到指定文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> &gt; 22.txt</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> 22.txt</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>cat</code>有许多有趣的<code>[OPTION]</code>选项，如<code>-n</code>会给输出加入行号。用<code>cat --help</code>来查看更多有趣的选项操作。</p>
+</blockquote>
+<h3 id="Here-document"><a href="#Here-document" class="headerlink" title="Here-document"></a>Here-document</h3><p>Here-document是Shell中一种特殊形式的重定向。Here-document，可以解释为“立即文档”。在这种特殊形式的重定向中，Here-document就是一段字符串，这段字符串的长度很短，以至于将其单独放在一个文件中有点“大动干戈”，不如直接放在命令或者脚本代码中。Here-document的基本用法为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">command</span>] &lt;&lt; [Here Tag]</span><br><span class="line">[Your Here-document]</span><br><span class="line">[Here Tag] <span class="comment"># 终止符[Here Tag]必须独占一行，且要顶格写</span></span><br></pre></td></tr></table></figure>
+
+<p>其中<code>[command]</code>是任意的能够接受输入文档的指令，<code>[Your Here-document]</code>是用户想要输入的字符串，<code>[Here Tag]</code>则用于标志用户输入的开始和终止，可以是任何的字符串，一般用<code>EOF</code>。以<code>cat</code>为例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> &lt;&lt; <span class="string">EOF</span></span><br><span class="line"><span class="string">&gt; Hello World</span></span><br><span class="line"><span class="string">&gt; EOF</span></span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+<p>此时，<code>Hello World</code>充当了输入文件的内容。</p>
+<blockquote>
+<p>Here-document常被用于Bash脚本中。</p>
+</blockquote>
+<h2 id="：管道线"><a href="#：管道线" class="headerlink" title="|：管道线"></a><code>|</code>：管道线</h2><p><code>|</code>运算符可用于连接两个命令，它会自动地将前一个命令的输出管道为后一个命令的输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> 22.txt | <span class="built_in">cat</span> &gt;&gt; 22.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> 22.txt</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br></pre></td></tr></table></figure>
+
+<p>第一个<code>cat</code>输出<code>22.txt</code>的内容，<code>|</code>将其管道为第二个<code>cat</code>的输入，而第二个<code>cat</code>的输出又被重定向到<code>22.txt</code>，因此最后<code>22.txt</code>的前两行被复制了一份。</p>
+<blockquote>
+<p>管道线可以用来实现很复杂的操作。有时会把多个命令用多个<code>|</code>连接，这样形成的复合命令一般被称为“过滤器”，因为它可以把原始的输出通过<code>|</code>的逐层过滤得到我们想要的输出形式。</p>
+</blockquote>
+<h2 id="uniq：Unique，报道或忽略重复行"><a href="#uniq：Unique，报道或忽略重复行" class="headerlink" title="uniq：Unique，报道或忽略重复行"></a><code>uniq</code>：Unique，报道或忽略重复行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">uniq</span> [OPTION]... [INPUT [OUTPUT]]</span><br></pre></td></tr></table></figure>
+
+<p><code>uniq</code>从标准输入或者单个文件名参数中接受<strong>有序列表</strong>，并在默认情况下删除有序列表中任何重复的行。由于输入<code>uniq</code>的参数必须是有序的<code>uniq</code>才能其作用（因为它只能检测到连续重复的行），因此<code>uniq</code>通常会结合<code>sort</code>一起使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> 22.txt</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">You don<span class="string">&#x27;t know about me but I&#x27;</span>ll bet you want to.</span><br><span class="line">Everything will be alright <span class="keyword">if</span> we just keep dancing like we<span class="string">&#x27;re</span></span><br><span class="line"><span class="string">22 22</span></span><br><span class="line"><span class="string">[meme@localhost Playground]$ cat 22.txt | sort | uniq</span></span><br><span class="line"><span class="string">22 22</span></span><br><span class="line"><span class="string">Everything will be alright if we just keep dancing like we&#x27;</span>re</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br><span class="line">You don<span class="string">&#x27;t know about me but I&#x27;</span>ll bet you want to.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此处稍稍增添了点《22》的歌词。</p>
+</blockquote>
+<p>选项<code>-d</code>会使得<code>uniq</code>只输出重复的行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> 22.txt | <span class="built_in">sort</span> | <span class="built_in">uniq</span> -d</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br></pre></td></tr></table></figure>
+
+<h2 id="wc：Word-Count，打印行、单词和字节数"><a href="#wc：Word-Count，打印行、单词和字节数" class="headerlink" title="wc：Word Count，打印行、单词和字节数"></a><code>wc</code>：Word Count，打印行、单词和字节数</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">wc</span> [OPTION]... [FILE]...</span><br></pre></td></tr></table></figure>
+
+<p><code>wc</code>会统计标准输入或者文件内容的总行数、总单词数和总字节数（字符数）并输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> 22.txt | <span class="built_in">sort</span> | <span class="built_in">uniq</span> -d | <span class="built_in">wc</span></span><br><span class="line">      2      20      98</span><br></pre></td></tr></table></figure>
+
+<p><code>wc</code>默认会将三个数字一起输出，不过<code>-l</code>、<code>-w</code>、<code>-m</code>选项会让其分别只输出行、单词、字符数。</p>
+<h2 id="head-x2F-tail：打印文件的开头或结尾"><a href="#head-x2F-tail：打印文件的开头或结尾" class="headerlink" title="head&#x2F;tail：打印文件的开头或结尾"></a><code>head</code>&#x2F;<code>tail</code>：打印文件的开头或结尾</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">head</span>/tail [OPTION]... [FILE]...</span><br></pre></td></tr></table></figure>
+
+<p><code>head</code>和<code>tail</code>是两个对称的命令，前者默认输出输入的前10行，后者输出输入的后10行。<code>-n</code>选项可用于调整打印的行数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> 22.txt | <span class="built_in">sort</span> | <span class="built_in">uniq</span> -d | <span class="built_in">head</span> -n1</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>若在使用<code>tail</code>的同时使用<code>-f</code>选项，那么除非人为地中止，<code>tail</code>程序不会退出。这使得我们可以用<code>tail -f [FILE]</code>来实时的监测文件内容。</p>
+</blockquote>
+<h2 id="tee：T-splitter，左右开弓"><a href="#tee：T-splitter，左右开弓" class="headerlink" title="tee：T-splitter，左右开弓"></a><code>tee</code>：T-splitter，左右开弓</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tee</span> [OPTION]... [FILE]...</span><br></pre></td></tr></table></figure>
+
+<p><code>tee</code>，如其名字的由来，T型分流器（T-splitter），可以接受标准输入读入的数据，并将其同时复制到标准输出和一个或多个文件中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> 22.txt | <span class="built_in">sort</span> | <span class="built_in">uniq</span> -d | <span class="built_in">tee</span> t1.txt t2.txt | <span class="built_in">head</span> -n1</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> t1.txt</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> t2.txt</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">I don<span class="string">&#x27;t know about you but I&#x27;</span>m feeling 22.</span><br></pre></td></tr></table></figure>
+
+<p><code>tee</code>获取了<code>uniq</code>的输出，并将其输出到<code>t1.txt</code>和<code>t2.txt</code>中，同时还会输入到标准输出中。<code>tee</code>的这种不中断管道流的特性使得它很适合被用在过滤器中以提取中间信息。</p>
+<h2 id="grep：Global-Regular-Expression-Print，打印匹配行"><a href="#grep：Global-Regular-Expression-Print，打印匹配行" class="headerlink" title="grep：Global Regular Expression Print，打印匹配行"></a><code>grep</code>：Global Regular Expression Print，打印匹配行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [OPTION]... PATTERN [FILE]...</span><br></pre></td></tr></table></figure>
+
+<p><code>grep</code>是一个很强大的程序，它可以按照<code>PATTERN</code>的形式匹配文件或标准输入中的指定模式并打印其所在的行。<code>PATTERN</code>可以是我们需要检索的文本，也可以是更加复杂通用的<em>正则表达式</em>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> 22.txt | grep Everything</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">Everything will be alright <span class="keyword">if</span> you keep me next to you.</span><br><span class="line">Everything will be alright <span class="keyword">if</span> we just keep dancing like we<span class="string">&#x27;re</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39437">The Linux Command Line 中文版 第七章：重定向</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39451">The Linux Command Line 中文版 第二十章：正则表达式</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39452">The Linux Command Line 中文版 第二十一章：文本处理</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/oqqHuTu12345678/article/details/129282059">Shell高级——Here Document、Here String</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zadmei.com/bzdc.html">Bash 中的 Cat EOF</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\09\02\BashScript\" rel="bookmark">Bash Script</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\08\04\RegularExpressions\" rel="bookmark">Regular Expressions</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\08\03\WildcardsPatternMatching\" rel="bookmark">Wildcards and Pattern Matching</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\25\ProgramCompilation\" rel="bookmark">Program Compilation</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\25\SystemSecurityPermission\" rel="bookmark">System Security and Permissions</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Tool/" rel="tag"># Tool</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-x2F-O%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">1.1.</span> <span class="nav-text">I&#x2F;O重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-and-gt-gt-%EF%BC%9A%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">1.1.1.</span> <span class="nav-text">&gt; and &gt;&gt;：输出重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E9%94%99%E8%AF%AF%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">1.1.2.</span> <span class="nav-text">标准错误重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E8%BE%93%E5%87%BA%E4%B8%8E%E9%94%99%E8%AF%AF%E5%90%8C%E6%AD%A5"><span class="nav-number">1.1.3.</span> <span class="nav-text">标准输出与错误同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-%EF%BC%9A%E8%BE%93%E5%85%A5%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">1.1.4.</span> <span class="nav-text">&lt;：输入重定向</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat%EF%BC%9AConcatenate%EF%BC%8C%E8%BF%9E%E6%8E%A5%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">cat：Concatenate，连接文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Here-document"><span class="nav-number">1.2.1.</span> <span class="nav-text">Here-document</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%9A%E7%AE%A1%E9%81%93%E7%BA%BF"><span class="nav-number">1.3.</span> <span class="nav-text">|：管道线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uniq%EF%BC%9AUnique%EF%BC%8C%E6%8A%A5%E9%81%93%E6%88%96%E5%BF%BD%E7%95%A5%E9%87%8D%E5%A4%8D%E8%A1%8C"><span class="nav-number">1.4.</span> <span class="nav-text">uniq：Unique，报道或忽略重复行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wc%EF%BC%9AWord-Count%EF%BC%8C%E6%89%93%E5%8D%B0%E8%A1%8C%E3%80%81%E5%8D%95%E8%AF%8D%E5%92%8C%E5%AD%97%E8%8A%82%E6%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">wc：Word Count，打印行、单词和字节数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#head-x2F-tail%EF%BC%9A%E6%89%93%E5%8D%B0%E6%96%87%E4%BB%B6%E7%9A%84%E5%BC%80%E5%A4%B4%E6%88%96%E7%BB%93%E5%B0%BE"><span class="nav-number">1.6.</span> <span class="nav-text">head&#x2F;tail：打印文件的开头或结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tee%EF%BC%9AT-splitter%EF%BC%8C%E5%B7%A6%E5%8F%B3%E5%BC%80%E5%BC%93"><span class="nav-number">1.7.</span> <span class="nav-text">tee：T-splitter，左右开弓</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grep%EF%BC%9AGlobal-Regular-Expression-Print%EF%BC%8C%E6%89%93%E5%8D%B0%E5%8C%B9%E9%85%8D%E8%A1%8C"><span class="nav-number">1.8.</span> <span class="nav-text">grep：Global Regular Expression Print，打印匹配行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChaosTsang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ChaosTsang</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fas fa-star-of-david"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {  // 2023-04-04 00:16:51
+        var grt= new Date("04/04/2023 00:16:51");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/zclzcl0223/my_medium-zoom@master/medium-zoom-v7.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>

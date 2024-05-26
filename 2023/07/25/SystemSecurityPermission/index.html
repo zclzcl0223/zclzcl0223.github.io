@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Linux系统是典型的多用户操作系统。虽然一台经典的计算机只会有一个键盘和显示器，但是它仍然能被多个用户使用，因为在别处的用户可以通过互联网利用ssh登录并操作这台计算机。在多用户操作系统中，实现用户层的隔离、保证不同用户的隐私和权限是很重要的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System Security and Permissions">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/25/SystemSecurityPermission/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Linux系统是典型的多用户操作系统。虽然一台经典的计算机只会有一个键盘和显示器，但是它仍然能被多个用户使用，因为在别处的用户可以通过互联网利用ssh登录并操作这台计算机。在多用户操作系统中，实现用户层的隔离、保证不同用户的隐私和权限是很重要的。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-25T10:23:22.000Z">
+<meta property="article:modified_time" content="2023-07-28T06:56:38.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Tool">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/07/25/SystemSecurityPermission/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>System Security and Permissions | JourneyToCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JourneyToCoding</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/07/25/SystemSecurityPermission/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          System Security and Permissions
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-07-25 18:23:22" itemprop="dateCreated datePublished" datetime="2023-07-25T18:23:22+08:00">2023-07-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-07-28 14:56:38" itemprop="dateModified" datetime="2023-07-28T14:56:38+08:00">2023-07-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Linux系统是典型的多用户操作系统。虽然一台经典的计算机只会有一个键盘和显示器，但是它仍然能被多个用户使用，因为在别处的用户可以通过互联网利用ssh登录并操作这台计算机。在多用户操作系统中，实现用户层的隔离、保证不同用户的隐私和权限是很重要的。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+
+<h1 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h1><p>计算机启动时的密码输入界面就是通常的用户登录界面。以什么用户登录计算机，我们就只能以该用户的身份创建文件、访问该用户能访问文件。每个Linux操作系统都会有一个超级用户<code>root</code>，<code>root</code>用户拥有对所有文件的访问权限，并且能够执行普通用户无法执行的“特权”命令。不过，Linux也为我们提供了除重新登陆外的切换用户身份的方式。</p>
+<h2 id="su：Switch-User，以其他用户身份运行shell"><a href="#su：Switch-User，以其他用户身份运行shell" class="headerlink" title="su：Switch User，以其他用户身份运行shell"></a><code>su</code>：Switch User，以其他用户身份运行shell</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su [options] [-] [USER [arg]...]</span><br></pre></td></tr></table></figure>
+
+<p><code>su</code>命令允许我们在正确输入目标用户的登录密码的情况下以该用户的身份启动shell。若<code>su</code>后面的用户选项为空，则会默认切换为<code>root</code>用户：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ su</span><br><span class="line">Password: </span><br><span class="line">[root@localhost Playground]<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">[meme@localhost Playground]$ su bob</span><br><span class="line">Password: </span><br><span class="line">[bob@localhost Playground]$ <span class="built_in">exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">[meme@localhost Playground]$ </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输入<code>exit</code>后我们将退出目标用户并恢复原用户身份。</p>
+</blockquote>
+<p>若我们只是想以其他用户的身份执行一个命令，我们也可以使用<code>su -c &#39;command&#39;</code>来传递命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ su -c &#x27;ls&#x27;</span><br><span class="line">Password: </span><br><span class="line">foo.txt</span><br><span class="line">[meme@localhost Playground]$ </span><br></pre></td></tr></table></figure>
+
+<p>执行完命令后，我们将立马返回原用户。需要注意的是，传递的命令必须用引号括起。</p>
+<h2 id="sudo：以另一个用户身份执行命令"><a href="#sudo：以另一个用户身份执行命令" class="headerlink" title="sudo：以另一个用户身份执行命令"></a><code>sudo</code>：以另一个用户身份执行命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo [<span class="built_in">command</span>]</span><br></pre></td></tr></table></figure>
+
+<p><code>sudo</code>在一定程度上很像<code>su -c &#39;command&#39;</code>，都是使得我们能以其他用户的身份执行命令。但是<code>sudo</code>通常只用于执行<code>root</code>用户的命令，且能够执行的命令也只能由<code>root</code>用户配置，因而是一种比<code>su</code>更加安全可控的方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ sudo <span class="built_in">ls</span></span><br><span class="line">[sudo] password <span class="keyword">for</span> meme: </span><br><span class="line">foo.txt</span><br><span class="line">[meme@localhost Playground]$ </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可用<code>sudo -l</code>查看所有<code>sudo</code>能够执行的命令（的库地址）。一次<code>sudo</code>后，系统会信任用户几分钟，使得后续的<code>sudo</code>不用再输入密码。</p>
+</blockquote>
+<h1 id="拥有者，组成员，其他人"><a href="#拥有者，组成员，其他人" class="headerlink" title="拥有者，组成员，其他人"></a>拥有者，组成员，其他人</h1><p>在Linux的安全架构下，用户对文件的访问权限分为三个层次：拥有者（owner）、组成员（groups）、其他人（others）。一般来说，文件拥有者的访问权限最高，它不仅可以更改不同层次的用户对本文件的访问范围，也可以以更改文件所属组的形式授予新的用户以组成员访问权限。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l ./foo.txt</span><br><span class="line">-rw-rw-r--. 1 meme meme 0 Jul 27 20:01 ./foo.txt</span><br></pre></td></tr></table></figure>
+
+<p>对于上面的<code>foo.txt</code>文件，其拥有者和访问组依次为<code>meme</code>、<code>meme</code>。</p>
+<blockquote>
+<p>除了以组成员的形式赋予其他用户权限，文件拥有者还可以单独为某个用户赋予权限。</p>
+</blockquote>
+<h2 id="组"><a href="#组" class="headerlink" title="组"></a>组</h2><p>Linux用一串数字来标记不同的用户和组。使用<code>id</code>命令可以查看当前用户的用户标识和组标识：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">id</span></span><br><span class="line">uid=1001(meme) gid=1001(meme) <span class="built_in">groups</span>=1001(meme),10(wheel)</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>uid</code>是当前用户的用户标识，<code>gid</code>是组标识，此处显示的<code>gid</code>是<strong>当前用户所在组</strong>（即当前用户创建文件时文件所属的组）的标识，最后的<code>groups</code>则是所有包含了当前用户的组及其标识。使用<code>groups</code>同样可以查询所有包含当前用户的组：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">groups</span></span><br><span class="line">meme wheel</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>newgrp [-] [group]</code>可以切换当前用户的工作组为指定组：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ newgrp wheel</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">id</span></span><br><span class="line">uid=1001(meme) gid=10(wheel) <span class="built_in">groups</span>=10(wheel),1001(meme) </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>为了方便权限分配，Linux会为每个用户创建一个独一无二的组作为默认工作组，如上面的<code>10001(meme)</code>。所有的用户信息被保持在了文件<code>/etc/passwd</code>中，组信息则被保持在了<code>/etc/group</code>中，这两个文件随着<code>/etc/shadow</code>的变动而修改，<code>/etc/shadow</code>包含了前面两个文件没有的用户信息，如用户密码的信息等。</p>
+</blockquote>
+<h2 id="常用组命令"><a href="#常用组命令" class="headerlink" title="常用组命令"></a>常用组命令</h2><p>只有<code>root</code>用户能够创建和管理组，因此对于组的管理都要在<code>root</code>用户下进行。</p>
+<h3 id="groupadd：新建组"><a href="#groupadd：新建组" class="headerlink" title="groupadd：新建组"></a><code>groupadd</code>：新建组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd [options] GROUP</span><br></pre></td></tr></table></figure>
+
+<p><code>groupadd</code>允许我们创建指定名称的组：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ sudo groupadd photo</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> /etc/group</span><br><span class="line">root:x:0:</span><br><span class="line">...</span><br><span class="line">music:x:1002:meme,bob</span><br><span class="line">photo:x:1003:</span><br></pre></td></tr></table></figure>
+
+<p>组一旦被创建，其信息就会被加入到<code>/etc/group</code>中。</p>
+<h3 id="gpasswd：Group-Password，组管理"><a href="#gpasswd：Group-Password，组管理" class="headerlink" title="gpasswd：Group Password，组管理"></a><code>gpasswd</code>：Group Password，组管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpasswd [options] groupname</span><br></pre></td></tr></table></figure>
+<p><code>gpasswd</code>命令是Linux下<code>/etc/group</code>和<code>/etc/shadow</code>的管理工具，实际上起着管理组的作用。其常用选项<code>-a</code>用于为指定组增加用户，<code>-d</code>用于为指定组删减用户：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ sudo gpasswd -a bob photo</span><br><span class="line">Adding user bob to group photo</span><br><span class="line">[meme@localhost Playground]$ sudo gpasswd -a meme photo</span><br><span class="line">Adding user meme to group photo</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> /etc/group</span><br><span class="line">root:x:0:</span><br><span class="line">...</span><br><span class="line">photo:x:1003:bob,meme</span><br></pre></td></tr></table></figure>
+
+<h1 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h1><p>Linux系统的文件通常有三种基本访问权限：读<code>r</code>、写<code>w</code>和执行<code>x</code>。</p>
+<blockquote>
+<p>对于普通文件，这些权限很清晰明了地定义了不同用户能对其进行的操作，但是对于目录文件，则有些许不同：</p>
+<ul>
+<li><code>r</code>表示可以用<code>ls</code>列出该目录下的文件，即可以读取目录列表；</li>
+<li><code>w</code>表示可以在目录中增加或者删减文件；</li>
+<li><code>x</code>表示允许用户在目录中查找，且可以以<code>cd</code>命令切换到该目录。</li>
+</ul>
+<p>说白了，<code>rwx</code>都表示的是对文件内容的使用权力。</p>
+</blockquote>
+<p>当我们用<code>ls -l</code>列出文件的详细元数据时，前面的<strong>10</strong>个字符是文件的属性，后面的2个字符串分别是文件的拥有者和访问组，然后是文件的大小、文件的修改时间以及文件名称。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l foo.txt</span><br><span class="line">-rw-rw-r--. 1 meme meme 6 Jul 27 22:22 foo.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第1个字符表文件的<strong>类型</strong>，<code>-</code>表普通文件，<code>d</code>表目录文件；</li>
+<li>第2~10个字符的每三个字符依次表明文件拥有组、访问组和其他用户对该文件的访问权限，顺序为<code>rwx</code>。</li>
+</ul>
+<h2 id="chmod：Change-Mode，更改文件权限"><a href="#chmod：Change-Mode，更改文件权限" class="headerlink" title="chmod：Change Mode，更改文件权限"></a><code>chmod</code>：Change Mode，更改文件权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> [OPTION]... MODE[,MODE]... FILE...</span><br></pre></td></tr></table></figure>
+
+<p><code>chmod</code>以3个八进制数字来分别代表文件拥有者、访问组和其他用户的目标访问权限，如<code>6</code>表示<code>110</code>，权限为<code>rw-</code>；<code>4</code>表示<code>100</code>，权限为<code>r--</code>；<code>0</code>表示<code>000</code>，权限为<code>---</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">chmod</span> 600 foo.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l foo.txt</span><br><span class="line">-rw-------. 1 meme meme 6 Jul 27 22:22 foo.txt</span><br></pre></td></tr></table></figure>
+
+<p>除了以数字来直接代表目标权限，<code>chmod</code>也支持符号形式的表示：</p>
+<ul>
+<li><code>u</code>、<code>g</code>、<code>o</code>分别表示文件拥有者、访问组和其他用户；</li>
+<li><code>+</code>，<code>-</code>，<code>=</code>分别表示添加、减少和指定权限；</li>
+<li><code>r</code>、<code>w</code>、<code>x</code>分别表示3种权限。</li>
+<li>如：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">chmod</span> u-r,go=rw foo.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l foo.txt</span><br><span class="line">--w-rw-rw-. 1 meme meme 6 Jul 27 22:22 foo.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="umask：User-File-Creation-Mode-Mask，设置默认权限"><a href="#umask：User-File-Creation-Mode-Mask，设置默认权限" class="headerlink" title="umask：User File-Creation Mode Mask，设置默认权限"></a><code>umask</code>：User File-Creation Mode Mask，设置默认权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">umask</span> [-p] [-S] [mode]</span><br></pre></td></tr></table></figure>
+
+<p><code>umask</code>让我们能够设置在当前用户下创建文件时，各用户的初始权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">umask</span> 002</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> f.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l f.txt</span><br><span class="line">-rw-rw-r--. 1 meme meme 0 Jul 27 22:50 f.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">umask</span> 022</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> d.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l d.txt</span><br><span class="line">-rw-r--r--. 1 meme meme 0 Jul 27 22:51 d.txt</span><br></pre></td></tr></table></figure>
+
+<p>其中每位数字（依次代表文件拥有者、访问组和其他用户）都代表一个二进制形式的<strong>掩码</strong>，即<code>2</code>等价于<code>010</code>，表示遮盖<code>rwx</code>中的第二位<code>w</code>。</p>
+<blockquote>
+<p>此处<code>x</code>也被遮盖的原因是<code>.txt</code>文件无法被执行，也就是说它没有<code>x</code>操作。<br><code>umask</code>设置的掩码不是永久的，它只在当前的shell上生效。</p>
+</blockquote>
+<h2 id="chown：Change-Owner，更改文件所有者和访问组"><a href="#chown：Change-Owner，更改文件所有者和访问组" class="headerlink" title="chown：Change Owner，更改文件所有者和访问组"></a><code>chown</code>：Change Owner，更改文件所有者和访问组</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> [options] owner[:group] file...</span><br></pre></td></tr></table></figure>
+
+<p>如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ sudo <span class="built_in">chown</span> bob:photo foo.txt</span><br><span class="line">[sudo] password <span class="keyword">for</span> meme: </span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l foo.txt</span><br><span class="line">--w-rw-rw-. 1 bob photo 6 Jul 27 22:22 foo.txt</span><br><span class="line">[meme@localhost Playground]$ sudo <span class="built_in">chown</span> meme:photo foo.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l foo.txt</span><br><span class="line">--w-rw-rw-. 1 meme photo 6 Jul 27 22:22 foo.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">chown</span> :meme foo.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l foo.txt</span><br><span class="line">--w-rw-rw-. 1 meme meme 6 Jul 27 22:22 foo.txt</span><br></pre></td></tr></table></figure>
+
+<p>其中，若文件的所有者是自己且要将该文件的访问组改回自己，则无需<code>root</code>权限，如最后一个命令所示。</p>
+<h2 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h2><p>除了上面的3种权限<code>rwx</code>，Linux还提供另外3种特殊权限<code>setuid</code>、<code>setgid</code>和<code>sticky</code>。</p>
+<h3 id="setuid-amp-setgid"><a href="#setuid-amp-setgid" class="headerlink" title="setuid &amp; setgid"></a><code>setuid</code> &amp; <code>setgid</code></h3><p><code>setuid</code>和<code>setgid</code>的符号均为<code>s</code>，只不过前者只存在于文件拥有者，而后者只存在于文件的访问组。它们的作用相似：当拥有<code>s</code>权限的<strong>可执行文件</strong>被运行时，该可执行文件会以拥有<code>s</code>权限的文件拥有者或者拥有<code>s</code>权限的访问组的身份运行，即，若文件夹<code>dir</code>（文件夹是一种特殊的可执行文件）的访问组<code>photo</code>没有<code>s</code>权限，<code>meme</code>用户在<code>dir</code>下创建文件的访问组仍然是<code>meme</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost <span class="built_in">dir</span>]$ <span class="built_in">touch</span> foo.txt</span><br><span class="line">[meme@localhost <span class="built_in">dir</span>]$ <span class="built_in">ls</span> -al</span><br><span class="line">total 0</span><br><span class="line">drwxr-xr-x. 2 meme photo  21 Jul 27 23:12 .</span><br><span class="line">...</span><br><span class="line">-rw-r--r--. 1 meme meme  0 Jul 27 23:12 foo.txt</span><br></pre></td></tr></table></figure>
+
+<p>反之，若赋予<code>dir</code>的访问组以<code>s</code>权限（要在<code>root</code>下才能赋予成功），则<code>meme</code>用户在<code>dir</code>下创建的文件的访问组仍然是<code>photo</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost <span class="built_in">dir</span>]$ sudo <span class="built_in">chmod</span> g+s .</span><br><span class="line">[meme@localhost <span class="built_in">dir</span>]$ <span class="built_in">ls</span> -al</span><br><span class="line">total 0</span><br><span class="line">drwxr-sr-x. 2 meme photo  21 Jul 27 23:17 .</span><br><span class="line">...</span><br><span class="line">-rw-r--r--. 1 meme meme  0 Jul 27 23:12 foo.txt</span><br><span class="line">[meme@localhost <span class="built_in">dir</span>]$ <span class="built_in">touch</span> ff.txt</span><br><span class="line">[meme@localhost <span class="built_in">dir</span>]$ <span class="built_in">ls</span> -al</span><br><span class="line">total 0</span><br><span class="line">drwxr-sr-x. 2 meme photo  35 Jul 27 23:22 .</span><br><span class="line">...</span><br><span class="line">-rw-r--r--. 1 meme photo   0 Jul 27 23:22 ff.txt</span><br><span class="line">-rw-r--r--. 1 meme meme  0 Jul 27 23:12 foo.txt</span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码框中，当前文件夹<code>dir</code>的访问组权限由<code>r-x</code>变为了<code>r-s</code>。之后新创建的<code>ff.txt</code>的访问组也相应地变成了<code>dir</code>的访问组。</p>
+<h3 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a><code>sticky</code></h3><p>为文件附加<code>sticky</code>（标识<code>t</code>）位的操作为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +t FILE</span><br></pre></td></tr></table></figure>
+
+<p>这个权限用处不大，一般只用于目录文件，它能阻止用户删除或重命名该目录下的文件，除非用户是这个目录的所有者，或者是文件所有者，或是是超级用户<code>root</code>。</p>
+<h2 id="passwd：修改用户密码"><a href="#passwd：修改用户密码" class="headerlink" title="passwd：修改用户密码"></a><code>passwd</code>：修改用户密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd [user]</span><br></pre></td></tr></table></figure>
+
+<p>我们可以使用该命令修改指定用户的登陆密码</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39440">The Linux Command Line 中文版 第十章：权限</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\09\02\BashScript\" rel="bookmark">Bash Script</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\08\04\RegularExpressions\" rel="bookmark">Regular Expressions</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\08\03\WildcardsPatternMatching\" rel="bookmark">Wildcards and Pattern Matching</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\25\ProgramCompilation\" rel="bookmark">Program Compilation</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\25\ProcessManagement\" rel="bookmark">Process Management</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Tool/" rel="tag"># Tool</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%88%B7"><span class="nav-number">1.</span> <span class="nav-text">用户</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#su%EF%BC%9ASwitch-User%EF%BC%8C%E4%BB%A5%E5%85%B6%E4%BB%96%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E8%BF%90%E8%A1%8Cshell"><span class="nav-number">1.1.</span> <span class="nav-text">su：Switch User，以其他用户身份运行shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sudo%EF%BC%9A%E4%BB%A5%E5%8F%A6%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.</span> <span class="nav-text">sudo：以另一个用户身份执行命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%A5%E6%9C%89%E8%80%85%EF%BC%8C%E7%BB%84%E6%88%90%E5%91%98%EF%BC%8C%E5%85%B6%E4%BB%96%E4%BA%BA"><span class="nav-number">2.</span> <span class="nav-text">拥有者，组成员，其他人</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84"><span class="nav-number">2.1.</span> <span class="nav-text">组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%BB%84%E5%91%BD%E4%BB%A4"><span class="nav-number">2.2.</span> <span class="nav-text">常用组命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#groupadd%EF%BC%9A%E6%96%B0%E5%BB%BA%E7%BB%84"><span class="nav-number">2.2.1.</span> <span class="nav-text">groupadd：新建组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gpasswd%EF%BC%9AGroup-Password%EF%BC%8C%E7%BB%84%E7%AE%A1%E7%90%86"><span class="nav-number">2.2.2.</span> <span class="nav-text">gpasswd：Group Password，组管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9D%83%E9%99%90"><span class="nav-number">3.</span> <span class="nav-text">权限</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod%EF%BC%9AChange-Mode%EF%BC%8C%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="nav-number">3.1.</span> <span class="nav-text">chmod：Change Mode，更改文件权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#umask%EF%BC%9AUser-File-Creation-Mode-Mask%EF%BC%8C%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E6%9D%83%E9%99%90"><span class="nav-number">3.2.</span> <span class="nav-text">umask：User File-Creation Mode Mask，设置默认权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chown%EF%BC%9AChange-Owner%EF%BC%8C%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E6%89%80%E6%9C%89%E8%80%85%E5%92%8C%E8%AE%BF%E9%97%AE%E7%BB%84"><span class="nav-number">3.3.</span> <span class="nav-text">chown：Change Owner，更改文件所有者和访问组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E6%9D%83%E9%99%90"><span class="nav-number">3.4.</span> <span class="nav-text">特殊权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#setuid-amp-setgid"><span class="nav-number">3.4.1.</span> <span class="nav-text">setuid &amp; setgid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sticky"><span class="nav-number">3.4.2.</span> <span class="nav-text">sticky</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#passwd%EF%BC%9A%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81"><span class="nav-number">3.5.</span> <span class="nav-text">passwd：修改用户密码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChaosTsang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ChaosTsang</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fas fa-star-of-david"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {  // 2023-04-04 00:16:51
+        var grt= new Date("04/04/2023 00:16:51");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/zclzcl0223/my_medium-zoom@master/medium-zoom-v7.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>

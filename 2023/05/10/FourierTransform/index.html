@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Fourier transform is a transform that converts a function into a form that describes the frequencies present in the original function. To a certain extent, it can also be viewed as a coordinate transf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fourier Transform">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/05/10/FourierTransform/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Fourier transform is a transform that converts a function into a form that describes the frequencies present in the original function. To a certain extent, it can also be viewed as a coordinate transf">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/FourierTransform/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/FourierTransform/2.png">
+<meta property="article:published_time" content="2023-05-10T15:46:14.000Z">
+<meta property="article:modified_time" content="2023-08-09T05:50:18.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="CNN">
+<meta property="article:tag" content="Math">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/05/10/FourierTransform/1.png">
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/05/10/FourierTransform/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Fourier Transform | JourneyToCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JourneyToCoding</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/05/10/FourierTransform/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Fourier Transform
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-10 23:46:14" itemprop="dateCreated datePublished" datetime="2023-05-10T23:46:14+08:00">2023-05-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-09 13:50:18" itemprop="dateModified" datetime="2023-08-09T13:50:18+08:00">2023-08-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Fourier transform is a transform that converts a function into a form that describes the frequencies present in the original function. To a certain extent, it can also be viewed as a coordinate transformation, which transform coordinate in time domain to frequency domain. It is the basis for understanding convolution and CNN.</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="Inner-product"><a href="#Inner-product" class="headerlink" title="Inner product"></a>Inner product</h1><p>The inner product generalizes the dot product to abstract vector spaces over a field of scalars, being either the field of real numbers $R$  or the field of complex numbers $C$. It is usually denoted using angular brackets by $\braket{\vec{a}, \vec{b}}$. Each vector in the field of real numbers $R$ can be regarded as a <strong>discrete functions</strong> with domain $\{k\in N:1\le k\le n\}$. And the inner product measures the similarity of two vectors:</p>
+<p>$$\vec{a}\cdot\vec{b}&#x3D;\sum\limits_{i&#x3D;0}^na_ib_i\Delta n$$</p>
+<p>where $\Delta n&#x3D;1$ , can be regarded as the difference of two dimension. It is easy to generalize this to continuous functions. In this case, the dimension of a vector is <strong>infinity</strong> and the sum will diverge. Therefore, we average each term, that is $dx$:</p>
+<p>$$\braket{f,g}&#x3D;\int_a^bf(x)g(x)dx$$</p>
+<p>Similarly, the inner product of functions measures the similarity of two functions.</p>
+<h1 id="Orthogonality-of-trigonometric-functions"><a href="#Orthogonality-of-trigonometric-functions" class="headerlink" title="Orthogonality of trigonometric functions"></a>Orthogonality of trigonometric functions</h1><p>We define:<br>$$\{\sin0x,\cos0x,\sin x,\cos x,...,\sin nx, \cos nx\}$$<br>as trigonometric space. In this space, the inner product of two different functions with domain $\{x\in R:-\pi\le x\le \pi\}$ is zero, that is, the two functions are orthogonal:</p>
+<p>$$\braket{\sin nx, \sin mx}&#x3D;\int_{-\pi}^\pi\sin nx\sin mxdx&#x3D;0$$<br>where $n\ne m$ and either or both of $\sin$ could be $\cos$. If the two functions are the same and are not $0$, their inner product is $\pi$:<br>$$\braket{\sin nx, \sin nx}&#x3D;\int_{-\pi}^\pi\sin nx\sin nxdx&#x3D;\pi$$</p>
+<h1 id="Fourier-series"><a href="#Fourier-series" class="headerlink" title="Fourier series"></a>Fourier series</h1><p>Fourier series is another kind of series besides power series. It uses functions in trigonometric space to represent any periodic functions.</p>
+<h2 id="T-x3D-2-pi"><a href="#T-x3D-2-pi" class="headerlink" title="$T&#x3D;2\pi$"></a>$T&#x3D;2\pi$</h2><p>For a function of period $2\pi$, $f(x)&#x3D;f(x+2\pi)$, we can represent it using trigonometric functions:</p>
+<p>$$f(x)&#x3D;\sum\limits_{n&#x3D;0}^\infty a_n\cos nx+\sum\limits_{n&#x3D;0}^\infty b_n\sin nx$$</p>
+<p>To get $a_n\space(n\ne0)$ , multiply both sides by $\cos nx$ and integrate at $[-\pi, \pi]$:</p>
+<p>$$\int_{-\pi}^\pi f(x)\cos nxdx&#x3D;\sum\limits_{m&#x3D;0}^\infty[\int_{-\pi}^\pi a_m\cos mx\cdot\cos nxdx+b_m\sin mx\cdot\cos nxdx]\tag{1}$$</p>
+<p>Because of the orthogonality of trigonometric functions, formula (1) becomes:</p>
+<p>$$\int_{-\pi}^\pi f(x)\cos nxdx&#x3D;\int_{-\pi}^\pi a_n\cos nx\cdot\cos nxdx&#x3D;a_n\pi$$</p>
+<p>Therefore:</p>
+<p>$$a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nxdx$$</p>
+<p>If $n&#x3D;0$:</p>
+<p>$$\int_{-\pi}^\pi f(x)dx&#x3D;a_02\pi\rightarrow a_0&#x3D;\frac{1}{2\pi}\int_{-\pi}^\pi f(x)dx$$</p>
+<p>For unity, we usually use $2a_0\space(A_0)$ as $a_0$:</p>
+<p>$$A_0&#x3D;2a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)dx$$</p>
+<p>Similarly, if multiply both sides by $\sin nx\space(n\in N)$ and integrate at $[-\pi, \pi]$, we get $b_n$:</p>
+<p>$$b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin nxdx$$</p>
+<p>So, the fourier series of $f(x)&#x3D;f(x+2\pi)$ is:</p>
+<p>$$f(x)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos nx+b_n\sin nx], \begin{cases}<br>   a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)dx &amp;\\<br>   a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nxdx &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin nxdx &amp;<br>\end{cases}$$</p>
+<h2 id="T-x3D-2L"><a href="#T-x3D-2L" class="headerlink" title="$T&#x3D;2L$"></a>$T&#x3D;2L$</h2><p>More generally, for any function with period $2L$, $f(t)&#x3D;f(t+2L)$, we assume:</p>
+<p>$$t&#x3D;\frac{L}{\pi}x$$</p>
+<p>Then:</p>
+<p>$$f(t)&#x3D;f(\frac{L}{\pi}x)$$</p>
+<p>$$f(t+2L)&#x3D;f(\frac{L}{\pi}x+2L)&#x3D;f[\frac{L}{\pi}(x+2\pi)]$$</p>
+<p>We make:</p>
+<p>$$g(x)&#x3D;f(\frac{L}{\pi}x)$$</p>
+<p>Then:</p>
+<p>$$g(x)&#x3D;g(x+2\pi)$$</p>
+<p>We have already know the fourier series of functions with period $2\pi$ is:</p>
+<p>$$g(x)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos nx+b_n\sin nx], \begin{cases}<br>   a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)dx &amp;\\<br>   a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)\cos nxdx &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)\sin nxdx &amp;<br>\end{cases}$$</p>
+<p>Since $t&#x3D;\frac{L}{\pi}x$ and $g(x)&#x3D;f(\frac{L}{\pi}x)&#x3D;f(t)$, we can replace $x$ with $t$:</p>
+<p>$$dx&#x3D;\frac{\pi}{L}dt$$</p>
+<p>$$x\in[-\pi,\pi]\rightarrow t\in[-L,L]$$</p>
+<p>Therefore:</p>
+<p>$$f(t)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos \frac{n\pi<br>}{L}t+b_n\sin \frac{n\pi}{L}t], \begin{cases}<br>   a_0&#x3D;\frac{1}{L}\int_{-L}^L f(t)dt &amp;\\<br>   a_n&#x3D;\frac{1}{L}\int_{-L}^L f(t)\cos \frac{n\pi<br>}{L}tdt &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{1}{L}\int_{-L}^L f(t)\sin \frac{n\pi<br>}{L}tdt &amp;<br>\end{cases}$$</p>
+<p>Sometimes, we use $T&#x3D;2L$ to represent period and $\omega_0$ to represent fundamental frequency $\frac{2\pi}{T}$. Since the integral of a periodic function over a period is constant, we can also write the fourier series as:</p>
+<p>$$f(t)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos n\omega_0 t+b_n\sin n\omega_0 t], \begin{cases}<br>   a_0&#x3D;\frac{2}{T}\int_{0}^T f(t)dt &amp;\\<br>   a_n&#x3D;\frac{2}{T}\int_{0}^T f(t)\cos n\omega_0 tdt &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{2}{T}\int_{0}^T f(t)\sin n\omega_0 tdt &amp;<br>\end{cases}$$</p>
+<h2 id="Complex-form"><a href="#Complex-form" class="headerlink" title="Complex form"></a>Complex form</h2><p>Fourier series can be transformed into complex form using Euler&#39;s formula:</p>
+<p>$$e^{i\theta}&#x3D;\cos\theta+i\sin\theta\tag{2}$$<br>$$e^{-i\theta}&#x3D;\cos\theta-i\sin\theta\tag{3}$$</p>
+<p>By combining (2) and (3), we can get:</p>
+<p>$$\cos\theta&#x3D;\frac{1}{2}(e^{i\theta}+e^{-i\theta})\tag{4}$$<br>$$\sin\theta&#x3D;-\frac{1}{2}i(e^{i\theta}-e^{-i\theta})\tag{5}$$</p>
+<p>Put the above two formulas into fourier series, we get:</p>
+<p>$$\begin{align*}<br>    f(t) &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [\frac{a_n}{2}(e^{in\omega_0 t}+e^{-in\omega_0 t})-\frac{b_n}{2}i(e^{in\omega_0 t}-e^{-in\omega_0 t})]\\<br>         &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [\frac{a_n-ib_n}{2}e^{in\omega_0 t}+\frac{a_n+ib_n}{2}e^{-in\omega_0 t}]\\<br>         &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1} ^{+\infty} \frac{a_n-ib_n}{2}e^{in\omega_0 t}+\sum\limits_{n&#x3D;-1} ^{-\infty} \frac{a_{-n}+ib_{-n}}{2}e^{in\omega_0 t}\tag{6}\\<br>         &amp;&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}C_ne^{in\omega_0 t}\tag{7}<br>\end{align*}$$</p>
+<p>For (6) to (7), since $e^0&#x3D;1$, we can treat $\frac{a_0}{2}$ as $C_0$. Therefore:</p>
+<p>$$<br>C_n&#x3D;<br>\begin{cases}<br>    \frac{1}{2}a_0&#x3D;\frac{1}{T}\int_{0}^T f(t)dt,&amp;n&#x3D;0\\<br>    \frac{1}{2}(a_n-ib_n)&#x3D;\frac{1}{T}\int_{0}^T f(t)(\cos n\omega_0 t-i\sin n\omega_0 t)dt&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt,&amp;n&#x3D;1,2,3...\\<br>    \frac{1}{2}(a_n+ib_n)&#x3D;\frac{1}{T}\int_{0}^T f(t)(\cos n\omega_0 t+i\sin n\omega_0 t)dt&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{in\omega_0 t}dt,&amp;n&#x3D;-1,-2,-3...<br>\end{cases}<br>$$<br>Since $e^0&#x3D;1$:</p>
+<p>$$C_n&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt,n\in Z$$</p>
+<p>Therefore:</p>
+<p>$$f(t)&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}C_ne^{in\omega_0 t}<br>      &#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt$$</p>
+<h1 id="Fourier-transform"><a href="#Fourier-transform" class="headerlink" title="Fourier transform"></a>Fourier transform</h1><p>In the complex form of fourier series, it is $C_n$ that defines the form of $f(t)$ in frequency domain, where $C_n&#x3D;A_n+iB_n$. Based on the difference of frequency $n\omega_0$, the curve of $f(t)$ in the time domain $[0,T]$ is transformed into a point in frequency domain:</p>
+<p><img src="/2023/05/10/FourierTransform/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Cn in the complex domain</center><br>
+
+<p>If function $f(t)$ is not a periodic function, that is, its period is $+\infty$, fourier series becomes fuorier transform:</p>
+<p>$$T\to+\infty,\space\frac{1}{T}&#x3D;[(n+1)\omega_0-n\omega_0]\frac{1}{2\pi}&#x3D;\frac{\Delta\omega}{2\pi}&#x3D;\frac{\omega_0}{2\pi}\to0$$</p>
+<p>Since the difference between $(n+1)\omega_0$ and $n\omega_0$ is rather small, that is, the fundamental frequency $\omega_0$ is rather small, we can turn the discrete $n\omega_0$ into continuous $\omega$. Then:</p>
+<p>$$\Delta\omega&#x3D;d\omega\to0, \space n\omega_0\to\omega$$<br>$$<br>\begin{align*}<br>f(t)<br>  &amp;&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt\\<br>  &amp;&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{-\frac{T}{2}}^\frac{T}{2} f(t)e^{-in\omega_0 t}dt\\<br>  &amp;&#x3D;\sum\limits_{n\omega_0&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{\Delta\omega}{2\pi}\int_{-\frac{T}{2}}^\frac{T}{2} f(t)e^{-in\omega_0 t}dt\\<br>  &amp;&#x3D;\frac{1}{2\pi}\int_{-\infty} ^{+\infty}\int_{-\infty} ^{+\infty}f(t)e^{-i\omega t}dt\space e^{i\omega t}d\omega<br>\end{align*}<br>$$<br>Among the formula above:</p>
+<p>$$\int_{-\infty} ^{+\infty}f(t)e^{-i\omega t}dt&#x3D;F(\omega)$$</p>
+<p>is called <strong>Fourier Transform</strong> and the whole formula is called <strong>Inverse Fourier Transform</strong>. It&#39;s easy for us to understand that $F(\omega)$ is $\frac{1}{2\pi} C_n$ and it is a complex number in frequency domain. More generally, we don&#39;t use the form in Fig. 1. to represent $F(\omega)$, instead, we draw the curve of <em>Amplitude</em>-$\omega$:</p>
+<p>$$F(\omega)&#x3D;|F(\omega)|e^{i\phi}$$</p>
+<p>It is a continuous curve in frequency domain:</p>
+<p><img src="/2023/05/10/FourierTransform/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Amplitude-omega</center><br>
+
+<p>$e^{i\omega t}$ represents different waveforms while $F(w)$ represents the intensity of different waveforms in the original function $f(t)$. Therefore, we can restore the original function by superimposing waveforms of different intensities. And this is <strong>Inverse Fourier Transform</strong>.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Et411R78v/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">纯干货数学推导_傅里叶级数与傅里叶变换</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ce4y1p7jF/?spm_id_from=333.880.my_history.page.click&vd_source=2d980a0365f3ebea674b32924d8a4ce8">卷积神经网络的底层是傅里叶变换，傅里叶变换的底层是希尔伯特空间坐标变换</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\10\FourierTransformAndCNN\" rel="bookmark">Fourier Transform and CNN</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\31\EncoderDecoder\" rel="bookmark">The Encoder-Decoder Architecture</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\14\CommonCNNModels\" rel="bookmark">Common CNN Models</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\05\10\CNN\" rel="bookmark">CNN: Feature Extraction</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\12\02\CountingComplexity\" rel="bookmark">Computational Complexity: Complexity of Counting</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CNN/" rel="tag"># CNN</a>
+              <a href="/tags/Math/" rel="tag"># Math</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Inner-product"><span class="nav-number">1.</span> <span class="nav-text">Inner product</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Orthogonality-of-trigonometric-functions"><span class="nav-number">2.</span> <span class="nav-text">Orthogonality of trigonometric functions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fourier-series"><span class="nav-number">3.</span> <span class="nav-text">Fourier series</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#T-x3D-2-pi"><span class="nav-number">3.1.</span> <span class="nav-text">$T&#x3D;2\pi$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T-x3D-2L"><span class="nav-number">3.2.</span> <span class="nav-text">$T&#x3D;2L$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Complex-form"><span class="nav-number">3.3.</span> <span class="nav-text">Complex form</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fourier-transform"><span class="nav-number">4.</span> <span class="nav-text">Fourier transform</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChaosTsang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ChaosTsang</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fas fa-star-of-david"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {  // 2023-04-04 00:16:51
+        var grt= new Date("04/04/2023 00:16:51");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/zclzcl0223/my_medium-zoom@master/medium-zoom-v7.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zclzcl0223.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":300},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="谱方法是图卷积神经网络的理论依据，理解它对理解各种基于图卷积的神经网络有很大的帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spectral Approaches">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="谱方法是图卷积神经网络的理论依据，理解它对理解各种基于图卷积的神经网络有很大的帮助。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/2.png">
+<meta property="article:published_time" content="2023-07-06T03:19:28.000Z">
+<meta property="article:modified_time" content="2023-07-06T16:24:06.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="GNN">
+<meta property="article:tag" content="GCN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/1.png">
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Spectral Approaches | JourneyToCoding</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JourneyToCoding</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ChaosTsang">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spectral Approaches
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-07-06 11:19:28" itemprop="dateCreated datePublished" datetime="2023-07-06T11:19:28+08:00">2023-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-07-07 00:24:06" itemprop="dateModified" datetime="2023-07-07T00:24:06+08:00">2023-07-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">谱方法是图卷积神经网络的理论依据，理解它对理解各种基于图卷积的神经网络有很大的帮助。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <span id="more"></span>
+
+<h1 id="从卷积到傅里叶变换"><a href="#从卷积到傅里叶变换" class="headerlink" title="从卷积到傅里叶变换"></a>从卷积到傅里叶变换</h1><p>图的顶点$i$可表示为信号$f_i$，其中$f _i\in\mathbf{R} ^F$，假设图有$N$个顶点，则整张图可以表示为：</p>
+<p>$$<br>f&#x3D;[f_1,f_2,...,f_N]^T<br>$$</p>
+<p>基于卷积的理论及其与傅里叶变换的关系（<strong>卷积的傅里叶变换等于傅里叶变换的乘积</strong>），卷积操作可以定义为：</p>
+<p>$$<br>\begin{align*}<br>    g\star f<br>    &amp;&#x3D;\mathcal{F} ^{-1}[\mathcal{F}(g\star f)]\\<br>    &amp;&#x3D;\mathcal{F} ^{-1}(\mathcal{F}(g)\odot\mathcal{F}(f))\\<br>    &amp;&#x3D;U(U ^{T}g\odot U ^{T}f) \tag{1}<br>\end{align*}<br>$$</p>
+<p>式中，$g$是卷积核，用于提取、汇聚图的空间信息；$U$是图的拉普拉斯矩阵的特征向量矩阵，它被用作离散形式的傅里叶变换的傅里叶基。具体细节见<a href="/2023/07/04/GraphFourierTransform/">Graph Fourier Transform</a>。式子中$U ^{T}g$称为滤波器（filter）。由于$U ^Tg$实际上是对$g$的傅里叶变换，因此：</p>
+<p>$$<br>U ^{T}g&#x3D;\hat{g}&#x3D;[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]^T<br>$$</p>
+<p>即，它是由$g$所包含的各个特征值$\lambda _i$所对应的正交基$u _i$（相当于连续形式的傅里叶变换的不同频率的正弦波形）在$g$中所占的比重所组成的向量。同样地，$U ^Tf$可转化为：</p>
+<p>$$<br>U ^{T}f&#x3D;\hat{f}&#x3D;[\hat{f}(\lambda _1),...,\hat{f}(\lambda _N)]^T<br>$$</p>
+<p>于是它们的哈达玛积（$\odot$）就为：</p>
+<p>$$<br>\begin{align*}<br>    U ^{T}g\odot U ^{T}f<br>    &amp;&#x3D;\hat{g}\odot\hat{f}\\<br>    &amp;&#x3D;<br>    \begin{bmatrix}<br>        \hat{g}({\lambda _1})\times\hat{f}({\lambda _1})\\<br>        \vdots\\<br>        \hat{g}({\lambda _N})\times\hat{f}({\lambda _N})<br>    \end{bmatrix}<br>\end{align*}<br>$$</p>
+<p>而：</p>
+<p>$$<br>\begin{bmatrix}<br>    \hat{g}(\lambda _1) &amp;\\<br>    &amp; \ddots \\<br>    &amp; &amp; \hat{g}(\lambda _N)<br>\end{bmatrix} \cdot<br>\begin{bmatrix}<br>    \hat{f}({\lambda _1})\\<br>    \vdots\\<br>    \hat{f}({\lambda _N})<br>\end{bmatrix} &#x3D;<br>\begin{bmatrix}<br>    \hat{g}({\lambda _1})\times\hat{f}({\lambda _1})\\<br>    \vdots\\<br>    \hat{g}({\lambda _N})\times\hat{f}({\lambda _N})<br>\end{bmatrix}<br>$$</p>
+<p>因此，式$(1)$可以变为：</p>
+<p>$$<br>\begin{align*}<br>    g\star f<br>    &amp;&#x3D;U(U ^{T}g\odot U ^{T}f)\\<br>    &amp;&#x3D;U(\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]U ^{T}f)\\<br>    &amp;&#x3D;U\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)] U ^{T}f\tag{2}<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>矩阵结合律是成立的</p>
+</blockquote>
+<p>另一种角度，若从右向左看式$(2)$的最后一个等式，上述卷积操作其实就是一次对图信号$f$的<strong>滤波</strong>：</p>
+<ol>
+<li>$U^T f$将时域的图信号转换为频域的图信号；</li>
+<li>$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)](U^T f)$对频域的图信号进行滤波，提取特征；</li>
+<li>$U(\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]U ^{T}f)$将经过滤波的频域图信号转换回时域。</li>
+</ol>
+<p>基于谱方法（Spectral approaches）的图神经网络的发展实际上就是一个设计更好的滤波器$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]$的过程。</p>
+<h1 id="第一代GCN"><a href="#第一代GCN" class="headerlink" title="第一代GCN"></a>第一代GCN</h1><p>为了使得滤波器能够被学习，第一代GCN直接将式$(2)$中的滤波器的对角元素替换为了可学习的参数$w$，于是第一代GCN的卷积操作就变为：</p>
+<p>$$<br>Z&#x3D;\sigma(Ug_wU ^{T}f)\tag{3}<br>$$</p>
+<p>其中激活函数用于赋予非线性性。上述操作的思路很简单：输入$f$经过第一个卷积层后得到$Z$，$Z$再作为下一个卷积层的输入，逐层地学习、提取信息。然而，缺点也显而易见：需要对拉普拉斯矩阵进行特征分解以得到$U$，而当图顶点数很多时，这样的特征分解是十分困难的。</p>
+<h1 id="第二代GCN"><a href="#第二代GCN" class="headerlink" title="第二代GCN"></a>第二代GCN</h1><p>鉴于$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]$是特征值对角矩阵$\Lambda$的函数，第二代GCN采用k阶多项式来近似的拟合这个函数，即：</p>
+<p>$$<br>g _w(\Lambda)\approx\sum\limits _{k&#x3D;0} ^Kw _k\Lambda ^k<br>$$</p>
+<p>将其带入式$(3)$，则第二代GCN为：</p>
+<p>$$<br>\begin{align*}<br>    Z<br>    &amp;&#x3D;\sigma(Ug_w(\Lambda)U ^{T}f)\\<br>    &amp;&#x3D;\sigma(U\sum\limits _{k&#x3D;0} ^Kw _k\Lambda ^kU ^{T}f)\\<br>    &amp;&#x3D;\sigma(\sum\limits _{k&#x3D;0} ^Kw _kL ^kf)<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>$U\Lambda ^k U ^T&#x3D;L^k$，其中，$L$为拉普拉斯矩阵。</p>
+</blockquote>
+<p>不难看出，第二代GCN不对拉普拉斯矩阵进行特征分解，而是直接用拉普拉斯矩阵对$f$进行变换。同时，可学习的参数个数也有原来的$N$个下降为$K+1$个。与第一代相比，第二代GCN的计算复杂度明显更低。虽然如此，仍然需要计算$L ^k$，时间复杂度为$O(N ^2)$。</p>
+<p>事实上，由于：</p>
+<p>$$<br>L&#x3D;D-A\tag{4}<br>$$</p>
+<p>其中$A$为邻接矩阵，式$(4)$的证明见<a href="/2023/07/03/Laplacian/#图拉普拉斯矩阵">图拉普拉斯矩阵</a>。因此:</p>
+<p>$$<br>L ^k&#x3D;C_k ^0D ^k-C_k ^1D ^{k-1}A+...+(-1) ^kC _k ^kA ^k<br>$$</p>
+<p>式中，由于$D$和$A$都是对称矩阵，所以$DA&#x3D;AD$。邻接矩阵的$k$次幂的各个元素$A ^k[i][j]$表示的是从$i$到$j$路径长度为$k$的路径的条数。$D$为对角矩阵，只会改变与其相乘的矩阵的非零元素的值。因此，$L ^k$中的$k$实际上就是本次卷积感受野的大小，即距离中心顶点$k+1$-hop以内的邻居顶点都会被用来更新中心顶点的特征表示。</p>
+<blockquote>
+<p>接下来的两类GCN的$L$均代表正则化后的拉普拉斯矩阵。</p>
+</blockquote>
+<h1 id="ChebyNet"><a href="#ChebyNet" class="headerlink" title="ChebyNet"></a>ChebyNet</h1><p>不同于第二代GCN，2016年被提出的<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1606.09375.pdf">ChebyNet</a>使用切比雪夫多项式来近似拟合滤波器：</p>
+<p>$$<br>\begin{cases}<br>    g _w&#x3D;\sum\limits _{k&#x3D;0} ^{K}w _kT _k(\hat{\Lambda})\tag{5}\\<br>    \hat{\Lambda}&#x3D;\frac{2}{\lambda _{max}}\Lambda-I _N<br>\end{cases}<br>$$</p>
+<p>其中，$\lambda _{max}$是正则化的拉普拉斯矩阵$L$的最大特征值，而正则化拉普拉斯矩阵的特征值介于0和2之间，因此，$\hat{\Lambda}$的作用是让特征值矩阵的值介于-1和1之间。切比雪夫多项式是递归定义的：</p>
+<p>$$<br>\begin{cases}<br>    T _0(x)&#x3D;1 \\<br>    T _1(x)&#x3D;x \\<br>    T _{n+1}(x)&#x3D;2xT _n(x)- T _{n-1}(x)<br>\end{cases}<br>$$</p>
+<p>切比雪夫多项式各个幂次项的系数实际上是余弦函数$\cos nx$展开为$\cos x$的函数后的各个幂次的$\cos x$的系数。因此，相比于普通的多项式，切比雪夫多项式具有很多特殊的性质：</p>
+<ol>
+<li>在$[-1,1]$有$n$个零点；</li>
+<li>在$[-1,1]$的值在$[-1,1]$之间震荡。</li>
+<li>...</li>
+</ol>
+<p><img src="/2023/07/06/SpectralApproach/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Chebyshev polynomials</center><br>
+
+<p>这使得它与正弦波形十分相似，但是又更为简单。将式子带入$(3)$，可得：</p>
+<p>$$<br>\begin{cases}<br>    Z&#x3D;\sigma(\sum\limits _{k&#x3D;0} ^Kw _kT _k(\hat{L})f)\\<br>    \hat{L}&#x3D;\frac{2}{\lambda _{max}}L-I _N<br>\end{cases}<br>$$</p>
+<p>因为切比雪夫多项式本质上仍是多项式，所以$k$仍然表示的是感受野的大小，这与第二代GCN一致。</p>
+<h1 id="GCN"><a href="#GCN" class="headerlink" title="GCN"></a>GCN</h1><p>目前常规的<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1609.02907.pdf">GCN</a>源于2017年Kipf等发表的论文。它是在ChebyNet的基础上进一步简化而来的，它取$K$为1，即，只取切比雪夫多项式的前两项：</p>
+<p>$$<br>g _w&#x3D;w_0+w_1\hat{L}\tag{6}<br>$$</p>
+<p>进一步地，它固定$\lambda _{max}$为2，并且限制$w_0&#x3D;-w_1&#x3D;w$，于是式$(6)$变为：</p>
+<p>$$<br>\begin{align*}<br>    g _w<br>    &amp;&#x3D;w-w(L-I _N)\\<br>    &amp;&#x3D;-w(L-2I _N)\\<br>    &amp;&#x3D;-w[D ^{-\frac{1}{2}}(D-A)D ^{-\frac{1}{2}}-2I _N]\\<br>    &amp;&#x3D;-w(I _N-D ^{-\frac{1}{2}}AD ^{-\frac{1}{2}}-2I _N)\\<br>    &amp;&#x3D;w(I _N+D ^{-\frac{1}{2}}AD ^{-\frac{1}{2}})\tag{7}<br>\end{align*}<br>$$</p>
+<p>不难看出，如此，卷积层的感受野就只有1，即中心顶点只会聚合与其直接邻接的顶点的信息。但是，由于$A$的对角线均为0，在卷积过程中，中心顶点会丢失自己的信息。因此，GCN为每个顶点增加了自旋边，即：</p>
+<p>$$<br>\tilde{A}&#x3D;A+I _N<br>$$</p>
+<p>相应地，拉普拉斯矩阵$L$和和度矩阵$D$分别变成了$\tilde{L}$和$\tilde{D}$。如此，$k$为0的切比雪夫项$I _N$就不再被需要了，因为$\tilde{A}$使得中心顶点能够保留自己的信息，故式$(7)$进一步简化为：</p>
+<p>$$<br>g _w&#x3D;w\tilde{D} ^{-\frac{1}{2}}\tilde{A}\tilde{D} ^{-\frac{1}{2}}<br>$$</p>
+<p>为了增加可学习的参数，GCN将$w$扩充为矩阵$W$，并定义了卷积层的最终操作为：</p>
+<p>$$<br>Z&#x3D;\sigma(\tilde{D} ^{-\frac{1}{2}}\tilde{A}\tilde{D} ^{-\frac{1}{2}}fW)<br>$$</p>
+<p>以上就是GCN，它是ChebyNet的简化，但实际效果却远优于更复杂的ChebyNet。但是，GCN不能叠加很多层，因为它是个低通滤波器，即它会过滤掉高频的信号，因此当GCN的层数过高时，最终的信号就只剩低频信号了，相应地网络的效果也会变差：</p>
+<p><img src="/2023/07/06/SpectralApproach/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Low pass filter</center><br>
+
+<blockquote>
+<p>图中的$h$就是文中的$g$。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/ftp/arxiv/papers/1812/1812.08434.pdf">Graph neural networks: A review of methods and applications</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Me4y1c7kj/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">谱域图神经网络理论基础</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/121090537">GCN中的等式证明</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/35212baf6671">图卷积网络(GCN)原理解析</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">Related Posts</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\04\GraphFourierTransform\" rel="bookmark">Graph Fourier Transform</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\03\Laplacian\" rel="bookmark">Laplacian</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\07\02\GCN\" rel="bookmark">Graph Neural Networks & Graph Convolutional Networks</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\12\02\CountingComplexity\" rel="bookmark">Computational Complexity: Complexity of Counting</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\11\24\MatrixTheory5\" rel="bookmark">MatrixTheory: 特殊矩阵与矩阵分解</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Math/" rel="tag"># Math</a>
+              <a href="/tags/GNN/" rel="tag"># GNN</a>
+              <a href="/tags/GCN/" rel="tag"># GCN</a>
+          </div>
+
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+              var tags=tagsall[i].getElementsByTagName("a");
+              for (var j = tags.length - 1; j >= 0; j--) {
+                  var r=Math.floor(Math.random()*75+130);
+                  var g=Math.floor(Math.random()*75+100);
+                  var b=Math.floor(Math.random()*75+80);
+                  tags[j].style.background = "rgb("+r+","+g+","+b+")";
+              }
+          }                        
+          </script>
+
+        
+
+
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E5%8D%B7%E7%A7%AF%E5%88%B0%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">从卷积到傅里叶变换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E4%BB%A3GCN"><span class="nav-number">2.</span> <span class="nav-text">第一代GCN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E4%BB%A3GCN"><span class="nav-number">3.</span> <span class="nav-text">第二代GCN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ChebyNet"><span class="nav-number">4.</span> <span class="nav-text">ChebyNet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCN"><span class="nav-number">5.</span> <span class="nav-text">GCN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ChaosTsang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">ChaosTsang</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+          <div id="myCanvasContainer" class="widget tagcloud">
+            <canvas width="250" height="250" id="resCanvas" style="width:100%">
+              <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a><span class="tag-list-count">4</span></li></ul>
+            </canvas>
+          </div>
+        </div>
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fas fa-star-of-david"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChaosTsang</span>
+</div><script color="240,255,255" opacity="1" zIndex="-1" count="100" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {  // 2023-04-04 00:16:51
+        var grt= new Date("04/04/2023 00:16:51");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/zclzcl0223/my_medium-zoom@master/medium-zoom-v7.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+</body>
+</html>
