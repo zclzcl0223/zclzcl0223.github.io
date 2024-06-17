@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Diffusion</title>
+    <url>/2024/06/17/Diffusion/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="What-is-Diffusion-Model"><a href="#What-is-Diffusion-Model" class="headerlink" title="What is Diffusion Model"></a>What is Diffusion Model</h1><blockquote>
+<p>Sculpture is born from stone, I just cut off the part which is unnecessary. --Michelangelo</p>
+</blockquote>
+<p>In diffusion models, the &#39;stone&#39; is generated from the training data by adding random noise, which the sculpture is revealed by iteratively removing the noise added. Unlike other generative models, the diffusion model does not generate data but generates noise. </p>
+<p>That is, the generator of diffusion model outputs noise, which is then removed from the noisy data. The denoised data is used as the input for the nex denoising process. Therefore, the ground truth of each denoising process is the noise added and the prediction is the noise generated.</p>
+<p><img src="/2024/06/17/Diffusion/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Pipeline of Diffusion</center><br>
+
+<h1 id="Maths-behind-Diffusion"><a href="#Maths-behind-Diffusion" class="headerlink" title="Maths behind Diffusion"></a>Maths behind Diffusion</h1><p>最大似然估计和KL散度。</p>
+<h1 id="Diffusion-Models"><a href="#Diffusion-Models" class="headerlink" title="Diffusion Models"></a>Diffusion Models</h1><h2 id="Denoising-Diffusion-Probabilistic-Models-DDPM"><a href="#Denoising-Diffusion-Probabilistic-Models-DDPM" class="headerlink" title="Denoising Diffusion Probabilistic Models (DDPM)"></a>Denoising Diffusion Probabilistic Models (DDPM)</h2><h1 id="Why-Diffusion-Works"><a href="#Why-Diffusion-Works" class="headerlink" title="Why Diffusion Works"></a>Why Diffusion Works</h1><p>一次生成+自回归纠正</p>
+]]></content>
+      <categories>
+        <category>Advanced Model</category>
+      </categories>
+      <tags>
+        <tag>Deep Learning</tag>
+        <tag>Generative AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VAE</title>
     <url>/2024/01/20/VAE/</url>
     <content><![CDATA[<span id="more"></span>
@@ -134,8 +158,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -388,8 +412,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -532,8 +556,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -768,8 +792,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -984,8 +1008,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1112,8 +1136,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1552,8 +1576,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1663,8 +1687,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1924,8 +1948,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1952,8 +1976,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -2038,8 +2062,8 @@
       <tags>
         <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
-        <tag>GNN</tag>
         <tag>Machine Learning</tag>
+        <tag>GNN</tag>
         <tag>SVM</tag>
       </tags>
   </entry>
@@ -2666,9 +2690,9 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
-        <tag>Tool</tag>
         <tag>Python</tag>
+        <tag>Tool</tag>
+        <tag>Deep Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -3960,8 +3984,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -4047,8 +4071,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -4292,8 +4316,8 @@
       </categories>
       <tags>
         <tag>Unsupervised Learning</tag>
-        <tag>Lab</tag>
         <tag>Reinforcement Learning</tag>
+        <tag>Lab</tag>
         <tag>Recommender System</tag>
       </tags>
   </entry>
@@ -5398,8 +5422,8 @@
         <category>Programming Language</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5502,8 +5526,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5587,8 +5611,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5696,8 +5720,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5826,8 +5850,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5844,8 +5868,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -5916,8 +5940,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -6106,8 +6130,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -6208,8 +6232,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -6334,8 +6358,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -6365,8 +6389,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -6615,9 +6639,9 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
-        <tag>Tool</tag>
         <tag>Python</tag>
+        <tag>Tool</tag>
+        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -6720,9 +6744,9 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
-        <tag>Tool</tag>
         <tag>Python</tag>
+        <tag>Tool</tag>
+        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -6916,8 +6940,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Python</tag>
+        <tag>Tool</tag>
         <tag>Data Analysis</tag>
       </tags>
   </entry>
@@ -6949,8 +6973,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Python</tag>
+        <tag>Tool</tag>
         <tag>Unsupervised Learning</tag>
         <tag>Machine Learning</tag>
         <tag>Supervised Learning</tag>
@@ -7066,8 +7090,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Python</tag>
+        <tag>Tool</tag>
         <tag>Data Analysis</tag>
       </tags>
   </entry>
@@ -7170,6 +7194,20 @@
       </tags>
   </entry>
   <entry>
+    <title>Gamma and Factorial</title>
+    <url>/2023/05/05/GammaAndFactorial/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Lambda: Anomymous Functions</title>
     <url>/2023/05/05/PythonLambda/</url>
     <content><![CDATA[<span id="more"></span>
@@ -7223,20 +7261,6 @@
       <tags>
         <tag>Python</tag>
         <tag>Configuration</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Gamma and Factorial</title>
-    <url>/2023/05/05/GammaAndFactorial/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -7531,8 +7555,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Python</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
