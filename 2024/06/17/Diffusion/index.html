@@ -33,8 +33,11 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/2.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/3.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/7.png">
 <meta property="article:published_time" content="2024-06-17T11:38:01.000Z">
-<meta property="article:modified_time" content="2024-06-19T03:18:43.962Z">
+<meta property="article:modified_time" content="2024-06-19T14:27:44.054Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Generative AI">
@@ -236,7 +239,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-06-19 11:18:43" itemprop="dateModified" datetime="2024-06-19T11:18:43+08:00">2024-06-19</time>
+                <time title="Modified: 2024-06-19 22:27:44" itemprop="dateModified" datetime="2024-06-19T22:27:44+08:00">2024-06-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,34 +268,47 @@
 <h1 id="What-is-Diffusion-Model"><a href="#What-is-Diffusion-Model" class="headerlink" title="What is Diffusion Model"></a>What is Diffusion Model</h1><blockquote>
 <p>Sculpture is born from stone, I just cut off the part which is unnecessary. --Michelangelo</p>
 </blockquote>
-<p>In diffusion models, the &#39;stone&#39; is generated from the training data by adding random noise, which the sculpture is revealed by iteratively removing the noise added. Unlike other generative models, the diffusion model does not generate data but generates noise. </p>
-<p>That is, the generator of diffusion model outputs noise, which is then removed from the noisy data. The denoised data is used as the input for the nex denoising process. Therefore, the ground truth of each denoising process is the noise added and the prediction is the noise generated.</p>
+<p>In diffusion models, while training, the &#39;stone&#39; is generated from the training data by adding random noise. The sculpture is revealed by iteratively removing the noise added.</p>
+<p>Unlike other generative models, the diffusion model does not generate data but generates noise. That is, the generator of diffusion model outputs noise, which is then removed from the noisy data. The denoised data is used as the input for the next denoising process. Therefore, the ground truth of each denoising process is the noise added and the prediction is the noise generated.</p>
 <p><img src="/2024/06/17/Diffusion/1.png" alt="1"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. Pipeline of Diffusion</center><br>
 
-<h1 id="Maths-behind-Diffusion-x2F-Generation"><a href="#Maths-behind-Diffusion-x2F-Generation" class="headerlink" title="Maths behind Diffusion&#x2F;Generation"></a>Maths behind Diffusion&#x2F;Generation</h1><p>The goal of image generation: given $z$ from a normal distribution, output $G(z)&#x3D;x$, where $x$ is similar to the original iamge distribution.</p>
+<h1 id="Maths-behind-Diffusion-x2F-Generation"><a href="#Maths-behind-Diffusion-x2F-Generation" class="headerlink" title="Maths behind Diffusion&#x2F;Generation"></a>Maths behind Diffusion&#x2F;Generation</h1><p>The goal of image generation: given $z$ from a normal distribution, output $G(z)&#x3D;x$, where $x$ is similar to the original image distribution.</p>
 <p><img src="/2024/06/17/Diffusion/2.png" alt="2"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 2. Goal of Image Generation</center><br>
 
 <blockquote>
-<p>The same is true fro conditional generation, except that we consider the distribution that meets this condition.</p>
+<p>The same is true for conditional generation, except that we consider the distribution that meets this condition.</p>
 </blockquote>
 <p>Hence, given training set $\{x^1,...,x^m\}\in P_{data}(x)$, we aim to find $\theta$ that maximizes the probability of these observations. And this is maximum likelihood estimation:</p>
 <p>$$<br>\theta ^*&#x3D; arg\max _\theta \prod _{i&#x3D;1} ^m P _{\theta}(x ^i)<br>$$</p>
 <p><img src="/2024/06/17/Diffusion/3.png" alt="3"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 3. Maximum Likelihood Estimation (MLE)</center><br>
 
-<p>Actually, MLE is equal to minimizing <em>KL Divergence</em>:</p>
+<p>Actually, MLE is equal to minimizing <em>KL Divergence</em> :</p>
 <p>$$<br>\begin{align*}<br>    \theta ^*&#x3D;&amp; arg\max _\theta \prod _{i&#x3D;1} ^m P _{\theta}(x ^i)&#x3D;arg\max _\theta \sum _{i&#x3D;1} ^m \log P _{\theta}(x ^i)\\<br>    \approx &amp;arg\max _\theta E _{x\sim P _{data}} \log P _{\theta}(x)\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log P _{\theta}(x)\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log P _{\theta}(x) - \int _x P _{data}(x)\log P _{data}(x) dx\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log \frac{P _{\theta}(x)}{P _{data}(x)}\\<br>    &#x3D;&amp;arg\min _\theta KL(P _{data}||P _{\theta})<br>\end{align*}<br>$$</p>
 <h1 id="Diffusion-Models"><a href="#Diffusion-Models" class="headerlink" title="Diffusion Models"></a>Diffusion Models</h1><h2 id="Denoising-Diffusion-Probabilistic-Models-DDPM"><a href="#Denoising-Diffusion-Probabilistic-Models-DDPM" class="headerlink" title="Denoising Diffusion Probabilistic Models (DDPM)"></a>Denoising Diffusion Probabilistic Models (DDPM)</h2><p>In DDPM, </p>
 <p>$$<br>P _\theta(x _0)&#x3D;\int _{x _1:x_T}P(x _T)P _{\theta}(x _{T-1}|x _T)...P _\theta(x _{t-1}|x _t)...P _\theta(x _{0}|x _1)dx _1:x _T<br>$$</p>
 <p><img src="/2024/06/17/Diffusion/4.png" alt="4"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 4. Denoising</center><br>
 
-<p>Similar to <a href="/2024/01/20/VAE/">VAE</a>, we actually optimize the lower bound of $P _\theta(x)$, that is:</p>
+<p>Similar to <a href="/2024/01/20/VAE/">VAE</a>, we actually only optimize the lower bound of $P _\theta(x)$, that is:</p>
 <p>$$<br>arg\max _\theta L _b&#x3D;E _{q(x _1:x _T| x)}[\log (\frac{P(x: x _T)}{q (x _1: x _T|x)})]<br>$$</p>
-<p>where $q(x _1:x _T| x)$ is the forward process, which is equal to the encoder of VAE.</p>
-<h1 id="Why-Diffusion-Works"><a href="#Why-Diffusion-Works" class="headerlink" title="Why Diffusion Works"></a>Why Diffusion Works</h1><p>一次生成+自回归纠正</p>
+<p>where $q(x _1:x _T| x)&#x3D;q(x _1|x)q(x _2| x _1)...q(x _T| x _{T-1})$ is the forward process, which is equal to the encoder of VAE.</p>
+<h3 id="Forward-Process"><a href="#Forward-Process" class="headerlink" title="Forward Process"></a>Forward Process</h3><p>During forward process, multi-steps could be turned to single-step. As shown in the following figure:</p>
+<p><img src="/2024/06/17/Diffusion/5.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. One-step Forward</center><br>
+
+<h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><p>Therefore, during training, we actually only add noise once and denoise once:</p>
+<p><img src="/2024/06/17/Diffusion/6.png" alt="6"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. Training</center><br>
+
+<h3 id="Generation"><a href="#Generation" class="headerlink" title="Generation"></a>Generation</h3><p>While generating, we randomly sample data from the normal distribution and generate the image after $T$ times of denoising.</p>
+<p><img src="/2024/06/17/Diffusion/7.png" alt="7"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 7. Generation</center><br>
+
+<p>where the first term is mean and the second term is variance.</p>
+<h1 id="Why-Diffusion-Works"><a href="#Why-Diffusion-Works" class="headerlink" title="Why Diffusion Works"></a>Why Diffusion Works</h1><p>The diffusion model can actually be regarded as an autoregressive model with a global perspective. It ensures the integrity of the generated image while achieving self-correction through iterative denoising.</p>
 
     </div>
 
@@ -400,7 +416,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-Diffusion-Model"><span class="nav-number">1.</span> <span class="nav-text">What is Diffusion Model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maths-behind-Diffusion-x2F-Generation"><span class="nav-number">2.</span> <span class="nav-text">Maths behind Diffusion&#x2F;Generation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Diffusion-Models"><span class="nav-number">3.</span> <span class="nav-text">Diffusion Models</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Denoising-Diffusion-Probabilistic-Models-DDPM"><span class="nav-number">3.1.</span> <span class="nav-text">Denoising Diffusion Probabilistic Models (DDPM)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-Diffusion-Works"><span class="nav-number">4.</span> <span class="nav-text">Why Diffusion Works</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-Diffusion-Model"><span class="nav-number">1.</span> <span class="nav-text">What is Diffusion Model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maths-behind-Diffusion-x2F-Generation"><span class="nav-number">2.</span> <span class="nav-text">Maths behind Diffusion&#x2F;Generation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Diffusion-Models"><span class="nav-number">3.</span> <span class="nav-text">Diffusion Models</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Denoising-Diffusion-Probabilistic-Models-DDPM"><span class="nav-number">3.1.</span> <span class="nav-text">Denoising Diffusion Probabilistic Models (DDPM)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Forward-Process"><span class="nav-number">3.1.1.</span> <span class="nav-text">Forward Process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training"><span class="nav-number">3.1.2.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generation"><span class="nav-number">3.1.3.</span> <span class="nav-text">Generation</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-Diffusion-Works"><span class="nav-number">4.</span> <span class="nav-text">Why Diffusion Works</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
