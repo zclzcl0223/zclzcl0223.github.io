@@ -30,8 +30,11 @@
 <meta property="og:description" content="Diffusion, Stable Diffusion, Diffusion Transformer.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/4.png">
 <meta property="article:published_time" content="2024-06-17T11:38:01.000Z">
-<meta property="article:modified_time" content="2024-06-17T13:29:18.577Z">
+<meta property="article:modified_time" content="2024-06-19T03:18:43.962Z">
 <meta property="article:author" content="ChaosTsang">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Generative AI">
@@ -225,10 +228,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2024-06-17 19:38:01 / Modified: 21:29:18" itemprop="dateCreated datePublished" datetime="2024-06-17T19:38:01+08:00">2024-06-17</time>
+              <time title="Created: 2024-06-17 19:38:01" itemprop="dateCreated datePublished" datetime="2024-06-17T19:38:01+08:00">2024-06-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-06-19 11:18:43" itemprop="dateModified" datetime="2024-06-19T11:18:43+08:00">2024-06-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -261,8 +270,29 @@
 <p><img src="/2024/06/17/Diffusion/1.png" alt="1"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. Pipeline of Diffusion</center><br>
 
-<h1 id="Maths-behind-Diffusion"><a href="#Maths-behind-Diffusion" class="headerlink" title="Maths behind Diffusion"></a>Maths behind Diffusion</h1><p>最大似然估计和KL散度。</p>
-<h1 id="Diffusion-Models"><a href="#Diffusion-Models" class="headerlink" title="Diffusion Models"></a>Diffusion Models</h1><h2 id="Denoising-Diffusion-Probabilistic-Models-DDPM"><a href="#Denoising-Diffusion-Probabilistic-Models-DDPM" class="headerlink" title="Denoising Diffusion Probabilistic Models (DDPM)"></a>Denoising Diffusion Probabilistic Models (DDPM)</h2><h1 id="Why-Diffusion-Works"><a href="#Why-Diffusion-Works" class="headerlink" title="Why Diffusion Works"></a>Why Diffusion Works</h1><p>一次生成+自回归纠正</p>
+<h1 id="Maths-behind-Diffusion-x2F-Generation"><a href="#Maths-behind-Diffusion-x2F-Generation" class="headerlink" title="Maths behind Diffusion&#x2F;Generation"></a>Maths behind Diffusion&#x2F;Generation</h1><p>The goal of image generation: given $z$ from a normal distribution, output $G(z)&#x3D;x$, where $x$ is similar to the original iamge distribution.</p>
+<p><img src="/2024/06/17/Diffusion/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Goal of Image Generation</center><br>
+
+<blockquote>
+<p>The same is true fro conditional generation, except that we consider the distribution that meets this condition.</p>
+</blockquote>
+<p>Hence, given training set $\{x^1,...,x^m\}\in P_{data}(x)$, we aim to find $\theta$ that maximizes the probability of these observations. And this is maximum likelihood estimation:</p>
+<p>$$<br>\theta ^*&#x3D; arg\max _\theta \prod _{i&#x3D;1} ^m P _{\theta}(x ^i)<br>$$</p>
+<p><img src="/2024/06/17/Diffusion/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Maximum Likelihood Estimation (MLE)</center><br>
+
+<p>Actually, MLE is equal to minimizing <em>KL Divergence</em>:</p>
+<p>$$<br>\begin{align*}<br>    \theta ^*&#x3D;&amp; arg\max _\theta \prod _{i&#x3D;1} ^m P _{\theta}(x ^i)&#x3D;arg\max _\theta \sum _{i&#x3D;1} ^m \log P _{\theta}(x ^i)\\<br>    \approx &amp;arg\max _\theta E _{x\sim P _{data}} \log P _{\theta}(x)\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log P _{\theta}(x)\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log P _{\theta}(x) - \int _x P _{data}(x)\log P _{data}(x) dx\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log \frac{P _{\theta}(x)}{P _{data}(x)}\\<br>    &#x3D;&amp;arg\min _\theta KL(P _{data}||P _{\theta})<br>\end{align*}<br>$$</p>
+<h1 id="Diffusion-Models"><a href="#Diffusion-Models" class="headerlink" title="Diffusion Models"></a>Diffusion Models</h1><h2 id="Denoising-Diffusion-Probabilistic-Models-DDPM"><a href="#Denoising-Diffusion-Probabilistic-Models-DDPM" class="headerlink" title="Denoising Diffusion Probabilistic Models (DDPM)"></a>Denoising Diffusion Probabilistic Models (DDPM)</h2><p>In DDPM, </p>
+<p>$$<br>P _\theta(x _0)&#x3D;\int _{x _1:x_T}P(x _T)P _{\theta}(x _{T-1}|x _T)...P _\theta(x _{t-1}|x _t)...P _\theta(x _{0}|x _1)dx _1:x _T<br>$$</p>
+<p><img src="/2024/06/17/Diffusion/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Denoising</center><br>
+
+<p>Similar to <a href="/2024/01/20/VAE/">VAE</a>, we actually optimize the lower bound of $P _\theta(x)$, that is:</p>
+<p>$$<br>arg\max _\theta L _b&#x3D;E _{q(x _1:x _T| x)}[\log (\frac{P(x: x _T)}{q (x _1: x _T|x)})]<br>$$</p>
+<p>where $q(x _1:x _T| x)$ is the forward process, which is equal to the encoder of VAE.</p>
+<h1 id="Why-Diffusion-Works"><a href="#Why-Diffusion-Works" class="headerlink" title="Why Diffusion Works"></a>Why Diffusion Works</h1><p>一次生成+自回归纠正</p>
 
     </div>
 
@@ -370,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-Diffusion-Model"><span class="nav-number">1.</span> <span class="nav-text">What is Diffusion Model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maths-behind-Diffusion"><span class="nav-number">2.</span> <span class="nav-text">Maths behind Diffusion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Diffusion-Models"><span class="nav-number">3.</span> <span class="nav-text">Diffusion Models</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Denoising-Diffusion-Probabilistic-Models-DDPM"><span class="nav-number">3.1.</span> <span class="nav-text">Denoising Diffusion Probabilistic Models (DDPM)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-Diffusion-Works"><span class="nav-number">4.</span> <span class="nav-text">Why Diffusion Works</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-Diffusion-Model"><span class="nav-number">1.</span> <span class="nav-text">What is Diffusion Model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maths-behind-Diffusion-x2F-Generation"><span class="nav-number">2.</span> <span class="nav-text">Maths behind Diffusion&#x2F;Generation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Diffusion-Models"><span class="nav-number">3.</span> <span class="nav-text">Diffusion Models</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Denoising-Diffusion-Probabilistic-Models-DDPM"><span class="nav-number">3.1.</span> <span class="nav-text">Denoising Diffusion Probabilistic Models (DDPM)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-Diffusion-Works"><span class="nav-number">4.</span> <span class="nav-text">Why Diffusion Works</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

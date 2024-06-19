@@ -13,8 +13,29 @@
 <p><img src="/2024/06/17/Diffusion/1.png" alt="1"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. Pipeline of Diffusion</center><br>
 
-<h1 id="Maths-behind-Diffusion"><a href="#Maths-behind-Diffusion" class="headerlink" title="Maths behind Diffusion"></a>Maths behind Diffusion</h1><p>最大似然估计和KL散度。</p>
-<h1 id="Diffusion-Models"><a href="#Diffusion-Models" class="headerlink" title="Diffusion Models"></a>Diffusion Models</h1><h2 id="Denoising-Diffusion-Probabilistic-Models-DDPM"><a href="#Denoising-Diffusion-Probabilistic-Models-DDPM" class="headerlink" title="Denoising Diffusion Probabilistic Models (DDPM)"></a>Denoising Diffusion Probabilistic Models (DDPM)</h2><h1 id="Why-Diffusion-Works"><a href="#Why-Diffusion-Works" class="headerlink" title="Why Diffusion Works"></a>Why Diffusion Works</h1><p>一次生成+自回归纠正</p>
+<h1 id="Maths-behind-Diffusion-x2F-Generation"><a href="#Maths-behind-Diffusion-x2F-Generation" class="headerlink" title="Maths behind Diffusion&#x2F;Generation"></a>Maths behind Diffusion&#x2F;Generation</h1><p>The goal of image generation: given $z$ from a normal distribution, output $G(z)&#x3D;x$, where $x$ is similar to the original iamge distribution.</p>
+<p><img src="/2024/06/17/Diffusion/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Goal of Image Generation</center><br>
+
+<blockquote>
+<p>The same is true fro conditional generation, except that we consider the distribution that meets this condition.</p>
+</blockquote>
+<p>Hence, given training set $\{x^1,...,x^m\}\in P_{data}(x)$, we aim to find $\theta$ that maximizes the probability of these observations. And this is maximum likelihood estimation:</p>
+<p>$$<br>\theta ^*&#x3D; arg\max _\theta \prod _{i&#x3D;1} ^m P _{\theta}(x ^i)<br>$$</p>
+<p><img src="/2024/06/17/Diffusion/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Maximum Likelihood Estimation (MLE)</center><br>
+
+<p>Actually, MLE is equal to minimizing <em>KL Divergence</em>:</p>
+<p>$$<br>\begin{align*}<br>    \theta ^*&#x3D;&amp; arg\max _\theta \prod _{i&#x3D;1} ^m P _{\theta}(x ^i)&#x3D;arg\max _\theta \sum _{i&#x3D;1} ^m \log P _{\theta}(x ^i)\\<br>    \approx &amp;arg\max _\theta E _{x\sim P _{data}} \log P _{\theta}(x)\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log P _{\theta}(x)\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log P _{\theta}(x) - \int _x P _{data}(x)\log P _{data}(x) dx\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log \frac{P _{\theta}(x)}{P _{data}(x)}\\<br>    &#x3D;&amp;arg\min _\theta KL(P _{data}||P _{\theta})<br>\end{align*}<br>$$</p>
+<h1 id="Diffusion-Models"><a href="#Diffusion-Models" class="headerlink" title="Diffusion Models"></a>Diffusion Models</h1><h2 id="Denoising-Diffusion-Probabilistic-Models-DDPM"><a href="#Denoising-Diffusion-Probabilistic-Models-DDPM" class="headerlink" title="Denoising Diffusion Probabilistic Models (DDPM)"></a>Denoising Diffusion Probabilistic Models (DDPM)</h2><p>In DDPM, </p>
+<p>$$<br>P _\theta(x _0)&#x3D;\int _{x _1:x_T}P(x _T)P _{\theta}(x _{T-1}|x _T)...P _\theta(x _{t-1}|x _t)...P _\theta(x _{0}|x _1)dx _1:x _T<br>$$</p>
+<p><img src="/2024/06/17/Diffusion/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Denoising</center><br>
+
+<p>Similar to <a href="/2024/01/20/VAE/">VAE</a>, we actually optimize the lower bound of $P _\theta(x)$, that is:</p>
+<p>$$<br>arg\max _\theta L _b&#x3D;E _{q(x _1:x _T| x)}[\log (\frac{P(x: x _T)}{q (x _1: x _T|x)})]<br>$$</p>
+<p>where $q(x _1:x _T| x)$ is the forward process, which is equal to the encoder of VAE.</p>
+<h1 id="Why-Diffusion-Works"><a href="#Why-Diffusion-Works" class="headerlink" title="Why Diffusion Works"></a>Why Diffusion Works</h1><p>一次生成+自回归纠正</p>
 ]]></content>
       <categories>
         <category>Advanced Model</category>
@@ -66,7 +87,7 @@
 <p>$$<br>\begin{align*}<br>    L _b&#x3D;&amp;\int _z q(z|x)\log (\frac{P(x|z)P(z)}{q(z|x)})dz\\<br>    &#x3D;&amp;\int _z q(z|x)\log (\frac{P(z)}{q(z|x)})dz +\int _z q(z|x)\log (P(x|z))dz<br>\end{align*}<br>$$</p>
 <p>其中前项是$P(z)$和$q(z|x)$的KL散度的相反数。而$q(z|x)$由$x$经过映射生成:</p>
 <p><img src="/2024/01/20/VAE/5.png" alt="5"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 5. Decoder</center><br>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Encoder</center><br>
 
 <p>这项实际上就是VAE的$\mathcal{L} _2$，因为要$\max L _b$，则必须要$\min \text{KL}(P(z),q(z|x))$，也就是要让生成的编码尽可能地趋向正态分布。</p>
 <p>而第二项实际上是在求$\log P(x|z)$在分布$q(z|x)$下的均值:</p>
@@ -2690,9 +2711,9 @@
         <category>Tool</category>
       </categories>
       <tags>
+        <tag>Deep Learning</tag>
         <tag>Python</tag>
         <tag>Tool</tag>
-        <tag>Deep Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -6639,9 +6660,9 @@
         <category>Tool</category>
       </categories>
       <tags>
+        <tag>Deep Learning</tag>
         <tag>Python</tag>
         <tag>Tool</tag>
-        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -6744,9 +6765,9 @@
         <category>Tool</category>
       </categories>
       <tags>
+        <tag>Deep Learning</tag>
         <tag>Python</tag>
         <tag>Tool</tag>
-        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -7172,6 +7193,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Python Package</title>
+    <url>/2023/06/15/PythonPackage/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
+<blockquote>
+<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
+</blockquote>
+<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
+<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Configuration</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Zip: Make Aggregation Easier</title>
     <url>/2023/05/06/ZipMakeLifeEasier/</url>
     <content><![CDATA[<span id="more"></span>
@@ -7241,26 +7282,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python Package</title>
-    <url>/2023/06/15/PythonPackage/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
-<blockquote>
-<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
-</blockquote>
-<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
-<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Configuration</tag>
       </tags>
   </entry>
   <entry>
