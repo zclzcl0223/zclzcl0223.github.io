@@ -306,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zclzcl0223.github.io/2023/04/24/Matplotlib/" data-id="clzik0lcj004mv47k81hh6unp" data-title="Matplotlib" class="article-share-link">Share</a>
+      <a data-url="https://zclzcl0223.github.io/2023/04/24/Matplotlib/" data-id="clzik1qtp004qm07kbghw59cu" data-title="Matplotlib" class="article-share-link">Share</a>
       
       
       
@@ -370,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zclzcl0223.github.io/2023/04/22/Scikit-learn/" data-id="clzik0lcx0086v47k90ok6px0" data-title="Scikit-learn" class="article-share-link">Share</a>
+      <a data-url="https://zclzcl0223.github.io/2023/04/22/Scikit-learn/" data-id="clzik1qu1007ym07k0uj84uav" data-title="Scikit-learn" class="article-share-link">Share</a>
       
       
       
@@ -516,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zclzcl0223.github.io/2023/04/22/NumPy/" data-id="clzik0lcp0065v47k4gbe2djg" data-title="NumPy" class="article-share-link">Share</a>
+      <a data-url="https://zclzcl0223.github.io/2023/04/22/NumPy/" data-id="clzik1qtu005xm07keket2c4c" data-title="NumPy" class="article-share-link">Share</a>
       
       
       
@@ -583,7 +583,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zclzcl0223.github.io/2023/07/10/StringFormatting/" data-id="clzik0lcy008hv47khppo8tup" data-title="Python String Formatting" class="article-share-link">Share</a>
+      <a data-url="https://zclzcl0223.github.io/2023/07/10/StringFormatting/" data-id="clzik1qu3008cm07k5ybmed5e" data-title="Python String Formatting" class="article-share-link">Share</a>
       
       
       
@@ -658,7 +658,114 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zclzcl0223.github.io/2023/07/07/CopyAndDeepcopy/" data-id="clzik0lc20017v47k7sfcb1te" data-title="Copy and Deepcopy in Python" class="article-share-link">Share</a>
+      <a data-url="https://zclzcl0223.github.io/2023/07/07/CopyAndDeepcopy/" data-id="clzik1qtb001lm07khjcjhx79" data-title="Copy and Deepcopy in Python" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-PythonPackage" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/15/PythonPackage/" class="article-date">
+  <time class="dt-published" datetime="2023-06-15T07:56:01.000Z" itemprop="datePublished">2023-06-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/15/PythonPackage/">Python Package</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
+<blockquote>
+<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a target="_blank" rel="noopener" href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
+<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/06/15/PythonPackage/" data-id="clzik1qtz007am07kh41rb4qm" data-title="Python Package" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ZipMakeLifeEasier" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/06/ZipMakeLifeEasier/" class="article-date">
+  <time class="dt-published" datetime="2023-05-06T11:43:54.000Z" itemprop="datePublished">2023-05-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/06/ZipMakeLifeEasier/">Zip: Make Aggregation Easier</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>We can even use zip to generate a dictionary:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/05/06/ZipMakeLifeEasier/" data-id="clzik1quh00e1m07ka2ws1m30" data-title="Zip: Make Aggregation Easier" class="article-share-link">Share</a>
       
       
       
@@ -705,7 +812,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zclzcl0223.github.io/2023/05/05/GammaAndFactorial/" data-id="clzik0lcc002vv47k2nj6ekxb" data-title="Gamma and Factorial" class="article-share-link">Share</a>
+      <a data-url="https://zclzcl0223.github.io/2023/05/05/GammaAndFactorial/" data-id="clzik1qtg002sm07k2maq6vu6" data-title="Gamma and Factorial" class="article-share-link">Share</a>
       
       
       
@@ -774,114 +881,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zclzcl0223.github.io/2023/05/05/PythonLambda/" data-id="clzik0lcu007bv47kfcek02og" data-title="Lambda: Anomymous Functions" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-PythonPackage" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/06/15/PythonPackage/" class="article-date">
-  <time class="dt-published" datetime="2023-06-15T07:56:01.000Z" itemprop="datePublished">2023-06-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/06/15/PythonPackage/">Python Package</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <span id="more"></span>
-
-<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
-<blockquote>
-<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a target="_blank" rel="noopener" href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
-<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zclzcl0223.github.io/2023/06/15/PythonPackage/" data-id="clzik0lcu007iv47khkbmdj54" data-title="Python Package" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-ZipMakeLifeEasier" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/05/06/ZipMakeLifeEasier/" class="article-date">
-  <time class="dt-published" datetime="2023-05-06T11:43:54.000Z" itemprop="datePublished">2023-05-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/05/06/ZipMakeLifeEasier/">Zip: Make Aggregation Easier</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <span id="more"></span>
-
-<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>We can even use zip to generate a dictionary:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://zclzcl0223.github.io/2023/05/06/ZipMakeLifeEasier/" data-id="clzik0lda00e3v47kdj0l8xn5" data-title="Zip: Make Aggregation Easier" class="article-share-link">Share</a>
+      <a data-url="https://zclzcl0223.github.io/2023/05/05/PythonLambda/" data-id="clzik1qtz007dm07k69dc4vi3" data-title="Lambda: Anomymous Functions" class="article-share-link">Share</a>
       
       
       
@@ -937,7 +937,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://zclzcl0223.github.io/2023/05/02/Splat/" data-id="clzik0lcx008av47k41c406gs" data-title="Splat" class="article-share-link">Share</a>
+      <a data-url="https://zclzcl0223.github.io/2023/05/02/Splat/" data-id="clzik1qu10081m07khrpua0y2" data-title="Splat" class="article-share-link">Share</a>
       
       
       
