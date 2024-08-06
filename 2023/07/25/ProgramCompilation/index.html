@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Program Compilation | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="使用Linux命令行的进阶阶段是能在命令行上编译自己的C&#x2F;C++程序。C&#x2F;C++不像Python等解释性语言一样即插即用，要想正确地运行C&#x2F;C++程序，我们就必须将源代码编译为可执行文件。然而，在命令行下，我们无法像在IDE里那样轻易地编译程序。事实上，IDE只是将我们要在命令行上完成的编译操作集成为了其Run或Debug按钮。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Program Compilation">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/25/ProgramCompilation/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="使用Linux命令行的进阶阶段是能在命令行上编译自己的C&#x2F;C++程序。C&#x2F;C++不像Python等解释性语言一样即插即用，要想正确地运行C&#x2F;C++程序，我们就必须将源代码编译为可执行文件。然而，在命令行下，我们无法像在IDE里那样轻易地编译程序。事实上，IDE只是将我们要在命令行上完成的编译操作集成为了其Run或Debug按钮。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/25/ProgramCompilation/1.png">
+<meta property="article:published_time" content="2023-07-25T10:24:08.000Z">
+<meta property="article:modified_time" content="2023-08-02T12:32:00.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Tool">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/07/25/ProgramCompilation/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ProgramCompilation" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/25/ProgramCompilation/" class="article-date">
+  <time class="dt-published" datetime="2023-07-25T10:24:08.000Z" itemprop="datePublished">2023-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Program Compilation
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Compile-Assembly-and-Link"><a href="#Compile-Assembly-and-Link" class="headerlink" title="Compile, Assembly and Link"></a>Compile, Assembly and Link</h1><p>一个C&#x2F;C++程序从源文件<code>.c/.cpp</code>到可执行文件<code>.exe</code>一般要经过以下四个步骤：</p>
+<p><img src="/2023/07/25/ProgramCompilation/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. 从源文件到可执行文件</center>
+
+<ol>
+<li>预处理阶段：主要完成源文件的宏替换；</li>
+<li>编译（Compile）阶段：将高级语言翻译为汇编语言、源程序翻译为汇编程序；</li>
+<li>汇编（Assembly）阶段：将汇编语言翻译为机器能识别的二进制机器语言，生成的<code>.o</code>文件称可重定位目标文件，用于后续的链接操作；</li>
+<li>链接（Link）阶段：将程序用到的库程序、自定义的依赖程序等与程序链接到一起，形成最终的可执行文件以及逻辑地址。</li>
+</ol>
+<blockquote>
+<p>事实上，现在大多数编译器（Compiler）会同时完成编译和汇编的任务。</p>
+</blockquote>
+<h1 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h1><p>GCC，全称GNU C Compiler或CNU Compiler Collection，前者是其最初的称呼，是GNU Project的发起者为完善类Unix操作系统（即Linux）而开发的C&#x2F;C++编译器，后来随着GCC的发展，其支持的语言也逐渐增多，如Java、Go等，由此才有了后面的称呼。通常，Linux发行版的操作系统都会自带GCC，如果没有，则需要手动安装。我们可以使用<code>gcc --version</code>或<code>g++ --version</code>来查看本机的GCC版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc --version</span><br><span class="line">gcc (GCC) 11.2.1 20220127 (Red Hat 11.2.1-9)</span><br><span class="line">Copyright (C) 2021 Free Software Foundation, Inc.</span><br><span class="line">This is free software; see the <span class="built_in">source</span> <span class="keyword">for</span> copying conditions.  There is NO</span><br><span class="line">warranty; not even <span class="keyword">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span><br><span class="line"></span><br><span class="line">[meme@localhost Playground]$ g++ --version</span><br><span class="line">g++ (GCC) 11.2.1 20220127 (Red Hat 11.2.1-9)</span><br><span class="line">Copyright (C) 2021 Free Software Foundation, Inc.</span><br><span class="line">This is free software; see the <span class="built_in">source</span> <span class="keyword">for</span> copying conditions.  There is NO</span><br><span class="line">warranty; not even <span class="keyword">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>gcc</code>是C编译程序，而<code>g++</code>是C++编译程序。本节将以<code>gcc</code>为例记录一些GCC编译器的用法。</p>
+</blockquote>
+<p>在使用<code>gcc</code>前，我们先创建一个简单的C程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> &gt; main.c</span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line">int <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Goodbye, world!\n&quot;</span>);</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> main.c</span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line">int <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Goodbye, world!\n&quot;</span>);</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="a-out"><a href="#a-out" class="headerlink" title="a.out"></a><code>a.out</code></h2><p>若我们不为<code>gcc</code>提供任何选项而直接使用<code>gcc</code>编译文件，<code>gcc</code>会生成<code>a.out</code>作为该程序的可执行文件。需要注意的是，在Linux操作系统中，默认路径并不包含当前工作目录，因此需要使用<code>./a.out</code>来运行<code>a.out</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main.c</span><br><span class="line">[meme@localhost Playground]$ ./a.out</span><br><span class="line">Goodbye, world!</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>若<code>a.out</code>无法运行，则需要检查一下当前用户是否有运行<code>a.out</code>的权限。若无，则需用<code>chmod a+x a.out</code>来赋予当前用户权限。</p>
+</blockquote>
+<h2 id="c-o-g"><a href="#c-o-g" class="headerlink" title="-c, -o, -g"></a><code>-c</code>, <code>-o</code>, <code>-g</code></h2><p>若我们想要指定可执行文件的名字，我们就需要指定选项来逐步编译。</p>
+<ul>
+<li><code>-c</code>选项示意<code>gcc</code>完成除Link以外的全部步骤，生成可重定位的<code>.o</code>文件：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc -c main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main.c  main.o</span><br></pre></td></tr></table></figure></li>
+<li><code>-o</code>选项示意<code>gcc</code>完成可重定位文件及其库文件的Link。其对象可以是<code>.o</code>文件，也可以是<code>.c</code>文件。若为<code>.o</code>则<code>gcc</code>只完成Link；若为<code>.c</code>则<code>gcc</code>将完成从源文件到可执行文件的所有步骤。需要注意的是，可执行文件的名字应<strong>严格</strong>置于<code>-o</code>之后：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc -o main main.o  <span class="comment"># 等价于gcc main.o -o main</span></span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main  main.c  main.o</span><br><span class="line">[meme@localhost Playground]$ ./main</span><br><span class="line">Goodbye, world!</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">rm</span> main main.o</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main.c</span><br><span class="line">[meme@localhost Playground]$ gcc -o main main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main  main.c</span><br><span class="line">[meme@localhost Playground]$ ./main</span><br><span class="line">Goodbye, world!</span><br></pre></td></tr></table></figure></li>
+<li><code>-g</code>选项使得程序以Debug模式编译，以该方式编译的程序可以使用GDB来进行Debug：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">rm</span> a.out main</span><br><span class="line">[meme@localhost Playground]$ gcc -g main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main.c</span><br><span class="line">[meme@localhost Playground]$ gdb a.out</span><br><span class="line">GNU gdb (GDB) Red Hat Enterprise Linux 10.2-6.el7</span><br><span class="line">...</span><br><span class="line">(gdb) q</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main.c</span><br><span class="line">[meme@localhost Playground]$ gcc -g -o main main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main  main.c</span><br><span class="line">[meme@localhost Playground]$ gdb main</span><br><span class="line">GNU gdb (GDB) Red Hat Enterprise Linux 10.2-6.el7</span><br><span class="line">...</span><br><span class="line">(gdb) q</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>以上这3个就是GCC的3个基本选项，还有其他的选项如<code>-l</code>用于加入不在标准库中的第三方库等。</p>
+<h1 id="Make"><a href="#Make" class="headerlink" title="Make"></a>Make</h1><p>一个项目往往会有多个相互包含的文件，如，我们移除之前生成的<code>a.out</code>以及<code>main</code>文件，并重新创建两个新文件<code>add.c</code>和<code>add.h</code>，同时修改<code>main.c</code>的内容让<code>main.c</code>引用<code>add.c</code>中的函数<code>add</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ ls</span><br><span class="line">main.c</span><br><span class="line">[meme@localhost Playground]$ cat &gt; add.c</span><br><span class="line">int add(int a, int b) &#123;</span><br><span class="line">    return a + b;</span><br><span class="line">&#125;</span><br><span class="line">[meme@localhost Playground]$ cat &gt; add.h</span><br><span class="line">int add(int a, int b);</span><br><span class="line">[meme@localhost Playground]$ ls</span><br><span class="line">add.c  add.h  main.c</span><br><span class="line">[meme@localhost Playground]$ vim main.c</span><br><span class="line">[meme@localhost Playground]$ cat main.c</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &quot;add.h&quot;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    printf(&quot;Goodbye, world!\n&quot;);</span><br><span class="line">    printf(&quot;%d\n&quot;, add(5, 3));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于两个文件的关系很简单，所以我们仍可以简单地生成<code>a.out</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc main.c add.c</span><br><span class="line">[meme@localhost Playground]$ ./a.out</span><br><span class="line">Goodbye, world!</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
+
+<p>或者生成自命名的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc -o main_add main.c add.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  a.out  main_add  main.c</span><br><span class="line">[meme@localhost Playground]$ ./main_add</span><br><span class="line">Goodbye, world!</span><br><span class="line">8</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">rm</span> main_add</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  a.out  main.c</span><br><span class="line">[meme@localhost Playground]$ gcc -c main.c add.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  add.o  a.out  main.c  main.o</span><br><span class="line">[meme@localhost Playground]$ gcc -o main_add main.o add.o</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  add.o  a.out  main_add  main.c  main.o</span><br><span class="line">[meme@localhost Playground]$ ./main_add</span><br><span class="line">Goodbye, world!</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
+
+<p>上述两个程序很简单，因此手动地生成可执行文件仍是可行的。但是对于复杂的项目，其包含的程序可能有十几二十，甚至上百个，此时再手动地编译、链接就不太现实了。</p>
+<p><code>make</code>工具可以帮助我们省去每次重新编译时敲打文件名的麻烦。<code>make</code>基于用户预先编写的<code>Makefile</code>文件，实现自动编译、链接。使用<code>make --version</code>可以查看本机的<code>make</code>版本，在此我们先创建我们的<code>Makefile</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ make --version</span><br><span class="line">GNU Make 4.3</span><br><span class="line">Built <span class="keyword">for</span> x86_64-redhat-linux-gnu</span><br><span class="line">Copyright (C) 1988-2020 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">rm</span> a.out main_add main.o add.o</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> Makefile</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  main.c  Makefile</span><br></pre></td></tr></table></figure>
+
+<p><code>Makefile</code>是<code>make</code>指定使用的文件名，它只是一个普通的文本文件，其内部的内容用于指导<code>make</code>完成编译操作，一个<code>Makefile</code>文件的基本内容有：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">all: main</span><br><span class="line"></span><br><span class="line">main: main.o add.o</span><br><span class="line">    gcc -o main main.o add.o</span><br><span class="line"></span><br><span class="line">main.o: main.c</span><br><span class="line">    gcc -c main.c</span><br><span class="line"></span><br><span class="line">add.o: add.c</span><br><span class="line">    gcc -c add.c</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">    rm main main.o add.o</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>all</code>后面的是最终要生成的可执行文件的名称，其后续的<code>main</code>&amp;<code>main.o</code>&amp;<code>add.o</code>、冒号后的部分及下方的指令分别代表<strong>要生成的文件</strong>、<strong>生成这些文件要依赖的其他文件</strong>和<strong>相应的GCC指令</strong>。最后的<code>clean</code>使得我们能执行<code>make clean</code>来清除部分或所有生成的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ vim Makefile</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> Makefile</span><br><span class="line">all: main</span><br><span class="line"></span><br><span class="line">main: main.o add.o</span><br><span class="line">	gcc -o main main.o add.o</span><br><span class="line"></span><br><span class="line">main.o: main.c</span><br><span class="line">	gcc -c main.c</span><br><span class="line"></span><br><span class="line">add.o: add.c</span><br><span class="line">	gcc -c add.c</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">	<span class="built_in">rm</span> main main.o add.o</span><br><span class="line">[meme@localhost Playground]$ make</span><br><span class="line">gcc -c main.c</span><br><span class="line">gcc -c add.c</span><br><span class="line">gcc -o main main.o add.o</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  add.o  main  main.c  main.o  Makefile</span><br><span class="line">[meme@localhost Playground]$ ./main</span><br><span class="line">Goodbye, world!</span><br><span class="line">8</span><br><span class="line">[meme@localhost Playground]$ make clean</span><br><span class="line"><span class="built_in">rm</span> main main.o add.o</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  main.c  Makefile</span><br></pre></td></tr></table></figure>
+
+<p><code>make</code>的另一个优点在于：在一次编译过后再次编译时，它只会编译被修改过的文件。比如，若我们将<code>main.c</code>中的<code>add(5, 3)</code>修改为<code>add(5, 4)</code>再重新编译，我们将得到如下结果（第一个<code>make</code>编译的是未修改前的程序）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ make</span><br><span class="line">gcc -c main.c</span><br><span class="line">gcc -c add.c</span><br><span class="line">gcc -o main main.o add.o</span><br><span class="line">[meme@localhost Playground]$ vim main.c</span><br><span class="line">[meme@localhost Playground]$ make</span><br><span class="line">gcc -c main.c</span><br><span class="line">gcc -o main main.o add.o</span><br><span class="line">[meme@localhost Playground]$ ./main</span><br><span class="line">Goodbye, world!</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+
+<p>可见，<code>add.o</code>并没有被重新生成。以上是<code>make</code>及<code>Makefile</code>的一些基本操作。想要了解更多有关GCC和Make的知识可以看南洋理工大学的一份指南：<a target="_blank" rel="noopener" href="https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html#zz-2.">Compiling, Linking and Building C&#x2F;C++ Applications</a>。</p>
+<h1 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h1><p>即便有了<code>make</code>，我们仍会遇到一些仅仅是编写<code>Makefile</code>就很麻烦的项目。<code>cmake</code>就是为了解决这项问题而出现的。类似于<code>make</code>，<code>cmake</code>也有其特有的文件<code>CMakeLists.txt</code>。但是不同于<code>make</code>的是，<code>cmake</code>的特有文件是用于<strong>生成</strong><code>Makefile</code>的。<code>cmake</code>、<code>make</code>和<code>gcc</code>的关系如下所示：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">              cmake           make       gcc</span><br><span class="line">CMakeLists.txt -----&gt; Makefile ----&gt; Cmds ---&gt; Binary</span><br></pre></td></tr></table></figure>
+
+<p>同样地，我们可以使用<code>cmake --version</code>查看本系统的<code>cmake</code>版本（若没有则需要安装）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ cmake --version</span><br><span class="line">cmake version 3.15.3</span><br><span class="line"></span><br><span class="line">CMake suite maintained and supported by Kitware (kitware.com/cmake).</span><br></pre></td></tr></table></figure>
+
+<p>安装好<code>cmake</code>后，我们就可以在当前目录下创建<code>CMakeLists.txt</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> CMakeLists.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  add.o  CMakeLists.txt  main  main.c  main.o  Makefile</span><br></pre></td></tr></table></figure>
+
+<p><code>CMakeLists.txt</code>的编写比<code>Makefile</code>要更加复杂，事实上，其编写的方式本身就可以被视为一种新的语言。此处只记录一些基本的语法，更多的要去看官方文档<a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">CMake Tutorial</a>。</p>
+<p>一个最基本的<code>CMakeLists.txt</code>会包含3个基本命令：</p>
+<ul>
+<li><code>cmake_minimum_required()</code>：参数为该<code>CMakeLists.txt</code>文件所要求的最低<code>cmake</code>版本，是为了程序的可移植性考虑；</li>
+<li><code>project()</code>：参数为最后生成的可执行文件名；</li>
+<li><code>add_executable()</code>：参数为可执行文件名及其需要的源文件。</li>
+</ul>
+<p>以<code>make</code>中使用的<code>main.c</code>和<code>add.c</code>为例，其<code>CMakeLists.txt</code>应为：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.10)</span><br><span class="line"></span><br><span class="line"># set the project name</span><br><span class="line">project(main)</span><br><span class="line"></span><br><span class="line"># add the executable</span><br><span class="line">add_executable(main main.c add.c)</span><br></pre></td></tr></table></figure>
+
+<p>由于<code>cmake</code>利用<code>CMakeLists.txt</code>最终生成的是<code>Makefile</code>文件以及一些附属文件，我们通常会新建一个文件夹来执行<code>cmake</code>，一般我们会将该文件夹命名为<code>build</code>（也可自由命名）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">mkdir</span> build</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  add.o  build  CMakeLists.txt  main  main.c  main.o  Makefile</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cd</span> build</span><br></pre></td></tr></table></figure>
+
+<p>然后，在<code>build</code>文件夹中执行我们的<code>cmake</code>指令。由于<code>CMakeLists.txt</code>存在于父目录中，我们应使用<code>cmake ..</code>而不是单单的<code>cmake</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost build]$ cmake ..</span><br><span class="line">-- The C compiler identification is GNU 11.2.1</span><br><span class="line">...</span><br><span class="line">-- Build files have been written to: /home/meme/Playground/build</span><br><span class="line">[meme@localhost build]$ <span class="built_in">ls</span></span><br><span class="line">CMakeCache.txt  CMakeFiles  cmake_install.cmake  Makefile</span><br></pre></td></tr></table></figure>
+
+<p>得到<code>Makefile</code>后再执行<code>make</code>即可生成相应的可执行文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost build]$ make</span><br><span class="line">make[1]: Entering directory <span class="string">&#x27;/home/meme/Playground/build&#x27;</span></span><br><span class="line">...</span><br><span class="line">make[1]: Leaving directory <span class="string">&#x27;/home/meme/Playground/build&#x27;</span></span><br><span class="line">[meme@localhost build]$ <span class="built_in">ls</span></span><br><span class="line">CMakeCache.txt  CMakeFiles  cmake_install.cmake  main  Makefile</span><br><span class="line">[meme@localhost build]$ ./main</span><br><span class="line">Goodbye, world!</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>cmake</code>能跨目录执行，但是<code>make</code>只能在有<code>Makefile</code>的目录执行。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39455">The Linux Command Line 中文版 第二十四章：编译程序</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=qON2D3vDIt8&list=WL&index=1&t=193s">[Environment Setup 8] Compile programs from source code using GCC, GNU Make, and CMake</a></li>
+<li><a target="_blank" rel="noopener" href="https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html#zz-2.">Compiling, Linking and Building C&#x2F;C++ Applications</a></li>
+<li><a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">CMake Tutorial</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/25/ProgramCompilation/" data-id="clzik0lct0074v47kg8a27zwk" data-title="Program Compilation" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/08/03/WildcardsPatternMatching/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Wildcards and Pattern Matching
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/25/SystemSecurityPermission/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">System Security and Permissions</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

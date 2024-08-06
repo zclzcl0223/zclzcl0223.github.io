@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Link Prediction | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等领域中都有广泛的应用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Link Prediction">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/19/LinkPrediction/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="链接预测（Link prediction），是图机器学习任务的一种。所谓链接预测，就是在给定一张图中的所有结点和部分边的情况下，预测图中缺失的边。链接预测的应用广泛，在社交推荐系统（Social recommendation system）、知识图谱（Knowledge graph）等领域中都有广泛的应用。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-19T10:14:00.000Z">
+<meta property="article:modified_time" content="2023-07-25T08:28:16.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="GNN">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-LinkPrediction" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/19/LinkPrediction/" class="article-date">
+  <time class="dt-published" datetime="2023-07-19T10:14:00.000Z" itemprop="datePublished">2023-07-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/GNN/">GNN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Link Prediction
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="链接预测的基本方法"><a href="#链接预测的基本方法" class="headerlink" title="链接预测的基本方法"></a>链接预测的基本方法</h1><p>当前，在图机器学习领域，链接预测的主流方法有三种：</p>
+<ol>
+<li><strong>启发式方法（Heuristic methods）</strong><br> 这种方法认为存在链接关系的结点的特征存在某种共同的特性，这种特性使得它们间有更大的相似度。启发式方法通过定义一种映射来衡量这样的相似度，如结点的共同邻居（Common neighor）、Katz Index等，但是这样的映射不一定对所有的图都有效。</li>
+<li><strong>结点嵌入（Node embedding）</strong><br> 这种方法与结点分类（Node classification）中的方法一致，即基于游走的方法学习结点的embedding，常见的方法有：DeepWalk、Node2vec等。这样的方法，没有直接将链接预测任务嵌入到有监督学习的流程中，并且无法较好的利用用户的节点属性，无法达到较好的预测精度。</li>
+<li><strong>图神经网络（GNN）</strong><br> 基于基本的图神经网络架构，如GCN、GraphSAGE、GAT等，通过对邻居结点的聚合得到融合了图结构信息的结点表示，再以类似于启发式方法的方式求任意两结点的“相似度”，进而判断两结点间边的有无。最后的判断本质上是个逻辑回归，即二分类问题（有边为1，无边为0）。</li>
+</ol>
+<h1 id="基于PyG的GNN链接预测"><a href="#基于PyG的GNN链接预测" class="headerlink" title="基于PyG的GNN链接预测"></a>基于PyG的GNN链接预测</h1><p>PyG（PyTorch Geometric）是个建立在PyTorch基础上的图神经网络库，它为训练不同任务（结点分类、链接预测、图分类等）、不同架构（GCN、GraphSAGE、GAT等）的图神经网络提供了方便。使用PyG来完成链接预测，可以省去很多复杂的操作，特别是在数据预处理阶段。事实上，结点分类和链接预测最大的区别就在数据预处理阶段。</p>
+<h2 id="数据集的划分"><a href="#数据集的划分" class="headerlink" title="数据集的划分"></a>数据集的划分</h2><p>前面提到过，链接预测本质上是一个二分类问题，只不过它二分类的单位不是一个结点，而是<strong>一对结点</strong>，分类的结果是这对结点间存在（1）或不存在（0）边。这样的不同决定了我们需要对数据集进行额外的处理，以获得训练样本，包括：正采样和负采样，前者采样存在边的结点对，后者采样不存在边的结点对。在结点分类用到的数据集的基础上，使用PyG提供的<code>torch_geometric.transforms.RandomLinkSplit</code>函数可以很方便地完成对训练集、验证集和测试集的采样。</p>
+<p><code>torch_geometric.transforms.RandomLinkSplit(num_val, num_test,...)</code>，以下为几个常用参数的说明：</p>
+<ol>
+<li><code>num_val</code>：验证集中边占所有边比例，默认为0.1。</li>
+<li><code>num_test</code>：测试集中边占所有边的比例，默认为0.1。</li>
+<li><code>is_undirected</code>：<code>True</code>则假定图是无向图，反之为有向图。</li>
+<li><code>add_negative_train_samples</code>：是否为训练集添加负训练样本。一般设置为<code>False</code>（默认也是<code>False</code>），也就是使得训练集中不包含负样本，这样每一轮训练时在训练集中可以重新采样负样本进行训练，由此可以保证每一轮训练中采样得到的负样本都是不一样的，可以有效提高模型泛化能力。验证集和测试集则默认会自动完成负样本的采样。</li>
+<li><code>neg_sampling_ratio</code>：采样中正负样本的比例，默认为1。即正负样本个数一致（对验证集、测试集和<code>add_negative_train_samples</code>设置为<code>True</code>后的训练集）。</li>
+</ol>
+<blockquote>
+<p>更多资料见<a target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.transforms.RandomLinkSplit.html#torch-geometric-transforms-randomlinksplit">RandomLinkSplit</a>。</p>
+</blockquote>
+<p><code>RandomLinkSplit</code>的使用方法很简单，因为它被包含在<code>transforms</code>中，所以可以在读数据的时候作为一个参数传入读数据的函数中，以读取<code>Cora</code>数据集为例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch_geometric.transforms <span class="keyword">as</span> T</span><br><span class="line"><span class="keyword">from</span> torch_geometric.datasets <span class="keyword">import</span> Planetoid</span><br><span class="line">train_data, val_data, test_data = Planetoid(root=<span class="string">&#x27;./data/Cora&#x27;</span>, name=<span class="string">&quot;Cora&quot;</span>, </span><br><span class="line">    transform=T.RandomLinkSplit(num_val=<span class="number">0.1</span>, num_test=<span class="number">0.1</span>, is_undirected=<span class="literal">True</span>, add_negative_train_samples=<span class="literal">False</span>))[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<p>而一般结点分类任务用到的数据集形式为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = Planetoid(root=<span class="string">&#x27;./data/Cora&#x27;</span>, name=<span class="string">&quot;Cora&quot;</span>)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意<code>Planetoid</code>是PyG定义的<code>InMemoryDataset</code>的子类，<code>InMemoryDataset</code>所返回的是数据集中所有的图结构，因此要用下标来读取指定的图。<code>Planetoid</code>能加载的数据集都只有一张图，所以用<code>Planetoid()[0]</code>即可。</p>
+</blockquote>
+<p>我们不妨来看看这四种data的区别：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(train_data, <span class="string">&quot;\n&quot;</span>, val_data, <span class="string">&quot;\n&quot;</span>, test_data, <span class="string">&quot;\n&quot;</span>, data)</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">8448</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">4224</span>], edge_label_index=[<span class="number">2</span>, <span class="number">4224</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">8448</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">1054</span>], edge_label_index=[<span class="number">2</span>, <span class="number">1054</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">9502</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">1054</span>], edge_label_index=[<span class="number">2</span>, <span class="number">1054</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">10556</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>])</span><br></pre></td></tr></table></figure>
+
+<p>不难看出，图都是同一张图，只不过链接预测用到的数据集中多了<code>edge_label</code>和<code>edge_label_index</code>这两个量：</p>
+<ul>
+<li><code>edge_label</code>：<code>Tensor</code>，数据集的标签，即<code>y</code>，值为1或0，对于<code>val_data</code>和<code>test_data</code>（<code>train_data</code>未进行负采样），既包含了正样本的标签，又包含了负样本的标签，因此对于上文的数据集，正样本数为527，负样本数也为527。</li>
+<li><code>edge_label_index</code>：<code>Tensor</code>，数据集的样本，即<code>X</code>，但是，此处<code>X</code>的内容并不是边的特征，而是边的两个结点的编号，因而也不是用来训练的，其中<code>edge_label_index[0]</code>为起始结点的编号，<code>edge_label_index[1]</code>为终点结点的编号。</li>
+</ul>
+<blockquote>
+<p><code>train_data</code>的负采样可以使用PyG提供的<code>torch_geometric.utils.negative_sampling</code>函数，见<a target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/modules/utils.html#torch-geometric-utils">torch_geometric.utils</a>，此处不再赘述。要特别注意把负样本加入<code>edge_label</code>和<code>edge_label_index</code>中。</p>
+</blockquote>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>链接预测图神经网络的训练与结点分类图神经网络的训练并没有本质的不同。若将<em>Node embedding</em>的过程称为编码过程，最后的链接预测&#x2F;结点分类称为解码过程，那么两者的编码过程是<strong>一致的</strong>，即卷积和消息传递的过程是一致的。两者的不同在解码过程。对于结点分类任务，解码是对得到<em>Node embedding</em>做一次softmax，因此最后的结点的特征维度也被限定为了结点类别的数量；对于链接预测任务，解码是对<code>edge_label_index</code>所选定的边两端的结点计算相似度后求sigmoid，即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">decoder</span>(<span class="params">self, X, edge_label_index</span>):  <span class="comment"># X为编码后的结点特征</span></span><br><span class="line">    src_node = X[edge_label_index[<span class="number">0</span>]]  <span class="comment"># 取出边起始结点的特征，shape (N x F)</span></span><br><span class="line">    end_node = X[edge_label_index[<span class="number">1</span>]]  <span class="comment"># 取出边终点结点的特征，shape (N x F)</span></span><br><span class="line">    <span class="keyword">return</span> (src_node * end_node).<span class="built_in">sum</span>(dim=<span class="number">1</span>)  <span class="comment"># 向量内积求相似度，shape (N)，此处没有直接sigmoid，放在网络外面做也是一样的</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="精度分析"><a href="#精度分析" class="headerlink" title="精度分析"></a>精度分析</h2><p>由于链接预测是一个二分类问题，因此精度分析采用AUC。</p>
+<blockquote>
+<p>AUC的含义和计算方法见<a href="/2023/04/13/MachineLearningDiagnostics/#Skewed-datasets">F1 score and ROC &amp; AUC</a>。</p>
+</blockquote>
+<h1 id="结点分类和链接预测的测试集泄露问题"><a href="#结点分类和链接预测的测试集泄露问题" class="headerlink" title="结点分类和链接预测的测试集泄露问题"></a>结点分类和链接预测的测试集泄露问题</h1><p>测试集泄露，即测试集中的样本特征或者标签在训练网络的过程中被使用了。对于GNN来说，测试集泄露是一个很普遍的问题，因为GNN的消息传递过程不可避免地要用到其他结点的信息，而这些结点就有可能包括测试集的结点。</p>
+<h2 id="结点分类"><a href="#结点分类" class="headerlink" title="结点分类"></a>结点分类</h2><p>对于最初的<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1609.02907.pdf">GCN</a>，其在训练模型参数时用到的是整个图的结点特征和邻接矩阵，因而不可避免地传递了测试集结点的特征信息。虽然可以把用来计算损失的训练集结点及其边、用于测试效果的测试集结点及其边从原图中单独拎出来形成两个互不相交的子图来从源头上避免数据泄露（即在训练过程中，只让消息在训练集结点间传递），但是这样做会导致精度下降，因为原图的整体结构被破坏了。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.02216.pdf">GraphSAGE</a>的出现使得大家对GNN的消息传递有了全新的理解，即：只要把<em>待预测结点</em>周围结点的信息传递给<em>待预测结点</em>即可。在这样的视角下，原本耦合于全图的各个结点实际上变成了一个个独立的<strong>子图</strong>，子图的中心结点是待预测结点，而其他结点是要将信息传递给中心结点的辅助结点。于是，单一结点的结点分类成为了可能（原先必须要将整个图喂进模型中），只要为该结点随机取样一个子图即可。相应地，数据泄露的影响也降到最低（此时网络学习的是一种利用邻居结点信息获得中心结点<em>Embedding</em>的方法&#x2F;模式，而不是学习怎样为每个结点生成一个<em>Embedding</em>）。这样的子图&#x2F;采样的方法对于GCN、SGC、GAT等也是成立的，因为它们本质上都是消息传递型的GNN。</p>
+<h2 id="链接预测"><a href="#链接预测" class="headerlink" title="链接预测"></a>链接预测</h2><p>类似地，对于链接预测，其在消息传递的过程中会用到结点间的连接信息，也就是结点间的边。但是，不同于结点分类的是，链接预测的对象是边，而边的泄露在消息传递的过程中是可以被规避掉的，因为被传递的消息是结点信息而不是边的信息。</p>
+<p>具体来说，如不对前面提到的<code>Cora</code>数据集进行负采样，则其链接预测的训练集、验证集、测试集（比例8：1：1）和全集依次为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(train_data, <span class="string">&quot;\n&quot;</span>, val_data, <span class="string">&quot;\n&quot;</span>, test_data, <span class="string">&quot;\n&quot;</span>, data)</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">8448</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">4224</span>], edge_label_index=[<span class="number">2</span>, <span class="number">4224</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">8448</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">527</span>], edge_label_index=[<span class="number">2</span>, <span class="number">527</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">9502</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>], edge_label=[<span class="number">527</span>], edge_label_index=[<span class="number">2</span>, <span class="number">527</span>])</span><br><span class="line">Data(x=[<span class="number">2708</span>, <span class="number">1433</span>], edge_index=[<span class="number">2</span>, <span class="number">10556</span>], y=[<span class="number">2708</span>], train_mask=[<span class="number">2708</span>], val_mask=[<span class="number">2708</span>], test_mask=[<span class="number">2708</span>])</span><br></pre></td></tr></table></figure>
+
+<p>事实上，上面四个数据集都代表着四张不同的图，其中前面三张图是最后一张（原图）的<em>生成子图</em>，即前面三张图包含原图的所有结点和部分边。这些信息体现在<code>edge_index</code>上。</p>
+<ul>
+<li>对于训练集，其不包含负样本的<code>edge_label_index</code>是<code>edge_index</code>的无向图形式（即在<code>edge_index</code>中，无向图的一条边被视为有向图的两条边，而<code>edge_label_index</code>只将其视为一条边，所以<code>edge_label_index</code>的边数是<code>edge_index</code>的一半）。在训练模型过程中，训练集的消息传递会用到所有的训练集边（<code>edge_index</code>），最终的预测也会用到所有的训练集边（<code>edge_label_index</code> &amp; <code>edge_label</code>）+负采样边；</li>
+<li>对于验证集，其消息传递的过程中不能使用验证集中特有的边，因此消息传递用到的是训练集的边，这也是为什么验证集的<code>edge_index</code>和训练集的<code>edge_index</code>是一样的。最终的分类过程只会用到验证集特有的边（<code>edge_label_index</code> &amp; <code>edge_label</code>）+负采样边；</li>
+<li>对于测试集，其消息传递的过程中也不能使用测试集中特有的边，但是可以使用验证集中特有的边，因此消息传递用到的是训练集和边+验证集特有的边（<code>8448+527*2=9502</code>）。最终的分类过程同样只会用到测试集特有的边+负采样边。</li>
+</ul>
+<blockquote>
+<p>需要特别注意的是，虽然负采样的边不会参与消息传递的过程，但是训练集、验证集和测试集在分类阶段的负采样边同样不能重叠。这很容易实现，只要让负采样在正采样的边所特有的结点间进行即可（e.g. <code>train_data</code>的在8848条边的结点间进行，<code>val_data</code>的在527条边的结点间进行）。</p>
+</blockquote>
+<p>综合来说，链接预测是可以保证数据完全不泄露的，只要保证训练集、验证集和测试集拥有<code>label</code>的边不同以及除训练集外的消息传递不用有<code>label</code>的边即可。</p>
+<blockquote>
+<p>在更严格的算法中（e.g. <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1802.09691.pdf">SEAL</a>），训练集的边还被进一步划分为<code>training_supervision_edges</code>和<code>training_message_edges</code>，其中前者是训练集特有的带<code>label</code>的边，而后者是用于消息传递的边。而一般的算法（e.g. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1611.07308">GAE</a>），对这两者不做区分。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Cyril_KI/article/details/125956540">PyG搭建GCN实现链接预测</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41601540/article/details/121500949">Link Prediction Note</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/19/LinkPrediction/" data-id="clzik0lch0046v47kblypgl6s" data-title="Link Prediction" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/25/CartesianProduct/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Cartesian Product in Python
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/16/PageRank/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PageRank</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Tensorflow | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Tensorflow is a free and open-source software library for machine learning and artificial intelligence. It has a particular focus on training and inference of neural networks.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tensorflow">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/12/Tensorflow/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Tensorflow is a free and open-source software library for machine learning and artificial intelligence. It has a particular focus on training and inference of neural networks.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/12/Tensorflow/1.png">
+<meta property="article:published_time" content="2023-04-12T14:00:29.000Z">
+<meta property="article:modified_time" content="2023-08-09T06:00:24.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Tool">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/12/Tensorflow/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Tensorflow" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/12/Tensorflow/" class="article-date">
+  <time class="dt-published" datetime="2023-04-12T14:00:29.000Z" itemprop="datePublished">2023-04-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Tensorflow
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Basic-data-structure"><a href="#Basic-data-structure" class="headerlink" title="Basic data structure"></a>Basic data structure</h1><p>See <a href="/2023/04/10/NeuralNetwork/#Numpy-and-Tensorflow
+">Numpy and Tensorflow</a>.</p>
+<h1 id="Neural-networks"><a href="#Neural-networks" class="headerlink" title="Neural networks"></a>Neural networks</h1><h2 id="Normalize-data"><a href="#Normalize-data" class="headerlink" title="Normalize data"></a>Normalize data</h2><p>Fitting the weights (<code>w</code>, <code>b</code>) to the data will proceed more quickly if the data is normalized. In tensorflow, we can use <code>Normalization</code> to normalize data. It uses z-score. However, it is a preprocessing layer rather than an independent layer of model.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Normalization</span><br><span class="line">norm_l = Normalization(axis=-<span class="number">1</span>)</span><br><span class="line">norm_l.adapt(X) <span class="comment"># learns mean, variance</span></span><br><span class="line">Xn = norm_l(X)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li><code>axis=-1</code> means that it will normalize the last dimension of <code>X</code>. For 2-D arrays, it will normalize the <strong>column</strong>. In this case, <code>axis=-1</code> is equal to <code>axis=1</code>.</li>
+<li>After normalizing, the test set should also be normalized: <code>X_testn = norm_l(X_test)</code>.</li>
+</ul>
+</blockquote>
+<h2 id="Create-the-model"><a href="#Create-the-model" class="headerlink" title="Create the model"></a>Create the model</h2><p>For a neural network like this:</p>
+<p><img src="/2023/04/12/Tensorflow/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold"> Fig. 1. Sample</center><br>
+
+<p>we can create the neural network using tensorflow in Python:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"></span><br><span class="line"><span class="comment"># non-regularization</span></span><br><span class="line">model = Sequential([</span><br><span class="line">    <span class="comment"># We can use the following code to specify the shape of input layer</span></span><br><span class="line">    <span class="comment">## tf.keras.Input(shape=(x,))</span></span><br><span class="line">    Dense(units=<span class="number">25</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">15</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">                   ])</span><br><span class="line"><span class="comment"># regularization</span></span><br><span class="line">model = Sequential([</span><br><span class="line">    Dense(units=<span class="number">25</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>, kernel_regularizer=L2(<span class="number">0.01</span>)),</span><br><span class="line">    Dense(units=<span class="number">15</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>, kernel_regularizer=L2(<span class="number">0.01</span>)),</span><br><span class="line">    Dense(units=<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>, kernel_regularizer=L2(<span class="number">0.01</span>))</span><br><span class="line">                   ])  <span class="comment"># 0.01 is the value of lambda</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Keras is an open-source software library that provides a Python interface for neural networks. It is now a package under tensorflow,which acts as an interface.</p>
+<ul>
+<li><code>units</code> represents the number of neuron in this layerr.</li>
+<li><code>activation</code> represents the <code>activation function</code> you choose for this layer.</li>
+<li><code>Dense</code> is a kind of hidden layer that make use of all the inputs for each neuron.</li>
+<li>We can also assign names to each layer using <code>name=&#39;xx&#39;</code>. For the first layer, using <code>input_dim=xx</code> is another way to specify the shape of input layer.</li>
+<li>When specifying the shape of input layer, <code>model</code> will be instantiated. That is, parameters of all layers will be initialized.</li>
+<li>Use <code>.summary</code> to get the structure of model. Use <code>.get_layer(&#39;layer_name&#39;)</code> to get the certain layer.</li>
+</ul>
+</blockquote>
+<p>We can also create the neural network layer by layer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x = np.array([[<span class="number">10</span>, <span class="number">11</span>]])</span><br><span class="line">layer_1 = Dense(units=<span class="number">25</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">layer_2 = Dense(units=<span class="number">15</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">layer_3 = Dense(units=<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line"></span><br><span class="line">a1 = layer_1(x)</span><br><span class="line">a2 = layer_2(a1)</span><br><span class="line">a3 = layer_3(a2)  <span class="comment"># the final output</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>For each layer, we can use <code>.get_weights()</code> to get its <code>w</code> and <code>b</code>. Feed some examples to instantiate them or use <code>.set_weights([w, b])</code> to initialize them.</p>
+</blockquote>
+<p>The first way is more convenient and universal, as it builds a neural network at once.</p>
+<blockquote>
+<p>Name of activation functions in keras:</p>
+<ul>
+<li>relu</li>
+<li>sigmoid</li>
+<li>linear</li>
+<li>softmax</li>
+<li>...</li>
+</ul>
+</blockquote>
+<h2 id="Loss-and-cost-functions"><a href="#Loss-and-cost-functions" class="headerlink" title="Loss and cost functions"></a>Loss and cost functions</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> losses</span><br><span class="line"></span><br><span class="line"><span class="comment"># for binary classificaiton</span></span><br><span class="line">model.<span class="built_in">compile</span>(loss=losses.BinaryCrossentropy())</span><br><span class="line"><span class="comment"># for linear regression</span></span><br><span class="line">model.<span class="built_in">compile</span>(loss=losses.MeanSquaredError())</span><br><span class="line"><span class="comment"># for Adam algorithm</span></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=tf.keras.optimizers.Adam(learning_rate=<span class="number">1e-3</span>), loss=YourChoiceOfFunction)</span><br></pre></td></tr></table></figure>
+<p>See <a href="/2023/04/10/NeuralNetwork/#Adam-algorithm">Adam algorithm</a> to know more about Adam.</p>
+<p>At this step, the structure of the neural network has already been established.</p>
+<blockquote>
+<p>The name of some loss functions in <code>losses</code>:</p>
+<ul>
+<li>BinaryCrossentropy: Binary classification</li>
+<li>MeanSquaredError: Linear regression</li>
+<li>SparseCategoricalCrossentropy: Multiclass classification</li>
+</ul>
+</blockquote>
+<p>If we regard the whole neural network as a generalized model, the model and cost function can be represent as:<br>$$<br>f(W,B)(\vec{x})<br>$$<br>$$<br>J(W,B)&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}L(f(\vec{x}^{(i)},y^{(i)}))<br>$$</p>
+<h2 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h2><p>When regularization, we just need to add:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kernel_regularizer=tf.keras.regularizers.l2(<span class="number">0.1</span>) <span class="comment"># 0.1 is the value of lambda</span></span><br></pre></td></tr></table></figure>
+<p>to the layer that we want to regularize.</p>
+<h2 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h2><p>This is the final step to train a neural network. In this step, we use gradient descent to determine $W$ and $B$.</p>
+<blockquote>
+<p>Capital means matrix</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.fit(X, y, epochs=<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<p>The algorithm used in <code>fit</code> is called <strong>Backpropagation</strong>. <code>X,y</code> is our training set and <code>epochs</code> represents the number of iterations.</p>
+<p>After finishing the training of neural network, we can use <code>model.predict()</code> or <code>model()</code> to predict or infer.</p>
+<blockquote>
+<p>The type of <code>model.predict()</code> is <code>tf</code> while the type of <code>model()</code> is <code>np</code>.</p>
+</blockquote>
+<h2 id="Optimization-for-softmax"><a href="#Optimization-for-softmax" class="headerlink" title="Optimization for softmax"></a>Optimization for softmax</h2><p>In multiclass classfication, the following code will work, but the value is not very accurate. See <a href="/2023/04/10/NeuralNetwork/#Softmax-regression">Softmax regression</a> to know more about multiclass classification and softmax.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.losses <span class="keyword">import</span> SparseCategoricalCrossentropy</span><br><span class="line"></span><br><span class="line">model = Sequential([</span><br><span class="line">    Dense(units=<span class="number">25</span>, activation=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">    Dense(units=<span class="number">15</span>, activation=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">    Dense(units=<span class="number">10</span>, activation=<span class="string">&#x27;softmax&#x27;</span>)</span><br><span class="line">                   ])</span><br><span class="line">model.<span class="built_in">compile</span>(loss=SparseCategoricalCrossentropy())</span><br><span class="line">model.fit(X, y, epochs=<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<p>Due to the limitations in precision when using binary to represent decimals, the more intermediate values we use, the greater the loss of precision we get. Before we calculate $loss$, we must get the value of $a$. $a$ is a intermediate value, so it is advisable for us to replace $a$ in $loss$ with its original formula. That is:<br>$$a_i&#x3D;g(z)&#x3D;\frac{e^{z_i}}{e^{z_1}+...+e^{z_i}}$$<br>$$loss&#x3D;-\log{a_1}, y&#x3D;1...$$<br>$$\downarrow$$<br>$$loss&#x3D;-\log\frac{e^{z_i}}{e^{z_1}+...+e^{z_i}},y&#x3D;1...$$<br>To realize this, we just need to set the activation function of output layer to <code>linear</code> and set <code>from_logits</code> to <code>True</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    Dense(units=<span class="number">25</span>, activation=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">    Dense(units=<span class="number">15</span>, activation=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">    Dense(units=<span class="number">10</span>, activation=<span class="string">&#x27;linear&#x27;</span>)</span><br><span class="line">                   ])</span><br><span class="line">model.<span class="built_in">compile</span>(loss=SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>))</span><br></pre></td></tr></table></figure>
+<p>The principle of this code is that $g(z)$ is just $z$, and tensorflow will replace $a$ with its original formula in loss function. <code>from_logits</code> actuallly means use $z$ rather than $a$. This gives tensorflow more flexibility to rearrange the terms to get more accurate values.</p>
+<blockquote>
+<p>In this case, the output of our neural network is actually a vector of $z$. Therefore, we have to add </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logit = model(X)</span><br><span class="line">f_x = tf.nn.softmax(logit)</span><br></pre></td></tr></table></figure>
+<p>to get the real values. However, to get the label, we just need to use <code>np.argmax(y_pred, axis=0)</code>.</p>
+</blockquote>
+<p>The same optimization can also be applied to other neural networks, like binary classification.</p>
+<h1 id="Regression-model"><a href="#Regression-model" class="headerlink" title="Regression model"></a>Regression model</h1><p>For regression models, Auto Diff (Auto Grad) of Tensorflow can help us get partial derivatives automatically.</p>
+<h2 id="Gradient-descent-1"><a href="#Gradient-descent-1" class="headerlink" title="Gradient descent"></a>Gradient descent</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="comment"># for J = (wx-1)^2</span></span><br><span class="line"></span><br><span class="line">w = tf.Variable(<span class="number">3.0</span>) <span class="comment"># The parameters we want to optimize, they can also be vector</span></span><br><span class="line">x = <span class="number">1.0</span> <span class="comment"># Features of trainng set</span></span><br><span class="line">y = <span class="number">1.0</span> <span class="comment"># Target value of training set</span></span><br><span class="line">alpha = <span class="number">0.01</span> <span class="comment"># Learning rate</span></span><br><span class="line"></span><br><span class="line">iterations = <span class="number">30</span> <span class="comment"># Number of iteration</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">iter</span> <span class="keyword">in</span> <span class="built_in">range</span>(iterations):</span><br><span class="line">    <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape: <span class="comment"># Record the steps</span></span><br><span class="line">        fwb = w * x <span class="comment"># Model</span></span><br><span class="line">        costJ = (fwb - y)**<span class="number">2</span> <span class="comment"># Cost function which should be implemented by ourselves</span></span><br><span class="line">    [dJdw] = tape.gradient(costJ, [w]) <span class="comment"># Calculate derivatives</span></span><br><span class="line"></span><br><span class="line">    w.assign_add(-alpha * dJdw) <span class="comment"># Update w</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Adam-algorithm"><a href="#Adam-algorithm" class="headerlink" title="Adam algorithm"></a>Adam algorithm</h2><p>The example used here is about collaborative filtering. See <a href="/2023/04/17/RecommenderSystem/#Collaborative-filtering">Collaborative filtering</a> to know more about it.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate an adam optimizer</span></span><br><span class="line">W = tf.Variable(tf.random.normal((num_users,  num_features),dtype=tf.float64),  name=<span class="string">&#x27;W&#x27;</span>)</span><br><span class="line">X = tf.Variable(tf.random.normal((num_items, num_features),dtype=tf.float64),  name=<span class="string">&#x27;X&#x27;</span>)</span><br><span class="line">b = tf.Variable(tf.random.normal((<span class="number">1</span>,          num_users),   dtype=tf.float64),  name=<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line"></span><br><span class="line">optimizer = keras.optimizers.Adam(learning_rate=<span class="number">1e-1</span>)</span><br><span class="line"></span><br><span class="line">iterations = <span class="number">200</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">iter</span> <span class="keyword">in</span> <span class="built_in">range</span>(iterations):</span><br><span class="line">    <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line">        <span class="comment"># features, w, b, mean normalization, R (which item have a rating), number of users, number of items, lambda</span></span><br><span class="line">        coast_value = cofiCostFuncV(X, W, b, Ynorm, R, num_users, num_items, <span class="keyword">lambda</span>) <span class="comment"># Compute cost which should be implemented by ourselves</span></span><br><span class="line">    grads = tape.gradient(cost_value, [X, W, b]) <span class="comment"># Calculate derivatives</span></span><br><span class="line">    optimizer.apply_gradients(<span class="built_in">zip</span>(grads, [X, W, b])) <span class="comment"># Update X, W, b</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="More-information"><a href="#More-information" class="headerlink" title="More information"></a>More information</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.tensorflow.org/api_docs/python/tf">Tensorflow API</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.tensorflow.org/guide/function">Better performance with tf.function</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/12/Tensorflow/" data-id="clzik0lcz008rv47k2cjuepjq" data-title="Tensorflow" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/04/12/LateX/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LateX
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/11/Conda/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Conda</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

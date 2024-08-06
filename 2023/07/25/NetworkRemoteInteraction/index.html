@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Network and Remote Interaction | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="几乎任何网络层面的东西都能使用Linux操作系统来实现，而Linux自身也提供了许多能够调用各种互联网协议的命令，通过使用这些命令，我们能很容易地在命令行中完成远程文件传输、远程登录等操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Network and Remote Interaction">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/25/NetworkRemoteInteraction/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="几乎任何网络层面的东西都能使用Linux操作系统来实现，而Linux自身也提供了许多能够调用各种互联网协议的命令，通过使用这些命令，我们能很容易地在命令行中完成远程文件传输、远程登录等操作。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-25T10:21:40.000Z">
+<meta property="article:modified_time" content="2023-08-01T11:54:08.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Tool">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-NetworkRemoteInteraction" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/25/NetworkRemoteInteraction/" class="article-date">
+  <time class="dt-published" datetime="2023-07-25T10:21:40.000Z" itemprop="datePublished">2023-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Network and Remote Interaction
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="netstat：Network-Statistics，查看本机网络信息"><a href="#netstat：Network-Statistics，查看本机网络信息" class="headerlink" title="netstat：Network Statistics，查看本机网络信息"></a><code>netstat</code>：Network Statistics，查看本机网络信息</h1><p><code>netstat</code>程序被用来检测各种各样的本机网络设置。通过选用不同的选项，我们可以查看有关本机的不同网络信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat [OPTION]</span><br></pre></td></tr></table></figure>
+
+<p>如，<code>-ie</code>选项使得我们可以查看本系统的所有网络接口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost ~]$ netstat -ie</span><br><span class="line">Kernel Interface table</span><br><span class="line">ens33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.115.128  netmask 255.255.255.0  broadcast 192.168.115.255</span><br><span class="line">        inet6 fe80::9b04:dd5e:b9d5:202f  prefixlen 64  scopeid 0x20&lt;<span class="built_in">link</span>&gt;</span><br><span class="line">        ether 00:0c:29:0a:87:bc  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 3440  bytes 258371 (252.3 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 654  bytes 80314 (78.4 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536</span><br><span class="line">        inet 127.0.0.1  netmask 255.0.0.0</span><br><span class="line">        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br><span class="line">        loop  txqueuelen 1  (Local Loopback)</span><br><span class="line">        RX packets 456  bytes 95634 (93.3 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 456  bytes 95634 (93.3 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>上述两个网络接口中，第一个<code>ens33</code>是因特网接口，主要信息有IPv4地址、掩码以及IPv6地址等；第二个接口<code>lo</code>就是我们常说的内部回环网络接口，其IPv4地址以<code>127</code>开头。</p>
+<blockquote>
+<p>除<code>-ie</code>外还有许多选项，如<code>-r</code>选项可以查看本机的路由表等。</p>
+</blockquote>
+<h1 id="wget：World-Wide-Web-Get，从网页中下载文件"><a href="#wget：World-Wide-Web-Get，从网页中下载文件" class="headerlink" title="wget：World Wide Web Get，从网页中下载文件"></a><code>wget</code>：World Wide Web Get，从网页中下载文件</h1><p><code>wget</code>程序将互联网上的文件下载到当前目录，它的使用很简单，一般为<code>wget</code>+目标文件的域名（URL）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget [OPTION]... [URL]...</span><br></pre></td></tr></table></figure>
+
+<h1 id="ssh：Secure-Shell，安全的远程登陆"><a href="#ssh：Secure-Shell，安全的远程登陆" class="headerlink" title="ssh：Secure Shell，安全的远程登陆"></a><code>ssh</code>：Secure Shell，安全的远程登陆</h1><p><code>ssh</code>既是一个互联网协议，又是Linux命令行中的一个程序。在SSH之前，常用的远程登录协议有Rlogin和Telnet，这两个协议的重大缺陷是所有的通讯信息均以<strong>明文</strong>的方式传播，因而十分地不安全。SSH从两个方面解决了这个问题：</p>
+<ol>
+<li>SSH客户端所连接的远程主机必须为客户端所知，由此阻止了中间人攻击；</li>
+<li>SSH对本地客户端主机和远程主机之间的通信进行了加密。</li>
+</ol>
+<p>SSH由两部分组成，运行在本地的SSH客户端和运行在远端主机的SSH服务器。一般来说，Linux发行版会自带一个提供SSH功能的软件包OpenSSH，它包括OpenSSH-client和OpenSSH-server两个分别提供客户端和服务器服务的程序，但是有些发行版（如Ubuntu）的OpenSSH只包含了OpenSSH-client。要想让系统能够接受远程客户端的连接，则必须手动安装OpenSSH-server。</p>
+<h2 id="SSH配置"><a href="#SSH配置" class="headerlink" title="SSH配置"></a>SSH配置</h2><p>无论是想让系统充当远程的服务器还是想让系统能够作为客户端连接远程主机，都必须要正确地配置相关的SSH文件。对于Linux系统，SSH服务器的配置文件通常是<code>/etc/ssh/sshd_config</code>，SSH客户端的配置文件通常是<code>~/.ssh/config</code>，以上两个文件若没有则需要自己创建。</p>
+<h3 id="SSH客户端配置与连接"><a href="#SSH客户端配置与连接" class="headerlink" title="SSH客户端配置与连接"></a>SSH客户端配置与连接</h3><p>对于一般用户来说，SSH客户端是更常用的一方，因此只介绍SSH客户端的配置。通常，有4个主要配置项：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Host</span> [<span class="string">HOST</span> <span class="string">NAME</span>]</span><br><span class="line">    <span class="string">HostName</span> [<span class="string">HOST</span> <span class="string">IP</span>]</span><br><span class="line">    <span class="string">User</span> [<span class="string">USER</span> <span class="string">NAME</span>]</span><br><span class="line">    <span class="string">Port</span> [<span class="string">PORT</span>]</span><br></pre></td></tr></table></figure>
+<p>其中，<code>Host</code>是用户为该远程主机指定的标识符，可任意；<code>HostName</code>是该远程主机的公网IP地址；<code>User</code>则是用户登录远程主机时的默认身份，该身份必须是远程主机上有且允许远程登录的用户；<code>Port</code>是要连接的SSH服务器监听的端口，要与远程主机SSH服务器配置文件中的端口匹配。配置完成后，我们便可用命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh [HOST NAME] 或</span><br><span class="line">ssh [HOST IP]</span><br></pre></td></tr></table></figure>
+
+<p>连接远程主机。当然，我们也可以以远程主机允许的其他用户身份登录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh [OTHER USER NAME]@[HOST NAME]</span><br></pre></td></tr></table></figure>
+
+<p>一般来说，我们登录远程主机的验证方式默认为输入登录用户的密码，当然也可以在配置文件中增加<code>IdentityFile</code>选项使得我们能以私钥文件的形式实现免密登录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost ~]$ ssh remote-sys</span><br><span class="line">The authenticity of host <span class="string">&#x27;remote-sys (xxx.xxx.xxx.xxx)&#x27;</span> can<span class="string">&#x27;t be</span></span><br><span class="line"><span class="string">established.</span></span><br><span class="line"><span class="string">ECDSA key fingerprint is xxxxxxxxxxxxxxxxxxx.</span></span><br><span class="line"><span class="string">ECDSA key fingerprint is xxxxxxxxxxxxxxxxxxx.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?yes</span></span><br><span class="line"><span class="string">Warning: Permanently added &#x27;</span>remote-sys,xxx.xxx.xxx.xxx<span class="string">&#x27; (RSA) to the list</span></span><br><span class="line"><span class="string">of known hosts.</span></span><br><span class="line"><span class="string">Bob@xxx.xxx.xxx.xxx&#x27;</span>s password: </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>第一次登录未曾登录过的远程主机时，客户端会启动保护机制，如上面的<code>Are you sure...</code>。成功输入密码后，我们便进入了远端的shell会话，直到我们输入<code>exit</code>，该会话都会一直存在。</p>
+<p>需要注意的是，有时远程登录会报错<code>Bad owner or permissions on ~/.ssh/config</code>，这是因为有其他的用户拥有了对<code>~/.ssh/config</code>的使用权限，我们只要用<code>chmod 600 ~/.ssh/config</code>使得该文件只能由文件拥有者操作即可。</p>
+</blockquote>
+<p>若没有可用的远程主机，则可以用<code>localhost</code>作为远端主机名，此时计算机会和自己建立“远程连接”且无需输入密码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost ~]$ ssh localhost</span><br><span class="line">Last login: Tue Aug  1 03:58:03 2023 from localhost</span><br><span class="line">[meme@localhost ~]$ <span class="built_in">date</span></span><br><span class="line">Tue Aug  1 04:00:53 PDT 2023</span><br><span class="line">[meme@localhost ~]$ <span class="built_in">exit</span></span><br><span class="line"><span class="built_in">logout</span></span><br><span class="line">Connection to localhost closed.</span><br><span class="line">[meme@localhost ~]$ <span class="built_in">date</span></span><br><span class="line">Tue Aug  1 04:01:04 PDT 2023</span><br></pre></td></tr></table></figure>
+
+<p>有时，我们只想用远程主机执行个位数的命令，那么我们就没有必要登录又退出远程主机，而是可以直接在连接过程中就发送我们想要执行的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost ~]$ ssh remote-sys <span class="string">&#x27;ls ..&#x27;</span></span><br><span class="line">Bob@xxx.xxx.xxx.xxx<span class="string">&#x27;s password: </span></span><br><span class="line"><span class="string">dev</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string">var</span></span><br><span class="line"><span class="string">Killed by signal 1.</span></span><br><span class="line"><span class="string">[meme@localhost ~]$ </span></span><br></pre></td></tr></table></figure>
+
+<p>上面的<code>ls ..</code>让远程主机执行<code>ls</code>命令列出默认登录目录的父目录的内容，然后就退出登录。特别需要注意的是，引号表示该命令由远程主机执行，因此下面两个命令得到的是完全不同的结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost ~]$ ssh remote-sys <span class="string">&#x27;ls ..&#x27;</span> &gt; dirlist.txt</span><br><span class="line">[meme@localhost ~]$ ssh remote-sys <span class="string">&#x27;ls .. &gt; dirlist.txt&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，第一个命令是让远程主机列出父目录的内容并将结果重定向至本地的<code>dirlist.txt</code>文件；而第二个命令则是让远程主机列出父目录的内容并将结果重定向至<strong>远程主机</strong>的<code>dirlist.txt</code>文件。</p>
+<h2 id="scp：Secure-Copy，安全的远程复制"><a href="#scp：Secure-Copy，安全的远程复制" class="headerlink" title="scp：Secure Copy，安全的远程复制"></a><code>scp</code>：Secure Copy，安全的远程复制</h2><p><code>scp</code>是OpenSSH的内置程序，它基于SSH实现安全的远程复制：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp [[USER@]HOST:]FILE</span><br></pre></td></tr></table></figure>
+
+<p>它的用法很简单，<code>scp</code>+SSH远程服务器+目标文件。程序运行的结果是远程的目标文件被复制到本地目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost ~]$ scp remote-sys:document.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="sftp：Secure-FTP，安全的FTP"><a href="#sftp：Secure-FTP，安全的FTP" class="headerlink" title="sftp：Secure FTP，安全的FTP"></a><code>sftp</code>：Secure FTP，安全的FTP</h2><p><code>sftp</code>是用SSH强化了安全性的FTP协议，它也是OpenSSH的内置程序，同样也是基于SSH实现的。其用法与常规的<code>ftp</code>命令完全一样，只不过远程的SSH服务器充当了FTP服务器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost ~]$ sftp remote-sys</span><br><span class="line">Connecting to remote-sys...</span><br><span class="line">me@remote-sys<span class="string">&#x27;s password:</span></span><br><span class="line"><span class="string">sftp&gt; ls</span></span><br><span class="line"><span class="string">ubuntu-8.04-desktop-i386.iso</span></span><br><span class="line"><span class="string">sftp&gt; lcd Desktop</span></span><br><span class="line"><span class="string">sftp&gt; get ubuntu-8.04-desktop-i386.iso</span></span><br><span class="line"><span class="string">Fetching /home/me/ubuntu-8.04-desktop-i386.iso to ubuntu-8.04-</span></span><br><span class="line"><span class="string">desktop-i386.iso</span></span><br><span class="line"><span class="string">/home/me/ubuntu-8.04-desktop-i386.iso 100% 699MB 7.4MB/s 01:35</span></span><br><span class="line"><span class="string">sftp&gt; bye</span></span><br></pre></td></tr></table></figure>
+
+<p>输入密码后，我们将登录远程的shell。<code>lcd</code>指令即“Local Change Directory”，是指切换本地主机，即客户端主机的目录，而<code>cd</code>才是切换远程服务器的目录。<code>get</code>使得远程的文件被传输到本地主机的<code>Desktop</code>目录下。输入<code>bye</code>或<code>exit</code>或<code>quit</code>我们将退出远程服务器。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39448">The Linux Command Line 中文版 第十七章：网络系统</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/25/NetworkRemoteInteraction/" data-id="clzik0lco005yv47kco11crvc" data-title="Network and Remote Interaction" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/25/ProcessManagement/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Process Management
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/25/PackageProcessing/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Package Management and Processing</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

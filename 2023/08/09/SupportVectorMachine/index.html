@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Support Vector Machine | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="支持向量机（Support Vector Machine，SVM）是一类按监督学习（Supervised Learning）的方式对数据进行二分类的广义线性分类器。对于采用一条直线无法直接将正、负分开的非线性分类问题，SVM也可以借由核方法（Kernel Method）来实现非线性分类。不同于逻辑回归（Logistic Regression）的是，SVM可以直接得到决策边界（Decision Bo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Support Vector Machine">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="支持向量机（Support Vector Machine，SVM）是一类按监督学习（Supervised Learning）的方式对数据进行二分类的广义线性分类器。对于采用一条直线无法直接将正、负分开的非线性分类问题，SVM也可以借由核方法（Kernel Method）来实现非线性分类。不同于逻辑回归（Logistic Regression）的是，SVM可以直接得到决策边界（Decision Bo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/6.png">
+<meta property="article:published_time" content="2023-08-09T05:43:09.000Z">
+<meta property="article:modified_time" content="2023-08-14T12:57:18.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="SVM">
+<meta property="article:tag" content="Supervised Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-SupportVectorMachine" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/09/SupportVectorMachine/" class="article-date">
+  <time class="dt-published" datetime="2023-08-09T05:43:09.000Z" itemprop="datePublished">2023-08-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Kernel-Method/">Kernel Method</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Support Vector Machine
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="方法论"><a href="#方法论" class="headerlink" title="方法论"></a>方法论</h1><p>对于一个普通的线性二分类问题，我们期望找到这么一个决策边界$\omega ^Tx+b&#x3D;0$（式中$\omega$与$x$均为向量），使得该决策边界能够完全地把数据集中正类和负类隔开：</p>
+<p><img src="/2023/08/09/SupportVectorMachine/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Linear binary classification</center><br>
+
+<p>在逻辑回归（Logistic Regression）中，我们用的方法本质上是通过凸优化逐步拟合该边界的参数，使得正负类分别位于直线两侧：</p>
+<p>$$<br>\begin{align*}<br>    \hat{y}^{(i)}&#x3D;&amp;\frac{1}{1+\exp(-\omega ^Tx-b)}\\<br>    L&#x3D;\frac{1}{m}\sum _{i&#x3D;1} ^{m}[-y ^{(i)}\log&amp;(\hat{y}^{(i)})-(1-y ^{(i)})log(1-\hat{y}^{(i)})]<br>\end{align*}<br>$$</p>
+<p>式中，$m$为训练集样本数。由于所有的样本点都将参与到损失函数$L$中，任何一个样本点的偏移都会产生新的梯度而导致决策边界发生一定的偏移。然而，样本终究只是数据的观测值，总会存在一定的噪声使得观测值与真实值存在偏差，假设该噪声表现为最一般的高斯噪声，则一个样本的真实数据值实际上在该样本值的附近：</p>
+<p><img src="/2023/08/09/SupportVectorMachine/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Gaussian noise</center><br>
+
+<p>由于逻辑回归未考虑这些噪声，近似得到的决策边界可能不是最佳的边界。而SVM则不同，它只考虑距离决策边界近的点，并期望这些离决策边界近的点距离决策边界越远越好。这样做的好处是远离决策边界的点无论怎么偏移都不会对决策边界造成影响：</p>
+<p><img src="/2023/08/09/SupportVectorMachine/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Decision boundary</center><br>
+
+<p>上图便是采用SVM得出的决策边界，该决策边界实际上只由个别几个距离决策边界近的点决定，而这几个样本点就是支持决策边界的<strong>支持向量</strong>。</p>
+<h1 id="线性分类"><a href="#线性分类" class="headerlink" title="线性分类"></a>线性分类</h1><p>对于如何获得线性分类问题的决策边界，逻辑回归和SVM采用了两种不同的思路。逻辑回归通过凸优化和梯度下降来迭代地获得近似解；SVM则通过最大化距离决策边界最近点到决策边界的距离来获得解析解。</p>
+<p><img src="/2023/08/09/SupportVectorMachine/1.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Linear binary classification</center><br>
+
+<p>具体来说，对于任何一个二维平面（或超平面）内的决策边界$\omega ^Tx+b&#x3D;0$，样本$(x ^{(i)},y ^{(i)})$到决策边界的函数间隔（Functional Margin）可以定义为：</p>
+<p>$$<br>\hat{\gamma} ^{(i)}&#x3D;y ^{(i)}(\omega ^Tx ^{(i)}+b)<br>$$</p>
+<p>式中，$y ^{(i)}$正类取1，负类取-1，括号内的项实际上就是未用$||\omega||$归一化的$(x ^{(i)},y ^{(i)})$到直线$\omega ^Tx+b&#x3D;0$的距离（带正负），而$y ^{(i)}$正好可以使得$\hat{\gamma} ^{(i)}$始终为正，因而$\hat{\gamma} ^{(i)}$就是广义的“距离”，称函数间隔。若将$\hat{\gamma} ^{(i)}$归一化，我们可以得到几何间隔（Geometric Margin）：</p>
+<p>$$<br>\gamma ^{(i)}&#x3D;\frac{\hat{\gamma} ^{(i)}}{||\omega||}&#x3D;y ^{(i)}\frac{(\omega ^Tx ^{(i)}+b)}{||\omega||}<br>$$</p>
+<p>要得到决策边界，我们只需要让距离决策边界最近的点距离决策边界最远即可，即：</p>
+<p>$$<br>\max _{\omega,b}(\min _{i&#x3D;1,...,m}\gamma ^{(i)})<br>$$</p>
+<p>式中，我们使用了几何间距。几何间距实际上是限制向量$\omega$为单位向量后的函数间距。这种限制的缺点在于，$\omega$的值只能在一个单位圆域的边界上取得：</p>
+<p>$$<br>||\omega||&#x3D;1<br>$$</p>
+<p>进而导致$\omega$的取值域不是一个凸集，我们也就很难以凸优化的方法来求解决策边界。</p>
+<blockquote>
+<p>在欧氏空间中，凸集是对于集合内的每一对点，连接该对点的直线段上的每个点也在该集合内。显然，只包括边界的圆不是凸集。</p>
+</blockquote>
+<p><img src="/2023/08/09/SupportVectorMachine/4.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Circle field </center><br>
+
+<p>所以，采用$\gamma ^{(i)}$的原始形式更好：</p>
+<p>$$<br>\max _{\omega,b}(\min _{i&#x3D;1,...,m}\frac{\hat{\gamma} ^{(i)}}{||\omega||}) \tag{1}<br>$$</p>
+<p>此时，$\omega$的取值将不再受到限制。更进一步地：<br>$$<br>\min _{i&#x3D;1,...,m}\frac{\hat{\gamma} ^{(i)}}{||\omega||}<br>$$</p>
+<p>可以直接用$\hat{\gamma}&#x2F;{||\omega||}$表示，其中：</p>
+<p>$$<br>y ^{(i)}(\omega ^Tx ^{(i)}+b)\ge\hat{\gamma},\space\space i&#x3D;1,...,m<br>$$</p>
+<p>上式可被视作一个限定条件，限定$\omega$与$b$必须在一个指定的集合中：</p>
+<p><img src="/2023/08/09/SupportVectorMachine/5.png" alt="6"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. Inequality field</center><br>
+
+<blockquote>
+<p>线性不等式切出的域一定是个凸集。</p>
+</blockquote>
+<p>则我们实际上可以简单地令$\hat{\gamma}&#x3D;1$，于是式$(1)$便简化为：</p>
+<p>$$<br>\max _{\omega,b}\frac{1}{||\omega||} \tag{2}<br>$$</p>
+<p>进一步地将$\omega$放在分母，我们可得：</p>
+<p>$$<br>\min _{\omega,b} \frac{||\omega|| ^2}{2}\space\space\text{s.t} \space\space y ^{(i)}(\omega ^Tx ^{(i)}+b)\ge 1,\space\space i&#x3D;1,...,m \tag{3}<br>$$</p>
+<blockquote>
+<p>平方与分母中的$2$是为了方便求导。</p>
+</blockquote>
+<p>采用拉格朗日乘数法分别求解限定条件下边界和内部的极值便可得到决策边界的解析解。得到解析解后，对任意点$x$计算$\text{sign}(\omega ^Tx+b)$便可得到它的分类结果。这就是SVM，它实际上是一种最大间隔分类（Maximum Margin Classification）。</p>
+<blockquote>
+<p>实际求解要更加复杂，常用的方法有内点法（Interior Point Method, IPM）和序列最小优化（Sequential Minimal Optimization, SMO）。</p>
+</blockquote>
+<h1 id="软边距"><a href="#软边距" class="headerlink" title="软边距"></a>软边距</h1><p>式$(3)$对于Fig. 1（Fig. 4）所示的样本分布实际上是无解的，因为负例中有一个点混入了正例中，导致无法得到一个能够完全划分正例和负例的决策边界。为了解决这个问题，可以在式$(3)$的限定条件中加入松弛变量$\xi$（Slack Variable），使得某些样本点到决策边界的距离不一定严格地大于$1$，甚至可以小于$0$：</p>
+<p>$$<br>\begin{align*}<br>    y ^{(i)}(\omega ^Tx ^{(i)}&amp;+b)\ge 1-\xi _i,\space\space i&#x3D;1,...,m\\<br>    &amp;\xi _i \ge0\space\space i&#x3D;1,...,m<br>\end{align*}<br>$$</p>
+<p>引入松弛变量后，式$(3)$变为：</p>
+<p>$$<br>\begin{align*}<br>    \min _{\omega,b, \xi} (\frac{||\omega|| ^2}{2}&amp;+C\sum _1 ^m \xi _i) \tag{4}  \\<br>    \text{s.t} \space\space y ^{(i)}(\omega ^Tx ^{(i)}+b)\ge 1-&amp;\xi _i,\space\space  \xi _i \ge 0,\space\space i&#x3D;1,...,m<br>\end{align*}<br>$$</p>
+<p>式中$C$是一个超参数，新加入的项$\sum _1 ^m \xi _i$是一个正则项，称L1 regularization。该正则项是一类关于模型“先验知识”，可以提高SVM分类的鲁棒性和效率。</p>
+<p>这样的SVM称软边距SVM，而之前的则称硬边距SVM。</p>
+<h1 id="非线性分类"><a href="#非线性分类" class="headerlink" title="非线性分类"></a>非线性分类</h1><p>非线性分类问题，即仅用一条直线无法将正负类区分开的问题，如下图所示，我们必须用两条直线才能将这四个交叉分布的样本点区分开（1、3象限为负，2、4象限为正）：</p>
+<p><img src="/2023/08/09/SupportVectorMachine/6.png" alt="7"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 7. Non-linear classification</center><br>
+
+<p>对于这样的问题，常规的线性SVM是无法解的。一个很自然的想法是用函数$\phi(x)$将$x$映射到新空间，使得$x$在新空间线性可分，这时，式$(4)$便变为：</p>
+<p>$$<br>\begin{align*}<br>    \min _{\omega,b, \xi} &amp;(\frac{||\omega|| ^2}{2}+C\sum _1 ^m \xi _i) \tag{5} \\<br>    \text{s.t} \space\space y ^{(i)}[\omega ^T\phi(x ^{(i)})+b]&amp; \ge 1-\xi _i,\space\space \xi _i \ge 0,\space\space i&#x3D;1,...,m<br>\end{align*}<br>$$</p>
+<p>但是，实际上我们并不会直接定义函数$\phi(x)$，而是定义核函数（Kernel Function）：</p>
+<p>$$<br>K(x ^{(i)},x ^{(j)})&#x3D;\phi(x ^{(i)}) ^T\phi(x ^{(j)})<br>$$</p>
+<p>使用核函数的原因是，对决策边界的求解可以转为对其对偶问题的求解：</p>
+<p>$$<br>\begin{align*}<br>    \max _\alpha \sum _{i&#x3D;1} ^m\alpha _i&amp;-\frac{1}{2}\sum _{i&#x3D;1} ^m \sum _{j&#x3D;1} ^m[\alpha _i \alpha _j y ^{(i)}\phi(x ^{(i)}) ^T\phi(x ^{(j)})y ^{(j)}]\\<br>    \text{s.t}\space\sum _{i&#x3D;1} ^m\alpha _i &amp;y ^{(i)}&#x3D;0,\space\space 0\le\alpha _i\le C,\space\space i&#x3D;1,...,m<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>对偶问题我也不太懂。</p>
+</blockquote>
+<p>而后续的预测实际上用到的也只是$\phi(x ^{(i)}) ^T\phi(x)$：</p>
+<p>$$<br>\begin{align*}<br>    \omega^Tx+b&#x3D;&amp;[\sum _{i&#x3D;1} ^m \alpha _i y ^{(i)}\phi(x ^{(i)})] ^T\phi(x)+b\\<br>    &#x3D;&amp;\sum _{i&#x3D;1} ^m\alpha _iy ^{(i)}\phi(x ^{(i)})^T\phi(x)+b<br>\end{align*}<br>$$</p>
+<p>因此我们完全可以只定义核函数，而无需理会$\phi(x)$，只要保证核函数对各个$x ^{(i)}$和$x ^{(j)}$求值后得到的核矩阵$K$是半正定矩阵以保证$\phi(x)$的存在即可：</p>
+<p>$$<br>K _{ij} &#x3D;\phi(x ^{(i)}) ^T\phi(x ^{(j)})<br>$$</p>
+<blockquote>
+<p>核矩阵是半正定矩阵的核函数的$\phi(x)$存在的证明略。</p>
+</blockquote>
+<p>只定义核函数的另一个好处在于，一个很简单的核函数的$\phi(x)$可能十分复杂，如对于最常用的高斯核函数RBF Kernel：</p>
+<p>$$<br>K(x,z)&#x3D;\exp(-\frac{||x-z|| ^2}{2\sigma ^2})<br>$$</p>
+<p>其$\phi(x)$是无穷维的。</p>
+<blockquote>
+<p>不难看出$\phi(x)$与神经网络的编码器存在一定的等价性。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/08/09/SupportVectorMachine/" data-id="clzik0lcy008ov47k87sjg1as" data-title="Support Vector Machine" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/08/11/GPT/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          GPT
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/04/RegularExpressions/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Regular Expressions</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

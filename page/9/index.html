@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start of Something New">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JourneyToCoding">
+<meta property="og:url" content="https://zclzcl0223.github.io/page/9/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Start of Something New">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="ChaosTsang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Matplotlib" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/24/Matplotlib/" class="article-date">
+  <time class="dt-published" datetime="2023-04-24T13:58:14.000Z" itemprop="datePublished">2023-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/24/Matplotlib/">Matplotlib</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install matplotlib</span><br><span class="line">or</span><br><span class="line">conda install matplotlib</span><br></pre></td></tr></table></figure>
+<p>It is recommended to install <code>matplotlib</code> together with <code>pandas</code> (matplotlib will intall numpy at the same time). Then, start to plot:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+
+<h1 id="Loading-data"><a href="#Loading-data" class="headerlink" title="Loading data"></a>Loading data</h1><p>pandas; CSV; date series data; real-time data</p>
+<h1 id="Plot-types"><a href="#Plot-types" class="headerlink" title="Plot types"></a>Plot types</h1><h2 id="Line-plot"><a href="#Line-plot" class="headerlink" title="Line plot"></a>Line plot</h2><p>To plot a line plot, the API used is <code>plt.plot</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">ages_x = [<span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>]</span><br><span class="line"></span><br><span class="line">py_dev_y = [<span class="number">20046</span>, <span class="number">20060</span>, <span class="number">21000</span>, <span class="number">24744</span>, <span class="number">30500</span>]</span><br><span class="line">plt.plot(ages_x, py_dev_y, label=<span class="string">&#x27;Python&#x27;</span>)</span><br><span class="line"></span><br><span class="line">js_dev_y = [<span class="number">16446</span>, <span class="number">16791</span>, <span class="number">18942</span>, <span class="number">21780</span>, <span class="number">25704</span>]</span><br><span class="line">plt.plot(ages_x, js_dev_y, label=<span class="string">&#x27;JavaScript&#x27;</span>)</span><br><span class="line"></span><br><span class="line">dev_y = [<span class="number">17784</span>, <span class="number">16500</span>, <span class="number">18012</span>, <span class="number">20628</span>, <span class="number">25206</span>]</span><br><span class="line">plt.plot(ages_x, dev_y, color=<span class="string">&#x27;#444444&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, label=<span class="string">&#x27;All Devs&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">&#x27;Ages&#x27;</span>) <span class="comment"># set lable of x-axis</span></span><br><span class="line">plt.ylabel(<span class="string">&#x27;Median Salary (USD)&#x27;</span>) <span class="comment"># set label of y-axis</span></span><br><span class="line">plt.title(<span class="string">&#x27;Median Salary (USD) by Age&#x27;</span>) <span class="comment"># set name of plot</span></span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line"></span><br><span class="line">plt.savefig(<span class="string">&#x27;plot.png&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img align="right" src="/2023/04/24/Matplotlib/1.png" style=" width:380px; padding: 0px 0px; ">
+
+<p>When running the code above, we get a line plot as shown. All line plots using the same object <code>plt.plot</code> will be drawn together. Once we wanna show the current plot, we should use <code>plt.show()</code>. The only two necessary arguments are <code>x</code> and <code>y</code>, that is, <code>ages_x</code> and <code>py_dev_y</code> (<code>js_dev_y</code>, <code>dev_y</code>).</p>
+<p><code>plot.legend()</code> asks <code>pyplot</code> to show the label of each line. There are two ways to add label for each curve, the way above and:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.legend([<span class="string">&#x27;Python&#x27;</span>, <span class="string">&#x27;JavaScript&#x27;</span>, <span class="string">&#x27;All devs&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<p>In general, the first way is better as we don&#39;t need to arrange the labels in the order of things being added to plot. However, no matter which one we choose, we must use <code>plt.legend()</code>, otherwise, the label will not be showed.</p>
+<p>In addition to <code>label</code> argument, there are many arguments that let us format each plot. For examples, <code>color</code>, <code>linestyle</code> and etc.</p>
+<blockquote>
+<ul>
+<li>For <code>color</code>, we can use the initial letter of color, like <code>&#39;r&#39;</code> or <strong>hex color values</strong>, like what we use above.</li>
+<li>We can also use one parameter to set <code>color</code>, <code>linestyle</code> and <code>marker</code> together, like <code>&#39;b--&#39;</code>, that is <code>color=&#39;b&#39;</code> and <code>linestyle=&#39;--&#39;</code>.</li>
+</ul>
+</blockquote>
+<p><code>plt.tight_layout()</code> will automatically adjust the layout of chart to reduce the overlap of chart&#39;s x and y labels. It is useful when a chart is consisted of several subcharts. <code>plt.savefig(&#39;plot.png&#39;)</code> will save the plot as an image named <code>plot.png</code> in the specified folder (current folder by default).</p>
+<blockquote>
+<p>Absolute path is required if you want to save the plot to a specified folder.</p>
+</blockquote>
+<p>Other interesting setting:</p>
+<p><img align="left" src="/2023/04/24/Matplotlib/2.png" style=" width:380px; padding: 0px 0px; "> <img align="mid" src="/2023/04/24/Matplotlib/3.png" style=" width:380px; padding: 0px 0px; "></p>
+<p>For the first one, use <code>plt.grid(True)</code>. For the second one, use <code>plt.xkcd()</code>. By the way, <code>plt.xkcd()</code> should be placed before all the <code>plt.plot()</code> so that it can change the style of all line plots. The font family used in <code>xkcd()</code> is <code>&#39;xkcd&#39;</code>, <code>&#39;xkcd Script&#39;</code>, <code>&#39;Humor Sans&#39;</code>, <code>&#39;Comic Neue&#39;</code> and <code>&#39;Comic Sans Ms&#39;</code>. Windows has installed <code>Comic Sans Ms</code>. Therefore, pyplot will plot using <code>Comic Sans Ms</code> if other fonts can&#39;t be found. The font used in the second picture is <code>Humor Sans</code>. After installing a new font, delete the cache file <code>.matplotlib</code>.</p>
+<blockquote>
+<p>Use <code>print(matplotlib.get_cachedir())</code> to get the location of <code>.matplotlib</code>.</p>
+</blockquote>
+<p>Apart from <code>skcd()</code>, there are many different styles in <code>plt.style</code>.</p>
+<blockquote>
+<ul>
+<li>Use <code>print(plt.style.available)</code> to check the styles that can be used.</li>
+<li>Use <code>plt.style.use(&#39;Yourchoice&#39;)</code> to enable a style (<code>seaborn-paper</code>, <code>fivethirtyeight</code> and <code>ggplot</code> are recommended).</li>
+</ul>
+</blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">pyplot.plot</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/shreyankg/xkcd-desktop">Humor Sans font</a></li>
+</ul>
+<h2 id="Fill-between"><a href="#Fill-between" class="headerlink" title="Fill_between"></a>Fill_between</h2><p>To show the difference between two line plots or one line plot and a benchmark, <code>plt.fill_between</code> is rather useful. It can fill the area between two horizontal curves. It is actually a special type of &quot;curve&quot; so it can be formatted like other <code>plt</code> function:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">plt.style.use(<span class="string">&quot;seaborn-v0_8-paper&quot;</span>)</span><br><span class="line"></span><br><span class="line">ages_x = [<span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>]</span><br><span class="line"></span><br><span class="line">py_dev_y = np.array([<span class="number">20046</span>, <span class="number">20060</span>, <span class="number">21000</span>, <span class="number">24744</span>, <span class="number">30500</span>])</span><br><span class="line">plt.plot(ages_x, py_dev_y, color=<span class="string">&#x27;#fc4f30&#x27;</span>, label=<span class="string">&#x27;Python&#x27;</span>)</span><br><span class="line"></span><br><span class="line">dev_y = np.array([<span class="number">17784</span>, <span class="number">21000</span>, <span class="number">22000</span>, <span class="number">22628</span>, <span class="number">25206</span>])</span><br><span class="line">plt.plot(ages_x, dev_y, color=<span class="string">&#x27;#008fd5&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, label=<span class="string">&#x27;All Devs&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># fill_between</span></span><br><span class="line">plt.fill_between(ages_x, py_dev_y, dev_y, alpha=<span class="number">0.25</span>,</span><br><span class="line">                 where=(py_dev_y &gt; dev_y), interpolate=<span class="literal">True</span>,</span><br><span class="line">                 label=<span class="string">&#x27;Above average&#x27;</span>, color=<span class="string">&#x27;#6d904f&#x27;</span>)</span><br><span class="line">plt.fill_between(ages_x, py_dev_y, dev_y, alpha=<span class="number">0.25</span>,</span><br><span class="line">                 where=(py_dev_y &lt;= dev_y), interpolate=<span class="literal">True</span>,</span><br><span class="line">                 label=<span class="string">&#x27;Below average&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">&#x27;Ages&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Median Salary (USD)&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Median Salary (USD) by Age&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img align="left" src="/2023/04/24/Matplotlib/4.png" style=" width:380px; padding: 0px 0px; ">
+<img align="mid" src="/2023/04/24/Matplotlib/5.png" style=" width:380px; padding: 0px 0px; ">
+
+<p>The first picture shows the result we get. </p>
+<ul>
+<li>The only two necessary arguments of <code>plt.fill_between</code> is <code>x</code> and <code>y1</code>, that is <code>ages_x</code> and <code>py_dev_y</code>, which form the curve <code>fill_between</code> will stuff;</li>
+<li><code>y2</code> is 0 by default so <code>fill_between</code> will fill the space between 0 and y1-x. <code>y2</code> could be a scalar (e.g. 0) or a vector. In the first chart, <code>y2</code> is a vector;</li>
+<li><code>alpha</code> (0~1) is the transparency of the patch in the coverage area. <code>1</code> means opaque;</li>
+<li><code>where</code> is an important argument. It defines the scope or condition of filling. To make <code>where</code> work, lists must can be compared, that&#39;s why we use the vector of numpy;</li>
+<li><code>interpolate</code> only works when <code>where</code> exists. When <code>interpolate</code> is <code>False</code>, the filling area near the intersection of <code>y1</code> and <code>y2</code> will be removed, like the second picture. It is recommended to set <code>interpolate</code> to <code>True</code> when using <code>where</code>.</li>
+</ul>
+<p>The following is a chart drawn by only using:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.fill_between(ages_x, py_dev_y, dev_y, alpha=<span class="number">0.25</span>,</span><br><span class="line">                 label=<span class="string">&#x27;Difference&#x27;</span>, color=<span class="string">&#x27;#6d904f&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<img src="/2023/04/24/Matplotlib/5-1.png" style=" width:380px; padding: 0px 0px; ">
+
+<h3 id="Reference-1"><a href="#Reference-1" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.fill_between.html">pyplot.fill_between</a></li>
+</ul>
+<h2 id="Bar-chart"><a href="#Bar-chart" class="headerlink" title="Bar chart"></a>Bar chart</h2><p>To draw a bar chart, what we need to do is to use <code>plt.bar</code> instead of <code>plt.plot</code>. It is legal to use <code>plt.bar</code> and <code>plt.plot</code> together as they can coexist. If we draw <code>JavaScript</code> and <code>All devs</code> using <code>plt.bar</code> while draw <code>Python</code> using <code>plt.plot</code>, we get the chart below:  </p>
+<p><img src="/2023/04/24/Matplotlib/6.png" alt="6"></p>
+<p>It seems that <code>JavaScript</code> and <code>All devs</code> have mixed together. To solve this, we should use <code>numpy</code>. This time, we draw three bar charts:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">plt.style.use(<span class="string">&quot;seaborn-v0_8-paper&quot;</span>)</span><br><span class="line"></span><br><span class="line">ages_x = [<span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>]</span><br><span class="line"></span><br><span class="line">x_idnexex = np.arange(<span class="built_in">len</span>(ages_x)) <span class="comment"># x_indexex = [0, 1, 2, 3, 4]</span></span><br><span class="line">width = <span class="number">0.25</span></span><br><span class="line"></span><br><span class="line">py_dev_y = [<span class="number">20046</span>, <span class="number">20060</span>, <span class="number">21000</span>, <span class="number">24744</span>, <span class="number">30500</span>]</span><br><span class="line">plt.bar(x_idnexex - width, py_dev_y, width=width, color=<span class="string">&#x27;#fc4f30&#x27;</span>, label=<span class="string">&#x27;Python&#x27;</span>)</span><br><span class="line"></span><br><span class="line">js_dev_y = [<span class="number">16446</span>, <span class="number">16791</span>, <span class="number">18942</span>, <span class="number">21780</span>, <span class="number">25704</span>]</span><br><span class="line">plt.bar(x_idnexex, js_dev_y, width=width, color=<span class="string">&#x27;#008fd5&#x27;</span>, label=<span class="string">&#x27;JavaScript&#x27;</span>)</span><br><span class="line"></span><br><span class="line">dev_y = [<span class="number">17784</span>, <span class="number">16500</span>, <span class="number">18012</span>, <span class="number">20628</span>, <span class="number">25206</span>]</span><br><span class="line">plt.bar(x_idnexex + width, dev_y, width=width, color=<span class="string">&#x27;#6d904f&#x27;</span>, label=<span class="string">&#x27;All Devs&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">&#x27;Ages&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Median Salary (USD)&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Median Salary (USD) by Age&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line">plt.xticks(ticks=x_idnexex, labels=ages_x)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img align="left" src="/2023/04/24/Matplotlib/7.png" style=" width:380px; padding: 0px 0px; ">
+
+<p>Then, we get the chart as shown. The reason why we use <code>numpy</code> is that numpy supports vector operations and it could be the parameter of <code>plt.xticks()</code>. <code>x_indexes</code> is actually a list. By adding or subtracting <code>width</code>, we put each bar of the certain bar chart forward or backward. Then, use argument <code>width=width</code> to control the width of each bar. For beauty, the value of <code>width</code> should be:</p>
+<p>$$width&#x3D;\frac{Distance\space between\space two\space scales}{Number\space of\space chart+1}$$</p>
+<p><code>plt.xticks()</code> is a function that modifies the scale and label of axis-x. <code>ticks</code> is the scales that will be shown on axis-x. For the chart we draw, it should be <code>[0, 1, 2, 3, 4]</code>. <code>lables</code> is the display values of the scales, which overrides the true values of scales. If you don&#39;t wanna show axis-x, you can use <code>plt.xticks([])</code>.</p>
+<img align="right" src="/2023/04/24/Matplotlib/8.png" style=" width:380px; padding: 0px 0px; ">
+
+<p>We can also draw horizontal bar chart using <code>plot.barh()</code>, like the chart as shown. However, the first parameter of <code>plot.barh()</code> is now vertical axis, that is <strong>axis-y</strong>, and the second is <strong>axis-x</strong>. Therefore, we should use <code>plot.yticks()</code> to modify the scale. Besides, the width of bar is now the <strong>height</strong> of bar, so the argument is <code>height=xx</code>. </p>
+<h3 id="Reference-2"><a href="#Reference-2" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.bar.html">pyplot.bar</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.barh.html">pyplot.barh</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xticks.html">pyplot.xticks</a></li>
+</ul>
+<h2 id="Pie-chart"><a href="#Pie-chart" class="headerlink" title="Pie chart"></a>Pie chart</h2><p>If the number of data is less than 5 and we want to display their proportion, the pie chart is a good choice. To draw a pie chart, the function we use is <code>plt.pie</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">plt.style.use(<span class="string">&quot;seaborn-v0_8-paper&quot;</span>)</span><br><span class="line"></span><br><span class="line">slices = [<span class="number">59219</span>, <span class="number">55466</span>, <span class="number">47544</span>, <span class="number">36443</span>, <span class="number">35917</span>]</span><br><span class="line">labels = [<span class="string">&#x27;JavaScript&#x27;</span>, <span class="string">&#x27;HTML/CSS&#x27;</span>, <span class="string">&#x27;SQL&#x27;</span>, <span class="string">&#x27;Python&#x27;</span>, <span class="string">&#x27;Java&#x27;</span>]</span><br><span class="line">colors = [<span class="string">&#x27;#008fd5&#x27;</span>, <span class="string">&#x27;#fc4f30&#x27;</span>, <span class="string">&#x27;#e5ae37&#x27;</span>, <span class="string">&#x27;#6d904f&#x27;</span>, <span class="string">&#x27;#999999&#x27;</span>]</span><br><span class="line">explode = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">plt.pie(slices, labels=labels, explode=explode, shadow=<span class="literal">True</span>,</span><br><span class="line">        startangle=<span class="number">90</span>, autopct=<span class="string">&#x27;%1.1f%%&#x27;</span>, colors=colors,</span><br><span class="line">        wedgeprops=&#123;<span class="string">&#x27;edgecolor&#x27;</span>: <span class="string">&#x27;black&#x27;</span>&#125;)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&quot;My Awesome Pie Chart&quot;</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img align="right" src="/2023/04/24/Matplotlib/9.png" style=" width:380px; padding: 0px 0px; ">
+
+<p>The picture as shown is the pie chart we get. For <code>plt.pie</code>, the only necessary argument is <code>slices</code>, that is the data. Others are formatting arguments:</p>
+<ul>
+<li><code>explode</code>: List, which specifies the fraction of the radius with which to offset each wedge;</li>
+<li><code>shadow</code>: Draw a shadow beneath pie;</li>
+<li><code>startangle</code>: The angle by which the start of the pie is rotated (counterclockwise);</li>
+<li><code>autopct</code>: A string or function used to label each wedge. If string, it should start with <code>%</code>;</li>
+<li><code>wedgepros</code>: A dictionary, which modifies the features of wedge;</li>
+<li>...</li>
+</ul>
+<h3 id="Reference-3"><a href="#Reference-3" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pie.html">pyplot.pie</a></li>
+</ul>
+<h2 id="Stack-plot"><a href="#Stack-plot" class="headerlink" title="Stack plot"></a>Stack plot</h2><p>Stack plot (area plot), which shows the change of items over something (e.g. time) as well as the quantitative relationship between them, is a very useful kind of chart, especially when the sum of items is constant. To draw a stack plot, what we use is <code>plt.stackplot</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">plt.style.use(<span class="string">&quot;seaborn-v0_8-paper&quot;</span>)</span><br><span class="line"></span><br><span class="line">minutes = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">player1 = [<span class="number">8</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">player2 = [<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line">player3 = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">labels = [<span class="string">&#x27;player1&#x27;</span>, <span class="string">&#x27;player2&#x27;</span>, <span class="string">&#x27;player3&#x27;</span>]</span><br><span class="line">colors = [<span class="string">&#x27;#6d904f&#x27;</span>, <span class="string">&#x27;#fc4f30&#x27;</span>, <span class="string">&#x27;#008fd5&#x27;</span>]</span><br><span class="line"></span><br><span class="line">plt.stackplot(minutes, player1, player2, player3, labels=labels, colors=colors)</span><br><span class="line"></span><br><span class="line">plt.legend(loc=(<span class="number">0.07</span>, <span class="number">0.05</span>))</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&quot;My Awesome Stack Plot&quot;</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img align="right" src="/2023/04/24/Matplotlib/10.png" style=" width:400px; padding: 0px 0px; ">
+
+<p>The picture shows the stack plot we get. Compared to other charts, it is quite simple and does&#39;t have many things to format. One thing worth noticing is <code>plt.legend(loc(0.07, 0.05))</code>. It means putting the tab to the position that 7% from left and 5% from bottom.</p>
+<h3 id="Reference-4"><a href="#Reference-4" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.stackplot.html">pyplot.stackplot</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html">pyplot.legend</a></li>
+</ul>
+<h2 id="Histogram"><a href="#Histogram" class="headerlink" title="Histogram"></a>Histogram</h2><p>A histogram is a chart that plots the distribution of a numeric variable&#39;s values as a series of bins. Each bin covers a range of numeric values. It is clearer than the bar chart when the range of x is too large.  To draw a histogram, what we use is <code>plt.hist</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">plt.style.use(<span class="string">&#x27;seaborn-v0_8-paper&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ages = [<span class="number">18</span>, <span class="number">19</span>, <span class="number">21</span>, <span class="number">25</span>, <span class="number">26</span>, <span class="number">26</span>, <span class="number">30</span>, <span class="number">32</span>, <span class="number">38</span>, <span class="number">45</span>, <span class="number">55</span>, <span class="number">68</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">31</span>, <span class="number">44</span>, <span class="number">56</span>]</span><br><span class="line">bins = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>, <span class="number">60</span>, <span class="number">70</span>]</span><br><span class="line"></span><br><span class="line">plt.hist(ages, bins=bins, edgecolor=<span class="string">&#x27;black&#x27;</span>)</span><br><span class="line"></span><br><span class="line">median_age = <span class="number">31</span> <span class="comment"># Just a random number</span></span><br><span class="line">color = <span class="string">&#x27;#fc4f30&#x27;</span></span><br><span class="line"></span><br><span class="line">plt.axvline(median_age, color=color, label=<span class="string">&#x27;Age Median&#x27;</span>, linewidth=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&#x27;Ages of Respondents&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Ages&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Total Respondents&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img align="left" src="/2023/04/24/Matplotlib/11.png" style=" width:380px; padding: 0px 0px; "> <img align="mid" src="/2023/04/24/Matplotlib/12.png" style=" width:380px; padding: 0px 0px; "></p>
+<p>The only necessary argument of <code>plt.hist</code> is <code>x</code>, that is <code>ages</code>. <code>bins</code> is an important argument, which defines the range of each bin. It could be a scalar (the second picture) or a list (the first picture). If it is a scalar, its value represents the number of bins. The range of each bin is decided by <code>plt.hist</code> itself. Others are just some formatting arguments. <code>plt.axvline</code> which draws a vertical line, is often used with histogram.</p>
+<h3 id="Reference-5"><a href="#Reference-5" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html">pyplot.hist</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.axvline.html">pyplot.axvline</a></li>
+</ul>
+<h2 id="Scatter-plot"><a href="#Scatter-plot" class="headerlink" title="Scatter plot"></a>Scatter plot</h2><p>The scatter plot can show the correlation of two parameters intuitively. However, in addition to the quantitative relationship, <code>pyplot</code> can show more information. To draw a scatter plot, what we use is <code>plt.scatter</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">plt.style.use(<span class="string">&#x27;seaborn-v0_8-paper&#x27;</span>)</span><br><span class="line"></span><br><span class="line">x = [<span class="number">5</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">1</span>]</span><br><span class="line">y = [<span class="number">7</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">5</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">colors = [<span class="number">10</span>, <span class="number">15</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">sizes = [<span class="number">209</span>, <span class="number">486</span>, <span class="number">381</span>, <span class="number">255</span>, <span class="number">191</span>, <span class="number">315</span>, <span class="number">185</span>, <span class="number">228</span>, <span class="number">174</span>,</span><br><span class="line">         <span class="number">538</span>, <span class="number">239</span>, <span class="number">394</span>, <span class="number">399</span>, <span class="number">153</span>, <span class="number">273</span>, <span class="number">293</span>, <span class="number">436</span>, <span class="number">501</span>, <span class="number">397</span>, <span class="number">539</span>]</span><br><span class="line"></span><br><span class="line">plt.scatter(x, y, c=colors, s=sizes, cmap=<span class="string">&#x27;twilight_shifted&#x27;</span>,</span><br><span class="line">            edgecolor=<span class="string">&#x27;black&#x27;</span>, linewidth=<span class="number">1</span>, alpha=<span class="number">0.75</span>)</span><br><span class="line"></span><br><span class="line">cbar = plt.colorbar()</span><br><span class="line">cbar.set_label(<span class="string">&#x27;Color range&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># plt.xscale(&#x27;log&#x27;)</span></span><br><span class="line"><span class="comment"># plt.yscale(&#x27;log&#x27;)</span></span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img align="right" src="/2023/04/24/Matplotlib/13.png" style=" width:380px; padding: 0px 0px; ">
+
+<p><code>x</code> and <code>y</code> are the only two arguments we need. Other formatting arguments are almost the same as other plots&#39;:</p>
+<ul>
+<li><code>edgecolor</code>: The cloer of marker edges;</li>
+<li><code>linewidth</code>: The linewidth of marker edges;</li>
+<li><code>alpha</code>: Transparency of color;</li>
+<li>...</li>
+</ul>
+<p>However, the color (<code>c</code>) and size (<code>s</code>) of the scatter plot are slightly different from others&#39;. Compared to other plots, <code>c</code> and <code>s</code> in the scatter plot can be used to show extra information. The value of <code>c</code> or <code>s</code> doesn&#39;t count, but their quantitative relationship counts. <strong>That is, the size of <code>c</code> and <code>s</code> list is equal to the number of scatters and their relative quantitative relationship reflects the shades of color and the size of dots</strong>. For <code>c</code>, a kind of colormap (e.g. <code>&#39;twilight_shifted&#39;</code>) is needed to determine the gradient colors.</p>
+<p><code>plt.colorbar</code> returns a bar that shows the gradation range of colors and the values represented by different colors. If the range of <code>x</code> or <code>y</code> label is too large, we can use <code>xscale</code> or <code>yscale</code> to scale the label. We can also use <code>marker</code> to change the form of scatter.</p>
+<h3 id="Reference-6"><a href="#Reference-6" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html">pyplot.scatter</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">colormaps</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.colorbar.html">pyplot.colorebar</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xscale.html">pyplot.xscale</a></li>
+</ul>
+<h1 id="Data-types"><a href="#Data-types" class="headerlink" title="Data types"></a>Data types</h1><h2 id="Time-series-data"><a href="#Time-series-data" class="headerlink" title="Time series data"></a>Time series data</h2><p><code>pyplot</code> also allows us to draw plots with time series data. To do this:</p>
+<ol>
+<li>Store data in the form of <code>datetime</code> in python;</li>
+<li>Plot using <code>plt.plot_date</code>;</li>
+<li>Format the form of displaying <code>datetime</code> data (optional).</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> dates <span class="keyword">as</span> mpl_dates</span><br><span class="line"></span><br><span class="line">plt.style.use(<span class="string">&#x27;seaborn-v0_8-paper&#x27;</span>)</span><br><span class="line"></span><br><span class="line">dates = [</span><br><span class="line">    datetime(<span class="number">2019</span>, <span class="number">5</span>, <span class="number">24</span>),</span><br><span class="line">    datetime(<span class="number">2019</span>, <span class="number">5</span>, <span class="number">25</span>),</span><br><span class="line">    datetime(<span class="number">2019</span>, <span class="number">5</span>, <span class="number">26</span>),</span><br><span class="line">    datetime(<span class="number">2019</span>, <span class="number">5</span>, <span class="number">27</span>),</span><br><span class="line">    datetime(<span class="number">2019</span>, <span class="number">5</span>, <span class="number">28</span>),</span><br><span class="line">    datetime(<span class="number">2019</span>, <span class="number">5</span>, <span class="number">29</span>),</span><br><span class="line">    datetime(<span class="number">2019</span>, <span class="number">5</span>, <span class="number">30</span>),</span><br><span class="line">    datetime(<span class="number">2019</span>, <span class="number">5</span>, <span class="number">23</span>)</span><br><span class="line">]</span><br><span class="line">y = [<span class="number">10</span>, <span class="number">13</span>, <span class="number">23</span>,<span class="number">34</span>, <span class="number">46</span>, <span class="number">55</span>, <span class="number">67</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">plt.plot_date(dates, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># .gcf(): get current figure</span></span><br><span class="line">plt.gcf().autofmt_xdate()</span><br><span class="line">date_format = mpl_dates.DateFormatter(<span class="string">&#x27;%a %d %b %Y&#x27;</span>) <span class="comment"># weekday, day, month in en, year</span></span><br><span class="line"><span class="comment"># .gca(): get current axes</span></span><br><span class="line">plt.gca().xaxis.set_major_formatter(date_format)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img align="left" src="/2023/04/24/Matplotlib/14.png" style=" width:380px; padding: 0px 0px; "> <img align="mid" src="/2023/04/24/Matplotlib/15.png" style=" width:380px; padding: 0px 0px; "></p>
+<p><code>plt.gcf()</code> and <code>plt.gca()</code> are notable. <code>plt.gcf()</code> returns the current figure. <code>autofmt_xdate()</code> will make xlabel more readable (the first picture uses <code>autofmt_xdate()</code> while the second doesn&#39;t). What&#39;s more, we can also change the form of displaying date by passing a <code>DateFormatter</code> object to <code>set_major.formatter</code>. This object should conform to the python <strong>datetime format</strong>.</p>
+<h3 id="Reference-7"><a href="#Reference-7" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot_date.html">pyplot.plot_date</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/dates_api.html">matplotlib.dates</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">datetime format</a></li>
+</ul>
+<h2 id="Real-time-data"><a href="#Real-time-data" class="headerlink" title="Real-time data"></a>Real-time data</h2><p><code>animation</code> module in <code>matplotlib</code> is used to draw plot with real-time data. In the following code, <code>random</code> and <code>count</code> are just for producing random data to simulate real-time data.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> count</span><br><span class="line"><span class="keyword">from</span> matplotlib.animation <span class="keyword">import</span> FuncAnimation</span><br><span class="line"></span><br><span class="line">plt.style.use(<span class="string">&#x27;seaborn-v0_8-paper&#x27;</span>)</span><br><span class="line"></span><br><span class="line">x_vals = []</span><br><span class="line">y_vals = []</span><br><span class="line">z_vals = []</span><br><span class="line"></span><br><span class="line">index = count()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">animate</span>(<span class="params">i</span>):</span><br><span class="line">    x_vals.append(<span class="built_in">next</span>(index))</span><br><span class="line">    y_vals.append(random.randint(<span class="number">0</span>, <span class="number">5</span>))</span><br><span class="line">    z_vals.append(random.randint(<span class="number">0</span>, <span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">    plt.cla()</span><br><span class="line">    plt.plot(x_vals, y_vals, color=<span class="string">&#x27;#fc4f30&#x27;</span>, label=<span class="string">&#x27;Curve1&#x27;</span>)</span><br><span class="line">    plt.plot(x_vals, z_vals, color=<span class="string">&#x27;#008fd5&#x27;</span>, label=<span class="string">&#x27;Curve2&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    plt.legend(loc=<span class="string">&#x27;upper left&#x27;</span>)</span><br><span class="line">    plt.tight_layout()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">ani = FuncAnimation(plt.gcf(), animate, interval=<span class="number">1000</span>, cache_frame_data=<span class="literal">False</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img align="left" src="/2023/04/24/Matplotlib/16.png" style=" width:380px; padding: 0px 0px; "> <img align="mid" src="/2023/04/24/Matplotlib/17.png" style=" width:380px; padding: 0px 0px; "></p>
+<p>These two figures were drawn at 16 and 26 seconds respectively. In <code>FuncAnimation</code>, only <code>plt.gcf()</code> which is the figure we want to plot and <code>animate</code>  which is the plotting function, are needed. <code>interval</code> (in milliseconds) defines <code>FuncAnimation</code>&#39;s time interval for calling <code>animate</code>. <code>animate</code> is the most important part. <strong>It is actually a function of drawing a kind of plot</strong>. Because the data it uses changes whenever it is called, the figure changes accordingly. Pyplot realizes this by drawing a totally new figure that overwrites the previous figures. Therefore, we should use <code>plt.cla()</code> to delete the previous figure, otherwise the color of figure will change continuously.</p>
+<blockquote>
+<p>Some bugs may occur if you use pycharm as your IDE:</p>
+<ul>
+<li>Can&#39;t display the figure: To solve this, untick <code>Show plots in tool window</code>:<br><img src="/2023/04/24/Matplotlib/18.png" alt="18"></li>
+<li>User warning: frames&#x3D;None: To solve this, add <code>cache_frame_data=False</code>.</li>
+</ul>
+</blockquote>
+<h3 id="Reference-8"><a href="#Reference-8" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html">FuncAnimation</a></li>
+</ul>
+<h1 id="Subplot"><a href="#Subplot" class="headerlink" title="Subplot"></a>Subplot</h1><p>In general, a figure draw by Matplotlib contains the following components:</p>
+<p><img src="/2023/04/24/Matplotlib/19.png" alt="19"></p>
+<p>where a figure is a canvas, a axes is a subgraph object. A figure can contain several axes. In the above, we only use one figure with one axes. To draw more complicated figures, we can use <code>plt.subplots</code>. <code>plt.subplots</code> returns a figure object and several axes objects. With axes objects, we can plot several subgraphs in one figure. With figure objects, we can produce multiple figures:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">plt.style.use(<span class="string">&quot;seaborn-v0_8-notebook&quot;</span>)</span><br><span class="line"></span><br><span class="line">ages_x = [<span class="number">18</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>]</span><br><span class="line">py_dev_y = [<span class="number">20046</span>, <span class="number">20060</span>, <span class="number">21000</span>, <span class="number">24744</span>, <span class="number">30500</span>]</span><br><span class="line">dev_y = [<span class="number">17784</span>, <span class="number">16500</span>, <span class="number">18012</span>, <span class="number">20628</span>, <span class="number">25206</span>]</span><br><span class="line"></span><br><span class="line">fig1, (ax1, ax2) = plt.subplots(nrows=<span class="number">2</span>, ncols=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># fig2, (ax3, ax4) = plt.subplots(nrows=2, ncols=1) ## another figure</span></span><br><span class="line"></span><br><span class="line">ax1.plot(ages_x, dev_y, color=<span class="string">&#x27;purple&#x27;</span>,</span><br><span class="line">         linestyle=<span class="string">&#x27;--&#x27;</span>, label=<span class="string">&#x27;All Devs&#x27;</span>)</span><br><span class="line">ax1.legend()</span><br><span class="line">ax1.set_title(<span class="string">&#x27;Median Salary (USD) by Age&#x27;</span>)</span><br><span class="line">ax1.set_ylabel(<span class="string">&#x27;Median Salary (USD)&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ax2.plot(ages_x, py_dev_y, color=<span class="string">&#x27;#6A5ACD&#x27;</span>, label=<span class="string">&#x27;Python&#x27;</span>)</span><br><span class="line">ax2.legend()</span><br><span class="line">ax2.set_xlabel(<span class="string">&#x27;Ages&#x27;</span>)</span><br><span class="line">ax2.set_ylabel(<span class="string">&#x27;Median Salary (USD)&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br><span class="line">fig1.savefig(<span class="string">&#x27;fig1.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img align="left" src="/2023/04/24/Matplotlib/20.png" style=" width:380px; padding: 0px 0px; "> <img align="mid" src="/2023/04/24/Matplotlib/21.png" style=" width:380px; padding: 0px 0px; "></p>
+<p>We can plot using <code>ax1</code> and <code>ax2</code> as <code>plt</code>. However, <code>plt.title</code>, <code>plt.xlabel</code> and <code>plt.ylabel</code> should be replaced with <code>ax.set_title</code>, <code>ax.set_xlabel</code> and <code>ax.set_ylabel</code>. If we want to modify figure, like saving a figure, we should use the figure object we get which is the same type as <code>plt.gcf()</code>. </p>
+<p>The arguments of <code>plt.subplots</code> define the layout of subgraphs. If we set <code>nrows=2, ncols=1</code>, we get the first figure. If we set <code>nrows=1, ncols=2</code>, we geet the second figure.</p>
+<blockquote>
+<p>The second return value of <code>plt.subplots</code> is actually a <strong>matrix</strong>. Therefore, we can simply use:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fig1, ax = plt.subplots(nrows=<span class="number">2</span>, ncols=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>and visit ax1 and ax2 using <code>ax[0]</code> ans <code>ax[1]</code>. A more complicated example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fig1, ax = plt.subplots(nrows=<span class="number">2</span>, ncols=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># is equal to</span></span><br><span class="line">fig1, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows=<span class="number">2</span>, ncols=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Reference-9"><a href="#Reference-9" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html">pyplot.subplots</a></li>
+</ul>
+<h1 id="More-information"><a href="#More-information" class="headerlink" title="More information"></a>More information</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/playlistlist=PL-osiE80TeTvipOqomVEeZ1HRrcEvtZB_">Matplotlib Tutorials by Corey Schafer</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/plot_types/index.html">plot types</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/gallery/index.html">plot examples</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/pyplot_summary.html">pyplot api</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/24/Matplotlib/" data-id="clzik0lcj004mv47k81hh6unp" data-title="Matplotlib" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Scikit-learn" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/22/Scikit-learn/" class="article-date">
+  <time class="dt-published" datetime="2023-04-22T10:28:47.000Z" itemprop="datePublished">2023-04-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/22/Scikit-learn/">Scikit-learn</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>We should install <code>scikit-learn</code> though the package we used is called <code>sklearn</code>.</p>
+<h1 id="Linear-regression"><a href="#Linear-regression" class="headerlink" title="Linear regression"></a>Linear regression</h1><p>Scikit-learn has a gradient descent linear regression model <code>SGDRegressor</code> that performs well with normalized inputs. <code>StandardScaler</code> will perform z-score normalization as we learnt.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import module</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> SGDRegressor</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="comment"># Scale training set</span></span><br><span class="line">scaler = StandardScaler()</span><br><span class="line">X_norm = scaler.fit_transform(X_train)</span><br><span class="line"><span class="comment"># Create and fit model</span></span><br><span class="line">sgdr = SGDRegressor(max_iter=<span class="number">1000</span>)</span><br><span class="line">sgdr.fit(X_norm, y_train)</span><br><span class="line"><span class="comment"># View parameters</span></span><br><span class="line">b_norm = sgdr.intercept_</span><br><span class="line">w_norm = sgdr.coef_</span><br><span class="line"><span class="comment"># Make predictions</span></span><br><span class="line">y_pred = sgdr.predict(X_norm)</span><br></pre></td></tr></table></figure>
+
+<p>In addition to linear regression using gradient descent, scikit-learn also implements another linear regression model using normal equation, that is <code>LinearRegression</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import module</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression</span><br><span class="line"><span class="comment"># Create and fit model</span></span><br><span class="line">linear_model = LinearRegression()</span><br><span class="line"><span class="comment">## X must be a 2-D matrix</span></span><br><span class="line">linear_model.fit(X_train.reshape(-<span class="number">1</span>, <span class="number">1</span>), y_train)</span><br><span class="line"><span class="comment"># View parameters</span></span><br><span class="line">b = linear_model.intercept_</span><br><span class="line">w = linear_model.coef_</span><br><span class="line"><span class="comment"># Make predictions</span></span><br><span class="line">y_pred = linear_model.predict(X_train.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<h1 id="Logistic-regression"><a href="#Logistic-regression" class="headerlink" title="Logistic regression"></a>Logistic regression</h1><p>The logistic regression model in scikit-learn is <code>LogisticRegression</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import module</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="comment"># Create and fit the model</span></span><br><span class="line">lr_model = LogisticRegression()</span><br><span class="line">lr_model.fit(X, y)</span><br><span class="line"><span class="comment"># Make predictions</span></span><br><span class="line">y_pred = lr_model.predict(X)</span><br><span class="line"><span class="comment"># Calculate accuracy</span></span><br><span class="line">lr_model.score(X, y) <span class="comment"># Return the percentage of correct predictions</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Datasets-and-dataset-partition"><a href="#Datasets-and-dataset-partition" class="headerlink" title="Datasets and dataset partition"></a>Datasets and dataset partition</h1><p>The <code>sklearn.datasets</code> module includes utilities to load datasets. These datasets are useful for the training of model. See more information on <a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.datasets">sklearn.datasets</a>.</p>
+<p>Module <code>train_test_split</code> in <code>sklearn.model_selection</code> can help us split training set into training set and test set, for examples:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X_train, X_, y_train, y_ = train_test_split(X, y, test_size=<span class="number">0.4</span>, random_state=<span class="number">1</span>)</span><br><span class="line">X_cv, X_test, y_cv, y_test = train_test_split(X_, y_, test_size=<span class="number">0.5</span>, random_state=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="More-information"><a href="#More-information" class="headerlink" title="More information"></a>More information</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/">Scikit-learn.org</a></li>
+<li><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/classes.html#">Scikit-learn API</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/22/Scikit-learn/" data-id="clzik0lcx0086v47k90ok6px0" data-title="Scikit-learn" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-NumPy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/22/NumPy/" class="article-date">
+  <time class="dt-published" datetime="2023-04-22T03:37:25.000Z" itemprop="datePublished">2023-04-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/22/NumPy/">NumPy</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Basic-data-structure"><a href="#Basic-data-structure" class="headerlink" title="Basic data structure"></a>Basic data structure</h1><p><code>list</code> in python can support different data type so its elements are actually pointers, which waste a lot of memori and CPU time. The basic objects of NumPy are <code>ndarray</code> and <code>ufnc</code>. <code>ndarray</code> store data (bool, int, float and etc.). <code>ufunc</code> contains function to cope with <code>ndarray</code>. <code>ndarray</code>, an indexable, n-dimensional array containing elements of the same type (<code>dtype</code>), where dimension is the number of indices that we need to visit a scalar of the array, is the basic data struture of NumPy .Vectors are 1-D arrays and matrices are 2-D arrays.</p>
+<blockquote>
+<p>Use <code>.shape</code> and <code>.dtype</code> to get the dimension and element type of an array.</p>
+<p>Instead of <code>float64</code>, we often use <code>float32</code> to accelerate computing&#x2F;</p>
+</blockquote>
+<h2 id="Vectors"><a href="#Vectors" class="headerlink" title="Vectors"></a>Vectors</h2><p>Vectors are 1-D arrays in NumPy. To create a vector, we can use:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are 0 and types are float64</span></span><br><span class="line">a = np.zeros(<span class="number">4</span>)</span><br><span class="line"><span class="comment"># The same as above. We use this mode to create n-D arrays</span></span><br><span class="line">a = np.zeros((<span class="number">4</span>,)) <span class="comment"># np.ones creates ndarray whose values are 1</span></span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are random value in [0, 1) and types are float64</span></span><br><span class="line">a = np.random.random_sample((<span class="number">4</span>,))</span><br><span class="line"><span class="comment"># np.arange([start=0], stop, [step=1]). Create an arithmetic progression, [start, stop)</span></span><br><span class="line">a = np.arange(<span class="number">4.</span>)</span><br><span class="line"><span class="comment"># Create a vector with 4 elements whose values are in [0, 1) obeying uniform distribution</span></span><br><span class="line">a = np.random.rand((<span class="number">4</span>,))</span><br><span class="line"><span class="comment"># Specify values manually</span></span><br><span class="line">a = np.array([<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br><span class="line">a = np.array([<span class="number">5.0</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="Matrices"><a href="#Matrices" class="headerlink" title="Matrices"></a>Matrices</h2><p>Matrices are 2-D arrays in NumPy. To create a matrix, the functions used are as those in creating vectors. For examples:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = np.zeros((<span class="number">4</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<p>However, when specifying values, numpy specifies rows first:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">              [<span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></table></figure>
+<p>We can also create a matrix from a vector:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = np.zeros(<span class="number">6</span>).reshape(-<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>which will create a 3x2 matrix. <code>-1</code> indicates that the number of row depends on the number of column. If <code>.reshape(-1, )</code>, we turn a matrix to a vector by concentrating the vector row by row, that is:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">              [<span class="number">4</span>, <span class="number">5</span>]])</span><br><span class="line"><span class="built_in">print</span>(a.reshape(-<span class="number">1</span>, ))</span><br><span class="line"><span class="comment"># We get: [2 3 4 5]</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>.reshape</code> regard a matrix as a vector with $mn$ elements. Therefore, if we want to transpose a matrix, we must use <code>a.T</code> rather than <code>.reshape</code>. <strong>The return object of <code>.reshape</code> shares memory with initial object but <code>.reshape</code> doesn&#39;t change the shape of initial object</strong>.</p>
+</blockquote>
+<h1 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h1><h2 id="Indexing-amp-slicing"><a href="#Indexing-amp-slicing" class="headerlink" title="Indexing &amp; slicing"></a>Indexing &amp; slicing</h2><p>Arrays in NumPy can be used as <code>list</code> in python, which means that the indexing and slicing in arrays are the same as those in <code>list</code>, though the data type is a built-in type of numpy (<code>float64</code>, <code>int32</code>, <code>ndarray</code>, etc.).</p>
+<blockquote>
+<p>When slicing a certain column, we should use <code>a[:, j]</code></p>
+</blockquote>
+<p>In general, there are 5 different ways to read <code>ndarray</code> using <code>[]</code>:</p>
+<ol>
+<li>Integer<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(<span class="number">12</span>).reshape(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"> <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"> a = [[0 1 2 3]</span></span><br><span class="line"><span class="string">       [4 5 6 7]</span></span><br><span class="line"><span class="string">       [8 9 10 11]]</span></span><br><span class="line"><span class="string"> &#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">0</span>])</span><br><span class="line"><span class="comment"># Get [0 1 2 3], shape(4,)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line"><span class="comment"># Get 0, shape(), scalar</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The return object shares memory with initial object.</p>
+</blockquote>
+</li>
+<li>Slicing<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(a[:, <span class="number">1</span>])</span><br><span class="line"><span class="comment"># Get [1 5 9], the 1 column, shape(3,)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">0</span>:<span class="number">2</span>, :])</span><br><span class="line"><span class="comment"># Get [[1 2] [5 6]], shape(2, 2)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a[::<span class="number">2</span>, ::<span class="number">2</span>]) <span class="comment"># that is set steps to 2</span></span><br><span class="line"><span class="comment"># Get [[0 2] [8 10]], shape(2, 2)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The return object still shares memory with initial object.</p>
+</blockquote>
+</li>
+<li>Integer list<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(a[[<span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"><span class="comment"># Get [[0 1 2 3] [4 5 6 7]], shape(2, 3)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The return object still shares memory with initial object.</p>
+</blockquote>
+</li>
+<li>Integer matrix<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(<span class="number">12</span>)</span><br><span class="line">b = np.array[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>]]</span><br><span class="line"><span class="built_in">print</span>(a[b])</span><br><span class="line"><span class="comment"># Get [[1 2 4] [5 6 7]], shape(2, 3)</span></span><br><span class="line"></span><br><span class="line">c = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">d = np.array([[<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line"><span class="built_in">print</span>(c[d])</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[[[3 4]</span></span><br><span class="line"><span class="string">  [1 2]]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> [[1 2]</span></span><br><span class="line"><span class="string">  [3 4]]]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># c[[1, 0]] is (2, 2) so c[d] is (2, 2, 2)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The return object is a new object. It <strong>doesn&#39;t share</strong> memory with initial object. The value of <code>b</code> is the index of element in specific dimension in <code>a</code>.</p>
+<p>To understand the second one, you should focus on <code>d</code> rather than <code>c</code>. That is, the values of <code>d</code> are the indexex of <code>c</code>&#39;s first dimension (row). And NumPy just replaces them with value of the specified dimension.</p>
+</blockquote>
+</li>
+<li>Bool array<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">b = np.array([[<span class="literal">True</span>, <span class="literal">False</span>], [<span class="literal">False</span>, <span class="literal">True</span>]])</span><br><span class="line"><span class="built_in">print</span>(a[b])</span><br><span class="line"><span class="comment"># Get [1 4], shape(2, )</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The return object is not a new object. It <strong>shares</strong> memory with initial object. When using bool array, Numpy will only keep the <code>True</code> element and return a vector.</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="Elementwise-computations"><a href="#Elementwise-computations" class="headerlink" title="Elementwise computations"></a>Elementwise computations</h2><p>In elementwise computations, NumPy apply the same operation to each elment of matrix. For example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">b = np.array([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line"></span><br><span class="line">a +-*/ b = [[<span class="number">1</span>+-*/<span class="number">5</span>, <span class="number">2</span>+-*/<span class="number">6</span>], [<span class="number">3</span>+-*/<span class="number">7</span>, <span class="number">4</span>+-*/<span class="number">8</span>]]</span><br><span class="line">a**b = [[<span class="number">1</span>**<span class="number">5</span>, <span class="number">2</span>**<span class="number">6</span>], [<span class="number">3</span>**<span class="number">7</span>, <span class="number">4</span>**<span class="number">8</span>]] <span class="comment"># equal to np.power(a, b)</span></span><br><span class="line"><span class="comment"># exp^a</span></span><br><span class="line">e = np.exp(a)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Because of broadcasting, <code>b = 5 * a</code> <code>b = a + 1</code> or <code>b = a**2</code> are also valid. Such guidelines also apply to boolen operations, that is:</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">              [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">              [<span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">pos = a == <span class="number">1</span> <span class="comment"># a == 1 will be apply to each element of a and return matrix</span></span><br><span class="line"><span class="built_in">print</span>(pos)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">We get:</span><br><span class="line">[[False  True]</span><br><span class="line"> [ True  True]</span><br><span class="line"> [False  True]]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Broadcasting"><a href="#Broadcasting" class="headerlink" title="Broadcasting"></a>Broadcasting</h2><p>If <code>a</code> is a matrix, <code>b</code> is a vector with the same row or column number. Then <code>a+-*/b</code> will <code>+-*/</code> <code>b</code> to each row or column of <code>a</code>. This is the <strong>Broadcasting</strong> in numpy. See more about it on <a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/user/basics.broadcasting.html">Broadcasting</a>.</p>
+<p>More generally, the mechanism of broadcasting is aligning the shape of each dimension of arrays to the largest one of both arrays. Broadcasting only works when two arrays have different dimensions or two arrays have the same dimensions but at least one dimension is <code>1</code>. For examples:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(<span class="number">6</span>).reshape(-<span class="number">1</span>, <span class="number">1</span>) <span class="comment"># shape (6, 1)</span></span><br><span class="line">b = np.arange(<span class="number">5</span>) <span class="comment"># shape(5, )</span></span><br><span class="line">c = a + b <span class="comment"># shape(6, 5)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">a extends to (6, 5)</span></span><br><span class="line"><span class="string">b extends to (6, 5)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>The procedures of broadcasting:</p>
+<ol>
+<li>Compare the shape of each dimension of two arrays from the last dimension; [e.g. a(6, 1), b(5, ), compare 1 with 5]</li>
+<li>Broadcasting the dimension: Broadcast the dimension of the array with smaller dimension from back to front; [e.g. a(6, 1), b(5, ), broadcast b(5, ) to b(1, 5)]</li>
+<li>Broadcasting the shape of dimension: The array with shape 1 in one dimension will be stretched to match the corresponding dimension shape of another array. [e.g. a(6, 1)-&gt;a(6, 5); b(1, 5)-&gt;b(6, 5)]</li>
+<li>Report error when one dimension can&#39;t be broadcast. Namely, the two arrays have different shapes in this dimension but neither of them have a shape <code>1</code>.</li>
+</ol>
+<h2 id="Dot-product"><a href="#Dot-product" class="headerlink" title="Dot product"></a>Dot product</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = np.dot(a, b)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add all the elements up, return a scalar</span></span><br><span class="line">b = np.<span class="built_in">sum</span>(a) <span class="comment"># use [axis] to determine row or column</span></span><br><span class="line"><span class="comment"># Avearge of a, return a scalar</span></span><br><span class="line">c = np.mean(a) <span class="comment"># use [axis] to determini row or column</span></span><br><span class="line"><span class="comment"># Concentrate vectors to form a matrix. Each item is a column.</span></span><br><span class="line">d = np.c_[a, a**<span class="number">2</span>] <span class="comment"># if a.shape=4, d.shape=(4,2)</span></span><br><span class="line"><span class="comment"># Returns the index of the maximum value of an array along a certain axis (0: column, 1: row).</span></span><br><span class="line">f = np.argmax(a, [axis], [out]) <span class="comment"># type: ndarray</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Tile"><a href="#Tile" class="headerlink" title="Tile"></a>Tile</h2><p><code>numpy.tile(A, reps)</code>, where <code>A</code> is the input array and <code>reps</code> is the replication factor of <code>A</code> in each dimension, extends the dimension or shape of the original array.</p>
+<h3 id="A-dim-gt-len-reps"><a href="#A-dim-gt-len-reps" class="headerlink" title="A.dim &gt; len(reps)"></a>A.dim &gt; len(reps)</h3><p>For examples:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]])</span><br><span class="line">b = np.tile(a, (<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<p>NumPy will extend the shape of <code>b</code> to <code>(1, 2)</code> from back to front. Therefore, it is equal to <code>np.tile(a, (1, 2))</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b = </span><br><span class="line">[[0 1 2 0 1 2]</span><br><span class="line"> [3 4 5 3 4 5]]</span><br></pre></td></tr></table></figure>
+
+<h3 id="A-dim-lt-len-reps"><a href="#A-dim-lt-len-reps" class="headerlink" title="A.dim &lt; len(reps)"></a>A.dim &lt; len(reps)</h3><p>For examples:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]]) <span class="comment"># shape (2, 3)</span></span><br><span class="line">b = np.tile(a, (<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<p>NumPy will extend the shape of <code>a</code> to <code>(1, 2, 3)</code> from back to front. Therefore, the column of <code>a</code> will copy 3 times, the row of <code>a</code> will copy 2 times and the first dimension will copy 1 time.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">b =</span><br><span class="line">[[[0 1 2 0 1 2 0 1 2 0 1 2]</span><br><span class="line">  [3 4 5 3 4 5 3 4 5 3 4 5]</span><br><span class="line">  [0 1 2 0 1 2 0 1 2 0 1 2]</span><br><span class="line">  [3 4 5 3 4 5 3 4 5 3 4 5]</span><br><span class="line">  [0 1 2 0 1 2 0 1 2 0 1 2]</span><br><span class="line">  [3 4 5 3 4 5 3 4 5 3 4 5]]</span><br><span class="line"></span><br><span class="line"> [[0 1 2 0 1 2 0 1 2 0 1 2]</span><br><span class="line">  [3 4 5 3 4 5 3 4 5 3 4 5]</span><br><span class="line">  [0 1 2 0 1 2 0 1 2 0 1 2]</span><br><span class="line">  [3 4 5 3 4 5 3 4 5 3 4 5]</span><br><span class="line">  [0 1 2 0 1 2 0 1 2 0 1 2]</span><br><span class="line">  [3 4 5 3 4 5 3 4 5 3 4 5]]]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>All vectorizable operations use SIMD, so they are much faster than <code>loop</code>.</p>
+</blockquote>
+<h2 id="Random-choice"><a href="#Random-choice" class="headerlink" title="Random.choice"></a>Random.choice</h2><p><code>numpy.random.choice(a, size=None, replace=True, p=None)</code>, which is an random sampling operation and will return an array whose elements are the result of random sampling.</p>
+<ul>
+<li><code>a</code>, an array or integer. If <code>a</code> is an array, the samples it chooses come from it, otherwise, the samples it chooses come from <code>np.arrange(a)</code>;</li>
+<li><code>size</code>, an integer or a tuple. If <code>size</code> is an integer, it will choose <code>size</code> samples in total. If <code>size</code> is an tuple (e.g. <code>(m, n, k)</code>), it will produce <code>m x n x k</code> samples and arrange them in the shape of <code>(m, n, k)</code>;</li>
+<li><code>replace</code>, <code>True</code> or <code>False</code>, where <code>True</code> means sampling with replacement (放回取样) and <code>False</code> means sampling without replacement (不放回取样);</li>
+<li><code>p</code>, <code>None</code> or an array. If <code>None</code>, the probability of selecting each number is the same; if it is an array, the length of the array <code>p</code> should be the same as the length of <code>a</code>, and the elements in the array <code>p</code> correspond to the probability of choosing each element in <code>a</code>.</li>
+</ul>
+<h1 id="More-information"><a href="#More-information" class="headerlink" title="More information"></a>More information</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/">NumPy.org</a></li>
+<li><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/user/basics.broadcasting.html">NumPy Broadcasting</a></li>
+<li><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/genindex.html">NumPy function</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/22/NumPy/" data-id="clzik0lcp0065v47k4gbe2djg" data-title="NumPy" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-StringFormatting" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/10/StringFormatting/" class="article-date">
+  <time class="dt-published" datetime="2023-07-10T07:56:09.000Z" itemprop="datePublished">2023-07-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/10/StringFormatting/">Python String Formatting</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+
+<h1 id="格式化"><a href="#格式化" class="headerlink" title="%格式化"></a>%格式化</h1><p>运算符<code>%</code>可用于格式化字符串：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;%s world %d&#x27;</span> % (<span class="string">&#x27;Hello&#x27;</span>, <span class="number">12</span>)</span><br><span class="line"><span class="string">&#x27;Hello world 12&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中前半段<code>&#39;&#39;</code>内的是原字符串，<code>%s</code>和<code>%d</code>是占位符，最后<code>()</code>内的是占位符的实际内容（若是变量则将输出其值，即若令<code>a=&#39;Hello&#39;</code>，并将<code>Hello</code>替换为<code>a</code>，则上面代码的输出结果不变）。占位符的用法与C语言的一致，如<code>%d</code>表<code>int</code>，<code>%f</code>表<code>float</code>，<code>%s</code>表<code>string</code>，<code>%5s</code>表右对齐占5位（不够则用空格补齐），<code>%.2s</code>表取2位（超出则截断，对于<code>%.f</code>是指保留2位小数），<code>%-s</code>表字符串左对齐，等等，此处不再赘述。</p>
+<h1 id="format格式化"><a href="#format格式化" class="headerlink" title="format格式化"></a>format格式化</h1><p><code>format</code>是<code>string</code>对象的成员函数，功能是格式化原字符串，并返回格式化后的字符串：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#123;&#125; &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>)  <span class="comment"># 不带字段</span></span><br><span class="line"><span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#123;0&#125; &#123;1&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>)  <span class="comment"># 带位置编号</span></span><br><span class="line"><span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#123;0&#125; &#123;1&#125; &#123;0&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>)  <span class="comment"># 打乱顺序</span></span><br><span class="line"><span class="string">&#x27;hello world hello&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#123;a&#125; &#123;b&#125; &#123;a&#125;&#x27;</span>.<span class="built_in">format</span>(b=<span class="string">&#x27;hello&#x27;</span>,a=<span class="string">&#x27;world&#x27;</span>)  <span class="comment"># 带关键字</span></span><br><span class="line"><span class="string">&#x27;world hello world&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>原字符串中的<code>&#123;&#125;</code>起着占位的作用，占位的方式有三种：</p>
+<ol>
+<li>不带任何字段的占位，即第一种。这种情况下，传给<code>format</code>的参数将顺序替换掉占位的<code>&#123;&#125;</code>；</li>
+<li>带位置编号的占位，即第二、三种。这种情况下，位置编号代表传给<code>format</code>的参数的先后次序（如<code>&#39;hello&#39;</code>为0），传入参数将按编号替换掉占位符；</li>
+<li>带关键字的占位，即第四种。这种最直观，直接用变量名来占位。</li>
+</ol>
+<p><code>format</code>格式化的占位符也可以结合<code>%</code>格式化的占位符，不过要用<code>:</code>区分开，如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">&#x27;&#123;a&#125; &#123;b&#125; &#123;a:.2s&#125;&#x27;</span>.<span class="built_in">format</span>(b=<span class="string">&#x27;hello&#x27;</span>,a=<span class="string">&#x27;world&#x27;</span>)</span><br><span class="line"><span class="string">&#x27;world hello wo&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&#123;a:.2s&#125;</code>表示按字符串输出但是只保留两位。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fat39/p/7159881.html">python基础_格式化输出（%用法和format用法）</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/10/StringFormatting/" data-id="clzik0lcy008hv47khppo8tup" data-title="Python String Formatting" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CopyAndDeepcopy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/07/CopyAndDeepcopy/" class="article-date">
+  <time class="dt-published" datetime="2023-07-07T13:43:08.000Z" itemprop="datePublished">2023-07-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/07/CopyAndDeepcopy/">Copy and Deepcopy in Python</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="浅拷贝（Copy）"><a href="#浅拷贝（Copy）" class="headerlink" title="浅拷贝（Copy）"></a>浅拷贝（Copy）</h1><p>无论浅拷贝还是深拷贝，在使用前都要先导入库<code>copy</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br></pre></td></tr></table></figure>
+
+<h2 id="对不可变类型的浅拷贝"><a href="#对不可变类型的浅拷贝" class="headerlink" title="对不可变类型的浅拷贝"></a>对不可变类型的浅拷贝</h2><p>Python中的不可变数据类型一般指字符串string、数值number和布尔值bool。想要修改引用了不可变数据类型的变量，我们只能让其引用新的对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">3</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1944168497456</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">a += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1944168497520</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>当浅拷贝了引用不可变数据类型的对象时，浅拷贝相当于赋值操作，即两者会引用同一个不可变对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span></span><br><span class="line">b = copy.copy(a)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a), <span class="built_in">id</span>(b))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1944168497456 1944168497456</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="对可变类型的浅拷贝"><a href="#对可变类型的浅拷贝" class="headerlink" title="对可变类型的浅拷贝"></a>对可变类型的浅拷贝</h2><p>Python中的可变类型指列表list、字典dictionary、集合set以及自定义的类。当变量引用可变类型时，该变量相当于拥有了一个<strong>袋子</strong>，这个袋子里面装的东西可以随便修改，但是只要变量不引用新的袋子，无论怎么修改原来的袋子，原来的袋子始终是原来的袋子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="built_in">print</span>(a, <span class="built_in">id</span>(a))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">[1, 2, 3] 1944176728512</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">a[<span class="number">0</span>] = <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(a, <span class="built_in">id</span>(a))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">[2, 2, 3] 1944176728512</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>当浅拷贝了引用可变数据类型的对象时，Python会直接创造一个新的“袋子”给新对象，但是袋子里的内容与原来的一样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">b = copy.copy(a)</span><br><span class="line"><span class="built_in">print</span>(a, <span class="built_in">id</span>(a), <span class="string">&#x27;\n&#x27;</span>, b, <span class="built_in">id</span>(b))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">[1, 2, 3] 1944176728640</span></span><br><span class="line"><span class="string">[1, 2, 3] 1944176728512</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">a[<span class="number">0</span>] = <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(a, <span class="string">&#x27;\n&#x27;</span>, b)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">[2, 2, 3]</span></span><br><span class="line"><span class="string">[1, 2, 3]</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这是对于“袋子”里装的是不可变数据类型的情况，若袋子里装的是可变数据类型，如嵌套列表：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = [[<span class="number">1</span>, <span class="number">2</span>], <span class="number">1</span>]</span><br><span class="line">b = copy.copy(a)</span><br><span class="line">a[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(a, <span class="string">&#x27;\n&#x27;</span>, b)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">[[2, 2], 1]</span></span><br><span class="line"><span class="string">[[2, 2], 1]</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>即，里面的袋子还是同一个。这就是浅拷贝（Copy），它只新创造最外层的“袋子”，但是里面的内容完全不动：引用不可变类型的变量仍引用同一个不可变对象，引用可变类型的变量仍引用同一个“袋子”。</p>
+<h1 id="深拷贝（Deepcopy）"><a href="#深拷贝（Deepcopy）" class="headerlink" title="深拷贝（Deepcopy）"></a>深拷贝（Deepcopy）</h1><p>对于不可变类型的深浅拷贝，其效果相同，此处不再赘述。</p>
+<h2 id="可变类型的深拷贝"><a href="#可变类型的深拷贝" class="headerlink" title="可变类型的深拷贝"></a>可变类型的深拷贝</h2><p>当可变类型“袋子”中只有不可变类型的数据时，深拷贝与浅拷贝的效果相同。但是当可变类型“袋子”中也有可变类型时，深拷贝会对“袋子”里面的所有可变类型变量递归地使用深拷贝。也就是说，深拷贝后的两个变量<code>a</code>和<code>b</code>尽管会引用相同的不可变类型对象，但是它们是完全不同的两个变量，修改<code>a</code>完全不会影响<code>b</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = [[<span class="number">1</span>, <span class="number">2</span>], <span class="number">1</span>]</span><br><span class="line">b = copy.deepcopy(a)</span><br><span class="line">a[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(a, <span class="string">&#x27;\n&#x27;</span>, b)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">[[2, 2], 1]</span></span><br><span class="line"><span class="string">[[1, 2], 1]</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="元组的深浅拷贝"><a href="#元组的深浅拷贝" class="headerlink" title="元组的深浅拷贝"></a>元组的深浅拷贝</h1><p>元组本身是不可变的数据类型，因此，它的深浅拷贝应该是一样的。但是，当元组内含有可变类型的对象时，对元组的深拷贝会递归地对该可变类型的对象进行深拷贝，进而导致整个元组被放在新开辟的空间：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tup = (<span class="number">1</span>, [<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">tup1 = copy.copy(tup)</span><br><span class="line">tup2 = copy.deepcopy(tup)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(tup), <span class="string">&#x27;\n&#x27;</span>, <span class="built_in">id</span>(tup1), <span class="string">&#x27;\n&#x27;</span>, <span class="built_in">id</span>(tup2))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1944176723264</span></span><br><span class="line"><span class="string">1944176723264</span></span><br><span class="line"><span class="string">1944176723328</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU0NjgzMDIxMQ==&mid=2247569389&idx=4&sn=7f93a257c597821bb55da3e2637a3f3d&chksm=fb542d01cc23a4178b83617a01e933494ca6274dd2086baf2bd0354ac30637cc9af674458116&scene=27">【Python基础】Python的深浅拷贝讲解</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/07/CopyAndDeepcopy/" data-id="clzik0lc20017v47k7sfcb1te" data-title="Copy and Deepcopy in Python" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-GammaAndFactorial" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/05/GammaAndFactorial/" class="article-date">
+  <time class="dt-published" datetime="2023-05-05T11:32:48.000Z" itemprop="datePublished">2023-05-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/05/GammaAndFactorial/">Gamma and Factorial</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/05/05/GammaAndFactorial/" data-id="clzik0lcc002vv47k2nj6ekxb" data-title="Gamma and Factorial" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-PythonLambda" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/05/PythonLambda/" class="article-date">
+  <time class="dt-published" datetime="2023-05-05T09:57:41.000Z" itemprop="datePublished">2023-05-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/05/PythonLambda/">Lambda: Anomymous Functions</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p>Lambda functions are defined by <code>lambda</code> keyword, which could only have one expression but multiple arguments. We can assign the lambda function to any variable so that we can use it as a function. More generally, we use <code>lambda</code> together with <code>map</code>, <code>reduce</code> or <code>filter</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">lambda [arguments] : [expression]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># zero argument</span></span><br><span class="line">a = <span class="keyword">lambda</span> : <span class="built_in">print</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line"><span class="comment"># one argument</span></span><br><span class="line">b = <span class="keyword">lambda</span> x : x**<span class="number">2</span></span><br><span class="line"><span class="comment"># multiple arguments</span></span><br><span class="line">c = <span class="keyword">lambda</span> x, y : x + y</span><br><span class="line">a()</span><br><span class="line"><span class="built_in">print</span>(b(<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(c(<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">hello</span></span><br><span class="line"><span class="string">4</span></span><br><span class="line"><span class="string">5</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><p>In addition to the basic usage above, there are 4 ways to make use of <code>lambda</code> in general.</p>
+<h2 id="Functions-nested-lambda"><a href="#Functions-nested-lambda" class="headerlink" title="Functions nested lambda"></a>Functions nested lambda</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">new_func</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> y : x + y</span><br><span class="line">t = new_func(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(t(<span class="number">3</span>))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">6</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>Anomymous functions are also functions and they have their own scope, because of which, anomymous function will use variables of enclosing function or global variables once they can&#39;t find the specific variable in the local scope.</p>
+<h2 id="map-and-lambda"><a href="#map-and-lambda" class="headerlink" title="map and lambda"></a>map and lambda</h2><p><code>map</code> funtion makes use the idea of <strong>SIMD</strong>. It maps a certain function to all the elements of input list and return a iterator which can be turned to list using <code>list()</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">map(func_to_apply, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x : x**<span class="number">2</span>, a)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[1, 4, 9, 16, 25]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><code>map</code> can also deal with two or more lists as long as the length of lists is the same and the function supports more than one arguments:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">map</span>(<span class="keyword">lambda</span> x, y : x + y, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">5</span></span><br><span class="line"><span class="string">7</span></span><br><span class="line"><span class="string">9</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>What&#39;s more, the element of list could even be function:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sq</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x**<span class="number">2</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">doub</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * x</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x : x(i), [sq, doub])))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 0]</span></span><br><span class="line"><span class="string">[1, 2]</span></span><br><span class="line"><span class="string">[4, 4]</span></span><br><span class="line"><span class="string">[9, 6]</span></span><br><span class="line"><span class="string">[16, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="reduce-and-lambda"><a href="#reduce-and-lambda" class="headerlink" title="reduce and lambda"></a>reduce and lambda</h2><p><code>reduce</code> firstly passes the first two elements of list to the function. Then, take the result of function as the new first argument and pass it to the function with the third element of list and so on until the last element:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">reduce(func, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(reduce(<span class="keyword">lambda</span> x, y : x + y, a)) <span class="comment"># equal to 1 + 2 + 3 + 4 + 5</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">15</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The element of list could also be function.</p>
+</blockquote>
+<h2 id="filter-and-lambda"><a href="#filter-and-lambda" class="headerlink" title="filter and lambda"></a>filter and lambda</h2><p><code>filter</code> returns a iterator that contains elements in the input_list that match the criteria of the function:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">filter(func, iterable)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">a = <span class="built_in">filter</span>(<span class="keyword">lambda</span> x: x % <span class="number">2</span> == <span class="number">0</span>, <span class="built_in">range</span>(<span class="number">10</span>)) <span class="comment"># get even number</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(a))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>filter</code> is easily replaced by <code>for</code> or <code>for if</code> comprehension:</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/05/05/PythonLambda/" data-id="clzik0lcu007bv47kfcek02og" data-title="Lambda: Anomymous Functions" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-PythonPackage" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/15/PythonPackage/" class="article-date">
+  <time class="dt-published" datetime="2023-06-15T07:56:01.000Z" itemprop="datePublished">2023-06-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/15/PythonPackage/">Python Package</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
+<blockquote>
+<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a target="_blank" rel="noopener" href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
+<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/06/15/PythonPackage/" data-id="clzik0lcu007iv47khkbmdj54" data-title="Python Package" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ZipMakeLifeEasier" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/06/ZipMakeLifeEasier/" class="article-date">
+  <time class="dt-published" datetime="2023-05-06T11:43:54.000Z" itemprop="datePublished">2023-05-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/06/ZipMakeLifeEasier/">Zip: Make Aggregation Easier</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>We can even use zip to generate a dictionary:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/05/06/ZipMakeLifeEasier/" data-id="clzik0lda00e3v47kdj0l8xn5" data-title="Zip: Make Aggregation Easier" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Splat" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/02/Splat/" class="article-date">
+  <time class="dt-published" datetime="2023-05-02T14:09:27.000Z" itemprop="datePublished">2023-05-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/02/Splat/">Splat</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="What-is-splat"><a href="#What-is-splat" class="headerlink" title="What is splat"></a>What is splat</h1><p>Splat is <code>*</code> or <code>**</code>. And why do we use splat?</p>
+<blockquote>
+<p>Python supports functions with an uncertain number of parameters. The splat operator provides an artistic way of unpacking argument lists.</p>
+</blockquote>
+<h1 id="Positional-arguments-vs-keyword-arguments"><a href="#Positional-arguments-vs-keyword-arguments" class="headerlink" title="Positional arguments vs keyword arguments"></a>Positional arguments vs keyword arguments</h1><p>Positional arguments are arguments without default values while keyword arguments are arguments with default values. Both the number of positional arguments and the number of keyword arguments could be uncertain: </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">*args, **kwargs</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Argument-lists"><a href="#Argument-lists" class="headerlink" title="Argument lists"></a>Argument lists</h1><p>To call the function with uncertain arguments, we could pass the argument one by one:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span></span><br><span class="line">y = <span class="number">2</span></span><br><span class="line">z = <span class="number">3</span></span><br><span class="line">func(x, y, z, kwarg1=<span class="string">&#x27;key1&#x27;</span>, kwarg2=<span class="string">&#x27;key2&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>However, we could also pass an argument list and use splat to unpack the list:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">test_dict = &#123;<span class="string">&#x27;kwarg1&#x27;</span>: <span class="string">&#x27;key1&#x27;</span>, <span class="string">&#x27;kwarg2&#x27;</span>: <span class="string">&#x27;key2&#x27;</span>&#125;</span><br><span class="line">func(*test_list, **test_dict)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/05/02/Splat/" data-id="clzik0lcx008av47k41c406gs" data-title="Splat" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

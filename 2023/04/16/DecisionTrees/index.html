@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Decision Trees | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Decision trees are decision support hierarchical model that use tree model to make judgment or decision. Decision trees are commonly used in decision analysis, but are also a popular tool in machine l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Decision Trees">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/16/DecisionTrees/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Decision trees are decision support hierarchical model that use tree model to make judgment or decision. Decision trees are commonly used in decision analysis, but are also a popular tool in machine l">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/DecisionTrees/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/DecisionTrees/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/16/DecisionTrees/3.png">
+<meta property="article:published_time" content="2023-04-16T04:48:16.000Z">
+<meta property="article:modified_time" content="2023-08-09T05:51:08.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Decision Trees">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/16/DecisionTrees/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-DecisionTrees" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/16/DecisionTrees/" class="article-date">
+  <time class="dt-published" datetime="2023-04-16T04:48:16.000Z" itemprop="datePublished">2023-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Decision Trees
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Structure-of-decision-trees"><a href="#Structure-of-decision-trees" class="headerlink" title="Structure of decision trees"></a>Structure of decision trees</h1><p>Decision trees are a tree model, where each internal node (decision node) is a feature that has several possibile values. The number of values defines the degree of nodes.</p>
+<p><img src="/2023/04/16/DecisionTrees/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Decision trees</center>
+
+<h1 id="Decision-tree-learning"><a href="#Decision-tree-learning" class="headerlink" title="Decision tree learning"></a>Decision tree learning</h1><p>First decision: How to choose features to maximize purity? Second decision: When can the tree stop splitting</p>
+<ul>
+<li>When a node is 100% one class.</li>
+<li>When splitting a node will result in the tree exceeding a <strong>maximum depth</strong> (defined by us).</li>
+<li>When improvements in purity score are below a threshold.</li>
+<li>When number of examples in a node is below a threshold.</li>
+</ul>
+<h2 id="Measuring-purity"><a href="#Measuring-purity" class="headerlink" title="Measuring purity"></a>Measuring purity</h2><p>p$_1$: Fraction of examples that are our target.</p>
+<p>H(p$_1$): Degree of impurity of one set.</p>
+<p>$$p_0&#x3D;1-p_1$$<br>$$H(p_1)&#x3D;-p_1\log_2(p_1)-p_0\log_2(p_0)$$</p>
+<p><img src="/2023/04/16/DecisionTrees/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Entropy function</center>
+
+<h2 id="Choosing-a-split"><a href="#Choosing-a-split" class="headerlink" title="Choosing a split"></a>Choosing a split</h2><h3 id="Information-gain"><a href="#Information-gain" class="headerlink" title="Information gain"></a>Information gain</h3><p>Information gain is the redunction of entropy after one split:</p>
+<p>$$IG&#x3D;H(p_1^{root})-(w^{left}H(p_1^{left})+w^{right}H(p_1^{right}))$$</p>
+<p>where $w^{left}H(p_1^{left})+w^{right}H(p_1^{right})$ is the average weighted entropy of two child nodes. $w$ is the propotion of examples in left&#x2F;right node that come from root node.</p>
+<h2 id="Building-a-decision-tree"><a href="#Building-a-decision-tree" class="headerlink" title="Building a decision tree"></a>Building a decision tree</h2><p>We always construct decision trees in a preorder traversal. That is:</p>
+<ul>
+<li>Start with all examples at root node;</li>
+<li>Calculate information gain for all possible features and pick the one with the highest information gain;</li>
+<li>Split dataset and build subtrees recursively until stopping criteria is met.</li>
+</ul>
+<blockquote>
+<p>For features with more than two discrete values, we can use <strong>one-hot encoding</strong>.  That is, decompose the features with $k$ values into $k$ bool features so that the values of each new feature will only be yes (1) or no (0). One-hot encoding can also be applied to neural networks to turn multiclass classification to binary classification.</p>
+<p>For features with continuous values, we try splitting values using different thresholds and choose the threshold that gives the highest information gain.</p>
+<p>It is reasonable that the same features appears several times in one decision trees.</p>
+</blockquote>
+<h2 id="Regression-trees"><a href="#Regression-trees" class="headerlink" title="Regression trees"></a>Regression trees</h2><p>Regression trees are the generalization of decision trees, which predict a number. The differences between building a regression tree and a decision tree are:</p>
+<ul>
+<li>The prediction of regression trees is the average value of examples in leaf node;</li>
+<li>We choose the features to splite dataset by the reduction of variance.</li>
+</ul>
+<p>For the second difference:</p>
+<ul>
+<li>Calculate the average weighted variance of one split:<br>$$w^{left}v^{left}+w^{right}v^{right}$$</li>
+<li>Calcuate the reduction of variance after splitting:<br>$$v^{root}-(w^{left}v^{left}+w^{right}v^{right})$$</li>
+<li>Choose the feature that gives the highest reduction and continue until meet stopping criteria.</li>
+</ul>
+<h1 id="Ensemble-of-decision-trees"><a href="#Ensemble-of-decision-trees" class="headerlink" title="Ensemble of decision trees"></a>Ensemble of decision trees</h1><p>A single decision tree is highly sentitive to small changes of the data. We may get two totally different decision trees even though only one example changes in the training set. An ensemble of decision trees will make the overall algorithm more robust. An ensemble of decision trees makes decision by voting, that is, the prediction of the ensemble is the value most decision trees give.</p>
+<p><img src="/2023/04/16/DecisionTrees/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Ensemble of decision trees</center>
+
+<h2 id="Random-forest-algorithm"><a href="#Random-forest-algorithm" class="headerlink" title="Random forest algorithm"></a>Random forest algorithm</h2><p>One algorithm to create an ensemble of decision trees is random forest algorithm. The algorithm can automatically explore a lot of small changes to the data set, which makes it more robust.</p>
+<p>Random forests are generated by sampling with replacement and randomizing feature choice:</p>
+<ul>
+<li>Determine the number of trees $B$ we need and the size of subset $m$;</li>
+<li>Use sampling with replacement to create a new training set of size $m$;</li>
+<li>Randomly pick a subset of $k$ (usually $\sqrt{n}$) features from $n$ features and train a decision tree only use these features and the data set generated above;</li>
+<li>Repeatedly generate $B$ trees.</li>
+</ul>
+<p>Sampling with replacement and randomizing feature choice allow us generate different trees as much as possible.</p>
+<h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>XGBoost is an open-source library that makes ensemble of decision trees perform better. The core idea of XGBoost is that it is more worthwhile to train decision trees using the examples that the previously trained decision trees have failed to predict rather than using totally random examples. Trees generated like this is called <strong>boosted trees</strong>. In XGBoost, instead of picking subsets from all samples with equal probability, it makes it <strong>more likely</strong> to pick examples that the previously trained trees have misclassfied. The details of XGBoost are very complicated, but the using of it is quite simple:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xgboost <span class="keyword">import</span> XGBClassifier <span class="comment"># or XGBRegressor for regression</span></span><br><span class="line"></span><br><span class="line">model = XGBClassifier()</span><br><span class="line"></span><br><span class="line">model.fit(X_train, Y_train)</span><br><span class="line">y_pred = model.predict(X_test)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Decision-trees-amp-Neural-Networks"><a href="#Decision-trees-amp-Neural-Networks" class="headerlink" title="Decision trees &amp; Neural Networks"></a>Decision trees &amp; Neural Networks</h1><p>For decision trees and tree ensembles:</p>
+<ul>
+<li>Work well on structured data; [advantage]</li>
+<li>Fast to train; [advantage]</li>
+<li>Small decision tress may be human interpretable; [advantage]</li>
+<li>Not recommended for unstructured data (images, audio, text) [disadvantage];</li>
+<li>Can&#39;t train multiple trees at a time. [disadvantage]</li>
+</ul>
+<p>Neural Networks:</p>
+<ul>
+<li>Works well on all types of data; [advantage]</li>
+<li>Works with transfer learning; [advantage]</li>
+<li>Multiple neural networks can be easier to string together when building a system of multiple models working together; [advantage]</li>
+<li>Take long time to train. [disadvantage]</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/16/DecisionTrees/" data-id="clzik0lca002cv47kdn3dg2k6" data-title="Decision Trees" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/04/16/UnsupervisedLearning/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Unsupervised Learning
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/15/MachineLearningDevelopmentProcess/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Machine Learning Development Process</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

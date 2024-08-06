@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start of Something New">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JourneyToCoding">
+<meta property="og:url" content="https://zclzcl0223.github.io/page/4/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Start of Something New">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="ChaosTsang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-ExpressivePowerofGNNs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/15/ExpressivePowerofGNNs/" class="article-date">
+  <time class="dt-published" datetime="2023-07-15T05:24:37.000Z" itemprop="datePublished">2023-07-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/GNN/">GNN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/15/ExpressivePowerofGNNs/">Expressive Power of GNNs</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="消息传递型图神经网络"><a href="#消息传递型图神经网络" class="headerlink" title="消息传递型图神经网络"></a>消息传递型图神经网络</h1><p>图神经网络（GNNs），究其本质，是一种特殊的映射$f$，它将顶点的特征及其图的结构映射为一个包含了图连接信息的向量，这一个过程称为<em>Node Embedding</em>，事实上是一个编码的过程。将图的连接信息和顶点特征一起映射为一个向量，这内在地存在一个消息传递（Message Passing）的过程，因为对于某个中心顶点来说，图的连接信息主要体现为其邻接顶点，要想在中心顶点中包含图的连接信息，就要将其邻接顶点的信息传递到中心顶点去：</p>
+<p>$$<br>\begin{align*}<br>    a _{v} ^{(k)}&amp;&#x3D;\text{AGGREGATE} ^{(k)}(\left\{h _u ^{k-1}:u\in\mathcal{N}(v)\right\})\tag{1}\\<br>    h _{v} ^{(k)}&amp;&#x3D;\text{COMBINE} ^{(k)}(h _v ^{(k-1)},a _n ^{(k)})\tag{2}<br>\end{align*}<br>$$</p>
+<p>式$(1)$表示中心顶点$v$的邻接顶点集$\mathcal{N}(v)$对中心顶点的第$k$次消息传递，式$(2)$则是中心顶点$v$由自己之前的特征$h _v ^{(k-1)}$和邻接顶点的新消息$a _v ^{(k)}$产生感受野更大的新特征。</p>
+<h1 id="图神经网络的表达能力"><a href="#图神经网络的表达能力" class="headerlink" title="图神经网络的表达能力"></a>图神经网络的表达能力</h1><p>对于某个中心顶点$v$，$k$次的消息传递可以生成一个距离中心顶点最远距离为$k$-hop的子图，这个子图也可以被表示成一个高度为$k+1$的根子树（或称计算图）：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Rooted subtree (k=2)</center><br>
+
+<p>要想使得图神经网络的<em>Node Embedding</em>能够充分体现出中心顶点与全图的关系，并且与其他顶点相互区别，根子树到<em>Embedding</em>的映射就应该是唯一的，因此可以把图神经网络的表达能力定义为：</p>
+<p>$$<br>\begin{align*}<br>    \text{GNN的表达能力}&amp;&#x3D;\text{不同计算图学到不同Embedding的能力}\\<br>    &amp;&#x3D;\text{区分根结点Embedding的能力}\\<br>    &amp;&#x3D;\text{区分不同图结构的能力}<br>\end{align*}<br>$$</p>
+<p>最理想的情况是对于不同的计算图，其<em>Embedding</em>也不相同。要想达到这样的效果：</p>
+<ol>
+<li><p>$\text{AGGREGATE}$是单射函数；</p>
+</li>
+<li><p>$\text{COMBINE}$是单射函数；</p>
+</li>
+<li><p>若要对整个图进行分析，还需要额外的$\text{READOUT}$操作生成图的全局信息：</p>
+<p>$$<br>h _G&#x3D;\text{READOUT}(\left\{h _v ^{(K)}|v\in G\right\})<br>$$<br>此时，$\text{READOUT}$也必须是单射函数。</p>
+</li>
+</ol>
+<h1 id="Weisfeiler-Lehman-test"><a href="#Weisfeiler-Lehman-test" class="headerlink" title="Weisfeiler-Lehman test"></a>Weisfeiler-Lehman test</h1><p>Weisfeiler-Lehman test（WL test）是所有消息传递型图神经网络的“祖宗”，其能力也是消息传递型图神经网络能力的上限，它的消息传递满足上面的三点要求。</p>
+<p>WL test假设所有顶点都是无特征的，它初始时为所有顶点都分配了相同的颜色1：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Assign initial colors</center><br>
+
+<p>之后，通过消息传递，邻接顶点的颜色汇聚到中心顶点：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Aggregate neighboring colors</center><br>
+
+<p>再经由哈希映射（所有图共用一个哈希表），将顶点映射为新的颜色：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Combine and hash aggregated colors</center><br>
+
+<p>不断重复Fig 3和Fig 4的操作$k$次：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/5.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold"></center>
+
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/6.png" alt="6"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Next round</center><br>
+
+<p>最后，执行$\text{READOUT}$操作。WL test定义$\text{READOUT}$操作为：将整个过程中，每张图所出现的所有颜色的次数作为该图的<em>Embedding</em>（没出现的记为0）：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/7.png" alt="7"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. Readout</center><br>
+
+<p>并定义：</p>
+<p>$$<br>\phi(G_1) ^T\phi(G_2)<br>$$</p>
+<p>为两张图的相似度（实际计算时两个向量都要归一化后再点乘）。</p>
+<h1 id="GIN"><a href="#GIN" class="headerlink" title="GIN"></a>GIN</h1><p>作者在文章的后半部分提出了全新的消息传递型图神经网络Graph Isomorphism Network（GIN）。作者认为，GIN是对WL test的最优近似，因为WL test可以写为：</p>
+<p>$$<br>c _{v} ^{(k)}&#x3D;\text{HASH} ^{(k)}(c _v ^{(k-1)},\left\{c _u ^{k-1}:u\in\mathcal{N}(v)\right\})<br>$$</p>
+<p>其中，$c _v ^{(k)}$表示顶点$v$在第$k$次消息传递后的<em>color</em>，而作者将GIN定义为：</p>
+<p>$$<br>h _{v} ^{(k)}&#x3D;\text{MLP} ^{(k)}((1+\epsilon ^{(k)})h _v ^{(k-1)}+\sum _{u\in \mathcal{N}(v)}h _u ^{k-1})<br>$$</p>
+<p>其中$\text{MLP}$和$\epsilon$均是可学习的参数。作者如此定义GIN是基于两个方面的考虑：</p>
+<ol>
+<li><p><strong>Sum-pooling具有很强的单射能力</strong><br>  相比于GCN用的mean-pooling和GraphSAGE用的max-pooling，sum-pooling具有更强的区分不同图结构的能力。如下图Fig 7所示的两张图，在这两张图中，所有顶点的特征都相同。虽然它们很明显是两张完全不同的图，但是如果用mean-pooling或者max-pooling，中心顶点$v$和$v&#39;$最终的<em>Embedding</em>将完全相同，因而无法区分出这两张图，而对于sum-pooling，则不会出现这种情况。<br>  <img src="/2023/07/15/ExpressivePowerofGNNs/8.png" alt="8"></p>
+  <center style="font-size:12px; font-weight:bold">Fig. 7. Mean and Max both fail</center>
+</li>
+<li><p><strong>Universal approximation theorem</strong><br>  根据Hornik等提出的<em>Universal approximation theorem</em>，只要参数足够多，一层MLP可以拟合任何的函数。因此，GIN中的MLP是作者用于拟合ML test中的哈希函数的。</p>
+<blockquote>
+<p>GIN将$\text{READOUT}$也定义为sum，但不同的是，作者将$0-K$的$\text{READOUT}$都拼接了起来以求保留可能在中间过程中出现的更能体现图整体特点的信息：<br>$$<br>  h _G&#x3D;\text{CONCAT}(\text{READOUT}(\left\{h _v ^{(k)}|v\in G\right\})|k&#x3D;0,1,...,K)<br>$$</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1810.00826.pdf">How Powerful are Graph Neural Networks?</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14W4y1V7gg/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=2d980a0365f3ebea674b32924d8a4ce8">传统图机器学习的特征工程-全图【斯坦福CS224W】</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MT411Y7da/?spm_id_from=333.788&vd_source=2d980a0365f3ebea674b32924d8a4ce8">图神经网络GNN的表达能力</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/" data-id="clzik0lca002fv47k65x47iwv" data-title="Expressive Power of GNNs" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-BugAndUsageOfTorch" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/08/BugAndUsageOfTorch/" class="article-date">
+  <time class="dt-published" datetime="2023-07-08T14:21:20.000Z" itemprop="datePublished">2023-07-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/08/BugAndUsageOfTorch/">Bug and Usage of Torch</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Bugs"><a href="#Bugs" class="headerlink" title="Bugs"></a>Bugs</h1><h2 id="PyG的Planetoid的下载问题"><a href="#PyG的Planetoid的下载问题" class="headerlink" title="PyG的Planetoid的下载问题"></a>PyG的Planetoid的下载问题</h2><p><a target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/index.html">PyG</a>（PyTorch Geometric）是图神经网络（GNN）常用的库函数的简称。它里面包含了训练图神经网络时常用的数据集以及网络架构等。PyG是基于PyTorch的，因此它和PyTorch完全兼容。</p>
+<p>Planetoid是PyG中包含的图数据集（<code>torch_geometric.datasets.Planetoid</code>）。它里面有<code>Cora</code>、<code>CiteSeer</code>和<code>PubMed</code>这三个常用的引文网络。但是，原数据集是寄存在github上面的，因此在国内下载可能会遇到问题。解决方法为：</p>
+<ol>
+<li>找到PyG库中的<code>planetoid.py</code>文件；</li>
+<li>将：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">&#x27;https://github.com/kimiyoung/planetoid/raw/master/data&#x27;</span></span><br></pre></td></tr></table></figure>
+修改为：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url=<span class="string">&#x27;https://gitee.com/jiajiewu/planetoid/raw/master/data&#x27;</span></span><br></pre></td></tr></table></figure>
+即，在gitee上下载而不用github。</li>
+</ol>
+<blockquote>
+<p>若无图形界面，如简易的Ubuntu，可用<code>sudo find / -name planetoid.py</code>快速找到文件的位置。</p>
+</blockquote>
+<p>完成上述操作后<code>PubMed</code>数据集的下载仍会出问题，具体报错为<code>_pickle.UnpicklingError: invalid load key, &#39;&lt;&#39;.</code>。原因未知，但可以确定是从服务器上下载文件时出现的问题。解决方法：</p>
+<ul>
+<li>在<a target="_blank" rel="noopener" href="https://gitee.com/jiajiewu/planetoid/tree/master/data">Planetoid</a>中把与<code>PubMed</code>有关的<strong>八</strong>个文件下载下来，手动放到<code>raw</code>文件夹里即可。</li>
+</ul>
+<blockquote>
+<p>需要注意的是，在PyG的<code>Planetoid</code>数据集中，<code>num_classes</code>字段已经被删除，所以要想获得图中顶点的类别数，应该用<code>dataset.y.max().item() + 1</code>（其中<code>dataset</code>是对应的图数据集，如<code>PubMed</code>、<code>Cora</code>等）。</p>
+</blockquote>
+<h1 id="Usage-of-Torch"><a href="#Usage-of-Torch" class="headerlink" title="Usage of Torch"></a>Usage of Torch</h1><p>这一节包含了一些有用的PyTorch函数用法或语法。本节中，假设<code>a</code>为一个已经定义好的张量<code>torch.tensor</code>。</p>
+<h2 id="torch-max"><a href="#torch-max" class="headerlink" title="torch.max"></a>torch.max</h2><p><code>torch.max(input, dim, keepdim=False, *, out=None)</code>或者<code>a.(dim, keepdim=False, *, out=None)</code></p>
+<p>该函数将返回一个元组<code>(values, indices)</code>，其中<code>values</code>是<code>input</code>的给定<code>dim</code>的同一行的元素的最大值张量，而<code>indices</code>是该最大值在<code>dim</code>的坐标张量，如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">tensor([[-<span class="number">1.2360</span>, -<span class="number">0.2942</span>, -<span class="number">0.1222</span>,  <span class="number">0.8475</span>],</span><br><span class="line">        [ <span class="number">1.1949</span>, -<span class="number">1.1127</span>, -<span class="number">2.2379</span>, -<span class="number">0.6702</span>],</span><br><span class="line">        [ <span class="number">1.5717</span>, -<span class="number">0.9207</span>,  <span class="number">0.1297</span>, -<span class="number">1.8768</span>],</span><br><span class="line">        [-<span class="number">0.6172</span>,  <span class="number">1.0036</span>, -<span class="number">0.6060</span>, -<span class="number">0.2432</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.<span class="built_in">max</span>(a, <span class="number">1</span>)</span><br><span class="line">torch.return_types.<span class="built_in">max</span>(values=tensor([<span class="number">0.8475</span>, <span class="number">1.1949</span>, <span class="number">1.5717</span>, <span class="number">1.0036</span>]), indices=tensor([<span class="number">3</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+
+<p>得到的是行最大值。该函数可以很容易地得到softmax的最终结果，也可用于分析分类的准确性。</p>
+<blockquote>
+<p>此类操作属于PyTorch中的张量降维操作，更多类似的操作见<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/torch.html#reduction-ops">reduction-ops</a></p>
+</blockquote>
+<h2 id="torch-eq"><a href="#torch-eq" class="headerlink" title="torch.eq"></a>torch.eq</h2><p><code>torch.eq(input, other, *, out=None)</code>或者<code>a.eq(other, *, out=None)</code></p>
+<p>该函数将两个张量（<code>input</code>和<code>other</code>）进行逐元素比较，若相同位置的两个元素相同，则返回<code>True</code>；否则，返回<code>False</code>。最终结果是个<code>bool</code>张量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; torch.eq(torch.tensor([[1, 2], [3, 4]]), torch.tensor([[1, 1], [4, 4]]))</span><br><span class="line">tensor([[ True, False],</span><br><span class="line">        [False, True]])</span><br></pre></td></tr></table></figure>
+
+<p>上述操作结合<code>torch.max</code>可以用于分析softmax预测正确的个数，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">correctnesss = y_hat.max(dim=1)[1].eq(y).float().sum()</span><br></pre></td></tr></table></figure>
+
+<p>以上<code>y_hat</code>为softmax结果，而<code>y</code>为实际的标签。上面的代码首先求出softmax的预测结果（假设标签为0，1，……，n-1，那么<code>dim</code>的下标就是预测值），然后再比较预测值与实际值是否相同，将正确的个数相加就得到了最终预测正确的个数。</p>
+<blockquote>
+<p>此类操作属于PyTorch中的数值比较操作，更多类似的操作见<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/torch.html#comparison-ops">comparison-ops</a></p>
+</blockquote>
+<h2 id="torch-dtype"><a href="#torch-dtype" class="headerlink" title="torch.dtype"></a>torch.dtype</h2><p><code>torch.dtype</code>指的是张量元素的数据类型。PyTorch支持张量元素类型的随意转换：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = torch.normal(<span class="number">0</span>, <span class="number">1</span>, size=(<span class="number">1</span>,<span class="number">3</span>))  <span class="comment"># PyTorch默认使用float32</span></span><br><span class="line">x = a.<span class="built_in">type</span>(torch.<span class="built_in">int</span>)  <span class="comment"># float32 -&gt; int</span></span><br><span class="line">y = a.<span class="built_in">type</span>(torch.<span class="built_in">bool</span>)  <span class="comment"># float32 -&gt; bool</span></span><br></pre></td></tr></table></figure>
+
+<p>上述操作等价于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = a.<span class="built_in">int</span>()  <span class="comment"># float32 -&gt; int</span></span><br><span class="line">y = a.<span class="built_in">bool</span>()  <span class="comment"># float32 -&gt; bool</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>更多Tensor数据类型见<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/tensor_attributes.html#torch-dtype">torch-dtype</a></p>
+</blockquote>
+<h2 id="torch-nn-NLLLoss-amp-torch-nn-CrossEntropyLoss"><a href="#torch-nn-NLLLoss-amp-torch-nn-CrossEntropyLoss" class="headerlink" title="torch.nn.NLLLoss &amp; torch.nn.CrossEntropyLoss"></a>torch.nn.NLLLoss &amp; torch.nn.CrossEntropyLoss</h2><p>两者本质上都是交叉熵损失函数，但是覆盖的范围不同：</p>
+<ol>
+<li><code>CrossEntropyLoss</code>会一次性完成softmax、取对数log和交叉熵操作，即：<br>$$-\sum\limits _{n&#x3D;1} ^N Y _{nm}\left\{\log[\text{softmax}(a)]\right\} _{nm}$$<br>式中，$Y$是标签的one-hot编码，其下标$nm$表示第$n$个样本的标签为$m$。当使用<code>CrossEntropyLoss</code>为损失函数时，神经网络的最后一层无需再做softmax和log操作，但这也导致实际预测时还要对神经网络的输出做一次softmax（因为此时只在乎值之间的相对关系，故不用再取log）。</li>
+<li><code>NLLLoss</code>只会完成最后一步的交叉熵操作，故在神经网络的最后一层要添加softmax和log操作，不过最后预测时就不同再做额外的softmax了。</li>
+<li>即：<br>$$\text{CrossEntropyLoss}&#x3D;\text{softmax}+\text{log}+\text{NLLLoss}$$</li>
+</ol>
+<h2 id="torch-nn-parameter-Parameter"><a href="#torch-nn-parameter-Parameter" class="headerlink" title="torch.nn.parameter.Parameter"></a>torch.nn.parameter.Parameter</h2><p><code>torch.nn.parameter.Parameter(Tensor: data=None, requires_grad=True)</code></p>
+<p>它属于<code>Tensor</code>的子类，但是，不同于<code>Tensor</code>的是，<code>Parameter</code>默认有梯度，且当其与<code>nn.Module</code>类一起使用时，会被自动添加进参数列表，并出现在<code>parameters()</code>迭代器中。当我们自定义的网络需要额外的可训练参数时，可以使用<code>Parameter</code>，但是要记得单独对其进行初始化且<code>data</code>应该以<code>torch.empty(shape)</code>的形式传入（<code>troch.empty</code>将生成未被初始化的张量）。</p>
+<blockquote>
+<p>更多信息详见<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parameter.Parameter.html#torch.nn.parameter.Parameter">PARAMETER</a></p>
+</blockquote>
+<h2 id="torch-bmm"><a href="#torch-bmm" class="headerlink" title="torch.bmm"></a>torch.bmm</h2><p><code>torch.bmm(input, mat2, *, out=None)</code></p>
+<p>其中<code>input</code>的形状为$b\times n\times m$，<code>mat2</code>的形状为$b\times m\times k$，最后输出的形状为$b\times n\times k$。换句话说，<code>torch.bmm</code>是对每个<code>batch</code>单独做了矩阵乘法：</p>
+<p>$$<br>\text{output}[i] &#x3D; \text{input}[i] \space @\space \text{mat2}[i]<br>$$</p>
+<blockquote>
+<p>此类操作属于PyTorch中的与线性代数有关的运算，更多信息见<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/torch.html#blas-and-lapack-operations">BLAS and LAPACK Operations</a></p>
+</blockquote>
+<h2 id="torch-permute"><a href="#torch-permute" class="headerlink" title="torch.permute"></a>torch.permute</h2><p><code>torch.permute(input, dim)</code>或者<code>a.permute(dim)</code></p>
+<p><code>torch.permute</code>，如其字面意思，表维度大小的交换。<code>dim</code>是一个表示新维度次序的列表，如对形状为<code>(2, 3, 4)</code>的张量<code>a</code>，应用<code>a.permute(2, 1, 0)</code>后，将返回一个形状为<code>(4, 3, 2)</code>的张量。对于二维张量或者只交换张量的最后两维的次序，<code>permute</code>相当于对二维张量进行了一次<strong>转置</strong>，其他情况则可视为一次<strong>广义转置</strong>：原来维度$i$位置的值变成了新的维度上$i$位置的值（比如转置就是让原来第$i$列的元素变成第$i$行的元素）。</p>
+<blockquote>
+<p>需要特别注意<code>permute</code>与<code>reshape</code>和<code>view</code>的区别。<code>reshape</code>和<code>view</code>的运行机理是将原张量从低维到高维拉成一个向量，然后再以新维度分布从高维到低维切割、堆叠，所以<code>reshape</code>和<code>view</code>前后，张量拉成的向量都是一样的，但是<code>permute</code>前后则不是。</p>
+</blockquote>
+<h2 id="torch-nonzero"><a href="#torch-nonzero" class="headerlink" title="torch.nonzero"></a>torch.nonzero</h2><p><code>torch.nonzero(input, *, out=None, as_tuple=False)</code></p>
+<p>其中，<code>input</code>是任意维度的张量。当<code>as_tuple=False</code>时，上述操作会以二维张量的形式返回<code>input</code>中所有值不为0的元素的下标，在该二维张量中，每一行是一个非0元素的完整下标，如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.nonzero(torch.tensor([[<span class="number">0.6</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>],</span><br><span class="line"><span class="meta">... </span>                            [<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.4</span>, <span class="number">0.0</span>],</span><br><span class="line"><span class="meta">... </span>                            [<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.2</span>, <span class="number">0.0</span>],</span><br><span class="line"><span class="meta">... </span>                            [<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>,-<span class="number">0.4</span>]]))</span><br><span class="line">tensor([[ <span class="number">0</span>,  <span class="number">0</span>],</span><br><span class="line">        [ <span class="number">1</span>,  <span class="number">2</span>],</span><br><span class="line">        [ <span class="number">2</span>,  <span class="number">2</span>],</span><br><span class="line">        [ <span class="number">3</span>,  <span class="number">3</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>当<code>as_tuple=True</code>时，上述操作会返回一个长度为<code>len(input.shape)</code>的元组，元组的第<code>i</code>个元素表示所有非0原则在第<code>i</code>维的下标，如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.nonzero(torch.tensor([[<span class="number">0.6</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>],</span><br><span class="line"><span class="meta">... </span>                            [<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.4</span>, <span class="number">0.0</span>],</span><br><span class="line"><span class="meta">... </span>                            [<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.2</span>, <span class="number">0.0</span>],</span><br><span class="line"><span class="meta">... </span>                            [<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>,-<span class="number">0.4</span>]]), as_tuple=<span class="literal">True</span>)</span><br><span class="line">(tensor([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]), tensor([<span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>]))</span><br></pre></td></tr></table></figure>
+
+<p><code>torch.nonzero</code>操作在GNN中特别有用。通过使用<code>torch.nonzero</code>，我们可以快速地从邻接矩阵<code>A</code>中获得所有边的顶点。</p>
+<blockquote>
+<p><code>torch.nonzero</code>是PyTorch中丰富的切片操作中的一种，更多详细的切片操作见<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/torch.html#indexing-slicing-joining-mutating-ops">Indexing, Slicing, Joining, Mutating Ops</a></p>
+</blockquote>
+<h2 id="torch-randperm"><a href="#torch-randperm" class="headerlink" title="torch.randperm"></a>torch.randperm</h2><p><code>torch.randperm(n, *, generator=None, out=None, dtype=torch.int64, layout=torch.strided, device=None, requires_grad=False, pin_memory=False) → Tensor</code></p>
+<p>一般来说，有用的参数只有<code>n</code>，该参数表明对<code>0</code>到<code>n-1</code>的所有下标随机排序。整个函数会返回随机排序后的下标张量。由于<code>random</code>库中的<code>random.shuffle</code>无法用于<code>Tensor</code>，我们只能使用<code>torch.randperm</code>来生成随机排序的下标，再通过切片来达到对原张量随机排序的目的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.randperm(<span class="number">4</span>)</span><br><span class="line">tensor([<span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>torch.randperm</code>是PyTorch中丰富的随机采样操作中的一种，更多的随机操作见<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/torch.html#random-sampling">Random sampling</a></p>
+</blockquote>
+<h2 id="torch-triu-indices-amp-torch-tril-indices"><a href="#torch-triu-indices-amp-torch-tril-indices" class="headerlink" title="torch.triu_indices &amp; torch.tril_indices"></a>torch.triu_indices &amp; torch.tril_indices</h2><p><code>torch.triu_indices(row, col, offset=0, *, dtype=torch.long, device=&#39;cpu&#39;, layout=torch.strided) → Tensor</code></p>
+<p>此处只列出<code>torch.triu_indices</code>的用法，因为两个函数用法是一致的，只不过前者取上三角下标而后者取下三角下标。</p>
+<ul>
+<li>参数<code>row</code>和<code>col</code>表示矩阵的行数和列数；</li>
+<li><code>offset</code>是待取三角相对于主对角线的偏移，上为<code>+</code>，下为<code>-</code>，当取<code>0</code>时表示得到的下标包括主对角线。对于上三角，若想去掉主对角线，则需令<code>offset=1</code>；对于下三角，则需令<code>offset=-1</code>。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.triu_indices(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">tensor([[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.triu_indices(<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">tensor([[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.tril_indices(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">tensor([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，上三角下标的排列顺序是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">|---&gt;</span><br><span class="line">| --&gt;</span><br><span class="line">V  -&gt;</span><br></pre></td></tr></table></figure>
+
+<p>而下三角下标是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--&gt;</span><br><span class="line">|</span><br><span class="line">||</span><br><span class="line">|||</span><br><span class="line">VVV</span><br></pre></td></tr></table></figure>
+
+<h2 id="torch-clone-amp-torch-Tensor-detach"><a href="#torch-clone-amp-torch-Tensor-detach" class="headerlink" title="torch.clone() &amp; torch.Tensor.detach()"></a>torch.clone() &amp; torch.Tensor.detach()</h2><p>对<code>torch.clone()</code>，用法为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">torch.clone(input, *, memory_format=torch.preserve_format)`</span><br><span class="line">或者</span><br><span class="line">a.clone()</span><br></pre></td></tr></table></figure>
+<p>对<code>torch.Tensor.detach()</code>，用法为：<code>a.detach()</code></p>
+<p>两者看似很像，但其实是作用完全不同的两个函数：</p>
+<ul>
+<li><code>torch.clone()</code>是对张量的深拷贝，它将产生一个全新的张量，这个张量拥有原张量的所有属性，但是存储空间不重叠，新、旧张量互不影响；</li>
+<li><code>torch.Tensor.detach()</code>的作用是产生一个不属于原张量计算图、<code>grad_fn=None</code>且<code>requires_grad=False</code>但是<strong>与原张量共享内存</strong>的张量。也就是说，原张量的变化会影响detach后的张量；</li>
+<li>可以这样理解，张量就是一个结构体，它有<code>requires_grad</code>、<code>grad_fn</code>以及数据等属性。<code>torch.clone()</code>创建了一个全新的结构体，<code>torch.Tensor.detach()</code>也创建了一个结构体，但是数据是指向原张量的指针。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/08/BugAndUsageOfTorch/" data-id="clzik0lbx000ev47k324ngv4j" data-title="Bug and Usage of Torch" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-SpectralApproach" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/06/SpectralApproach/" class="article-date">
+  <time class="dt-published" datetime="2023-07-06T03:19:28.000Z" itemprop="datePublished">2023-07-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/06/SpectralApproach/">Spectral Approaches</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="从卷积到傅里叶变换"><a href="#从卷积到傅里叶变换" class="headerlink" title="从卷积到傅里叶变换"></a>从卷积到傅里叶变换</h1><p>图的顶点$i$可表示为信号$f_i$，其中$f _i\in\mathbf{R} ^F$，假设图有$N$个顶点，则整张图可以表示为：</p>
+<p>$$<br>f&#x3D;[f_1,f_2,...,f_N]^T<br>$$</p>
+<p>基于卷积的理论及其与傅里叶变换的关系（<strong>卷积的傅里叶变换等于傅里叶变换的乘积</strong>），卷积操作可以定义为：</p>
+<p>$$<br>\begin{align*}<br>    g\star f<br>    &amp;&#x3D;\mathcal{F} ^{-1}[\mathcal{F}(g\star f)]\\<br>    &amp;&#x3D;\mathcal{F} ^{-1}(\mathcal{F}(g)\odot\mathcal{F}(f))\\<br>    &amp;&#x3D;U(U ^{T}g\odot U ^{T}f) \tag{1}<br>\end{align*}<br>$$</p>
+<p>式中，$g$是卷积核，用于提取、汇聚图的空间信息；$U$是图的拉普拉斯矩阵的特征向量矩阵，它被用作离散形式的傅里叶变换的傅里叶基。具体细节见<a href="/2023/07/04/GraphFourierTransform/">Graph Fourier Transform</a>。式子中$U ^{T}g$称为滤波器（filter）。由于$U ^Tg$实际上是对$g$的傅里叶变换，因此：</p>
+<p>$$<br>U ^{T}g&#x3D;\hat{g}&#x3D;[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]^T<br>$$</p>
+<p>即，它是由$g$所包含的各个特征值$\lambda _i$所对应的正交基$u _i$（相当于连续形式的傅里叶变换的不同频率的正弦波形）在$g$中所占的比重所组成的向量。同样地，$U ^Tf$可转化为：</p>
+<p>$$<br>U ^{T}f&#x3D;\hat{f}&#x3D;[\hat{f}(\lambda _1),...,\hat{f}(\lambda _N)]^T<br>$$</p>
+<p>于是它们的哈达玛积（$\odot$）就为：</p>
+<p>$$<br>\begin{align*}<br>    U ^{T}g\odot U ^{T}f<br>    &amp;&#x3D;\hat{g}\odot\hat{f}\\<br>    &amp;&#x3D;<br>    \begin{bmatrix}<br>        \hat{g}({\lambda _1})\times\hat{f}({\lambda _1})\\<br>        \vdots\\<br>        \hat{g}({\lambda _N})\times\hat{f}({\lambda _N})<br>    \end{bmatrix}<br>\end{align*}<br>$$</p>
+<p>而：</p>
+<p>$$<br>\begin{bmatrix}<br>    \hat{g}(\lambda _1) &amp;\\<br>    &amp; \ddots \\<br>    &amp; &amp; \hat{g}(\lambda _N)<br>\end{bmatrix} \cdot<br>\begin{bmatrix}<br>    \hat{f}({\lambda _1})\\<br>    \vdots\\<br>    \hat{f}({\lambda _N})<br>\end{bmatrix} &#x3D;<br>\begin{bmatrix}<br>    \hat{g}({\lambda _1})\times\hat{f}({\lambda _1})\\<br>    \vdots\\<br>    \hat{g}({\lambda _N})\times\hat{f}({\lambda _N})<br>\end{bmatrix}<br>$$</p>
+<p>因此，式$(1)$可以变为：</p>
+<p>$$<br>\begin{align*}<br>    g\star f<br>    &amp;&#x3D;U(U ^{T}g\odot U ^{T}f)\\<br>    &amp;&#x3D;U(\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]U ^{T}f)\\<br>    &amp;&#x3D;U\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)] U ^{T}f\tag{2}<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>矩阵结合律是成立的</p>
+</blockquote>
+<p>另一种角度，若从右向左看式$(2)$的最后一个等式，上述卷积操作其实就是一次对图信号$f$的<strong>滤波</strong>：</p>
+<ol>
+<li>$U^T f$将时域的图信号转换为频域的图信号；</li>
+<li>$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)](U^T f)$对频域的图信号进行滤波，提取特征；</li>
+<li>$U(\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]U ^{T}f)$将经过滤波的频域图信号转换回时域。</li>
+</ol>
+<p>基于谱方法（Spectral approaches）的图神经网络的发展实际上就是一个设计更好的滤波器$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]$的过程。</p>
+<h1 id="第一代GCN"><a href="#第一代GCN" class="headerlink" title="第一代GCN"></a>第一代GCN</h1><p>为了使得滤波器能够被学习，第一代GCN直接将式$(2)$中的滤波器的对角元素替换为了可学习的参数$w$，于是第一代GCN的卷积操作就变为：</p>
+<p>$$<br>Z&#x3D;\sigma(Ug_wU ^{T}f)\tag{3}<br>$$</p>
+<p>其中激活函数用于赋予非线性性。上述操作的思路很简单：输入$f$经过第一个卷积层后得到$Z$，$Z$再作为下一个卷积层的输入，逐层地学习、提取信息。然而，缺点也显而易见：需要对拉普拉斯矩阵进行特征分解以得到$U$，而当图顶点数很多时，这样的特征分解是十分困难的。</p>
+<h1 id="第二代GCN"><a href="#第二代GCN" class="headerlink" title="第二代GCN"></a>第二代GCN</h1><p>鉴于$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]$是特征值对角矩阵$\Lambda$的函数，第二代GCN采用k阶多项式来近似的拟合这个函数，即：</p>
+<p>$$<br>g _w(\Lambda)\approx\sum\limits _{k&#x3D;0} ^Kw _k\Lambda ^k<br>$$</p>
+<p>将其带入式$(3)$，则第二代GCN为：</p>
+<p>$$<br>\begin{align*}<br>    Z<br>    &amp;&#x3D;\sigma(Ug_w(\Lambda)U ^{T}f)\\<br>    &amp;&#x3D;\sigma(U\sum\limits _{k&#x3D;0} ^Kw _k\Lambda ^kU ^{T}f)\\<br>    &amp;&#x3D;\sigma(\sum\limits _{k&#x3D;0} ^Kw _kL ^kf)<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>$U\Lambda ^k U ^T&#x3D;L^k$，其中，$L$为拉普拉斯矩阵。</p>
+</blockquote>
+<p>不难看出，第二代GCN不对拉普拉斯矩阵进行特征分解，而是直接用拉普拉斯矩阵对$f$进行变换。同时，可学习的参数个数也有原来的$N$个下降为$K+1$个。与第一代相比，第二代GCN的计算复杂度明显更低。虽然如此，仍然需要计算$L ^k$，时间复杂度为$O(N ^2)$。</p>
+<p>事实上，由于：</p>
+<p>$$<br>L&#x3D;D-A\tag{4}<br>$$</p>
+<p>其中$A$为邻接矩阵，式$(4)$的证明见<a href="/2023/07/03/Laplacian/#图拉普拉斯矩阵">图拉普拉斯矩阵</a>。因此:</p>
+<p>$$<br>L ^k&#x3D;C_k ^0D ^k-C_k ^1D ^{k-1}A+...+(-1) ^kC _k ^kA ^k<br>$$</p>
+<p>式中，由于$D$和$A$都是对称矩阵，所以$DA&#x3D;AD$。邻接矩阵的$k$次幂的各个元素$A ^k[i][j]$表示的是从$i$到$j$路径长度为$k$的路径的条数。$D$为对角矩阵，只会改变与其相乘的矩阵的非零元素的值。因此，$L ^k$中的$k$实际上就是本次卷积感受野的大小，即距离中心顶点$k+1$-hop以内的邻居顶点都会被用来更新中心顶点的特征表示。</p>
+<blockquote>
+<p>接下来的两类GCN的$L$均代表正则化后的拉普拉斯矩阵。</p>
+</blockquote>
+<h1 id="ChebyNet"><a href="#ChebyNet" class="headerlink" title="ChebyNet"></a>ChebyNet</h1><p>不同于第二代GCN，2016年被提出的<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1606.09375.pdf">ChebyNet</a>使用切比雪夫多项式来近似拟合滤波器：</p>
+<p>$$<br>\begin{cases}<br>    g _w&#x3D;\sum\limits _{k&#x3D;0} ^{K}w _kT _k(\hat{\Lambda})\tag{5}\\<br>    \hat{\Lambda}&#x3D;\frac{2}{\lambda _{max}}\Lambda-I _N<br>\end{cases}<br>$$</p>
+<p>其中，$\lambda _{max}$是正则化的拉普拉斯矩阵$L$的最大特征值，而正则化拉普拉斯矩阵的特征值介于0和2之间，因此，$\hat{\Lambda}$的作用是让特征值矩阵的值介于-1和1之间。切比雪夫多项式是递归定义的：</p>
+<p>$$<br>\begin{cases}<br>    T _0(x)&#x3D;1 \\<br>    T _1(x)&#x3D;x \\<br>    T _{n+1}(x)&#x3D;2xT _n(x)- T _{n-1}(x)<br>\end{cases}<br>$$</p>
+<p>切比雪夫多项式各个幂次项的系数实际上是余弦函数$\cos nx$展开为$\cos x$的函数后的各个幂次的$\cos x$的系数。因此，相比于普通的多项式，切比雪夫多项式具有很多特殊的性质：</p>
+<ol>
+<li>在$[-1,1]$有$n$个零点；</li>
+<li>在$[-1,1]$的值在$[-1,1]$之间震荡。</li>
+<li>...</li>
+</ol>
+<p><img src="/2023/07/06/SpectralApproach/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Chebyshev polynomials</center><br>
+
+<p>这使得它与正弦波形十分相似，但是又更为简单。将式子带入$(3)$，可得：</p>
+<p>$$<br>\begin{cases}<br>    Z&#x3D;\sigma(\sum\limits _{k&#x3D;0} ^Kw _kT _k(\hat{L})f)\\<br>    \hat{L}&#x3D;\frac{2}{\lambda _{max}}L-I _N<br>\end{cases}<br>$$</p>
+<p>因为切比雪夫多项式本质上仍是多项式，所以$k$仍然表示的是感受野的大小，这与第二代GCN一致。</p>
+<h1 id="GCN"><a href="#GCN" class="headerlink" title="GCN"></a>GCN</h1><p>目前常规的<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1609.02907.pdf">GCN</a>源于2017年Kipf等发表的论文。它是在ChebyNet的基础上进一步简化而来的，它取$K$为1，即，只取切比雪夫多项式的前两项：</p>
+<p>$$<br>g _w&#x3D;w_0+w_1\hat{L}\tag{6}<br>$$</p>
+<p>进一步地，它固定$\lambda _{max}$为2，并且限制$w_0&#x3D;-w_1&#x3D;w$，于是式$(6)$变为：</p>
+<p>$$<br>\begin{align*}<br>    g _w<br>    &amp;&#x3D;w-w(L-I _N)\\<br>    &amp;&#x3D;-w(L-2I _N)\\<br>    &amp;&#x3D;-w[D ^{-\frac{1}{2}}(D-A)D ^{-\frac{1}{2}}-2I _N]\\<br>    &amp;&#x3D;-w(I _N-D ^{-\frac{1}{2}}AD ^{-\frac{1}{2}}-2I _N)\\<br>    &amp;&#x3D;w(I _N+D ^{-\frac{1}{2}}AD ^{-\frac{1}{2}})\tag{7}<br>\end{align*}<br>$$</p>
+<p>不难看出，如此，卷积层的感受野就只有1，即中心顶点只会聚合与其直接邻接的顶点的信息。但是，由于$A$的对角线均为0，在卷积过程中，中心顶点会丢失自己的信息。因此，GCN为每个顶点增加了自旋边，即：</p>
+<p>$$<br>\tilde{A}&#x3D;A+I _N<br>$$</p>
+<p>相应地，拉普拉斯矩阵$L$和和度矩阵$D$分别变成了$\tilde{L}$和$\tilde{D}$。如此，$k$为0的切比雪夫项$I _N$就不再被需要了，因为$\tilde{A}$使得中心顶点能够保留自己的信息，故式$(7)$进一步简化为：</p>
+<p>$$<br>g _w&#x3D;w\tilde{D} ^{-\frac{1}{2}}\tilde{A}\tilde{D} ^{-\frac{1}{2}}<br>$$</p>
+<p>为了增加可学习的参数，GCN将$w$扩充为矩阵$W$，并定义了卷积层的最终操作为：</p>
+<p>$$<br>Z&#x3D;\sigma(\tilde{D} ^{-\frac{1}{2}}\tilde{A}\tilde{D} ^{-\frac{1}{2}}fW)<br>$$</p>
+<p>以上就是GCN，它是ChebyNet的简化，但实际效果却远优于更复杂的ChebyNet。但是，GCN不能叠加很多层，因为它是个低通滤波器，即它会过滤掉高频的信号，因此当GCN的层数过高时，最终的信号就只剩低频信号了，相应地网络的效果也会变差：</p>
+<p><img src="/2023/07/06/SpectralApproach/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Low pass filter</center><br>
+
+<blockquote>
+<p>图中的$h$就是文中的$g$。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/ftp/arxiv/papers/1812/1812.08434.pdf">Graph neural networks: A review of methods and applications</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Me4y1c7kj/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">谱域图神经网络理论基础</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/121090537">GCN中的等式证明</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/35212baf6671">图卷积网络(GCN)原理解析</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/" data-id="clzik0lcx008dv47kc4s90qkq" data-title="Spectral Approaches" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-GraphFourierTransform" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/04/GraphFourierTransform/" class="article-date">
+  <time class="dt-published" datetime="2023-07-04T14:52:17.000Z" itemprop="datePublished">2023-07-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/04/GraphFourierTransform/">Graph Fourier Transform</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+
+<h1 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h1><p>在探讨图傅里叶变换之前，我们需要先弄清楚傅里叶变换和傅里叶逆变换的本质。傅里叶逆变换本质上是傅里叶级数在非周期函数（周期为$\infty$）上的形式，因此，傅里叶逆变换<strong>将一个函数表示为若干正交基函数的线性组合</strong>。与之相应地，傅里叶变换就是<strong>求线性组合的系数</strong></p>
+<p>$$<br>\begin{align*}<br>    f(t)&#x3D;\frac{1}{2\pi}\int_{-\infty} ^{+\infty}&amp;\int_{-\infty} ^{+\infty}f(t)e^{-i\omega t}dt\space e^{i\omega t}d\omega\tag{1}\\<br>    F(\omega)&#x3D;&amp;\int_{-\infty} ^{+\infty}f(t)e^{-i\omega t}dt\tag{2}<br>\end{align*}<br>$$</p>
+<p>其中，式$(1)$为傅里叶逆变换，式$(2)$为傅里叶变换。</p>
+<blockquote>
+<p>见<a href="/2023/05/10/FourierTransform/">Fourier Transform</a>了解傅里叶变换的推导过程。</p>
+</blockquote>
+<h1 id="图傅里叶变换"><a href="#图傅里叶变换" class="headerlink" title="图傅里叶变换"></a>图傅里叶变换</h1><p>图的顶点$i$可表示为信号$f_i$，其中$f _i\in\mathbf{R} ^F$，假设图有$N$个顶点，则整张图可以表示为：</p>
+<p>$$<br>f&#x3D;[f_1,f_2,...,f_N]^T<br>$$</p>
+<p>图傅里叶逆变换，使用的是拉普拉斯矩阵$L$的特征向量作为基函数（Fourier bias）。因为拉普拉斯矩阵是个半正定对称矩阵，所以它有$N$个相互正交的特征向量$\vec{u} _i$（见<a href="/2023/07/03/Laplacian/">Laplacian</a>了解拉普拉斯变换和拉普拉斯矩阵）。若使用拉普拉斯矩阵的特征向量作为图傅里叶逆变换的基函数，则图上的任意信号就可以表示为：</p>
+<p>$$<br>\begin{align*}<br>    f&amp;&#x3D;\hat{f}(\lambda _1)\vec{u} _1+...+\hat{f}(\lambda _N)\vec{u} _N\\<br>    &amp;&#x3D;U\hat{f}<br>\end{align*}<br>$$</p>
+<p>式中，$U$为使拉普拉斯矩阵$L$的相似对角化的正交矩阵，$\hat{f}$为$f$的傅里叶系数，也是其在频域的信号。这本质上是一次坐标变换，即，将$f$在时域的坐标，转变为以$(\vec{u _1},...,\vec{u} _n)$为正交基的频域坐标$\hat{f}$。见<a href="/2023/05/10/FourierTransformAndCNN/">Fourier Transform And CNN </a>了解傅里叶变换和坐标变换的关系。由于$U$是正交矩阵，我们可以很容易得到$f$的傅里叶变换为：</p>
+<p>$$<br>\hat{f}&#x3D;U ^Tf<br>$$</p>
+<p>实际上，正交的特征向量$\vec{u _i}$就是离散形式的正（余）弦波形：</p>
+<p><img src="/2023/07/04/GraphFourierTransform/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Fourier bias</center>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137897522">图卷积神经网络系列：2. | 图傅里叶变换</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Me4y1c7kj/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">谱域图神经网络理论基础</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/04/GraphFourierTransform/" data-id="clzik0lcc0030v47kgur30g1t" data-title="Graph Fourier Transform" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Laplacian" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/03/Laplacian/" class="article-date">
+  <time class="dt-published" datetime="2023-07-03T05:33:14.000Z" itemprop="datePublished">2023-07-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/03/Laplacian/">Laplacian</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>拉普拉斯算子$\Delta$定义为函数$f$（假设$f$为三元函数）的梯度的散度，它接受标量函数输入，并输入一个新的标量函数，即：</p>
+<p>$$<br>\Delta f&#x3D;\text{div}(\text{grad}f(x,y,z))<br>$$</p>
+<h2 id="哈密顿算子"><a href="#哈密顿算子" class="headerlink" title="哈密顿算子"></a>哈密顿算子</h2><p>哈密顿算子$\nabla$定义为：</p>
+<p>$$<br>\nabla&#x3D;\frac{\partial}{\partial x}\vec{i}+\frac{\partial}{\partial y}\vec{j}+\frac{\partial}{\partial z}\vec{k}<br>$$</p>
+<p>它本身没有意义，只是一个算子，但是又被看作是一个矢量。哈密顿算子作用于标量$f$可以得到$f$的梯度，作用于矢量$\vec{f}$可以得到$\vec{f}$的散度。</p>
+<h2 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h2><p>梯度是一个矢量，它表示某一空间函数$f(x,y,z)$在点$(x,y,z)$处方向导数最大的方向或者说函数值变化最快的方向：</p>
+<p>$$<br>\text{grad}f(x,y,z)&#x3D;\nabla f(x,y,z)&#x3D;\frac{\partial f}{\partial x}\vec{i}+\frac{\partial f}{\partial y}\vec{j}+\frac{\partial f}{\partial z}\vec{k}<br>$$</p>
+<h2 id="散度"><a href="#散度" class="headerlink" title="散度"></a>散度</h2><p>散度是一个标量，它表示空间中的矢量场$F&#x3D;&lt;f,g,h&gt;$在该点$(x,y,z)$单位体积上的通量，即该矢量场发散的强弱程度：</p>
+<p>$$<br>\text{div}(F)&#x3D;\nabla\cdot&lt;f,g,h&gt;&#x3D;\frac{\partial f}{\partial x}+\frac{\partial g}{\partial y}+\frac{\partial h}{\partial z}<br>$$</p>
+<p>当散度大于0时，表示该矢量场有散发通量的正源；当散度小于0时，表示该矢量场有吸收通量的负源；当散度等于0时，表示该场无源。</p>
+<h2 id="拉普拉斯算子的意义"><a href="#拉普拉斯算子的意义" class="headerlink" title="拉普拉斯算子的意义"></a>拉普拉斯算子的意义</h2><p>以下以二元函数$f(x,y)$为例，说明拉普拉斯算子的数学意义。</p>
+<p>对于给定的二元函数$f(x,y)$，其梯度$\nabla f$给出了其在二维空间上各个点函数值变化最快的方向。</p>
+<p><img src="/2023/07/03/Laplacian/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. f & grad</center><br>
+
+<p>上图下方的箭头即为$f$在各个点上的梯度方向。此时，若我们将原函数图像去掉，我们就得到一个由原函数的梯度向量形成的矢量场：</p>
+<p><img src="/2023/07/03/Laplacian/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Vector field</center><br>
+
+<p>对该矢量场求散度$\nabla\cdot\nabla f$，我们实际上就能够得到原函数图像的凹凸性（大于0为凸，小于0为凹），如同一元函数的凹凸性一般，多元函数的凹凸性也体现了该点的函数值与该点周围的点的函数值的大小关系，凸说明该点的函数值小于周围点函数值的平均值，凹则说明大于。</p>
+<p>这就是拉普拉斯算子（$\Delta&#x3D;\nabla\cdot\nabla&#x3D;\nabla ^2$），它代表了小范围的凹凸性，这也是它能被用于图像边缘检测的原因（边缘往往显著区别于邻居）。</p>
+<h1 id="拉普拉斯矩阵"><a href="#拉普拉斯矩阵" class="headerlink" title="拉普拉斯矩阵"></a>拉普拉斯矩阵</h1><p>拉普拉斯矩阵$L$，是图上的拉普拉斯算子，也即离散的拉普拉斯算子。前面提到的拉普拉斯算子，其基于的空间都是连续的，而对于图像的像素矩阵，它可以被视为一个二元的函数，只不过其空间位置（即矩阵的行和列）是离散的值。当拉普拉斯算子作用于离散的空间，拉普拉斯算子就成了拉普拉斯矩阵。</p>
+<h2 id="一维和二维离散函数的导数"><a href="#一维和二维离散函数的导数" class="headerlink" title="一维和二维离散函数的导数"></a>一维和二维离散函数的导数</h2><p>假设离散空间中空间位置的最小步长为$h$：</p>
+<p>$$<br>x _{i+1}- x_i&#x3D;...&#x3D;x_2-x_1&#x3D;h<br>$$</p>
+<p>将$f(x _{i+1})$和$f(x _{i-1})$分别用泰勒级数在$x_i$点展开：</p>
+<p>$$<br>\begin{align*}<br>    f(x _{i+1})&amp;&#x3D;f(x_i)+f&#39;(x_i)h+f&#39;&#39;(x_i)\frac{h^2}{2}+...\tag{1}\\<br>    f(x _{i-1})&amp;&#x3D;f(x_i)-f&#39;(x_i)h+f&#39;&#39;(x_i)\frac{h^2}{2}-... \tag{2}<br>\end{align*}<br>$$</p>
+<p>$(1)$和$(2)$相减，可得：</p>
+<p>$$<br>f&#39;(x_i)&#x3D;\frac{f(x _{i+1})-f(x _{i-1})}{2h}-O(h^2)<br>$$</p>
+<p>同样地，$(1)$和$(2)$相加，可得：</p>
+<p>$$<br>f&#39;&#39;(x_i)&#x3D;\frac{f(x _{i+1})+f(x _{i-1})-2f(x_i)}{h^2}-O(h^3)<br>$$</p>
+<p>若忽略掉低阶无穷小$O(h^2)$和$O(h^3)$，并取$h$为1，那么二维空间的离散拉普拉斯算子便可表示为：</p>
+<p>$$<br>\begin{align*}<br>    \Delta f&amp;&#x3D;f _{xx}+f _{yy}\\<br>    &amp;&#x3D;f(x+1,y)+f(x-1,y)-2f(x,y)+f(x,y+1)+f(x,y-1)-2f(x,y)\\<br>    &amp;&#x3D;f(x+1,y)+f(x-1,y)+f(x,y+1)+f(x,y-1)-4f(x,y)\tag{3}<br>\end{align*}<br>$$</p>
+<p>若将3x3的卷积核的中心定义为$(x,y)$：</p>
+<p>$$<br>\begin{bmatrix}<br>    (x-1,y-1)&amp;(x,y-1)&amp;(x+1,y-1)\\<br>    (x-1,y)&amp;(x,y)&amp;(x+1,y)\\<br>    (x-1,y+1)&amp;(x,y+1)&amp;(x+1,y+1)<br>\end{bmatrix}<br>$$</p>
+<p>则其系数即为用于边缘检测的卷积核：</p>
+<p>$$<br>\begin{bmatrix}<br>    0&amp;1&amp;0\\<br>    1&amp;-4&amp;1\\<br>    0&amp;1&amp;0<br>\end{bmatrix}<br>$$</p>
+<blockquote>
+<p>此处可以看出拉普拉斯算子的另外一层含义：$f(x,y)$受到微小扰动后，可能变成$f(x-1,y)$，$f(x,y-1)$，$f(x+1,y)$和$f(x,y+1)$中的任何一个。拉普拉斯算子计算的就是对该点进行微小扰动后可能获得的总增益。这对于连续的拉普拉斯算子也成立，只不过扰动后可能出现的情况变成无数个。增益越大，说明函数在该点越有可能是个凸点（谷点）。</p>
+</blockquote>
+<h2 id="图拉普拉斯矩阵"><a href="#图拉普拉斯矩阵" class="headerlink" title="图拉普拉斯矩阵"></a>图拉普拉斯矩阵</h2><p>对于有$N$个顶点的图，其每个顶点的最大邻接顶点数（自由度）为$N$，邻接矩阵为$A$，度矩阵为$D$，其中：</p>
+<p>$$<br>D&#x3D;<br>\begin{cases}<br>    D _{ii}&#x3D;\sum\limits _{j&#x3D;1} ^{N}A _{ij}\\<br>    D _{ij}&#x3D;0,i\ne j<br>\end{cases}<br>$$</p>
+<p>根据扰动与增益的定义，我们很容易将式$(3)$推广到图中。图的扰动增益可以定义为邻接的两个顶点的特征差值。假设顶点$v _i$的特征为$f_i$，那么整个图的顶点特征则为：</p>
+<p>$$<br>f&#x3D;[f_1,f_2,...,f_N]^T<br>$$</p>
+<p>两邻接顶点的差异可定义为：</p>
+<p>$$<br>f_i-f_j<br>$$</p>
+<p>若考虑加权图中边的权值，则为：</p>
+<p>$$<br>w _{ij}(f_i-f_j)<br>$$</p>
+<p>于是，对某一个顶点$v_i$，其拉普拉斯算子为：</p>
+<p>$$<br>\begin{align*}<br>    \Delta f_i<br>    &amp;&#x3D;\sum\limits _{j&#x3D;1} ^Nw _{ij}(f_i-f_j)\\<br>    &amp;&#x3D;\sum\limits _{j&#x3D;1} ^Nw _{ij}f_i-\sum\limits _{j&#x3D;1} ^Nw _{ij}f_j\\<br>    &amp;&#x3D;D _{ii}f _i-w _{i:}f<br>\end{align*}<br>$$</p>
+<p>式中，$D _{ii}$为顶点$v_i$的度（有权则为带权的度），$w _{i:}$为顶点$v_i$的邻接边的权重向量，维度为$N$。对于整张图，则为：</p>
+<p>$$<br>\begin{align*}<br>    \Delta f<br>    &amp;&#x3D;<br>\begin{pmatrix}<br>    \Delta f_1\\<br>    \Delta f_2\\<br>    ...\\<br>    \Delta f_N<br>\end{pmatrix}&#x3D;<br>\begin{pmatrix}<br>    D _{11}f _1-w _{1:}f\\<br>    D _{22}f _2-w _{2:}f\\<br>    ...\\<br>    D _{NN}f _N-w _{N:}f<br>\end{pmatrix}\\<br>    &amp;&#x3D;<br>\begin{pmatrix}<br>    D _{11}&amp;\cdots&amp;0\\<br>    \vdots&amp;\ddots&amp;0\\<br>    0&amp;\cdots&amp;D _{NN}<br>\end{pmatrix}f-<br>\begin{pmatrix}<br>    W _{11}&amp;\cdots&amp;W _{1N}\\<br>    \vdots&amp;\ddots&amp;\vdots\\<br>    W _{N1}&amp;\cdots&amp;W _{NN}<br>\end{pmatrix}f\\<br>    &amp;&#x3D;(D-W)f\\<br>    &amp;&#x3D;Lf<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>$L$称拉普拉斯矩阵。若$W$不表示权重，只表示邻接关系，则$W$即为邻接矩阵$A$。</p>
+<p>拉普拉斯矩阵是半正定矩阵，即对于任意不为0的实列向量$x$，有$x^TLx\ge0$。</p>
+<p>此处不以符号区别行&#x2F;列向量，均假设其自适应。</p>
+</blockquote>
+<h2 id="邻接矩阵探讨"><a href="#邻接矩阵探讨" class="headerlink" title="邻接矩阵探讨"></a>邻接矩阵探讨</h2><p>邻接矩阵$A$实际上也相当于一个算子，如：</p>
+<p>$$<br>\begin{align*}<br>    g&amp;&#x3D;Af\\<br>    g(i)&amp;&#x3D;\sum _{j} ^{A _{ij}&#x3D;1}f _j<br>\end{align*}<br>$$</p>
+<p>$g(i)$表示$i$的邻接顶点的特征和。又如：</p>
+<p>$$<br>\begin{align*}<br>    f ^Tg<br>    &amp;&#x3D;f ^TAf\\<br>    &amp;&#x3D;\sum\limits _{i,j} ^{A _{ij}&#x3D;1}f _i\cdot f _j<br>\end{align*}<br>$$</p>
+<p>邻接矩阵必是对称矩阵，因此这实际上是个二次形。</p>
+<h2 id="拉普拉斯矩阵探讨"><a href="#拉普拉斯矩阵探讨" class="headerlink" title="拉普拉斯矩阵探讨"></a>拉普拉斯矩阵探讨</h2><p>类似地，拉普拉斯矩阵$L$和$f$也能形成二次型：</p>
+<p>$$<br>\begin{align*}<br>    f^TLf<br>    &amp;&#x3D;\sum _{(i,j)\in E}(f _i - f _j)^2\tag{4}<br>\end{align*}<br>$$</p>
+<p>该式具有实际的物理意义：</p>
+<p><img src="/2023/07/03/Laplacian/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Spring network</center><br>
+
+<p>在上图所示弹簧网络中，有5个质子，假设两端（黑球）固定，并给予中间的三个振子一定程度的扰动，则当系统重新平衡时，三个振子和两端会停留在让系统总弹性势能最小的位置。假设连接质子$i$和质子$j$的弹簧的弹性系数为$k _{ij}$（$k _{ji}$），则系统的总弹性势能为：</p>
+<p>$$<br>E&#x3D;\frac{1}{2}\sum _{(i,j)\in E}k _{ij}(x(i)-x(j))^2\tag{5}<br>$$<br>式中，$i$和$j$表示质子，$x(i)$为质子$i$的绝对位置，$E$是边集（即弹簧集）。最终质子的位置将使得$E$最小。将上述弹簧网络扩展为更一般的图，那么式$(5)$便能很轻易地被扩展为式$(4)$，只不过省略了一些对结果不造成影响的项（e.g. $\frac{1}{2}$），且一些项的含义发生了变化（e.g. $k _{ij}$成了图的边的权，若图的边无权，则可忽略该项）。式$(4)$显然是一个凸函数，因此它可以作为图神经网络的损失函数（但一般作为正则项）。</p>
+<h2 id="关联矩阵"><a href="#关联矩阵" class="headerlink" title="关联矩阵"></a>关联矩阵</h2><p>关联矩阵$\nabla$展现了边和其两端顶点的关系。一般地，有向图的关联矩阵更有意义，因此，对于无向图，我们可以为每条边随意规定一个方向，并定义其关联矩阵（形状为$|E|\times|V|$）为：<br>$$<br>\nabla&#x3D;<br>\begin{cases}<br>    \nabla _{ev}&#x3D;-1,&amp;\text{if v is the initial vextex of e}\\<br>    \nabla _{ev}&#x3D;1,&amp;\text{if v is the terminal vextex of e}\\<br>    \nabla _{ev}&#x3D;0,&amp;\text{otherwise}<br>\end{cases}<br>$$</p>
+<p>关联矩阵与拉普拉斯矩阵存在关系：</p>
+<p>$$<br>L&#x3D;\nabla^T\nabla<br>$$</p>
+<h2 id="拉普拉斯谱分解"><a href="#拉普拉斯谱分解" class="headerlink" title="拉普拉斯谱分解"></a>拉普拉斯谱分解</h2><p>特征分解也叫谱分解，即将矩阵分解为特征值和特征向量的乘积。因为拉普拉斯矩阵$L$为对称矩阵，因此它有$N$个特征值，$N$个相互正交的特征向量：</p>
+<p>$$<br>\begin{align*}<br>    Lu_k&amp;&#x3D;\lambda_ku_k\\<br>    L&#x3D;U^{-1}\Lambda&amp;U&#x3D;U^T\Lambda U<br>\end{align*}<br>$$</p>
+<h2 id="拉普拉斯矩阵的正则化"><a href="#拉普拉斯矩阵的正则化" class="headerlink" title="拉普拉斯矩阵的正则化"></a>拉普拉斯矩阵的正则化</h2><p>首先，要了解邻接矩阵的正则化：</p>
+<p>$$<br>\tilde{A}&#x3D;D ^{-\frac{1}{2}}A D ^{-\frac{1}{2}}<br>$$</p>
+<p>如同一般的正则化一样，邻接矩阵的正则化也可视作一种防止过拟合的措施。但是，邻接矩阵的正则化包含了两个方向的正则：</p>
+<ol>
+<li>左乘$D ^{-\frac{1}{2}}$是横向正则，即对$A$的同一行用相同尺度放缩，而对$A$的不同行用不同尺度放缩，这在一定程度上使得度高的顶点和度低的顶点在聚合后值不会相差得太太，有点像BatchNorm；</li>
+<li>右乘$D ^{-\frac{1}{2}}$是纵向正则，即对$A$的同一列用相同尺度放缩，而对$A$的不同列用不同尺度放缩，这相当于为邻接顶点赋予<strong>分发比例</strong>，即，对某个邻接顶点$j$，其信号聚合到本顶点$i$时，其贡献的程度应该是$1&#x2F;D _{jj}$，当然，实际上是$1&#x2F;\sqrt{D _{jj}}$，这是为了保证左右正则后的行列式值与只用$D$左正则的值相同。</li>
+</ol>
+<p>同样地，拉普拉斯矩阵的正则化为：</p>
+<p>$$<br>\begin{align*}<br>    \tilde{L}<br>    &amp;&#x3D;D ^{-\frac{1}{2}}L D ^{-\frac{1}{2}}\\<br>    &amp;&#x3D;D ^{-\frac{1}{2}}(D-A) D ^{-\frac{1}{2}}\\<br>    &amp;&#x3D;I-D ^{-\frac{1}{2}}A D ^{-\frac{1}{2}}<br>\end{align*}<br>$$</p>
+<p>上式本质上是让对角线都变成1。</p>
+<blockquote>
+<p>注，此处假设图不带权，故用的是邻接矩阵$A$。</p>
+<p>正则化拉普拉斯矩阵仍为半正定对称矩阵，且所有特征值$\lambda\in[0,2]$</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/zvideo/1440673926157991936">拉普拉斯方程</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1799419?areaSource=106000.9&traceId=BMewvJtoWh3KSO_SjKvfw">【图神经网络】数学基础篇</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/85287578">拉普拉斯矩阵与拉普拉斯算子的关系</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/03/Laplacian/" data-id="clzik0lcg0041v47keusa5k0m" data-title="Laplacian" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-GCN" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/02/GCN/" class="article-date">
+  <time class="dt-published" datetime="2023-07-02T03:14:28.000Z" itemprop="datePublished">2023-07-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/GNN/">GNN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/02/GCN/">Graph Neural Networks &amp; Graph Convolutional Networks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="数据的图表示"><a href="#数据的图表示" class="headerlink" title="数据的图表示"></a>数据的图表示</h1><p>要完整地表示一张图，需要四类信息：顶点（nodes，V），边（edgs，E），全局信息（global-context，U）和连接性（connectivity，A）。其中，每个顶点（Fig 1中黄色的圈）的属性都可以用一个标量或向量表示；每条边（Fig 1中蓝色的线）的属性也可以用一个标量或向量表示；全局信息（Fig 1中红色虚线框）同样可以用一个标量或向量表示。表示图连接性的方法最简单的是邻接矩阵（Adjacency matrix），因为它很容易向量化，但是，邻接矩阵存在两个缺点：1）浪费空间，特别是对于稀疏图；2）对相同的图可以有多种邻接矩阵表示（如调整行列的顶点顺序可以得到不同的邻接矩阵）。这两个缺点，特别是第二个，使得邻接矩阵法不能得到很好的效果。更为有效、常用的方法是邻接列表法，即将每条边用顶点的二元元组表示，所有的边组成一个列表。对于Fig 1中的图，假设顶点顺时针排序，最上面的顶点编号为1，则其连接性可表示为：</p>
+<p>$$<br>[[1, 2], [1, 3], [1, 4], [1, 5], [2, 5], [3, 4]]<br>$$</p>
+<p><img src="/2023/07/02/GCN/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Graph</center>
+
+<h2 id="图片的图表示"><a href="#图片的图表示" class="headerlink" title="图片的图表示"></a>图片的图表示</h2><p>图片是由多个像素点组成的矩阵，因此它可以很自然地被视为一个矩形的特殊的图：每个像素点为顶点，每个像素点和它周围的所有像素点（包括对角线的）具有连接性，像素点的值代表的顶点的属性。</p>
+<p><img src="/2023/07/02/GCN/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Image graph</center>
+
+<h2 id="文本的图表示"><a href="#文本的图表示" class="headerlink" title="文本的图表示"></a>文本的图表示</h2><p>文本作为一种序列，实际上是一种特殊的图：直线。因此，文本的图表示是一个有向图。</p>
+<p><img src="/2023/07/02/GCN/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Text graph</center> <br>
+
+<blockquote>
+<p>实际上图片和文本连接性的表示要更加简洁，因为所有图片和文本都具有相同的连接模式：图片中的像素只和周围的像素相连；文本中的词元只指向下一个词元，邻接矩阵是条对角线。</p>
+<p>由于树也是一种特殊的图，凡是能表示为树的东西，也能用GNNs的方法处理。</p>
+</blockquote>
+<h1 id="面向GNNs的任务"><a href="#面向GNNs的任务" class="headerlink" title="面向GNNs的任务"></a>面向GNNs的任务</h1><p>GNNs能解决的任务一般可分三个类别：图级别任务（Graph-level task），顶点级别任务（Node-level task）和边级别任务（Edge-level task）。</p>
+<p>对于图级别的任务，最常规的是图分类问题，它和MNIST和CIFAR等图片分类一样，将不同类型的图分到合适的类别。</p>
+<p><img src="/2023/07/02/GCN/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Graph-level task</center> <br>
+
+<p>对于顶点级别的任务，最常规的亦为分类问题，即预测顶点的属性或者类别。</p>
+<p><img src="/2023/07/02/GCN/5.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Node-level task</center> <br>
+
+<p>对于边级别的任务，其可以处理的是广义上的分类问题，即预测边的属性（其属性体现着边连接的两个顶点的关系）。</p>
+<p><img src="/2023/07/02/GCN/6.png" alt="6"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. Edge-level task</center>
+
+<h1 id="图神经网络（GNNs）"><a href="#图神经网络（GNNs）" class="headerlink" title="图神经网络（GNNs）"></a>图神经网络（GNNs）</h1><p>图神经网络是一种对图的属性做变换（顶点，边以及全局信息），但是不改变图的拓扑结构的神经网络。它接受图输入，并输出一个属性变化了但拓扑结构不变的图。</p>
+<p><img src="/2023/07/02/GCN/7.png" alt="7"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 7. The simplest GNN</center> <br>
+
+<p>最简单的图神经网络如上图所示。所有的顶点的属性、边的属性和全局信息分别形成一个矩阵，它们分别被输入到一个MLP中。三个MLP形成一个GNN块，每个GNN块的输出都是属性变化后的顶点、边和全局信息，但是图的拓扑结构不变。GNN块可以逐个堆叠，起着特征提取的作用。GNN块实际上相当于一个特征提取器&#x2F;编码器，而具体的任务则由后续的分类器&#x2F;解码器完成。</p>
+<p><img src="/2023/07/02/GCN/8.png" alt="8"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 8. GNN block</center> <br>
+
+<p>需要注意的是，编码器提取的是顶点、边和全局信息的特征，而输入解码器的特征只是需要的特征，如顶点级别任务只输入顶点特征、边级别任务只输入边特征。不过有些时候给定的图可能缺乏某个方面的信息，它可能只有边属性和全局信息而没有顶点属性，也可能只有顶点属性和边属性而没有全局属性。这时，编码器的工作照常进行，而解码器在工作之前，需要从其他地方获取缺失的信息，该操作称为<em>Pooling</em>。</p>
+<p>比如，若缺失顶点信息，那么，进入解码器的顶点信息则由包含该顶点的边和全局信息Pooling而来，如Fig 9所示；若缺失边信息，那么，进入编码器的边信息则由该边两侧的顶点和全局信息Pooling而来，如Fig 10所示；若缺失全局信息，那么，进入编码器的全局信息则由所有的顶点信息（也可以加上边的信息）Pooling而来，如Fig 11所示。</p>
+<blockquote>
+<p>顶点、边和全局信息的形状可能不一样，这时候就需要先进行投影。汇聚（Pooling）的方法有多种，如取最大（Max）、求和（Sum）、求和取平均（Average），各种方法的效果差不多。</p>
+<p>全局信息相当于一个特殊顶点的属性：这个顶点和所有顶点相连、和所有边相连。因此，全局信息的汇聚会用到所有的顶点和边。</p>
+</blockquote>
+<p><img src="/2023/07/02/GCN/9.png" alt="9"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 9. Node pooling</center> <br>
+
+<p><img src="/2023/07/02/GCN/10.png" alt="10"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 10. Edge pooling</center> <br>
+
+<p><img src="/2023/07/02/GCN/11.png" alt="11"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 11. Graph-context pooling</center> <br>
+
+<p>上述的简单的GNN存在一个严重的缺陷：除了汇聚层，我们没有用到任何连接性的信息。每个顶点、边、全局信息都是被独立地处理的，而它们实际上存在很强的关系。</p>
+<h1 id="图卷积神经网络（GCNs）"><a href="#图卷积神经网络（GCNs）" class="headerlink" title="图卷积神经网络（GCNs）"></a>图卷积神经网络（GCNs）</h1><p>图卷积神经网络能够解决前面提到的简单图神经网络的缺点。它采用类似于图片卷积的方法，用图卷积层将某一顶点和其周围顶点的信息汇聚到下一层的同一个顶点中，如此，只要经过足够多的图卷积层，单一的顶点就能看到所有顶点的信息。</p>
+<p><img src="/2023/07/02/GCN/12.png" alt="12"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 12. GCN layer</center> <br>
+
+<p>更进一步地，可以将上一节中顶点、边和全局信息间的信息传递提前到图卷积层中。也就是说，边的信息会汇聚边和两边顶点的信息，顶点的信息会汇聚边以及相连顶点的信息。不同的汇聚策略会产生不同的图卷积方法，如下图所示。</p>
+<p><img src="/2023/07/02/GCN/13.png" alt="13"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 13. Different ways to combine nodes and edges</center> <br>
+
+<blockquote>
+<p>由于顶点和边的属性向量的形状可能不同，汇聚时可以采用映射后再相加或者直接拼接等方法，不同的方法会产生不同的效果。</p>
+</blockquote>
+<p>当我们想要尽早地了解到整个图的情况时，也可以将全局信息加入汇聚操作中。</p>
+<p><img src="/2023/07/02/GCN/14.png" alt="14"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 14. Pooling with global-context</center> <br>
+
+<blockquote>
+<p>最后一个图卷积层的顶点往往会包含很多信息，这使得我们不得不保留一个很大的计算图以计算梯度，这十分浪费内存和时间。常用的策略是对图进行随机采样，用随机生成的子图来完成训练。采样方法有多种，如Diffusion sampling，Random node sampling，Random walk sampling等。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>本文所有的内容包括图片都基于文章 <em><strong>A Gentle Introduction to Graph Neural Networks</strong></em> 以及李沐先生的讲解。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://distill.pub/2021/gnn-intro/">A Gentle Introduction to Graph Neural Networks</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iT4y1d7zP/?spm_id_from=333.999.0.0&vd_source=2d980a0365f3ebea674b32924d8a4ce8">零基础多图详解图神经网络（GNN&#x2F;GCN）【论文精读】
+</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/02/GCN/" data-id="clzik0lcb002nv47k55pv3xj5" data-title="Graph Neural Networks &amp; Graph Convolutional Networks" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-P003" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/14/P003/" class="article-date">
+  <time class="dt-published" datetime="2023-06-14T06:25:34.000Z" itemprop="datePublished">2023-06-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/14/P003/">Paper003: Dataset Distillation by Matching Training Trajectories</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="专家轨迹"><a href="#专家轨迹" class="headerlink" title="专家轨迹"></a>专家轨迹</h1><p>专家轨迹（Expert trajectories）$\tau^*$是<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2203.11932.pdf">本文</a>对原训练集训练模型时模型参数变化过程的描述。它记录了每个时期（Epoch）所有模型参数$\theta^*$的值$\left\{\theta_t^*\right\}_0^T$，其中$T$是总的时期数。专家轨迹是在原训练集上得到的，因此其反映了用合成集训练模型时的理论最佳路线。与专家轨迹各时期值相对应地，合成集在时期$t$的模型参数称学生参数（Student parameters）$\hat{\theta}_t$。</p>
+<h1 id="短期和长期参数匹配"><a href="#短期和长期参数匹配" class="headerlink" title="短期和长期参数匹配"></a>短期和长期参数匹配</h1><p>本文的核心思想是用经过了$N$步优化的$\hat{\theta} _{t+N}$去匹配同一个网络下某一个专家轨迹的$\theta ^* _{t+M}$，其中学生参数$\hat{\theta}_t$被初始化为某个时期的专家参数$\theta_t^*$且$N&lt;&lt;M$。$\hat{\theta} _{t+N}$和$\theta ^* _{t+M}$之间的差异被定义为损失函数$\mathcal{L}$：</p>
+<p>$$<br>\mathcal{L}&#x3D;\frac{||\hat{\theta} _{t+N}-\theta ^* _{t+M}||_2^2}{||\theta ^* _t-\theta ^* _{t+M}||_2^2}\tag{1}<br>$$</p>
+<p>式中，下标2表示$L_2$范数，即欧几里得范数，定义为向量各元素平方和的平方根；上标2表示平方。之所以要有分母是为了保证当选取的$t$为训练的较后时期、模型参数变化不大时，$L$仍能有较大的响应。以该损失函数$L$进行梯度下降，更新合成集$\mathcal{D} _{syn}$，使得经过多次迭代后，合成集$\mathcal{D} <em>{syn}$训练得到的$\hat{\theta}</em>{t+N}$能使$\mathcal{L}$最小。</p>
+<p><img src="/2023/06/14/P003/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Expert trajectories matching (Iteration here means epoch)</center><br>
+
+<p>从$N$和$M$的视角来看，之前的数据蒸馏方法，包括最原始的数据蒸馏——只匹配最终的模型参数和<a href="/2023/06/12/P001/">基于梯度匹配的数据缩合</a>——实际上是对每个时期的模型参数都进行匹配，都可以被视为$N$和$M$在不同取值下的特例：</p>
+<p><img src="/2023/06/14/P003/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Left: Original dataset distillation. Mid: Gradient matching. Right: Expert trajectories</center><br>
+
+<p>原始的数据蒸馏只考虑结果，因此性能不是太好；梯度匹配过于追求过程，是一种贪心的思想，可能不能得到全局最优且计算量偏大；本文提出的专家轨迹则可视为对前两者的折中。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/06/14/P003/" data-id="clzik0lct0071v47kfserfvaa" data-title="Paper003: Dataset Distillation by Matching Training Trajectories" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-P002" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/13/P002/" class="article-date">
+  <time class="dt-published" datetime="2023-06-13T02:30:39.000Z" itemprop="datePublished">2023-06-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/13/P002/">Paper002: Dataset Condensation with Distribution Matching</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="核心集和以往数据压缩算法存在的问题"><a href="#核心集和以往数据压缩算法存在的问题" class="headerlink" title="核心集和以往数据压缩算法存在的问题"></a>核心集和以往数据压缩算法存在的问题</h1><p>核心集选择（Coreset selection）算法基于一定的启发式准则（Heuristic criteria），如核心集到原数据集中心的距离最小、核心集包含的样本要尽可能地多样等，从原训练集中选择一个更小的核心训练集。这种方法选择了更具有代表性的数据来进行训练，因而降低了训练的开销，但是它也存在如下缺点：</p>
+<ol>
+<li>核心集选择依赖的几乎都是贪心算法，这可能无法达到全局最优；</li>
+<li>有效性极度依赖原训练集的有效性。</li>
+</ol>
+<p>数据蒸馏（Dataset distillation，或数据缩合，Dataset condensation），一定程度上解决了核心集选择的问题，但无论是最原始的数据蒸馏算法，还是前面提到的<a href="/2023/06/12/P001/">基于梯度匹配的数据缩合算法</a>都存在一定的缺陷：</p>
+<ol>
+<li>模型参数$\theta ^{\mathcal{S}}$和合成数据集$\mathcal{S}$的双重梯度下降十分消耗算力；</li>
+<li>对合成数据集$\mathcal{S}$进行梯度下降时，要计算二阶混合偏导；</li>
+<li>用于合成数据的网络的超参数不好调节（e.g. $\theta ^{\mathcal{S}}$和$\mathcal{S}$的梯度下降次数$\varsigma ^{\mathcal{\theta}}$和$\varsigma ^{\mathcal{S}}$）。</li>
+</ol>
+<p>这些缺陷限制了其在大数据集上的应用。</p>
+<h1 id="分布匹配"><a href="#分布匹配" class="headerlink" title="分布匹配"></a>分布匹配</h1><p>分布匹配（Distribution matching）是<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2110.04181.pdf">这篇文章</a>使用的用于数据缩合的方法。实际上，它更像是一种可以学习的核心集：</p>
+<ol>
+<li>相比于纯核心集，分布匹配学习到的$\mathcal{S}$中的数据不一定存在于原训练集中；</li>
+<li>相比于基于梯度匹配的数据缩合，分布匹配学习到的$\mathcal{S}$中的数据分布更加接近原训练集，且缩合的速度更快；</li>
+<li>可以将分布匹配理解为用学习的方法去获得一个更小的、与原训练集同分布的合成集。</li>
+</ol>
+<p><img src="/2023/06/13/P002/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Dataset condensation with distribution matching</center><br>
+
+<p>要让学习到的$\mathcal{S}$与原训练集$\mathcal{T}$近似于同分布，要点在于有个确切的方法能衡量两个分布的近似情况。文中采用的是常用的<a href="/2023/06/13/MaximumMeanDiscrepancy/">最大均值差异法（Maximum mean discrepancy）</a>：</p>
+<p>$$<br>\begin{align*}<br>    \sup _{\psi _{\theta}\in\mathcal{H},||\psi _{\theta}||_\mathcal{H}\le1}(\text{E}[\psi _{\theta}(\mathcal{T})]&amp;-\text{E}[\psi _{\theta}(\mathcal{S})])\tag{1}\\<br>    \min \text{E} _{\theta\sim P _{\theta}} ||\frac{1}{|\mathcal{T}|}\sum\limits _{i&#x3D;1} ^{|\mathcal{T}|}\psi _{\theta}(x_i)&amp;-\frac{1}{|\mathcal{S}|}\sum\limits _{j&#x3D;1} ^{|\mathcal{S}|}\psi _{\theta}(\mathcal{s}_j)|| ^2\tag{2}<br>\end{align*}<br>$$</p>
+<p>其中，$\mathcal{T}$是原训练集，$\mathcal{S}$是合成集；$x$和$\mathcal{s}$分别是原训练集和合成集单一样本的特征；$\psi_\theta$是一个带参数的函数（实际上是一个神经网络，$\theta$为其模型参数，服从分布$P_\theta$；也是再生希尔伯特空间中的一个向量），该函数将样本的特征映射到更低的维度，便于处理（实际上是求一个高阶矩）。</p>
+<p>文中用的实验样例是图片分类，因此样本的特征就是图片。作者还在式$(2)$的基础上考虑了数据增强（Data augmentation）以更好地适应训练图片数据的实际情况，因此式$(2)$又可变为：</p>
+<p>$$<br>\min _{\omega\sim\Omega} \text{E} _{\theta\sim P _{\theta}}  ||\frac{1}{|\mathcal{T}|}\sum\limits _{i&#x3D;1} ^{|\mathcal{T}|}\psi _{\theta}(\mathcal{A}(x_i,\omega))-\frac{1}{|\mathcal{S}|}\sum\limits _{j&#x3D;1} ^{|\mathcal{S}|}\psi _{\theta}(\mathcal{A}(\mathcal{s}_j,\omega))|| ^2\tag{3}<br>$$</p>
+<p>其中，$\Omega$是数据增强参数空间，$\mathcal{A}(x,\omega)$则是相应的增强操作，其对$x$和$\mathcal{s}$是一样的。</p>
+<h2 id="重要代码"><a href="#重要代码" class="headerlink" title="重要代码"></a>重要代码</h2><p>以下只是对文中代码的简单实现（并不能运行），具体代码详见文章提供的开源部分<a target="_blank" rel="noopener" href="https://github.com/VICO-UoE/DatasetCondensation">Dataset Condensation with Distribution Matching</a>。</p>
+<p><img src="/2023/06/13/P002/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Pseudocode in paper</center> <br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参数定义</span></span><br><span class="line">num_exp = <span class="number">5</span>  <span class="comment"># 重复实验次数</span></span><br><span class="line">num_classes = <span class="number">10</span>  <span class="comment"># 实验为图片分类，使用数据集MNIST，共10个类</span></span><br><span class="line">ipc = <span class="number">10</span>  <span class="comment"># 为每个类训练十张合成图片</span></span><br><span class="line">channel = <span class="number">1</span>  <span class="comment"># 对黑白图片，输入通道为1</span></span><br><span class="line">im_size = [<span class="number">28</span>, <span class="number">28</span>]  <span class="comment"># MNIST图片尺寸为28x28</span></span><br><span class="line">device = torch.device(<span class="string">&#x27;cuda&#x27;</span>)  <span class="comment"># 用GPU训练</span></span><br><span class="line">lr_img = <span class="number">1.0</span>  <span class="comment"># 合成图片学习率</span></span><br><span class="line">K = <span class="number">1000</span>  <span class="comment"># 最外层循环，使得合成集S能适应模型参数的不同初始化方式，实际上作用同epoch</span></span><br><span class="line">batch_real = <span class="number">256</span>  <span class="comment"># 原训练集的批量大小</span></span><br><span class="line">batch_train = <span class="number">256</span>  <span class="comment"># 训练模型参数时的批量大小</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重复实验</span></span><br><span class="line"><span class="keyword">for</span> exp <span class="keyword">in</span> <span class="built_in">range</span>(num_exp):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;对原训练集和合成集的初始化&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># 一些获取训练集T的操作，最终得到的特征和标签依次为（MNIST）:</span></span><br><span class="line">    <span class="comment"># images_all: Tensor，shape (6000, 1, 28, 28)，其中6000为样本数，1为输入通道数（因为是黑白图片），28x28是图片像素</span></span><br><span class="line">    <span class="comment"># labels_all: Tensor，shape (6000)，6000为样本数，类别为10，包含0~9的手写数字</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 可训练的合成图片，shape (10, 1, 28, 28)</span></span><br><span class="line">    image_syn = torch.randn(size=(num_classes*ipc, channel, im_size[<span class="number">0</span>], im_size[<span class="number">1</span>]), dtype=torch.float32, requires_grad=<span class="literal">True</span>, device=device)</span><br><span class="line">    <span class="comment"># 不可训练的合成图片标签，shape (10)</span></span><br><span class="line">    label_syn = torch.tensor([np.ones(ipc)*i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_classes)], dtype=torch.long, requires_grad=<span class="literal">False</span>, device=device).view(-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;优化算法、损失函数&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># 对合成图片的优化算法为使用动量法的SGD</span></span><br><span class="line">    optimizer_image = torch.optim.SGD([image_syn, ], lr=lr_img, momentum=<span class="number">0.5</span>)</span><br><span class="line">    optimizer_image.zero_grad()  <span class="comment"># 梯度清零</span></span><br><span class="line">    <span class="comment"># 此处先不定义损失函数，因为用的是MMD</span></span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;for k = 0, ... ,K - 1&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(K+<span class="number">1</span>):</span><br><span class="line">        <span class="comment"># 源代码在此处存在在特定结点分析训练效果的代码，此处省略</span></span><br><span class="line">        </span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;sample \theta&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># 获取某个指定的网络同时随机初始化模型参数，原文存在参数，此处省略，仅作为示意</span></span><br><span class="line">        net = get_network().to(device)</span><br><span class="line">        net.train()  <span class="comment"># 使网络进入训练模式</span></span><br><span class="line">        <span class="comment"># PyTorch生成网络的模型参数默认是记录梯度的，但在DM中，网络只是映射函数，因此不需要训练，也就无需梯度</span></span><br><span class="line">        <span class="keyword">for</span> param <span class="keyword">in</span> <span class="built_in">list</span>(net.parameters()):</span><br><span class="line">            param.requires_grad = <span class="literal">False</span></span><br><span class="line">        <span class="comment"># net.embed是作者定义的网络类中的函数，实际上是个简化版的forward，一般是去掉最后一层的全连接层</span></span><br><span class="line">        embed = net.embed</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 将所有类别的梯度差异相加再计算梯度</span></span><br><span class="line">        loss = torch.tensor(<span class="number">0.0</span>).to(device)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 原文还分有BatchNorm和无BatchNorm的情况，此处只考虑无BatchNorm</span></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;sample mini-batch pairs for each class&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="comment"># 对不同的类别单独训练</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(num_classes):</span><br><span class="line">            <span class="comment"># 从原训练集的c类中随机获取batch_real张图片，注意，get_images是原文定义的内联函数，因此可以直接访问images_all，而此时images_all已经被放到GPU中了</span></span><br><span class="line">            img_real = get_images(c, batch_real)</span><br><span class="line">            <span class="comment"># 因为网络只是映射特征，故不需要labels</span></span><br><span class="line">            <span class="comment"># 同样地获取合成集中对应类别的数据</span></span><br><span class="line">            img_syn = image_syn[c*ipc:(c+<span class="number">1</span>)*ipc].reshape(ipc, channel, im_size[<span class="number">0</span>], im_size[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 原文此处有数据增强，此处省略</span></span><br><span class="line"></span><br><span class="line">            <span class="string">&#x27;&#x27;&#x27;数据过网络&#x27;&#x27;&#x27;</span></span><br><span class="line">            <span class="comment"># 原训练集</span></span><br><span class="line">            output_real = embed(img_real).detach()  <span class="comment"># 以防万一，不要让其进入计算图中</span></span><br><span class="line">            <span class="comment"># 合成集</span></span><br><span class="line">            output_syn = embed(img_syn)</span><br><span class="line">            <span class="string">&#x27;&#x27;&#x27;MMD&#x27;&#x27;&#x27;</span></span><br><span class="line">            <span class="comment"># 计算MMD，实际值为矩阵每列平均值（行一般代表样本数）差的平方和</span></span><br><span class="line">            loss += torch.<span class="built_in">sum</span>((torch.mean(output_real, dim=<span class="number">0</span>) - torch.mean(output_syn, dim=<span class="number">0</span>))**<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;更新合成图片&#x27;&#x27;&#x27;</span></span><br><span class="line">        optimizer_img.zero_grad()  <span class="comment"># 合成图片矩阵的梯度清零</span></span><br><span class="line">        loss.backward()  <span class="comment"># 计算对合成图片矩阵的二阶混合偏导</span></span><br><span class="line">        optimizer_img.step()  <span class="comment"># 梯度下降</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>只有学习率一个可调参数。</p>
+</blockquote>
+<h2 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h2><p>后续的内容几乎与<a href="/2023/06/12/P001/">Dataset Condensation</a>一致，只不过用到了更大的数据集。实验结果也表明，相比于DC得到的合成集，DM得到的合成集的分布更加均匀、更加接近原训练集。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/06/13/P002/" data-id="clzik0lcr006jv47k5doe50r1" data-title="Paper002: Dataset Condensation with Distribution Matching" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-P001" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/12/P001/" class="article-date">
+  <time class="dt-published" datetime="2023-06-12T05:21:10.000Z" itemprop="datePublished">2023-06-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/12/P001/">Paper001: Dataset Condensation with Gradient Matching</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+
+<h1 id="数据蒸馏"><a href="#数据蒸馏" class="headerlink" title="数据蒸馏"></a>数据蒸馏</h1><p>当前最先进的深度学习技术几乎都采用的是大数据训练大模型的方式。这样的方式能够得到如GPT-4等具有远超我们想象的性能的大模型，但是其训练的算力和内存开销是一般人难以承担的。</p>
+<p>数据蒸馏（Dataset Distillation）是解决这种问题的一种技术。它以学习的方式，从初始的大训练数据集（the original large training set）中（e.g. MNIST, CIFAR10等经典的数据集）获得一个更小的合成数据集（synthetic set）。这个合成数据集的数据量可能只有原数据集的1%，但是，用该数据集训练得到模型的性能可以达到用原数据集训练得到模型性能的80%~100%，同时也能具有不输于原模型的泛化性能。下图显示了数据蒸馏的目标。需要注意的是，原数据集与合成数据集训练的网络是一模一样的，测试集中的数据也是一模一样的，不同的只是训练集中的数据。</p>
+<p><img src="/2023/06/12/P001/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Dataset Distillation</center><br>
+
+<p>除了所用的训练集不同外，合成集训练得到的模型和原集得到的模型几乎一致（实际的模型参数可能不同）。因此，以后再用同样的数据集训练模型时，完全可以使用更小、训练速度更快的合成数据集，而测试和部署时模型的输入依旧为未经合成处理的数据。</p>
+<p><img src="/2023/06/12/P001/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Process of dataset distillation</center>
+
+<h1 id="数据缩合"><a href="#数据缩合" class="headerlink" title="数据缩合"></a>数据缩合</h1><p>本篇论文发表于ICLR 2021，第一作者是Dr. Bo Zhao。论文中用到的数据蒸馏方法称“数据缩合”（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.05929.pdf">Dataset Condensation</a>）。其最基本的设想是：合成集模型要想获得可与原集模型相媲美的性能和泛化能力，只要两个集合训练出的模型具有相似的模型参数就好了，即：对于原数据集$\mathcal{T}&#x3D;\left\{(x_i,y_i)\right\}| _{i&#x3D;1} ^\mathcal{|T|}$，其中$x\in\mathbf{R}^d$，是单一样本的特征，$y\in\left\{0,1,...,C-1\right\}$，是单一样本的标签，$C$是类别个数；对于合成数据集$\mathcal{S}&#x3D;\left\{(s_i,y_i)\right\}| _{i&#x3D;1} ^\mathcal{|S|}$，其中$s\in\mathbf{R}^d$，是单一合成样本的特征，$y\in\left\{0,1,...,C-1\right\}$，是单一合成样本的标签，其类别和数量与原标签一致，它们分别独立训练相同网络的最优化模型参数分别为：</p>
+<p>$$<br>\begin{align*}<br>    \theta ^{\mathcal{T}}&amp;&#x3D;\arg\min _{\theta}\mathcal{L ^T}(\theta)\tag{1}\\<br>    \theta ^{\mathcal{S}}&amp;&#x3D;\arg\min _{\theta}\mathcal{L ^S}(\theta)\tag{2}<br>\end{align*}<br>$$</p>
+<p>其中，$\mathcal{L}$是代价函数（Cost Function），两个训练集采用相同的代价函数，而$\theta ^{\mathcal{T}}$和$\theta ^{\mathcal{S}}$则分别是网络达到最优状态时的模型参数，两者相似，即它们之间的距离要尽可能地小：</p>
+<p>$$<br>\min _\mathcal{S}D(\theta ^{\mathcal{T}},\theta ^{\mathcal{S}})\quad \text{subject to} \quad \theta ^{\mathcal{S}}(\mathcal{S})&#x3D;\arg\min _{\theta}\mathcal{L ^S}(\theta)\tag{3}<br>$$</p>
+<p>其中$\theta ^{\mathcal{S}}$是$\mathcal{S}$的函数是因为我们期望找到这么一个合成集$\mathcal{S}$，使得由它训练得到的$\theta ^{\mathcal{S}}$能够满足$(3)$。训练开始时，我们一般会把$\theta ^{\mathcal{T}}$和$\theta ^{\mathcal{S}}$初始化为相同的值$\theta_0$，其中$\theta_0\sim P _{\theta_0}$。但是不同的$\theta_0$可能会得到不同的$\theta ^{\mathcal{T}}$，因此，更进一步地，我们希望不同$\theta_0$下距离的期望是最小的，于是$(3)$转变为：</p>
+<p>$$<br>\min _\mathcal{S}\text{E} _{\theta_0\sim P _{\theta_0}} [D(\theta ^{\mathcal{T}} ({\theta_0}),\theta ^{\mathcal{S}} ({\theta_0}))]\quad \text{subject to} \quad \theta ^{\mathcal{S}}(\mathcal{S})&#x3D;\arg\min _{\theta}\mathcal{L ^S}(\theta ({\theta_0})) \tag{4}<br>$$</p>
+<p>一般情况下，给定$\theta_0$，$\theta ^{\mathcal{T}}$可以通过训练网络得到。此后，$\theta ^{\mathcal{T}}$便可用于训练$\mathcal{S}$，这包含两层的循环：</p>
+<ol>
+<li>任意初始化一个$\mathcal{S}$集；</li>
+<li>内层循环：根据给定的$\theta_0$和当前的$\mathcal{S}$，训练与$\theta ^{\mathcal{T}}$相同的网络，得到当前的$\theta ^{\mathcal{S}}$，此过程对应$(4)$的后一项；</li>
+<li>外层循环：初始化内层循环的$\theta_0$，内层循环结束后，计算$\theta ^{\mathcal{T}}$和$\theta ^{\mathcal{S}}$之间的距离，得到梯度（$\mathcal{S}$为自变量），更新$\mathcal{S}$，此过程对应$(4)$的前一项。</li>
+</ol>
+<p><img src="/2023/06/12/P001/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Process of dataset condensation</center> <br>
+
+<p>不难看出，每次内层循环都相当于重新训练了一个网络，这是很浪费算力的。然而在实际操作的过程中，我们并没有必要每次都训练出当前$\mathcal{S}$下最优的$\theta ^{\mathcal{S}}$，毕竟这只是个近似值。因此，实际上，我们采用用特定的优化算法优化了几步得到的$\theta ^{\mathcal{S}}$作为近似值即可，即：</p>
+<p>$$<br>\theta ^{\mathcal{S}}(\mathcal{S})&#x3D;\text{opt-alg} _{\theta}(\mathcal{L ^S}(\theta),\varsigma) \tag{5}<br>$$</p>
+<p>其中$\varsigma$是优化（梯度下降）的次数，而$\text{opt-alg}$是任意的优化算法（e.g. adam, sgd, etc.），$\theta$是$\theta_0$的函数，此处为方便不写出，后面也是。</p>
+<blockquote>
+<p>合成的是特征$\mathcal{s}$，不对labels进行合成操作。</p>
+</blockquote>
+<h2 id="梯度匹配"><a href="#梯度匹配" class="headerlink" title="梯度匹配"></a>梯度匹配</h2><p>上面的数据缩合方法又称<em>参数匹配法</em>（Parameter Matching），即以让$\theta ^{\mathcal{S}}$逐渐逼近$\theta ^{\mathcal{T}}$的方式来训练得到$\mathcal{S}$。该方法有两个弊端：</p>
+<ol>
+<li>$\theta ^{\mathcal{T}}$与$\theta ^{\mathcal{S}}$之间可能相差很大且一个网络的模型参数空间很大，优化路径中可能存在若干局部最小值，因此难以达到最优解；</li>
+<li>限定步数的$\text{opt-alg}$得到的参数过于不精确，但为了计算性能只能这么做。</li>
+</ol>
+<blockquote>
+<p>最原始的数据蒸馏算法用的就是参数匹配法。数据蒸馏和数据缩合实际上是一回事，只不过数据缩合特指这篇文章所用到的蒸馏算法。</p>
+</blockquote>
+<p>这篇论文提出的能解决上述问题的方法称<em>梯度匹配</em>（Gradient Matching），其核心思想在于：<strong>不仅让$\theta ^{\mathcal{T}}$和$\theta ^{\mathcal{S}}$最终的值相近，且遵循的优化路径也相近</strong>。于是式$(4)$就变成：</p>
+<p>$$<br>\begin{align*}<br>    \min _\mathcal{S}\text{E} _{\theta_0\sim P _{\theta_0}} [\sum\limits _{t&#x3D;0} ^{T-1}D&amp;(\theta _t ^{\mathcal{T}},\theta _t ^{\mathcal{S}})]\quad \text{subject to}\tag{6}\\<br>    \theta ^{\mathcal{S}} _{t+1}(\mathcal{S})&#x3D;\text{opt-alg} _{\theta}(\mathcal{L ^S}(\theta _t),\varsigma ^{\mathcal{S}}) \quad&amp;\text{and}\quad \theta ^{\mathcal{T}} _{t+1}&#x3D;\text{opt-alg} _{\theta}(\mathcal{L ^T}(\theta _t),\varsigma ^{\mathcal{T}})<br>\end{align*}<br>$$</p>
+<p>其中$\varsigma ^{\mathcal{S}}$和$\varsigma ^{\mathcal{T}}$分别是$\mathcal{S}$和$\mathcal{T}$一次优化的梯度下降次数，$T$是迭代次数。整个式$(6)$表明，$\mathcal{S}$要使得整个迭代过程中的距离和最小，即$\mathcal{S}$要使得$\theta ^{\mathcal{T}}$与$\theta ^{\mathcal{S}}$几乎遵循相同的优化路径。每一次梯度下降，$\theta ^{\mathcal{T}}$与$\theta ^{\mathcal{S}}$的变化如下所示：</p>
+<p>$$<br>\theta ^{\mathcal{S}} _{t+1} \leftarrow \theta ^{\mathcal{S}} _{t}-\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{S}}(\theta _t ^{\mathcal{S}}) \quad\text{and}\quad \theta ^{\mathcal{T}} _{t+1} \leftarrow \theta ^{\mathcal{T}} _{t}-\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{T}}(\theta _t ^{\mathcal{T}})\tag{7}<br>$$</p>
+<p>其中$\eta_\theta$是学习率而其后续项为梯度。</p>
+<p><img src="/2023/06/12/P001/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Dataset condensation with gradient matching</center> <br>
+
+<p>由于$\theta ^{\mathcal{T}}$与$\theta ^{\mathcal{S}}$均初始化为$\theta_0$，所以在计算距离$D(\theta _t ^{\mathcal{T}},\theta _t ^{\mathcal{S}})$时：</p>
+<p>$$<br>\theta ^{\mathcal{S}} _{0}-\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{S}}(\theta _0 ^{\mathcal{S}}) -(\theta ^{\mathcal{T}} _{0}-\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{T}}(\theta _0 ^{\mathcal{T}}))&#x3D;\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{T}}(\theta _0 ^{\mathcal{T}})-\eta_\theta\nabla_\theta \mathcal{L} ^{\mathcal{S}}(\theta _0 ^{\mathcal{S}})\tag{8}<br>$$</p>
+<p>因此，实际上我们只需要计算梯度的距离，并让其尽可能地小即可，于是式$(6)$又可转变为：</p>
+<p>$$<br>\min _\mathcal{S}\text{E} _{\theta_0\sim P _{\theta_0}} [\sum\limits _{t&#x3D;0} ^{T-1}D(\nabla_\theta \mathcal{L} ^{\mathcal{S}}(\theta _t ^{\mathcal{S}}),\nabla_\theta \mathcal{L} ^{\mathcal{T}}(\theta _t ^{\mathcal{T}}))] \tag{9}<br>$$</p>
+<p>即，只要梯度下降的方向相近即可。</p>
+<blockquote>
+<p>实际上，$\varsigma ^{\mathcal{S}}$和$\varsigma ^{\mathcal{T}}$由优化算法决定，不同的优化算法，在处理完所有训练数据后，梯度下降的次数不同。$\theta _t ^{\mathcal{T}}$和$\theta _t ^{\mathcal{S}}$实际上值相同，因为实际训练时分两个阶段：训练并更新$\mathcal{S}$和训练并更新$\theta_t$，而$\mathcal{S}$和$\mathcal{T}$经过的都是相同的网络，所以$\theta_t$也是一样的。$\theta_t$的梯度下降使用的数据是$\mathcal{S}$，这也在一定程度上造成了该方法的误差。</p>
+</blockquote>
+<p>由于梯度是向量，而对于多参数的梯度下降，重要的是下降的方向，因此距离$D$采用两个向量的余弦距离，而不是欧式距离：</p>
+<p>$$<br>\begin{align*}<br>    D(\mathbf{A},\mathbf{B})<br>    &amp;&#x3D;1-cos&lt;\mathbf{A},\mathbf{B}&gt;\\\<br>    &amp;&#x3D;1-\frac{\mathbf{A}\cdot\mathbf{B}}{||\mathbf{A}||\space||\mathbf{B}||}\tag{10}<br>\end{align*}<br>$$</p>
+<h2 id="重要代码"><a href="#重要代码" class="headerlink" title="重要代码"></a>重要代码</h2><p>以下只是对文中代码的简单实现（并不能运行），具体代码详见文章提供的开源部分<a target="_blank" rel="noopener" href="https://github.com/VICO-UoE/DatasetCondensation">Dataset Condensation</a>。</p>
+<p><img src="/2023/06/12/P001/5.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Pseudocode in paper</center> <br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参数定义</span></span><br><span class="line">num_exp = <span class="number">5</span>  <span class="comment"># 重复实验次数</span></span><br><span class="line">num_classes = <span class="number">10</span>  <span class="comment"># 实验为图片分类，使用数据集MNIST，共10个类</span></span><br><span class="line">ipc = <span class="number">1</span>  <span class="comment"># 为每个类只训练一张合成图片</span></span><br><span class="line">channel = <span class="number">1</span>  <span class="comment"># 对黑白图片，输入通道为1</span></span><br><span class="line">im_size = [<span class="number">28</span>, <span class="number">28</span>]  <span class="comment"># MNIST图片尺寸为28x28</span></span><br><span class="line">device = torch.device(<span class="string">&#x27;cuda&#x27;</span>)  <span class="comment"># 用GPU训练</span></span><br><span class="line">lr_img = <span class="number">0.1</span>  <span class="comment"># 合成图片学习率</span></span><br><span class="line">lr_net = <span class="number">0.01</span>  <span class="comment"># 模型参数学习率</span></span><br><span class="line">K = <span class="number">1000</span>  <span class="comment"># 最外层循环，使得合成集S能适应模型参数的不同初始化方式</span></span><br><span class="line">T = <span class="number">1</span>  <span class="comment"># 里一层循环，对不同ipc有不同的值，相当于训练合成图片时的epoch，因为合成图片在一次循环中只对一个类更新一次</span></span><br><span class="line">batch_real = <span class="number">256</span>  <span class="comment"># 原训练集的批量大小</span></span><br><span class="line">batch_train = <span class="number">256</span>  <span class="comment"># 训练模型参数时的批量大小</span></span><br><span class="line">inner_loop = <span class="number">1</span>  <span class="comment"># 训练模型参数时的迭代次数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重复实验</span></span><br><span class="line"><span class="keyword">for</span> exp <span class="keyword">in</span> <span class="built_in">range</span>(num_exp):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;对原训练集和合成集的初始化&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># 一些获取训练集T的操作，最终得到的特征和标签依次为（MNIST）:</span></span><br><span class="line">    <span class="comment"># images_all: Tensor，shape (6000, 1, 28, 28)，其中6000为样本数，1为输入通道数（因为是黑白图片），28x28是图片像素</span></span><br><span class="line">    <span class="comment"># labels_all: Tensor，shape (6000)，6000为样本数，类别为10，包含0~9的手写数字</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 可训练的合成图片，shape (10, 1, 28, 28)</span></span><br><span class="line">    image_syn = torch.randn(size=(num_classes*ipc, channel, im_size[<span class="number">0</span>], im_size[<span class="number">1</span>]), dtype=torch.float32, requires_grad=<span class="literal">True</span>, device=device)</span><br><span class="line">    <span class="comment"># 不可训练的合成图片标签，shape (10)</span></span><br><span class="line">    label_syn = torch.tensor([np.ones(ipc)*i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_classes)], dtype=torch.long, requires_grad=<span class="literal">False</span>, device=device).view(-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;优化算法、损失函数&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># 对合成图片的优化算法为使用动量法的SGD</span></span><br><span class="line">    optimizer_image = torch.optim.SGD([image_syn, ], lr=lr_img, momentum=<span class="number">0.5</span>)</span><br><span class="line">    optimizer_image.zero_grad()  <span class="comment"># 梯度清零</span></span><br><span class="line">    <span class="comment"># 损失函数，因为梯度是原网络训练时模型参数产生的梯度，而本实验是个图片分类问题，因此使用的仍是softmax的损失函数</span></span><br><span class="line">    criterion = torch.nn.CrossEntropyLoss().to(device)</span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;for k = 0, ... ,K - 1&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(K+<span class="number">1</span>):</span><br><span class="line">        <span class="comment"># 源代码在此处存在在特定结点分析训练效果的代码，此处省略</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 获取某个指定的网络同时随机初始化模型参数，原文存在参数，此处省略，仅作为示意</span></span><br><span class="line">        net = get_network().to(device)</span><br><span class="line">        net.train()  <span class="comment"># 使网络进入训练模式</span></span><br><span class="line">        net_parameters = <span class="built_in">list</span>(net.parameters())</span><br><span class="line">        <span class="comment"># 优化模型参数的优化函数，采用简单的SGD</span></span><br><span class="line">        optimizer_net = torch.optim.SGD(net.parameters(), lr=lr_net)</span><br><span class="line">        optimizer_net.zero_grad()</span><br><span class="line"></span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;for t = 0, ... ,T - 1&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(T):</span><br><span class="line">            <span class="comment"># 此处还有对BatchNorm做的优化，也省略</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 将所有类别的梯度差异相加再计算二阶混合偏导</span></span><br><span class="line">            loss = torch.tensor(<span class="number">0.0</span>).to(device)</span><br><span class="line"></span><br><span class="line">            <span class="string">&#x27;&#x27;&#x27;for c = 0, ... ,C - 1，训练合成图片&#x27;&#x27;&#x27;</span></span><br><span class="line">            <span class="comment"># 对不同的类别单独训练</span></span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(num_classes):</span><br><span class="line">                <span class="comment"># 从原训练集的c类中随机获取batch_real张图片，注意，get_images是原文定义的内联函数，因此可以直接访问images_all，而此时images_all已经被放到GPU中了</span></span><br><span class="line">                img_real = get_images(c, batch_real)</span><br><span class="line">                <span class="comment"># lab_real是新数据，要先放入GPU</span></span><br><span class="line">                lab_real = torch.ones((img_real.shape[<span class="number">0</span>]), device=device, dtype=torch.long) * c</span><br><span class="line">                <span class="comment"># 同样地获取合成集中对应类别的数据</span></span><br><span class="line">                img_syn = image_syn[c*ipc:(c+<span class="number">1</span>)*ipc].reshape(ipc, channel, im_size[<span class="number">0</span>], im_size[<span class="number">1</span>])</span><br><span class="line">                lab_syn = torch.ones((ipc), device=device, dtype=torch.long) * c</span><br><span class="line"></span><br><span class="line">                <span class="string">&#x27;&#x27;&#x27;数据过网络&#x27;&#x27;&#x27;</span></span><br><span class="line">                <span class="comment"># 原训练集</span></span><br><span class="line">                output_real = net(img_real)</span><br><span class="line">                loss_real = criterion(output_real, lab_real)</span><br><span class="line">                gw_real = torch.autograd.grad(loss_real, net_parameters)  <span class="comment"># 获得原训练集的梯度</span></span><br><span class="line">                gw_real = <span class="built_in">list</span>((_.detach().clone() <span class="keyword">for</span> _ <span class="keyword">in</span> gw_real))  <span class="comment"># 逐层处理且将梯度从计算图中分离</span></span><br><span class="line"></span><br><span class="line">                output_syn = net(img_syn)</span><br><span class="line">                loss_syn = criterion(output_syn, lab_syn)</span><br><span class="line">                gw_syn = torch.autograd.grad(loss_syn, net_parameters, create_graph=<span class="literal">True</span>)  <span class="comment"># 获得合成集的梯度，不过因为要计算二阶混合偏导，因此要保留计算图</span></span><br><span class="line"></span><br><span class="line">                <span class="comment"># 余弦距离</span></span><br><span class="line">                <span class="keyword">def</span> <span class="title function_">distance_wb</span>(<span class="params">gwr, gws</span>):</span><br><span class="line">                    shape = gwr.shape</span><br><span class="line">                    <span class="keyword">if</span> <span class="built_in">len</span>(shape) == <span class="number">4</span>:  <span class="comment"># conv_layer: out*in*h*w</span></span><br><span class="line">                        gwr =gwr.reshape(shape[<span class="number">0</span>], shape[<span class="number">1</span>]*shape[<span class="number">2</span>]*shape[<span class="number">3</span>])</span><br><span class="line">                        gws =gws.reshape(shape[<span class="number">0</span>], shape[<span class="number">1</span>]*shape[<span class="number">2</span>]*shape[<span class="number">3</span>])</span><br><span class="line">                    <span class="keyword">elif</span> <span class="built_in">len</span>(shape) == <span class="number">3</span>:  <span class="comment"># layer_norm: C*h*w</span></span><br><span class="line">                        gwr =gwr.reshape(shape[<span class="number">0</span>], shape[<span class="number">1</span>]*shape[<span class="number">2</span>])</span><br><span class="line">                        gws =gws.reshape(shape[<span class="number">0</span>], shape[<span class="number">1</span>]*shape[<span class="number">2</span>])</span><br><span class="line">                    <span class="keyword">elif</span> <span class="built_in">len</span>(shape) == <span class="number">2</span>:  <span class="comment"># linear_layer:h*w</span></span><br><span class="line">                        tmp = <span class="string">&quot;do nothing&quot;</span></span><br><span class="line">                    <span class="keyword">else</span>:  <span class="comment"># only bias</span></span><br><span class="line">                        gwr =gwr.reshape(<span class="number">1</span>, shape[<span class="number">0</span>])</span><br><span class="line">                        gws =gws.reshape(<span class="number">1</span>, shape[<span class="number">0</span>])</span><br><span class="line">                    <span class="comment"># torch.norm: 默认求F范数，即矩阵各元素平方和开根号</span></span><br><span class="line">                    <span class="comment"># 此处实际上是先求每层每个神经元的余弦距离最后再将余弦距离相加（改变形状后，gwr和gws的第一维是神经元个数）</span></span><br><span class="line">                    <span class="keyword">return</span> torch.<span class="built_in">sum</span>(<span class="number">1</span> - torch.<span class="built_in">sum</span>(gwr*gws, dim=-<span class="number">1</span>) / (torch.norm(gwr, dim=-<span class="number">1</span>) * torch.norm(gws, dim=-<span class="number">1</span>) + <span class="number">0.000001</span>))</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">def</span> <span class="title function_">match_loss</span>(<span class="params">gw_syn, gw_real</span>):</span><br><span class="line">                    dis = torch.tensor(<span class="number">0.0</span>).to(device)</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">for</span> ig <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(gw_real)):</span><br><span class="line">                        gwr = gw_real[ig]</span><br><span class="line">                        gws = gw_syn[ig]</span><br><span class="line">                        dis += distance_wb(gwr, gws)</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">return</span> dis</span><br><span class="line"></span><br><span class="line">                loss += match_loss(gw_syn, gw_real)</span><br><span class="line">            </span><br><span class="line">            <span class="string">&#x27;&#x27;&#x27;更新合成图片&#x27;&#x27;&#x27;</span></span><br><span class="line">            optimizer_img.zero_grad()  <span class="comment"># 合成图片矩阵的梯度清零</span></span><br><span class="line">            loss.backward()  <span class="comment"># 计算对合成图片矩阵的二阶混合偏导</span></span><br><span class="line">            optimizer_img.step()  <span class="comment"># 梯度下降</span></span><br><span class="line"></span><br><span class="line">            <span class="string">&#x27;&#x27;&#x27;更新模型参数&#x27;&#x27;&#x27;</span></span><br><span class="line">            <span class="comment"># 深拷贝，完全复制合成图片和label，防止在训练模型参数时合成图片生成计算图</span></span><br><span class="line">            image_syn_train, label_syn_train = copy.deepcopy(image_syn.detach()), copy.deepcopy(label_syn.detach())</span><br><span class="line">            <span class="comment"># 小批量训练的迭代器</span></span><br><span class="line">            dst_syn_train = TensorDataset(image_syn_train, label_syn_train)</span><br><span class="line">            trainloader = torch.utils.data.DataLoader(dst_syn_train, batch_size=batch_train, shuffle=<span class="literal">True</span>, num_workers=<span class="number">0</span>)</span><br><span class="line">            <span class="comment"># 我认为这一步正是DC的缺陷所在，合成集数据本身就已经不准了，用它更新的模型参数大概率偏离原来的方向</span></span><br><span class="line">            <span class="keyword">for</span> il <span class="keyword">in</span> <span class="built_in">range</span>(inner_loop):</span><br><span class="line">                epoch(trainloader)  <span class="comment"># 一次迭代：梯度下降、模型参数更新</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h2><p>实验主要分为三个部分：</p>
+<ol>
+<li>与现有核心集选择法和数据蒸馏法的性能比较；</li>
+<li>缩合数据的泛化性分析；</li>
+<li>缩合数据的数量与性能分析。</li>
+</ol>
+<p>采用的数据集分别为MNIST，SVHN，FashionMNIST和CIFAR10，网络结构有六种：MLP，ConvNet，LeNet，AlexNet，VGG-11和ResNet-18。每种结构5次重复实验，在训练$\mathcal{S}$的过程中，当k达到一定次数时，会用$S$去训练20个随机初始化的网络以分析训练效果。</p>
+<h3 id="与现有方法性能比较"><a href="#与现有方法性能比较" class="headerlink" title="与现有方法性能比较"></a>与现有方法性能比较</h3><p>文中统一采用ConvNet作为所有方法的训练网络，与DC相比较的核心集选择法有Random，Herding，K-Center和Forgetting，以往的数据蒸馏方法则是DD（Dataset Distillation）。</p>
+<h3 id="泛化性分析"><a href="#泛化性分析" class="headerlink" title="泛化性分析"></a>泛化性分析</h3><p>这部分实验分析的是某一网络训练出来的合成数据$\mathcal{S}$用于训练其他网络能否达到较好的性能。作者对6种网络进行了一一组合。</p>
+<h3 id="缩合数据数量"><a href="#缩合数据数量" class="headerlink" title="缩合数据数量"></a>缩合数据数量</h3><p>这部分分析的是每个类别生成几张缩合图片合适，作者分析了1，10和50三种情况，结果当然是越多效果越好。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>作者对数据缩合可能存在的两大应用场景进行了分析。</p>
+<h3 id="持续学习"><a href="#持续学习" class="headerlink" title="持续学习"></a>持续学习</h3><p>持续学习（Continual Learning）是一种将旧任务学习的知识应用到新的任务上、同时在旧任务上的表现不会出现太大的损失的机器学习方法。本质上是基于旧有的模型训练面向新任务的模型，使得最终的模型在新旧任务上都能表现得很好。相比于普通的数据，数据缩合后的合成数据有效信息更多，很适合持续学习。</p>
+<h3 id="神经网络架构检索"><a href="#神经网络架构检索" class="headerlink" title="神经网络架构检索"></a>神经网络架构检索</h3><p>选择合适的神经网络架构需要训练大量的模型，而数据量更小的合成数据显然能大大地降低训练的算力和存储开销。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/06/12/P001/" data-id="clzik0lcq006gv47kfxxe5y3b" data-title="Paper001: Dataset Condensation with Gradient Matching" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Transformer" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/07/Transformer/" class="article-date">
+  <time class="dt-published" datetime="2023-06-07T12:34:57.000Z" itemprop="datePublished">2023-06-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/07/Transformer/">Transformer: Self-Attention and Parallelization</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762.pdf">Transformer</a> deals with sequence based on the encoder-decoder architecture. Compared to seq2seq which uses attention mechanisms as well as RNNs, transformer is purely based on the attention mechanism. Both of its encoder and decoder consist of $n$ transformer blocks.</p>
+<p><img src="/2023/06/07/Transformer/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Architecture of transformer</center><br>
+
+<p>The outpur of encoder is $\mathbf{y}_1,...,\mathbf{y}_n$, where $\mathbf{y}_i$ is the encoding of the $i$-th token. Except for the last encoder block, the output of other encoder blocks is the input for their next encoder block. The output of the last encoder block is the keys and values for the multi-head attention layer of all the decoder blocks whose queries are the output of masked multi-head attention layer. As a result, the shape of the output of the encoder and decoder should be the same.</p>
+<p><img src="/2023/06/07/Transformer/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Information transfer between encoder and decoder</center><br>
+
+<blockquote>
+<p>The code of transformer in PyTorch: <a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/chapter_attention-mechanisms/transformer.html">Dive into Deep Learning</a>.</p>
+</blockquote>
+<h2 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h2><ul>
+<li>BatchNorm: The mean of each feature dimension becomes 0, and the variance becomes 1 (two-dimensional: column).</li>
+<li>LayerNorm：The mean of all features of each sample becomes 0, and the variance becomes 1 (two-dimensional: row).</li>
+</ul>
+<p>But for sequence data, it is generally three-dimensional, that is <code>(batch_size, sequence_length, features)</code>. For different sequences, the effective length of the sequence may be different. At this time, the jitter of the mean and variance of different sequences calculated by BatchNorm will be larger, which will affect the global mean and variance, and when the length of the predicted sequence is much longer or shorter than the training sequence, the global mean and variance may not be very useful. LayerNorm normalizes all features of each sample, that is, each sample only considers itself, so it is relatively stable.</p>
+<p><img src="/2023/06/07/Transformer/2_1.png" alt="2_1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. BatchNorm and LayerNorm</center>
+
+<h1 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h1><p>The encoder is made up of one embedding layer and $n$ encoder blocks. Each encoder block consists of two sublayers: multi-head self-attention and positionwise feed-forward networks. The shape of output of each layer is the same so hyperparameters that can be adjusted are the number of encoder block and the shape of output.</p>
+<p>Inputs of encoder are keys, values and queries, which are all the source sequence. The shape of feature of the input after embedding layer is the same as the output. The input of the first encoder block is the original sequence after encoding while the others are outputs of the previous encoder block.</p>
+<blockquote>
+<p>All layers (except for the embedding layer) of encoder and decoder don&#39;t change the shape of samples.</p>
+</blockquote>
+<h2 id="Embedding-amp-Positional-Encoding"><a href="#Embedding-amp-Positional-Encoding" class="headerlink" title="Embedding &amp; Positional Encoding"></a>Embedding &amp; Positional Encoding</h2><p>The embedding layer maps the feature dimension of each key, value and query to the same dimension <code>num_hiddens</code>, which is the output dimension of the encoder, and then adds location information to all keys, values and queries.</p>
+<blockquote>
+<p>Since keys, values and queries are the same thing at this point, only one variable needs to be processed. <code>key_size</code>, <code>value_size</code>, and <code>query_size</code> which are the shape of features of keys, values and queries, are all the same thing.</p>
+<p>Since the location information is between $-1$ and $1$, before adding the location information, it is necessary to multiply the samples processed by the embedding layer by the square root of <code>num_hiddens</code> in order to ensure that the value of the feature of each token is not much smaller than the location information.</p>
+</blockquote>
+<h2 id="Encoder-Block"><a href="#Encoder-Block" class="headerlink" title="Encoder Block"></a>Encoder Block</h2><p>The encoder block consists of two modules: a multi-head self-attention layer and a position-wise FFN layer. After each module, a residual connection and layer normalization are performed to train a deeper network (residual connection first and then layer normalization).</p>
+<blockquote>
+<p>This also reflects that in transformer, the feature dimensions of the input and output of each module are always constant. This is very different from the traditional CNNs.</p>
+</blockquote>
+<h3 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h3><p>Transformer uses dot-product attention. Therefore, in order to allow the multi-head attention layer to have learned parameters, before each head of keys, values, and queries, they must first be newly mapped with a fully connected layer.</p>
+<p><img src="/2023/06/07/Transformer/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Multi-head attention and fully connected layer</center><br>
+
+<p>The attention is actually a weighted sum of different values, so the dot-product attention does not change the shape of input. However, the fully connected layer may change the shape of input. The feature dimension of the sample after the multi-head attention layer should remain unchanged, so the number of heads is actually related to the output dimension of the feature:</p>
+<p>$$<br>\text{heads}\times\text{num_hiddens_FC}&#x3D;\text{num_hiddens}<br>$$</p>
+<p>Therefore, the fully connected layers before different heads can be merged into a large fully connected layer with model parameters <code>W_q</code>, <code>W_k</code> and <code>W_v</code>, which process queries, keys, and values respectively. The output size of the layer is $\text{num_hiddens}$. In this way, the parallelism will be better.</p>
+<p><img src="/2023/06/07/Transformer/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Large fully connected layer</center><br>
+
+<blockquote>
+<p>The shape of the output obtained from the above operations is <code>(batch_size, num_queries or key-value_pairs, num_hiddens)</code>. After the deformation operation, the shape can be changed to <code>(batch_size, num_queries or key-value_pairs, heads, num_hiddens/heads)</code>. In this way, the different heads are separated again, and the output of each head can be calculated independently. After the attention is gathered and the output of each head is concatenated, a linear transformation is performed again. This transformation still does not change the feature dimension, but increases the number of learned parameters (<code>W_o</code>).</p>
+</blockquote>
+<h3 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h3><p>This module is actually an MLP with only one hidden layer, which still does not change the feature dimension of the input.</p>
+<h1 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h1><p>The decoder is made up of one embedding layer and $n$ decoder blocks. The input of decoder is targeted sequence. The input of the first decoder block is the targeted sequence after embedding layer while the others are outputs of the previous decoder block.</p>
+<p>When making predictions, the work of the encoder has not changed, and the original sequence can be processed directly. The decoder, on the other hand, has to work sequentially because the predictions have to be obtained one by one. That is to say, when predicting the (t+1)-th output, the keys and values of input of decoder are 0~t predicted values, while the query is the t-th predicted value.</p>
+<h2 id="Embedding-amp-Positional-Encoding-1"><a href="#Embedding-amp-Positional-Encoding-1" class="headerlink" title="Embedding &amp; Positional Encoding"></a>Embedding &amp; Positional Encoding</h2><p>Functions and operations are in the same way as the encoder, except that the input is the targeted sequence.</p>
+<h2 id="Decoder-Block"><a href="#Decoder-Block" class="headerlink" title="Decoder Block"></a>Decoder Block</h2><p>The decoder block consists of three modules: masked multi-head attention, multi-head self-attention and position-wise FFN. Similar to the encoder, there are also residual connections and layer normalization after each module.</p>
+<h3 id="Masked-Multi-Head-Attention"><a href="#Masked-Multi-Head-Attention" class="headerlink" title="Masked Multi-Head Attention"></a>Masked Multi-Head Attention</h3><p>This module extracts the feature information of the targeted sequence. Its mode is almost the same as the multi-head self-attention of the encoder. The difference is that it adds a mask operation. The purpose of the mask operation is to make the transformer have the same autoregressive behavior mode during training and prediction. At predicting time, the decoder cannot see all targeted sequences at once, while at training time it can. Therefore, during training, a mask is used to cover the tokens after the current time step, making it invisible.</p>
+<p>The mechanism is to make the attention score of the token after the current time step be negative infinity before $\text{softmax}$, so that the attention weights assigned to them are infinitely close to $0$. Then, we can achieve the purpose of shielding future tokens:</p>
+<p>$$<br>\text{softmax}(\text{masked}(\mathbf{QK}^\text{T}))\mathbf{V}<br>$$</p>
+<h3 id="Multi-Head-Attention-1"><a href="#Multi-Head-Attention-1" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h3><p>The same to the encoder, but the keys and values come from the final output of the encoder.</p>
+<h3 id="Position-wise-Feed-Forward-Networks-1"><a href="#Position-wise-Feed-Forward-Networks-1" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h3><p>The same to the encoder.</p>
+<h2 id="Dense-Layer"><a href="#Dense-Layer" class="headerlink" title="Dense Layer"></a>Dense Layer</h2><p>It is a fully connected layer that implements softmax regression.</p>
+<blockquote>
+<p>By default, PyTorch treats the last dimension as the feature dimension.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/06/07/Transformer/" data-id="clzik0ld2009fv47kclbpcfsb" data-title="Transformer: Self-Attention and Parallelization" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

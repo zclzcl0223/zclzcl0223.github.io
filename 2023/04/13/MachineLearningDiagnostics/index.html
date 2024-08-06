@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Machine Learning Diagnostics | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Machine learning diagnostic is a test that you run to gain insight into what is&#x2F;isn&#39;t working with a learning algorithm and to gain guidance into improving its performance.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning Diagnostics">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Machine learning diagnostic is a test that you run to gain insight into what is&#x2F;isn&#39;t working with a learning algorithm and to gain guidance into improving its performance.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/7.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/8.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/9.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/10.png">
+<meta property="article:published_time" content="2023-04-13T13:25:19.000Z">
+<meta property="article:modified_time" content="2023-08-09T11:48:36.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-MachineLearningDiagnostics" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/13/MachineLearningDiagnostics/" class="article-date">
+  <time class="dt-published" datetime="2023-04-13T13:25:19.000Z" itemprop="datePublished">2023-04-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Machine Learning Diagnostics
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Evaluating-a-model"><a href="#Evaluating-a-model" class="headerlink" title="Evaluating a model"></a>Evaluating a model</h1><p>To evaluate a model is to measure the accuracy of the model&#39;s predictions. There are many ways to do so.</p>
+<h2 id="Two-sets"><a href="#Two-sets" class="headerlink" title="Two sets"></a>Two sets</h2><p>One useful method is to splite our training set into <strong>training set</strong> and <strong>test set</strong>. Training set is used to train and evaluate the model, but test set is only applied to evaluate the model. To evaluate a trained model, we should calculate both the $J_{test}$ and $J_{train}$, both of which are without regularization term. But the model is regularized.</p>
+<blockquote>
+<p>For classification model, we can also count the number of misclassified examples in training set and test set respectively.</p>
+</blockquote>
+<h1 id="Choosing-a-model"><a href="#Choosing-a-model" class="headerlink" title="Choosing a model"></a>Choosing a model</h1><p>To choose a model or to determine the architecture of a model, using two datasets suffers from the same problems as evaluating models on one dataset.</p>
+<p>When evaluating a model on one dataset, we actually get an optimistic estimate of generalization error. That is, the model only fits the training set well but can not be generalized. The same problem will happen when choosing a model with two datasets. When we use the test set to choose a model, it is likely that the model may just fit this test set well as the structure of the model is also a parameter like $W$ and $B$. In conclusion, we can not use datasets that determine the model to evaluate or choose a model.</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Model choosing</center>
+
+<h2 id="Three-sets"><a href="#Three-sets" class="headerlink" title="Three sets"></a>Three sets</h2><p>The solution is to divide the dataset into three parts: <strong>training set</strong>, <strong>cross validation set</strong> and <strong>test set</strong>.</p>
+<blockquote>
+<p>Cross validation set is also called development set or dev set.</p>
+</blockquote>
+<p>The procedure of choosing a model is similar to evaluating a model:</p>
+<ul>
+<li>Train the model using training set, get $W$ and $B$;</li>
+<li>Choose a model using development set, calculate $J_{cv}$ and get d (degree of polynomial);</li>
+<li>Verify the model using test set, calculate $J_{test}$.</li>
+</ul>
+<style> table th {
+    width: 160px;
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th align="center">type</th>
+<th align="center">training set</th>
+<th align="center">dev set</th>
+<th align="center">test set</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">trained</td>
+<td align="center">yes</td>
+<td align="center">no</td>
+<td align="center">no</td>
+</tr>
+<tr>
+<td align="center">function</td>
+<td align="center">get $W$ and $B$</td>
+<td align="center">determine model structure</td>
+<td align="center">evaluate generalization ability of model</td>
+</tr>
+<tr>
+<td align="center">usage count</td>
+<td align="center">multiple times</td>
+<td align="center">multiple times</td>
+<td align="center">one time</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>A vivid metaphor about these sets is: Training set is students&#39;textbook, dev set is students&#39;homework and test set is the final exam.</p>
+</blockquote>
+<h1 id="Diagnostics"><a href="#Diagnostics" class="headerlink" title="Diagnostics"></a>Diagnostics</h1><h2 id="Bias-and-variance"><a href="#Bias-and-variance" class="headerlink" title="Bias and variance"></a>Bias and variance</h2><p>Instead of plotting the model to judge underfitting or overfitting, a more common method is to calculate and compare $J_{train}$ and $J_{cv}$.</p>
+<ul>
+<li>If $J_{train}$ is high and $J_{train}\approx J_{cv}$, the algorithm(model) may have high bias;</li>
+<li>If $J_{train}$ is low and $J_{train}&lt;&lt;J_{cv}$, the algorithm(model) may have high variance;</li>
+<li>If $J_{train}$ is high and $J_{train}&lt;&lt;J_{cv}$, the algorithm(model) may have high bias and high variance.<blockquote>
+<p>An algorithm having both high bias and high variance fits some training examples well but fits others badly.</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Relationship between D and error</center>
+
+<h3 id="Choosing-a-good-lambda"><a href="#Choosing-a-good-lambda" class="headerlink" title="Choosing a good $\lambda$"></a>Choosing a good $\lambda$</h3><p>We can also use the dev set to choose a better regularization parameter $\lambda$.</p>
+<ul>
+<li>If $\lambda$ is rather small, we value fitting the data. Therefore, $J_{cv}$ may be rather high while $J_{train}$ may be rather low;</li>
+<li>If $\lambda$ is rather big, we value scaling $\vec{w}$. Therefore, $\vec{w}$ is aproximate 0, $J_{cv}$ may be rather high and $J_{train}$ may also be rather high.</li>
+</ul>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Relationship between lambda and error</center>
+
+<h3 id="Quantitative-indicators"><a href="#Quantitative-indicators" class="headerlink" title="Quantitative indicators"></a>Quantitative indicators</h3><p>In order to judge bias or variance quantitatively, a baseline level of performance is required. It can be human level performance, competing algorithms performance or just guess based on experience.</p>
+<ul>
+<li>When gap between baseline and $J_{train}$ is rather high, the model may have high bias;</li>
+<li>When gap between $J_{train}$ and $J_{cv}$ is rather high, the model may have high variance.</li>
+</ul>
+<h3 id="Learning-curve"><a href="#Learning-curve" class="headerlink" title="Learning curve"></a>Learning curve</h3><p>Learning curve is a function curve of training set size and error of training set and dev set. We can use learning curve to judge whether a model has high bias or high variance. A regular learning curve looks like:</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/4.png" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Regular learning curve</center><br>
+
+<p>When a model has high bias, its learning curve looks like:</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/5.png" alt="5"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 5. High bias learning curve</center><br>
+
+<p>It indicates that when a model has high bias, we can not train a good model by using more data.</p>
+<p>When a model has high variance, its learning curve looks like:</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/6.png" alt="6"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 6. High variance learning curve</center><br>
+
+<p>It indicates that when a model has high variance, we can train a better model by using more data because your model is complicated enough. Though learning curve gives us an intuitive visual experience of the performance of our model, it is seldom used as plotting it wastes too much time.</p>
+<h3 id="Fixing-bias-variance"><a href="#Fixing-bias-variance" class="headerlink" title="Fixing bias variance"></a>Fixing bias variance</h3><p>High variance: </p>
+<ul>
+<li>Get more training examples;</li>
+<li>Try smaller sets of features;</li>
+<li>Try increasing $\lambda$.</li>
+</ul>
+<p>High bias:</p>
+<ul>
+<li>Try getting additional features;</li>
+<li>Try adding polynomial features;</li>
+<li>Try decreasing $\lambda$.</li>
+</ul>
+<h3 id="DL-and-bias-variance"><a href="#DL-and-bias-variance" class="headerlink" title="DL and bias variance"></a>DL and bias variance</h3><p>In deep learning, the contradiction between high bias and variance can be easily solved. In general, large neural networks are low bias machines as we can reduce bias by adding more layers or neurons. For variance, we can solve it by adding more data. As long as regularization is chosen appropriately, a large neural network will usually do as well or better than a smaller one.</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/7.png" alt="7"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 7. Training of neural networks</center><br>
+
+<blockquote>
+<p>A bigger network needs powerful computing power to train. Therefore, the development of hardwares, especially GPU, and big data contribute to the thriving of deep learning.</p>
+</blockquote>
+<h2 id="Error-analysis"><a href="#Error-analysis" class="headerlink" title="Error analysis"></a>Error analysis</h2><p>Error analysis is another useful diagnostics method when training a model. In error analysis, we take the examples that the model has wrongly predicted or inferred into account and group them into common themes or common properties. These categories can be overlapping. Sometimes, the error set may be too large for us to deal with. In this case, it is advisable to randomly sample a subset (usually 100 examples).</p>
+<p>In the next step, we can modify the model according to these categories. It is advisable to process the categories that are large enough but just ignore those small categories.</p>
+<h2 id="Skewed-datasets"><a href="#Skewed-datasets" class="headerlink" title="Skewed datasets"></a>Skewed datasets</h2><p>Skewed datasets are datasets that have an uneven subset distribution. That is, the number of one output is much more than the others. In this case, we can&#39;t simply judge the performance of model using $J$ as we may get a good result even if the model just predicts this label all the time. </p>
+<p>The solution is to count <em>precision</em> and <em>recall</em> of the model. In binary regression (for multiclass classfication, we set the real label <code>1</code> and the others <code>0</code>), we can display the true value and predict value in the form of 2*2 matrix: </p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/8.png" alt="8"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 8. Output distribution</center><br>
+
+<p>Then <em>precision</em> is defined as the fraction that are actually 1 among all examples where we predicted $y&#x3D;1$:<br>$${Precision}&#x3D;\frac{TruePos}{TruePos+FalsePos}$$</p>
+<p><em>Recall</em> is defined as the fraction that are correctly predicted among all examples that are actually 1:<br>$${Recall}&#x3D;\frac{TruePos}{TruePos+FalseNeg}$$</p>
+<p>A good model should have both high <em>precision</em> and <em>recall</em>. Once <em>precision</em> or <em>recall</em> is 0, chances are that the model <code>print(&quot;y=0&quot;)</code> all the time.</p>
+<h3 id="F-1-score-Trading-off-precision-and-recall"><a href="#F-1-score-Trading-off-precision-and-recall" class="headerlink" title="$F_1 score$: Trading off precision and recall"></a>$F_1 score$: Trading off precision and recall</h3><p>For logistic regression, threshold is the boundary value used to separate 0 and 1. If raising the threshold, we will get higher <em>precision</em> but lower <em>recall</em>. If decreasing the threshold, we will get higher <em>recall</em> but lower <em>precision</em>. We can&#39;t keep both <em>precision</em> and <em>recall</em> high. What&#39;s more, we can&#39;t solve this problem using dev set as threshold is defined by us.</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/9.png" alt="9"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 9. Precision and recall</center><br>
+
+<p>The method to compare <em>precision</em> and <em>recall</em> is to calculate $F_1 \space score$:<br>$$F_1\space{score}&#x3D;\frac{1}{\frac{1}{2}(\frac{1}{P}+\frac{1}{R})}&#x3D;\frac{2PR}{P+R}$$</p>
+<p>The larger the $F_1 \space score$ is , the better the model is.</p>
+<h3 id="ROC-amp-AUC"><a href="#ROC-amp-AUC" class="headerlink" title="ROC &amp; AUC"></a>ROC &amp; AUC</h3><p>$F_1 \space score$ requires us to choose a threshold to judge the performance of the classifier while <em>ROC</em> and <em>AUC</em> are more intelligent.</p>
+<p>Receiver operating characteristic curve (ROC) is a curve whose $x$ axis is False positive rate (FPR) and $y$ axis is True positive rate (TPR)：</p>
+<p>$$<br>\begin{align*}<br>    TPR&#x3D;Recall&amp;&#x3D;\frac{TruePos}{TruePos+FalseNeg}\\<br>    FPR&#x3D;&amp;\frac{FalsePos}{FalsePos+TrueNeg}<br>\end{align*}<br>$$</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/10.png" alt="10"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 10. ROC</center><br>
+
+<p>Each point on ROC represent a $(FPR, TPR)$ pair under a certain threshold. For example:</p>
+<ul>
+<li>If threshold is 0, all the samples will be predicted as 1. In this case, both FPR and TPR is 1;</li>
+<li>If threshold is 1, all the samples will be predicted as 0. In this case, both FPR and TPR is 0;</li>
+<li>With threshold decreasing, points on ROC moves to the top right (or right&#x2F;or up), or remains stationary;</li>
+<li>When points on ROC are on $y&#x3D;x$, the classifier has no difference with random guesses. The closer the points are to the upper left corner, the better the classifier is;</li>
+<li>Points on ROC should always be above $y&#x3D;x$ as when points on ROC are below $y&#x3D;x$, just letting the classifier make the opposite conclusion will make these points on top of $y&#x3D;x$.</li>
+</ul>
+<p>Area under curve (AUC) is the area below ROC. If we randomly pick a positive sample and a negative sample, AUC represents the probability that the classifier predicts the value of the positive sample is bigger than the value of the negative sample. Taking AUC as an indicator to measure the performance of a classifier helps us dismiss the influence of skewed datasets and threshold. In other words, AUC measures the ability of the classifier to correctly sort samples. That&#39;s why AUC is a more commonly used indicator.</p>
+<p>Since we can&#39;t take all the values of threshold into account, we can only use the approximate method to calculate AUC, that is, computing the rate that the value of the positive sample is bigger than the value of the negative sample among all the postive-negative pairs. For a dataset with $M$ positive sample and $N$ negative samples, the number of positive-negative pairs is $M\times N$:</p>
+<ol>
+<li>Sort the values of all the positive and negative samples from largest to smallest;</li>
+<li>Score them from $N+M$ to $1$;</li>
+<li>Sum the score of positive samples;</li>
+<li>Subtract $M(M+1)&#x2F;2$;</li>
+<li>Divide by $M\times N$:<br> $$AUC&#x3D;\frac{\sum _{i\in\text{positive}}\text{score}_i-M(M+1)&#x2F;2}{MN}\tag{1}$$</li>
+</ol>
+<p>Such a process works as $\text{score} _i$ is the score of the $i$-th biggest positive sample ($i&#x3D;1,...,M$) and</p>
+<p>$$<br>N+M-\text{score}_i-(i-1)<br>$$</p>
+<p>is the number of negative samples whose score is higher than it. Then</p>
+<p>$$<br>\begin{align*}<br>    N-[N+M-\text{score}_i-(i-1)]<br>    &amp;&#x3D;\text{score}_i+(i-1)-M\\<br>    &amp;&#x3D;\text{score}_i-(M+1-i)<br>\end{align*}<br>$$</p>
+<p>is the number of positive-negative pairs that consist of the $i$-th positive sample and negative samples whose values are smaller than the positive sample. As a result, the number of positive-negative pairs that meet our requirement is</p>
+<p>$$<br>\sum\limits _{i&#x3D;1} ^{M}[\text{score}_i-(M+1-i)]&#x3D;\sum _{i\in\text{positive}}\text{score}_i-M(M+1)&#x2F;2<br>$$</p>
+<blockquote>
+<p>In sklearn, function <code>sklearn.metrics.roc_auc_score</code> could calculate the AUC of a classifier.</p>
+<p>From the relationship between AUC and threshold, it can be seen that: if a large threshold is used in actual deployment, a little FP can bring us large TP. As a result, the precision of the classifier will be very high. Since it is not necessary to classify all positive classes, using different threshold in training and deployment is quite reasonable.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/" data-id="clzik0lck004uv47ke8oh3i19" data-title="Machine Learning Diagnostics" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/04/15/MachineLearningDevelopmentProcess/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Machine Learning Development Process
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/12/LateX/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LateX</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

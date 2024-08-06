@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Computational Complexity: Time Complexity 2 | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="本篇是计算复杂性（CS7313）的第一章的第二节，主要研究加速理论、复杂性类等问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computational Complexity: Time Complexity 2">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/09/21/ComputationalComplexityTimecom2/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="本篇是计算复杂性（CS7313）的第一章的第二节，主要研究加速理论、复杂性类等问题。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/21/ComputationalComplexityTimecom2/1.jpg">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/21/ComputationalComplexityTimecom2/2.jpg">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/21/ComputationalComplexityTimecom2/3.jpg">
+<meta property="article:published_time" content="2023-09-21T11:59:36.000Z">
+<meta property="article:modified_time" content="2023-10-04T01:41:40.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="Theoretical Computer Science">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/09/21/ComputationalComplexityTimecom2/1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ComputationalComplexityTimecom2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/21/ComputationalComplexityTimecom2/" class="article-date">
+  <time class="dt-published" datetime="2023-09-21T11:59:36.000Z" itemprop="datePublished">2023-09-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Computational Complexity: Time Complexity 2
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Diagonal-Method：对角线方法"><a href="#Diagonal-Method：对角线方法" class="headerlink" title="Diagonal Method：对角线方法"></a>Diagonal Method：对角线方法</h1><p>通用图灵机$\mathbb{U}(\alpha, x)$能够模拟$\mathbb{M} _\alpha (x)$的计算，因此，我们可以枚举每一个$\alpha$和$x$的编码，并制定如下所示的表：</p>
+<p><img src="/2023/09/21/ComputationalComplexityTimecom2/1.jpg" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. UTM</center><br>
+
+<p>在上表中，每列从上到下枚举TM的编码 ，每行从左到右枚举输入$x$，使用UTM可以计算出每一格内的值。右表是一个假想的结果，其中$\uparrow$表示死循环。而这个表中，对角线上的值是一个特殊值，因为在对角线上，$\alpha&#x3D;x$，即UTM计算的是$\mathbb{M} _\alpha(\alpha)$。利用对角线做反证法，可以证明很多有趣的结论，这就是所谓的对角线方法（Diagonal Method）。</p>
+<blockquote>
+<p>通俗地来说，对角线方法就是用自己来推翻自己。</p>
+</blockquote>
+<p>下面给出了两个应用对角线方法的案例。</p>
+<h2 id="UC：不可计算函数"><a href="#UC：不可计算函数" class="headerlink" title="UC：不可计算函数"></a>UC：不可计算函数</h2><p>定义函数：</p>
+<p>$$<br>\text{UC}(\alpha) &#x3D;<br>\begin{cases}<br>    0,&amp; \text{if}\space \mathbb{M} _{\alpha} (\alpha)&#x3D;1\\<br>    1,&amp; \text{otherwise}<br>\end{cases}<br>$$</p>
+<p>利用对角线方法可以证明上述函数是不可解的，也就是说没有图灵机能够求解该函数：</p>
+<blockquote>
+<p>假设存在图灵机$\mathbb{W}$能够计算UC，那么我们有：<br>$$<br>UC(\alpha) &#x3D; \mathbb{M} _{\llcorner \mathbb{W} \lrcorner}(\alpha)<br>$$<br>若：<br>$$<br>\mathbb{M} _{\llcorner \mathbb{W} \lrcorner}(\llcorner \mathbb{W} \lrcorner)&#x3D;1<br>$$<br>则：<br>$$<br>UC(\llcorner \mathbb{W} \lrcorner)&#x3D;\mathbb{M} _{\llcorner \mathbb{W} \lrcorner}(\llcorner \mathbb{W} \lrcorner)&#x3D;0<br>$$<br>同理，若$\mathbb{M} _{\llcorner \mathbb{W} \lrcorner}(\llcorner \mathbb{W} \lrcorner)&#x3D;0$，我们也会推出$\mathbb{M} _{\llcorner \mathbb{W} \lrcorner}(\llcorner \mathbb{W} \lrcorner)&#x3D;1$。两者互相矛盾。<br>因此，不存在这么一个图灵机，也就是说UC是不可计算的。</p>
+</blockquote>
+<h2 id="HALT：停机问题"><a href="#HALT：停机问题" class="headerlink" title="HALT：停机问题"></a>HALT：停机问题</h2><p>HALT，停机问题是这样定义的：</p>
+<p>$$<br>\text{HALT}(\alpha,x) &#x3D;<br>\begin{cases}<br>    1,&amp; \text{if}\space \mathbb{M} _{\alpha} (x)\space \text{terminates}\\<br>    0,&amp; \text{otherwise}<br>\end{cases}<br>$$</p>
+<p>停机问题可以用UC函数来证明：</p>
+<blockquote>
+<p>假设存在$\mathbb{M} _H$计算了停机问题，则对于任意的$\alpha$都有：<br>$$<br>\mathbb{M} _H(\alpha,\alpha)&#x3D;\text{HALT}(\alpha,\alpha) &#x3D;<br>\begin{cases}<br>    1,&amp; \text{if}\space \mathbb{M} _{\alpha} (\alpha)\space \text{terminates}\\<br>    0,&amp; \text{otherwise}<br>\end{cases}<br>$$<br>于是我们可以定义一个新的函数$\text{MU}(\alpha)$：<br>$$<br>\text{MU}(\alpha) &#x3D;<br>\begin{cases}<br>    0,&amp; \text{if}\space \mathbb{M} _{H} (\alpha,\alpha)&#x3D;1\space\&amp;\space\mathbb{M} _{\alpha} (\alpha)&#x3D;1\\<br>    1,&amp; \text{otherwise}<br>\end{cases}<br>$$<br>在上述函数的定义下，如果$\mathbb{M} _{\alpha} (\alpha)$停机了，那么其值要么是$1$，要么是$0$，其中$1$会使得$\text{MU}(\alpha)$输出$0$；如不停机，则$\text{MU}(\alpha)$会和$\mathbb{M} _{\alpha} (\alpha)$值为$1$一样输出$1$。换句话说，条件$ \mathbb{M} _{H} (\alpha,\alpha)&#x3D;1$在$\text{MU}$中并不发挥作用，只要$\mathbb{M} _{\alpha} (\alpha)&#x3D;1$，$\text{MU}(\alpha)$就只会输出$1$。于是：<br>$$<br>\text{MU}(\alpha) &#x3D;\text{UC}(\alpha)<br>$$<br>而UC是不可计算的，所以上面的所有证明都不成立，所以不存在这么一个图灵机计算了停机问题。</p>
+</blockquote>
+<p>停机问题不可计算说明，对于任意的图灵机$\mathbb{M} _\alpha$和输入$x$，在实际运行之前我们无法预先知道$\mathbb{M} _\alpha(x)$是否能停机。</p>
+<blockquote>
+<p>实际上上面的证明还用了归约法（Reduction Method），即通过放宽判定条件，使得某一问题$q$成为另一个问题$Q$的子问题。此时我们若证明$Q$不可计算，那么$q$也就相应地无法计算了。</p>
+</blockquote>
+<h1 id="Speedup-Theorem：加速理论"><a href="#Speedup-Theorem：加速理论" class="headerlink" title="Speedup Theorem：加速理论"></a>Speedup Theorem：加速理论</h1><p>加速理论解决的是对于某个问题，是否存在最快的算法的问题。直觉告诉我们，这个答案是否定的，因为只要我们有足够的空间，我们就可以空间换时间，通过“打表”把每一种输入的答案都列举出来，那么对于所有的问题我们都可以用<strong>常量的时间</strong>解决。而实际上也正是如此，没有最快的算法，只有更快的算法（理论上）。</p>
+<blockquote>
+<p><em>Blum’s Speedup Theorem</em>是关于此的很强的一个结论，但它的具体内容和证明都比较复杂，课程中没有涉及，本文也只记录关于线性加速理论的内容。</p>
+</blockquote>
+<h2 id="Linear-Speedup-Theorem：线性加速理论"><a href="#Linear-Speedup-Theorem：线性加速理论" class="headerlink" title="Linear Speedup Theorem：线性加速理论"></a>Linear Speedup Theorem：线性加速理论</h2><p>Hartmanis和Stearns于1965年证明了线性加速理论：</p>
+<p><em>Linear Speedup Theorem：设图灵机$\mathbb{M}$在$T(n)$步内计算了$f$，任取$\epsilon &gt; 0$，总存在图灵机$\mathbb{M}&#39;$，它能在$\epsilon T(n)+n+2$步内计算$f$。</em></p>
+<p>这里用到的方法是“压缩带子”，即通过编码，使得$\mathbb{M}&#39;$上的一格能够记录$\mathbb{M}$上$m$格的内容，这样$\mathbb{M}&#39;$的一步就相当于$\mathbb{M}$上的$m$步，其证明如下：</p>
+<blockquote>
+<p>对于$\mathbb{M}(\Gamma,Q,\delta)$，用一个新的符号集$\Gamma &#39;$为$\Gamma$中的$m$个字符用$1$个字符编码。不难看出，这样的符号集$\Gamma &#39;$是巨大的，其字符种类至少为$|\Gamma &#39;| &gt; |\Gamma|^m$。我们用$\Gamma &#39;$构建一个新的图灵机$\mathbb{M}&#39;(\Gamma &#39;,Q&#39;,\delta &#39;)$，对该图灵机：</p>
+<ul>
+<li>使用与$\mathbb{M}$相同的带子数；</li>
+<li>对于$\mathbb{M}$纸带上长度为$n$的编码，$\mathbb{M}&#39;$可以在$n+2$步内将其转换为$n&#x2F;m$长的编码；（多出的2步是起始符和终止）</li>
+<li>$\mathbb{M}&#39;$在$n&#x2F;m$步可以将所有的带头回归到原点；</li>
+<li>$\mathbb{M}&#39;$纸带上的任何一个格子对应着$\mathbb{M}$上的$m$个格子。某一时刻$\mathbb{M}$在$m$个格子内<strong>任意一个格子</strong>上的$m$步在$\mathbb{M}&#39;$上至多会涉及到<strong>3</strong>个格子，因此$\mathbb{M}&#39;$只需要记录下这三个格子的值、做一步写入操作、移动一次带头，至多<strong>5</strong>步就可以模拟$\mathbb{M}$上的$m$步。<br>因此，总时间：<br>$$<br>n+2+\frac{n}{m}+5\frac{T(n)}{m}\le n+2 + \frac{6}{m}T(n)<br>$$<br>我们可以取$\epsilon&#x3D;6&#x2F;m$，$m&#x3D;6&#x2F;\epsilon$，证毕。</li>
+</ul>
+</blockquote>
+<p><img src="/2023/09/21/ComputationalComplexityTimecom2/2.jpg" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. 1 -> m</center>
+
+<h1 id="Time-Complexity-Class：时间复杂性类"><a href="#Time-Complexity-Class：时间复杂性类" class="headerlink" title="Time Complexity Class：时间复杂性类"></a>Time Complexity Class：时间复杂性类</h1><p>对于语言L（即一个判定问题集合），如果存在图灵机$\mathbb{M}$和常数$c&gt;0$，使得$\mathbb{M}$能在$cT(n)$的时间内判定L，那么我们说$L\subseteq \text{TIME}(T(n))$。换句话说，$\text{TIME}(T(n))$中的语言都具有$O(T(n))$的算法。</p>
+<p>复杂性类（Complexity Class）是一些具有类似复杂度的问题的集合，或者说是一些<strong>具有类似复杂度解</strong>的问题的集合。因为对于大多数的问题，我们都能用简单或复杂的方法将其解出来，换句话说，我们不能定义问题的复杂性，我们只能定义<strong>解的复杂性</strong>。显然，上面提到的$\text{TIME}(T(n))$不是一个复杂性类，因为它是和模型相关的。比如，对于回文问题，我们可以在$O(n)$的时间内解决，此时回文问题在$\text{TIME}(n)$中，但我们也可以用$O(n^2)$的方法解决，此时回文问题在$\text{TIME}(n^2)$中。</p>
+<p>下面给出一些常见的时间复杂性类，这里面就有之前提到的P、NP问题。</p>
+<h2 id="Complexity-Class-P"><a href="#Complexity-Class-P" class="headerlink" title="Complexity Class P"></a>Complexity Class P</h2><p>$\text{P}$类，即多项式类，所有具有多项式时间算法的问题都属于这一类：</p>
+<p>$$<br>\text{P}&#x3D;\bigcup _{c\ge 1}\text{TIME}(n^c)<br>$$</p>
+<p>在承认强CT论题的情况下，$\text{P}$类是与模型无关的，也就是说它是一个复杂性类。</p>
+<blockquote>
+<p>强CT论题（Strong Church-Turing Thesis）：所有物理上可实现的机器都能在多项式的时间复杂度内被图灵机模拟。</p>
+</blockquote>
+<h2 id="Complexity-Class-EXP"><a href="#Complexity-Class-EXP" class="headerlink" title="Complexity Class EXP"></a>Complexity Class EXP</h2><p>$\text{EXP}$类，即指数时间复杂性类：</p>
+<p>$$<br>\text{EXP}&#x3D;\bigcup _{c\ge 1}\text{TIME}(2^{n^c})<br>$$</p>
+<p>底数是无关紧要的，既可以是2，也可以是任何数字。出于规定，$\text{P}\subseteq\text{EXP}$，所以$n^c$不可以写成$cn$，否则集合内部的封闭性复合运算将不被满足。如：$n^3\in\text{P}$，所以$n^3\in\text{EXP}$，$2^n\in\text{EXP}$，那么将$n^3$和$2^n$复合得到的$2 ^{n^3}$理应也在$\text{EXP}$中。若将$n^c$写成$cn$则$2 ^{n^3}$将不被包含在$\text{EXP}$中，这显然是错误的。</p>
+<h1 id="Nondeterministic-Turing-Machine：非确定图灵机"><a href="#Nondeterministic-Turing-Machine：非确定图灵机" class="headerlink" title="Nondeterministic Turing Machine：非确定图灵机"></a>Nondeterministic Turing Machine：非确定图灵机</h1><p>非确定性图灵机（Nondeterministic Turing Machine）具有两个迁移函数$\delta _1,\delta _2$，它在运行过程中会<strong>随机</strong>地选择一个迁移函数来执行，并产生相应的结果。不难看出，NDTM的计算路径可以被视为一棵二叉树，叶子结点表示某一条会停机并产生结果的执行路径，有些路径可能无限长：</p>
+<p><img src="/2023/09/21/ComputationalComplexityTimecom2/3.jpg" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. DTM and NDTM</center><br>
+
+<p>上述的非确定图灵机在物理上是无法实现的，而之前所提到的物理上可实现的图灵机都称为确定图灵机（Deterministic Turing Machine，DTM）。</p>
+<h2 id="Guessing：猜测"><a href="#Guessing：猜测" class="headerlink" title="Guessing：猜测"></a>Guessing：猜测</h2><p>NDTM通常被用来解决存在性问题。事实上，对于输入$x$，NDTM的每一条计算路径都在试图构造或者<strong>猜测</strong>一个对$x$存在性的证明，若构造&#x2F;猜测成功，则NDTM接受$x$，否则拒绝$x$。对于某一个决策问题或者语言，在NDTM中有如下规定：</p>
+<ul>
+<li>对于一台NDTM$\mathbb{N}$，当输入为$x$时，若$\mathbb{N}(x)$存在<strong>一条</strong>计算路径中止于接受格局（即$\mathbb{N}(x)&#x3D;1$），则称$\mathbb{N}$接受$x$；否则若所有的计算路径都失败，则称$\mathbb{N}$拒绝$x$。</li>
+<li>对于一语言L，如果$x\in L$当且仅当$\mathbb{N}$接受$x$，则称$\mathbb{N}$接受L。</li>
+</ul>
+<blockquote>
+<p>这实际上就是<strong>枚举</strong>，其中，有些解路径可能很短，能达到<strong>多项式的时间复杂度</strong>，而有些解路径可能很长，需要指数的时间复杂度。</p>
+</blockquote>
+<h2 id="Complexity-Class-NP-amp-NEXP"><a href="#Complexity-Class-NP-amp-NEXP" class="headerlink" title="Complexity Class NP &amp; NEXP"></a>Complexity Class NP &amp; NEXP</h2><p>类似于DTM，对于NDTM，我们也可以定义时间复杂性类：对于语言L（即一个判定问题集合），如果存在非确定图灵机$\mathbb{N}$和常数$c&gt;0$，使得$\mathbb{N}$能在$cT(n)$的时间内判定L，那么我们说$L\subseteq \text{NTIME}(T(n))$。换句话说，$\text{NTIME}(T(n))$中的语言都具有$O(T(n))$的算法。</p>
+<p>同样地，定义非确定多项式（Non-deterministic Polynomial）复杂性类$\text{NP}$：</p>
+<p>$$<br>\text{NP}&#x3D;\bigcup _{c\ge 1}\text{NTIME}(n^c)<br>$$</p>
+<p>非确定指数复杂性类$\text{NEXP}$：</p>
+<p>$$<br>\text{NEXP}&#x3D;\bigcup _{c\ge 1}\text{NTIME}(2^{n^c})<br>$$</p>
+<p>它们与DTM的关系为：</p>
+<p>$$<br>\text{P}\subseteq\text{NP}\subseteq\text{EXP}\subseteq\text{NEXP}<br>$$</p>
+<ul>
+<li>第一、三层包含是因为DTM是NDTM的特例，即$\delta_1&#x3D;\delta_2$；</li>
+<li>第二层包含是因为DTM可以用指数的时间将NDTM的所有路径走一遍。</li>
+</ul>
+<blockquote>
+<p>$\text{NP}$和$\text{P}$的区别在于，$\text{P}$的解的复杂度都是多项式的，而$\text{NP}$只是存在多项式复杂度的特解。能否证明$\text{P}&#x3D;\text{NP}$，是理论计算机科学界中的一大难题。</p>
+</blockquote>
+<h2 id="39-Universal-39-Nondeterministic-Turing-Machine：“通用”非确定图灵机"><a href="#39-Universal-39-Nondeterministic-Turing-Machine：“通用”非确定图灵机" class="headerlink" title="&#39;Universal&#39; Nondeterministic Turing Machine：“通用”非确定图灵机"></a>&#39;Universal&#39; Nondeterministic Turing Machine：“通用”非确定图灵机</h2><p>一个“通用”的非确定图灵机$\mathbb{V}$在模拟某个时间复杂度为$T(n)$的图灵机$\mathbb{M}$时需要四条带子：</p>
+<ol>
+<li>输入带；</li>
+<li>存放snapshot的工作带，该工作带存放$\mathbb{V}$对$\mathbb{M}$执行时产生的所有snapshot的<strong>猜测</strong>，快照数为$O(T(n))$；</li>
+<li>存放转移函数序列（即$01$串）的工作带，该工作带$01$串的长度也是$O(T(n))$，实际上就是$\delta_1$和$\delta_2$序列；</li>
+<li>存放对被模拟工作带验证结果的工作带，它会记录一些snapshot，以验证对某个被模拟带子的模拟是否正确，若正确则清空，验证下一个带子。</li>
+</ol>
+<p>快照个数$O(T(n))$，$01$串的个数也是$O(T(n))$，故模拟的时间复杂度也是$T(n)$。这是在正确猜测的情况下，但实际上猜测序列、快照不一定是正确的，$T(n)$也不一定时间可构造，所以这台“通用”的非确定图灵机甚至有可能不停机，故“通用”是带引号的。若$T(n)$时间可构造则可掐表，以确保$\mathbb{V}$会停机。</p>
+<blockquote>
+<p>注意，以上的$T(n)$只对非确定图灵机的一条路径，即对非确定图灵机所“猜测”的任意一条路径，模拟它的时间复杂度可以到$T(n)$。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348250098">计算复杂性（6）——世界难题：非确定型图灵机，NP类</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/09/21/ComputationalComplexityTimecom2/" data-id="clzik0lc6001iv47k42qtgrge" data-title="Computational Complexity: Time Complexity 2" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/09/22/ComputationalComplexityTimecom3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Computational Complexity: Time Complexity 3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/09/20/DDSummary/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Dataset Distillation: A Summary</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

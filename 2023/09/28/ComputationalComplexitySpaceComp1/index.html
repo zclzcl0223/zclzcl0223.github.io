@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Computational Complexity Space Complexity 1 | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="本篇是计算复杂性（CS7313）的第二章的第一节，主要研究空间复杂性类、空间归约等问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computational Complexity Space Complexity 1">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/09/28/ComputationalComplexitySpaceComp1/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="本篇是计算复杂性（CS7313）的第二章的第一节，主要研究空间复杂性类、空间归约等问题。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/28/ComputationalComplexitySpaceComp1/1.png">
+<meta property="article:published_time" content="2023-09-28T02:04:17.000Z">
+<meta property="article:modified_time" content="2023-10-10T05:47:12.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="Theoretical Computer Science">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/09/28/ComputationalComplexitySpaceComp1/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ComputationalComplexitySpaceComp1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/28/ComputationalComplexitySpaceComp1/" class="article-date">
+  <time class="dt-published" datetime="2023-09-28T02:04:17.000Z" itemprop="datePublished">2023-09-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Computational Complexity Space Complexity 1
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Space-Bounded-Computation：空间边界的计算"><a href="#Space-Bounded-Computation：空间边界的计算" class="headerlink" title="Space Bounded Computation：空间边界的计算"></a>Space Bounded Computation：空间边界的计算</h1><p>空间是计算资源，是可重用的。研究空间复杂度，只考虑只有一条带子的图灵机即可。</p>
+<p>空间复杂性（函数）的定义：对函数$S: \mathbf{N}\to \mathbf{N}$和语言$L \in \{0,1\} ^ *$，如果存在常数$c$和图灵机$\mathbb{M}$能使用不超过$cS(n)$的非空工作带格子判定输入长度为$n$的$L$，就称$L \in \textbf{SPACE}(S(n))$。</p>
+<blockquote>
+<p>不计算输入所占用的格子。空间可构造和完全空间可构造完全类比时间可构造和完全时间可构造。</p>
+</blockquote>
+<p>对非确定图灵机，$L \in \textbf{NSPACE}((S(n)))$当且仅当每条路径上使用的非空工作带格子都不超过$cS(n)$。</p>
+<h2 id="Configuration-Graph：格局图"><a href="#Configuration-Graph：格局图" class="headerlink" title="Configuration Graph：格局图"></a>Configuration Graph：格局图</h2><ul>
+<li>$C _{\text{start}}$：初始格局；</li>
+<li>$C _{\text{accept}}$：接受格局，图灵机中止且带子上的结果为1。</li>
+</ul>
+<p>格局图：一个图灵机$\mathbb{M}$的格局图$G _{\mathbb{M},x}$是一个有向图，它的结点是某个格局$C$，边是一次计算。若使用格局图，则$\mathbb{M}$接受$x$当且仅当在格局图$G _{\mathbb{M},x}$上存在从$C _{\text{start}}$到$C _{\text{accept}}$的路径。</p>
+<h3 id="Size-of-Configuration-Graph：格局图的大小"><a href="#Size-of-Configuration-Graph：格局图的大小" class="headerlink" title="Size of Configuration Graph：格局图的大小"></a>Size of Configuration Graph：格局图的大小</h3><p>对于一个时间复杂度为$S(n)$的图灵机$\mathbb{M}$，由于只考虑一条工作带，因此，某个长度为$n$输入$x$，其某一步的格局可用$O(S(n))个$比特编码。因此，整个格局图的结点个数就是$2 ^{O(S(n))}$。</p>
+<p>当我们想要判断某两个结点间是否存在边时，我们只需要判断某两个格局$C _1$和$C _2$是否存在一步到达的关系，即看能否通过仅修改某个格局$C _1$编码的$1$个bit和表示读写头的几个bit，就让$C _1&#x3D;C _2$。不难看出，该算法的时间复杂度是$O(S(n))$，空间复杂度是$O(\log S(n))$，因为我们只需要按位比较，并记录位置的编码即可，而$O(S(n))$个位置可用$O(\log S(n))$的二进制串表示。</p>
+<blockquote>
+<p>但要求$C _1$和$C _2$交叉输入，否则带头的来回移动会让时间复杂度为平方。</p>
+</blockquote>
+<h2 id="Space-vs-Time"><a href="#Space-vs-Time" class="headerlink" title="Space vs Time"></a>Space vs Time</h2><p>设空间函数$S(n)$是空间可构造的，则：</p>
+<p>$$<br>\textbf{TIME}(S(n))\subseteq \textbf{SPACE}(S(n))\subseteq \textbf{NSPACE}(S(n))\subseteq \textbf{TIME}(2 ^{O(S(n))})<br>$$</p>
+<blockquote>
+<p>第一个包含关系：一步最多多用一个格子；<br>第二个包含关系：确定是非确定的特例；<br>第三个包含关系：判定一个非确定图灵机能否在$O(S(n))$的空间内判定每个问题，等价于验证格局图中是否存在由$C _\text{start}$到$C _{\text{accept}}$的路径，而这可通过BFS在多项式时间复杂度内完成。格局图中总结点数为$2 ^{O(S(n))}$，因此第三个包含关系成立。</p>
+</blockquote>
+<p>注意：以上相互包含的都是<strong>问题集合</strong>，如第一个包含关系意为：时间复杂度为$S(n)$的问题是空间复杂度为$S(n)$问题的子集。</p>
+<blockquote>
+<p>对所有的空间可构造的$S(n)$，$\textbf{TIME}(S(n))\subseteq \textbf{SPACE}(S(n)&#x2F; \log S(n))$</p>
+</blockquote>
+<h2 id="Space-Complexity-Class"><a href="#Space-Complexity-Class" class="headerlink" title="Space Complexity Class"></a>Space Complexity Class</h2><ul>
+<li>$\textbf{L}$类：$\textbf{SPACE}(\log (n))$</li>
+<li>$\textbf{NL}$类：$\textbf{NSPACE}(\log (n))$</li>
+<li>$\textbf{PSPACE}$类：$\bigcup _{c&gt;0} \textbf{SPACE}(n ^c)$</li>
+<li>$\textbf{NPSPACE}$类：$\bigcup _{c&gt;0} \textbf{NSPACE}(n ^c)$</li>
+</ul>
+<p>$$<br>\textbf{NP}\subseteq \textbf{PSPACE}<br>$$</p>
+<p>上式成立是因为空间是可以重复利用的，故我们可以用<strong>相同</strong>的空间在<em>多项式时间内</em>（<em>空间</em>）验证<strong>不同</strong>的路径是否成立。</p>
+<h3 id="PATH-is-in-NL"><a href="#PATH-is-in-NL" class="headerlink" title="PATH is in NL"></a>PATH is in NL</h3><p>$\text{PATH}&#x3D;\{&lt;G,s,t&gt;\}$定义为判断在图$G$中是否存在从$s$到$t$的路径。</p>
+<p>$$\text{PATH}\in \textbf{NL}$$</p>
+<p>这是因为：在有$n$个结点的图中，不考虑重复边，$s$到$t$的最长路径长度为$n-1$。因此，我们总可以不断地从$s$做$n-1$次猜测，每次猜测选择一个邻居，走到邻居，并继续猜测。总会有那么一个猜测路径，使得我们可以到达$t$（若$s$和$t$之间确实存在路径）。这一过程中，我们需要记录当前结点，而当前结点可用$\log n$的空间编码，还要记录步数，而步数可用$\log (n-1)$的空间编码，又因为空间是可以重用的，所以总的空间复杂度为$O(\log n)$。</p>
+<blockquote>
+<p>对空间复杂度为$S(n)$的图灵机，通用图灵机模拟它的空间复杂度为$O(S(n))$。</p>
+</blockquote>
+<h2 id="Space-Hierarchy-Theorem：空间谱系定理"><a href="#Space-Hierarchy-Theorem：空间谱系定理" class="headerlink" title="Space Hierarchy Theorem：空间谱系定理"></a>Space Hierarchy Theorem：空间谱系定理</h2><p>若$f$和$g$都是空间可构造的，且$f(n)&#x3D;o(g(n))$，则：</p>
+<p>$$<br>\textbf{SPACE}(f(n)) \subsetneq \textbf{SPACE}(g(n))<br>$$</p>
+<blockquote>
+<p>证明类似时间谱系定理。</p>
+</blockquote>
+<h1 id="Logspace-Reduction：对数空间归约"><a href="#Logspace-Reduction：对数空间归约" class="headerlink" title="Logspace Reduction：对数空间归约"></a>Logspace Reduction：对数空间归约</h1><p>隐式对数空间可计算（Implicitly Logspacec Computable）函数$f:\{0,1\} ^ *\to \{0,1\} ^ *$满足如下三个性质：</p>
+<ol>
+<li>输出长度有限：$\exists c,\forall x,|f(x)|\le c |x| ^c$</li>
+<li>输出长度可在对数空间内计算：$\{&lt;x,i&gt;|i \le |f(x)|\}\in L$</li>
+<li>输出结果可确定：$\{&lt;x,i&gt;|f(x) _i &#x3D; 1\}\in L$</li>
+</ol>
+<p>以上三个性质的推断都依赖于前一个性质。如果存在这么一个函数$f$，使得对于问题$B$和问题$C$，$x\in B$当且仅当$f(x) \in C$，那么我们称$B$是可在对数空间归约于$C$的，即$B \le _L C$。</p>
+<blockquote>
+<p>$f(x)$作为$C$的输入，是不能被直接写到$C$的输入带上的，因为$f(x)$的长度是多项式的。不过，$f(x)$的三个性质使得图灵机可以在对数空间内计算出$f(x)$任意位置的值，由于空间的可重用性，输入$f(x)$实际只用了对数空间（每次一位一位地输入）。</p>
+<p>$B$对数空间归约到$C$，说明在<strong>不消耗更多空间资源</strong>的情况下，$C$是更复杂的问题。</p>
+<p>对数空间归约具有传递性，即，若$B \le _L C$，$C \le _L D$，则$B \le _L D$。证明：</p>
+<ul>
+<li>$B \le _L C$，所以对$x \in B$，可在对数空间$O(\log |x|)$内计算$f(x)$。</li>
+<li>$C \le _L D$，所以对$f(x) \in C$，可在对数空间$O(\log |f(x)|)$内计算$g(f(x))$。</li>
+<li>又由于空间的可重复利用性，用于计算$f(x)$的对数空间可被重复用于计算$g(f(x))$，因此$O(\log |f(x)|)&#x3D;O(\log |x|)$。</li>
+</ul>
+</blockquote>
+<h1 id="text-PSPACE-Completeness"><a href="#text-PSPACE-Completeness" class="headerlink" title="$\text{PSPACE}$ Completeness"></a>$\text{PSPACE}$ Completeness</h1><p>空间完备性（Space Completeness）：如果$\forall L \in \textbf{PSPACE}$，$L \le _L L&#39;$，则称语言$L&#39;$是$\textbf{PSPACE}-\text{hard}$的。如果进一步地，$L &#39; \in \textbf{PSPACE}$，则称语言$L&#39;$是$\textbf{PSPACE}-\text{complete}$的。某个完备的（Complete）语言是这个空间复杂性类中最难的语言&#x2F;问题。</p>
+<h2 id="Quantified-Boolen-Formula"><a href="#Quantified-Boolen-Formula" class="headerlink" title="Quantified Boolen Formula"></a>Quantified Boolen Formula</h2><p>量化布尔公式（Quantified Boolen Formula，QBF）被定义为这样的式子：</p>
+<p>$$<br>Q _1 x _1 Q _2 x _2...Q _n x _n.\space \phi(x _1,...,x _n)<br>$$</p>
+<p>其中，$Q _i$是量词（Quantifier），要么是$\forall$，要么是$\exists$；$x _i$是布尔值，要么是$0$，要么是$1$；$\phi$是不包含$x _1,...,x _n$以外的任何自由变量的布尔公式，该公式要么为$\text{True}$，要么为$\text{False}$，如：</p>
+<p>$$<br>\forall x,\exists y,x&#x3D;y<br>$$</p>
+<p>显然，上述公式值为$True$。</p>
+<p>空间复杂度两个原则：格局图、深度优先</p>
+<h2 id="Stockmeyer-Meyer-Theorem"><a href="#Stockmeyer-Meyer-Theorem" class="headerlink" title="Stockmeyer-Meyer Theorem"></a>Stockmeyer-Meyer Theorem</h2><p>定理：TQBF是$\textbf{PSPACE}-\text{complete}$的。定理中，$\text{TQBF}$是所有值为$\text{True}$的QBF集合。定理的证明如下：</p>
+<blockquote>
+<p>要证明上述定理，即要证明$\forall L \in \textbf{PSPACE}$，$L \le _L $TQBF，且TQBF$\in \textbf{PSPACE}$。</p>
+<p>1.TQBF$\in \textbf{PSPACE}$</p>
+<p>假定某个QBF为$\psi &#x3D; Q _1 x _1 Q _2 x _2...Q _n x _n.\space \phi(x _1,...,x _n)$，由于$x _i$只有两种取值可能，因此我们可以将$\psi$所有可能的形式表示为一棵二叉树：<br><img src="/2023/09/28/ComputationalComplexitySpaceComp1/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. QBF</center><br>
+
+<p>对该二叉树使用一次深度优先遍历（实际上应该使用<strong>后序遍历</strong>）即可判定该问题。DFS过程中，我们可以自下而上求出所有非叶子结点的值，最终根结点的值就是QBF的判定结果，整个过程中，我们最多需要记录$n$个祖先，因而该算法的空间复杂度实际上为$O(n)$。因此TQBF$\in \textbf{PSPACE}$。证毕。</p>
+<p>2.$\forall L \in \textbf{PSPACE}$，$L \le _L $TQBF</p>
+<p>$L \in \textbf{PSPACE}$说明存在图灵机$\mathbb{M}$，对输入$x \in L$，它能在多项式空间内输出$\mathbb{M}(x)&#x3D;1$以及格局图中存在$C _{\text{start}}$到$C _{\text{accept}}$的路径。</p>
+<p>要证明条件2，我们只需要证明对$x \in L$，存在$\phi(x)\in $TQBF。不妨令$\phi(x)&#x3D;\psi _i (C,C&#39;)$，其中，当格局$C$和$C&#39;$之间存在长度不超过$2 ^i$的路径时$\psi _i (C,C&#39;)&#x3D;1$。</p>
+<p>对于$\psi _i (C,C&#39;)$，若其值为$1$，则在$C$和$C&#39;$之间一定存在一个格局$C&#39;&#39;$，它到这两个格局的路径长度不超过$2 ^{i - 1}$，因此$\psi _i (C,C&#39;)$就可以被转换为$\psi _{i-1} (C,C&#39;&#39;) \lor  \psi _{i-1} (C&#39;,C&#39;&#39;)$。该问题可被表示为：<br>$$<br>\exists C&#39;&#39; \forall D ^1 \forall D ^2.((D ^1&#x3D;C \land D ^2 &#x3D;C&#39;))\lor ((D ^1&#x3D;C&#39;&#39; \land D ^2 &#x3D;C)) \rightarrow \psi _{i-1}(D ^1, D ^2)<br>$$<br>只要我们能够判断上面前蕴含后的关系成立，则$\psi _i (C,C&#39;)&#x3D;1$成立。判别上式的空间复杂度为$|\psi _i|&#x3D;|\psi _{i-1}(D ^1, D ^2)|+cS(|x|)$，其中，后一项是用于记录箭头前的格局的空间（每个格局空间复杂度$S(|x|)$）。那么对于空间复杂度为$S(|x|)$的$L$，它的格局图中最多有$2 ^{S(|x|)}$个结点，于是判断$L$，就可以转为判断$\psi _{S(|x|)}$，即判断QBF$\phi (x)$。$|\phi (x)|&#x3D;|\psi _{S(|x|)}|&#x3D;O(S(|x|) ^2)$，多项式的平方仍然是多项式，所以$x\in L$，$\phi (x) \in $TQBF，证毕。前面的式子能成立是因为最终$\psi _{S(|x|)}$会被转化为$\psi _{1}$，期间会多出$S(|x|)$个$c S(|x|)$。</p>
+</blockquote>
+<h1 id="Savitch-Theorem"><a href="#Savitch-Theorem" class="headerlink" title="Savitch Theorem"></a>Savitch Theorem</h1><p>定理：如果$S$是空间可构造的，那么$\textbf{NSPACE}(S(n)) \subseteq \textbf{SPACE}(S(n) ^2)$。证明如下：</p>
+<blockquote>
+<p>该定理的证明与上面的条件2证明几乎一致。对于空间复杂度为$S(n)$的非确定图灵机$\mathbb{N}$，它可以在$S(n)$的空间内判定$L$，其格局图的大小为$2 ^{S(n)}$。很自然地，判定$L$可以被转换为判定格局图中是否存在$C _{\text{start}}$到$C _{\text{accept}}$的路径。该问题可以被$\phi (x)$在$c S(n) ^2$空间内解决。所以$\textbf{NSPACE}(S(n)) \subseteq \textbf{SPACE}(S(n) ^2)$。证毕。</p>
+</blockquote>
+<p>由于多项式的平方还是多项式，所以由上述定理，我们可以得到：</p>
+<p>$$<br>\textbf{NPSPACE} \subseteq\textbf{PSPACE}<br>$$</p>
+<p>又因为确定图灵机是非确定图灵机的特例：</p>
+<p>$$<br>\textbf{PSPACE} \subseteq \textbf{NPSPACE}<br>$$</p>
+<p>所以：</p>
+<p>$$<br>\textbf{PSPACE} &#x3D; \textbf{NPSPACE}<br>$$</p>
+<h1 id="NL-Completeness"><a href="#NL-Completeness" class="headerlink" title="NL Completeness"></a>NL Completeness</h1><p>如果$C \in \textbf{NL}$，且对$\forall B \in \textbf{NL}$，$B \le _L C$，则$C$是$\textbf{NL}-$ complete。</p>
+<p>定理：$\text{PATH}$是$\textbf{NL}$完全的。证明如下：</p>
+<blockquote>
+<p>由于前面已经证明$\text{PATH} \in \textbf{NL}$，所以要证明上述结论，即要证明对$\forall L \in \textbf{NL}$，$L \le _L \text{PATH}$，即要证明$\forall x \in L$，$\exists f$，$f(x) \in \text{PATH}$。</p>
+<p>与前面的证明类似，对在$\log(n)$空间内判定$L$的非确定图灵机$\mathbb{N}$，设其输入为$x$，则该问题可以被转换为在格局图$G _{\mathbb{N},x}$中判断$C _\text{start}$和$C _\text{accept}$间是否存在路径，即：<br>$$<br>x \to &lt; G _{\mathbb{N},x},C _\text{start},C _\text{accept} &gt;<br>$$<br>由于$\mathbb{N}$的空间复杂度是$\log (n)$，所以格局图中的每一个格局都可以用$\log (n)$的bit编码，且共有多项式个格局（顶点）。用邻接矩阵$A$表示格局图$G _{\mathbb{N},x}$的结构关系，由于各个顶点的编码长度为$\log (n)$，所以任意两个顶点的一步可达性可在对数空间内判定，又由于空间的可重复利用性，整个邻接矩阵可以在对数空间内被构造出来，而起始格局和终止格局都是固定的$01$串，所以$&lt; G _{\mathbb{N},x},C _\text{start},C _\text{accept} &gt;$可以在对数空间内被构造出来，而$&lt; G _{\mathbb{N},x},C _\text{start},C _\text{accept} &gt; \in \text{PATH}$，所以$L \le _L \text{PATH}$。证毕。</p>
+</blockquote>
+<p>有向无环图的$\text{PATH}$问题也是$\textbf{NL}$完全的。</p>
+<h1 id="Immerman-Szelepcsenyi-Theorem"><a href="#Immerman-Szelepcsenyi-Theorem" class="headerlink" title="Immerman-Szelepcsenyi Theorem"></a>Immerman-Szelepcsenyi Theorem</h1><p>补类（补问题）：一个类的补类指在所有类中刨去改类后剩下的类，如，对$\textbf{T}$类，其补类记为$\text{co}\textbf{T}$或$\overline{\textbf{T}}$，定义为：</p>
+<p>$$<br>\text{co}\textbf{T}&#x3D;\overline{\textbf{T}}&#x3D;\{\{0,1 ^*\}-L \in \textbf{T}\}<br>$$</p>
+<p>一个有趣的结论：</p>
+<p>$$<br>\begin{align*}<br>    \text{co}\textbf{NPSPACE}<br>    &amp;&#x3D;\overline{\textbf{NPSPACE}} \\<br>    &amp;&#x3D;\overline{\textbf{PSPACE}}\\<br>    &amp;&#x3D;\textbf{PSPACE}\\<br>    &amp;&#x3D;\textbf{NPSPACE}<br>\end{align*}<br>$$</p>
+<p>定理：$\overline{\text{PATH}}\in \textbf{NL}$。$\overline{\text{PATH}}$的含义为：从$A$出发到不了$B$。的证明如下：</p>
+<blockquote>
+<p>???????</p>
+</blockquote>
+<p>由上述定理，我们可以得到$\overline{\textbf{NL}}&#x3D; \textbf{NL}$：</p>
+<blockquote>
+<p>$A \le _L B$，则$\overline{A} \le _L \overline{B}$</p>
+<p>因为$L \le _L \text{PATH}$，所以$\overline{L} \le _L \overline{\text{PATH}}$，所以$\overline{\text{PATH}}$是$\overline{\textbf{NL}}$完全的，而$\overline{\text{PATH}}\in \textbf{NL}$，所以$\overline{\textbf{NL}}&#x3D; \textbf{NL}$。</p>
+</blockquote>
+<p>事实上，对$\forall S(n) \ge \log (n)$，若$S(n)$时间可构造，则：</p>
+<p>$$<br>\overline{\textbf{NSPACE}(S(n))}&#x3D;\textbf{NSPACE}(S(n))<br>$$</p>
+<p>$$<br>\textbf{L}\subseteq \textbf{NL}\subseteq \textbf{P}\subseteq \textbf{NP}\subseteq \textbf{PSPACE}\subseteq \textbf{EXP}<br>$$</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/09/28/ComputationalComplexitySpaceComp1/" data-id="clzik0lc4001av47k3rpz5g8a" data-title="Computational Complexity Space Complexity 1" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/10/ComputationalComplexityNPComp/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Computational Complexity NP-Completeness
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/09/27/ContrastiveLearning/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Contrastive Learning</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

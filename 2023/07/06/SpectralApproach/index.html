@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Spectral Approaches | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="谱方法是图卷积神经网络的理论依据，理解它对理解各种基于图卷积的神经网络有很大的帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spectral Approaches">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="谱方法是图卷积神经网络的理论依据，理解它对理解各种基于图卷积的神经网络有很大的帮助。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/2.png">
+<meta property="article:published_time" content="2023-07-06T03:19:28.000Z">
+<meta property="article:modified_time" content="2023-07-06T16:24:06.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="GNN">
+<meta property="article:tag" content="GCN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-SpectralApproach" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/06/SpectralApproach/" class="article-date">
+  <time class="dt-published" datetime="2023-07-06T03:19:28.000Z" itemprop="datePublished">2023-07-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Spectral Approaches
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="从卷积到傅里叶变换"><a href="#从卷积到傅里叶变换" class="headerlink" title="从卷积到傅里叶变换"></a>从卷积到傅里叶变换</h1><p>图的顶点$i$可表示为信号$f_i$，其中$f _i\in\mathbf{R} ^F$，假设图有$N$个顶点，则整张图可以表示为：</p>
+<p>$$<br>f&#x3D;[f_1,f_2,...,f_N]^T<br>$$</p>
+<p>基于卷积的理论及其与傅里叶变换的关系（<strong>卷积的傅里叶变换等于傅里叶变换的乘积</strong>），卷积操作可以定义为：</p>
+<p>$$<br>\begin{align*}<br>    g\star f<br>    &amp;&#x3D;\mathcal{F} ^{-1}[\mathcal{F}(g\star f)]\\<br>    &amp;&#x3D;\mathcal{F} ^{-1}(\mathcal{F}(g)\odot\mathcal{F}(f))\\<br>    &amp;&#x3D;U(U ^{T}g\odot U ^{T}f) \tag{1}<br>\end{align*}<br>$$</p>
+<p>式中，$g$是卷积核，用于提取、汇聚图的空间信息；$U$是图的拉普拉斯矩阵的特征向量矩阵，它被用作离散形式的傅里叶变换的傅里叶基。具体细节见<a href="/2023/07/04/GraphFourierTransform/">Graph Fourier Transform</a>。式子中$U ^{T}g$称为滤波器（filter）。由于$U ^Tg$实际上是对$g$的傅里叶变换，因此：</p>
+<p>$$<br>U ^{T}g&#x3D;\hat{g}&#x3D;[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]^T<br>$$</p>
+<p>即，它是由$g$所包含的各个特征值$\lambda _i$所对应的正交基$u _i$（相当于连续形式的傅里叶变换的不同频率的正弦波形）在$g$中所占的比重所组成的向量。同样地，$U ^Tf$可转化为：</p>
+<p>$$<br>U ^{T}f&#x3D;\hat{f}&#x3D;[\hat{f}(\lambda _1),...,\hat{f}(\lambda _N)]^T<br>$$</p>
+<p>于是它们的哈达玛积（$\odot$）就为：</p>
+<p>$$<br>\begin{align*}<br>    U ^{T}g\odot U ^{T}f<br>    &amp;&#x3D;\hat{g}\odot\hat{f}\\<br>    &amp;&#x3D;<br>    \begin{bmatrix}<br>        \hat{g}({\lambda _1})\times\hat{f}({\lambda _1})\\<br>        \vdots\\<br>        \hat{g}({\lambda _N})\times\hat{f}({\lambda _N})<br>    \end{bmatrix}<br>\end{align*}<br>$$</p>
+<p>而：</p>
+<p>$$<br>\begin{bmatrix}<br>    \hat{g}(\lambda _1) &amp;\\<br>    &amp; \ddots \\<br>    &amp; &amp; \hat{g}(\lambda _N)<br>\end{bmatrix} \cdot<br>\begin{bmatrix}<br>    \hat{f}({\lambda _1})\\<br>    \vdots\\<br>    \hat{f}({\lambda _N})<br>\end{bmatrix} &#x3D;<br>\begin{bmatrix}<br>    \hat{g}({\lambda _1})\times\hat{f}({\lambda _1})\\<br>    \vdots\\<br>    \hat{g}({\lambda _N})\times\hat{f}({\lambda _N})<br>\end{bmatrix}<br>$$</p>
+<p>因此，式$(1)$可以变为：</p>
+<p>$$<br>\begin{align*}<br>    g\star f<br>    &amp;&#x3D;U(U ^{T}g\odot U ^{T}f)\\<br>    &amp;&#x3D;U(\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]U ^{T}f)\\<br>    &amp;&#x3D;U\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)] U ^{T}f\tag{2}<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>矩阵结合律是成立的</p>
+</blockquote>
+<p>另一种角度，若从右向左看式$(2)$的最后一个等式，上述卷积操作其实就是一次对图信号$f$的<strong>滤波</strong>：</p>
+<ol>
+<li>$U^T f$将时域的图信号转换为频域的图信号；</li>
+<li>$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)](U^T f)$对频域的图信号进行滤波，提取特征；</li>
+<li>$U(\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]U ^{T}f)$将经过滤波的频域图信号转换回时域。</li>
+</ol>
+<p>基于谱方法（Spectral approaches）的图神经网络的发展实际上就是一个设计更好的滤波器$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]$的过程。</p>
+<h1 id="第一代GCN"><a href="#第一代GCN" class="headerlink" title="第一代GCN"></a>第一代GCN</h1><p>为了使得滤波器能够被学习，第一代GCN直接将式$(2)$中的滤波器的对角元素替换为了可学习的参数$w$，于是第一代GCN的卷积操作就变为：</p>
+<p>$$<br>Z&#x3D;\sigma(Ug_wU ^{T}f)\tag{3}<br>$$</p>
+<p>其中激活函数用于赋予非线性性。上述操作的思路很简单：输入$f$经过第一个卷积层后得到$Z$，$Z$再作为下一个卷积层的输入，逐层地学习、提取信息。然而，缺点也显而易见：需要对拉普拉斯矩阵进行特征分解以得到$U$，而当图顶点数很多时，这样的特征分解是十分困难的。</p>
+<h1 id="第二代GCN"><a href="#第二代GCN" class="headerlink" title="第二代GCN"></a>第二代GCN</h1><p>鉴于$\text{diag}[\hat{g}(\lambda _1),...,\hat{g}(\lambda _N)]$是特征值对角矩阵$\Lambda$的函数，第二代GCN采用k阶多项式来近似的拟合这个函数，即：</p>
+<p>$$<br>g _w(\Lambda)\approx\sum\limits _{k&#x3D;0} ^Kw _k\Lambda ^k<br>$$</p>
+<p>将其带入式$(3)$，则第二代GCN为：</p>
+<p>$$<br>\begin{align*}<br>    Z<br>    &amp;&#x3D;\sigma(Ug_w(\Lambda)U ^{T}f)\\<br>    &amp;&#x3D;\sigma(U\sum\limits _{k&#x3D;0} ^Kw _k\Lambda ^kU ^{T}f)\\<br>    &amp;&#x3D;\sigma(\sum\limits _{k&#x3D;0} ^Kw _kL ^kf)<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>$U\Lambda ^k U ^T&#x3D;L^k$，其中，$L$为拉普拉斯矩阵。</p>
+</blockquote>
+<p>不难看出，第二代GCN不对拉普拉斯矩阵进行特征分解，而是直接用拉普拉斯矩阵对$f$进行变换。同时，可学习的参数个数也有原来的$N$个下降为$K+1$个。与第一代相比，第二代GCN的计算复杂度明显更低。虽然如此，仍然需要计算$L ^k$，时间复杂度为$O(N ^2)$。</p>
+<p>事实上，由于：</p>
+<p>$$<br>L&#x3D;D-A\tag{4}<br>$$</p>
+<p>其中$A$为邻接矩阵，式$(4)$的证明见<a href="/2023/07/03/Laplacian/#图拉普拉斯矩阵">图拉普拉斯矩阵</a>。因此:</p>
+<p>$$<br>L ^k&#x3D;C_k ^0D ^k-C_k ^1D ^{k-1}A+...+(-1) ^kC _k ^kA ^k<br>$$</p>
+<p>式中，由于$D$和$A$都是对称矩阵，所以$DA&#x3D;AD$。邻接矩阵的$k$次幂的各个元素$A ^k[i][j]$表示的是从$i$到$j$路径长度为$k$的路径的条数。$D$为对角矩阵，只会改变与其相乘的矩阵的非零元素的值。因此，$L ^k$中的$k$实际上就是本次卷积感受野的大小，即距离中心顶点$k+1$-hop以内的邻居顶点都会被用来更新中心顶点的特征表示。</p>
+<blockquote>
+<p>接下来的两类GCN的$L$均代表正则化后的拉普拉斯矩阵。</p>
+</blockquote>
+<h1 id="ChebyNet"><a href="#ChebyNet" class="headerlink" title="ChebyNet"></a>ChebyNet</h1><p>不同于第二代GCN，2016年被提出的<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1606.09375.pdf">ChebyNet</a>使用切比雪夫多项式来近似拟合滤波器：</p>
+<p>$$<br>\begin{cases}<br>    g _w&#x3D;\sum\limits _{k&#x3D;0} ^{K}w _kT _k(\hat{\Lambda})\tag{5}\\<br>    \hat{\Lambda}&#x3D;\frac{2}{\lambda _{max}}\Lambda-I _N<br>\end{cases}<br>$$</p>
+<p>其中，$\lambda _{max}$是正则化的拉普拉斯矩阵$L$的最大特征值，而正则化拉普拉斯矩阵的特征值介于0和2之间，因此，$\hat{\Lambda}$的作用是让特征值矩阵的值介于-1和1之间。切比雪夫多项式是递归定义的：</p>
+<p>$$<br>\begin{cases}<br>    T _0(x)&#x3D;1 \\<br>    T _1(x)&#x3D;x \\<br>    T _{n+1}(x)&#x3D;2xT _n(x)- T _{n-1}(x)<br>\end{cases}<br>$$</p>
+<p>切比雪夫多项式各个幂次项的系数实际上是余弦函数$\cos nx$展开为$\cos x$的函数后的各个幂次的$\cos x$的系数。因此，相比于普通的多项式，切比雪夫多项式具有很多特殊的性质：</p>
+<ol>
+<li>在$[-1,1]$有$n$个零点；</li>
+<li>在$[-1,1]$的值在$[-1,1]$之间震荡。</li>
+<li>...</li>
+</ol>
+<p><img src="/2023/07/06/SpectralApproach/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Chebyshev polynomials</center><br>
+
+<p>这使得它与正弦波形十分相似，但是又更为简单。将式子带入$(3)$，可得：</p>
+<p>$$<br>\begin{cases}<br>    Z&#x3D;\sigma(\sum\limits _{k&#x3D;0} ^Kw _kT _k(\hat{L})f)\\<br>    \hat{L}&#x3D;\frac{2}{\lambda _{max}}L-I _N<br>\end{cases}<br>$$</p>
+<p>因为切比雪夫多项式本质上仍是多项式，所以$k$仍然表示的是感受野的大小，这与第二代GCN一致。</p>
+<h1 id="GCN"><a href="#GCN" class="headerlink" title="GCN"></a>GCN</h1><p>目前常规的<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1609.02907.pdf">GCN</a>源于2017年Kipf等发表的论文。它是在ChebyNet的基础上进一步简化而来的，它取$K$为1，即，只取切比雪夫多项式的前两项：</p>
+<p>$$<br>g _w&#x3D;w_0+w_1\hat{L}\tag{6}<br>$$</p>
+<p>进一步地，它固定$\lambda _{max}$为2，并且限制$w_0&#x3D;-w_1&#x3D;w$，于是式$(6)$变为：</p>
+<p>$$<br>\begin{align*}<br>    g _w<br>    &amp;&#x3D;w-w(L-I _N)\\<br>    &amp;&#x3D;-w(L-2I _N)\\<br>    &amp;&#x3D;-w[D ^{-\frac{1}{2}}(D-A)D ^{-\frac{1}{2}}-2I _N]\\<br>    &amp;&#x3D;-w(I _N-D ^{-\frac{1}{2}}AD ^{-\frac{1}{2}}-2I _N)\\<br>    &amp;&#x3D;w(I _N+D ^{-\frac{1}{2}}AD ^{-\frac{1}{2}})\tag{7}<br>\end{align*}<br>$$</p>
+<p>不难看出，如此，卷积层的感受野就只有1，即中心顶点只会聚合与其直接邻接的顶点的信息。但是，由于$A$的对角线均为0，在卷积过程中，中心顶点会丢失自己的信息。因此，GCN为每个顶点增加了自旋边，即：</p>
+<p>$$<br>\tilde{A}&#x3D;A+I _N<br>$$</p>
+<p>相应地，拉普拉斯矩阵$L$和和度矩阵$D$分别变成了$\tilde{L}$和$\tilde{D}$。如此，$k$为0的切比雪夫项$I _N$就不再被需要了，因为$\tilde{A}$使得中心顶点能够保留自己的信息，故式$(7)$进一步简化为：</p>
+<p>$$<br>g _w&#x3D;w\tilde{D} ^{-\frac{1}{2}}\tilde{A}\tilde{D} ^{-\frac{1}{2}}<br>$$</p>
+<p>为了增加可学习的参数，GCN将$w$扩充为矩阵$W$，并定义了卷积层的最终操作为：</p>
+<p>$$<br>Z&#x3D;\sigma(\tilde{D} ^{-\frac{1}{2}}\tilde{A}\tilde{D} ^{-\frac{1}{2}}fW)<br>$$</p>
+<p>以上就是GCN，它是ChebyNet的简化，但实际效果却远优于更复杂的ChebyNet。但是，GCN不能叠加很多层，因为它是个低通滤波器，即它会过滤掉高频的信号，因此当GCN的层数过高时，最终的信号就只剩低频信号了，相应地网络的效果也会变差：</p>
+<p><img src="/2023/07/06/SpectralApproach/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Low pass filter</center><br>
+
+<blockquote>
+<p>图中的$h$就是文中的$g$。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/ftp/arxiv/papers/1812/1812.08434.pdf">Graph neural networks: A review of methods and applications</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Me4y1c7kj/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">谱域图神经网络理论基础</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/121090537">GCN中的等式证明</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/35212baf6671">图卷积网络(GCN)原理解析</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/06/SpectralApproach/" data-id="clzik0lcx008dv47kc4s90qkq" data-title="Spectral Approaches" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/07/CopyAndDeepcopy/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Copy and Deepcopy in Python
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/04/GraphFourierTransform/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Graph Fourier Transform</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

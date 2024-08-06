@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Computational Complexity: Randomized Computation | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="本篇是计算复杂性（CS7313）的第六章，主要研究随机计算。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computational Complexity: Randomized Computation">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/11/13/RandomizedComputation/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="本篇是计算复杂性（CS7313）的第六章，主要研究随机计算。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-11-13T00:30:46.000Z">
+<meta property="article:modified_time" content="2023-12-05T05:45:42.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="Theoretical Computer Science">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-RandomizedComputation" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/13/RandomizedComputation/" class="article-date">
+  <time class="dt-published" datetime="2023-11-13T00:30:46.000Z" itemprop="datePublished">2023-11-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Computational Complexity: Randomized Computation
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Probabilistic-Turing-Machine"><a href="#Probabilistic-Turing-Machine" class="headerlink" title="Probabilistic Turing Machine"></a>Probabilistic Turing Machine</h1><p>$\textbf{PTM}$是$\textbf{NDTM}$的升级，其以确定的概率（一般均为0.5）选择$\delta _0$和$\delta _1$。故概率图灵机的输出$\mathbb{P}(x)$是一个随机分布（变量）。$<br>\text{Pr}[\mathbb{P}(x)&#x3D;y]$表示给定输入$x$，该概率图灵机输出$y$的概率。</p>
+<p>一个函数$\phi$是概率可计算的（能被概率图灵机$\mathbb{P}$计算），若：</p>
+<p>$$<br>\phi(x)&#x3D;<br>\begin{cases}<br>    y,\text{if}\space \text{Pr}[\mathbb{P}(x)&#x3D;y] &gt; 1&#x2F;2 \\<br>    \uparrow, \text{if no such y exists}<br>\end{cases}<br>$$</p>
+<p>一个语言$L$能被$\textbf{PTM}$判定，当且仅当：</p>
+<p>$$<br>\text{Pr}[\mathbb{P}(x)&#x3D;L(x)] &gt; 1&#x2F;2<br>$$</p>
+<blockquote>
+<p>概率图灵机可计算的函数就是可计算函数。</p>
+</blockquote>
+<h2 id="Average-Case-Time-Complexity"><a href="#Average-Case-Time-Complexity" class="headerlink" title="Average Case Time Complexity"></a>Average Case Time Complexity</h2><p>概率图灵机可以定义平均时间复杂性。</p>
+<p>With bounded error:</p>
+<p>$$<br>\phi(x)&#x3D;<br>\begin{cases}<br>    y,\text{if}\space \text{Pr}[\mathbb{P}(x)&#x3D;y] \ge 1&#x2F;2 + \epsilon \\<br>    \uparrow, \text{if no such y exists}<br>\end{cases}<br>$$</p>
+<blockquote>
+<p>带bounded error是为了避免出现任何问题都能平均两步解决的错误结论。</p>
+</blockquote>
+<h2 id="Polynomial-Identity-Testing"><a href="#Polynomial-Identity-Testing" class="headerlink" title="Polynomial Identity Testing"></a>Polynomial Identity Testing</h2><p>著名随机算法——等价性测试：测试两个电路是否是等价的。</p>
+<blockquote>
+<p>在有限域中随机取值，直接输入该电路。</p>
+</blockquote>
+<h1 id="textbf-PP"><a href="#textbf-PP" class="headerlink" title="$\textbf{PP}$"></a>$\textbf{PP}$</h1><p>若$\forall x \in \{0,1\} ^*$，$\text{Pr}[\mathbb{P}(x)&#x3D;L(x)] &gt; 1&#x2F;2$，且对任意的选择，$\mathbb{P}$在$T(|x|)$步内停机，则$\mathbb{P}$在$T(n)$时间内判定$L$。（$T$为最坏时间复杂性）</p>
+<p>上面的定义即为$\textbf{PP}$类，其等价定义为：有个多项式时间的普通图灵机$\mathbb{M}$，使得：</p>
+<p>$$<br>\text{Pr} _{r \in \{0,1\} ^{p(|x|)}}[\mathbb{M}(x,r)&#x3D;L(x)] &gt; 1&#x2F;2<br>$$</p>
+<p>其中$r$为一个随机串。</p>
+<p>$$<br>\textbf{NP},\text{co}\textbf{NP} \subseteq \textbf{PP} \subseteq \textbf{PSPACE}<br>$$</p>
+<h2 id="PP完全"><a href="#PP完全" class="headerlink" title="PP完全"></a>PP完全</h2><p>都是$\textbf{SAT}$的变形。</p>
+<p>$\phi \in \text{MajSAT}$如果有超过一半的真值指派，使得$\phi&#x3D;1$。</p>
+<blockquote>
+<p>C-L归约，$\delta$的选择转变为一个个真值指派。</p>
+</blockquote>
+<p>$\textbf{PP}$是封闭的，所以对$A \in \textbf{PP}$，$B \in \textbf{PP}$，有$A\cap B \in \textbf{PP}$，$A \cup B \in \textbf{PP}$。</p>
+<h1 id="textbf-BPP"><a href="#textbf-BPP" class="headerlink" title="$\textbf{BPP}$"></a>$\textbf{BPP}$</h1><p>B：Bounded-Error</p>
+<p>接受标准：With bounded-error，即要严格大于$1&#x2F;2$。时间复杂度：最坏时间复杂度与平均时间复杂度都行（马尔可夫不等式），两者定义出来的是等价的。$\textbf{BPP}$一般用的标准是$2&#x2F;3$。</p>
+<p>$$<br>\textbf{P} \subseteq \textbf{BPP} \subseteq \textbf{PP}<br>$$</p>
+<p>$$<br>\textbf{BPP}&#x3D; \textbf{coBPP}<br>$$</p>
+<blockquote>
+<p>$\textbf{BPP}$是很鲁棒的，出错概率大和出错概率小的$\textbf{BPP}$定义的是同一个类。（出错概率高，则多运行几次，取出现多的为最终值）。</p>
+<p>错误压缩定理：可以把错误压缩到指数的倒数。</p>
+</blockquote>
+<h2 id="带神谕的BPP"><a href="#带神谕的BPP" class="headerlink" title="带神谕的BPP"></a>带神谕的BPP</h2><p>$$<br>\textbf{BPP} ^{\textbf{BPP}} &#x3D; \textbf{BPP}<br>$$</p>
+<blockquote>
+<p>错误压缩，让子程序的调用几乎不出错。</p>
+</blockquote>
+<h2 id="textbf-BPP-完全"><a href="#textbf-BPP-完全" class="headerlink" title="$\textbf{BPP}$完全"></a>$\textbf{BPP}$完全</h2><p>不存在。如果$\textbf{BPP}&#x3D;\textbf{P}$，则存在。</p>
+<p>Adleman Theorem：</p>
+<p>$$<br>\textbf{BPP} \subseteq \textbf{P} _{\text{poly}}<br>$$</p>
+<p>定理：</p>
+<p>$$<br>\textbf{BPP} \subseteq \Sigma _2 ^p \cap \Pi _2 ^p<br>$$</p>
+<blockquote>
+<p>用错误压缩定理证明。</p>
+</blockquote>
+<h1 id="textbf-ZPP"><a href="#textbf-ZPP" class="headerlink" title="$\textbf{ZPP}$"></a>$\textbf{ZPP}$</h1><p>平均运行时间为P且不出错的概率图灵机：</p>
+<p>$$<br>\textbf{ZPP}&#x3D;\bigcup _{c \in \text{N}}\textbf{ZTIME}(n ^c)<br>$$</p>
+<blockquote>
+<p>如一些排序算法</p>
+</blockquote>
+<p>$L \in \textbf{ZPP}$等价于存在最坏时间为$\textbf{P}$的概率图灵机，其在多项式时间内输出$\{0,1,?\}$，其中$?$表示算不出来，要求算不出来的概率小于等于1&#x2F;3。</p>
+<blockquote>
+<p>单向出错算法：回答是一定对，回答否可能错。</p>
+</blockquote>
+<p>多项式时间的单向出错算法：<br>$$<br>\textbf{RP}&#x3D;\bigcup _{c \in \text{N}} \textbf{RTIME}(n ^c)<br>$$</p>
+<p>其与$\textbf{ZPP}$存在关系：</p>
+<p>$$<br>\textbf{ZPP}&#x3D;\textbf{RP}\cap \textbf{coRP}<br>$$</p>
+<blockquote>
+<p>左到右：若让$?$是始终回答NO，则ZPP就是RP；若始终回答YES，则ZPP就是coRP；<br>右到左：RP回答YES一定是对的，coRP回答NO一定是对的，因此交叉运行两个算法即可。</p>
+</blockquote>
+<p>RP也有错误压缩定理。类似地，ZPP也有错误压缩定理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/11/13/RandomizedComputation/" data-id="clzik0lcv007lv47k6wwx0r2m" data-title="Computational Complexity: Randomized Computation" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/24/MatrixTheory5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MatrixTheory: 特殊矩阵与矩阵分解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/07/DifferentTypesofGraph/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Graphs of  Different Types</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

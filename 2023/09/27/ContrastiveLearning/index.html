@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Contrastive Learning | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="对比学习--自监督（无监督）学习--预训练--微调--特征提取。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Contrastive Learning">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/09/27/ContrastiveLearning/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="对比学习--自监督（无监督）学习--预训练--微调--特征提取。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/27/ContrastiveLearning/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/27/ContrastiveLearning/1.png">
+<meta property="article:published_time" content="2023-09-27T11:30:28.000Z">
+<meta property="article:modified_time" content="2023-09-27T13:52:30.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Paper">
+<meta property="article:tag" content="Unsupervised Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/09/27/ContrastiveLearning/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ContrastiveLearning" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/27/ContrastiveLearning/" class="article-date">
+  <time class="dt-published" datetime="2023-09-27T11:30:28.000Z" itemprop="datePublished">2023-09-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Contrastive Learning
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="CV领域的对比学习发展路径"><a href="#CV领域的对比学习发展路径" class="headerlink" title="CV领域的对比学习发展路径"></a>CV领域的对比学习发展路径</h1><p>什么是对比学习？对比学习是属于无监督&#x2F;自监督学习范式的。在监督学习的分类问题中，我们希望模型能够精确地预测输入属于的类别，而在对比学习中，模型不需要知道数据的真实标签，只要最终的输出能够把不同的类别区分开就好。因而，对比学习的模型就是一个特征提取器，其模型将输入的特征提取出来作为输出，使得在输出的特征空间中，相似的数据尽可能地相邻，而不相似的数据尽可能地远离，如下图所示</p>
+<p><img src="/2023/09/27/ContrastiveLearning/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Contrastive Learning</center><br>
+
+<p>对比学习的典型范式是<strong>代理任务</strong>+<strong>目标函数</strong>。</p>
+<ul>
+<li>代理任务：代理任务是一些不像分类、目标检测一样具有实际意义的应用场景，但我们假定该模型是为了解决这个代理问题而训练的，而实际上它只是用于生成自监督信号以更新特征提取器，从而能够让我们获得更好的预训练模型。在NLP中，BERT预训练中用到的填词等任务就可以被视为代理任务。在CV中，如下面会提到的九宫格图像相对位置预测、图片着色等都属于代理任务。不过，在CV的对比学习中，更常用的代理任务是个体判别（Instance discrimination），即将同类的个体与其他个体区分开来。&gt; 更通俗地来说，代理任务是为了生成类似监督学习的“标签”，使得无监督学习也有比较的对象（像监督学习中的Ground Truth和prediction一样），有了比较对象，我们才能用合适的metric构建目标函数。</li>
+<li>目标函数：产生梯度。<ol>
+<li>生成式网络：用生成的图片与原图片做对比，可以是$L1$或$L2$ losses。</li>
+<li>判别式网络：对图片本身做划分，如作九宫格划分，用一个格子预测另一个格子在其哪个方位，实际上转化为了一个交叉熵损失。</li>
+<li>对比式：衡量被提取的数据特征间在特征空间的相似性，不同于前两种的是（特别是生成式），由于编码器是在不断更新的，被提取的数据特征也是在不断被更新的，因而对比的对象不像前两者是固定的。</li>
+<li>对抗性：衡量概率分布的差异。（不太懂）</li>
+</ol>
+</li>
+</ul>
+<h2 id="百花齐放"><a href="#百花齐放" class="headerlink" title="百花齐放"></a>百花齐放</h2><ol>
+<li>InstDisc: Memory bank。字典内容一致性不好。</li>
+<li>InvaSpread: 端到端，两个编码器都梯度下降。字典大小受限。</li>
+<li>CPC: InfoNCE。</li>
+<li>CMC: 多视角。</li>
+</ol>
+<h2 id="CV双雄"><a href="#CV双雄" class="headerlink" title="CV双雄"></a>CV双雄</h2><ol>
+<li>MoCoV1: 动态编码器、Memory bank变队列。</li>
+<li>SimCLRV1: 端到端。</li>
+<li>MoCoV2</li>
+<li>SimCLRV2</li>
+<li>SWaV</li>
+</ol>
+<h2 id="不用负样本"><a href="#不用负样本" class="headerlink" title="不用负样本"></a>不用负样本</h2><ol>
+<li>BYOL: MSE LOSS，一个编码器预测另一个编码器。</li>
+<li>SimSiam</li>
+</ol>
+<h2 id="基于Transformer"><a href="#基于Transformer" class="headerlink" title="基于Transformer"></a>基于Transformer</h2><ol>
+<li>MoCoV3</li>
+<li>DINO</li>
+</ol>
+<blockquote>
+<p>骨干网络由ResNet换为ViT。</p>
+</blockquote>
+<p><img src="/2023/09/27/ContrastiveLearning/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. </center>
+
+<h1 id="MoCo"><a href="#MoCo" class="headerlink" title="MoCo"></a>MoCo</h1><p>对比学习是一次字典查询的过程。</p>
+<ol>
+<li><p>字典要大；</p>
+</li>
+<li><p>字典的内容连续性要好。</p>
+</li>
+<li><p>队列作为字典的数据结构：每个mini batch，老key出去，更新后的key作为new key进来。</p>
+</li>
+<li><p>动量编码器：$\theta _k &#x3D; m*\theta _k+(1-m)*\theta _q$，保证字典中key的一致性。</p>
+</li>
+</ol>
+<blockquote>
+<p>$m$很大，文中取$0.99$或$0.999$。</p>
+</blockquote>
+<h2 id="NCE-Noise-Contrastive-Estimation"><a href="#NCE-Noise-Contrastive-Estimation" class="headerlink" title="NCE(Noise Contrastive Estimation)"></a>NCE(Noise Contrastive Estimation)</h2><p>当分类任务的类别很多时，交叉熵的计算时间是难以承受的，因为交叉熵的分母必须对样本在<strong>所有类别</strong>上出现的可能进行求和。对于Instance discrimination，每个样本就是一个类，在这种情况下，用交叉熵是不现实的。<br>NCE(Noise Contrastive Estimation)将多分类问题转化为了多个<strong>二分类</strong>问题，所有的样本都只有两类：来自data samples的<strong>正类</strong>和来自noise samples的负类。</p>
+<h2 id="InfoNCE"><a href="#InfoNCE" class="headerlink" title="InfoNCE"></a>InfoNCE</h2><p>InfoNCE是对NCE的改进，它比NCE更加接近交叉熵。InfoNCE将正例视作一类，将单个的负例也视作一类。因此，对于$1$正例$K$负例的采样，总类别数是$K+1$。InfoNCE实际上就是类别数为$K+1$且带温度参数$\tau$的交叉熵。还有一点特殊的是，由于我们想匹配的只是$q$和正例$k _+$，所以$\mathcal{L} _q$的分子永远都只会是$\exp(q\cdot k _+ &#x2F; \tau)$。</p>
+<p>$$<br>\mathcal{L} _q&#x3D;-\log \frac{\exp(q\cdot k _+ &#x2F; \tau)}{\sum _ {i&#x3D;0} ^K\exp(q\cdot k _i &#x2F; \tau)}<br>$$</p>
+<p>上式中，$k _0$即为$k _+$。$\mathcal{L} _q$很好地体现了我们的优化目标：**$q$和正例的相似性出现在分子，所以越大越好，相应地，分母上$q$与负例的相似性越小越好**。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># f_q, f_k: encoder networks for query and key</span></span><br><span class="line"><span class="comment"># queue: dictionary as a queue of K keys (CxK)</span></span><br><span class="line"><span class="comment"># m: momentum</span></span><br><span class="line"><span class="comment"># t: temperature</span></span><br><span class="line"></span><br><span class="line">f_k.params = f_q.params <span class="comment"># initialize</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> loader: <span class="comment"># load a minibatch x with N samples</span></span><br><span class="line">   x_q = aug(x) <span class="comment"># a randomly augmented version</span></span><br><span class="line">   x_k = aug(x) <span class="comment"># another randomly augmented version</span></span><br><span class="line"></span><br><span class="line">   q = f_q.forward(x_q) <span class="comment"># queries: NxC  256x128</span></span><br><span class="line">   k = f_k.forward(x_k) <span class="comment"># keys: NxC  256x128</span></span><br><span class="line">   k = k.detach() <span class="comment"># no gradient to keys</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># positive logits: Nx1  256x1</span></span><br><span class="line">   l_pos = bmm(q.view(N,<span class="number">1</span>,C), k.view(N,C,<span class="number">1</span>))</span><br><span class="line">   <span class="comment"># negative logits: NxK  256x65536</span></span><br><span class="line">   l_neg = mm(q.view(N,C), queue.view(C,K))</span><br><span class="line"></span><br><span class="line">   <span class="comment"># logits: Nx(1+K)  256x65537</span></span><br><span class="line">   logits = cat([l_pos, l_neg], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">   <span class="comment"># contrastive loss, Eqn.(1)</span></span><br><span class="line">   labels = zeros(N) <span class="comment"># positives are the 0-th</span></span><br><span class="line">   loss = CrossEntropyLoss(logits/t, labels)</span><br><span class="line"></span><br><span class="line">   <span class="comment"># SGD update: query network</span></span><br><span class="line">   loss.backward()</span><br><span class="line">   update(f_q.params)</span><br><span class="line"></span><br><span class="line">   <span class="comment"># momentum update: key network</span></span><br><span class="line">   f_k.params = m*f_k.params+(<span class="number">1</span>-m)*f_q.params</span><br><span class="line"></span><br><span class="line">   <span class="comment"># update dictionary</span></span><br><span class="line">   enqueue(queue, k) <span class="comment"># enqueue the current minibatch</span></span><br><span class="line">   dequeue(queue) <span class="comment"># dequeue the earliest minibatch</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/09/27/ContrastiveLearning/" data-id="clzik0lc5001dv47kfvbde96c" data-title="Contrastive Learning" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/09/28/ComputationalComplexitySpaceComp1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Computational Complexity Space Complexity 1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/09/27/MatrixTheory2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MatrixTheory: Finite Dimensional Linear Space</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

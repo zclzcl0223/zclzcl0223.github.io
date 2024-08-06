@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Computational Complexity: Polynomial Hierarchy | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="本篇是计算复杂性（CS7313）的第四章，主要研究多项式谱系问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computational Complexity: Polynomial Hierarchy">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/10/25/PolynomialHierarchy/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="本篇是计算复杂性（CS7313）的第四章，主要研究多项式谱系问题。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/10/25/PolynomialHierarchy/1.png">
+<meta property="article:published_time" content="2023-10-25T01:28:49.000Z">
+<meta property="article:modified_time" content="2023-10-31T06:09:00.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="Theoretical Computer Science">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/10/25/PolynomialHierarchy/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-PolynomialHierarchy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/10/25/PolynomialHierarchy/" class="article-date">
+  <time class="dt-published" datetime="2023-10-25T01:28:49.000Z" itemprop="datePublished">2023-10-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Computational Complexity: Polynomial Hierarchy
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Problem-Beyond-NP"><a href="#Problem-Beyond-NP" class="headerlink" title="Problem Beyond NP"></a>Problem Beyond NP</h1><p>$\textbf{MINIMAL}&#x3D;\{\phi | \phi \text{DNF} \land \forall \text{DNF}\psi. |\psi| &lt; |\phi| \to \exists u. !{(\psi(u) &lt;&#x3D;&gt;\phi(u))}\}$，即$\phi$是所有等价的析取范式中最短的。</p>
+<h1 id="Meyer-Stockmeyer-39-s-Definition"><a href="#Meyer-Stockmeyer-39-s-Definition" class="headerlink" title="Meyer-Stockmeyer&#39;s Definition"></a>Meyer-Stockmeyer&#39;s Definition</h1><p>$$<br>\begin{align*}<br>    \Sigma _0 ^p &amp;&#x3D;\textbf{P}\\<br>    \Sigma _{i+1} ^p &amp;&#x3D;\textbf{NP} ^{\Sigma _{i} ^p}\\<br>    \Delta _{i+1} ^{p}&amp;&#x3D;\textbf{P} ^{\Sigma _{i} ^p} \\<br>    \Pi _i ^p &amp;&#x3D; \textbf{co-}\Sigma _{i} ^p<br>\end{align*}<br>$$</p>
+<p>有：</p>
+<ul>
+<li>$\Sigma _{i} ^p \subseteq \Delta _{i+1} ^{p} \subseteq \Sigma _{i + 1} ^p$</li>
+<li>$\Pi _i ^p \subseteq \Delta _{i+1} ^{p} \subseteq \Pi _{i + 1} ^p$</li>
+</ul>
+<p>其中第二项是对第一项的取补。</p>
+<p>定义多项式谱系为：$\textbf{PH}&#x3D;\bigcup _{i \ge 0}\Sigma _i ^p&#x3D;\bigcup _{i \ge 0}\Pi _i ^p&#x3D;\bigcup _{i \ge 0}\Delta _{i+1} ^p$。</p>
+<p>某个语言$L \in \Sigma _i ^p$或$L \in \Pi _i ^p$的证据：</p>
+<ul>
+<li>对$\Sigma _i ^p$，证据为$\exists u _1 \in \{0,1\} ^{q(|x|)}.\forall u _2 \in \{0,1\} ^{q (|x|)}...Q _i u _i \in \{0,1\} ^{q (|x|)}$</li>
+<li>对$\Pi _i ^p$，证据为$\forall u _1 \in \{0,1\} ^{q(|x|)}.\exists u _2 \in \{0,1\} ^{q (|x|)}...Q _i u _i \in \{0,1\} ^{q (|x|)}$</li>
+</ul>
+<p>这两个是对偶问题，只需证第一个即可。</p>
+<ul>
+<li>从右到左：猜测一个$u _1$，对每个猜测，计算$\Pi _{i-1} ^P$，而于是所有的猜测就是$\textbf{NP} ^{\Pi _{i-1} ^P}&#x3D;\textbf{NP} ^{\Sigma _{i-1} ^P}&#x3D;\Sigma _{i} ^P$。</li>
+<li>从左到右：Cook-Levin定理，转化为$\textbf{SAT}$，再把$\textbf{SAT}$转化为量词的交替。</li>
+</ul>
+<blockquote>
+<p>$\Sigma _i \textbf{SAT}$是$\Sigma _i ^p$中最难的问题，即它是$\Sigma _i ^p$完全的。证明：将$\mathbb{M}(x,u _1,...,u _{i+1})$Cook-Levin归约到$\Sigma _i \textbf{SAT}$。</p>
+</blockquote>
+<p>因为$\Sigma _i \textbf{SAT} \subseteq \textbf{PSPACE}$，所以$\textbf{PH} \subseteq \textbf{PSPACE}$</p>
+<h2 id="Alternating-Turing-Machine"><a href="#Alternating-Turing-Machine" class="headerlink" title="Alternating Turing Machine"></a>Alternating Turing Machine</h2><p>交替图灵机：非确定图灵机的推广，每个状态都被标注为$\{\exists,\forall,\text{halt}\}$之一。交替图灵机$\text{ATM}$接受$x$当且仅当交替图灵机的执行序列中存在一个<em>接受子树</em>。</p>
+<blockquote>
+<p>接受子树：所有叶子结点标记$\text{halt}$且均为$1$，若某个非叶子结点被标记为$\exists$则它只有一个孩子在接受子树中，若被标记为$\forall$则有两个孩子接受子树中。</p>
+</blockquote>
+<p>$\text{TQBF}$可用$\text{ATM}$在平方时间和线性空间判定。</p>
+<ul>
+<li>$\textbf{NSPACE}(S(n)) \subseteq \textbf{ATIME}(S ^2 (n))$：格局图、路径，$\exists$则猜测，$forall$则并行计算，共猜测$S$次，每次耗时$S$。</li>
+<li>$\textbf{ATIME}(T(n)) \subseteq \textbf{SPACE}(T (n))$：DFS。</li>
+<li>$\textbf{ASPACE}(S(n)) \subseteq \bigcup _ {c \ge 0}\textbf{TIME}(c ^{S(n)})$：格局图，枚举。</li>
+<li>$\textbf{TIME}(T(n)) \subseteq \textbf{ASPACE}(\log T(n))$：Cook-Levin证明一的图从下往上，猜测$\exist$，并行地验证$\forall$。每条路径空间为对数空间。</li>
+</ul>
+<p><img src="/2023/10/25/PolynomialHierarchy/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1.</center>
+
+<blockquote>
+<p>无穷谱系猜测是比$\textbf{NP}&#x3D;\textbf{P}$更强的假设，它假设多项式谱系间存在严格的包含关系。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/10/25/PolynomialHierarchy/" data-id="clzik0lcs006uv47kcxqo9ev8" data-title="Computational Complexity: Polynomial Hierarchy" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/25/MatrixTheory4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MatrixTheory: 特征值、特征向量
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/18/MatrixTheory3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MatrixTheory: Linear Transformation Matrix</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Regular Expressions | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="正则表示式是一个强大的字符串匹配语言。Linux中的许多命令都支持正则表达式，如grep。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Regular Expressions">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/08/04/RegularExpressions/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="正则表示式是一个强大的字符串匹配语言。Linux中的许多命令都支持正则表达式，如grep。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/08/04/RegularExpressions/1.png">
+<meta property="article:published_time" content="2023-08-04T06:38:55.000Z">
+<meta property="article:modified_time" content="2023-08-05T05:39:18.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Tool">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/08/04/RegularExpressions/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-RegularExpressions" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/04/RegularExpressions/" class="article-date">
+  <time class="dt-published" datetime="2023-08-04T06:38:55.000Z" itemprop="datePublished">2023-08-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Regular Expressions
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="基本格式与匹配范围"><a href="#基本格式与匹配范围" class="headerlink" title="基本格式与匹配范围"></a>基本格式与匹配范围</h1><p>基本格式为<code>/[regx]/[g\i\m\s\u\y]</code>。其中<code>[g\i\m\s\u\y]</code>每个字母表示一种匹配范围，可同时出现：</p>
+<p><code>/g</code>：输出所有匹配结果；<br><code>/i</code>：不区分大小写；<br><code>/m</code>：<code>^</code>或<code>$</code>定位符在场时才发挥作用；<br><code>/</code>：只输出第一个匹配结果。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://regexr.com/">Regexr Website</a>是一个很好的练习正则表达式的网站，它的界面简洁：上方是正则表达式，中间是待匹配文本，下方则会详细给出每个表达式的匹配细节同时还提供了一些实用工具。</p>
+</blockquote>
+<p><img src="/2023/08/04/RegularExpressions/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Regexr Website</center>
+
+<hr>
+<h1 id="运算规则与优先级"><a href="#运算规则与优先级" class="headerlink" title="运算规则与优先级"></a>运算规则与优先级</h1><p>所有的正则表达式，无论是基本运算符还是复杂运算符，都遵循优先级从左到右匹配。基本的优先级从高到低顺序为：</p>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\\</td>
+<td align="center">转义字符</td>
+</tr>
+<tr>
+<td align="center">(), []</td>
+<td align="center">圆括号，方括号</td>
+</tr>
+<tr>
+<td align="center">*, +, ?, {}</td>
+<td align="center">限定符</td>
+</tr>
+<tr>
+<td align="center">^, $, \w等元字符, 任何字符</td>
+<td align="center">定位点和字符</td>
+</tr>
+<tr>
+<td align="center">|</td>
+<td align="center">逻辑运算符，或</td>
+</tr>
+</tbody></table>
+<p>对于待匹配字符串，也遵循从左到右、从上到下的匹配顺序。因此，一旦某子串符合正则表示式的匹配要求，该子串便会立即被“摘出”字符串，不再参与后续的匹配。</p>
+<hr>
+<h1 id="简单的运算符"><a href="#简单的运算符" class="headerlink" title="简单的运算符"></a>简单的运算符</h1><ul>
+<li><code>+</code>：对<code>+</code>的前一个字符匹配1个以上；</li>
+<li><code>?</code>：对<code>?</code>的前一个字符匹配0或1个；</li>
+<li><code>*</code>：对<code>*</code>的前一个字符匹配0或多个；</li>
+<li><code>.</code>：匹配任何1个字符（除换行符）；</li>
+<li><code>\</code>：转义字符，使运算符失去正则意义；</li>
+<li><code>\d</code>：匹配数字；</li>
+<li><code>\w</code>：匹配单词；</li>
+<li><code>\s</code>：匹配空白符，包括space、tab、line break。</li>
+</ul>
+<blockquote>
+<p><code>\w</code>等的大写表示匹配与原小写相反的项目，如<code>\W</code>匹配所有的非单词，实际相当于对小写的匹配结果取非。</p>
+</blockquote>
+<hr>
+<h1 id="较复杂的运算符"><a href="#较复杂的运算符" class="headerlink" title="较复杂的运算符"></a>较复杂的运算符</h1><h2 id="括号类"><a href="#括号类" class="headerlink" title="括号类"></a>括号类</h2><ul>
+<li><code>&#123;[minLength],[maxLength]&#125;</code>：对<code>&#123;[minLength],[maxLength]&#125;</code>前的所有匹配项，限制每个匹配项的长度为<code>minLength</code>-<code>maxLength</code>，其中匹配项长度小于<code>[minLength]</code>的将会被剔除，而长度大于<code>[maxLength]</code>的则会只取<code>[maxLength]</code>部分。如<code>&#123;4,5&#125;</code>只会匹配其之前的匹配项中所有长度大于4的，并对大于5的限定长度为5，限定长度后的剩下部分若仍符合前面的匹配要求，则当作新的匹配项继续参与<code>&#123;[minLength],[maxLength]&#125;</code>。若只有<code>&#123;[minLength]&#125;</code>则默认<code>[maxLength]=[minLength]</code>；若是<code>&#123;[minLength],&#125;</code>则将匹配所有长度大于<code>[minLength]</code>的；</li>
+<li><code>[[Groups]]</code>：匹配任何一个<code>[[Groups]]</code>中的字符。这很像通配符中<code>[]</code>的用法，但是不同的是，正则表达式中没有组的概念，因此<code>[Groups]</code>只能是用户自定的一组备选的字符或序列，如<code>[abg]</code>将匹配<code>a</code>或<code>b</code>或<code>g</code>；<code>a-f</code>将匹配<code>a</code>到<code>f</code>的任意一个字符；<code>1-9</code>将匹配<code>1</code>到<code>9</code>的任意一个字符。<code>[]</code>支持组合使用，如<code>a-f1-9</code>将匹配<code>a</code>到<code>f</code>或<code>1</code>到<code>9</code>的任意一个字符；</li>
+<li><code>()</code>：<code>()</code>表将里面的内容视作一个整体，即里面的内容在匹配时实际上是一个字符，如<code>(re)&#123;2,3&#125;</code>将匹配所有的<code>re</code>重复超过2次的连续串中的<code>rere</code>或<code>rerere</code>部分，此时<code>re</code>整体被视为一个字符；</li>
+</ul>
+<h2 id="逻辑运算符与定位符"><a href="#逻辑运算符与定位符" class="headerlink" title="逻辑运算符与定位符"></a>逻辑运算符与定位符</h2><ul>
+<li><code>|</code>：逻辑运算符<code>or</code>，匹配结果是符合<code>|</code>左边或右边内容的字符串。若无括号将整个<code>|</code>表达式括起，<code>|</code>会默认将左边和右边的视为一个整体，因为<code>|</code>的优先级最低，如<code>tre|it</code>只会匹配<code>tre</code>或<code>it</code>，而<code>t(re|it)</code>则会匹配<code>&#39;tre</code>或<code>tit</code>；</li>
+<li><code>^</code>：需放在正则表达式的开头才起作用，表示匹配字符串的开头，也就是说<code>^</code>后面的表达式只有出现在字符串的开头才会被匹配。默认情况下，整篇文章会被视作一个字符串，但是若使用<code>/m</code>选项，则每一行会被视作一个字符串，此时<code>^</code>的意义就是匹配每一行的开头；</li>
+<li><code>$</code>：需放在正则表达式的最后才起作用，类似于<code>^</code>，表匹配文章或行的末尾；</li>
+<li><code>?&lt;=</code>：向前看，一般而言，这个表达式必须和括号<code>()</code>一起使用。它是<code>^</code>的拓展版，表示从以括号内的表达式开头的部分开始匹配，但是不匹配括号内的内容，如<code>(?&lt;=[tT]he).</code>将匹配<code>the</code>或<code>The</code>后面的任意一个字符；</li>
+<li><code>?&lt;!</code>：<code>?&lt;=</code>的取反，如<code>(?&lt;![tT]he).</code>将匹配除<code>(?&lt;=[tT]he).</code>匹配结果的所有字符；</li>
+<li><code>?=</code>：向后看，<code>?&lt;=</code>的倒装版，是<code>$</code>的拓展，表示从以括号内的表达式结尾的部分开始匹配，如<code>.(?=[tT]he)</code>将匹配<code>the</code>或<code>The</code>前面的任意一个字符；</li>
+<li><code>?!</code>：<code>?=</code>的取反。</li>
+</ul>
+<blockquote>
+<p>需要注意的是，并不是所有的正则表达式标准都包含了<code>?&lt;=</code>和<code>?&lt;!</code>。</p>
+</blockquote>
+<hr>
+<h1 id="实战-电话号码匹配"><a href="#实战-电话号码匹配" class="headerlink" title="实战-电话号码匹配"></a>实战-电话号码匹配</h1><p>对于一般的11位电话号码，其最常规的写法有如下这三种：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1234567890</span><br><span class="line">123-456-7890</span><br><span class="line">123 456 7890</span><br></pre></td></tr></table></figure>
+
+<p>不难看出，上面的写法都可以统一成334写法，因此我们可以先按334将电话号码分组：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(\d&#123;3&#125;)(\d&#123;3&#125;)(\d&#123;4&#125;)/g</span><br></pre></td></tr></table></figure>
+
+<p>三者的区别就在于<code> </code>、<code>-</code>以及无字符，对于<code> </code>和<code>-</code>，我们可以使用中括号表任选其一<code>[ -]</code>，而对于无字符则可以采用<code>?</code>来匹配前方的0或1个字符：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(\d&#123;3&#125;)[ -]?(\d&#123;3&#125;)[ -]?(\d&#123;4&#125;)/g</span><br></pre></td></tr></table></figure>
+
+<p>上述式子已经可以匹配所有的这3种写法。有时，还会出现加了国际区号和使用括号的写法，如：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(123) 456-7890</span><br><span class="line">+1 123 456 7890</span><br></pre></td></tr></table></figure>
+
+<p>对于加括号的，用<code>\(?</code>和<code>\)?</code>处理即可。对于带区号的，则可以<code>(\+\d )?</code>处理。所有的合起来就是：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(\+\d )?(\(?\d&#123;3&#125;\)?)[ -]?(\d&#123;3&#125;)[ -]?(\d&#123;4&#125;)/g</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/rhzKDrUiJVk">Learn Regular Expressions In 20 Minutes</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/08/04/RegularExpressions/" data-id="clzik0lcw007wv47keyk58y7v" data-title="Regular Expressions" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/08/09/SupportVectorMachine/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Support Vector Machine
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/03/WildcardsPatternMatching/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Wildcards and Pattern Matching</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>VAE | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Variational Auto-encoder (VAE)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VAE">
+<meta property="og:url" content="https://zclzcl0223.github.io/2024/01/20/VAE/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Variational Auto-encoder (VAE)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/01/20/VAE/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/01/20/VAE/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/01/20/VAE/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/01/20/VAE/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/01/20/VAE/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/01/20/VAE/6.png">
+<meta property="article:published_time" content="2024-01-20T09:10:10.000Z">
+<meta property="article:modified_time" content="2024-06-19T02:24:16.850Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Generative AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2024/01/20/VAE/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-VAE" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/20/VAE/" class="article-date">
+  <time class="dt-published" datetime="2024-01-20T09:10:10.000Z" itemprop="datePublished">2024-01-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Advanced-Model/">Advanced Model</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      VAE
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Intuitive-AE和VAE"><a href="#Intuitive-AE和VAE" class="headerlink" title="Intuitive: AE和VAE"></a>Intuitive: AE和VAE</h1><p><img src="/2024/01/20/VAE/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. AE, VAE</center><br>
+
+<p>训练时，两者都是优化输入图片和输出图片的差距来更新参数。最后部署、生成图片时，只使用Decoder，接受某个向量输入，生成图片。</p>
+<p>AE的Encoder本质上是将一个图片映射为高维向量空间的一个点，而VAE的Encoder通过加入随机噪声，使得图片被映射为高维空间的一段区间。这样的好处在于，当输入Decoder的向量介于某两个向量之间时，VAE更有可能输出一个结合了这两个向量对应图片特征的图片，因为训练的误差会诱导网络这么做。</p>
+<p><img src="/2024/01/20/VAE/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Intuitive. AE, VAE</center>
+
+<h1 id="原理-噪声角度"><a href="#原理-噪声角度" class="headerlink" title="原理: 噪声角度"></a>原理: 噪声角度</h1><p>VAE的Encoder输出两个向量，一个原始编码$m$ (均值)，一个方差$\sigma$。我们期望加了噪声后的分布能尽可能地趋近于一个正态分布，因此引入一个从正态分布中采样出的向量$e$引导噪声。$\sigma$和$e$结合生成最终的噪声。但是，极端情况为学到的$\sigma$趋近于负无穷，使得VAE退化为AE。因此，除了输入图片和输出图片产生的$\mathcal{L} _1$以外，引入$\mathcal{L} _2$:</p>
+<p>$$<br>\mathcal{L} _2 &#x3D; \min\sum (\text{exp}(\sigma _i)-(1+\sigma _i) + m _i ^2)<br>$$</p>
+<p>其中前两项在$\sigma _i$取0时取最小值，这将迫使$\sigma _i$能够产生有效的噪声。最后一项是L2正则。</p>
+<h1 id="原理-高斯混合模型角度"><a href="#原理-高斯混合模型角度" class="headerlink" title="原理: 高斯混合模型角度"></a>原理: 高斯混合模型角度</h1><p>对于一个给定的图片集，其在高维空间服从一个高斯混合分布$P(x)$ ($x$是图的RGB矩阵)，$P(x)$的值表明某个$x$属于这个空间的概率 (如某张图片是宝可梦精灵的概率)。</p>
+<p><img src="/2024/01/20/VAE/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. GMM</center><br>
+
+<p>高斯混合模型由多个高斯分布组成，因而可写成:</p>
+<p>$$<br>P(x)&#x3D;\sum _m P(m)P(x | m)<br>$$</p>
+<p>其中$P(m)$是$m$高斯分布在混合分布中的权重。$P(x|m)$即为$m$高斯分布，有均值$\mu _m$和方差$\sigma _m$。极限情况下，高斯混合模型由无数个高斯分布组成:</p>
+<p>$$<br>P(x) &#x3D; \int _z P(z)P(x |z)dz<br>$$</p>
+<p>假设$z$服从一个标准正态分布，要将$z$对应为一个高斯分布，只需要生成均值$\mu(z)$和方差$\sigma (z)$即可:</p>
+<p><img src="/2024/01/20/VAE/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Decoder</center><br>
+
+<p>生成这样映射的过程显然是一个参数估计的过程，可由最大似然估计 (MLE) 优化:</p>
+<p>$$<br>L &#x3D; \max\sum _x \log P(x)<br>$$</p>
+<p>这又可以转化为一个EM过程。$z$是一个隐变量，可由已知的$x$估计，对$\log P(x)$做如下修改:</p>
+<p>$$<br>\log P(x) &#x3D; \int _z q(z|x)\log P(x)dz<br>$$</p>
+<p>$q(z|x)$是给定$x$，$z$的概率密度，显然其积分为1，故上式是一个恒等式。进一步处理:</p>
+<p>$$<br>\begin{align*}<br>    \log P(x) &#x3D;&amp;\int _z q(z|x)\log (\frac{P(z,x)}{P(z|x)})dz\\<br>    &#x3D;&amp;\int _z q(z|x)\log (\frac{P(z,x)}{P(z|x)}\frac{q(z|x)}{q(z|x)})dz\\<br>    &#x3D;&amp;\int _z q(z|x)\log (\frac{P(z,x)}{q(z|x)})dz+\int _z q(z|x)\log (\frac{q(z|x)}{P(z|x)})dz<br>\end{align*}<br>$$</p>
+<p>第一步用的是条件概率密度，其他都是普通的变换。第二项被称为KL散度 ($\text{KL}(q(z|x)||P(z|x))$)，用于衡量两个分布的相似性，大于0。故</p>
+<p>$$<br>\log P(x) \ge L _b&#x3D;\int _z q(z|x)\log (\frac{P(z,x)}{q(z|x)})dz<br>$$</p>
+<p>这一步体现了引入$q(z|x)$的作用。$q(z|x)$的值不会影响$L$ (积分恒为1)，但是通过优化$q(z|x)$，使其趋近于$P(z|x)$，我们可以让KL散度项逐渐趋于0，使得:</p>
+<p>$$<br>\log P(x) \approx L _b<br>$$</p>
+<p>于是MLE的优化对象就变为$L _b$，而$L _b$可进一步转化为:</p>
+<p>$$<br>\begin{align*}<br>    L _b&#x3D;&amp;\int _z q(z|x)\log (\frac{P(x|z)P(z)}{q(z|x)})dz\\<br>    &#x3D;&amp;\int _z q(z|x)\log (\frac{P(z)}{q(z|x)})dz +\int _z q(z|x)\log (P(x|z))dz<br>\end{align*}<br>$$</p>
+<p>其中前项是$P(z)$和$q(z|x)$的KL散度的相反数。而$q(z|x)$由$x$经过映射生成:</p>
+<p><img src="/2024/01/20/VAE/5.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Encoder</center><br>
+
+<p>这项实际上就是VAE的$\mathcal{L} _2$，因为要$\max L _b$，则必须要$\min \text{KL}(P(z),q(z|x))$，也就是要让生成的编码尽可能地趋向正态分布。</p>
+<p>而第二项实际上是在求$\log P(x|z)$在分布$q(z|x)$下的均值:</p>
+<p>$$<br>\int _z q(z|x)\log (P(x|z))dz&#x3D;E _{q(z|x)}[\log P(x|z)]<br>$$</p>
+<p>$P(x|z)$又由$z$经过映射生成。最终便可整合为VAE的过程:</p>
+<p><img src="/2024/01/20/VAE/6.png" alt="6"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. VAE</center><br>
+
+<p>即$x$生成$q(z|x)$高斯分布，然后从中采样出$z$，$z$生成高斯分布$P(x|z)$，由于均值$\mu (x)$处的概率最大，因此$x$越趋近$\mu (x)$，概率就越大，这也就是$\mathcal{L} _1$。</p>
+<h1 id="Conditional-VAE"><a href="#Conditional-VAE" class="headerlink" title="Conditional VAE"></a>Conditional VAE</h1><p>在训练时给VAE一些引导，使其Encoder的生成有倾向性。可用于文本生成图片。</p>
+<h1 id="Shortcoming-of-VAE"><a href="#Shortcoming-of-VAE" class="headerlink" title="Shortcoming of VAE"></a>Shortcoming of VAE</h1><p>只是对训练集的模仿。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>台湾大学李宏毅课程。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2024/01/20/VAE/" data-id="clzik0ld1009cv47k9lj957ze" data-title="VAE" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/06/17/Diffusion/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Diffusion
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/12/02/CountingComplexity/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Computational Complexity: Complexity of Counting</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

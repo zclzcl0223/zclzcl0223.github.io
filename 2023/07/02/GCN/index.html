@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Graph Neural Networks &amp; Graph Convolutional Networks | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="图神经网络（GNNs）是以图作为数据集的神经网络，它在近十年取得了很大的进展，特别是图卷积神经网络（GCNs）及其变体的出现，使得GNNs在车流量预测、推荐系统等实际领域中取得了不错的进展。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Graph Neural Networks &amp; Graph Convolutional Networks">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/02/GCN/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="图神经网络（GNNs）是以图作为数据集的神经网络，它在近十年取得了很大的进展，特别是图卷积神经网络（GCNs）及其变体的出现，使得GNNs在车流量预测、推荐系统等实际领域中取得了不错的进展。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/7.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/8.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/9.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/10.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/11.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/12.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/13.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/14.png">
+<meta property="article:published_time" content="2023-07-02T03:14:28.000Z">
+<meta property="article:modified_time" content="2023-07-19T10:13:40.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="GNN">
+<meta property="article:tag" content="GCN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/07/02/GCN/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-GCN" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/02/GCN/" class="article-date">
+  <time class="dt-published" datetime="2023-07-02T03:14:28.000Z" itemprop="datePublished">2023-07-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/GNN/">GNN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Graph Neural Networks &amp; Graph Convolutional Networks
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="数据的图表示"><a href="#数据的图表示" class="headerlink" title="数据的图表示"></a>数据的图表示</h1><p>要完整地表示一张图，需要四类信息：顶点（nodes，V），边（edgs，E），全局信息（global-context，U）和连接性（connectivity，A）。其中，每个顶点（Fig 1中黄色的圈）的属性都可以用一个标量或向量表示；每条边（Fig 1中蓝色的线）的属性也可以用一个标量或向量表示；全局信息（Fig 1中红色虚线框）同样可以用一个标量或向量表示。表示图连接性的方法最简单的是邻接矩阵（Adjacency matrix），因为它很容易向量化，但是，邻接矩阵存在两个缺点：1）浪费空间，特别是对于稀疏图；2）对相同的图可以有多种邻接矩阵表示（如调整行列的顶点顺序可以得到不同的邻接矩阵）。这两个缺点，特别是第二个，使得邻接矩阵法不能得到很好的效果。更为有效、常用的方法是邻接列表法，即将每条边用顶点的二元元组表示，所有的边组成一个列表。对于Fig 1中的图，假设顶点顺时针排序，最上面的顶点编号为1，则其连接性可表示为：</p>
+<p>$$<br>[[1, 2], [1, 3], [1, 4], [1, 5], [2, 5], [3, 4]]<br>$$</p>
+<p><img src="/2023/07/02/GCN/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Graph</center>
+
+<h2 id="图片的图表示"><a href="#图片的图表示" class="headerlink" title="图片的图表示"></a>图片的图表示</h2><p>图片是由多个像素点组成的矩阵，因此它可以很自然地被视为一个矩形的特殊的图：每个像素点为顶点，每个像素点和它周围的所有像素点（包括对角线的）具有连接性，像素点的值代表的顶点的属性。</p>
+<p><img src="/2023/07/02/GCN/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Image graph</center>
+
+<h2 id="文本的图表示"><a href="#文本的图表示" class="headerlink" title="文本的图表示"></a>文本的图表示</h2><p>文本作为一种序列，实际上是一种特殊的图：直线。因此，文本的图表示是一个有向图。</p>
+<p><img src="/2023/07/02/GCN/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Text graph</center> <br>
+
+<blockquote>
+<p>实际上图片和文本连接性的表示要更加简洁，因为所有图片和文本都具有相同的连接模式：图片中的像素只和周围的像素相连；文本中的词元只指向下一个词元，邻接矩阵是条对角线。</p>
+<p>由于树也是一种特殊的图，凡是能表示为树的东西，也能用GNNs的方法处理。</p>
+</blockquote>
+<h1 id="面向GNNs的任务"><a href="#面向GNNs的任务" class="headerlink" title="面向GNNs的任务"></a>面向GNNs的任务</h1><p>GNNs能解决的任务一般可分三个类别：图级别任务（Graph-level task），顶点级别任务（Node-level task）和边级别任务（Edge-level task）。</p>
+<p>对于图级别的任务，最常规的是图分类问题，它和MNIST和CIFAR等图片分类一样，将不同类型的图分到合适的类别。</p>
+<p><img src="/2023/07/02/GCN/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Graph-level task</center> <br>
+
+<p>对于顶点级别的任务，最常规的亦为分类问题，即预测顶点的属性或者类别。</p>
+<p><img src="/2023/07/02/GCN/5.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Node-level task</center> <br>
+
+<p>对于边级别的任务，其可以处理的是广义上的分类问题，即预测边的属性（其属性体现着边连接的两个顶点的关系）。</p>
+<p><img src="/2023/07/02/GCN/6.png" alt="6"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. Edge-level task</center>
+
+<h1 id="图神经网络（GNNs）"><a href="#图神经网络（GNNs）" class="headerlink" title="图神经网络（GNNs）"></a>图神经网络（GNNs）</h1><p>图神经网络是一种对图的属性做变换（顶点，边以及全局信息），但是不改变图的拓扑结构的神经网络。它接受图输入，并输出一个属性变化了但拓扑结构不变的图。</p>
+<p><img src="/2023/07/02/GCN/7.png" alt="7"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 7. The simplest GNN</center> <br>
+
+<p>最简单的图神经网络如上图所示。所有的顶点的属性、边的属性和全局信息分别形成一个矩阵，它们分别被输入到一个MLP中。三个MLP形成一个GNN块，每个GNN块的输出都是属性变化后的顶点、边和全局信息，但是图的拓扑结构不变。GNN块可以逐个堆叠，起着特征提取的作用。GNN块实际上相当于一个特征提取器&#x2F;编码器，而具体的任务则由后续的分类器&#x2F;解码器完成。</p>
+<p><img src="/2023/07/02/GCN/8.png" alt="8"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 8. GNN block</center> <br>
+
+<p>需要注意的是，编码器提取的是顶点、边和全局信息的特征，而输入解码器的特征只是需要的特征，如顶点级别任务只输入顶点特征、边级别任务只输入边特征。不过有些时候给定的图可能缺乏某个方面的信息，它可能只有边属性和全局信息而没有顶点属性，也可能只有顶点属性和边属性而没有全局属性。这时，编码器的工作照常进行，而解码器在工作之前，需要从其他地方获取缺失的信息，该操作称为<em>Pooling</em>。</p>
+<p>比如，若缺失顶点信息，那么，进入解码器的顶点信息则由包含该顶点的边和全局信息Pooling而来，如Fig 9所示；若缺失边信息，那么，进入编码器的边信息则由该边两侧的顶点和全局信息Pooling而来，如Fig 10所示；若缺失全局信息，那么，进入编码器的全局信息则由所有的顶点信息（也可以加上边的信息）Pooling而来，如Fig 11所示。</p>
+<blockquote>
+<p>顶点、边和全局信息的形状可能不一样，这时候就需要先进行投影。汇聚（Pooling）的方法有多种，如取最大（Max）、求和（Sum）、求和取平均（Average），各种方法的效果差不多。</p>
+<p>全局信息相当于一个特殊顶点的属性：这个顶点和所有顶点相连、和所有边相连。因此，全局信息的汇聚会用到所有的顶点和边。</p>
+</blockquote>
+<p><img src="/2023/07/02/GCN/9.png" alt="9"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 9. Node pooling</center> <br>
+
+<p><img src="/2023/07/02/GCN/10.png" alt="10"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 10. Edge pooling</center> <br>
+
+<p><img src="/2023/07/02/GCN/11.png" alt="11"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 11. Graph-context pooling</center> <br>
+
+<p>上述的简单的GNN存在一个严重的缺陷：除了汇聚层，我们没有用到任何连接性的信息。每个顶点、边、全局信息都是被独立地处理的，而它们实际上存在很强的关系。</p>
+<h1 id="图卷积神经网络（GCNs）"><a href="#图卷积神经网络（GCNs）" class="headerlink" title="图卷积神经网络（GCNs）"></a>图卷积神经网络（GCNs）</h1><p>图卷积神经网络能够解决前面提到的简单图神经网络的缺点。它采用类似于图片卷积的方法，用图卷积层将某一顶点和其周围顶点的信息汇聚到下一层的同一个顶点中，如此，只要经过足够多的图卷积层，单一的顶点就能看到所有顶点的信息。</p>
+<p><img src="/2023/07/02/GCN/12.png" alt="12"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 12. GCN layer</center> <br>
+
+<p>更进一步地，可以将上一节中顶点、边和全局信息间的信息传递提前到图卷积层中。也就是说，边的信息会汇聚边和两边顶点的信息，顶点的信息会汇聚边以及相连顶点的信息。不同的汇聚策略会产生不同的图卷积方法，如下图所示。</p>
+<p><img src="/2023/07/02/GCN/13.png" alt="13"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 13. Different ways to combine nodes and edges</center> <br>
+
+<blockquote>
+<p>由于顶点和边的属性向量的形状可能不同，汇聚时可以采用映射后再相加或者直接拼接等方法，不同的方法会产生不同的效果。</p>
+</blockquote>
+<p>当我们想要尽早地了解到整个图的情况时，也可以将全局信息加入汇聚操作中。</p>
+<p><img src="/2023/07/02/GCN/14.png" alt="14"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 14. Pooling with global-context</center> <br>
+
+<blockquote>
+<p>最后一个图卷积层的顶点往往会包含很多信息，这使得我们不得不保留一个很大的计算图以计算梯度，这十分浪费内存和时间。常用的策略是对图进行随机采样，用随机生成的子图来完成训练。采样方法有多种，如Diffusion sampling，Random node sampling，Random walk sampling等。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>本文所有的内容包括图片都基于文章 <em><strong>A Gentle Introduction to Graph Neural Networks</strong></em> 以及李沐先生的讲解。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://distill.pub/2021/gnn-intro/">A Gentle Introduction to Graph Neural Networks</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iT4y1d7zP/?spm_id_from=333.999.0.0&vd_source=2d980a0365f3ebea674b32924d8a4ce8">零基础多图详解图神经网络（GNN&#x2F;GCN）【论文精读】
+</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/02/GCN/" data-id="clzik0lcb002nv47k55pv3xj5" data-title="Graph Neural Networks &amp; Graph Convolutional Networks" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/03/Laplacian/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Laplacian
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/06/15/PythonPackage/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python Package</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

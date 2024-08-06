@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start of Something New">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JourneyToCoding">
+<meta property="og:url" content="https://zclzcl0223.github.io/page/7/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Start of Something New">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="ChaosTsang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-DecisionTrees" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/16/DecisionTrees/" class="article-date">
+  <time class="dt-published" datetime="2023-04-16T04:48:16.000Z" itemprop="datePublished">2023-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/16/DecisionTrees/">Decision Trees</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Structure-of-decision-trees"><a href="#Structure-of-decision-trees" class="headerlink" title="Structure of decision trees"></a>Structure of decision trees</h1><p>Decision trees are a tree model, where each internal node (decision node) is a feature that has several possibile values. The number of values defines the degree of nodes.</p>
+<p><img src="/2023/04/16/DecisionTrees/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Decision trees</center>
+
+<h1 id="Decision-tree-learning"><a href="#Decision-tree-learning" class="headerlink" title="Decision tree learning"></a>Decision tree learning</h1><p>First decision: How to choose features to maximize purity? Second decision: When can the tree stop splitting</p>
+<ul>
+<li>When a node is 100% one class.</li>
+<li>When splitting a node will result in the tree exceeding a <strong>maximum depth</strong> (defined by us).</li>
+<li>When improvements in purity score are below a threshold.</li>
+<li>When number of examples in a node is below a threshold.</li>
+</ul>
+<h2 id="Measuring-purity"><a href="#Measuring-purity" class="headerlink" title="Measuring purity"></a>Measuring purity</h2><p>p$_1$: Fraction of examples that are our target.</p>
+<p>H(p$_1$): Degree of impurity of one set.</p>
+<p>$$p_0&#x3D;1-p_1$$<br>$$H(p_1)&#x3D;-p_1\log_2(p_1)-p_0\log_2(p_0)$$</p>
+<p><img src="/2023/04/16/DecisionTrees/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Entropy function</center>
+
+<h2 id="Choosing-a-split"><a href="#Choosing-a-split" class="headerlink" title="Choosing a split"></a>Choosing a split</h2><h3 id="Information-gain"><a href="#Information-gain" class="headerlink" title="Information gain"></a>Information gain</h3><p>Information gain is the redunction of entropy after one split:</p>
+<p>$$IG&#x3D;H(p_1^{root})-(w^{left}H(p_1^{left})+w^{right}H(p_1^{right}))$$</p>
+<p>where $w^{left}H(p_1^{left})+w^{right}H(p_1^{right})$ is the average weighted entropy of two child nodes. $w$ is the propotion of examples in left&#x2F;right node that come from root node.</p>
+<h2 id="Building-a-decision-tree"><a href="#Building-a-decision-tree" class="headerlink" title="Building a decision tree"></a>Building a decision tree</h2><p>We always construct decision trees in a preorder traversal. That is:</p>
+<ul>
+<li>Start with all examples at root node;</li>
+<li>Calculate information gain for all possible features and pick the one with the highest information gain;</li>
+<li>Split dataset and build subtrees recursively until stopping criteria is met.</li>
+</ul>
+<blockquote>
+<p>For features with more than two discrete values, we can use <strong>one-hot encoding</strong>.  That is, decompose the features with $k$ values into $k$ bool features so that the values of each new feature will only be yes (1) or no (0). One-hot encoding can also be applied to neural networks to turn multiclass classification to binary classification.</p>
+<p>For features with continuous values, we try splitting values using different thresholds and choose the threshold that gives the highest information gain.</p>
+<p>It is reasonable that the same features appears several times in one decision trees.</p>
+</blockquote>
+<h2 id="Regression-trees"><a href="#Regression-trees" class="headerlink" title="Regression trees"></a>Regression trees</h2><p>Regression trees are the generalization of decision trees, which predict a number. The differences between building a regression tree and a decision tree are:</p>
+<ul>
+<li>The prediction of regression trees is the average value of examples in leaf node;</li>
+<li>We choose the features to splite dataset by the reduction of variance.</li>
+</ul>
+<p>For the second difference:</p>
+<ul>
+<li>Calculate the average weighted variance of one split:<br>$$w^{left}v^{left}+w^{right}v^{right}$$</li>
+<li>Calcuate the reduction of variance after splitting:<br>$$v^{root}-(w^{left}v^{left}+w^{right}v^{right})$$</li>
+<li>Choose the feature that gives the highest reduction and continue until meet stopping criteria.</li>
+</ul>
+<h1 id="Ensemble-of-decision-trees"><a href="#Ensemble-of-decision-trees" class="headerlink" title="Ensemble of decision trees"></a>Ensemble of decision trees</h1><p>A single decision tree is highly sentitive to small changes of the data. We may get two totally different decision trees even though only one example changes in the training set. An ensemble of decision trees will make the overall algorithm more robust. An ensemble of decision trees makes decision by voting, that is, the prediction of the ensemble is the value most decision trees give.</p>
+<p><img src="/2023/04/16/DecisionTrees/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Ensemble of decision trees</center>
+
+<h2 id="Random-forest-algorithm"><a href="#Random-forest-algorithm" class="headerlink" title="Random forest algorithm"></a>Random forest algorithm</h2><p>One algorithm to create an ensemble of decision trees is random forest algorithm. The algorithm can automatically explore a lot of small changes to the data set, which makes it more robust.</p>
+<p>Random forests are generated by sampling with replacement and randomizing feature choice:</p>
+<ul>
+<li>Determine the number of trees $B$ we need and the size of subset $m$;</li>
+<li>Use sampling with replacement to create a new training set of size $m$;</li>
+<li>Randomly pick a subset of $k$ (usually $\sqrt{n}$) features from $n$ features and train a decision tree only use these features and the data set generated above;</li>
+<li>Repeatedly generate $B$ trees.</li>
+</ul>
+<p>Sampling with replacement and randomizing feature choice allow us generate different trees as much as possible.</p>
+<h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>XGBoost is an open-source library that makes ensemble of decision trees perform better. The core idea of XGBoost is that it is more worthwhile to train decision trees using the examples that the previously trained decision trees have failed to predict rather than using totally random examples. Trees generated like this is called <strong>boosted trees</strong>. In XGBoost, instead of picking subsets from all samples with equal probability, it makes it <strong>more likely</strong> to pick examples that the previously trained trees have misclassfied. The details of XGBoost are very complicated, but the using of it is quite simple:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> xgboost <span class="keyword">import</span> XGBClassifier <span class="comment"># or XGBRegressor for regression</span></span><br><span class="line"></span><br><span class="line">model = XGBClassifier()</span><br><span class="line"></span><br><span class="line">model.fit(X_train, Y_train)</span><br><span class="line">y_pred = model.predict(X_test)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Decision-trees-amp-Neural-Networks"><a href="#Decision-trees-amp-Neural-Networks" class="headerlink" title="Decision trees &amp; Neural Networks"></a>Decision trees &amp; Neural Networks</h1><p>For decision trees and tree ensembles:</p>
+<ul>
+<li>Work well on structured data; [advantage]</li>
+<li>Fast to train; [advantage]</li>
+<li>Small decision tress may be human interpretable; [advantage]</li>
+<li>Not recommended for unstructured data (images, audio, text) [disadvantage];</li>
+<li>Can&#39;t train multiple trees at a time. [disadvantage]</li>
+</ul>
+<p>Neural Networks:</p>
+<ul>
+<li>Works well on all types of data; [advantage]</li>
+<li>Works with transfer learning; [advantage]</li>
+<li>Multiple neural networks can be easier to string together when building a system of multiple models working together; [advantage]</li>
+<li>Take long time to train. [disadvantage]</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/16/DecisionTrees/" data-id="clzik0lca002cv47kdn3dg2k6" data-title="Decision Trees" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-MachineLearningDevelopmentProcess" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/15/MachineLearningDevelopmentProcess/" class="article-date">
+  <time class="dt-published" datetime="2023-04-15T08:33:36.000Z" itemprop="datePublished">2023-04-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/15/MachineLearningDevelopmentProcess/">Machine Learning Development Process</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Full-cycle-of-ML"><a href="#Full-cycle-of-ML" class="headerlink" title="Full cycle of ML"></a>Full cycle of ML</h1><p><img src="/2023/04/15/MachineLearningDevelopmentProcess/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Full cycle of ML</center><br>
+
+<p>When developing a machine learning project, these are the four assignments we need to conduct.</p>
+<h2 id="Scope-project"><a href="#Scope-project" class="headerlink" title="Scope project"></a>Scope project</h2><p>The step defines the purposes of the machine learning project and the functions it should implement.</p>
+<h2 id="Collect-data"><a href="#Collect-data" class="headerlink" title="Collect data"></a>Collect data</h2><p>In this step, we define the data we need and try to collect as much data as we can. However, instead of adding data of all types, it is advisable to focus on adding more data of the types that error analysis has indicated it migh help.</p>
+<h3 id="Data-augmentation"><a href="#Data-augmentation" class="headerlink" title="Data augmentation"></a>Data augmentation</h3><p>Data augmentation is a useful technique used especially for image and audio data.It creates new training examples by modifying existing training examples.For image data, we can distort the image and for audio data, we can add some noise.However, the type of noise or distortions we add to the set must be meaningful, that is, they should not be purely random but should be pertinent.</p>
+<h3 id="Data-synthesis"><a href="#Data-synthesis" class="headerlink" title="Data synthesis"></a>Data synthesis</h3><p>Unlike data augmentation, data synthesis creates brand new examples. This method is used most for CV.</p>
+<h3 id="Transfer-learning"><a href="#Transfer-learning" class="headerlink" title="Transfer learning"></a>Transfer learning</h3><p>Transfer learning is a research problem in machine learning that focuses on applying knowledge gained while solving one task to a related task. For example, knowledge gained while learning to recognize cars could be applied when trying to recognize trucks. This method is especially useful when we do not have enough data or computing power to train a large neural network.</p>
+<p>When using transfer learning:</p>
+<ol>
+<li>Download neural network parameters <strong>pretrained</strong> on a large dataset with <strong>the same input type</strong> (e.g., images, audio, text) as our application;</li>
+<li>Change the output layer and further train (<strong>fine tune</strong>)the network on our own data.</li>
+</ol>
+<p>When fine tuning, we can only train output layers parameters when our training set is small or we can train all parameters when our training set is large enough.</p>
+<p>The reason why tranfer learning works is that in the hidden layers of a pretrained model, they have learnt something (maybe a subset of our target). Therefore, using the parameters of a pretrained model will make our model start from a better place.</p>
+<blockquote>
+<p>AI &#x3D; Code + Data. When models or algorithms are good enough, focusing on data can be an efficient way to help learning algorithms improve their performance.</p>
+</blockquote>
+<h2 id="Train-model"><a href="#Train-model" class="headerlink" title="Train model"></a>Train model</h2><p><img src="/2023/04/15/MachineLearningDevelopmentProcess/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Iterative loop of ML</center><br>
+
+<p>Depending on bias, variance and error analysis, we may need to modify the model or collect more data.</p>
+<h2 id="Deploy-in-production"><a href="#Deploy-in-production" class="headerlink" title="Deploy in production"></a>Deploy in production</h2><p>A common structure of an application that uses machine learning models is as follows:</p>
+<p><img src="/2023/04/15/MachineLearningDevelopmentProcess/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. ML APP</center><br>
+
+<p>The job of inference server is to call the trained model in order to make predictions.Inference server expose its API to mobile app. Mobile app just need to call API and wait for the prediction from inference server.</p>
+<p>In this step, if the app does not work well, we may need to retrain the model or collect more data.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/15/MachineLearningDevelopmentProcess/" data-id="clzik0lck0051v47kf5bp3ltf" data-title="Machine Learning Development Process" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-MachineLearningDiagnostics" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/13/MachineLearningDiagnostics/" class="article-date">
+  <time class="dt-published" datetime="2023-04-13T13:25:19.000Z" itemprop="datePublished">2023-04-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/13/MachineLearningDiagnostics/">Machine Learning Diagnostics</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Evaluating-a-model"><a href="#Evaluating-a-model" class="headerlink" title="Evaluating a model"></a>Evaluating a model</h1><p>To evaluate a model is to measure the accuracy of the model&#39;s predictions. There are many ways to do so.</p>
+<h2 id="Two-sets"><a href="#Two-sets" class="headerlink" title="Two sets"></a>Two sets</h2><p>One useful method is to splite our training set into <strong>training set</strong> and <strong>test set</strong>. Training set is used to train and evaluate the model, but test set is only applied to evaluate the model. To evaluate a trained model, we should calculate both the $J_{test}$ and $J_{train}$, both of which are without regularization term. But the model is regularized.</p>
+<blockquote>
+<p>For classification model, we can also count the number of misclassified examples in training set and test set respectively.</p>
+</blockquote>
+<h1 id="Choosing-a-model"><a href="#Choosing-a-model" class="headerlink" title="Choosing a model"></a>Choosing a model</h1><p>To choose a model or to determine the architecture of a model, using two datasets suffers from the same problems as evaluating models on one dataset.</p>
+<p>When evaluating a model on one dataset, we actually get an optimistic estimate of generalization error. That is, the model only fits the training set well but can not be generalized. The same problem will happen when choosing a model with two datasets. When we use the test set to choose a model, it is likely that the model may just fit this test set well as the structure of the model is also a parameter like $W$ and $B$. In conclusion, we can not use datasets that determine the model to evaluate or choose a model.</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Model choosing</center>
+
+<h2 id="Three-sets"><a href="#Three-sets" class="headerlink" title="Three sets"></a>Three sets</h2><p>The solution is to divide the dataset into three parts: <strong>training set</strong>, <strong>cross validation set</strong> and <strong>test set</strong>.</p>
+<blockquote>
+<p>Cross validation set is also called development set or dev set.</p>
+</blockquote>
+<p>The procedure of choosing a model is similar to evaluating a model:</p>
+<ul>
+<li>Train the model using training set, get $W$ and $B$;</li>
+<li>Choose a model using development set, calculate $J_{cv}$ and get d (degree of polynomial);</li>
+<li>Verify the model using test set, calculate $J_{test}$.</li>
+</ul>
+<style> table th {
+    width: 160px;
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th align="center">type</th>
+<th align="center">training set</th>
+<th align="center">dev set</th>
+<th align="center">test set</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">trained</td>
+<td align="center">yes</td>
+<td align="center">no</td>
+<td align="center">no</td>
+</tr>
+<tr>
+<td align="center">function</td>
+<td align="center">get $W$ and $B$</td>
+<td align="center">determine model structure</td>
+<td align="center">evaluate generalization ability of model</td>
+</tr>
+<tr>
+<td align="center">usage count</td>
+<td align="center">multiple times</td>
+<td align="center">multiple times</td>
+<td align="center">one time</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>A vivid metaphor about these sets is: Training set is students&#39;textbook, dev set is students&#39;homework and test set is the final exam.</p>
+</blockquote>
+<h1 id="Diagnostics"><a href="#Diagnostics" class="headerlink" title="Diagnostics"></a>Diagnostics</h1><h2 id="Bias-and-variance"><a href="#Bias-and-variance" class="headerlink" title="Bias and variance"></a>Bias and variance</h2><p>Instead of plotting the model to judge underfitting or overfitting, a more common method is to calculate and compare $J_{train}$ and $J_{cv}$.</p>
+<ul>
+<li>If $J_{train}$ is high and $J_{train}\approx J_{cv}$, the algorithm(model) may have high bias;</li>
+<li>If $J_{train}$ is low and $J_{train}&lt;&lt;J_{cv}$, the algorithm(model) may have high variance;</li>
+<li>If $J_{train}$ is high and $J_{train}&lt;&lt;J_{cv}$, the algorithm(model) may have high bias and high variance.<blockquote>
+<p>An algorithm having both high bias and high variance fits some training examples well but fits others badly.</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Relationship between D and error</center>
+
+<h3 id="Choosing-a-good-lambda"><a href="#Choosing-a-good-lambda" class="headerlink" title="Choosing a good $\lambda$"></a>Choosing a good $\lambda$</h3><p>We can also use the dev set to choose a better regularization parameter $\lambda$.</p>
+<ul>
+<li>If $\lambda$ is rather small, we value fitting the data. Therefore, $J_{cv}$ may be rather high while $J_{train}$ may be rather low;</li>
+<li>If $\lambda$ is rather big, we value scaling $\vec{w}$. Therefore, $\vec{w}$ is aproximate 0, $J_{cv}$ may be rather high and $J_{train}$ may also be rather high.</li>
+</ul>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Relationship between lambda and error</center>
+
+<h3 id="Quantitative-indicators"><a href="#Quantitative-indicators" class="headerlink" title="Quantitative indicators"></a>Quantitative indicators</h3><p>In order to judge bias or variance quantitatively, a baseline level of performance is required. It can be human level performance, competing algorithms performance or just guess based on experience.</p>
+<ul>
+<li>When gap between baseline and $J_{train}$ is rather high, the model may have high bias;</li>
+<li>When gap between $J_{train}$ and $J_{cv}$ is rather high, the model may have high variance.</li>
+</ul>
+<h3 id="Learning-curve"><a href="#Learning-curve" class="headerlink" title="Learning curve"></a>Learning curve</h3><p>Learning curve is a function curve of training set size and error of training set and dev set. We can use learning curve to judge whether a model has high bias or high variance. A regular learning curve looks like:</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/4.png" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Regular learning curve</center><br>
+
+<p>When a model has high bias, its learning curve looks like:</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/5.png" alt="5"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 5. High bias learning curve</center><br>
+
+<p>It indicates that when a model has high bias, we can not train a good model by using more data.</p>
+<p>When a model has high variance, its learning curve looks like:</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/6.png" alt="6"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 6. High variance learning curve</center><br>
+
+<p>It indicates that when a model has high variance, we can train a better model by using more data because your model is complicated enough. Though learning curve gives us an intuitive visual experience of the performance of our model, it is seldom used as plotting it wastes too much time.</p>
+<h3 id="Fixing-bias-variance"><a href="#Fixing-bias-variance" class="headerlink" title="Fixing bias variance"></a>Fixing bias variance</h3><p>High variance: </p>
+<ul>
+<li>Get more training examples;</li>
+<li>Try smaller sets of features;</li>
+<li>Try increasing $\lambda$.</li>
+</ul>
+<p>High bias:</p>
+<ul>
+<li>Try getting additional features;</li>
+<li>Try adding polynomial features;</li>
+<li>Try decreasing $\lambda$.</li>
+</ul>
+<h3 id="DL-and-bias-variance"><a href="#DL-and-bias-variance" class="headerlink" title="DL and bias variance"></a>DL and bias variance</h3><p>In deep learning, the contradiction between high bias and variance can be easily solved. In general, large neural networks are low bias machines as we can reduce bias by adding more layers or neurons. For variance, we can solve it by adding more data. As long as regularization is chosen appropriately, a large neural network will usually do as well or better than a smaller one.</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/7.png" alt="7"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 7. Training of neural networks</center><br>
+
+<blockquote>
+<p>A bigger network needs powerful computing power to train. Therefore, the development of hardwares, especially GPU, and big data contribute to the thriving of deep learning.</p>
+</blockquote>
+<h2 id="Error-analysis"><a href="#Error-analysis" class="headerlink" title="Error analysis"></a>Error analysis</h2><p>Error analysis is another useful diagnostics method when training a model. In error analysis, we take the examples that the model has wrongly predicted or inferred into account and group them into common themes or common properties. These categories can be overlapping. Sometimes, the error set may be too large for us to deal with. In this case, it is advisable to randomly sample a subset (usually 100 examples).</p>
+<p>In the next step, we can modify the model according to these categories. It is advisable to process the categories that are large enough but just ignore those small categories.</p>
+<h2 id="Skewed-datasets"><a href="#Skewed-datasets" class="headerlink" title="Skewed datasets"></a>Skewed datasets</h2><p>Skewed datasets are datasets that have an uneven subset distribution. That is, the number of one output is much more than the others. In this case, we can&#39;t simply judge the performance of model using $J$ as we may get a good result even if the model just predicts this label all the time. </p>
+<p>The solution is to count <em>precision</em> and <em>recall</em> of the model. In binary regression (for multiclass classfication, we set the real label <code>1</code> and the others <code>0</code>), we can display the true value and predict value in the form of 2*2 matrix: </p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/8.png" alt="8"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 8. Output distribution</center><br>
+
+<p>Then <em>precision</em> is defined as the fraction that are actually 1 among all examples where we predicted $y&#x3D;1$:<br>$${Precision}&#x3D;\frac{TruePos}{TruePos+FalsePos}$$</p>
+<p><em>Recall</em> is defined as the fraction that are correctly predicted among all examples that are actually 1:<br>$${Recall}&#x3D;\frac{TruePos}{TruePos+FalseNeg}$$</p>
+<p>A good model should have both high <em>precision</em> and <em>recall</em>. Once <em>precision</em> or <em>recall</em> is 0, chances are that the model <code>print(&quot;y=0&quot;)</code> all the time.</p>
+<h3 id="F-1-score-Trading-off-precision-and-recall"><a href="#F-1-score-Trading-off-precision-and-recall" class="headerlink" title="$F_1 score$: Trading off precision and recall"></a>$F_1 score$: Trading off precision and recall</h3><p>For logistic regression, threshold is the boundary value used to separate 0 and 1. If raising the threshold, we will get higher <em>precision</em> but lower <em>recall</em>. If decreasing the threshold, we will get higher <em>recall</em> but lower <em>precision</em>. We can&#39;t keep both <em>precision</em> and <em>recall</em> high. What&#39;s more, we can&#39;t solve this problem using dev set as threshold is defined by us.</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/9.png" alt="9"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 9. Precision and recall</center><br>
+
+<p>The method to compare <em>precision</em> and <em>recall</em> is to calculate $F_1 \space score$:<br>$$F_1\space{score}&#x3D;\frac{1}{\frac{1}{2}(\frac{1}{P}+\frac{1}{R})}&#x3D;\frac{2PR}{P+R}$$</p>
+<p>The larger the $F_1 \space score$ is , the better the model is.</p>
+<h3 id="ROC-amp-AUC"><a href="#ROC-amp-AUC" class="headerlink" title="ROC &amp; AUC"></a>ROC &amp; AUC</h3><p>$F_1 \space score$ requires us to choose a threshold to judge the performance of the classifier while <em>ROC</em> and <em>AUC</em> are more intelligent.</p>
+<p>Receiver operating characteristic curve (ROC) is a curve whose $x$ axis is False positive rate (FPR) and $y$ axis is True positive rate (TPR)：</p>
+<p>$$<br>\begin{align*}<br>    TPR&#x3D;Recall&amp;&#x3D;\frac{TruePos}{TruePos+FalseNeg}\\<br>    FPR&#x3D;&amp;\frac{FalsePos}{FalsePos+TrueNeg}<br>\end{align*}<br>$$</p>
+<p><img src="/2023/04/13/MachineLearningDiagnostics/10.png" alt="10"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 10. ROC</center><br>
+
+<p>Each point on ROC represent a $(FPR, TPR)$ pair under a certain threshold. For example:</p>
+<ul>
+<li>If threshold is 0, all the samples will be predicted as 1. In this case, both FPR and TPR is 1;</li>
+<li>If threshold is 1, all the samples will be predicted as 0. In this case, both FPR and TPR is 0;</li>
+<li>With threshold decreasing, points on ROC moves to the top right (or right&#x2F;or up), or remains stationary;</li>
+<li>When points on ROC are on $y&#x3D;x$, the classifier has no difference with random guesses. The closer the points are to the upper left corner, the better the classifier is;</li>
+<li>Points on ROC should always be above $y&#x3D;x$ as when points on ROC are below $y&#x3D;x$, just letting the classifier make the opposite conclusion will make these points on top of $y&#x3D;x$.</li>
+</ul>
+<p>Area under curve (AUC) is the area below ROC. If we randomly pick a positive sample and a negative sample, AUC represents the probability that the classifier predicts the value of the positive sample is bigger than the value of the negative sample. Taking AUC as an indicator to measure the performance of a classifier helps us dismiss the influence of skewed datasets and threshold. In other words, AUC measures the ability of the classifier to correctly sort samples. That&#39;s why AUC is a more commonly used indicator.</p>
+<p>Since we can&#39;t take all the values of threshold into account, we can only use the approximate method to calculate AUC, that is, computing the rate that the value of the positive sample is bigger than the value of the negative sample among all the postive-negative pairs. For a dataset with $M$ positive sample and $N$ negative samples, the number of positive-negative pairs is $M\times N$:</p>
+<ol>
+<li>Sort the values of all the positive and negative samples from largest to smallest;</li>
+<li>Score them from $N+M$ to $1$;</li>
+<li>Sum the score of positive samples;</li>
+<li>Subtract $M(M+1)&#x2F;2$;</li>
+<li>Divide by $M\times N$:<br> $$AUC&#x3D;\frac{\sum _{i\in\text{positive}}\text{score}_i-M(M+1)&#x2F;2}{MN}\tag{1}$$</li>
+</ol>
+<p>Such a process works as $\text{score} _i$ is the score of the $i$-th biggest positive sample ($i&#x3D;1,...,M$) and</p>
+<p>$$<br>N+M-\text{score}_i-(i-1)<br>$$</p>
+<p>is the number of negative samples whose score is higher than it. Then</p>
+<p>$$<br>\begin{align*}<br>    N-[N+M-\text{score}_i-(i-1)]<br>    &amp;&#x3D;\text{score}_i+(i-1)-M\\<br>    &amp;&#x3D;\text{score}_i-(M+1-i)<br>\end{align*}<br>$$</p>
+<p>is the number of positive-negative pairs that consist of the $i$-th positive sample and negative samples whose values are smaller than the positive sample. As a result, the number of positive-negative pairs that meet our requirement is</p>
+<p>$$<br>\sum\limits _{i&#x3D;1} ^{M}[\text{score}_i-(M+1-i)]&#x3D;\sum _{i\in\text{positive}}\text{score}_i-M(M+1)&#x2F;2<br>$$</p>
+<blockquote>
+<p>In sklearn, function <code>sklearn.metrics.roc_auc_score</code> could calculate the AUC of a classifier.</p>
+<p>From the relationship between AUC and threshold, it can be seen that: if a large threshold is used in actual deployment, a little FP can bring us large TP. As a result, the precision of the classifier will be very high. Since it is not necessary to classify all positive classes, using different threshold in training and deployment is quite reasonable.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/13/MachineLearningDiagnostics/" data-id="clzik0lck004uv47ke8oh3i19" data-title="Machine Learning Diagnostics" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-NeuralNetwork" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/10/NeuralNetwork/" class="article-date">
+  <time class="dt-published" datetime="2023-04-10T13:30:44.000Z" itemprop="datePublished">2023-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/10/NeuralNetwork/">Neural Network</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Neural network, which can also be named <em><strong>deep learning</strong></em>, is an advanced machine learning model.</p>
+<blockquote>
+<p>Neural network is an algorithm suitable for nearly all kinds of machine learning. Compared to traditional models, neural network performs better when the training set is large.</p>
+</blockquote>
+<h1 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h1><h2 id="Layer"><a href="#Layer" class="headerlink" title="Layer"></a>Layer</h2><p>Neural network is consisted of different layers. A layer is a grouping of neurons which takes the same or similar features as input and in turn outputs a few numbers together. The <em><strong>first layer</strong></em> (layer 0) is called <em><strong>input layer</strong></em> where input and output are the same. The <em><strong>last layer</strong></em> is called <em><strong>output layer</strong></em> which outputs the value of the neural network. Input and output layer are the only two layers that are visible to us, therefore, the other layers are called <em><strong>hidden layer</strong></em>.</p>
+<blockquote>
+<p>There are different types of hidden layer:</p>
+<ul>
+<li>Dense layer: Each neuron output is a function of all the activation outputs of the previous layer;</li>
+<li>Convolutional layer: Each neuron only looks at part of the previous layer&#39;s outputs. Different neurons may look at the same outputs.</li>
+<li>...</li>
+</ul>
+</blockquote>
+<p><img src="/2023/04/10/NeuralNetwork/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Multilayer perceptron</center>
+
+<h2 id="Neuron"><a href="#Neuron" class="headerlink" title="Neuron"></a>Neuron</h2><p>Each layer is made up of several (including one) neurons. Each neuron is a traditional machine learning model, like linear regression, logistic regression and so on. The output of one neuron is called <em><strong>activation</strong></em> and the function of this neuron is called <em><strong>activation function</strong></em>, which means it activate the next neuron.</p>
+<p>The magic of neural network is that it can learn new features by itself. So, we do not need to define who is the father of one neuron. Actually, each neuron will take the activations as its input, but the parameter of some activations may be zero. We just need to input the training set and define the structure of neural network. Then, the neural network will produce the most suitable new features. That is, a neuron (traditional model) is actually a new feature.</p>
+<blockquote>
+<p>The structure of neural network is called <em><strong>neural network architecture</strong></em>. It defines the number of layers and the number of neurons in each layer.</p>
+</blockquote>
+<p><img src="/2023/04/10/NeuralNetwork/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2.</center>
+
+<h2 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h2><ul>
+<li>$a^{[i]}$ &#x3D; output of layer i;</li>
+<li>$\vec{w}^{[i]}, b^{[i]}$&#x3D;parameters of layer i.</li>
+</ul>
+<h1 id="Forward-propagation-algorithm"><a href="#Forward-propagation-algorithm" class="headerlink" title="Forward propagation algorithm"></a>Forward propagation algorithm</h1><p>Forward propagation is a series of steps to count $f$. It is an inference or prediction of $y$. So, it is similar to $\widehat{y}$ in traditional model.</p>
+<p><img src="/2023/04/10/NeuralNetwork/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Handwritten digit recognition</center>
+
+<h2 id="Numpy-and-Tensorflow"><a href="#Numpy-and-Tensorflow" class="headerlink" title="Numpy and Tensorflow"></a>Numpy and Tensorflow</h2><p>The data representation in numpy is slightly different from tensorflow. In numpy, we can represent data either in the form of matrix or in the form of vector:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.array([[<span class="number">200</span>, <span class="number">17</span>]]) <span class="comment"># array 1*2</span></span><br><span class="line">x = np.array([[<span class="number">200</span>],[<span class="number">17</span>]]) <span class="comment"># array 2*1</span></span><br><span class="line">x = np.array([<span class="number">200</span>, <span class="number">17</span>]) <span class="comment"># just a row vector</span></span><br></pre></td></tr></table></figure>
+<p>But we can only represent data in the form of matrix in tensorflow. Therefore, when using numpy and tensorflow together, it is advisable to store the data in the form of matrix.</p>
+<p>The followings are the implementation of a neuron network about coffee roasting using numpy and tensorflow. (Assuming the neural network has been trained)</p>
+<p><img src="/2023/04/10/NeuralNetwork/4.png" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Coffee roasting (two inputs)</center><br>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"></span><br><span class="line">x = np.array([[<span class="number">200.0</span>, <span class="number">17.0</span>]])</span><br><span class="line">layer_1 = Dense(units=<span class="number">3</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">a1 = layer_1(x)</span><br><span class="line"></span><br><span class="line">layer_2 = Dense(units=<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">a2 = layer_2(a1)</span><br></pre></td></tr></table></figure>
+<p>The data type of <code>a1</code> and <code>a2</code> are tensor,which is a built-in type in tensorflow :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">When print a1: </span><br><span class="line">tf.Tensor([[0.2 0.7 0.3]], shape=(1, 3), dtype=float32)</span><br></pre></td></tr></table></figure>
+<p>We can also print it in the form of numpy:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">When print a1.numpy():</span><br><span class="line">array([0.2, 0.7, 0.3], dtype=float32)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>The difference between tensor and array is that tensor has shape and data while array just has data. Therefore, a tensor variable can actually be treated as an <em>image</em>. That is why tensor data can be processed in GPU.</p>
+</blockquote>
+<p>Instead of building a neural network layer by layer, we can directly concatenate the layers to form the neural network. That is what <code>Sequential</code> do:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> Sequential</span><br><span class="line"></span><br><span class="line">model = Sequential([Dense(units=<span class="number">3</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>), Dense(units=<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)])</span><br><span class="line">...</span><br><span class="line">model.predict(x)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Vectorization"><a href="#Vectorization" class="headerlink" title="Vectorization"></a>Vectorization</h1><p>GPU and some CPU functions are very good at doing large matrix multiplications. Neural network can be vectorized, because of which neural network can be processed rapidly.</p>
+<p>For layer 1 in the neural network of fig.3, the vectorized version is:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">A = np.array([[<span class="number">200</span>, <span class="number">17</span>]])</span><br><span class="line">W = np.array([[<span class="number">1</span>, -<span class="number">3</span>, <span class="number">5</span>], [-<span class="number">2</span>, <span class="number">4</span>, -<span class="number">6</span>]])</span><br><span class="line">B = np.array([[-<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>]])</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dense</span>(<span class="params">A_in, W, B</span>) :</span><br><span class="line">    Z = np.matmul(A_in, W) + B</span><br><span class="line">    A_out = g(Z)  <span class="comment"># A_out is a row vector</span></span><br><span class="line">    <span class="keyword">return</span> A_out</span><br></pre></td></tr></table></figure>
+
+<h1 id="Activation-function"><a href="#Activation-function" class="headerlink" title="Activation function"></a>Activation function</h1><p>Activation function is actually a reprocessing of the model $f$ and creates <strong>a new model</strong>. By using activation function, we can divide our model into two parts. The first part is <strong>uniform</strong> for all models:<br>$$z&#x3D;\vec{w}\cdot\vec{x}+b$$<br>To generate different models, we only need to select the most suitable activation function $g(z)$. And that is the second part. There are three commonly used activation functions: linear function (identity), Sigmoid (soft step) and ReLU (rectified linear unit).</p>
+<h2 id="Linear-function"><a href="#Linear-function" class="headerlink" title="Linear function"></a>Linear function</h2><p><img src="/2023/04/10/NeuralNetwork/5.png" alt="5"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 5. Linear function</center><br>
+
+<p>In linear function, we do not do anything to the first part of the model. Therefore, our model is just a linear regression model:<br>$$f&#x3D;g(z)&#x3D;\vec{w}\cdot\vec{x}+b$$<br>Since the linear function of a linear function is still a linear function, we actually do not use linear function in the hidden layer, otherwise, the hidden layer will be useless.</p>
+<h2 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h2><p><img src="/2023/04/10/NeuralNetwork/6.png" alt="6"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 6. Sigmoid</center><br>
+
+<p>Sigmoid is useful when we the output just has two possible value. So it often be used in the output layer of binary classification.</p>
+<h2 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h2><p><img src="/2023/04/10/NeuralNetwork/7.png" alt="7"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 7. ReLU</center><br>
+
+<p>ReLU is one of the most commonly used activation function in <strong>hidden layer</strong>. As the slope of it does not change on the negative or positive semi-axis, the convergence speed of ReLU is much faster than Sigmoid. In addition, ReLU makes sense because it has a &quot;off&quot; point which enables neurons to stitch together to form complex non-linear functions:</p>
+<p><img src="/2023/04/10/NeuralNetwork/8.png" alt="8"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 8. Unit0+Unit1+Unit2</center><br>
+
+<blockquote>
+<p>Andrew Ng suggests that for the output layer, we should select the activation function that produces the exact result we need, but for the hidden layer, it is advisable to choose ReLU as out default activation function.</p>
+</blockquote>
+<h1 id="Softmax-regression"><a href="#Softmax-regression" class="headerlink" title="Softmax regression"></a>Softmax regression</h1><p>Softmax regression or softmax activation function is used to deal with multiclass classification. Multiclass classification is an extension of binary classification. In multiclass classification, the number of output is more than two.</p>
+<p><img src="/2023/04/10/NeuralNetwork/9.png" alt="9"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 9. Multiclass classification</center><br>
+
+<p>In binary regression, $g(z)$ is actually the possibility of $a&#x3D;&#x3D;1$. We can also get the possibility of $a&#x3D;&#x3D;0$ which is $1-g(z)$. But in multiclass classification, we can not do that. To solve this, softmax calculates the probability of all possible values. We use $z_i$ to represent a possible value and $a_i$ to represent its possibility:<br>$$z_1&#x3D;\vec{w_1}\cdot\vec{x}+b_1;a_1&#x3D;\frac{e^{z_1}}{e^{z_1}+...+e^{z_n}}&#x3D;P(y&#x3D;1)|\vec{x})$$<br>$$...$$<br>$$z_n&#x3D;\vec{w_n}\cdot\vec{x}+b_n;a_n&#x3D;\frac{e^{z_n}}{e^<br>{z_1}+...+e^{z_n}}&#x3D;P(y&#x3D;n|\vec{x})$$<br>And the loss function is:<br>$$L(a_1,...,a_n,y)&#x3D;\begin{cases}<br>-\log{a_1},&amp;y&#x3D;1 \\<br>...&amp; \\<br>-log{a_n},&amp;y&#x3D;n<br>\end{cases}$$</p>
+<p>The loss function will make $a_i$ tends to 1 when $y&#x3D;i$.Binary classfication is a special case where n&#x3D;2.</p>
+<p>Softmax is a special activation in neural network as it is actually a layer. Its output is a vector whose elements are the possibility of values.</p>
+<p><img src="/2023/04/10/NeuralNetwork/10.png" alt="10"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 10. Neural network with softmax</center>
+
+<h1 id="Multi-label-classification"><a href="#Multi-label-classification" class="headerlink" title="Multi-label classification"></a>Multi-label classification</h1><p>Multi-label classification is another type of classification. In multi-label classification, we are required to classify a thing into as many labels as we want. To realize this, we just need to use several sigmoid functions in our output layer.</p>
+<p><img src="/2023/04/10/NeuralNetwork/11.png" alt="11"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 11. Multi-label classification</center>
+
+<h1 id="Adam-algorithm"><a href="#Adam-algorithm" class="headerlink" title="Adam algorithm"></a>Adam algorithm</h1><p>Adam algorithm is optimization of gradient descent, which will automatically modify $\alpha$. In adam algorithm, each neuron of the same layer has different $\alpha$ (the initial value is the same):</p>
+<ul>
+<li>If $w_j$ or $b$ keeps moving in the same direction, it increases $\alpha_j$;</li>
+<li>If $w_j$ or $b$ keeps oscillating, it reduces $\alpha_j$.</li>
+</ul>
+<p><img src="/2023/04/10/NeuralNetwork/12.png" alt="12"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 12. Adam algorithm</center>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/10/NeuralNetwork/" data-id="clzik0lcp0062v47kepkx2wwa" data-title="Neural Network" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-SupervisedLearning" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/05/SupervisedLearning/" class="article-date">
+  <time class="dt-published" datetime="2023-04-05T15:34:48.000Z" itemprop="datePublished">2023-04-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/05/SupervisedLearning/">Supervised Learning</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Regression-model"><a href="#Regression-model" class="headerlink" title="Regression model"></a>Regression model</h1><p>The steps in regression model are as follow:</p>
+<p><img src="/2023/04/05/SupervisedLearning/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Steps of regression model</center><br>
+
+<p>$f$ is the <strong>function</strong> or <strong>model</strong> getting from the learning algorithm, which can be used to predict the output. $\widehat{y}$, the value of $f$, is the prediction of $y$.</p>
+<h2 id="Linear-regression-model"><a href="#Linear-regression-model" class="headerlink" title="Linear regression model"></a>Linear regression model</h2><p>Linear regression model is the most simple model in regression model, in which, $f$ is just a linear function:</p>
+<p>$${f}_{w,b}(x)&#x3D;wx+b$$</p>
+<center>or</center>
+
+<p>$$f(x)&#x3D;wx+b$$</p>
+<p>$w$ and $b$ are the <em>parameters</em> that we (the learning algorithms) can adjust to make $f$ more accurate.</p>
+<blockquote>
+<p>Linear regression with single input is also called <em>univariate linear regression</em>.</p>
+</blockquote>
+<h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><p>Cost function compares $\widehat{y}$ to $y$. <strong>The better the model is, the smaller the value of the cost function is</strong>. The simplest and most commonly used cost function in linear regression is:</p>
+<p>$$J_{(w,b)}&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^{m}(\widehat{y}^{(i)}-y^{(i)})^2$$</p>
+<p>which is called <em><strong>mean squared error cost function</strong></em>.</p>
+<blockquote>
+<p>Why $2m$?</p>
+<p><em>This is for the convenience of later calculations. When deriving $J$ using the gradient descent method, if it is $2m$, there will not be any constant in the derivative function</em>:</p>
+<p>$$\frac{\partial{J_{(w,b)}}}{\partial{w}}&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(\widehat{y}^{(i)}-y^{(i)})\frac{\partial{\widehat{y}^{(i)}}}{\partial{w}}$$</p>
+</blockquote>
+<p>Since the training set is constant, $J$ is just the function of $w$ and $b$. Therefore, <strong>our goal is to find $w$ and $b$ that minimize $J_{(w,b)}$</strong>.</p>
+<blockquote>
+<p>The 3D bowl-shaped surface plot, which is the plot of $J$, can also be visualized as a contour plot. In the contour plot, each oval contains the choices of $w$ and $b$ that result in the same value of $J$.</p>
+</blockquote>
+<p><img src="/2023/04/05/SupervisedLearning/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. 3D plot and contour plot</center>
+
+<h3 id="Gradient-descent"><a href="#Gradient-descent" class="headerlink" title="Gradient descent"></a>Gradient descent</h3><p>Gradient descent is an algorithm that can be used to minimize any function. The steps of gradient descent are:</p>
+<ol>
+<li><p>Start with some parameters (just set them to 0 is ok);</p>
+</li>
+<li><p>Keep changing the parameters to reduce $J$:<br>$$w&#x3D;w-\alpha\frac{\partial{J_{(w,b)}}}{\partial{w}}$$<br>$\alpha$: learning rate, (0,1], which is used to control the speed of gradient descent.</p>
+<p>$w$: any parameter.</p>
+<p>All the parameters should be updated <strong>simultaneously</strong>, which means that when updating one parameter, the value of other parameters should be their original values.</p>
+<blockquote>
+<p>Principle: The ${grad(f)}$ at a certain point is the direction in which the function changes the fastest.</p>
+</blockquote>
+</li>
+<li><p>Get a minimum or near minimum $J$.</p>
+</li>
+</ol>
+<p>To achieve this, $J$ has to be a <strong>bowl shape function (convex function)</strong> or <strong>a function with local minima</strong>.</p>
+<p><img src="/2023/04/05/SupervisedLearning/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Function with locak minima</center><br>
+
+<p>In linear regression, <em>mean squared error cost function</em> is always a bowl shape function because it squares the loss. If $\alpha$ is too small, the gradient descent will work but may be very slow.</p>
+<p><img src="/2023/04/05/SupervisedLearning/4.png" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Model with small learning rate</center><br>
+
+<p>If $\alpha$ is too large, the gradient descent may not work, which means it may fail to converge but diverge.</p>
+<p><img src="/2023/04/05/SupervisedLearning/5.png" alt="5"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 5. Model with large learning rate</center><br>
+
+<blockquote>
+<p><em>Batch gradient descent</em>: Each step of gradient descent uses all the training examples.</p>
+</blockquote>
+<h2 id="Multiple-linear-regression-model"><a href="#Multiple-linear-regression-model" class="headerlink" title="Multiple linear regression model"></a>Multiple linear regression model</h2><p>When there are more than one features determining the output, it is advisable for us to use <em>vector</em>.</p>
+<blockquote>
+<p>Feature engineering: Using intuition to design new features by <strong>transforming</strong> or <strong>combining</strong> original features. Good features will make the model better.</p>
+</blockquote>
+<h3 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h3><ul>
+<li>$x_j$ &#x3D; $j^{th}$ feature;</li>
+<li>$n$ &#x3D; number of features;</li>
+<li>${\vec{x}^{(i)}}$ &#x3D; features of $i^{th}$ training example.</li>
+<li>$x_j^{(i)}$ &#x3D; value of feature $j$ in $i^{th}$ training example ($x$ can also be $\vec{x}$).</li>
+</ul>
+<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><p>$$f_{w,b}(x_1,x_2,...,x_n)&#x3D;w_1x_1+w_2x_2+...+w_nx_n+b$$</p>
+<p>is equal to:</p>
+<p>$$f_{\vec{w},b}(\vec{x})&#x3D;\vec{w}\cdot\vec{x}+b$$</p>
+<p>where</p>
+<p>$$\vec{w}&#x3D;[w_1,w_2,...,w_n],\vec{x}&#x3D;[x_1,x_2,...,x_n]$$</p>
+<h3 id="Vectorization"><a href="#Vectorization" class="headerlink" title="Vectorization"></a>Vectorization</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">w = np.array([<span class="number">1.0</span>, <span class="number">2.5</span>, -<span class="number">3.3</span>])</span><br><span class="line">b = <span class="number">4</span></span><br><span class="line">x = np.array([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>])</span><br><span class="line"><span class="comment"># vectorization</span></span><br><span class="line">f = np.dot(w, x) + b</span><br></pre></td></tr></table></figure>
+
+<p><code>np.dot()</code> can make use of parallel hardwares, so it is much faster than <code>for loop</code>. (<em>SIMD</em>)</p>
+<blockquote>
+<p>GPU will help to deal with <strong>vectorized code</strong>.</p>
+</blockquote>
+<h3 id="Cost-function-1"><a href="#Cost-function-1" class="headerlink" title="Cost function"></a>Cost function</h3><p>The cost function can also be represented as $J(\vec{w},b)$. All the parameters $\vec{w}$ and $b$ should also be updated simultaneously.</p>
+<blockquote>
+<p>Normal equation: This method only works for linear regression. It sovles for $w,b$ without iterations. However, it does not generalize to other learning algorithms and it is slow when the number of features is too large (&gt;10,000). It may be useful on the backend.</p>
+</blockquote>
+<h2 id="More-about-gradient-descent"><a href="#More-about-gradient-descent" class="headerlink" title="More about gradient descent"></a>More about gradient descent</h2><h3 id="Feature-scaling"><a href="#Feature-scaling" class="headerlink" title="Feature scaling"></a>Feature scaling</h3><p>Feature scaling is a mothod to accelerate gradient descent. When the value of some features is too large, what may happen is that even though $\alpha$ is small, the changes of some parameters are still <strong>too significant</strong>, which slows down the convergence speed of gradient descent.</p>
+<p><img src="/2023/04/05/SupervisedLearning/6.png" alt="6"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 6. Unscaled features</center><br>
+
+<p>One useful method is <em>feature scaling</em>. By scaling down some features, we can make the convergence speed of different parameters basically the same.</p>
+<p><img src="/2023/04/05/SupervisedLearning/7.png" alt="7"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 7. Scaled features</center><br>
+
+<p>Ways to scale features:</p>
+<ul>
+<li>Dividing by the maximum of the feature;</li>
+<li>Mean normalization. This method may produce negative value, but the range of feature is always 1.To realize this:<ol>
+<li>Get the mean value of this feature in the training set $\mu$;</li>
+<li>Subtract $\mu$ from each example of this feature and divide the result by the difference between the maximum and minimum values of this feature.<br>$$x&#x3D;\frac{x-\mu}{max-min}$$</li>
+</ol>
+</li>
+<li>Z-score normalization. $\sigma$ is the <strong>standard deviation</strong> of this feature.<br>$$x&#x3D;\frac{x-\mu}{\sigma}$$<blockquote>
+<p>When predicting, the new $x$ should also be scaled using the same parameters as before.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Ways-to-check-convergence"><a href="#Ways-to-check-convergence" class="headerlink" title="Ways to check convergence"></a>Ways to check convergence</h3><ol>
+<li>Draw $J-iterations$ curve or learning curve.</li>
+</ol>
+<p><img src="/2023/04/05/SupervisedLearning/8.png" alt="8"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 8. Iterations curve</center>
+
+<ol start="2">
+<li>Automatic convergence test: Let $\epsilon$ be a small value. Once $J$ decreases by $\leqslant$ $\epsilon$ in one iteration, it converges.</li>
+</ol>
+<h3 id="Choose-a-better-alpha"><a href="#Choose-a-better-alpha" class="headerlink" title="Choose a better $\alpha$"></a>Choose a better $\alpha$</h3><p>Once the learning curve looks like these:</p>
+<p><img src="/2023/04/05/SupervisedLearning/9.png" alt="9"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 9. Model with large learning rate</center><br>
+
+<p>It indicates that $\alpha$ is too large. The way to choose a good $\alpha$ is starting with a relative <strong>small value</strong> (like 0.001). And check the astringency of $J$. If $J$ still does not converge, there may be <strong>some bugs</strong> in the code. Then, we can try to increase $\alpha$ by <strong>three times</strong>, until we find a relative large $\alpha$.</p>
+<h2 id="Polynomial-regression"><a href="#Polynomial-regression" class="headerlink" title="Polynomial regression"></a>Polynomial regression</h2><p>In polynomial regression, the model $f$ is a polynomial, which means that one feature may occur several times with different powers. For example:</p>
+<p>$$f(x)&#x3D;w_1x+w_2\sqrt{x}+b$$</p>
+<p>In fact, by changing the power, one feature can produce infinite features. That is, $x$ and $\sqrt{x}$ are two different features.</p>
+<blockquote>
+<p>Since they are actually different features, we can use another <em>variable</em> to represent them. Then, the function may become: $f(x,z)&#x3D;w_1x+w_2z+b$. It is a linear function formally.</p>
+</blockquote>
+<p>Compared to linear regression, in polynomial regression, feature scaling and the selection of feature are more important.</p>
+<h1 id="Classification-model"><a href="#Classification-model" class="headerlink" title="Classification model"></a>Classification model</h1><h2 id="Binary-classification-model"><a href="#Binary-classification-model" class="headerlink" title="Binary classification model"></a>Binary classification model</h2><p>When the output of classification model only has two possible values, such classification model can also be named <em><strong>binary classification</strong></em>. In binary classification, we always use 0 (false) and 1 (true) to represent the output. 0 is also called <em><strong>negative class</strong></em> and 1 is also called <em><strong>positive class</strong></em>.</p>
+<p><strong>Logistic regression</strong> is the most commonly used model in binary classification:</p>
+<p>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;g(\vec{w}\cdot\vec{x}+b)&#x3D;g(z)&#x3D;\frac{1}{1+e^{-(\vec{w}\cdot\vec{x}+b)}}$$</p>
+<p>where </p>
+<p>$$g(z)&#x3D;\frac{1}{1+e^{-z}},0&lt;g(z)&lt;1$$</p>
+<p>is called <em><strong>sigmoid function</strong></em> or <em><strong>logistic function</strong></em>.</p>
+<p><img src="/2023/04/05/SupervisedLearning/10.png" alt="10"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 10. Sigmoid function</center><br>
+
+<p>Actually, the output of logistic regression can also be regarded as the possibility of <code>y==1</code>, so $f$ can also be represented as:<br>$$f_{(\vec{w},b)}{(\vec{x})}&#x3D;P(y&#x3D;1|\vec{x};\vec{w},b)$$</p>
+<h3 id="Decision-boundary"><a href="#Decision-boundary" class="headerlink" title="Decision boundary"></a>Decision boundary</h3><p>Since the output of logistic regression should be either 0 or 1, we must turn the value between 0 and 1 to 0 or 1. That is, we should find a threshold. When $f \ge threshold$,$f&#x3D;1$, otherwise, $f&#x3D;0$. The threshold we choose is often 0.5. When $f \ge 0.5$ ($\widehat{y}&#x3D;1$):<br>$$g(z) \ge 0.5$$<br>$$\downarrow$$<br>$$z \ge 0$$<br>$$\downarrow$$<br>$$\vec{w}\cdot\vec{x}+b \ge 0$$<br>The curve $\vec{w}\cdot\vec{x}+b &#x3D; 0$ is called <em><strong>decision boundary</strong></em>, where $\widehat{y}$ could be 0 or 1. For example:</p>
+<p><img src="/2023/04/05/SupervisedLearning/11.png" alt="11"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 11. Decision boundary-line</center>
+
+<p><img src="/2023/04/05/SupervisedLearning/12.png" alt="12"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 12. Decision boundary-circle</center>
+
+<h3 id="Loss-function"><a href="#Loss-function" class="headerlink" title="Loss function"></a>Loss function</h3><p>In linear regression, the cost function:</p>
+<p>$$J_{(w,b)}&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
+<p>can also be represented as:</p>
+<p>$$J_{(w,b)}&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{1}{2}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
+<p>where:</p>
+<p>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;\frac{1}{2}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})^2$$</p>
+<p>is called <em><strong>loss function</strong></em>.</p>
+<p>Loss function indicates the error between the prediction value and real value of one example in training set. The convexity of cost function is actually determined by loss function. In logistic regression, <em>squared error loss function</em> is a non-convex function.</p>
+<p><img src="/2023/04/05/SupervisedLearning/13.png" alt="13"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 13. Non-convex loss function</center><br>
+
+<p>Therefore, a new convex function is needed in logistic regression, that is:<br>$$L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})&#x3D;-y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))-(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))$$<br>where $y^{(i)}&#x3D;0,1$; $f_{\vec{w},b}(\vec{x}^{(i)})\in(0,1)$; $\log$ uses $\ln$.</p>
+<p>When $y^{(i)}&#x3D;1$, the curve of $L$ is:</p>
+<p><img src="/2023/04/05/SupervisedLearning/14.png" alt="14"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 14.</center><br>
+
+<p>Using gradient descent will make the loss close to 0.</p>
+<p>When $y^{(i)}&#x3D;0$,the curve of $L$ is:</p>
+<p><img src="/2023/04/05/SupervisedLearning/15.png" alt="15"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 15.</center><br>
+
+<p>Using gradient descent will also make the loss close to 0.</p>
+<h3 id="Cost-function-2"><a href="#Cost-function-2" class="headerlink" title="Cost function"></a>Cost function</h3><p>$$J_{(w,b)}&#x3D;-\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}[y^{(i)}\log(f_{\vec{w},b}(\vec{x}^{(i)}))+(1-y^{(i)})\log(1-f_{\vec{w},b}(\vec{x}^{(i)}))]$$<br>The derivative of $J$ in logistic regression is actually the same as that in linear regression:<br>$$w_j&#x3D;w_j-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})x_j^{(i)}]$$<br>$$b&#x3D;b-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(f_{\vec{w},b}(\vec{x}^{(i)})-y^{(i)})]$$</p>
+<p>However, the model $f$ is different.</p>
+<blockquote>
+<p>Vectorization and feature scaling can also be used in losgistic regression.</p>
+</blockquote>
+<h2 id="Multiclass-classification-model"><a href="#Multiclass-classification-model" class="headerlink" title="Multiclass classification model"></a>Multiclass classification model</h2><p>See <a href="/2023/04/10/NeuralNetwork/#Softmax-regression">Softmax regression</a>.</p>
+<h2 id="Multi-layer-classification-model"><a href="#Multi-layer-classification-model" class="headerlink" title="Multi-layer classification model"></a>Multi-layer classification model</h2><p>See <a href="/2023/04/10/NeuralNetwork/#Multi-label-classification">Multi-label classification</a>.</p>
+<h1 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h1><h2 id="Underfitting"><a href="#Underfitting" class="headerlink" title="Underfitting"></a>Underfitting</h2><p>When a model does not fit the training set well, the model is underfitting,</p>
+<p><img src="/2023/04/05/SupervisedLearning/16.png" alt="16"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 16. Underfitting model</center><br>
+
+<p>An underfitting model is an algorithm having <strong>high bias</strong>. In this case, we need to change a model.</p>
+<h2 id="Overfitting"><a href="#Overfitting" class="headerlink" title="Overfitting"></a>Overfitting</h2><p>When a model fits the training set extremely well, that is, the errors are approximate 0, the model is overfitting.</p>
+<p><img src="/2023/04/05/SupervisedLearning/17.png" alt="17"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 17. Overfitting model</center><br>
+
+<p>An overfitting model is an algorithm having <strong>high variance</strong>. In this case, the model just fits the training set well, but it can not be generalized. This problem often occurs when the training set is too small. So, the first method to solve this problem is to <strong>collect more training examples</strong>. Besides, <strong>selecting more suitable features</strong> is also feasible (<em><strong>Feature Selection</strong></em>). However, this method may cause our model to lose some useful features. The most feasible and commonly used method is <strong>regularization</strong>.</p>
+<h2 id="Weight-decay"><a href="#Weight-decay" class="headerlink" title="Weight decay"></a>Weight decay</h2><p>Overfitting may occurs when some features have an overly large effect, that is, a little change of these features may cause large changes to the model, which can make the model unexpandable.</p>
+<p>The core idea of regularization is to <strong>reduce the weight of features with large value</strong>. When regularizing, the cost function $J$ becomes:</p>
+<p>$$J(\vec{w},b)&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})+\frac{\lambda}{2m}\sum\limits_{j&#x3D;1}^{n}w_j^2$$</p>
+<p>We just need to regularize $w_j$ as $b$ just makes $f$ move up or down.</p>
+<blockquote>
+<p>$\lambda$ (&gt;0) is an important parameter that balance fitting data and keeping $w_j$ small. In fact, this is <strong>Lagrange multiplier</strong>, a method to find local extremea of a multivariate function when its variables are constrained by one or more conditions. The restriction here is $\frac{1}{2m}\sum\limits_{j&#x3D;1}^{n}w_j^2&#x3D;0$. Since we have limited the value of $\lambda$, our function doesn&#39;t obey the constraint strictly but the constraint does make $w$ smaller and the curve more smooth.</p>
+</blockquote>
+<p>Since $J$ changes, the update of $w_j$ will also change:</p>
+<p>$$w_j&#x3D;w_j-\alpha[\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{\partial{L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})}}{\partial{w_j}}+\frac{\lambda}{m}w_j]$$<br>or<br>$$w_j&#x3D;(1-\alpha\frac{\lambda}{m})w_j-\alpha\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}\frac{\partial{L(f_{\vec{w},b}(\vec{x}^{(i)}),y^{(i)})}}{\partial{w_j}}$$</p>
+<p>The second formula indicates that in each iteration, $w_j$ will be smaller than before. Therefore, this kind of normalization is also called <strong>weight decay</strong>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/05/SupervisedLearning/" data-id="clzik0lcy008kv47kbc06am9q" data-title="Supervised Learning" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-MachineLearning" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/05/MachineLearning/" class="article-date">
+  <time class="dt-published" datetime="2023-04-05T11:07:52.000Z" itemprop="datePublished">2023-04-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/05/MachineLearning/">Machine Learning</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h1><blockquote>
+<p>Definition: Field of study that gives computers the ability to learn without being explicitly programmed.</p>
+</blockquote>
+<p>In general, there are three fields in machine learning, that is, supervised learning, unsupervised learning and reinforcement learning. Their relationships are as follow:</p>
+<p><img src="/2023/04/05/MachineLearning/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Fields of machine learning</center>
+
+<h2 id="Supervised-learning"><a href="#Supervised-learning" class="headerlink" title="Supervised learning"></a>Supervised learning</h2><p>Supervised learning is the most commonly used machine learning. It&#39;s definition is:</p>
+<blockquote>
+<p>Supervised learning refers to algorithms that learn input to output mappings. The key of it is that you give the <strong>input(x)</strong> and the <strong>correct output(y)</strong> for the algorithms to learn. Then, the learning algorithms eventually learn to get the input alone and give a reasonably accurate prediction or guess of the output. <strong>In short, supervised learning learns from data labeled with the &quot;right answers&quot;</strong>.</p>
+</blockquote>
+<p>There are generally two types of supervised learning, <strong>regression</strong> and <strong>classification</strong>.</p>
+<h3 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a>Regression</h3><p>Regression is a kind of supervised learning that predicts <strong>a number</strong>, so its output contains <strong>infinitely</strong> many possible results. For example, housing price prediction:</p>
+<p><img src="/2023/04/05/MachineLearning/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. House price prediction</center>
+
+<h3 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h3><p>Classification is a kind of supervised learning that predicts <strong>categories</strong> which can be <strong>number or non numeric</strong>, so its output just contains a small number of results. For example, breast cancer detection:</p>
+<p><img src="/2023/04/05/MachineLearning/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Breast cancer detection</center><br>
+
+<p>Both regression and classification can have <strong>more than one</strong> inputs.</p>
+<h2 id="Unsupervised-learning"><a href="#Unsupervised-learning" class="headerlink" title="Unsupervised learning"></a>Unsupervised learning</h2><p>Unsupervised learning&#39;s definition:</p>
+<blockquote>
+<p>Unsupervised learning refers to algorithm that find something interesting in unlabed data. In unsupervised learning,the algorithms figure out all by themselves what&#39;s interesting or what patterns or structures might be in the dataset. <strong>Data only comes with input(x), but not output labels(y)</strong>. Algorithm has to find structure in the data.</p>
+</blockquote>
+<p>There are generally three types of unsupervised learning, <strong>clustering</strong>, <strong>anomaly detection</strong> and <strong>dimensionality reduction</strong>.</p>
+<h3 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h3><p>Clustering is a kind of unsupervised learning that <strong>groups</strong> data into different categories by any standard. For example, grouping customers:</p>
+<p><img src="/2023/04/05/MachineLearning/4.png" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Grouping customers</center>
+
+<h3 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h3><p>Anomaly detection is a kind of unsupervised learning that finds unusual data points. It is very useful in financial system.</p>
+<h3 id="Dimensionality-reduction"><a href="#Dimensionality-reduction" class="headerlink" title="Dimensionality reduction"></a>Dimensionality reduction</h3><p>This kind of unsupervised learning compresses data using fewer numbers.</p>
+<h2 id="Reinforcement-learning"><a href="#Reinforcement-learning" class="headerlink" title="Reinforcement learning"></a>Reinforcement learning</h2><p>Reinforcement learning is an new field in machine learning that has not yet been well applied but has a promising future.</p>
+<h1 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h1><h2 id="Jupyter-notebook"><a href="#Jupyter-notebook" class="headerlink" title="Jupyter notebook"></a>Jupyter notebook</h2><p>Jupyter notebook is the default <strong>environment</strong> that most researchers use to code up and experiment.</p>
+<h2 id="PyTorch"><a href="#PyTorch" class="headerlink" title="PyTorch"></a>PyTorch</h2><p>see <a href="/2023/04/28/PyTorch/">PyTorch</a>.</p>
+<h2 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h2><p>See <a href="/2023/04/12/Tensorflow/">Tensorflow</a>.</p>
+<h2 id="NumOy"><a href="#NumOy" class="headerlink" title="NumOy"></a>NumOy</h2><p>See <a href="/2023/04/22/NumPy/">NumPy</a>.</p>
+<h2 id="Scikit-learn"><a href="#Scikit-learn" class="headerlink" title="Scikit-learn"></a>Scikit-learn</h2><p>See <a href="/2023/04/22/Scikit-learn/">Scikit-learn</a>.</p>
+<h1 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h1><ul>
+<li>Training set: Data used to train a model.</li>
+<li>Test set: Data used to evaluate a model.</li>
+</ul>
+<h1 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h1><ul>
+<li>${x}$ &#x3D; &quot;input&quot; variable or feature;</li>
+<li>${y}$ &#x3D; &quot;output&quot; variable or &quot;target&quot; variable;</li>
+<li>${m}$ &#x3D; number of training examples;</li>
+<li>$(x, y)$ &#x3D; a single training example;</li>
+<li>$(x^i,y^i)$ &#x3D; $i^{th}$ training example;</li>
+<li>$x_j$ &#x3D; $j^{th}$ feature;</li>
+<li>$n$ &#x3D; number of features;</li>
+<li>${\vec{x}^{(i)}}$ &#x3D; features of $i^{th}$ training example.</li>
+<li>$x_j^{(i)}$ &#x3D; value of feature $j$ in $i^{th}$ training example ($x$ can also be $\vec{x}$).</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/05/MachineLearning/" data-id="clzik0lch0049v47k1a1xfqu6" data-title="Machine Learning" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-BashScript" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/02/BashScript/" class="article-date">
+  <time class="dt-published" datetime="2023-09-02T07:45:55.000Z" itemprop="datePublished">2023-09-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/02/BashScript/">Bash Script</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Basic-Concept"><a href="#Basic-Concept" class="headerlink" title="Basic Concept"></a>Basic Concept</h1><p>一些关于Bash和Shell的基本概念。</p>
+<h2 id="Bash-amp-Shell"><a href="#Bash-amp-Shell" class="headerlink" title="Bash &amp; Shell"></a>Bash &amp; Shell</h2><p>Shell是用户和操作系统的接口。它是一个命令解释器。Bash（Bourne Again SHell）是Shell的一个类型，由GNU开发，是对Bourne Shell（sh）的改进和扩展，同时也是当今Linux和MacOS的默认Shell。</p>
+<blockquote>
+<p>更通俗地来说，Shell相当于Linux操作系统，而Bash则是Linux操作系统的一个发行版，如Ubuntu。</p>
+</blockquote>
+<h2 id="Bash-Script-amp-Shell-Script"><a href="#Bash-Script-amp-Shell-Script" class="headerlink" title="Bash Script &amp; Shell Script"></a>Bash Script &amp; Shell Script</h2><p>脚本（Script），也就是我们常说的解释性编程语言，常见的Python、JavaScript都是脚本语言。Bash脚本和Shell脚本都是让Shell能够执行一连串命令行指令的程序，它们的关系就类似于Bash和Shell的关系：</p>
+<ul>
+<li>Bash脚本只能用Bash语言编写，其语法也是Bash的语法，而Shell脚本则能用任何的Shell语法编写；</li>
+<li>Bash脚本的文件后缀为<code>.sh</code>，而Shell脚本就是一个普通的文本文件，不需要任何后缀，只要可执行即可。</li>
+</ul>
+<blockquote>
+<p>无论是Bash脚本还是Shell脚本，都需要相应的Shell解释器来执行。使用<code>cat /etc/shells</code>能够查看本机所拥有的Shell解释器。</p>
+</blockquote>
+<h1 id="Execution-amp-Comment"><a href="#Execution-amp-Comment" class="headerlink" title="Execution &amp; Comment"></a>Execution &amp; Comment</h1><p>对于任何一个Bash脚本，编写时首先要指定其要使用的解释器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br></pre></td></tr></table></figure>
+
+<p>上述行指定该Bash脚本将使用解释器<code>/bin/bash</code>运行。运行Bash脚本时，我们可以以文件名运行，也可以以<code>bash</code>加文件名运行，如一个最简单的Bash脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">touch</span> helloScript.sh</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">helloScript.sh</span><br><span class="line">[zclzcl@localhost Playground]$ vim helloScript.sh</span><br><span class="line"><span class="comment">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Goodbye, world&quot;</span></span><br><span class="line">[zclzcl@localhost Playground]$ ./helloScript.sh</span><br><span class="line">Goodbye, world</span><br><span class="line">[zclzcl@localhost Playground]$ bash ./helloScript.sh</span><br><span class="line">Goodbye, world</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>最简单的Bash脚本就是一系列Linux命令行指令的组合。此时，运行该Bash脚本相当于在当前目录下串行地运行这些指令。要想运行Bash脚本，首先要确保脚本文件是可执行的，若用户无执行脚本文件的权限，则需要用<code>chmod +x [Script File]</code>增加权限。</p>
+</blockquote>
+<p>与其他编程语言一样，我们也能在脚本文件中增加注释来增强脚本文件的可读性。在Bash脚本中，单行注释用<code>#</code>，多行注释用<code>: &#39;&#39;</code>（引号内是注释内容）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/09/02/BashScript/" data-id="clzik0lbv0007v47k496f3upg" data-title="Bash Script" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-RegularExpressions" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/04/RegularExpressions/" class="article-date">
+  <time class="dt-published" datetime="2023-08-04T06:38:55.000Z" itemprop="datePublished">2023-08-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/04/RegularExpressions/">Regular Expressions</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="基本格式与匹配范围"><a href="#基本格式与匹配范围" class="headerlink" title="基本格式与匹配范围"></a>基本格式与匹配范围</h1><p>基本格式为<code>/[regx]/[g\i\m\s\u\y]</code>。其中<code>[g\i\m\s\u\y]</code>每个字母表示一种匹配范围，可同时出现：</p>
+<p><code>/g</code>：输出所有匹配结果；<br><code>/i</code>：不区分大小写；<br><code>/m</code>：<code>^</code>或<code>$</code>定位符在场时才发挥作用；<br><code>/</code>：只输出第一个匹配结果。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://regexr.com/">Regexr Website</a>是一个很好的练习正则表达式的网站，它的界面简洁：上方是正则表达式，中间是待匹配文本，下方则会详细给出每个表达式的匹配细节同时还提供了一些实用工具。</p>
+</blockquote>
+<p><img src="/2023/08/04/RegularExpressions/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Regexr Website</center>
+
+<hr>
+<h1 id="运算规则与优先级"><a href="#运算规则与优先级" class="headerlink" title="运算规则与优先级"></a>运算规则与优先级</h1><p>所有的正则表达式，无论是基本运算符还是复杂运算符，都遵循优先级从左到右匹配。基本的优先级从高到低顺序为：</p>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\\</td>
+<td align="center">转义字符</td>
+</tr>
+<tr>
+<td align="center">(), []</td>
+<td align="center">圆括号，方括号</td>
+</tr>
+<tr>
+<td align="center">*, +, ?, {}</td>
+<td align="center">限定符</td>
+</tr>
+<tr>
+<td align="center">^, $, \w等元字符, 任何字符</td>
+<td align="center">定位点和字符</td>
+</tr>
+<tr>
+<td align="center">|</td>
+<td align="center">逻辑运算符，或</td>
+</tr>
+</tbody></table>
+<p>对于待匹配字符串，也遵循从左到右、从上到下的匹配顺序。因此，一旦某子串符合正则表示式的匹配要求，该子串便会立即被“摘出”字符串，不再参与后续的匹配。</p>
+<hr>
+<h1 id="简单的运算符"><a href="#简单的运算符" class="headerlink" title="简单的运算符"></a>简单的运算符</h1><ul>
+<li><code>+</code>：对<code>+</code>的前一个字符匹配1个以上；</li>
+<li><code>?</code>：对<code>?</code>的前一个字符匹配0或1个；</li>
+<li><code>*</code>：对<code>*</code>的前一个字符匹配0或多个；</li>
+<li><code>.</code>：匹配任何1个字符（除换行符）；</li>
+<li><code>\</code>：转义字符，使运算符失去正则意义；</li>
+<li><code>\d</code>：匹配数字；</li>
+<li><code>\w</code>：匹配单词；</li>
+<li><code>\s</code>：匹配空白符，包括space、tab、line break。</li>
+</ul>
+<blockquote>
+<p><code>\w</code>等的大写表示匹配与原小写相反的项目，如<code>\W</code>匹配所有的非单词，实际相当于对小写的匹配结果取非。</p>
+</blockquote>
+<hr>
+<h1 id="较复杂的运算符"><a href="#较复杂的运算符" class="headerlink" title="较复杂的运算符"></a>较复杂的运算符</h1><h2 id="括号类"><a href="#括号类" class="headerlink" title="括号类"></a>括号类</h2><ul>
+<li><code>&#123;[minLength],[maxLength]&#125;</code>：对<code>&#123;[minLength],[maxLength]&#125;</code>前的所有匹配项，限制每个匹配项的长度为<code>minLength</code>-<code>maxLength</code>，其中匹配项长度小于<code>[minLength]</code>的将会被剔除，而长度大于<code>[maxLength]</code>的则会只取<code>[maxLength]</code>部分。如<code>&#123;4,5&#125;</code>只会匹配其之前的匹配项中所有长度大于4的，并对大于5的限定长度为5，限定长度后的剩下部分若仍符合前面的匹配要求，则当作新的匹配项继续参与<code>&#123;[minLength],[maxLength]&#125;</code>。若只有<code>&#123;[minLength]&#125;</code>则默认<code>[maxLength]=[minLength]</code>；若是<code>&#123;[minLength],&#125;</code>则将匹配所有长度大于<code>[minLength]</code>的；</li>
+<li><code>[[Groups]]</code>：匹配任何一个<code>[[Groups]]</code>中的字符。这很像通配符中<code>[]</code>的用法，但是不同的是，正则表达式中没有组的概念，因此<code>[Groups]</code>只能是用户自定的一组备选的字符或序列，如<code>[abg]</code>将匹配<code>a</code>或<code>b</code>或<code>g</code>；<code>a-f</code>将匹配<code>a</code>到<code>f</code>的任意一个字符；<code>1-9</code>将匹配<code>1</code>到<code>9</code>的任意一个字符。<code>[]</code>支持组合使用，如<code>a-f1-9</code>将匹配<code>a</code>到<code>f</code>或<code>1</code>到<code>9</code>的任意一个字符；</li>
+<li><code>()</code>：<code>()</code>表将里面的内容视作一个整体，即里面的内容在匹配时实际上是一个字符，如<code>(re)&#123;2,3&#125;</code>将匹配所有的<code>re</code>重复超过2次的连续串中的<code>rere</code>或<code>rerere</code>部分，此时<code>re</code>整体被视为一个字符；</li>
+</ul>
+<h2 id="逻辑运算符与定位符"><a href="#逻辑运算符与定位符" class="headerlink" title="逻辑运算符与定位符"></a>逻辑运算符与定位符</h2><ul>
+<li><code>|</code>：逻辑运算符<code>or</code>，匹配结果是符合<code>|</code>左边或右边内容的字符串。若无括号将整个<code>|</code>表达式括起，<code>|</code>会默认将左边和右边的视为一个整体，因为<code>|</code>的优先级最低，如<code>tre|it</code>只会匹配<code>tre</code>或<code>it</code>，而<code>t(re|it)</code>则会匹配<code>&#39;tre</code>或<code>tit</code>；</li>
+<li><code>^</code>：需放在正则表达式的开头才起作用，表示匹配字符串的开头，也就是说<code>^</code>后面的表达式只有出现在字符串的开头才会被匹配。默认情况下，整篇文章会被视作一个字符串，但是若使用<code>/m</code>选项，则每一行会被视作一个字符串，此时<code>^</code>的意义就是匹配每一行的开头；</li>
+<li><code>$</code>：需放在正则表达式的最后才起作用，类似于<code>^</code>，表匹配文章或行的末尾；</li>
+<li><code>?&lt;=</code>：向前看，一般而言，这个表达式必须和括号<code>()</code>一起使用。它是<code>^</code>的拓展版，表示从以括号内的表达式开头的部分开始匹配，但是不匹配括号内的内容，如<code>(?&lt;=[tT]he).</code>将匹配<code>the</code>或<code>The</code>后面的任意一个字符；</li>
+<li><code>?&lt;!</code>：<code>?&lt;=</code>的取反，如<code>(?&lt;![tT]he).</code>将匹配除<code>(?&lt;=[tT]he).</code>匹配结果的所有字符；</li>
+<li><code>?=</code>：向后看，<code>?&lt;=</code>的倒装版，是<code>$</code>的拓展，表示从以括号内的表达式结尾的部分开始匹配，如<code>.(?=[tT]he)</code>将匹配<code>the</code>或<code>The</code>前面的任意一个字符；</li>
+<li><code>?!</code>：<code>?=</code>的取反。</li>
+</ul>
+<blockquote>
+<p>需要注意的是，并不是所有的正则表达式标准都包含了<code>?&lt;=</code>和<code>?&lt;!</code>。</p>
+</blockquote>
+<hr>
+<h1 id="实战-电话号码匹配"><a href="#实战-电话号码匹配" class="headerlink" title="实战-电话号码匹配"></a>实战-电话号码匹配</h1><p>对于一般的11位电话号码，其最常规的写法有如下这三种：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1234567890</span><br><span class="line">123-456-7890</span><br><span class="line">123 456 7890</span><br></pre></td></tr></table></figure>
+
+<p>不难看出，上面的写法都可以统一成334写法，因此我们可以先按334将电话号码分组：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(\d&#123;3&#125;)(\d&#123;3&#125;)(\d&#123;4&#125;)/g</span><br></pre></td></tr></table></figure>
+
+<p>三者的区别就在于<code> </code>、<code>-</code>以及无字符，对于<code> </code>和<code>-</code>，我们可以使用中括号表任选其一<code>[ -]</code>，而对于无字符则可以采用<code>?</code>来匹配前方的0或1个字符：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(\d&#123;3&#125;)[ -]?(\d&#123;3&#125;)[ -]?(\d&#123;4&#125;)/g</span><br></pre></td></tr></table></figure>
+
+<p>上述式子已经可以匹配所有的这3种写法。有时，还会出现加了国际区号和使用括号的写法，如：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(123) 456-7890</span><br><span class="line">+1 123 456 7890</span><br></pre></td></tr></table></figure>
+
+<p>对于加括号的，用<code>\(?</code>和<code>\)?</code>处理即可。对于带区号的，则可以<code>(\+\d )?</code>处理。所有的合起来就是：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(\+\d )?(\(?\d&#123;3&#125;\)?)[ -]?(\d&#123;3&#125;)[ -]?(\d&#123;4&#125;)/g</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/rhzKDrUiJVk">Learn Regular Expressions In 20 Minutes</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/08/04/RegularExpressions/" data-id="clzik0lcw007wv47keyk58y7v" data-title="Regular Expressions" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-WildcardsPatternMatching" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/03/WildcardsPatternMatching/" class="article-date">
+  <time class="dt-published" datetime="2023-08-03T10:08:31.000Z" itemprop="datePublished">2023-08-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/03/WildcardsPatternMatching/">Wildcards and Pattern Matching</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="：匹配任意个数的任意字符"><a href="#：匹配任意个数的任意字符" class="headerlink" title="*：匹配任意个数的任意字符"></a><code>*</code>：匹配任意个数的任意字符</h1><p><code>*</code>可以代表任意个数的任意的连续字符：</p>
+<ul>
+<li><code>*.txt</code>：匹配所有以<code>.txt</code>结尾的字符串；</li>
+<li><code>g*</code>：匹配所有以<code>g</code>开头的字符串；</li>
+<li><code>g*.txt</code>：匹配所有以<code>g</code>开头、<code>.txt</code>结尾的字符串。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">file1.txt  file2.txt  gd  gg  ground  ground.txt  g.txt</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span> *.txt</span><br><span class="line">file1.txt  file2.txt  ground.txt  g.txt</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span> g*</span><br><span class="line">gd  gg  ground  ground.txt  g.txt</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span> g*.txt</span><br><span class="line">ground.txt  g.txt</span><br></pre></td></tr></table></figure>
+
+<h1 id="：匹配一个字符"><a href="#：匹配一个字符" class="headerlink" title="?：匹配一个字符"></a><code>?</code>：匹配一个字符</h1><p><code>?</code>可以代表任意的1个字符。需要注意的是，<code>?</code>必须代表1个字符，也就是说既不能是0个，也不能多于1个：</p>
+<ul>
+<li><code>?.txt</code>：匹配所有以<code>.txt</code>结尾且<code>.txt</code>之前只有一个字符的字符串；</li>
+<li><code>g?</code>：匹配所有以<code>g</code>开头且只有两个字符的字符串；</li>
+<li><code>g?.txt</code>：匹配所有以<code>g</code>开头、<code>.txt</code>结尾且<code>g</code>和<code>.txt</code>之间只有一个字符的字符串。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span> ?.txt</span><br><span class="line">g.txt</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span> g?</span><br><span class="line">gd  gg</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span> g?.txt</span><br><span class="line"><span class="built_in">ls</span>: cannot access g?.txt: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<h1 id="：匹配方框中的任意一个字符"><a href="#：匹配方框中的任意一个字符" class="headerlink" title="[]：匹配方框中的任意一个字符"></a><code>[]</code>：匹配方框中的任意一个字符</h1><p><code>[]</code>会匹配内部的任意一个且必须是一个字符，比如：</p>
+<ul>
+<li>与<code>g[dg]</code>相匹配的只有<code>gd</code>与<code>gg</code>。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">file1.txt  file2.txt  gd  gg  ground  ground.txt  g.txt</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span> g[dg]</span><br><span class="line">gd  gg</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span> g[rd]*</span><br><span class="line">gd  ground  ground.txt</span><br></pre></td></tr></table></figure>
+
+<h1 id="：匹配任意不在方框中的一个字符"><a href="#：匹配任意不在方框中的一个字符" class="headerlink" title="[^]：匹配任意不在方框中的一个字符"></a><code>[^]</code>：匹配任意不在方框中的一个字符</h1><p><code>[^]</code>表明其所在位置（只占一位）的匹配结果要不包含方框内的字符，比如：</p>
+<ul>
+<li>与<code>g[^dg]</code>相匹配的是任何第二个字符不是<code>d</code>或<code>g</code>的以<code>g</code>开头的两字符字符串。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">file1.txt  file2.txt  gd  gg  ground  ground.txt  g.txt</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span> g[^dg]*</span><br><span class="line">ground  ground.txt  g.txt</span><br></pre></td></tr></table></figure>
+
+<h1 id="start-end-：匹配-start-和-end-之间的任意一个字符"><a href="#start-end-：匹配-start-和-end-之间的任意一个字符" class="headerlink" title="[[start]-[end]]：匹配[start]和[end]之间的任意一个字符"></a><code>[[start]-[end]]</code>：匹配<code>[start]</code>和<code>[end]</code>之间的任意一个字符</h1><p><code>[[start]-[end]]</code>允许我们匹配任何一个在<code>[start]</code>和<code>[end]</code>之间的字符，其中<code>[start]</code>和<code>[end]</code>必须是两个存在顺序关系的字符，比如数字、字母等：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">file1.txt  file2.txt  gd  gg  ground  ground.txt  g.txt</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span> g[g-r]*</span><br><span class="line">gg  ground  ground.txt</span><br></pre></td></tr></table></figure>
+
+<p>上面指令会匹配所有以<code>g</code>开头，且第二个字符在<code>g</code>和<code>r</code>之间的字符串。</p>
+<blockquote>
+<p>以上这些涉及<code>[]</code>的匹配，<code>[]</code>内的内容除了可以是用户指定的字符串外，还可以是一类字符串，如：</p>
+<ul>
+<li><code>[:alnum:]</code>表任意一个字符或字母；</li>
+<li><code>[:alpha:]</code>表任意一个字母；</li>
+<li><code>[:digit:]</code>表任意一个数字；</li>
+<li><code>[:lower:]</code>表任意一个小写字母；</li>
+<li><code>[:upper:]</code>表任意一个大写字母。</li>
+</ul>
+<p><code>g[[:lower:]]</code>将匹配任意数量的以<code>g</code>开头、第二个字符为小写字母的两字符字符串。</p>
+</blockquote>
+<h1 id="：转义字符"><a href="#：转义字符" class="headerlink" title="\：转义字符"></a><code>\</code>：转义字符</h1><p>有时，我们会想要匹配名字中带有通配符字符，如<code>*</code>和<code>?</code>的字符串，这时候就需要使用转义字符<code>\</code>让通配符失去通配符意义而转为普通的字符串：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">chap?  file1.txt  file2.txt  gd  gg  ground  ground.txt  g.txt  what?</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span> *\?</span><br><span class="line">chap?  what?</span><br></pre></td></tr></table></figure>
+
+<p>上面的命令，<code>\?</code>代表字符<code>?</code>，因此其匹配的是所有以<code>?</code>结尾的字符串。</p>
+<h1 id="花括号展开"><a href="#花括号展开" class="headerlink" title="花括号展开"></a>花括号展开</h1><p>花括号展开十分类似于<code>[[start]-[end]]</code>形式的通配符模式匹配。通过花括号展开，我们可以从一个包含花括号的模式中创建出多个字符串，其基本使用模式为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;[stringA],[stringB],...,[string]&#125;</span><br><span class="line">或</span><br><span class="line">&#123;[start]..[end]&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要注意的是，花括号的内容只能用<code>,</code>分割，而不能有空白符，否则花括号会被视为一个普通的字符串。</p>
+</blockquote>
+<p>比如，<code>&#123;AB,CB,CC&#125;</code>将产生3个字符串<code>AB</code>、<code>CB</code>和<code>CC</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">rm</span> *</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">touch</span> &#123;AB,CB,CC&#125;</span><br><span class="line">[zclzcl@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">AB  CB  CC</span><br></pre></td></tr></table></figure>
+
+<p>而<code>&#123;2..6&#125;</code>将产生5个字符串<code>2</code>、<code>3</code>、<code>4</code>、<code>5</code>和<code>6</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zclzcl@localhost Playground]$ rm *</span><br><span class="line">[zclzcl@localhost Playground]$ touch &#123;2..6&#125;</span><br><span class="line">[zclzcl@localhost Playground]$ ls</span><br><span class="line">2  3  4  5  6</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意是两个<code>.</code>。</p>
+</blockquote>
+<p>花括号展开还可以嵌套。嵌套时，每个花括号被视为一个整体，依次展开，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[zclzcl@localhost Playground]$ rm *</span><br><span class="line">[zclzcl@localhost Playground]$ touch &#123;00&#123;1..9&#125;,0&#123;10..99&#125;&#125;</span><br><span class="line">[zclzcl@localhost Playground]$ ls</span><br><span class="line">001  007  013  019  025  031  037  043  049  055  061  067  073  079  085  091  097</span><br><span class="line">002  008  014  020  026  032  038  044  050  056  062  068  074  080  086  092  098</span><br><span class="line">003  009  015  021  027  033  039  045  051  057  063  069  075  081  087  093  099</span><br><span class="line">004  010  016  022  028  034  040  046  052  058  064  070  076  082  088  094</span><br><span class="line">005  011  017  023  029  035  041  047  053  059  065  071  077  083  089  095</span><br><span class="line">006  012  018  024  030  036  042  048  054  060  066  072  078  084  090  096</span><br></pre></td></tr></table></figure>
+
+<p>上面的式子将一次性生成99个文件。其基本原理是：最外层花括号内的两项<code>00&#123;1..9&#125;</code>和<code>0&#123;10..99&#125;</code>分别单独展开。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=LH4eF75Z_7U&list=WL&index=3&t=33s">Linux Tutorials | Wildcards and Pattern Matching | GeeksforGeeks</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39435">第五章：操作文件和目录</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39438">第八章：从shell眼中看世界</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/08/03/WildcardsPatternMatching/" data-id="clzik0lda00e2v47k1ujye6qr" data-title="Wildcards and Pattern Matching" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ProgramCompilation" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/25/ProgramCompilation/" class="article-date">
+  <time class="dt-published" datetime="2023-07-25T10:24:08.000Z" itemprop="datePublished">2023-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/25/ProgramCompilation/">Program Compilation</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Compile-Assembly-and-Link"><a href="#Compile-Assembly-and-Link" class="headerlink" title="Compile, Assembly and Link"></a>Compile, Assembly and Link</h1><p>一个C&#x2F;C++程序从源文件<code>.c/.cpp</code>到可执行文件<code>.exe</code>一般要经过以下四个步骤：</p>
+<p><img src="/2023/07/25/ProgramCompilation/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. 从源文件到可执行文件</center>
+
+<ol>
+<li>预处理阶段：主要完成源文件的宏替换；</li>
+<li>编译（Compile）阶段：将高级语言翻译为汇编语言、源程序翻译为汇编程序；</li>
+<li>汇编（Assembly）阶段：将汇编语言翻译为机器能识别的二进制机器语言，生成的<code>.o</code>文件称可重定位目标文件，用于后续的链接操作；</li>
+<li>链接（Link）阶段：将程序用到的库程序、自定义的依赖程序等与程序链接到一起，形成最终的可执行文件以及逻辑地址。</li>
+</ol>
+<blockquote>
+<p>事实上，现在大多数编译器（Compiler）会同时完成编译和汇编的任务。</p>
+</blockquote>
+<h1 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h1><p>GCC，全称GNU C Compiler或CNU Compiler Collection，前者是其最初的称呼，是GNU Project的发起者为完善类Unix操作系统（即Linux）而开发的C&#x2F;C++编译器，后来随着GCC的发展，其支持的语言也逐渐增多，如Java、Go等，由此才有了后面的称呼。通常，Linux发行版的操作系统都会自带GCC，如果没有，则需要手动安装。我们可以使用<code>gcc --version</code>或<code>g++ --version</code>来查看本机的GCC版本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc --version</span><br><span class="line">gcc (GCC) 11.2.1 20220127 (Red Hat 11.2.1-9)</span><br><span class="line">Copyright (C) 2021 Free Software Foundation, Inc.</span><br><span class="line">This is free software; see the <span class="built_in">source</span> <span class="keyword">for</span> copying conditions.  There is NO</span><br><span class="line">warranty; not even <span class="keyword">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span><br><span class="line"></span><br><span class="line">[meme@localhost Playground]$ g++ --version</span><br><span class="line">g++ (GCC) 11.2.1 20220127 (Red Hat 11.2.1-9)</span><br><span class="line">Copyright (C) 2021 Free Software Foundation, Inc.</span><br><span class="line">This is free software; see the <span class="built_in">source</span> <span class="keyword">for</span> copying conditions.  There is NO</span><br><span class="line">warranty; not even <span class="keyword">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>gcc</code>是C编译程序，而<code>g++</code>是C++编译程序。本节将以<code>gcc</code>为例记录一些GCC编译器的用法。</p>
+</blockquote>
+<p>在使用<code>gcc</code>前，我们先创建一个简单的C程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> &gt; main.c</span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line">int <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Goodbye, world!\n&quot;</span>);</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> main.c</span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line">int <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Goodbye, world!\n&quot;</span>);</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="a-out"><a href="#a-out" class="headerlink" title="a.out"></a><code>a.out</code></h2><p>若我们不为<code>gcc</code>提供任何选项而直接使用<code>gcc</code>编译文件，<code>gcc</code>会生成<code>a.out</code>作为该程序的可执行文件。需要注意的是，在Linux操作系统中，默认路径并不包含当前工作目录，因此需要使用<code>./a.out</code>来运行<code>a.out</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main.c</span><br><span class="line">[meme@localhost Playground]$ ./a.out</span><br><span class="line">Goodbye, world!</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>若<code>a.out</code>无法运行，则需要检查一下当前用户是否有运行<code>a.out</code>的权限。若无，则需用<code>chmod a+x a.out</code>来赋予当前用户权限。</p>
+</blockquote>
+<h2 id="c-o-g"><a href="#c-o-g" class="headerlink" title="-c, -o, -g"></a><code>-c</code>, <code>-o</code>, <code>-g</code></h2><p>若我们想要指定可执行文件的名字，我们就需要指定选项来逐步编译。</p>
+<ul>
+<li><code>-c</code>选项示意<code>gcc</code>完成除Link以外的全部步骤，生成可重定位的<code>.o</code>文件：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc -c main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main.c  main.o</span><br></pre></td></tr></table></figure></li>
+<li><code>-o</code>选项示意<code>gcc</code>完成可重定位文件及其库文件的Link。其对象可以是<code>.o</code>文件，也可以是<code>.c</code>文件。若为<code>.o</code>则<code>gcc</code>只完成Link；若为<code>.c</code>则<code>gcc</code>将完成从源文件到可执行文件的所有步骤。需要注意的是，可执行文件的名字应<strong>严格</strong>置于<code>-o</code>之后：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc -o main main.o  <span class="comment"># 等价于gcc main.o -o main</span></span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main  main.c  main.o</span><br><span class="line">[meme@localhost Playground]$ ./main</span><br><span class="line">Goodbye, world!</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">rm</span> main main.o</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main.c</span><br><span class="line">[meme@localhost Playground]$ gcc -o main main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main  main.c</span><br><span class="line">[meme@localhost Playground]$ ./main</span><br><span class="line">Goodbye, world!</span><br></pre></td></tr></table></figure></li>
+<li><code>-g</code>选项使得程序以Debug模式编译，以该方式编译的程序可以使用GDB来进行Debug：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">rm</span> a.out main</span><br><span class="line">[meme@localhost Playground]$ gcc -g main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main.c</span><br><span class="line">[meme@localhost Playground]$ gdb a.out</span><br><span class="line">GNU gdb (GDB) Red Hat Enterprise Linux 10.2-6.el7</span><br><span class="line">...</span><br><span class="line">(gdb) q</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main.c</span><br><span class="line">[meme@localhost Playground]$ gcc -g -o main main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">a.out  main  main.c</span><br><span class="line">[meme@localhost Playground]$ gdb main</span><br><span class="line">GNU gdb (GDB) Red Hat Enterprise Linux 10.2-6.el7</span><br><span class="line">...</span><br><span class="line">(gdb) q</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>以上这3个就是GCC的3个基本选项，还有其他的选项如<code>-l</code>用于加入不在标准库中的第三方库等。</p>
+<h1 id="Make"><a href="#Make" class="headerlink" title="Make"></a>Make</h1><p>一个项目往往会有多个相互包含的文件，如，我们移除之前生成的<code>a.out</code>以及<code>main</code>文件，并重新创建两个新文件<code>add.c</code>和<code>add.h</code>，同时修改<code>main.c</code>的内容让<code>main.c</code>引用<code>add.c</code>中的函数<code>add</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ ls</span><br><span class="line">main.c</span><br><span class="line">[meme@localhost Playground]$ cat &gt; add.c</span><br><span class="line">int add(int a, int b) &#123;</span><br><span class="line">    return a + b;</span><br><span class="line">&#125;</span><br><span class="line">[meme@localhost Playground]$ cat &gt; add.h</span><br><span class="line">int add(int a, int b);</span><br><span class="line">[meme@localhost Playground]$ ls</span><br><span class="line">add.c  add.h  main.c</span><br><span class="line">[meme@localhost Playground]$ vim main.c</span><br><span class="line">[meme@localhost Playground]$ cat main.c</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &quot;add.h&quot;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    printf(&quot;Goodbye, world!\n&quot;);</span><br><span class="line">    printf(&quot;%d\n&quot;, add(5, 3));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于两个文件的关系很简单，所以我们仍可以简单地生成<code>a.out</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc main.c add.c</span><br><span class="line">[meme@localhost Playground]$ ./a.out</span><br><span class="line">Goodbye, world!</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
+
+<p>或者生成自命名的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ gcc -o main_add main.c add.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  a.out  main_add  main.c</span><br><span class="line">[meme@localhost Playground]$ ./main_add</span><br><span class="line">Goodbye, world!</span><br><span class="line">8</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">rm</span> main_add</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  a.out  main.c</span><br><span class="line">[meme@localhost Playground]$ gcc -c main.c add.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  add.o  a.out  main.c  main.o</span><br><span class="line">[meme@localhost Playground]$ gcc -o main_add main.o add.o</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  add.o  a.out  main_add  main.c  main.o</span><br><span class="line">[meme@localhost Playground]$ ./main_add</span><br><span class="line">Goodbye, world!</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
+
+<p>上述两个程序很简单，因此手动地生成可执行文件仍是可行的。但是对于复杂的项目，其包含的程序可能有十几二十，甚至上百个，此时再手动地编译、链接就不太现实了。</p>
+<p><code>make</code>工具可以帮助我们省去每次重新编译时敲打文件名的麻烦。<code>make</code>基于用户预先编写的<code>Makefile</code>文件，实现自动编译、链接。使用<code>make --version</code>可以查看本机的<code>make</code>版本，在此我们先创建我们的<code>Makefile</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ make --version</span><br><span class="line">GNU Make 4.3</span><br><span class="line">Built <span class="keyword">for</span> x86_64-redhat-linux-gnu</span><br><span class="line">Copyright (C) 1988-2020 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">rm</span> a.out main_add main.o add.o</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  main.c</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> Makefile</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  main.c  Makefile</span><br></pre></td></tr></table></figure>
+
+<p><code>Makefile</code>是<code>make</code>指定使用的文件名，它只是一个普通的文本文件，其内部的内容用于指导<code>make</code>完成编译操作，一个<code>Makefile</code>文件的基本内容有：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">all: main</span><br><span class="line"></span><br><span class="line">main: main.o add.o</span><br><span class="line">    gcc -o main main.o add.o</span><br><span class="line"></span><br><span class="line">main.o: main.c</span><br><span class="line">    gcc -c main.c</span><br><span class="line"></span><br><span class="line">add.o: add.c</span><br><span class="line">    gcc -c add.c</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">    rm main main.o add.o</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>all</code>后面的是最终要生成的可执行文件的名称，其后续的<code>main</code>&amp;<code>main.o</code>&amp;<code>add.o</code>、冒号后的部分及下方的指令分别代表<strong>要生成的文件</strong>、<strong>生成这些文件要依赖的其他文件</strong>和<strong>相应的GCC指令</strong>。最后的<code>clean</code>使得我们能执行<code>make clean</code>来清除部分或所有生成的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ vim Makefile</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cat</span> Makefile</span><br><span class="line">all: main</span><br><span class="line"></span><br><span class="line">main: main.o add.o</span><br><span class="line">	gcc -o main main.o add.o</span><br><span class="line"></span><br><span class="line">main.o: main.c</span><br><span class="line">	gcc -c main.c</span><br><span class="line"></span><br><span class="line">add.o: add.c</span><br><span class="line">	gcc -c add.c</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">	<span class="built_in">rm</span> main main.o add.o</span><br><span class="line">[meme@localhost Playground]$ make</span><br><span class="line">gcc -c main.c</span><br><span class="line">gcc -c add.c</span><br><span class="line">gcc -o main main.o add.o</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  add.o  main  main.c  main.o  Makefile</span><br><span class="line">[meme@localhost Playground]$ ./main</span><br><span class="line">Goodbye, world!</span><br><span class="line">8</span><br><span class="line">[meme@localhost Playground]$ make clean</span><br><span class="line"><span class="built_in">rm</span> main main.o add.o</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  main.c  Makefile</span><br></pre></td></tr></table></figure>
+
+<p><code>make</code>的另一个优点在于：在一次编译过后再次编译时，它只会编译被修改过的文件。比如，若我们将<code>main.c</code>中的<code>add(5, 3)</code>修改为<code>add(5, 4)</code>再重新编译，我们将得到如下结果（第一个<code>make</code>编译的是未修改前的程序）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ make</span><br><span class="line">gcc -c main.c</span><br><span class="line">gcc -c add.c</span><br><span class="line">gcc -o main main.o add.o</span><br><span class="line">[meme@localhost Playground]$ vim main.c</span><br><span class="line">[meme@localhost Playground]$ make</span><br><span class="line">gcc -c main.c</span><br><span class="line">gcc -o main main.o add.o</span><br><span class="line">[meme@localhost Playground]$ ./main</span><br><span class="line">Goodbye, world!</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+
+<p>可见，<code>add.o</code>并没有被重新生成。以上是<code>make</code>及<code>Makefile</code>的一些基本操作。想要了解更多有关GCC和Make的知识可以看南洋理工大学的一份指南：<a target="_blank" rel="noopener" href="https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html#zz-2.">Compiling, Linking and Building C&#x2F;C++ Applications</a>。</p>
+<h1 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h1><p>即便有了<code>make</code>，我们仍会遇到一些仅仅是编写<code>Makefile</code>就很麻烦的项目。<code>cmake</code>就是为了解决这项问题而出现的。类似于<code>make</code>，<code>cmake</code>也有其特有的文件<code>CMakeLists.txt</code>。但是不同于<code>make</code>的是，<code>cmake</code>的特有文件是用于<strong>生成</strong><code>Makefile</code>的。<code>cmake</code>、<code>make</code>和<code>gcc</code>的关系如下所示：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">              cmake           make       gcc</span><br><span class="line">CMakeLists.txt -----&gt; Makefile ----&gt; Cmds ---&gt; Binary</span><br></pre></td></tr></table></figure>
+
+<p>同样地，我们可以使用<code>cmake --version</code>查看本系统的<code>cmake</code>版本（若没有则需要安装）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ cmake --version</span><br><span class="line">cmake version 3.15.3</span><br><span class="line"></span><br><span class="line">CMake suite maintained and supported by Kitware (kitware.com/cmake).</span><br></pre></td></tr></table></figure>
+
+<p>安装好<code>cmake</code>后，我们就可以在当前目录下创建<code>CMakeLists.txt</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> CMakeLists.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  add.o  CMakeLists.txt  main  main.c  main.o  Makefile</span><br></pre></td></tr></table></figure>
+
+<p><code>CMakeLists.txt</code>的编写比<code>Makefile</code>要更加复杂，事实上，其编写的方式本身就可以被视为一种新的语言。此处只记录一些基本的语法，更多的要去看官方文档<a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">CMake Tutorial</a>。</p>
+<p>一个最基本的<code>CMakeLists.txt</code>会包含3个基本命令：</p>
+<ul>
+<li><code>cmake_minimum_required()</code>：参数为该<code>CMakeLists.txt</code>文件所要求的最低<code>cmake</code>版本，是为了程序的可移植性考虑；</li>
+<li><code>project()</code>：参数为最后生成的可执行文件名；</li>
+<li><code>add_executable()</code>：参数为可执行文件名及其需要的源文件。</li>
+</ul>
+<p>以<code>make</code>中使用的<code>main.c</code>和<code>add.c</code>为例，其<code>CMakeLists.txt</code>应为：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.10)</span><br><span class="line"></span><br><span class="line"># set the project name</span><br><span class="line">project(main)</span><br><span class="line"></span><br><span class="line"># add the executable</span><br><span class="line">add_executable(main main.c add.c)</span><br></pre></td></tr></table></figure>
+
+<p>由于<code>cmake</code>利用<code>CMakeLists.txt</code>最终生成的是<code>Makefile</code>文件以及一些附属文件，我们通常会新建一个文件夹来执行<code>cmake</code>，一般我们会将该文件夹命名为<code>build</code>（也可自由命名）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">mkdir</span> build</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">add.c  add.h  add.o  build  CMakeLists.txt  main  main.c  main.o  Makefile</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cd</span> build</span><br></pre></td></tr></table></figure>
+
+<p>然后，在<code>build</code>文件夹中执行我们的<code>cmake</code>指令。由于<code>CMakeLists.txt</code>存在于父目录中，我们应使用<code>cmake ..</code>而不是单单的<code>cmake</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost build]$ cmake ..</span><br><span class="line">-- The C compiler identification is GNU 11.2.1</span><br><span class="line">...</span><br><span class="line">-- Build files have been written to: /home/meme/Playground/build</span><br><span class="line">[meme@localhost build]$ <span class="built_in">ls</span></span><br><span class="line">CMakeCache.txt  CMakeFiles  cmake_install.cmake  Makefile</span><br></pre></td></tr></table></figure>
+
+<p>得到<code>Makefile</code>后再执行<code>make</code>即可生成相应的可执行文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost build]$ make</span><br><span class="line">make[1]: Entering directory <span class="string">&#x27;/home/meme/Playground/build&#x27;</span></span><br><span class="line">...</span><br><span class="line">make[1]: Leaving directory <span class="string">&#x27;/home/meme/Playground/build&#x27;</span></span><br><span class="line">[meme@localhost build]$ <span class="built_in">ls</span></span><br><span class="line">CMakeCache.txt  CMakeFiles  cmake_install.cmake  main  Makefile</span><br><span class="line">[meme@localhost build]$ ./main</span><br><span class="line">Goodbye, world!</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>cmake</code>能跨目录执行，但是<code>make</code>只能在有<code>Makefile</code>的目录执行。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39455">The Linux Command Line 中文版 第二十四章：编译程序</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=qON2D3vDIt8&list=WL&index=1&t=193s">[Environment Setup 8] Compile programs from source code using GCC, GNU Make, and CMake</a></li>
+<li><a target="_blank" rel="noopener" href="https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html#zz-2.">Compiling, Linking and Building C&#x2F;C++ Applications</a></li>
+<li><a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">CMake Tutorial</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/25/ProgramCompilation/" data-id="clzik0lct0074v47kg8a27zwk" data-title="Program Compilation" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

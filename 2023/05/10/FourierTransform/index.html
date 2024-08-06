@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Fourier Transform | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Fourier transform is a transform that converts a function into a form that describes the frequencies present in the original function. To a certain extent, it can also be viewed as a coordinate transf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fourier Transform">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/05/10/FourierTransform/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Fourier transform is a transform that converts a function into a form that describes the frequencies present in the original function. To a certain extent, it can also be viewed as a coordinate transf">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/FourierTransform/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/05/10/FourierTransform/2.png">
+<meta property="article:published_time" content="2023-05-10T15:46:14.000Z">
+<meta property="article:modified_time" content="2023-08-09T05:50:18.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="CNN">
+<meta property="article:tag" content="Math">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/05/10/FourierTransform/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-FourierTransform" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/10/FourierTransform/" class="article-date">
+  <time class="dt-published" datetime="2023-05-10T15:46:14.000Z" itemprop="datePublished">2023-05-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Fourier Transform
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Inner-product"><a href="#Inner-product" class="headerlink" title="Inner product"></a>Inner product</h1><p>The inner product generalizes the dot product to abstract vector spaces over a field of scalars, being either the field of real numbers $R$  or the field of complex numbers $C$. It is usually denoted using angular brackets by $\braket{\vec{a}, \vec{b}}$. Each vector in the field of real numbers $R$ can be regarded as a <strong>discrete functions</strong> with domain $\{k\in N:1\le k\le n\}$. And the inner product measures the similarity of two vectors:</p>
+<p>$$\vec{a}\cdot\vec{b}&#x3D;\sum\limits_{i&#x3D;0}^na_ib_i\Delta n$$</p>
+<p>where $\Delta n&#x3D;1$ , can be regarded as the difference of two dimension. It is easy to generalize this to continuous functions. In this case, the dimension of a vector is <strong>infinity</strong> and the sum will diverge. Therefore, we average each term, that is $dx$:</p>
+<p>$$\braket{f,g}&#x3D;\int_a^bf(x)g(x)dx$$</p>
+<p>Similarly, the inner product of functions measures the similarity of two functions.</p>
+<h1 id="Orthogonality-of-trigonometric-functions"><a href="#Orthogonality-of-trigonometric-functions" class="headerlink" title="Orthogonality of trigonometric functions"></a>Orthogonality of trigonometric functions</h1><p>We define:<br>$$\{\sin0x,\cos0x,\sin x,\cos x,...,\sin nx, \cos nx\}$$<br>as trigonometric space. In this space, the inner product of two different functions with domain $\{x\in R:-\pi\le x\le \pi\}$ is zero, that is, the two functions are orthogonal:</p>
+<p>$$\braket{\sin nx, \sin mx}&#x3D;\int_{-\pi}^\pi\sin nx\sin mxdx&#x3D;0$$<br>where $n\ne m$ and either or both of $\sin$ could be $\cos$. If the two functions are the same and are not $0$, their inner product is $\pi$:<br>$$\braket{\sin nx, \sin nx}&#x3D;\int_{-\pi}^\pi\sin nx\sin nxdx&#x3D;\pi$$</p>
+<h1 id="Fourier-series"><a href="#Fourier-series" class="headerlink" title="Fourier series"></a>Fourier series</h1><p>Fourier series is another kind of series besides power series. It uses functions in trigonometric space to represent any periodic functions.</p>
+<h2 id="T-x3D-2-pi"><a href="#T-x3D-2-pi" class="headerlink" title="$T&#x3D;2\pi$"></a>$T&#x3D;2\pi$</h2><p>For a function of period $2\pi$, $f(x)&#x3D;f(x+2\pi)$, we can represent it using trigonometric functions:</p>
+<p>$$f(x)&#x3D;\sum\limits_{n&#x3D;0}^\infty a_n\cos nx+\sum\limits_{n&#x3D;0}^\infty b_n\sin nx$$</p>
+<p>To get $a_n\space(n\ne0)$ , multiply both sides by $\cos nx$ and integrate at $[-\pi, \pi]$:</p>
+<p>$$\int_{-\pi}^\pi f(x)\cos nxdx&#x3D;\sum\limits_{m&#x3D;0}^\infty[\int_{-\pi}^\pi a_m\cos mx\cdot\cos nxdx+b_m\sin mx\cdot\cos nxdx]\tag{1}$$</p>
+<p>Because of the orthogonality of trigonometric functions, formula (1) becomes:</p>
+<p>$$\int_{-\pi}^\pi f(x)\cos nxdx&#x3D;\int_{-\pi}^\pi a_n\cos nx\cdot\cos nxdx&#x3D;a_n\pi$$</p>
+<p>Therefore:</p>
+<p>$$a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nxdx$$</p>
+<p>If $n&#x3D;0$:</p>
+<p>$$\int_{-\pi}^\pi f(x)dx&#x3D;a_02\pi\rightarrow a_0&#x3D;\frac{1}{2\pi}\int_{-\pi}^\pi f(x)dx$$</p>
+<p>For unity, we usually use $2a_0\space(A_0)$ as $a_0$:</p>
+<p>$$A_0&#x3D;2a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)dx$$</p>
+<p>Similarly, if multiply both sides by $\sin nx\space(n\in N)$ and integrate at $[-\pi, \pi]$, we get $b_n$:</p>
+<p>$$b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin nxdx$$</p>
+<p>So, the fourier series of $f(x)&#x3D;f(x+2\pi)$ is:</p>
+<p>$$f(x)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos nx+b_n\sin nx], \begin{cases}<br>   a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)dx &amp;\\<br>   a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nxdx &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin nxdx &amp;<br>\end{cases}$$</p>
+<h2 id="T-x3D-2L"><a href="#T-x3D-2L" class="headerlink" title="$T&#x3D;2L$"></a>$T&#x3D;2L$</h2><p>More generally, for any function with period $2L$, $f(t)&#x3D;f(t+2L)$, we assume:</p>
+<p>$$t&#x3D;\frac{L}{\pi}x$$</p>
+<p>Then:</p>
+<p>$$f(t)&#x3D;f(\frac{L}{\pi}x)$$</p>
+<p>$$f(t+2L)&#x3D;f(\frac{L}{\pi}x+2L)&#x3D;f[\frac{L}{\pi}(x+2\pi)]$$</p>
+<p>We make:</p>
+<p>$$g(x)&#x3D;f(\frac{L}{\pi}x)$$</p>
+<p>Then:</p>
+<p>$$g(x)&#x3D;g(x+2\pi)$$</p>
+<p>We have already know the fourier series of functions with period $2\pi$ is:</p>
+<p>$$g(x)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos nx+b_n\sin nx], \begin{cases}<br>   a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)dx &amp;\\<br>   a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)\cos nxdx &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)\sin nxdx &amp;<br>\end{cases}$$</p>
+<p>Since $t&#x3D;\frac{L}{\pi}x$ and $g(x)&#x3D;f(\frac{L}{\pi}x)&#x3D;f(t)$, we can replace $x$ with $t$:</p>
+<p>$$dx&#x3D;\frac{\pi}{L}dt$$</p>
+<p>$$x\in[-\pi,\pi]\rightarrow t\in[-L,L]$$</p>
+<p>Therefore:</p>
+<p>$$f(t)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos \frac{n\pi<br>}{L}t+b_n\sin \frac{n\pi}{L}t], \begin{cases}<br>   a_0&#x3D;\frac{1}{L}\int_{-L}^L f(t)dt &amp;\\<br>   a_n&#x3D;\frac{1}{L}\int_{-L}^L f(t)\cos \frac{n\pi<br>}{L}tdt &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{1}{L}\int_{-L}^L f(t)\sin \frac{n\pi<br>}{L}tdt &amp;<br>\end{cases}$$</p>
+<p>Sometimes, we use $T&#x3D;2L$ to represent period and $\omega_0$ to represent fundamental frequency $\frac{2\pi}{T}$. Since the integral of a periodic function over a period is constant, we can also write the fourier series as:</p>
+<p>$$f(t)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos n\omega_0 t+b_n\sin n\omega_0 t], \begin{cases}<br>   a_0&#x3D;\frac{2}{T}\int_{0}^T f(t)dt &amp;\\<br>   a_n&#x3D;\frac{2}{T}\int_{0}^T f(t)\cos n\omega_0 tdt &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{2}{T}\int_{0}^T f(t)\sin n\omega_0 tdt &amp;<br>\end{cases}$$</p>
+<h2 id="Complex-form"><a href="#Complex-form" class="headerlink" title="Complex form"></a>Complex form</h2><p>Fourier series can be transformed into complex form using Euler&#39;s formula:</p>
+<p>$$e^{i\theta}&#x3D;\cos\theta+i\sin\theta\tag{2}$$<br>$$e^{-i\theta}&#x3D;\cos\theta-i\sin\theta\tag{3}$$</p>
+<p>By combining (2) and (3), we can get:</p>
+<p>$$\cos\theta&#x3D;\frac{1}{2}(e^{i\theta}+e^{-i\theta})\tag{4}$$<br>$$\sin\theta&#x3D;-\frac{1}{2}i(e^{i\theta}-e^{-i\theta})\tag{5}$$</p>
+<p>Put the above two formulas into fourier series, we get:</p>
+<p>$$\begin{align*}<br>    f(t) &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [\frac{a_n}{2}(e^{in\omega_0 t}+e^{-in\omega_0 t})-\frac{b_n}{2}i(e^{in\omega_0 t}-e^{-in\omega_0 t})]\\<br>         &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [\frac{a_n-ib_n}{2}e^{in\omega_0 t}+\frac{a_n+ib_n}{2}e^{-in\omega_0 t}]\\<br>         &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1} ^{+\infty} \frac{a_n-ib_n}{2}e^{in\omega_0 t}+\sum\limits_{n&#x3D;-1} ^{-\infty} \frac{a_{-n}+ib_{-n}}{2}e^{in\omega_0 t}\tag{6}\\<br>         &amp;&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}C_ne^{in\omega_0 t}\tag{7}<br>\end{align*}$$</p>
+<p>For (6) to (7), since $e^0&#x3D;1$, we can treat $\frac{a_0}{2}$ as $C_0$. Therefore:</p>
+<p>$$<br>C_n&#x3D;<br>\begin{cases}<br>    \frac{1}{2}a_0&#x3D;\frac{1}{T}\int_{0}^T f(t)dt,&amp;n&#x3D;0\\<br>    \frac{1}{2}(a_n-ib_n)&#x3D;\frac{1}{T}\int_{0}^T f(t)(\cos n\omega_0 t-i\sin n\omega_0 t)dt&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt,&amp;n&#x3D;1,2,3...\\<br>    \frac{1}{2}(a_n+ib_n)&#x3D;\frac{1}{T}\int_{0}^T f(t)(\cos n\omega_0 t+i\sin n\omega_0 t)dt&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{in\omega_0 t}dt,&amp;n&#x3D;-1,-2,-3...<br>\end{cases}<br>$$<br>Since $e^0&#x3D;1$:</p>
+<p>$$C_n&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt,n\in Z$$</p>
+<p>Therefore:</p>
+<p>$$f(t)&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}C_ne^{in\omega_0 t}<br>      &#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt$$</p>
+<h1 id="Fourier-transform"><a href="#Fourier-transform" class="headerlink" title="Fourier transform"></a>Fourier transform</h1><p>In the complex form of fourier series, it is $C_n$ that defines the form of $f(t)$ in frequency domain, where $C_n&#x3D;A_n+iB_n$. Based on the difference of frequency $n\omega_0$, the curve of $f(t)$ in the time domain $[0,T]$ is transformed into a point in frequency domain:</p>
+<p><img src="/2023/05/10/FourierTransform/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Cn in the complex domain</center><br>
+
+<p>If function $f(t)$ is not a periodic function, that is, its period is $+\infty$, fourier series becomes fuorier transform:</p>
+<p>$$T\to+\infty,\space\frac{1}{T}&#x3D;[(n+1)\omega_0-n\omega_0]\frac{1}{2\pi}&#x3D;\frac{\Delta\omega}{2\pi}&#x3D;\frac{\omega_0}{2\pi}\to0$$</p>
+<p>Since the difference between $(n+1)\omega_0$ and $n\omega_0$ is rather small, that is, the fundamental frequency $\omega_0$ is rather small, we can turn the discrete $n\omega_0$ into continuous $\omega$. Then:</p>
+<p>$$\Delta\omega&#x3D;d\omega\to0, \space n\omega_0\to\omega$$<br>$$<br>\begin{align*}<br>f(t)<br>  &amp;&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt\\<br>  &amp;&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{-\frac{T}{2}}^\frac{T}{2} f(t)e^{-in\omega_0 t}dt\\<br>  &amp;&#x3D;\sum\limits_{n\omega_0&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{\Delta\omega}{2\pi}\int_{-\frac{T}{2}}^\frac{T}{2} f(t)e^{-in\omega_0 t}dt\\<br>  &amp;&#x3D;\frac{1}{2\pi}\int_{-\infty} ^{+\infty}\int_{-\infty} ^{+\infty}f(t)e^{-i\omega t}dt\space e^{i\omega t}d\omega<br>\end{align*}<br>$$<br>Among the formula above:</p>
+<p>$$\int_{-\infty} ^{+\infty}f(t)e^{-i\omega t}dt&#x3D;F(\omega)$$</p>
+<p>is called <strong>Fourier Transform</strong> and the whole formula is called <strong>Inverse Fourier Transform</strong>. It&#39;s easy for us to understand that $F(\omega)$ is $\frac{1}{2\pi} C_n$ and it is a complex number in frequency domain. More generally, we don&#39;t use the form in Fig. 1. to represent $F(\omega)$, instead, we draw the curve of <em>Amplitude</em>-$\omega$:</p>
+<p>$$F(\omega)&#x3D;|F(\omega)|e^{i\phi}$$</p>
+<p>It is a continuous curve in frequency domain:</p>
+<p><img src="/2023/05/10/FourierTransform/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Amplitude-omega</center><br>
+
+<p>$e^{i\omega t}$ represents different waveforms while $F(w)$ represents the intensity of different waveforms in the original function $f(t)$. Therefore, we can restore the original function by superimposing waveforms of different intensities. And this is <strong>Inverse Fourier Transform</strong>.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Et411R78v/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">纯干货数学推导_傅里叶级数与傅里叶变换</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ce4y1p7jF/?spm_id_from=333.880.my_history.page.click&vd_source=2d980a0365f3ebea674b32924d8a4ce8">卷积神经网络的底层是傅里叶变换，傅里叶变换的底层是希尔伯特空间坐标变换</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/05/10/FourierTransform/" data-id="clzik0lca002kv47k24sfdzlb" data-title="Fourier Transform" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/05/10/FourierTransformAndCNN/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Fourier Transform and CNN
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/05/10/CNN/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CNN: Feature Extraction</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

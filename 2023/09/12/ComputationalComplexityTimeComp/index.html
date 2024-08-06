@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Computational Complexity: Time Complexity 1 | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="本篇是计算复杂性（CS7313）的第一章的第一节，主要研究图灵机模型的编码、性质等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computational Complexity: Time Complexity 1">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="本篇是计算复杂性（CS7313）的第一章的第一节，主要研究图灵机模型的编码、性质等。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/2.jpg">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/3.jpg">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/4.png">
+<meta property="article:published_time" content="2023-09-12T09:51:52.000Z">
+<meta property="article:modified_time" content="2023-10-04T01:16:46.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="Theoretical Computer Science">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ComputationalComplexityTimeComp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/12/ComputationalComplexityTimeComp/" class="article-date">
+  <time class="dt-published" datetime="2023-09-12T09:51:52.000Z" itemprop="datePublished">2023-09-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Computational Complexity: Time Complexity 1
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Notation：记号约定"><a href="#Notation：记号约定" class="headerlink" title="Notation：记号约定"></a>Notation：记号约定</h1><ul>
+<li>$\log x$默认为$\log _2x$。</li>
+<li>若$S$是有限的符号集，如$\left\{0,1\right\}$，则$S ^n$表示所有长度为$n$的由$S$中字符组成的字符串集合，$S ^*$表示任意长度的字符串集合。对于单个符号$x$，$x ^n$则表示$n$个$x$组成的字符串。</li>
+<li>字符串$x$的长度记为$|x|$或$n$，这一节及后续的相关章节都会用$n$。</li>
+<li>记$\llcorner x\lrcorner$为$x$的二进制编码。</li>
+<li>记$1^n$为长度为$n$的任意$01$串。</li>
+</ul>
+<h1 id="Turing-Machine：图灵机模型"><a href="#Turing-Machine：图灵机模型" class="headerlink" title="Turing Machine：图灵机模型"></a>Turing Machine：图灵机模型</h1><p>图灵机（Turing Machine），又称图灵计算机，指一个抽象的机器，是英国数学家艾伦・麦席森・图灵于1936年提出的一种抽象的计算模型，即将人们使用纸笔进行数学运算的过程进行抽象，由一个虚拟的机器替代人类进行数学运算。它有多条无限长的纸带，纸带分成了一个一个的小方格，每个方格有不同的内容。有一个机器头在纸带上移来移去。机器头有一组内部状态，还有一些固定的程序。在每个时刻，机器头都要从当前纸带上读入一个方格信息，然后结合自己的内部状态查找程序表，根据程序输出信息到纸带方格上，并转换自己的内部状态，然后进行移动。</p>
+<h2 id="K-Tap-Turing-Machine"><a href="#K-Tap-Turing-Machine" class="headerlink" title="$K$-Tap Turing Machine"></a>$K$-Tap Turing Machine</h2><p>$k$带图灵机$\mathbb{M}$有$k$条纸带，其中：</p>
+<ul>
+<li>第一条纸带是<strong>只读纸带</strong>（Input Tape），它包含了输入图灵机的问题或数据规模；</li>
+<li>其他纸带是<strong>可读写</strong>的工作纸带（Work Tape），其中最后一条纸带又同时作为记录最后输出的纸带（Output Tape）；</li>
+<li>各纸带的<strong>带头</strong>（Tape Head）指明了正在读&#x2F;写的纸带信息。</li>
+</ul>
+<p><img src="/2023/09/12/ComputationalComplexityTimeComp/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. K-tape turing machine</center><br>
+
+<blockquote>
+<p>不难看出，图灵机模拟了人类解题时<strong>读题（Input）</strong>、<strong>打草稿（Work）</strong>和<strong>写答案（Output）</strong>的过程。</p>
+</blockquote>
+<p>一个$k$带的图灵机$\mathbb{M}$可由一个三元组$(\Gamma,Q,\delta)$唯一描述：</p>
+<ul>
+<li>$\Gamma$是一个有限的符号集，称<em>Alphabet</em>。我们规定，符号集必须只由$\left\{0,1,\square,\triangleright\right\}$组成，其中$\left\{0,1\right\}$是有效字符，而$\left\{\square,\triangleright\right\}$则是分别表示<em>空白字符</em>和<em>纸带开始</em>的功能字符；</li>
+<li>$Q$是一个有限状态集，包含了该图灵机的所有状态，包括起始状态$q _{start}$和停机状态$q _{halt}$；</li>
+<li>$\delta$是一个转移函数（Transition Function），实际上相当于烧至在图灵机中的一个<em>程序</em>。</li>
+</ul>
+<p>图灵机当前的状态（State）会被记录在一个状态寄存器$q$中。在任何时刻$t$，图灵机都能够获取图灵机在这个时刻的快照（Snapshot）：每个纸带的符号$\Gamma ^k$以及图灵机当前的状态$q _t$，记该快照为$Q\times\Gamma ^k$，那么转移函数$\delta$便可指挥图灵机进入新的快照$Q\times\Gamma ^{k-1}\times\left\{L,S,R\right\} ^k$，即：</p>
+<p>$$<br>Q\times\Gamma ^k\to Q\times\Gamma ^{k-1}\times\left\{L,S,R\right\} ^k<br>$$</p>
+<p>其中，$Q\times\Gamma ^{k-1}\times\left\{L,S,R\right\} ^k$分别表示“图灵机进入什么状态，$k-1$个读写纸带写入什么内容，$k$个带头分别怎么移动”。我们规定，带头一次只能向左或向右移动一个位置或者不移动。图灵机初始化时，状态为$q _{start}$，每个带头都在左边，带子上都写着$\triangleright$，除输入带以外，其他带子的其他位置都写着$\square$。</p>
+<p>图灵机在每个时刻的信息除了快照，还有格局（Configuration），格局拥有比快照更加丰富的内容：</p>
+<ul>
+<li>图灵机当前的状态；</li>
+<li>所有纸带的内容；</li>
+<li>当前带头的位置。</li>
+</ul>
+<p>不难看出，格局包含了一次转移函数计算所需要的全部内容（带头位置结合纸带内容唯一确定了当前纸带的符号），因此，一次转移函数计算就是由<strong>一个格局到另一个格局</strong>的过程，这也称一次计算（Computation）。</p>
+<blockquote>
+<p>格局不仅与$\mathbb{M}$有关，还与输入串的长度有关，而快照则只和$\mathbb{M}$有关。</p>
+</blockquote>
+<h2 id="Function、Problem、Language：函数、问题、语言"><a href="#Function、Problem、Language：函数、问题、语言" class="headerlink" title="Function、Problem、Language：函数、问题、语言"></a>Function、Problem、Language：函数、问题、语言</h2><p><strong>一个问题就是一个函数</strong>。对于任何一个问题，它都有解决的前提条件以及根据这些条件得到的问题答案，而函数接受输入，得到输出，两者在本质上是具有同一性的。在图灵机中，任何问题的前提条件（规模、数据结构、数据等）都可以用有限个$01$串表示，记为$\left\{0,1\right\}^*$。</p>
+<p>故而，<strong>问题</strong>（Problem）就是一个<strong>函数</strong>（Function）：</p>
+<p>$$<br>f:\left\{0,1\right\}^* \to<br> \left\{0,1\right\}^*<br>$$</p>
+<p>这个函数实现了对问题的回答，即由问题的$01$串表示得到对这个问题答案的$01$串表示。</p>
+<p>我们称图灵机$\mathbb{M}$计算&#x2F;解决（Compute&#x2F;Solve）了问题$f$，当且仅当对于任意的$x\in\left\{0,1\right\}^*$均有$\mathbb{M}(x)&#x3D;f(x)$。其中$\mathbb{M}(x)$的含义是：如果$x$在$f$的定义域内，当给图灵机$\mathbb{M}$的输入带上写上$x$并进行计算时，它最终会停机，且输出带上写着$\mathbb{M}(x)$；如果$x$不在$f$的定义域内，则图灵机永不停机（死循环）。图灵机会停机记为$\mathbb{M}(x)\downarrow$，永不停机记为$\mathbb{M}(x)\uparrow$。</p>
+<h3 id="Decision-Problem：判定问题"><a href="#Decision-Problem：判定问题" class="headerlink" title="Decision Problem：判定问题"></a>Decision Problem：判定问题</h3><p>判定问题是一个特殊的问题，它的输出是个布尔值，即只有$0$或$1$：</p>
+<p>$$<br>d:\left\{0,1\right\}^* \to<br> \left\{0,1\right\}<br>$$</p>
+<p>对于判定问题，我们不再用解决问题，而称图灵机$\mathbb{M}$判定（Decide）了问题$d$。</p>
+<h3 id="Language：语言"><a href="#Language：语言" class="headerlink" title="Language：语言"></a>Language：语言</h3><p>语言（Language）$L$是一个字符串集合$L\subseteq \left\{0,1\right\}^*$。若：</p>
+<p>$$<br>\begin{align*}<br>    &amp;\forall x\in L,\mathbb{M}(x)&#x3D;1\\<br>    &amp;\forall x\notin L,\mathbb{M}(x)&#x3D;0<br>\end{align*}<br>$$<br>我们则称图灵机$\mathbb{M}$接受（Accept）了语言$L$。换句话说，图灵机$\mathbb{M}$能够识别出$L$及其子集。</p>
+<h3 id="语言与判定问题"><a href="#语言与判定问题" class="headerlink" title="语言与判定问题"></a>语言与判定问题</h3><p>不难看出，一个语言就是一类判定问题：</p>
+<p>$$<br>d(x)&#x3D;<br>\begin{cases}<br>    1,&amp;x\in L\\<br>    0,&amp;x\notin L<br>\end{cases}<br>$$</p>
+<h2 id="Time-Function：时间函数"><a href="#Time-Function：时间函数" class="headerlink" title="Time Function：时间函数"></a>Time Function：时间函数</h2><p>时间函数与时间复杂度有着近乎相同的含义，它们都不是现实世界中连续的时间，而是图灵&#x2F;计算机世界中离散的时间。对于时间函数，其单位是一步计算，即一次转移函数；对时间复杂度，其单位是计算机的一次基本操作，如加、乘等。由于我们并不能知道图灵机$\mathbb{M}$在解决某个问题时转移函数的执行次数，我们就需要一个计时器，这个计时器也是一个图灵机$\mathbb{T}$，它与$\mathbb{M}$同启同停，并在结果输出$\mathbb{M}$转移函数执行的次数。这样的计时器定义的函数就称为时间函数：</p>
+<p>$$<br>T: N \to N<br>$$</p>
+<p>它实现问题的规模（输入串的<strong>长度</strong>$n$）到转移函数执行步数$T(n)$的映射。时间函数定义了图灵机解决某一问题时间的上限，即：若图灵机$\mathbb{M}$解决输入长度为$n$的$f$需要<strong>至多</strong>$T(n)$步，那么我们称$\mathbb{M}$<strong>在</strong>$T(n)$<strong>的时间内解决了</strong>$f$。</p>
+<h3 id="Time-Constructible-Function：时间可构造函数"><a href="#Time-Constructible-Function：时间可构造函数" class="headerlink" title="Time Constructible Function：时间可构造函数"></a>Time Constructible Function：时间可构造函数</h3><p>用图灵机$\mathbb{T}$实现时间函数要求：</p>
+<ol>
+<li>图灵机$\mathbb{T}$的执行步数为$T(n)$；</li>
+<li>图灵机$\mathbb{T}$的输出结果$\mathbb{T}(n)$为$T(n)$。</li>
+</ol>
+<p>如，若定义$T(n)&#x3D;n^2$，则该图灵机必须在$n^2$步由初始状态$\llcorner n\lrcorner$转变为停止状态$\llcorner n^2 \lrcorner$，然而这样的图灵机是不一定存在的。</p>
+<p>时间可构造函数是为了尽量避免上述的问题而采用的退而求其次的方法。它不同于时间函数的地方在于：</p>
+<ol>
+<li>时间可构造函数$T$不要求输入串为$\llcorner n \lrcorner$，任意的$01$串$1^n$均可；</li>
+<li>时间可构造函数$T$不要求步数严格为$T(n)$，只要是同一个数量级即可，即$O(T(n))$即可。</li>
+</ol>
+<p>只要存在这么一个$1 ^n$，使得图灵机$\mathbb{T}$能在$O(T(n))$步下转移到$\llcorner T(n) \lrcorner$状态并且停机，那么我们就称$T$是可构造时间函数。若将条件2升级为时间函数的条件，则称$T$为完全时间可构造的（Fully Time Constructible Function），即$T$转移到$\llcorner T(n) \lrcorner$状态的步数严格为$T(n)$。</p>
+<h2 id="计算复杂性与模型无关"><a href="#计算复杂性与模型无关" class="headerlink" title="计算复杂性与模型无关"></a>计算复杂性与模型无关</h2><p>在不同的模型、不同的图灵机上，计算同一个函数$f$所花的时间可能不同。但是直观上来看，问题&#x2F;函数的复杂性是其客观性质，应该与模型无关。</p>
+<ul>
+<li><em>强邱奇-图灵论题（Church-Turing Thesis）</em>：任何物理上可以实现的计算装置A，都可以被图灵机以多项式的代价模拟。即，A的$t$个步骤可以用图灵机的$t^c$个步骤模拟，其中$c$是常数，与A有关（即取决于将A编码的最简单方式）。直观地理解，只要正确地编码，简单的图灵机可以以时间为代价模拟复杂的图灵机。<em>另一种说法：物理上能实现的机器，其最大表达能力不会超过图灵机</em>。</li>
+</ul>
+<blockquote>
+<p>Oblivious Turing Machine（遗忘图灵机）：这种图灵机的读写头的位置只与输入字符串的长度$n$、当前步数$i$有关。换句话说，无论输入的字符串是什么，只要长度一致，那么它们在第$i$步时，读写头的位置就是固定的。</p>
+</blockquote>
+<h1 id="Turing-Machine-as-String：图灵机的编码"><a href="#Turing-Machine-as-String：图灵机的编码" class="headerlink" title="Turing Machine as String：图灵机的编码"></a>Turing Machine as String：图灵机的编码</h1><p>计算理论的核心：二进制位串可以编码任何有限的语法对象，如程序、图灵机、算法。一台图灵机是一个有限对象，因此也可以用$01$串对它进行编码。由于字母表$\Gamma$和状态集$Q$可以直接从转移函数$\delta$中获取，要编码一台图灵机，只要对它的所有转移函数进行编码即可。</p>
+<blockquote>
+<p>转移函数实际上就是计算机指令。</p>
+</blockquote>
+<p>如，对于一台TM：$|\Gamma|\le 32$，$|Q|\le 4$，设其中的一条指令$\delta$为：</p>
+<p>$$<br>&lt;q_1, a, b, c&gt;\to &lt;q_2, e, d, L, S, R&gt;<br>$$</p>
+<p>则，我们可以用5位$01$串对字母表进行编码，用4位$01$串对状态码进行编码（不用2位是为了更好区分？），用2位$01$串对带头的移动指令进行编码，再引入分隔符号$-$，可得到该指令的编码：</p>
+<p>$$<br>0001- 00001- 00010- 00011-- 0010- 00100 - 00101 - 10 - 00 - 01<br>$$</p>
+<p>记上面的指令为$\delta _i$。对于一台图灵机的全部指令，再用一个新的分隔符$&#x3D;$隔开，在将指令串起，就得到整台图灵机的编码：</p>
+<p>$$<br>\delta _1&#x3D;\delta _2&#x3D; ...&#x3D;\delta _n<br>$$</p>
+<p>上述编码形式中，我们一共使用了4种符号$\{0,1,-,&#x3D;\}$。此时，我们在将这些符号映射为$01$串：</p>
+<p>$$<br>\{0,1,-,&#x3D; \}\to\{01,10,00,11\}<br>$$</p>
+<p>我们便得到了一台图灵机$\mathbb{M}$的$01$串形式的编码。</p>
+<blockquote>
+<p>由于此处打不出十字<code>\dag</code>和双十字<code>\ddag</code>，故用$-$和$&#x3D;$代替。</p>
+<p>任何一台图灵机，只要我们知道它的转移函数，都可以用这种方式进行编码。</p>
+</blockquote>
+<h2 id="图灵机编码的性质"><a href="#图灵机编码的性质" class="headerlink" title="图灵机编码的性质"></a>图灵机编码的性质</h2><ol>
+<li>每一台图灵机都有无数个$01$串编码。</li>
+</ol>
+<p>这点很好理解。一台图灵机代表一种解决某个问题的方式。对于一台解决特定问题的图灵机，我们完全可以为其加上许多<strong>多余的、无用的</strong>状态或符号，此时图灵机的编码变长了，但是它还是在用相同的方法解决完全一样的问题，因而我们将前后两台图灵机视作<strong>同一台图灵机</strong>。</p>
+<ol start="2">
+<li>每一个$01$串编码都对应这一台图灵机。</li>
+</ol>
+<p>由于$01$串编码的任意性，某个$01$串对应的图灵机可能完全没有实际用处，如对于任意输入都直接停机的空图灵机。</p>
+<p>上述的两条规定有一定的方便性。它们使得我们可以将所有的图灵机及其对应的函数列举出来：</p>
+<ul>
+<li>记$\llcorner \mathbb{M}\lrcorner$为某台图灵机的编码；</li>
+<li>记$\mathbb{M} _\alpha$为编码$\alpha$所对应的图灵机；</li>
+<li>记一个特殊的双射函数将任意的$01$串映射为一个自然数：$\{ 0,1 \}^* \to N$。</li>
+</ul>
+<p>由此，我们可以得到所有图灵机的排列：</p>
+<p>$$<br>\mathbb{M}_0,\mathbb{M}_1,...,\mathbb{M}_i,...<br>$$</p>
+<p>以及其对应的所有可计算函数的排列：</p>
+<p>$$<br>\phi_0,\phi_1,...,\phi _i,...<br>$$</p>
+<blockquote>
+<p>由于一台图灵机有无数的$01$串编码，在这些排列中，每台图灵机都会出现无数次。</p>
+<p>一个函数是可计算的当且仅当有一台图灵机能实现这个函数。</p>
+</blockquote>
+<h1 id="Universal-Turing-Machine：通用图灵机（套娃开始）"><a href="#Universal-Turing-Machine：通用图灵机（套娃开始）" class="headerlink" title="Universal Turing Machine：通用图灵机（套娃开始）"></a>Universal Turing Machine：通用图灵机（套娃开始）</h1><p>如上所述，任何一台图灵机都可以用$01$串编码，而输入图灵机的数据的形式也是$01$串，那么，我们就可以把图灵机的$01$串形式<strong>输入到另一台图灵机中，这台图灵机是一台特殊的图灵机，它可以模拟输入图灵机的运行</strong>。这样的图灵机就称<strong>通用图灵机</strong>（UTM）。事实上，计算机就是这样一台通用图灵机。因为我们在计算机上所编写的每一个程序都可以被视为一台图灵机，而任何一个正确的程序（只要有相应的编码器）都可以在现代的计算机上运行。换句话说，现代的计算机能够模拟任何一台图灵机的运行。</p>
+<ul>
+<li><p>高效通用图灵机定理：存在通用图灵机$\mathbb{U}$，使得下面两个式子定理成立：</p>
+<ol>
+<li>对于任意的$x,\alpha \in \{0,1\} ^*$，均有$\mathbb{U}(\alpha,x)\simeq\mathbb{M}_\alpha(x)$；</li>
+<li>若$\mathbb{M}_\alpha(x)$的时间函数是$T(n)$，则$\mathbb{U}(\alpha,x)$的时间函数是$cT(n)\log T(n)$，其中$c$是$\alpha$的多项式$|\alpha| ^c$，但是与$\alpha,x$均无关。</li>
+</ol>
+<p>通俗地来讲，对于任意一台图灵机$\mathbb{M}_\alpha$，通用图灵机$\mathbin{U}$都可以模拟它的计算过程，且至多多耗费对数倍的时间。</p>
+</li>
+</ul>
+<p>下面两小节是对于定理$2$的简单证明。</p>
+<h2 id="Proof-of-Hartmanis-and-Stearns"><a href="#Proof-of-Hartmanis-and-Stearns" class="headerlink" title="Proof of Hartmanis and Stearns"></a>Proof of Hartmanis and Stearns</h2><p>Hartmanis和Stearns在1965年给出了通用图灵机$O(cT^2(n))$的证明。</p>
+<p>用通用图灵机$\mathbb{U}$模拟一台$k$带的图灵机$\mathbb{M} _{\alpha}$，通用图灵机的输入带上给出图灵机的编码$\alpha$以及图灵机的输入$x$，我们想要得到的效果是通用图灵机的输出带上输出结果$\mathbb{M} _{\alpha}(x)$或者如$\mathbb{M} _\alpha$一样永不停机。构造这样的通用图灵机需要<strong>5</strong>条带子：</p>
+<ol>
+<li>输入带：输入为被模拟图灵机的编码$\alpha$和被模拟图灵机的输入$x$；</li>
+<li>输出带：输出为$\mathbb{M}_{\alpha}(x)$；</li>
+<li>模型工作带：记录$\mathbb{M} _{\alpha}$的转移函数；</li>
+<li>状态工作带：记录$\mathbb{M} _{\alpha}$当前的工作状态；</li>
+<li>主工作带：通用图灵机的带子数目必须是确定的，我们不能用不能确定数目的$k-2$条带子去模拟被模拟图灵机的工作带，因此，主工作带上记录了被模拟图灵机工作带及其带头的内容。</li>
+</ol>
+<p><img src="/2023/09/12/ComputationalComplexityTimeComp/2.jpg" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. 5-tape universal turing machine</center><br>
+
+<p>这样的通用图灵机工作过程是很明确的：</p>
+<ol>
+<li>从输入带、输出带、主工作带、状态工作带获取$\mathbb{M}_{\alpha}$当前的快照：$k$条带子的值以及当前状态$q$；</li>
+<li>扫描模型工作带，获取转移函数$\delta$；</li>
+<li>模拟$\mathbb{M} _{\alpha}$的转移函数，向主工作带、输出带写入$k-1$个值，更改状态工作带上的状态；</li>
+<li>移动输入带、主工作带、输出带，以模拟$\mathbb{M} _{\alpha}$中$k$个带头的移动。</li>
+</ol>
+<h3 id="主工作带的构造"><a href="#主工作带的构造" class="headerlink" title="主工作带的构造"></a>主工作带的构造</h3><p>要使主工作带上能存放被模拟图灵机的$k-2$条工作带及其带头的信息，较好的方法是将主工作带横向划分为$k-2$层，每层存放一条带子的信息，并让带子双向无限延伸（线性代价）、读写图对齐与0号位，如下图所示：</p>
+<p><img src="/2023/09/12/ComputationalComplexityTimeComp/3.jpg" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Main working tape</center><br>
+
+<p>此时，主工作带的读写头为虚拟读写头，始终指向0号位，读写头的移动“虚拟地”转变为了<strong>各层带子的移动</strong>。但是，<strong>实际上主工作带仍然只有一个带头，每次要获取被模拟图灵机的快照时，带头便一层一层地扫描，每扫描完一层，便回归到0号位，再扫描下一层，并记录本层的数据。</strong>最终，$k-2$层纸带的数据组成的$k-2$元组被特殊编码记录在主工作带的特定区域上。</p>
+<blockquote>
+<p>实际上的主工作带上只有对齐后的$k-2$元组的编码。</p>
+</blockquote>
+<h3 id="时间分析"><a href="#时间分析" class="headerlink" title="时间分析"></a>时间分析</h3><p>模拟$\mathbb{M}_\alpha$的一步计算时，主要的开销在主工作带的移动上，因此只用考虑主工作带移动的开销即可：$\mathbb{M}_\alpha$的时间函数是$T(n)$，因此$\mathbb{M}_\alpha$的工作带上可能出现的最长字符串量级为$O(T(n))$（即每一步都在记录新的数据），字符串、$k-2$元组在主工作带上的编码不会超过$c$（$c$为$|\alpha|$的多项式），$\mathbb{M} _\alpha$每移动一次带头，可能引起主工作带的带头在某一层上移动一整层，时间复杂度为$O(cT(n))$。</p>
+<p>因此，$\mathbb{U}(\alpha,x)$模拟$\mathbb{M} _\alpha$的时间复杂度为$O(cT(n))*O(T(n))&#x3D;O(c T^2 (n))$</p>
+<h2 id="Proof-of-Hennie-and-Stearns"><a href="#Proof-of-Hennie-and-Stearns" class="headerlink" title="Proof of Hennie and Stearns"></a>Proof of Hennie and Stearns</h2><p>Hennie和Stearns在1966年给出了$O(cT(n)\log T(n))$的证明。在他们的证明中，通用图灵机的构造基本不变，只不过增加了一条草稿工作带，并在主工作带中的有效字符间插入了新的缓冲符号$\boxtimes$，这些缓冲符号可以被其他有效符号覆盖，如下图所示：</p>
+<p><img src="/2023/09/12/ComputationalComplexityTimeComp/4.png" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Main working tape</center><br>
+
+<p>此外，还进一步地将无限长的双向带作了左右分区，每个分区$R _i$的范围为$[2 ^{i+1}-1,2 ^{i+2}-2]$，$L _i$的范围为$[-2 ^{i+2}+2, -2^{i+1}+1]$，长度均为$2 ^{i+1}$，$R_0$和$L_0$以0号为分界。并且规定：</p>
+<ol>
+<li>每个分区要么全是满（全是有效符号）的，要么全是空（全是缓冲符号）的，要么是半满的（有一般是有效符号）；</li>
+<li>$R_i$和$L_i$的有效符号之和始终为$2^{i+1}$；</li>
+<li>0号位上的符号只能是有效符号。</li>
+</ol>
+<p>假设初始时某层右半区的有效符号全部在$R _i$分区，$R_i$是全满的，那么自然地$L_0\sim L _{i-1}$也是全满的。若此时$\mathbb{M} _{\alpha}$进行了一步右移操作，则该层的纸带应“相对地左移”。此时，主工作带上的操作是：带头移动到$R_i$范围，在草稿带上记录下$2^i$个字符内容，分别覆盖掉$R _0,R _1 \sim R _{i-1}$上$1,1\sim 2 ^{i-1}$个缓冲字符，使得右半区全部变成半满。对于左半区，相似的操作，不过是将$L _0 \sim L _{i-1}$中的一半有效字符都放到$L _i$上，使得左半区变成全半满。这样便完成了整层左移（对应$\mathbb{M} _\alpha$右移）的操作。</p>
+<h3 id="时间分析-1"><a href="#时间分析-1" class="headerlink" title="时间分析"></a>时间分析</h3><p>同样地，只用考虑主工作带上的移动情况。在主工作带上，一次移动，最远要跑到$R_i$或者$L_i$。而当跑过一次$R_i$或者$L_i$后，其他的分区都变成了半满，此时考虑最坏的情况，即$\mathbb{M}_\alpha$一直往一个方向移动，则在某一层上要把左或右分区$0\sim i-1$的有效符号搬空，至少需要$1+2+...+2 ^{i-1}&#x3D;2^i-1$步，再下一次移动才会涉及到$R_i$或者$L_i$。换句话说，两次最远距离的移动间隔至少为$2^i$步。</p>
+<p>$\mathbb{M}_\alpha$至多有$T(n)$步，$\mathbb{U}(\alpha,x)$对最长区间的操作不超过$T&#x2F;2^i$次，操作最长区间时耗时$O(c2^i)$，而区间的总个数$i$不会超过$\log T(n)$，故时间复杂度为：</p>
+<p>$$<br>\sum\limits _{i&#x3D;1} ^{\log T(n)}\frac{T(n)}{2^i}O(c2^i)&#x3D;cT(n)\sum\limits _{i&#x3D;1} ^{\log T(n)}O(1)&#x3D;cT(n)\log T(n)<br>$$</p>
+<blockquote>
+<p>缓冲字符的作用在于，它使得每层纸带上的内容可以通过移动而聚集在带头，即0号位附近，使得单步下的局部扫描成为可能，不像之前那样每次可能都要扫描一整层。</p>
+</blockquote>
+<h2 id="Oblivious-Turing-Machine-Theorem：遗忘图灵机理论"><a href="#Oblivious-Turing-Machine-Theorem：遗忘图灵机理论" class="headerlink" title="Oblivious Turing Machine Theorem：遗忘图灵机理论"></a>Oblivious Turing Machine Theorem：遗忘图灵机理论</h2><p>该理论的内容为：<em>假设语言L由一个在$O(T(n))$时间内运行的$T(n)$时间可构造的TM $\mathbb{M}$计算，那么存在一个遗忘图灵机$\mathbb{U}$，在$O(T(n) \log T(n))$时间内判定L</em>。</p>
+<p>上述的遗忘图灵机可以采用通用图灵机来构造。通用图灵机在划分区间$L_i$和$R_i$时，是按需划分的，也就是说它扫描到哪划分到哪，因为它并不知道要计算的函数的时间复杂度是多少，也就无法预先分配好足够的区间来完成函数的计算。而对于上述理论，由于$T(n)$是时间可构造的，所以：</p>
+<ul>
+<li>该通用图灵机可以先在$O(\log T(n))$的时间内计算出$logT(n)$（$T(n)$时间可构造则$\log T(n)$时间可构造），完成区间的划分。</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/260217775">计算复杂性（2）——运行时间与效率</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/260512272">计算复杂性（3）——计算机的套娃：通用图灵机</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/09/12/ComputationalComplexityTimeComp/" data-id="clzik0lc1000zv47k6g30117r" data-title="Computational Complexity: Time Complexity 1" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/09/20/DDSummary/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Dataset Distillation: A Summary
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/09/12/ComputationalComplexityIntro/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Computational Complexity Introduction</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

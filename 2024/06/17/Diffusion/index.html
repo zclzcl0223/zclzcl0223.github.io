@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Diffusion | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Diffusion, Stable Diffusion, Diffusion Transformer.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Diffusion">
+<meta property="og:url" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Diffusion, Stable Diffusion, Diffusion Transformer.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/7.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/8.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/9.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/10.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/11.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/12.png">
+<meta property="article:published_time" content="2024-06-17T11:38:01.000Z">
+<meta property="article:modified_time" content="2024-06-20T06:56:09.768Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Generative AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2024/06/17/Diffusion/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Diffusion" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/17/Diffusion/" class="article-date">
+  <time class="dt-published" datetime="2024-06-17T11:38:01.000Z" itemprop="datePublished">2024-06-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Advanced-Model/">Advanced Model</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Diffusion
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="What-is-Diffusion-Model"><a href="#What-is-Diffusion-Model" class="headerlink" title="What is Diffusion Model"></a>What is Diffusion Model</h1><blockquote>
+<p>Sculpture is born from stone, I just cut off the part which is unnecessary. --Michelangelo</p>
+</blockquote>
+<p>In diffusion models, while training, the &#39;stone&#39; is generated from the training data by adding random noise. The sculpture is revealed by iteratively removing the noise added.</p>
+<p>Unlike other generative models, the diffusion model does not generate data but generates noise. That is, the generator of diffusion model outputs noise, which is then removed from the noisy data. The denoised data is used as the input for the next denoising process. Therefore, the ground truth of each denoising process is the noise added and the prediction is the noise generated.</p>
+<p><img src="/2024/06/17/Diffusion/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Pipeline of Diffusion</center><br>
+
+<h1 id="Maths-behind-Diffusion-x2F-Generation"><a href="#Maths-behind-Diffusion-x2F-Generation" class="headerlink" title="Maths behind Diffusion&#x2F;Generation"></a>Maths behind Diffusion&#x2F;Generation</h1><p>The goal of image generation: given $z$ from a normal distribution, output $G(z)&#x3D;x$, where $x$ is similar to the original image distribution.</p>
+<p><img src="/2024/06/17/Diffusion/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Goal of Image Generation</center><br>
+
+<blockquote>
+<p>The same is true for conditional generation, except that we consider the distribution that meets this condition.</p>
+</blockquote>
+<p>Hence, given training set $\{x^1,...,x^m\}\in P_{data}(x)$, we aim to find $\theta$ that maximizes the probability of these observations. And this is maximum likelihood estimation:</p>
+<p>$$<br>\theta ^*&#x3D; arg\max _\theta \prod _{i&#x3D;1} ^m P _{\theta}(x ^i)<br>$$</p>
+<p><img src="/2024/06/17/Diffusion/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Maximum Likelihood Estimation (MLE)</center><br>
+
+<p>Actually, MLE is equal to minimizing <em>KL Divergence</em> :</p>
+<p>$$<br>\begin{align*}<br>    \theta ^*&#x3D;&amp; arg\max _\theta \prod _{i&#x3D;1} ^m P _{\theta}(x ^i)&#x3D;arg\max _\theta \sum _{i&#x3D;1} ^m \log P _{\theta}(x ^i)\\<br>    \approx &amp;arg\max _\theta E _{x\sim P _{data}} \log P _{\theta}(x)\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log P _{\theta}(x)\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log P _{\theta}(x) - \int _x P _{data}(x)\log P _{data}(x) dx\\<br>    &#x3D;&amp;arg\max _\theta \int _x P _{data}(x) \log \frac{P _{\theta}(x)}{P _{data}(x)}\\<br>    &#x3D;&amp;arg\min _\theta KL(P _{data}||P _{\theta})<br>\end{align*}<br>$$</p>
+<h1 id="Diffusion-Models"><a href="#Diffusion-Models" class="headerlink" title="Diffusion Models"></a>Diffusion Models</h1><h2 id="Denoising-Diffusion-Probabilistic-Models-DDPM"><a href="#Denoising-Diffusion-Probabilistic-Models-DDPM" class="headerlink" title="Denoising Diffusion Probabilistic Models (DDPM)"></a>Denoising Diffusion Probabilistic Models (DDPM)</h2><p>In DDPM, </p>
+<p>$$<br>P _\theta(x _0)&#x3D;\int _{x _1:x_T}P(x _T)P _{\theta}(x _{T-1}|x _T)...P _\theta(x _{t-1}|x _t)...P _\theta(x _{0}|x _1)dx _1:x _T<br>$$</p>
+<p><img src="/2024/06/17/Diffusion/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Denoising</center><br>
+
+<p>Similar to <a href="/2024/01/20/VAE/">VAE</a>, we actually only optimize the lower bound of $P _\theta(x)$, that is:</p>
+<p>$$<br>arg\max _\theta L _b&#x3D;E _{q(x _1:x _T| x)}[\log (\frac{P(x: x _T)}{q (x _1: x _T|x)})]<br>$$</p>
+<p>where $q(x _1:x _T| x)&#x3D;q(x _1|x)q(x _2| x _1)...q(x _T| x _{T-1})$ is the forward process, which is equal to the encoder of VAE.</p>
+<h3 id="Forward-Process"><a href="#Forward-Process" class="headerlink" title="Forward Process"></a>Forward Process</h3><p>During forward process, multi-steps could be turned to single-step. As shown in the following figure:</p>
+<p><img src="/2024/06/17/Diffusion/5.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. One-step Forward</center><br>
+
+<h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><p>Therefore, during training, we actually only add noise once and denoise once:</p>
+<p><img src="/2024/06/17/Diffusion/6.png" alt="6"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. Training</center><br>
+
+<h3 id="Generation"><a href="#Generation" class="headerlink" title="Generation"></a>Generation</h3><p>While generating, we randomly sample data from the normal distribution and generate the image after $T$ times of denoising.</p>
+<p><img src="/2024/06/17/Diffusion/7.png" alt="7"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 7. Generation</center><br>
+
+<p>where the first term is mean and the second term is variance.</p>
+<h2 id="Stable-Diffusion"><a href="#Stable-Diffusion" class="headerlink" title="Stable Diffusion"></a>Stable Diffusion</h2><p>Common architecture of modern (Text2Image) generative networks:</p>
+<p><img src="/2024/06/17/Diffusion/8.png" alt="8"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 8. Architecture of Modern Generative Networks</center><br>
+
+<ul>
+<li><strong>Text Encoder</strong>: Encode text to latent representation, which is essential for the quality of final output.</li>
+<li><strong>Generation Model</strong>: Any generation model, e.g., VAE, Diffusion, and GAN.</li>
+<li><strong>Decoder</strong>: Decode latent representation to image.</li>
+</ul>
+<p>These three parts could be trained independently. For the decoder, it can accept two different inputs, depending on how you train it:</p>
+<p><img align="left" src="/2024/06/17/Diffusion/9.png" style=" width:380px; padding: 0px 0px; "> <img align="mid" src="/2024/06/17/Diffusion/10.png" style=" width:380px; padding: 0px 0px; "></p>
+<ol>
+<li>A smaller version of the original image (Imagen): we can train this decoder in a supervised learning manner.</li>
+<li>Latent representation (Stable Diffusion, DALL-E): we can train this decoder via AE.</li>
+</ol>
+<p>The following is the pipeline of stable diffusion, which is similar to the common architecture:</p>
+<p><img src="/2024/06/17/Diffusion/11.png" alt="11"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 9. Architecture of Stable Diffusion</center><br>
+
+<ul>
+<li>In addition to text, stable diffusion also supports other conditional generation.</li>
+<li>Stable diffusion train decoder in latent space. Hence, while training, the training image is transformed to latent representation $z$ using the encoder of AE. </li>
+<li>The forward and denoising processes are also finished in the latent space.</li>
+</ul>
+<p><img src="/2024/06/17/Diffusion/12.png" alt="12"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 10. Forward in Latent Space</center><br>
+
+<h1 id="Why-Diffusion-Works"><a href="#Why-Diffusion-Works" class="headerlink" title="Why Diffusion Works"></a>Why Diffusion Works</h1><p>The diffusion model can actually be regarded as an autoregressive model with a global perspective. It ensures the integrity of the generated image while achieving self-correction through iterative denoising.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2024/06/17/Diffusion/" data-id="clzik0lc7001sv47k2hr9hs4f" data-title="Diffusion" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/01/20/VAE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">VAE</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

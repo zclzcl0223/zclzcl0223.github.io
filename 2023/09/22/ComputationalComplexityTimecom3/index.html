@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Computational Complexity: Time Complexity 3 | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="本篇是计算复杂性（CS7313）的第一章的第三节，主要研究时间谱系理论、间隙定理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computational Complexity: Time Complexity 3">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/09/22/ComputationalComplexityTimecom3/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="本篇是计算复杂性（CS7313）的第一章的第三节，主要研究时间谱系理论、间隙定理。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-22T11:02:15.000Z">
+<meta property="article:modified_time" content="2023-09-26T10:54:34.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="Theoretical Computer Science">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ComputationalComplexityTimecom3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/22/ComputationalComplexityTimecom3/" class="article-date">
+  <time class="dt-published" datetime="2023-09-22T11:02:15.000Z" itemprop="datePublished">2023-09-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Computational Complexity: Time Complexity 3
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Time-Hierarchy-Theorem：时间谱系理论"><a href="#Time-Hierarchy-Theorem：时间谱系理论" class="headerlink" title="Time Hierarchy Theorem：时间谱系理论"></a>Time Hierarchy Theorem：时间谱系理论</h1><p>理论：如果$f$和$g$都是时间可构造的，且$f(n)\log f(n)&#x3D;o(g(n))$，则$\text{TIME}(f(n))\subsetneq\text{TIME}(g(n))$。</p>
+<blockquote>
+<p>小o表示算法运行时间的<strong>严格上限</strong>，$f&#x3D;o(g)$表示$f$运行的上限是$g$，换句话说，$f$的运行时间比$g$增长得慢。</p>
+</blockquote>
+<p>该理论表明若$g$的运行时间增长快于$f\log f$运行时间的增长，则$f(n)$时间内能接受的语言是$g(n)$时间内能接受语言的子集。该理论的证明如下：</p>
+<blockquote>
+<p>要证明$\text{TIME}(f(n))\subsetneq\text{TIME}(g(n))$，只要反证$\text{TIME}(g(n))\subsetneq\text{TIME}(f(n))$不成立即可。也就是说只要找到一个语言L，$L\in\text{TIME}(g(n))$，但是$L\notin\text{TIME}(f(n))$即可。</p>
+<p>假设存在TM $\mathbb{D}$，它接受语言L，并且：</p>
+<ul>
+<li>对于输入$x$，$\mathbb{D}$模拟$\mathbb{M} _x(x)$运行$g(|x|)$步（这是可行的，因为$g$是时间可构造的）；</li>
+<li>如果模拟可以在$g(|x|)$步内完成（即停机），则$\mathbb{D}(x)$输出$\overline{\mathbb{M} _x(x)}$，否则输出$0$（$1$也行，不影响）。<br>按照这样定义，$\mathbb{D}$会在$g(|x|)$停机，因此$L\in\text{TIME}(g(n))$。</li>
+</ul>
+<p>此时再假设$L\in\text{TIME}(f(n))$，且图灵机$\mathbb{M} _z$在至多$2f(n)$内接受L。由于图灵机编码的任意性，取足够长的$z$，使得$f(|z|)\log f(|z|)&lt; g(|z|)$严格成立，则会出现：</p>
+<ul>
+<li>$\mathbb{D}(z)&#x3D;\mathbb{M} _z(z)$，因为$\mathbb{D}$和$\mathbb{M} _z$都接受L；</li>
+<li>$\mathbb{D}(z)&#x3D;\overline{\mathbb{M} _z(z)}$，因为$\mathbb{M} _z(z)$可被通用图灵机在$O(f(|z|)\log f(|z|))$的时间内模拟，而$\mathbb{D}(x)$会模拟$\mathbb{M} _z (z)$进行$g(|x|)$步，又$f(|z|)\log f(|z|)&lt; g(|z|)$严格成立，所以在$\mathbb{D}(x)$模拟$\mathbb{M} _z (z)$进行的$g(|x|)$步内，$\mathbb{D}(x)$已经停机，即$\mathbb{D}(z)&#x3D;\overline{\mathbb{M} _z(z)}$。</li>
+</ul>
+<p>上述结论相互矛盾，原假设不成立，$L\notin\text{TIME}(f(n))$。证毕。</p>
+</blockquote>
+<p>上面的证明用到了对角线方法。</p>
+<p>由时间谱系定理：</p>
+<p>$$<br>\begin{align*}<br>    \text{EXP}&#x3D;&amp;\bigcup _{c\ge 1}\text{TIME}(2^{n^c}) \\<br>    \text{2EXP}&#x3D;&amp;\bigcup _{c\ge 1}\text{TIME}(2 ^{2^{n^c}}) \\<br>    \vdots<br>\end{align*}<br>$$</p>
+<p>存在严格的包含关系，即$\text{EXP}\subset \text{2EXP}...$</p>
+<h1 id="Nondeterministic-Time-Hierarchy-Theorem：非确定时间谱系理论"><a href="#Nondeterministic-Time-Hierarchy-Theorem：非确定时间谱系理论" class="headerlink" title="Nondeterministic Time Hierarchy Theorem：非确定时间谱系理论"></a>Nondeterministic Time Hierarchy Theorem：非确定时间谱系理论</h1><p>理论：如果$f$和$g$都是时间可构造的，且$f(n+1)&#x3D;o(g(n))$，则$\text{NTIME}(f(n))\subsetneq\text{NTIME}(g(n))$。</p>
+<p>设有非确定图灵机$\mathbb{Z}$，只要证明$\mathbb{Z}$判定的语言L在$\text{NTIME}(g(n))$但不在$\text{NTIME}(f(n))$中即可。$\mathbb{Z}$的定义如下：</p>
+<ol>
+<li><strong>只</strong>处理长度大于1的全1串$1 ^n$；</li>
+<li>输入带和<strong>第一条工作带</strong>同步地移动，第一条工作带在第一个工作区写入1，然后在后续的工作区中持续写入0，期间偶尔写入1；</li>
+<li>用$h _0, h _1...$记录下所有写有1的工作区的下标；</li>
+<li>在<strong>第二条工作带</strong>上，枚举所有的和时钟$2f(n)$硬连接的非确定图灵机NDTMs（的编码），记这些图灵机为$\mathbb{L} _1,\mathbb{L} _2...$；</li>
+<li>在生成非确定图灵机$\mathbb{L} _i$后，$\mathbb{Z}$模拟计算$\mathbb{L} _{i-1}(1 ^{h _{i -1}+1})$，并将结果（0或1）写入第二条工作带上，<strong>同时</strong>，在<strong>第一条工作带</strong>的$h _i$位置写上1。<blockquote>
+<p>注意，因为$h _0&#x3D;1$，所以$\mathbb{L} _0(1 ^{h _0+1})$是一开始就可以确定的，不需要等第一条工作带运行。<br>$\mathbb{L} _{i-1}(1 ^{h _{i -1}+1})$中的$\mathbb{L} _{i-1}$和$1 ^{h _{i-1}+1}$都通过回溯之前的历史得到，回溯的时间复杂度为$O(n)$，因为$h _{i -1}$是单调递增的，故只需要局部回溯。而$\mathbb{L} _{i-1}(1 ^{h _{i -1}+1})$则用新的工作带（写入$\mathbb{L} _{i-1}$与$1 ^{h _{i-1}+1}$）、草稿带来计算（在$2f(n)$必内停机）。</p>
+</blockquote>
+</li>
+</ol>
+<p>$\mathbb{Z}$的输出规定为：</p>
+<ol>
+<li>如果在输入串$1 ^n$扫描结束时，最新的$h _i &#x3D; n$且$\mathbb{L} _{i-1}(1 ^{h _{i -1}+1})&#x3D;0$，则$\mathbb{Z}$接受$1 ^n$；</li>
+<li>反之如果$h _{i-1} &lt; n &lt; h _i$，则$\mathbb{Z}$模拟$\mathbb{L} _{i-1}$以非确定图灵机的方式计算$1 ^{n+1}$$g(n)$步，并以其结果作为最后的输出。</li>
+</ol>
+<p>矛盾性的证明：</p>
+<blockquote>
+<p>假设语言L被$\mathbb{Z}$接受：</p>
+<ul>
+<li>则L$\in \text{NTIME}(g(n))$，因为$\mathbb{Z}$运行的时间复杂度只由完全扫描完输入后的计算时间决定，而输出规定2可在$g(n)$时间内完成（输出规定1为常量时间）。</li>
+</ul>
+<p>再假定$\exists \mathbb{L} _i$在$f(n)$时间内接受L。于是，因为$f(n+1)&#x3D;o(g(n))$，所以输出规定2中$\mathbb{Z}$对$\mathbb{L} _i$（此处的$i$指输入扫描结束后计算的最后一个$h$的前一个）的模拟可以被完成。故，由于$\mathbb{L} _i$和$\mathbb{Z}$都接受L：<br>$$\mathbb{L} _i(1 ^{h _i + 1})&#x3D;\mathbb{Z}(1 ^{h _i + 1})$$<br>又由输出规定2：对输入串的长度$m&#x3D; h_i+1$，$\mathbb{Z}$的输出结果与$\mathbb{L} _i(1 ^{m+1})&#x3D;\mathbb{L} _i(1 ^{h _i + 1+1})$的结果相同：<br>$$\mathbb{Z}(1 ^{h _i + 1})&#x3D;\mathbb{L} _i(1 ^{h _i + 2})$$<br>又由两者都接受L：<br>$$\mathbb{L} _i(1 ^{h _i + 2})&#x3D;\mathbb{Z}(1 ^{h _i + 2})$$<br>若输入长度一直这样增加下去，则总会有一个时刻，$h _i +k&#x3D;h _{i+1}$，此时：<br>$$\mathbb{L} _i(1 ^{h _{i+1}})&#x3D;\mathbb{Z}(1 ^{h _{i+1}})$$<br>若$n&#x3D;h _{i+1}$，则由输出规定1：<br>$$\mathbb{Z}(1 ^{n})&#x3D;\mathbb{Z}(1 ^{h _{i+1}})\ne \mathbb{L} _i (1 ^{h _i+1})$$<br>出现矛盾，因此不存在这样的$\mathbb{L} _i$在$f(n)$时间内接受L。证毕。</p>
+</blockquote>
+<h1 id="Gap-Theorem：间隙定理"><a href="#Gap-Theorem：间隙定理" class="headerlink" title="Gap Theorem：间隙定理"></a>Gap Theorem：间隙定理</h1><p>描述：对任何一个可计算函数$r(x)\ge x$，一定存在一个可计算函数$b(x)$，使得$\text{TIME}(b(x))&#x3D;\text{TIME}(r(b(x)))$。</p>
+<p>时间谱系定理告诉我们$\text{TIME}(n ^c)\subsetneq \text{TIME}(2 ^{n ^c})$。而间隙定理说明，并不是对所有的$b(n)$，$\text{TIME}(b(n))\subsetneq \text{TIME}(2 ^{b(n)})$都成立，即有可能$\text{TIME}(b(n))&#x3D;\text{TIME}(2 ^{b(n)})$。证明如下：</p>
+<blockquote>
+<ul>
+<li>定义一个$r(x)\ge x$，以及$[0,r(k _x)]$上的$x+1$个不相交区间$[k _0, r(k _0)],...,[k _x, r(k _x)]$，其中：<br>$$<br>\begin{align*}<br>  k _0&#x3D;&amp;0 \\<br>  k _{i+1}&#x3D;&amp; r(k _i)+1,i &lt; x<br>\end{align*}$$</li>
+<li>再定义$P(i,k)$为：对所有的$j \le i$及其编码的图灵机$\mathbb{M} _j$，对长度为$i$的字符串输入$z$，若$\mathbb{M} _j(z)$在$k$步内停机或者在$r(k)$步仍未停机，则$P(i,k)&#x3D;\text{True}$；否则$P(i,k)&#x3D;\text{False}$。</li>
+</ul>
+<p>对这些图灵机$\mathbb{M} _0,...,\mathbb{M} _i$，它们能够接受总输入个数为：<br>$$n _i&#x3D;\sum ^i _{j&#x3D;0}|\Gamma _j| ^i$$<br>因此它们的运行时间有 $n _i$种可能。而$[0,r(k _{n _i})]$上有$n _i+1$个不相交区间$[k _0, r(k _0)],...,[k _{n _i}, r(k _{n _i})]$。也就是说，总会有那么几个区间，在这些区间，没有任何的$\mathbb{M} _j(z)$运行步数在它们的范围内。换句话说，在这些区间的左端点$k _m$上，$P(i,k _m)$是$\text{True}$的。<br>由此，我们可以定义一个函数$b(i)$，对任何一个$i$，它的值是这些区间中的某一个的左端点，即$b(i)&#x3D;k _m$。于是我们有$P(i,b(i))$对于所有的$i$都成立。</p>
+<ul>
+<li>进一步地，假设$\mathbb{M} _j$在$r(b(n))$的时间内接受L。</li>
+</ul>
+<p>则对于任何的输入$x$，若其长度$n \ge j$，由$P(n,b(n))&#x3D;\text{True}$，我们有：<br>$\mathbb{M} _j(x)$要么在$b(n)$步内停机，要么$r(b(n))$步还不停机。<br>然而，$\mathbb{M} _j$在$r(b(n))$的时间内接受L，所以$\mathbb{M} _j(x)$在$r(b(n))$步内一定已经停机，所以$\mathbb{M} _j(x)$在$b(n)$步内停机，所以$\mathbb{M} _j$在$b(n)$的时间内接受L，所以：<br>$$\text{TIME}(b(n))&#x3D;\text{TIME}(r(b(n)))$$</p>
+</blockquote>
+<p>我们可以确保$b(n)$和$r(b(n))$满足$f(n)$和$g(n)$的大小关系，因为$r(x)$可以是任意的，只要$r(x)\ge x$即可。但$b(n)$却不满足时间谱系定理，这说明这样的$b(n)$是时间不可构造的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/09/22/ComputationalComplexityTimecom3/" data-id="clzik0lc1000wv47k7xyp5dxm" data-title="Computational Complexity: Time Complexity 3" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/09/22/RidgeRegression/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Ridge Regression
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/09/21/ComputationalComplexityTimecom2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Computational Complexity: Time Complexity 2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

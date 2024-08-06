@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Expressive Power of GNNs | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在HOW POWERFUL ARE GRAPH NEURAL NETROKS这篇论文中，作者提出了一种能够评判任意一种消息传递型图神经网络（Message Passing Graph Neural Networks，MPGNNs）架构表达能力的理论模型，并基于文中的理论提出了一种更为强大、简单的图神经网络架构--Graph Isomorphism Network（GIN）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Expressive Power of GNNs">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="在HOW POWERFUL ARE GRAPH NEURAL NETROKS这篇论文中，作者提出了一种能够评判任意一种消息传递型图神经网络（Message Passing Graph Neural Networks，MPGNNs）架构表达能力的理论模型，并基于文中的理论提出了一种更为强大、简单的图神经网络架构--Graph Isomorphism Network（GIN）。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/4.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/5.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/6.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/7.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/8.png">
+<meta property="article:published_time" content="2023-07-15T05:24:37.000Z">
+<meta property="article:modified_time" content="2023-07-16T13:13:28.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Paper">
+<meta property="article:tag" content="GNN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-ExpressivePowerofGNNs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/15/ExpressivePowerofGNNs/" class="article-date">
+  <time class="dt-published" datetime="2023-07-15T05:24:37.000Z" itemprop="datePublished">2023-07-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/GNN/">GNN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Expressive Power of GNNs
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="消息传递型图神经网络"><a href="#消息传递型图神经网络" class="headerlink" title="消息传递型图神经网络"></a>消息传递型图神经网络</h1><p>图神经网络（GNNs），究其本质，是一种特殊的映射$f$，它将顶点的特征及其图的结构映射为一个包含了图连接信息的向量，这一个过程称为<em>Node Embedding</em>，事实上是一个编码的过程。将图的连接信息和顶点特征一起映射为一个向量，这内在地存在一个消息传递（Message Passing）的过程，因为对于某个中心顶点来说，图的连接信息主要体现为其邻接顶点，要想在中心顶点中包含图的连接信息，就要将其邻接顶点的信息传递到中心顶点去：</p>
+<p>$$<br>\begin{align*}<br>    a _{v} ^{(k)}&amp;&#x3D;\text{AGGREGATE} ^{(k)}(\left\{h _u ^{k-1}:u\in\mathcal{N}(v)\right\})\tag{1}\\<br>    h _{v} ^{(k)}&amp;&#x3D;\text{COMBINE} ^{(k)}(h _v ^{(k-1)},a _n ^{(k)})\tag{2}<br>\end{align*}<br>$$</p>
+<p>式$(1)$表示中心顶点$v$的邻接顶点集$\mathcal{N}(v)$对中心顶点的第$k$次消息传递，式$(2)$则是中心顶点$v$由自己之前的特征$h _v ^{(k-1)}$和邻接顶点的新消息$a _v ^{(k)}$产生感受野更大的新特征。</p>
+<h1 id="图神经网络的表达能力"><a href="#图神经网络的表达能力" class="headerlink" title="图神经网络的表达能力"></a>图神经网络的表达能力</h1><p>对于某个中心顶点$v$，$k$次的消息传递可以生成一个距离中心顶点最远距离为$k$-hop的子图，这个子图也可以被表示成一个高度为$k+1$的根子树（或称计算图）：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Rooted subtree (k=2)</center><br>
+
+<p>要想使得图神经网络的<em>Node Embedding</em>能够充分体现出中心顶点与全图的关系，并且与其他顶点相互区别，根子树到<em>Embedding</em>的映射就应该是唯一的，因此可以把图神经网络的表达能力定义为：</p>
+<p>$$<br>\begin{align*}<br>    \text{GNN的表达能力}&amp;&#x3D;\text{不同计算图学到不同Embedding的能力}\\<br>    &amp;&#x3D;\text{区分根结点Embedding的能力}\\<br>    &amp;&#x3D;\text{区分不同图结构的能力}<br>\end{align*}<br>$$</p>
+<p>最理想的情况是对于不同的计算图，其<em>Embedding</em>也不相同。要想达到这样的效果：</p>
+<ol>
+<li><p>$\text{AGGREGATE}$是单射函数；</p>
+</li>
+<li><p>$\text{COMBINE}$是单射函数；</p>
+</li>
+<li><p>若要对整个图进行分析，还需要额外的$\text{READOUT}$操作生成图的全局信息：</p>
+<p>$$<br>h _G&#x3D;\text{READOUT}(\left\{h _v ^{(K)}|v\in G\right\})<br>$$<br>此时，$\text{READOUT}$也必须是单射函数。</p>
+</li>
+</ol>
+<h1 id="Weisfeiler-Lehman-test"><a href="#Weisfeiler-Lehman-test" class="headerlink" title="Weisfeiler-Lehman test"></a>Weisfeiler-Lehman test</h1><p>Weisfeiler-Lehman test（WL test）是所有消息传递型图神经网络的“祖宗”，其能力也是消息传递型图神经网络能力的上限，它的消息传递满足上面的三点要求。</p>
+<p>WL test假设所有顶点都是无特征的，它初始时为所有顶点都分配了相同的颜色1：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Assign initial colors</center><br>
+
+<p>之后，通过消息传递，邻接顶点的颜色汇聚到中心顶点：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Aggregate neighboring colors</center><br>
+
+<p>再经由哈希映射（所有图共用一个哈希表），将顶点映射为新的颜色：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/4.png" alt="4"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Combine and hash aggregated colors</center><br>
+
+<p>不断重复Fig 3和Fig 4的操作$k$次：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/5.png" alt="5"></p>
+<center style="font-size:12px; font-weight:bold"></center>
+
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/6.png" alt="6"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Next round</center><br>
+
+<p>最后，执行$\text{READOUT}$操作。WL test定义$\text{READOUT}$操作为：将整个过程中，每张图所出现的所有颜色的次数作为该图的<em>Embedding</em>（没出现的记为0）：</p>
+<p><img src="/2023/07/15/ExpressivePowerofGNNs/7.png" alt="7"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. Readout</center><br>
+
+<p>并定义：</p>
+<p>$$<br>\phi(G_1) ^T\phi(G_2)<br>$$</p>
+<p>为两张图的相似度（实际计算时两个向量都要归一化后再点乘）。</p>
+<h1 id="GIN"><a href="#GIN" class="headerlink" title="GIN"></a>GIN</h1><p>作者在文章的后半部分提出了全新的消息传递型图神经网络Graph Isomorphism Network（GIN）。作者认为，GIN是对WL test的最优近似，因为WL test可以写为：</p>
+<p>$$<br>c _{v} ^{(k)}&#x3D;\text{HASH} ^{(k)}(c _v ^{(k-1)},\left\{c _u ^{k-1}:u\in\mathcal{N}(v)\right\})<br>$$</p>
+<p>其中，$c _v ^{(k)}$表示顶点$v$在第$k$次消息传递后的<em>color</em>，而作者将GIN定义为：</p>
+<p>$$<br>h _{v} ^{(k)}&#x3D;\text{MLP} ^{(k)}((1+\epsilon ^{(k)})h _v ^{(k-1)}+\sum _{u\in \mathcal{N}(v)}h _u ^{k-1})<br>$$</p>
+<p>其中$\text{MLP}$和$\epsilon$均是可学习的参数。作者如此定义GIN是基于两个方面的考虑：</p>
+<ol>
+<li><p><strong>Sum-pooling具有很强的单射能力</strong><br>  相比于GCN用的mean-pooling和GraphSAGE用的max-pooling，sum-pooling具有更强的区分不同图结构的能力。如下图Fig 7所示的两张图，在这两张图中，所有顶点的特征都相同。虽然它们很明显是两张完全不同的图，但是如果用mean-pooling或者max-pooling，中心顶点$v$和$v&#39;$最终的<em>Embedding</em>将完全相同，因而无法区分出这两张图，而对于sum-pooling，则不会出现这种情况。<br>  <img src="/2023/07/15/ExpressivePowerofGNNs/8.png" alt="8"></p>
+  <center style="font-size:12px; font-weight:bold">Fig. 7. Mean and Max both fail</center>
+</li>
+<li><p><strong>Universal approximation theorem</strong><br>  根据Hornik等提出的<em>Universal approximation theorem</em>，只要参数足够多，一层MLP可以拟合任何的函数。因此，GIN中的MLP是作者用于拟合ML test中的哈希函数的。</p>
+<blockquote>
+<p>GIN将$\text{READOUT}$也定义为sum，但不同的是，作者将$0-K$的$\text{READOUT}$都拼接了起来以求保留可能在中间过程中出现的更能体现图整体特点的信息：<br>$$<br>  h _G&#x3D;\text{CONCAT}(\text{READOUT}(\left\{h _v ^{(k)}|v\in G\right\})|k&#x3D;0,1,...,K)<br>$$</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1810.00826.pdf">How Powerful are Graph Neural Networks?</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14W4y1V7gg/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=2d980a0365f3ebea674b32924d8a4ce8">传统图机器学习的特征工程-全图【斯坦福CS224W】</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MT411Y7da/?spm_id_from=333.788&vd_source=2d980a0365f3ebea674b32924d8a4ce8">图神经网络GNN的表达能力</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/15/ExpressivePowerofGNNs/" data-id="clzik0lca002fv47k65x47iwv" data-title="Expressive Power of GNNs" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/16/PageRank/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PageRank
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/10/StringFormatting/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python String Formatting</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

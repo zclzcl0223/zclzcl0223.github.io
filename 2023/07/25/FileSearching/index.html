@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>File Searching | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在计算机中，一切皆文件，高效的文件查找不仅能够帮助我们快速地定位出现bug、要删除的文件，也能够在一定程度上帮助我们确定bug的来源。Linux提供了两个强大的查找程序locate和find来助力高效查找。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="File Searching">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/25/FileSearching/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="在计算机中，一切皆文件，高效的文件查找不仅能够帮助我们快速地定位出现bug、要删除的文件，也能够在一定程度上帮助我们确定bug的来源。Linux提供了两个强大的查找程序locate和find来助力高效查找。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-25T10:19:35.000Z">
+<meta property="article:modified_time" content="2023-07-28T07:05:04.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Tool">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-FileSearching" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/25/FileSearching/" class="article-date">
+  <time class="dt-published" datetime="2023-07-25T10:19:35.000Z" itemprop="datePublished">2023-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      File Searching
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+
+<h1 id="locate：通过名字查找文件"><a href="#locate：通过名字查找文件" class="headerlink" title="locate：通过名字查找文件"></a><code>locate</code>：通过名字查找文件</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate [OPTION]... [PATTERN]...</span><br></pre></td></tr></table></figure>
+
+<p><code>locate</code>程序会快速地搜索其内部的<strong>路径名数据库</strong>，然后输出每个绝对路径中包含了<code>[PATTERN]</code>的文件的绝对路径。<code>[PATTERN]</code>一般为普通的字符串，但有些版本还会包括正则表达式匹配和通配符匹配。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]<span class="comment"># locate bin/zip</span></span><br><span class="line">/usr/bin/zip</span><br><span class="line">/usr/bin/zipcloak</span><br><span class="line">/usr/bin/zipgrep</span><br><span class="line">/usr/bin/zipinfo</span><br><span class="line">/usr/bin/zipnote</span><br><span class="line">/usr/bin/zipsplit</span><br></pre></td></tr></table></figure>
+
+<p><code>locate</code>的路径名数据库由<code>updatedb</code>程序创建。该程序会在特定的时间间隔（如每次开机）被守护进程<code>cron</code>执行，因此一些新创建的文件可能无法用<code>locate</code>进行搜索，但是我们也可以以超级用户的身份手动运行<code>updatedb</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Playground]# updatedb</span><br></pre></td></tr></table></figure>
+
+<h1 id="find：在目录层次结构中搜索文件"><a href="#find：在目录层次结构中搜索文件" class="headerlink" title="find：在目录层次结构中搜索文件"></a><code>find</code>：在目录层次结构中搜索文件</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find [path...] [expression]</span><br></pre></td></tr></table></figure>
+
+<p><code>locate</code>可以让我们简单地用文件名找到文件的位置，而<code>find</code>则可以让我们在指定的目录<code>[path]</code>（绝对或相对路径）下，用文件的各种<strong>属性</strong>匹配相应的文件。在了解<code>find</code>之前，我们先在当前目录下创建100个子目录，并在每个子目录下创建24个普通文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">mkdir</span> <span class="built_in">dir</span>-&#123;00&#123;1..9&#125;,0&#123;10..99&#125;,100&#125;</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">dir-001  ...  dir-100</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> <span class="built_in">dir</span>-&#123;00&#123;1..9&#125;,0&#123;10..99&#125;,100&#125;/file-&#123;A..Z&#125;</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> dir-001</span><br><span class="line">file-A  ...  file-Z</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> dir-002</span><br><span class="line">file-A  ...  file-Z</span><br></pre></td></tr></table></figure>
+
+<p>在最基本的用法里，<code>find</code>会输出所查目录及其子目录的所有文件的路径，其中，相对路径查找输出相对路径，绝对路径查找则输出绝对路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001</span><br><span class="line">./dir-001</span><br><span class="line">...</span><br><span class="line">./dir-001/file-Z</span><br><span class="line">[meme@localhost Playground]$ find /home/meme/Playground/dir-001</span><br><span class="line">/home/meme/Playground/dir-001</span><br><span class="line">...</span><br><span class="line">/home/meme/Playground/dir-001/file-Z</span><br></pre></td></tr></table></figure>
+
+<h2 id="Tests：测试条件"><a href="#Tests：测试条件" class="headerlink" title="Tests：测试条件"></a>Tests：测试条件</h2><p><code>find</code>拥有众多的测试条件，每个测试条件都一定程度上对应着文件的一项属性。<code>find</code>在指定目录中遍历文件元数据时，会使用用户指定的测试条件来筛选文件。</p>
+<h3 id="type"><a href="#type" class="headerlink" title="-type"></a><code>-type</code></h3><p><code>-type</code>选择文件的类别：<code>b</code>块设备文件、<code>c</code>字符设备文件、<code>d</code>目录、<code>f</code>普通文件、<code>l</code>符号链接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001 -<span class="built_in">type</span> f</span><br><span class="line">./dir-001/file-A</span><br><span class="line">...</span><br><span class="line">./dir-001/file-Z</span><br><span class="line">[meme@localhost Playground]$ find ./dir-001 -<span class="built_in">type</span> d</span><br><span class="line">./dir-001</span><br></pre></td></tr></table></figure>
+
+<h3 id="name"><a href="#name" class="headerlink" title="-name"></a><code>-name</code></h3><p><code>-name</code>选择文件的名字。此处的名字只是名字，而不包含路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001 -name <span class="string">&#x27;*1&#x27;</span></span><br><span class="line">./dir-001</span><br></pre></td></tr></table></figure>
+
+<h3 id="size"><a href="#size" class="headerlink" title="-size"></a><code>-size</code></h3><p><code>-size</code>选择文件的大小，后面跟着的字符串，<code>+1M</code>表示只选择大于1M的文件，<code>-1M</code>表示只选择小于1M的文件，<code>1M</code>表示只选择大小等于1M的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001 -size <span class="string">&#x27;1M&#x27;</span></span><br><span class="line">./dir-001</span><br><span class="line">[meme@localhost Playground]$ find ./dir-001 -size <span class="string">&#x27;-1M&#x27;</span></span><br><span class="line">./dir-001/file-A</span><br><span class="line">...</span><br><span class="line">./dir-001/file-Z</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>除了上面这三个常用的测试条件，<code>find</code>还支持很多其他的测试条件，如<code>-perm mode</code>选择指定权限<code>mode</code>的文件等。</p>
+<h2 id="Operators：操作符"><a href="#Operators：操作符" class="headerlink" title="Operators：操作符"></a>Operators：操作符</h2><p><code>find</code>的测试条件实际上相当于程序语言中的条件语句，因此，它很自然地也能支持各种条件语句的逻辑组合。这些组合与编程语言中的一样，通过逻辑操作符<em>与</em><code>-and</code>、<em>或</em><code>-or</code>、<em>非</em><code>-not</code>来实现。这些逻辑操作符的运算逻辑和执行特性和一般程序语言中的没有任何区别。通常地，逻辑操作符连接的两个测试条件应该分别用<code>()</code>括起来。在命令行中，<code>()</code>有特殊的意义，因此实际上要为<code>()</code>加上转义字符，即实际应使用<code>\(\)</code>。</p>
+<ul>
+<li><code>-and</code>：<code>find</code>的默认操作符，即若测试条件之间没有操作符，那么其连接符号默认是<code>-and</code>。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . -<span class="built_in">type</span> f -name <span class="string">&#x27;*A&#x27;</span></span><br><span class="line"> ./dir-001/file-A</span><br><span class="line"> ...</span><br><span class="line"> ./dir-100/file-A</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . \( -<span class="built_in">type</span> f \) -and \( -name <span class="string">&#x27;*A&#x27;</span> \)</span><br><span class="line">./dir-001/file-A</span><br><span class="line">...</span><br><span class="line">./dir-100/file-A</span><br></pre></td></tr></table></figure>
+上面两个命令是等价的。</li>
+<li><code>-or</code>：表<em>或</em>，用法与<code>-and</code>相同。</li>
+<li><code>-not</code>：表<em>非</em>，用在想要取<em>非</em>的测试条件之前。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001 -not -<span class="built_in">type</span> f</span><br><span class="line">./dir-001</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Actions：行为"><a href="#Actions：行为" class="headerlink" title="Actions：行为"></a>Actions：行为</h2><p><code>find</code>允许用户对筛选结果立即进行操作，即，将筛选结果作为其他<strong>命令</strong>的输入参数。</p>
+<ul>
+<li><code>-delete</code>：删除当前匹配到的文件；</li>
+<li><code>-ls</code>：对当前匹配到的文件执行<code>ls</code>操作；</li>
+<li><code>-print</code>：将当前匹配文件的路径打印出来，是<code>find</code>的默认操作；</li>
+<li><code>-quit</code>：一旦找到一个匹配项就退出。</li>
+</ul>
+<p>以上四个是<code>find</code>内部自带的操作，如<code>-delete</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find ./dir-001 -<span class="built_in">type</span> f -delete</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> ./dir-001</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要注意的是，<code>Tests</code>和<code>Actions</code>在<code>find</code>看来是同优先级的，而<code>find</code>又是顺序过滤的，因此不同的<code>Tests</code>和<code>Actions</code>的顺序很重要。</p>
+</blockquote>
+<h3 id="用户自定义行为"><a href="#用户自定义行为" class="headerlink" title="用户自定义行为"></a>用户自定义行为</h3><p>除了<code>find</code>自带的这几种行为，<code>find</code>还允许用户自由地使用所有合法的Linux命令，一般的格式为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="built_in">exec</span> [<span class="built_in">command</span>] <span class="string">&#x27;&#123;&#125;&#x27;</span> <span class="string">&#x27;;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>因为<code>&#123;&#125;</code>和<code>;</code>在命令行中有特殊意义，所以必须被引用为字符串或者转义。</p>
+</blockquote>
+<p>如，对筛选出来的文件使用<code>rm -r</code>操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*1&#x27;</span></span><br><span class="line">./dir-001</span><br><span class="line">...</span><br><span class="line">./dir-091</span><br><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*1&#x27;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -r <span class="string">&#x27;&#123;&#125;&#x27;</span> <span class="string">&#x27;;&#x27;</span></span><br><span class="line">find: <span class="string">&#x27;./dir-001&#x27;</span>: No such file or directory</span><br><span class="line">...</span><br><span class="line">find: <span class="string">&#x27;./dir-091&#x27;</span>: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>有时为了安全起见，我们会想要一个个地确认<code>Actions</code>的效果，此时我们可以使用<code>-ok</code>来代替<code>-exec</code>。使用<code>-ok</code>后，<code>[command]</code>在执行前会先向用户进行确认：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*2&#x27;</span> -ok <span class="built_in">rm</span> -r <span class="string">&#x27;&#123;&#125;&#x27;</span> <span class="string">&#x27;;&#x27;</span></span><br><span class="line">&lt; <span class="built_in">rm</span> ... ./dir-002 &gt; ? n</span><br><span class="line">&lt; <span class="built_in">rm</span> ... ./dir-012 &gt; ? n</span><br><span class="line">&lt; <span class="built_in">rm</span> ... ./dir-022 &gt; ? n</span><br><span class="line">&lt; <span class="built_in">rm</span> ... ./dir-032 &gt; ? y</span><br><span class="line">find: <span class="string">&#x27;./dir-032&#x27;</span>: No such file or directory</span><br><span class="line">&lt; <span class="built_in">rm</span> ... ./dir-042 &gt; ? n</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>当我们使用<code>&#39;;&#39;</code>时，我们在告诉<code>find</code>：对于每一个匹配的文件，运行一次<code>[command]</code>，这样会导致当匹配结果有$n$个文件时，<code>[command]</code>被运行$n$次。要想避免这种情况，我们可以将<code>&#39;;&#39;</code>替换为<code>+</code>，这样就是在告诉<code>find</code>：将所有的结果合成一个列表再执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*2&#x27;</span> -<span class="built_in">exec</span> <span class="built_in">rm</span> -r <span class="string">&#x27;&#123;&#125;&#x27;</span> +</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意，此时只能用<code>-exec</code>而不能用<code>-ok</code>。</p>
+</blockquote>
+<h1 id="辅助命令"><a href="#辅助命令" class="headerlink" title="辅助命令"></a>辅助命令</h1><p>有许多的辅助命令能够让<code>locate</code>和<code>find</code>的功能更强大。</p>
+<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a><code>xargs</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xargs [OPTION]... COMMAND INITIAL-ARGS...</span><br></pre></td></tr></table></figure>
+
+<p><code>xargs</code>从标准输入中接受输入，并将输入转换为一个<em>命令行参数列表</em>，这个参数列表可以直接作为其他指令的参数，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*13&#x27;</span></span><br><span class="line">./dir-013</span><br><span class="line">[meme@localhost Playground]$ find . -name <span class="string">&#x27;*13&#x27;</span> | xargs <span class="built_in">ls</span> -l</span><br><span class="line">total 0</span><br><span class="line">-rw-rw-r--. 1 meme meme 0 Jul 26 19:50 file-A</span><br><span class="line">...</span><br><span class="line">-rw-rw-r--. 1 meme meme 0 Jul 26 19:50 file-Z</span><br></pre></td></tr></table></figure>
+
+<p><code>xargs</code>将<code>./dir-013</code>管道为了<code>ls -l</code>的命令行参数。</p>
+<h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a><code>touch</code></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch [OPTION]... FILE...</span><br></pre></td></tr></table></figure>
+
+<p>当<code>touch</code>后的文件不存在时，<code>touch</code>相当于一个创建文件操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ locate taylor</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> taylor</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> taylor</span><br><span class="line">taylor</span><br></pre></td></tr></table></figure>
+
+<p>若文件已存在，则<code>touch</code>会将其修改时间设置为当前时间：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">stat</span> taylor</span><br><span class="line">  File: ‘taylor’</span><br><span class="line">...</span><br><span class="line">Access: 2023-07-26 22:32:26.809464671 -0700</span><br><span class="line">Modify: 2023-07-26 22:32:26.809464671 -0700</span><br><span class="line">Change: 2023-07-26 22:32:26.809464671 -0700</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> taylor</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">stat</span> taylor</span><br><span class="line">  File: ‘taylor’</span><br><span class="line">...</span><br><span class="line">Access: 2023-07-26 22:33:54.850140719 -0700</span><br><span class="line">Modify: 2023-07-26 22:33:54.850140719 -0700</span><br><span class="line">Change: 2023-07-26 22:33:54.850140719 -0700</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>stat</code>相当于加强版的<code>ls</code>。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39449">The Linux Command Line 中文版 第十八章：查找文件</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/25/FileSearching/" data-id="clzik0lc90027v47k6xh1f2wu" data-title="File Searching" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/25/PackageProcessing/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Package Management and Processing
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/25/TextFileDataWrangling/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Text, File and Data Wrangling</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

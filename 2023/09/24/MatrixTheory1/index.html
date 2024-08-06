@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>MatrixTheory: Linear Space and Subspace | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="矩阵理论第一课。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MatrixTheory: Linear Space and Subspace">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/09/24/MatrixTheory1/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="矩阵理论第一课。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-24T11:49:32.000Z">
+<meta property="article:modified_time" content="2023-09-26T11:01:34.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-MatrixTheory1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/24/MatrixTheory1/" class="article-date">
+  <time class="dt-published" datetime="2023-09-24T11:49:32.000Z" itemprop="datePublished">2023-09-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      MatrixTheory: Linear Space and Subspace
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Linear-Space：线性空间"><a href="#Linear-Space：线性空间" class="headerlink" title="Linear Space：线性空间"></a>Linear Space：线性空间</h1><ul>
+<li>定义：设$V$为一个非空集合，$\mathbb{F}$为一个数域，$ V$中定义了一个封闭的加法运算“$+$”，对$\forall \alpha,\beta,\gamma\in V$,满足：</li>
+</ul>
+<ol>
+<li>结合律：$(\alpha+\beta)+\gamma&#x3D;\alpha+(\beta+\gamma)$</li>
+<li>交换律：$\alpha+\beta&#x3D;\beta+\alpha$</li>
+<li>存在<em>零向量</em>：$\alpha+0&#x3D;\alpha$</li>
+<li>存在<em>负向量</em>：$\alpha+(-\alpha)&#x3D;0$</li>
+</ol>
+<blockquote>
+<p>满足2、3、4的集合称<em>群</em>，满足1的<em>群</em>称<em>交换群</em>或<em>阿贝尔群</em>。</p>
+</blockquote>
+<p>定义了另一个封闭的数乘运算“$\cdot$”，对$\forall \alpha,\beta\in V,k _1,k _2\in\mathbb{F}$,满足：</p>
+<ol>
+<li>数乘的结合律：$k _1\cdot(k _2\cdot\alpha)&#x3D;(k _1k _2)\cdot\alpha$</li>
+<li>数乘关于向量加法的分配律：$k _1\cdot(\alpha+\beta)&#x3D;k _1\cdot\alpha+k _1\cdot\beta$</li>
+<li>数乘关于数的加法的分配律：$(k _1+k _2)\cdot\alpha&#x3D;k _1\cdot\alpha+k _2\cdot\alpha$</li>
+<li>数乘的初始条件：$1\cdot\alpha&#x3D;\alpha$</li>
+</ol>
+<p>则称$ V$为数域$\mathbb{F}$上的线性空间。</p>
+<blockquote>
+<p>若某个运算的结果仍处于运算子所在的集合，则该运算是封闭的。对不同的线性空间，其内部的基本元素可以是任意的，如标量、向量、矩阵、函数等。但是对于一个确定的线性空间，其内部的元素类型必须是一致的。</p>
+<p>加法和数乘只是一个符号或者说法，它们不一定是真的“$+$”和“$\cdot$”。</p>
+</blockquote>
+<h2 id="Proof-of-Linear-Space：线性空间的证明（重要）"><a href="#Proof-of-Linear-Space：线性空间的证明（重要）" class="headerlink" title="Proof of Linear Space：线性空间的证明（重要）"></a>Proof of Linear Space：线性空间的证明（重要）</h2><p>要想证明某个集合$V$是数域$\mathbb{F}$上的线性空间，只需要干两件事：</p>
+<ol>
+<li>证明加法和数乘运算的封闭性；</li>
+<li>证明上面的<strong>8</strong>项规则成立。</li>
+</ol>
+<h2 id="Properties-of-Linear-Space：线性空间的性质"><a href="#Properties-of-Linear-Space：线性空间的性质" class="headerlink" title="Properties of Linear Space：线性空间的性质"></a>Properties of Linear Space：线性空间的性质</h2><ol>
+<li><em>零向量</em>是唯一的。</li>
+<li><em>负向量</em>是唯一的。</li>
+<li>$\forall k\in\mathbb{F},\alpha\in V$，$k\cdot\alpha&#x3D;0$当且仅当$k&#x3D;0$或$\alpha&#x3D;0$。</li>
+</ol>
+<blockquote>
+<p>以上三个性质都可用反证法证明。</p>
+</blockquote>
+<h1 id="Subspace：子空间"><a href="#Subspace：子空间" class="headerlink" title="Subspace：子空间"></a>Subspace：子空间</h1><ul>
+<li>定义：$ V$是数域$\mathbb{F}$上的线性空间，$U\subset V$，若$U$对$V$上定义的两个运算仍构成$\mathbb{F}$上的线性空间，则称$U$为$V$的子空间。</li>
+</ul>
+<p>要判别一个集合$V$的子集$U$是否是原集合所构成线性空间的子空间，我们不再需要逐一地证明<strong>8</strong>项规则，只需要证明：</p>
+<ol>
+<li>加法和数乘运算在集合$U$中封闭；</li>
+<li>集合$U$不是空集。</li>
+</ol>
+<p>只要证明了上面这两项成立，则<strong>8</strong>项规则自动成立。这是因为：$U\subset V$，所以只要$U$中有元素，那么它们就自动地满足结合、交换律，<em>负向量</em>也相应地存在；若$U$的加法、数乘运算还是封闭的，那么由向量与其<em>负向量</em>的加法又可得出<em>零向量</em>存在，由此，<strong>8</strong>项规则成立。</p>
+<h1 id="Intersection-Space"><a href="#Intersection-Space" class="headerlink" title="Intersection Space"></a>Intersection Space</h1><ul>
+<li>对线性空间$V$的两个子空间$U$和$W$，若它们的交集非空，则其交空间$U\cap W$也是$V$的子空间。</li>
+</ul>
+<blockquote>
+<p>上述结论可以推广至$n$个子空间的交集。</p>
+</blockquote>
+<h1 id="Sum-Space"><a href="#Sum-Space" class="headerlink" title="Sum Space"></a>Sum Space</h1><ul>
+<li>对线性空间$V$的两个子空间$U$和$W$，它们的和空间定义为：</li>
+</ul>
+<p>$$<br>U+W&#x3D;\{\alpha+\beta;\alpha\in U,\beta\in W\}<br>$$</p>
+<p>和空间是$V$的子空间。</p>
+<blockquote>
+<p>上述结论可以推广至$n$个子空间的和。</p>
+<p>要注意把和空间和并空间$U\cup W$区分开来。并空间并不一定是$V$的子空间，只有两个空间之间存在包含关系时其并空间才是$V$的子空间。</p>
+</blockquote>
+<h1 id="Direct-Sum"><a href="#Direct-Sum" class="headerlink" title="Direct Sum"></a>Direct Sum</h1><ul>
+<li>定义：对线性空间$V$的两个子空间$U$和$W$，$\forall\alpha\in U+W$，即$\alpha&#x3D;\alpha _1+\alpha _2$，其中$\alpha _1\in U$，$\alpha _2 \in W$，若$\alpha _1$和$\alpha _2$唯一，则称这种和为<em>直和</em>，记作$U\oplus W$。</li>
+</ul>
+<p>直和也可以推广至$n$个子空间的和。我们有通用的方法来判定某个和是否是直和，但对于$n&#x3D;2$的情况，还有专门的特殊方法。</p>
+<h2 id="Judgment-of-Direct-Sum：-n-ge-2"><a href="#Judgment-of-Direct-Sum：-n-ge-2" class="headerlink" title="Judgment of Direct Sum：$n\ge 2$"></a>Judgment of Direct Sum：$n\ge 2$</h2><p>对线性空间$V$的$n$个子空间$U _1,...,U _n$，它们的和$(U _1+...+U _n)$是直和当且仅当其和空间的<em>零向量</em>只能表示为$0&#x3D;0+...+0$。</p>
+<blockquote>
+<ul>
+<li>必要性：<br>若$U _1+...+U _n$是直和$U _1\oplus ...\oplus U _n$，则其零<em>向量</em>的表示唯一。又$0&#x3D;0+...+0$，所以必要性显然成立。</li>
+<li>充分性：<br>假设$\alpha\in U _1+...+U _n$，且$\alpha$存在两个表示$\alpha&#x3D;\alpha _1 + ... + \alpha _n$与$\alpha&#x3D;\beta _1 + .. + \beta _n$。令第二个表示取<em>逆向量</em>并与第一个表示相加，则有：<br>$$0&#x3D;(\alpha _1-\beta _1)+...+(\alpha _n - \beta _n)$$<br>因为$0$的表示唯一，所以：$\alpha _1 &#x3D;\beta _1,...,\alpha _n &#x3D;\beta _n$。证毕。</li>
+</ul>
+</blockquote>
+<h2 id="Judgment-of-Direct-Sum：-n-x3D-2"><a href="#Judgment-of-Direct-Sum：-n-x3D-2" class="headerlink" title="Judgment of Direct Sum：$n&#x3D; 2$"></a>Judgment of Direct Sum：$n&#x3D; 2$</h2><ul>
+<li>若$n&#x3D;2$，则有特殊的判别法：</li>
+</ul>
+<p>对线性空间$V$的$2$个子空间$U _1,U _2$，它们的和$(U _1 + U _2)$是直和当且仅当其它们的交空间只有<em>零向量</em>，即$U \cap W &#x3D; \{0\}$。</p>
+<blockquote>
+<ul>
+<li>必要性：<br>若$(U _1 + U _2)$是直和$U _1 \oplus U _2$，假设存在$\alpha \in U\cap W$，因为$U \cap W$是子空间，所以存在<em>负向量</em>使得：<br>$$0 &#x3D; \alpha + (-\alpha)$$<br>而$0&#x3D;0+0$，矛盾，所以必要性成立。</li>
+<li>充分性：<br>若$U \cap W &#x3D; \{0\}$，假设$\alpha \in U\cap W$存在两个不同的表示$\alpha &#x3D; \alpha _1 + \beta _1$和$\alpha &#x3D; \alpha _2 + \beta _2$，则：<br>$$\alpha _1 - \alpha _2 &#x3D; \beta _2 - \beta _1$$<br>易知$\alpha _1 - \alpha _2\in U$，$\beta _2 - \beta _1\in W$，所以它们是$U$和$W$的公共部分，而$U \cap W&#x3D;0$，所以只能$\alpha _1&#x3D;\alpha _2$，$\beta _1 &#x3D; \beta _2$。</li>
+</ul>
+</blockquote>
+<p>对$n&gt;2$，仅两两相交为<em>零向量</em>不行。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/09/24/MatrixTheory1/" data-id="clzik0lck004xv47k03g10dyu" data-title="MatrixTheory: Linear Space and Subspace" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/09/27/MatrixTheory2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MatrixTheory: Finite Dimensional Linear Space
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/09/22/RidgeRegression/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ridge Regression</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

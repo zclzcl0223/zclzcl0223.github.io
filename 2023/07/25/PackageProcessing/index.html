@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Package Management and Processing | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="不同于Windows等以图形界面见长的操作系统，Linux操作系统的多数操作要以命令行的方式进行，包括软件的下载安装、文件的打包等。事实上，如果我们能够熟练地使用这些包管理命令，我们甚至能完成一些图形化界面难以完成的任务。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Package Management and Processing">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/25/PackageProcessing/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="不同于Windows等以图形界面见长的操作系统，Linux操作系统的多数操作要以命令行的方式进行，包括软件的下载安装、文件的打包等。事实上，如果我们能够熟练地使用这些包管理命令，我们甚至能完成一些图形化界面难以完成的任务。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-25T10:20:25.000Z">
+<meta property="article:modified_time" content="2023-08-02T08:03:30.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Tool">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-PackageProcessing" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/25/PackageProcessing/" class="article-date">
+  <time class="dt-published" datetime="2023-07-25T10:20:25.000Z" itemprop="datePublished">2023-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tool/">Tool</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Package Management and Processing
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Linux的软件包管理系统"><a href="#Linux的软件包管理系统" class="headerlink" title="Linux的软件包管理系统"></a>Linux的软件包管理系统</h1><p>Linux发行版本质量最重要的决定因素是软件包管理系统和其支持社区的持久性。其中，软件包管理系统即Linux的打包系统，它负责从其支持的社区，即资源库（类似于手机上的软件商店）中搜索用户想要的软件包，并替用户完成从软件包到软件的安装。软件包管理系统通常由两种工具类型组成：</p>
+<ul>
+<li>安装和删除软件包文件的<strong>底层工具</strong>；</li>
+<li>在资源库中完成元数据、软件包搜索和依赖解析（软件很少是独立运行的，其运行过程中需要用到的其他软件就是它的依赖程序，某一软件包安装的同时也要确保依赖程序也被正确安装）的<strong>上层工具</strong>，其作用类似于Python的<code>pip</code>和<code>conda</code>。</li>
+</ul>
+<p>不同的Linux发行版本使用的软件包管理系统不尽相同，但是主流的基本都属于Debian的<code>.deb</code>或Red Hat的<code>.rpm</code>阵营：</p>
+<style> table th {
+    width: 10px;
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th align="center">包管理系统</th>
+<th align="center">底层工具</th>
+<th align="center">上层工具</th>
+<th align="center">发行版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Debian Style(.deb)</td>
+<td align="center">dpkg</td>
+<td align="center">apt, apt-get, apt-cache, aptitude</td>
+<td align="center">Ubuntu, Debian, Xandros, Linspire</td>
+</tr>
+<tr>
+<td align="center">Red Hat Style (.rpm)</td>
+<td align="center">rpm</td>
+<td align="center">yum</td>
+<td align="center">CentOS, Fedora, Red Hat Enterprise Linux, OpenSUSE, Mandriva, PCLinuxOS</td>
+</tr>
+</tbody></table>
+<h2 id="Debian-Style"><a href="#Debian-Style" class="headerlink" title="Debian Style"></a>Debian Style</h2><p>当前的主流Linux发行版本，如Ubuntu、Debian，使用的都是Debian Style的包管理系统。相比于Red Hat Style的包管理系统，Debian Style的上层工具要更加多样，但也相应更加复杂。<code>apt-get</code>和<code>apt-cache</code>是最早的支持Debian包管理系统的上层工具；<code>apt</code>包含了<code>apt-get</code>和<code>apt-cache</code>中最常用命令选项的集合，但是<code>apt</code>本身要更加简洁；<code>aptitude</code>功能更加全面，且在搜索上的表现优于<code>apt</code>。一些常用的指令有：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找资源库软件包</span></span><br><span class="line">apt-cache search [search_string] 或 apt search [search_string]</span><br><span class="line"><span class="comment"># 从资源库中安装一个软件包 </span></span><br><span class="line">apt-get install [package_name] 或 apt install [package_name] </span><br><span class="line"><span class="comment"># 卸载软件</span></span><br><span class="line">apt-get remove [package_name] 或 apt remove [package_name]</span><br><span class="line"><span class="comment"># 自动删除不需要的包</span></span><br><span class="line">apt-get autoremove 或 apt autoremove</span><br><span class="line"><span class="comment"># 经过资源库升级所有可升级的软件包</span></span><br><span class="line">apt-get upgrade 或 apt upgrade</span><br><span class="line"><span class="comment"># 在升级软件包的时候自动处理依赖关系</span></span><br><span class="line">apt-get dist-upgrade 或 apt full-upgrade</span><br><span class="line"><span class="comment"># 显示所安装软件包的说明信息</span></span><br><span class="line">apt-cache show [package_name] 或 apt show [package_name]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>事实上，在<strong>查找</strong><code>search</code>、<strong>安装</strong><code>install</code>和<strong>更新</strong><code>upgrade</code>软件包时，上层工具都会去搜索软件包列表，软件包列表里包含了各类软件包的信息。但是，软件包列表会随时间变化，如添加新的包、删除旧的包等都会导致列表发生变化，而上层工具搜索的往往是软件包列表的<strong>缓存</strong>，因此，在进行前面的3项操作前，应先用<code>apt-get update</code>或<code>apt update</code>刷新软件包列表缓存。</p>
+<p><code>search</code>所用到的<code>[search_string]</code>可以是软件包的名字，也可以是软件包的说明信息。</p>
+<p><code>aptitude</code>的指令名字与使用方式和其他3个基本一致。</p>
+</blockquote>
+<p>通常，以指令调用上层工具后，上层工具会自动调用下层工具帮助我们完成后续的安装任务，不过有时我们可能会直接得到软件包<code>.deb</code>文件，这时我们就可以直接使用底层工具来处理它们：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过软件包安装软件</span></span><br><span class="line">dpkg --install [package_file]</span><br><span class="line"><span class="comment"># 通过软件包升级软件</span></span><br><span class="line">dpkg --install [package_file]</span><br><span class="line"><span class="comment"># 列出所有安装的软件包</span></span><br><span class="line">dpkg --list</span><br><span class="line"><span class="comment"># 确定是否安装了某个软件</span></span><br><span class="line">dpkg --status [package_name]</span><br><span class="line"><span class="comment"># 查找安装了指定文件的软件包</span></span><br><span class="line">dpkg --search file_name</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要注意的是，直接通过软件包安装文件时，底层工具不会帮助我们完成依赖解析，因此若其发现缺少了某个依赖程序，它会直接报错并退出。一旦发生这种情况，我们就需要手动地安装依赖程序。</p>
+<p><code>apt</code>的全称是Advanced Packaging Tool，而<code>dpkg</code>的全称是Debian Packager。</p>
+</blockquote>
+<h2 id="Red-Hat-Style"><a href="#Red-Hat-Style" class="headerlink" title="Red Hat Style"></a>Red Hat Style</h2><p>Red Hat Style的上层工具只有<code>yum</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查找资源库软件包</span></span><br><span class="line">yum search [search_string]</span><br><span class="line"><span class="comment"># 从资源库中安装一个软件包 </span></span><br><span class="line">yum install [package_name]</span><br><span class="line"><span class="comment"># 卸载软件</span></span><br><span class="line">yum erase [package_name]</span><br><span class="line"><span class="comment"># 经过资源库升级所有可升级的软件包</span></span><br><span class="line">yum update</span><br><span class="line"><span class="comment"># 显示所安装软件包的说明信息</span></span><br><span class="line">yum info show [package_name]</span><br></pre></td></tr></table></figure>
+
+<p>同样地，Red Hat Style也支持用底层工具直接安装<code>.rpm</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过软件包安装软件</span></span><br><span class="line">rpm -i [package_file]</span><br><span class="line"><span class="comment"># 通过软件包升级软件</span></span><br><span class="line">rpm -U [package_file]</span><br><span class="line"><span class="comment"># 列出所有安装的软件包</span></span><br><span class="line">rpm -qa</span><br><span class="line"><span class="comment"># 确定是否安装了某个软件</span></span><br><span class="line">rpm -q [package_name]</span><br><span class="line"><span class="comment"># 查找安装了指定文件的软件包</span></span><br><span class="line">rpm -qf file_name</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用<code>rpm</code>直接安装软件包同样需要我们自己处理依赖程序。</p>
+<p><code>yum</code>的全称是Yellow dog Updater, Modified，<code>rpm</code>的全称是Red Hat Package Manager。</p>
+</blockquote>
+<h1 id="压缩，归档，备份"><a href="#压缩，归档，备份" class="headerlink" title="压缩，归档，备份"></a>压缩，归档，备份</h1><p>压缩包、文件包是另外两种常见的“包文件”。不像软件包是用于装载某个可执行程序的，它们是用于更好地存储、管理、归档和备份文件以保护重要数据的。</p>
+<h2 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h2><p>压缩（Zip、Compress），顾名思义就是通过压缩算法，使得计算机能以尽可能小的空间来存储未压缩文件。压缩算法分两大类：</p>
+<ul>
+<li><strong>无损压缩</strong>：无损压缩保留了原文件的所有数据。当还原一个被压缩文件时，还原文件将与原文件一模一样；</li>
+<li><strong>有损压缩</strong>：有损压缩允许压缩操作时删除一些数据，使得文件得到更大的压缩率。当一个有损压缩文件被还原时，它与原文件将存在差异。有损压缩一般用于少量的损失不影响原文件效果的文件，如图片、视频等。JPEG和MP3就是常见的有损压缩文件。</li>
+</ul>
+<h3 id="gzip：强大的无损压缩程序"><a href="#gzip：强大的无损压缩程序" class="headerlink" title="gzip：强大的无损压缩程序"></a><code>gzip</code>：强大的无损压缩程序</h3><p><code>gzip</code>，全称GNUzip，是GNU计划实现的一款Linux系统常用的无损压缩程序。<code>gunzip</code>则是其对应的解压程序。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gzip [OPTION]... [FILE]...</span><br><span class="line">gunzip [OPTION]... [FILE]...</span><br></pre></td></tr></table></figure>
+
+<p><code>gzip</code>在执行压缩操作时，原文件会被压缩文件<code>[FILE].gz</code>替代；解压时，<code>[FILE].gz</code>又会被还原为原文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l /etc | <span class="built_in">cat</span> &gt; foo.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l foo.*</span><br><span class="line">--w-rw-rw-. 1 meme meme 16387 Jul 31 00:45 foo.txt</span><br><span class="line">[meme@localhost Playground]$ sudo gzip foo.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l foo.*</span><br><span class="line">--w-rw-rw-. 1 meme meme 3219 Jul 31 00:45 foo.txt.gz</span><br><span class="line">[meme@localhost Playground]$ sudo gunzip foo.txt.gz</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> -l foo.*</span><br><span class="line">--w-rw-rw-. 1 meme meme 16387 Jul 31 00:45 foo.txt</span><br></pre></td></tr></table></figure>
+
+<p>不难看出，压缩后的<code>[FILE].gz</code>文件大小约为原文件的1&#x2F;5。解压后的文件与原文件一模一样，包括权限、修改时间等。<code>gzip</code>和<code>gunzip</code>的<code>[OPTION]</code>选项有很多，常用的有：</p>
+<ul>
+<li><code>-c</code>：把程序输出写入到标准输出，并且保留原始文件。用在<code>gzip</code>上会使得此次<code>gzip</code>操作将压缩后的文件内容（一堆乱码）直接输出在标准输出上，而原文件不发生变化：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line"><span class="built_in">dir</span>  foo.txt</span><br><span class="line">[meme@localhost Playground]$ sudo gzip -c foo.txt</span><br><span class="line">�f�d</span><br><span class="line">...</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line"><span class="built_in">dir</span>  foo.txt</span><br></pre></td></tr></table></figure>
+用在<code>gunzip</code>上会使得<code>gunzip</code>直接输出解压后文件的内容，而并不解压文件：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ sudo gzip foo.txt</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line"><span class="built_in">dir</span>  foo.txt.gz</span><br><span class="line">[meme@localhost Playground]$ sudo gunzip -c foo.txt.gz</span><br><span class="line">total 1424</span><br><span class="line">...</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line"><span class="built_in">dir</span>  foo.txt.gz</span><br></pre></td></tr></table></figure>
+<code>zcat</code>（zip &amp; cat）命令相当于使用了<code>-c</code>的<code>gunzip</code>。</li>
+<li><code>-d</code>：意为decompress，只用于<code>gzip</code>，带<code>-d</code>选项的<code>gzip</code>作用相当于<code>gunzip</code>。</li>
+<li><code>-f</code>：意为force，指强制压缩原文件，即便原始文件已经被压缩。</li>
+<li><code>-r</code>：意为recursive，若命令行中有一个或多个参数为目录，则递归地压缩目录中文件。</li>
+</ul>
+<h3 id="bzip2：慢但更彻底的gzip"><a href="#bzip2：慢但更彻底的gzip" class="headerlink" title="bzip2：慢但更彻底的gzip"></a><code>bzip2</code>：慢但更彻底的<code>gzip</code></h3><p><code>bzip2</code>与<code>gzip</code>相似，但是使用了不同的压缩算法，使得<code>bzip2</code>可以做到更高的压缩级别，但速度就稍微慢了一点。除了<code>bzip2</code>的压缩文件名字后缀为<code>.bz2</code>，<code>bzip2</code>与<code>gzip</code>的功能几乎一模一样，包括压缩文件替代原文件、除<code>-r</code>以外的选项以及<code>bunzip2</code>和<code>bzcat</code>完成解压缩。</p>
+<h2 id="归档文件"><a href="#归档文件" class="headerlink" title="归档文件"></a>归档文件</h2><p>相比于压缩文件包，我们更常见的是普通的文件包，即归档文件包，Windows上的<code>.zip</code>文件包就是一种常见的归档文件包。所谓归档（Archive），即把一群文件捆绑成一个大的文件的过程。归档通常只是将目标文件群集中地放在一个归档文件包中，但有些归档程序，如<code>zip</code>，还包含着压缩的功能。</p>
+<h3 id="tar：经典Linux归档工具"><a href="#tar：经典Linux归档工具" class="headerlink" title="tar：经典Linux归档工具"></a><code>tar</code>：经典Linux归档工具</h3><p><code>tar</code>，全称Tape Archive，是Linux系统中最常用的归档工具。一个<code>tar</code>包可以由一组独立的文件、一个或者多个目录或前两者的混合体组成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar MODE[OPTION...] [PATH]...</span><br></pre></td></tr></table></figure>
+
+<p>上边的<code>MODE</code>指<code>tar</code>的不同操作模式，常用的有：</p>
+<ul>
+<li><code>c</code>：为文件、目录、目录列表创建归档文件；</li>
+<li><code>x</code>：抽取归档文件；</li>
+<li><code>r</code>：追加具体的路径到归档文件末尾；</li>
+<li><code>t</code>：列出归档文件的内容。</li>
+</ul>
+<p>而常用的<code>[OPTION]</code>有：</p>
+<ul>
+<li><code>-f</code>：意为file，指定归档文件包的名字；</li>
+<li><code>-v</code>：意为verbose，显示命令的整个执行过程；</li>
+<li><code>-z</code>：意为gzip，对归档文件包使用<code>gzip</code>压缩；</li>
+<li><code>-j</code>：意为bip2，对归档文件包使用<code>bzip2</code>压缩。</li>
+</ul>
+<blockquote>
+<p>一般来说，模式只能选择一个，而选项可以选择多个。确定了模式后，选项可以直接跟在模式后面，而无需用空格或<code>-</code>分割。</p>
+<p> <code>tar</code>包的后缀名为<code>.tar</code>，经过<code>gzip</code>压缩的<code>tar</code>包后缀名为<code>.tgz</code>，经过<code>bzip2</code>压缩的<code>tar</code>包后缀名为<code>.tbz</code>。</p>
+</blockquote>
+<p>在进一步了解<code>tar</code>之前，我们先在当前目录下创建<code>playground</code>目录，并在其下创建100个子目录，在每个子目录下创建24个普通文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">mkdir</span> -p ./playground/dir-&#123;00&#123;1..9&#125;,0&#123;10..99&#125;,100&#125;</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> ./playground</span><br><span class="line">dir-001  ...  dir-100</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">touch</span> ./playground/dir-&#123;00&#123;1..9&#125;,0&#123;10..99&#125;,100&#125;/file-&#123;A..Z&#125;</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> ./playground/dir-001</span><br><span class="line">file-A  ...  file-Z</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span> ./playgrounddir-002</span><br><span class="line">file-A  ...  file-Z</span><br></pre></td></tr></table></figure>
+
+<p><code>tar</code>一个很重要的特性是它在归档时保留了原文档的目录结构。如，若我们在当前目录下归档<code>playground</code>文件夹：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">foo.txt.gz  playground</span><br><span class="line">[meme@localhost Playground]$ tar cf playground.tar playground</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">foo.txt.gz  playground  playground.tar</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>tar tf</code>可以列出归档文件的内容，<code>tar tvf</code>可以列出归档文件的详细内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ tar tf playground.tar playground</span><br><span class="line">playground/</span><br><span class="line">playground/dir-001/</span><br><span class="line">playground/dir-001/file-A</span><br><span class="line">playground/dir-001/file-B</span><br><span class="line">...</span><br><span class="line">[meme@localhost Playground]$ tar tvf playground.tar playground</span><br><span class="line">drwxrwxr-x meme/meme     0 2023-07-31 01:25 playground/</span><br><span class="line">drwxrwxr-x meme/meme     0 2023-07-31 01:30 playground/dir-001/</span><br><span class="line">-rw-rw-r-- meme/meme     0 2023-07-31 01:28 playground/dir-001/file-A</span><br><span class="line">-rw-rw-r-- meme/meme     0 2023-07-31 01:28 playground/dir-001/file-B</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>若我们使用同样的命令，但是将待归档文件夹的路径更改为其绝对路径，则其归档文件的结构也将是绝对路径的结构：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">pwd</span></span><br><span class="line">/home/meme/Playground</span><br><span class="line">[meme@localhost Playground]$ tar cf playground2.tar /home/meme/Playground/playground</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">foo.txt.gz  playground  playground2.tar  playground.tar</span><br></pre></td></tr></table></figure>
+
+<p>我们不妨将<code>playground.tar</code>和<code>playground2.tar</code>用<code>tar xf</code>同时提取在新建文件夹<code>foo</code>中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">mkdir</span> foo</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">cd</span> foo</span><br><span class="line">[meme@localhost foo]$ tar xf ../playground.tar</span><br><span class="line">[meme@localhost foo]$ tar xf ../playground2.tar</span><br><span class="line">[meme@localhost foo]$ <span class="built_in">ls</span> ./playground</span><br><span class="line">dir-001</span><br><span class="line">...</span><br><span class="line">dir-100</span><br><span class="line">[meme@localhost foo]$ <span class="built_in">ls</span> ./home/meme/Playground/playground</span><br><span class="line">dir-001</span><br><span class="line">...</span><br><span class="line">dir-100</span><br></pre></td></tr></table></figure>
+
+<p>可见，<code>playground.tar</code>和<code>playground2.tar</code>内部的内容分别按相对路径和绝对路径的目录结构存储。对<code>playground.tar</code>，是<code>playground/</code>；对<code>playground2.tar</code>则是<code>home/meme/Playground/playground/</code>。这样的设计可以保证我们归档目录结构与原目录结构的完全统一，使得我们可以在任何地方抽取归档文件。比如，<code>playground2.tar</code>就可以完全在另一台主机的根目录下抽取，使得其在新主机的路径仍为<code>home/meme/Playground/playground</code>。</p>
+<p>需要注意的是，<code>tar xf</code>默认抽取所有文件，但是若其后面有指定的文件路径，则其只会抽取指定文件，如，此处我们先删除<code>home</code>，再只从<code>playground2.tar</code>中抽取一个目录<code>dir-001</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost foo]$ <span class="built_in">ls</span></span><br><span class="line">home  playground</span><br><span class="line">[meme@localhost foo]$ <span class="built_in">rm</span> -r home</span><br><span class="line">[meme@localhost foo]$ <span class="built_in">ls</span></span><br><span class="line">playground</span><br><span class="line">[meme@localhost foo]$ tar xf ../playground2.tar home/meme/Playground/playground/dir-001</span><br><span class="line">[meme@localhost foo]$ <span class="built_in">ls</span></span><br><span class="line">home  playground</span><br><span class="line">[meme@localhost foo]$ <span class="built_in">ls</span> ./home/meme/Playground/playground</span><br><span class="line">dir-001</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在有些版本的Linux发行版中，在命令的<code>.tar</code>文件名后加入<code>--wildcards</code>可以使得我们的路径能支持通配符，但是路径最好用引号引起。</p>
+<p>已抽出文件不会继承打包文件的权限，其只拥有将其抽出的用户的权限，也就是说，抽出文件的拥有者是抽取人，除非打包文件的是根用户。</p>
+</blockquote>
+<h4 id="与find的结合"><a href="#与find的结合" class="headerlink" title="与find的结合"></a>与<code>find</code>的结合</h4><p>由于<code>find</code>搜索指定文件夹中的文件时给出的搜索结果是相对于该文件夹的相对路径，因此<code>tar</code>常常可以与<code>find</code>结合使用，使得<code>find</code>的搜索结果可以作为<code>tar</code>的待归档文件，并用<code>tar rf</code>直接在原归档文件的基础上增加新内容，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ find playground -name <span class="string">&#x27;file-A&#x27;</span></span><br><span class="line">playground/dir-001/file-A</span><br><span class="line">playground/dir-002/file-A</span><br><span class="line">...</span><br><span class="line">playground/dir-099/file-A</span><br><span class="line">playground/dir-100/file-A</span><br><span class="line">[meme@localhost Playground]$ find playground -name <span class="string">&#x27;file-A&#x27;</span> -<span class="built_in">exec</span> tar rf playground.tar <span class="string">&#x27;&#123;&#125;&#x27;</span> <span class="string">&#x27;+&#x27;</span></span><br><span class="line">[meme@localhost Playground]$ tar tf playground.tar</span><br><span class="line">playground/</span><br><span class="line">playground/dir-001/</span><br><span class="line">playground/dir-001/file-A</span><br><span class="line">playground/dir-001/file-B</span><br><span class="line">...</span><br><span class="line">playground/dir-100/file-Z</span><br><span class="line">playground/dir-001/file-A</span><br><span class="line">playground/dir-002/file-A</span><br><span class="line">...</span><br><span class="line">playground/dir-099/file-A</span><br><span class="line">playground/dir-100/file-A</span><br></pre></td></tr></table></figure>
+
+<p>将直接将所有的<code>file-A</code>文件归档、增加至<code>playground.tar</code>中。</p>
+<h4 id="与标准输入和输出结合"><a href="#与标准输入和输出结合" class="headerlink" title="与标准输入和输出结合"></a>与标准输入和输出结合</h4><p>通常地，<code>tar cf [FILE.tar] [PATH]</code>不会产生输出，而是直接生成<code>FILE.tar</code>文件，但是，若我们将<code>[FILE.tar]</code>替换为<code>-</code>，则上述指令会将归档文件包以<strong>标准输出的形式输出</strong>；同样地，<code>tar xf [FILE.tar]</code>不会接受输入，只会生成提取文件，而我们若将<code>[FILE.tar]</code>替换为<code>-</code>，则<code>tar xf</code>会<strong>接受标准输入的输入</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost foo]$ <span class="built_in">ls</span></span><br><span class="line">home  playground</span><br><span class="line">[meme@localhost foo]$ <span class="built_in">rm</span> -r playground</span><br><span class="line">[meme@localhost foo]$ <span class="built_in">ls</span></span><br><span class="line">home</span><br><span class="line">[meme@localhost foo]$ tar cf - ../playground | tar xf -</span><br><span class="line">[meme@localhost foo]$ <span class="built_in">ls</span></span><br><span class="line">home  playground</span><br></pre></td></tr></table></figure>
+
+<p>上述命令将<code>tar cf</code>对<code>../playground</code>的归档输出到<code>-</code>标准输出中，该标准输出又被管道至<code>tar xf</code>的<code>-</code>标准输入，<code>tar xf</code>将<code>-</code>提取，于是我们就在当前文件夹得到父文件夹的<code>playground</code>文件夹。</p>
+<blockquote>
+<p><code>-</code>代替标准输入、输出的惯例被很多程序使用。</p>
+</blockquote>
+<p>由此，前面<code>find</code>与<code>tar</code>的结合也可以通过管道<code>|</code>进行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">foo  foo.txt.gz  playground  playground2.tar</span><br><span class="line">[meme@localhost Playground]$ find playground -name <span class="string">&#x27;file-A&#x27;</span> | tar cf playground.tar -T-</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">foo  foo.txt.gz  playground  playground2.tar  playground.tar</span><br><span class="line">[meme@localhost Playground]$ tar tf playground.tar</span><br><span class="line">playground/dir-001/file-A</span><br><span class="line">playground/dir-002/file-A</span><br><span class="line">...</span><br><span class="line">playground/dir-099/file-A</span><br><span class="line">playground/dir-100/file-A</span><br></pre></td></tr></table></figure>
+
+<p><code>-T</code>全称<code>--file-from</code>，它将导致<code>tar</code>从一个文件（此处为标准输出文件）而不是命令行中读入路径名，<code>-T</code>后面的<code>-</code>示意该文件为管道过来的<strong>标准输入文件</strong>。最终整个命令达到的效果就是将<code>playground</code>中所有的<code>file-A</code>文件归档。</p>
+<blockquote>
+<p><code>-T-</code>可以用<code>--file-from=-</code>代替。</p>
+</blockquote>
+<h4 id="tgz和-tbz"><a href="#tgz和-tbz" class="headerlink" title=".tgz和.tbz"></a><code>.tgz</code>和<code>.tbz</code></h4><p><code>tar czf [FILE.tgz] [PATH]</code>和<code>tar cjf [FILE.tbz] [PATH]</code>将分别把得到的<code>.tar</code>文件一步压缩为<code>.tgz</code>或<code>.tbz</code>文件，此处不再赘述。</p>
+<h3 id="zip：打包与压缩"><a href="#zip：打包与压缩" class="headerlink" title="zip：打包与压缩"></a><code>zip</code>：打包与压缩</h3><p><code>zip</code>更常用于Windows系统中。相比于<code>tar</code>，<code>zip</code>兼具打包和压缩的功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip [OPTION] [ZIPFILE] [FILE]</span><br></pre></td></tr></table></figure>
+
+<p><code>zip</code>的使用很简单，基本格式为包文件名+待打包文件路径，对于目录文件则要加上<code>-r</code>选项，否则只有目录被存储：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">foo  foo.txt.gz  playground  playground2.tar  playground.tar</span><br><span class="line">[meme@localhost Playground]$ zip -r dir-001.zip playground/dir-001</span><br><span class="line">  adding: playground/dir-001/ (stored 0%)</span><br><span class="line">  adding: playground/dir-001/file-A (stored 0%)</span><br><span class="line">  ...</span><br><span class="line">  adding: playground/dir-001/file-Z (stored 0%)</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">dir-001.zip  foo  foo.txt.gz  playground  playground2.tar  playground.tar</span><br></pre></td></tr></table></figure>
+
+<p>上述指令将<code>playground</code>中的<code>dir-001</code>文件夹打包压缩为<code>dir-001.zip</code>。值得注意的是，<code>zip</code>有压缩功能，<code>stored</code>后的百分比即表示<strong>压缩量</strong>。因为各个<code>file-[A..Z]</code>文件均为空文件，所以没有压缩。</p>
+<p><code>zip</code>的打包是更新式的打包而不是替代式的打包，也就是说，若已经存在了文件包<code>xx.zip</code>，再以相同的名字<code>xx.zip</code>打包某群文件不会再生成一个<code>.zip</code>文件，而是在原<code>xx.zip</code>文件包的基础上进行更新，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[meme@localhost Playground]$ zip -r dir-001.zip playground/dir-002</span><br><span class="line">  adding: playground/dir-002/ (stored 0%)</span><br><span class="line">  ...</span><br><span class="line">  adding: playground/dir-002/file-Z (stored 0%)</span><br><span class="line">[meme@localhost Playground]$ <span class="built_in">ls</span></span><br><span class="line">dir-001.zip  foo  foo.txt.gz  playground  playground2.tar  playground.tar</span><br><span class="line">[meme@localhost Playground]$ unzip -l dir-001.zip</span><br><span class="line">Archive:  dir-001.zip</span><br><span class="line">  Length      Date    Time    Name</span><br><span class="line">---------  ---------- -----   ----</span><br><span class="line">        0  07-31-2023 01:30   playground/dir-001/</span><br><span class="line">        ...</span><br><span class="line">        0  07-31-2023 01:28   playground/dir-001/file-Z</span><br><span class="line">        0  07-31-2023 01:30   playground/dir-002/</span><br><span class="line">        ...</span><br><span class="line">        0  07-31-2023 01:28   playground/dir-002/file-Z</span><br><span class="line">---------                     -------</span><br><span class="line">        0                     54 files</span><br></pre></td></tr></table></figure>
+
+<p><code>dir-002</code>直接被加进了<code>dir-001.zip</code>中，类似的操作在<code>tar</code>中要指定<code>r</code>模式。</p>
+<p>上面用到的<code>unzip</code>是与<code>zip</code>对应的解压程序。<code>unzip -l [FILE.zip] [PATH]</code>将只列出文件包内某文件的信息，<code>[PATH]</code>缺省则列出所有。而去掉<code>-l</code>则将从包中抽取所有或指定文件。</p>
+<blockquote>
+<p><code>zip</code>也能结合标准输入输出，此处不再赘述。</p>
+</blockquote>
+<h2 id="同步与备份文件"><a href="#同步与备份文件" class="headerlink" title="同步与备份文件"></a>同步与备份文件</h2><p>同步与备份，即保持一个或多个目录与另一个本地或远程目录保持同步。常见的<code>git</code>仓库就是一个这样的远程托管同步系统。在Linux中，更常被使用的同步备份工具是<code>rsync</code>，全称Remote Synchronize。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync [OPTION] SOURCE DESTINATION</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>SOURCE</code>是待备份文件（可多个），而<code>DESTINATION</code>是即将存储<code>SOURCE</code>全部文件内容的文件夹，两者必须是下列3个选项之一且至少一个是本地文件&#x2F;目录：</p>
+<ul>
+<li>一个本地文件&#x2F;目录；</li>
+<li>一个远程文件&#x2F;目录，以<code>[user@]host:path</code>的形式存在；</li>
+<li>一个远程rsync服务器，由<code>rsync://[user@]host[:port]/path</code>指定。</li>
+</ul>
+<blockquote>
+<p>其中带<code>[]</code>的表示可选项，因此对于远程文件&#x2F;目录，我们只要写上远程主机名<code>host</code>以及存放目录<code>path</code>；对于远程rsync服务器，我们只要写上远程服务器的主机名（url的形式）<code>host</code>及其存放目录<code>path</code>。</p>
+</blockquote>
+<p>实际使用时，我们一般会用<code>rsync -ac -delete</code>，其中<code>-a</code>表示递归地备份并保护文件属性，<code>-v</code>表示输出备份信息，<code>-delete</code>表示删除备份设备中已经存在但是不存在于源设备中的文件。若<code>SOURCE</code>和<code>DESTINATION</code>中有一个为远程ssh主机，还要增加选项<code>--rsh==ssh</code>。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39446">The Linux Command Line 中文版 第十五章：软件包管理</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.kancloud.cn/thinkphp/linux-command-line/39450">The Linux Command Line 中文版 第十九章：归档和备份</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/25/PackageProcessing/" data-id="clzik0lcr006nv47kdaya1qp0" data-title="Package Management and Processing" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/25/NetworkRemoteInteraction/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Network and Remote Interaction
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/25/FileSearching/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">File Searching</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

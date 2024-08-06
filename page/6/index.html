@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start of Something New">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JourneyToCoding">
+<meta property="og:url" content="https://zclzcl0223.github.io/page/6/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Start of Something New">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="ChaosTsang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-FourierTransform" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/10/FourierTransform/" class="article-date">
+  <time class="dt-published" datetime="2023-05-10T15:46:14.000Z" itemprop="datePublished">2023-05-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/10/FourierTransform/">Fourier Transform</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Inner-product"><a href="#Inner-product" class="headerlink" title="Inner product"></a>Inner product</h1><p>The inner product generalizes the dot product to abstract vector spaces over a field of scalars, being either the field of real numbers $R$  or the field of complex numbers $C$. It is usually denoted using angular brackets by $\braket{\vec{a}, \vec{b}}$. Each vector in the field of real numbers $R$ can be regarded as a <strong>discrete functions</strong> with domain $\{k\in N:1\le k\le n\}$. And the inner product measures the similarity of two vectors:</p>
+<p>$$\vec{a}\cdot\vec{b}&#x3D;\sum\limits_{i&#x3D;0}^na_ib_i\Delta n$$</p>
+<p>where $\Delta n&#x3D;1$ , can be regarded as the difference of two dimension. It is easy to generalize this to continuous functions. In this case, the dimension of a vector is <strong>infinity</strong> and the sum will diverge. Therefore, we average each term, that is $dx$:</p>
+<p>$$\braket{f,g}&#x3D;\int_a^bf(x)g(x)dx$$</p>
+<p>Similarly, the inner product of functions measures the similarity of two functions.</p>
+<h1 id="Orthogonality-of-trigonometric-functions"><a href="#Orthogonality-of-trigonometric-functions" class="headerlink" title="Orthogonality of trigonometric functions"></a>Orthogonality of trigonometric functions</h1><p>We define:<br>$$\{\sin0x,\cos0x,\sin x,\cos x,...,\sin nx, \cos nx\}$$<br>as trigonometric space. In this space, the inner product of two different functions with domain $\{x\in R:-\pi\le x\le \pi\}$ is zero, that is, the two functions are orthogonal:</p>
+<p>$$\braket{\sin nx, \sin mx}&#x3D;\int_{-\pi}^\pi\sin nx\sin mxdx&#x3D;0$$<br>where $n\ne m$ and either or both of $\sin$ could be $\cos$. If the two functions are the same and are not $0$, their inner product is $\pi$:<br>$$\braket{\sin nx, \sin nx}&#x3D;\int_{-\pi}^\pi\sin nx\sin nxdx&#x3D;\pi$$</p>
+<h1 id="Fourier-series"><a href="#Fourier-series" class="headerlink" title="Fourier series"></a>Fourier series</h1><p>Fourier series is another kind of series besides power series. It uses functions in trigonometric space to represent any periodic functions.</p>
+<h2 id="T-x3D-2-pi"><a href="#T-x3D-2-pi" class="headerlink" title="$T&#x3D;2\pi$"></a>$T&#x3D;2\pi$</h2><p>For a function of period $2\pi$, $f(x)&#x3D;f(x+2\pi)$, we can represent it using trigonometric functions:</p>
+<p>$$f(x)&#x3D;\sum\limits_{n&#x3D;0}^\infty a_n\cos nx+\sum\limits_{n&#x3D;0}^\infty b_n\sin nx$$</p>
+<p>To get $a_n\space(n\ne0)$ , multiply both sides by $\cos nx$ and integrate at $[-\pi, \pi]$:</p>
+<p>$$\int_{-\pi}^\pi f(x)\cos nxdx&#x3D;\sum\limits_{m&#x3D;0}^\infty[\int_{-\pi}^\pi a_m\cos mx\cdot\cos nxdx+b_m\sin mx\cdot\cos nxdx]\tag{1}$$</p>
+<p>Because of the orthogonality of trigonometric functions, formula (1) becomes:</p>
+<p>$$\int_{-\pi}^\pi f(x)\cos nxdx&#x3D;\int_{-\pi}^\pi a_n\cos nx\cdot\cos nxdx&#x3D;a_n\pi$$</p>
+<p>Therefore:</p>
+<p>$$a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nxdx$$</p>
+<p>If $n&#x3D;0$:</p>
+<p>$$\int_{-\pi}^\pi f(x)dx&#x3D;a_02\pi\rightarrow a_0&#x3D;\frac{1}{2\pi}\int_{-\pi}^\pi f(x)dx$$</p>
+<p>For unity, we usually use $2a_0\space(A_0)$ as $a_0$:</p>
+<p>$$A_0&#x3D;2a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)dx$$</p>
+<p>Similarly, if multiply both sides by $\sin nx\space(n\in N)$ and integrate at $[-\pi, \pi]$, we get $b_n$:</p>
+<p>$$b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin nxdx$$</p>
+<p>So, the fourier series of $f(x)&#x3D;f(x+2\pi)$ is:</p>
+<p>$$f(x)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos nx+b_n\sin nx], \begin{cases}<br>   a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)dx &amp;\\<br>   a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nxdx &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin nxdx &amp;<br>\end{cases}$$</p>
+<h2 id="T-x3D-2L"><a href="#T-x3D-2L" class="headerlink" title="$T&#x3D;2L$"></a>$T&#x3D;2L$</h2><p>More generally, for any function with period $2L$, $f(t)&#x3D;f(t+2L)$, we assume:</p>
+<p>$$t&#x3D;\frac{L}{\pi}x$$</p>
+<p>Then:</p>
+<p>$$f(t)&#x3D;f(\frac{L}{\pi}x)$$</p>
+<p>$$f(t+2L)&#x3D;f(\frac{L}{\pi}x+2L)&#x3D;f[\frac{L}{\pi}(x+2\pi)]$$</p>
+<p>We make:</p>
+<p>$$g(x)&#x3D;f(\frac{L}{\pi}x)$$</p>
+<p>Then:</p>
+<p>$$g(x)&#x3D;g(x+2\pi)$$</p>
+<p>We have already know the fourier series of functions with period $2\pi$ is:</p>
+<p>$$g(x)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos nx+b_n\sin nx], \begin{cases}<br>   a_0&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)dx &amp;\\<br>   a_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)\cos nxdx &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{1}{\pi}\int_{-\pi}^\pi g(x)\sin nxdx &amp;<br>\end{cases}$$</p>
+<p>Since $t&#x3D;\frac{L}{\pi}x$ and $g(x)&#x3D;f(\frac{L}{\pi}x)&#x3D;f(t)$, we can replace $x$ with $t$:</p>
+<p>$$dx&#x3D;\frac{\pi}{L}dt$$</p>
+<p>$$x\in[-\pi,\pi]\rightarrow t\in[-L,L]$$</p>
+<p>Therefore:</p>
+<p>$$f(t)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos \frac{n\pi<br>}{L}t+b_n\sin \frac{n\pi}{L}t], \begin{cases}<br>   a_0&#x3D;\frac{1}{L}\int_{-L}^L f(t)dt &amp;\\<br>   a_n&#x3D;\frac{1}{L}\int_{-L}^L f(t)\cos \frac{n\pi<br>}{L}tdt &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{1}{L}\int_{-L}^L f(t)\sin \frac{n\pi<br>}{L}tdt &amp;<br>\end{cases}$$</p>
+<p>Sometimes, we use $T&#x3D;2L$ to represent period and $\omega_0$ to represent fundamental frequency $\frac{2\pi}{T}$. Since the integral of a periodic function over a period is constant, we can also write the fourier series as:</p>
+<p>$$f(t)&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [a_n\cos n\omega_0 t+b_n\sin n\omega_0 t], \begin{cases}<br>   a_0&#x3D;\frac{2}{T}\int_{0}^T f(t)dt &amp;\\<br>   a_n&#x3D;\frac{2}{T}\int_{0}^T f(t)\cos n\omega_0 tdt &amp;\\<br>   b_0&#x3D;0 &amp;\\<br>   b_n&#x3D;\frac{2}{T}\int_{0}^T f(t)\sin n\omega_0 tdt &amp;<br>\end{cases}$$</p>
+<h2 id="Complex-form"><a href="#Complex-form" class="headerlink" title="Complex form"></a>Complex form</h2><p>Fourier series can be transformed into complex form using Euler&#39;s formula:</p>
+<p>$$e^{i\theta}&#x3D;\cos\theta+i\sin\theta\tag{2}$$<br>$$e^{-i\theta}&#x3D;\cos\theta-i\sin\theta\tag{3}$$</p>
+<p>By combining (2) and (3), we can get:</p>
+<p>$$\cos\theta&#x3D;\frac{1}{2}(e^{i\theta}+e^{-i\theta})\tag{4}$$<br>$$\sin\theta&#x3D;-\frac{1}{2}i(e^{i\theta}-e^{-i\theta})\tag{5}$$</p>
+<p>Put the above two formulas into fourier series, we get:</p>
+<p>$$\begin{align*}<br>    f(t) &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [\frac{a_n}{2}(e^{in\omega_0 t}+e^{-in\omega_0 t})-\frac{b_n}{2}i(e^{in\omega_0 t}-e^{-in\omega_0 t})]\\<br>         &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1}^\infty [\frac{a_n-ib_n}{2}e^{in\omega_0 t}+\frac{a_n+ib_n}{2}e^{-in\omega_0 t}]\\<br>         &amp;&#x3D;\frac{a_0}{2}+\sum\limits_{n&#x3D;1} ^{+\infty} \frac{a_n-ib_n}{2}e^{in\omega_0 t}+\sum\limits_{n&#x3D;-1} ^{-\infty} \frac{a_{-n}+ib_{-n}}{2}e^{in\omega_0 t}\tag{6}\\<br>         &amp;&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}C_ne^{in\omega_0 t}\tag{7}<br>\end{align*}$$</p>
+<p>For (6) to (7), since $e^0&#x3D;1$, we can treat $\frac{a_0}{2}$ as $C_0$. Therefore:</p>
+<p>$$<br>C_n&#x3D;<br>\begin{cases}<br>    \frac{1}{2}a_0&#x3D;\frac{1}{T}\int_{0}^T f(t)dt,&amp;n&#x3D;0\\<br>    \frac{1}{2}(a_n-ib_n)&#x3D;\frac{1}{T}\int_{0}^T f(t)(\cos n\omega_0 t-i\sin n\omega_0 t)dt&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt,&amp;n&#x3D;1,2,3...\\<br>    \frac{1}{2}(a_n+ib_n)&#x3D;\frac{1}{T}\int_{0}^T f(t)(\cos n\omega_0 t+i\sin n\omega_0 t)dt&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{in\omega_0 t}dt,&amp;n&#x3D;-1,-2,-3...<br>\end{cases}<br>$$<br>Since $e^0&#x3D;1$:</p>
+<p>$$C_n&#x3D;\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt,n\in Z$$</p>
+<p>Therefore:</p>
+<p>$$f(t)&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}C_ne^{in\omega_0 t}<br>      &#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt$$</p>
+<h1 id="Fourier-transform"><a href="#Fourier-transform" class="headerlink" title="Fourier transform"></a>Fourier transform</h1><p>In the complex form of fourier series, it is $C_n$ that defines the form of $f(t)$ in frequency domain, where $C_n&#x3D;A_n+iB_n$. Based on the difference of frequency $n\omega_0$, the curve of $f(t)$ in the time domain $[0,T]$ is transformed into a point in frequency domain:</p>
+<p><img src="/2023/05/10/FourierTransform/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Cn in the complex domain</center><br>
+
+<p>If function $f(t)$ is not a periodic function, that is, its period is $+\infty$, fourier series becomes fuorier transform:</p>
+<p>$$T\to+\infty,\space\frac{1}{T}&#x3D;[(n+1)\omega_0-n\omega_0]\frac{1}{2\pi}&#x3D;\frac{\Delta\omega}{2\pi}&#x3D;\frac{\omega_0}{2\pi}\to0$$</p>
+<p>Since the difference between $(n+1)\omega_0$ and $n\omega_0$ is rather small, that is, the fundamental frequency $\omega_0$ is rather small, we can turn the discrete $n\omega_0$ into continuous $\omega$. Then:</p>
+<p>$$\Delta\omega&#x3D;d\omega\to0, \space n\omega_0\to\omega$$<br>$$<br>\begin{align*}<br>f(t)<br>  &amp;&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt\\<br>  &amp;&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{-\frac{T}{2}}^\frac{T}{2} f(t)e^{-in\omega_0 t}dt\\<br>  &amp;&#x3D;\sum\limits_{n\omega_0&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{\Delta\omega}{2\pi}\int_{-\frac{T}{2}}^\frac{T}{2} f(t)e^{-in\omega_0 t}dt\\<br>  &amp;&#x3D;\frac{1}{2\pi}\int_{-\infty} ^{+\infty}\int_{-\infty} ^{+\infty}f(t)e^{-i\omega t}dt\space e^{i\omega t}d\omega<br>\end{align*}<br>$$<br>Among the formula above:</p>
+<p>$$\int_{-\infty} ^{+\infty}f(t)e^{-i\omega t}dt&#x3D;F(\omega)$$</p>
+<p>is called <strong>Fourier Transform</strong> and the whole formula is called <strong>Inverse Fourier Transform</strong>. It&#39;s easy for us to understand that $F(\omega)$ is $\frac{1}{2\pi} C_n$ and it is a complex number in frequency domain. More generally, we don&#39;t use the form in Fig. 1. to represent $F(\omega)$, instead, we draw the curve of <em>Amplitude</em>-$\omega$:</p>
+<p>$$F(\omega)&#x3D;|F(\omega)|e^{i\phi}$$</p>
+<p>It is a continuous curve in frequency domain:</p>
+<p><img src="/2023/05/10/FourierTransform/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Amplitude-omega</center><br>
+
+<p>$e^{i\omega t}$ represents different waveforms while $F(w)$ represents the intensity of different waveforms in the original function $f(t)$. Therefore, we can restore the original function by superimposing waveforms of different intensities. And this is <strong>Inverse Fourier Transform</strong>.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Et411R78v/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">纯干货数学推导_傅里叶级数与傅里叶变换</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ce4y1p7jF/?spm_id_from=333.880.my_history.page.click&vd_source=2d980a0365f3ebea674b32924d8a4ce8">卷积神经网络的底层是傅里叶变换，傅里叶变换的底层是希尔伯特空间坐标变换</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/05/10/FourierTransform/" data-id="clzik0lca002kv47k24sfdzlb" data-title="Fourier Transform" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-NumericalStability" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/07/NumericalStability/" class="article-date">
+  <time class="dt-published" datetime="2023-05-07T14:27:42.000Z" itemprop="datePublished">2023-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/07/NumericalStability/">Numerical Stability</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Numerical-instability"><a href="#Numerical-instability" class="headerlink" title="Numerical instability"></a>Numerical instability</h1><p>A numerically instable neural network is often caused by exploding or vanishing gradients, which make the model diverge or converge slowly. According to chain rules, for a neural network with $d$ layers, the gradient of layer d with respect to parameters of layer t is:</p>
+<p>$$\frac{\partial{h^d}}{\partial{h^t}}&#x3D;\prod_{i&#x3D;t}^{d-1}\frac{\partial{h^{i+1}}}{\partial{h^i}}&#x3D;\prod_{i&#x3D;t}^{d-1}diag(\sigma&#39;(W^ih^{i-1}))W^i$$</p>
+<p>where $h^{i}&#x3D;\sigma(W^ih^{i-1})$, $h^i$ is the input of layer i+1 and the output of layer i.</p>
+<h2 id="Exploding-gradients"><a href="#Exploding-gradients" class="headerlink" title="Exploding gradients"></a>Exploding gradients</h2><p>If we use ReLU as the activation:</p>
+<p>$$\sigma(x)&#x3D;\max(0,x)$$</p>
+<p>Then, the element of $diag(\sigma&#39;(W^ih^{i-1}))$ will only be 1 or 0. Therefore, it is possible that the gradients will become:</p>
+<p>$$\prod_{i&#x3D;t}^{d-1}W^i$$</p>
+<p>which will make the gradients rather large if $d-t$ is large and cause some serious problems:</p>
+<ul>
+<li>Gradients are <code>nan</code> or <code>inf</code>;</li>
+<li>The model is very sensitive to the learning rate $\alpha$, which makes the training harder.</li>
+</ul>
+<h2 id="Vanishing-gradients"><a href="#Vanishing-gradients" class="headerlink" title="Vanishing gradients"></a>Vanishing gradients</h2><p>If we use sigmoid as the activation, since the gradient of sigmoid becomes smooth when $|x|$ is larger than 4, it is likely that the gradients are rather small, even zero:</p>
+<ul>
+<li>Floating point underflow;</li>
+<li>No progress in training, especially for the bottom layers because $d-t$ is large.</li>
+</ul>
+<h1 id="Mul-to-add"><a href="#Mul-to-add" class="headerlink" title="Mul to add"></a>Mul to add</h1><h2 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h2><p>See <a href="/2023/05/14/CommonCNNModels/#ResNet">ResNet</a> to know more about it.</p>
+<h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p>See <a href="/2023/05/29/CommonRNNModels/#LSTM">LSTM</a> to know more about it.</p>
+<h1 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h1><h2 id="Gradient-normalization"><a href="#Gradient-normalization" class="headerlink" title="Gradient normalization"></a>Gradient normalization</h2><h2 id="Gradient-clipping"><a href="#Gradient-clipping" class="headerlink" title="Gradient clipping"></a>Gradient clipping</h2><p>See <a href="/2023/05/25/RNN/#Gradient-clipping">Gradient clipping</a> to know more about it.</p>
+<h1 id="Model-parameter-and-activation"><a href="#Model-parameter-and-activation" class="headerlink" title="Model parameter and activation"></a>Model parameter and activation</h1><p>Another method to increase numerical stability is to keep the expectation and variance of the outputs and inputs of each layer the same:</p>
+<p>$$E(h_i^t)&#x3D;0\And Var(h_i^t)&#x3D;a$$</p>
+<p>and the expectation and variance of the gradients of each layer the same:</p>
+<p>$$E(\frac{\partial{\ell}}{\partial{h_i^t}})&#x3D;0\And Var(\frac{\partial{\ell}}{\partial{h_i^t}})&#x3D;b$$</p>
+<p>We can realize this by choosing an appropriate initail value of $w$ ($b$ is offset so we can ignore it) and a proper activation.</p>
+<h2 id="Parameter-initialization"><a href="#Parameter-initialization" class="headerlink" title="Parameter initialization"></a>Parameter initialization</h2><p>For model parameters of layer t with $E&#x3D;0\And Var&#x3D;\gamma_t$, we should keep $n_{t-1}\gamma_t&#x3D;1$ to achieve the mean-variance requirements of forward propagation (inputs and outputs) and keep $n_t\gamma_t&#x3D;1$ to achieve the mean-variance requirements of backward propagation (gradients), where $n_t$ is the number of neurons of layer t.</p>
+<p>We cannot satisfy both conditions so we often use <strong>Xavier</strong> to initialize $w$:</p>
+<p>$$\frac{\gamma_t(n_{t-1}+n_t)}2&#x3D;1\rightarrow\gamma_t&#x3D;\frac{2}{(n_{t-1}+n_t)}$$</p>
+<p>Some examples:</p>
+<ul>
+<li>$N(0,\sqrt{2&#x2F;(n_{t-1}+n_t)})$;</li>
+<li>$U(-\sqrt{6&#x2F;(n_{t-1}+n_t)},\sqrt{6&#x2F;(n_{t-1}+n_t)})$</li>
+</ul>
+<h2 id="Activation-choosing"><a href="#Activation-choosing" class="headerlink" title="Activation choosing"></a>Activation choosing</h2><p>The activation should be $y&#x3D;x$ when it is around (0,0):</p>
+<ul>
+<li>$sigmoid(x)&#x3D;\frac{1}{2}+\frac{x}{4}+O(x^3)$</li>
+<li>$tanh(x)&#x3D;x+O(x^3)$</li>
+<li>$relu(x)&#x3D;x$ for $x\ge0$</li>
+</ul>
+<p>Therefore, we often use relu or tanh or 4$\times$sigmoid(x)-2</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/05/07/NumericalStability/" data-id="clzik0lcq0069v47k298lfwcd" data-title="Numerical Stability" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ModelSelection" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/05/03/ModelSelection/" class="article-date">
+  <time class="dt-published" datetime="2023-05-03T13:58:31.000Z" itemprop="datePublished">2023-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/05/03/ModelSelection/">Model Selection &amp; Hyperparameter Optimization</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Evaluating-a-model"><a href="#Evaluating-a-model" class="headerlink" title="Evaluating a model"></a>Evaluating a model</h1><p>See <a href="/2023/04/13/MachineLearningDiagnostics/">Machine learning diagnostics</a> to know the basic methods of evaluating a model.</p>
+<p>When evaluating a model, we sometimes may not have enough data for cross validation. The method we use to solve this problem is <strong>K-fold Cross Validation</strong>.</p>
+<h2 id="K-fold-Cross-Validation"><a href="#K-fold-Cross-Validation" class="headerlink" title="K-fold Cross Validation"></a>K-fold Cross Validation</h2><p>K-fold Cross Validation is a technique used for hyperparameter tuning such that the model with the most optimal value of hyperparameters can be trained in a rather small data set. The advantage of this approach is that each example is used for validation exactly once in each test fold and all examples will be used for validation finally. The following are steps in K-fold Cross Validation:</p>
+<ol>
+<li>Split the dataset into training set and test set;</li>
+<li>Split training set into K-folds;</li>
+<li>Choose K-1 folds for training and 1 fold for validation;</li>
+<li>Train the model with specific hyperparameters in K-1 folds and validate it using the 1 fold;</li>
+<li>Record its performance;</li>
+<li>Choose another K-1 folds for training and 1 fold for validation;</li>
+<li>Repeat 4, 5, 6 until each of the K-fold get used for validation purpose;</li>
+<li>Evaluate the mean performance of K models;</li>
+<li>Step 3-8 for different hyperparameters; (optional)</li>
+<li>Choose the hyperparameters which result in best performance; (optional)</li>
+<li>Train the model using the whole training set.</li>
+</ol>
+<p><img src="/2023/05/03/ModelSelection/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. K-fold Cross Validation</center><br>
+
+<blockquote>
+<p>In general, we seldom use K-fold since it is time-consuming. We often set K 5 or 10.</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://vitalflux.com/k-fold-cross-validation-python-example/">K-Fold Cross Validation – Python Example</a></li>
+</ul>
+<h1 id="Model-capacity-and-data"><a href="#Model-capacity-and-data" class="headerlink" title="Model capacity and data"></a>Model capacity and data</h1><p>The <strong>model capacity</strong> is a model&#39;s ability to fit the function. It&#39;s very close for model complexity. High model capacity always means a deeper and larger neural network or more complex polynomials. Data or the complexity of data is determined by the size of dataset, the features number of each data, the diversity of samples, etc. Model capacity and data together determine the performance of a model:</p>
+<p><img src="/2023/05/03/ModelSelection/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Model capacity and data</center><br>
+
+<p>For neural networks, a simple way to evaluate model capacity is to compute the number of model parameters that the neural network can learn, or to evaluate the range of each parameter (w, b):</p>
+<p><img src="/2023/05/03/ModelSelection/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Evaluating model capacity</center>
+
+<h2 id="VC-dimension"><a href="#VC-dimension" class="headerlink" title="VC dimension*"></a>VC dimension*</h2><p>The VC dimension of a model is the maximum number of points that can be arranged so that shatters them. More formally, it is the maximum cardinal such that there exists a generally positioned data point set of cardinality can be shattered by. -- From Google</p>
+<p>For a perceptron with inputs of N dimensions, its VC dimension is $N+1$ or $O(N\log_2N)$, that is, it can classify $N+1$ ($O(N\log_2N)$) points. VC dimension can be used to evaluate the model capacity though it doesn&#39;t work well.</p>
+<h1 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h1><p>Dropout is another method of regularization besides <a href="/2023/04/05/SupervisedLearning/#Weight-decay">weight decay</a>. The motivation of dropout is that a good model should be robust to input perturbations. Dropout achieves this by adding noise to the ouptout of hidden layers:<br>$$<br>\text{dropout}[x]&#x3D;x&#39;<br>$$<br>where:<br>$$<br>x_i&#39;&#x3D;<br>\begin{cases}<br>    0, &amp;p \\<br>    \frac{x_i}{1-p}, &amp;1-p<br>\end{cases}<br>$$<br>$p$ is a hyperparameter that controls the probability of dropout. Usually, we set $p$ to 0.1, 0.5 or 0.9. The meaning of the formula above is that dropout layer randomly sets the output of the neurons in a hidden layer to 0 (with probability $p$) or $\frac{1}{1-p}$ times as much as the origin value (with probability $1-p$). This works because when one value is set to 0, it is equivalent to remove a neuron from the hidden layer, which makes the neural network a sub neural network. Since dropout is totally random, we are actually training a model using multiple neural networks, which will make the model more robust.</p>
+<p><img src="/2023/05/03/ModelSelection/4.png" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Dropout</center><br>
+
+<blockquote>
+<p>To ensure the accuracy, we must make sure that the expectation of dropout is equivalent to its original value:<br>$$\text{E}[x&#39;]&#x3D;x$$</p>
+</blockquote>
+<p>Since dropout is a kind of regularization, it only works when training models. When making predictions, we don&#39;t use dropout layer, like weight decay.</p>
+<blockquote>
+<p>In general, we use dropout in the dense layer of MLP.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/05/03/ModelSelection/" data-id="clzik0lcn005ov47khpnrceeb" data-title="Model Selection &amp; Hyperparameter Optimization" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-DiveIntoDeepLearningIntroduction" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/28/DiveIntoDeepLearningIntroduction/" class="article-date">
+  <time class="dt-published" datetime="2023-04-27T16:00:44.000Z" itemprop="datePublished">2023-04-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/28/DiveIntoDeepLearningIntroduction/">D2L: Environment Configuration and Introduction</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Environment-configuration"><a href="#Environment-configuration" class="headerlink" title="Environment configuration"></a>Environment configuration</h1><p>Firstly, install <code>anaconda</code> or <code>miniconda</code>. Then, create a virtual environment:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n d2l-zh -y python=3.8 pip</span><br><span class="line">conda actiave d2l-zh <span class="comment"># activate the virtual environment</span></span><br></pre></td></tr></table></figure>
+<p>Install dependent packages:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install jupyter d2l torch torchvision</span><br></pre></td></tr></table></figure>
+<p>If you want to remove a virtual environment, use:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n d2l-zh --all</span><br></pre></td></tr></table></figure>
+<p>Download the courseware from <a target="_blank" rel="noopener" href="http://zh-v2.d2l.ai/d2l-zh.zip">http://zh-v2.d2l.ai/d2l-zh.zip</a> and unzip it. Now you can enter your conda prompt, activate virtual environment <code>d2l-zh</code>, enter your courseware folder <code>d2l-zh</code> and enter <code>jupyter notebook</code> to open the folder with jupyter notebook.</p>
+<blockquote>
+<p><code>gym</code> and <code>scipy</code> should also be installed using <code>pip</code>.</p>
+</blockquote>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>This only includes what I&#39;m interested in:</p>
+<ul>
+<li>Convolutional neural network (CNN): LeNet, AlexNet, VGG, Inception, ResNet</li>
+<li>Recurrent neural network (RNN): RNN, GRU, LSTM, seq2seq</li>
+<li>Attention mechanism: Attention, Transformet</li>
+<li>Optimization: SGD, Momentum, Adam</li>
+<li>High performance computing</li>
+</ul>
+<h1 id="Derivative-of-matrix"><a href="#Derivative-of-matrix" class="headerlink" title="Derivative of matrix"></a>Derivative of matrix</h1><p>The essence of matrix derivative: Treat each element of numerator matrix as a function. Get its partial derivatives with respect to each element in denominator matrix. This is the nature of matrix derivative. However, to represent the results better, there are two most commonly used layout:</p>
+<ul>
+<li>Numerator layout: Preserve the layout of elements in the numerator $Y$. Replace each element with its derivatives with respect to denominator matrix $X^T$. This the more commonly used layout in machine learning.</li>
+<li>Denominator layout: Preserve the layout of elements in the denominator $X$. Replace each element with the derivatives of numerator $Y^T$ with respect to it.</li>
+</ul>
+<p>The numerator layout is the transpose of the denominator layout. For examples, if the dimension of $Y$ is (m, l) and the dimension of $X$ is (n, k). Then, the dimension of $\frac{\partial{Y}}{\partial{X}}$ is (m, l, k, n) in numerator layout and (n, k, l, m) in denominator layout. Usually:</p>
+<ul>
+<li>If a vector or matrix ($\frac{\partial{Y}}{\partial{x}}$) is differentiated with respect to a scalar, the numerator layout prevails.</li>
+<li>If a scalar is derived from a vector or matrix ($\frac{\partial{y}}{\partial{X}}$), the denominator layout prevails.</li>
+<li>For vector-to-vector derivatives ($\frac{\partial{Y}}{\partial{X}}$), there are some differences, but generally based on the Jacobian matrix of the <strong>numerator layout</strong>.</li>
+</ul>
+<p>Some interesting conclusions (numerator layout):</p>
+<table>
+<thead>
+<tr>
+<th align="center">$\vec{y}$</th>
+<th align="center">$a$</th>
+<th align="center">$\vec{x}$</th>
+<th align="center">$A\vec{x}$</th>
+<th align="center">$\vec{x}^TA$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$\frac{\partial{\vec{y}}}{\partial{\vec{x}}}$</td>
+<td align="center">$0$</td>
+<td align="center">$I$</td>
+<td align="center">$A$</td>
+<td align="center">$A^T$</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>$A\vec{x}&#x3D;(\vec{a}_1\cdot \vec{x},..., \vec{a}_n \cdot \vec{x})^T$, where $\vec{a}_i$ is the row vector of $A$</p>
+<p>$\vec{x}^TA&#x3D;(\vec{b}_1\cdot \vec{x},..., \vec{b}_n \cdot \vec{x})$ or $^T$, where $\vec{b}_j$ is the column vector of $A$</p>
+</blockquote>
+<h2 id="Chain-rules"><a href="#Chain-rules" class="headerlink" title="Chain rules"></a>Chain rules</h2><p>See <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI4MDYzNzg4Mw==&mid=2247513352&idx=2&sn=f633df720ae78007b4a6a8ec2c60e52a&chksm=ebb78ddcdcc004cac4f8d1677bb10040d01eaaf449d1034236ecd6e780d5c823e23e83b413cb&scene=27">Matrix derivative rules</a> to know more about chain rules in matrix derivative. In deep learning, the result of loss function is always a scalar (the result of softmax is actually a scalar). Therefore, it is enough for us to just master the chain rules for derivative of scalar to vector and the chain rules for detivation of vector to vector (numerator layout):</p>
+<ol>
+<li>Scalor to vector<br>$$\vec{x}_1\rightarrow\vec{x}_2\rightarrow...\rightarrow\vec{x}_n\rightarrow y$$<br>$$\frac{\partial{y}}{\partial\vec{x}_1}&#x3D;\frac{\partial{y}}{\partial{\vec{x}_n}}\cdot...\frac{\partial{\vec{x}_2}}{\partial{\vec{x}_1}}$$</li>
+<li>Vector to vector<br> $$\vec{x}_1\rightarrow\vec{x}_2\rightarrow...\rightarrow\vec{x}_n\rightarrow\vec{y}$$<br>$$\frac{\partial{\vec{y}}}{\partial\vec{x}_1}&#x3D;\frac{\partial{\vec{y}}}{\partial{\vec{x}_n}}\cdot...\frac{\partial{\vec{x}_2}}{\partial{\vec{x}_1}}$$</li>
+</ol>
+<p>It is easy to prove the correctness of these rules by evaluating the dimension of each item. To get the derivative using chain rules, there are two ways:</p>
+<ul>
+<li>Forward propagation: Calculate from $\vec{x}_2$ to $y$. T(n)&#x3D;n, S(n)&#x3D;1.</li>
+<li>Backward propagation: Calculate from $y$ to $\vec{x}_2$. T(n)&#x3D;n, S(n)&#x3D;n as we have to store the previous result for other parameters.</li>
+</ul>
+<p><img src="/2023/04/28/DiveIntoDeepLearningIntroduction/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold"> Fig. 1. Forward and backward propagation</center><br>
+
+<p>In general, backward propagation is more suitable for deep learning as it actually runs faster. In addition, a neural network can be easily represented as a computation graph as each neuron in the neural network is actually a node in computation graph:</p>
+<p><img src="/2023/04/28/DiveIntoDeepLearningIntroduction/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold"> Fig. 2. Neural network</center><br>
+
+<p>The computation graph it forms is like this:</p>
+<p><img src="/2023/04/28/DiveIntoDeepLearningIntroduction/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold"> Fig. 3. Computation graph</center><br>
+
+<p>For convenience, we make <code>bias=False</code>, that is, we only compute the gradients of <code>w</code>. Autograd will compute gradients from $\vec{a}^{[2]}$ to the leaf nodes. That is:</p>
+<p>$$\text{grad}[\vec{w}^{[2]}]&#x3D;\frac{\partial{a^{[2]}}}{\partial{\vec w^{[2]}}}$$</p>
+<p>$$\text{grad}[\vec{w}^{[1]}_{[i]}]&#x3D;\frac{\partial{a^{[2]}}}{\partial{\vec a^{[1]}}}\cdot\frac{\partial{\vec a^{[1]}}}{\partial{\vec w^{[1]} _ {[i]}}}$$</p>
+<p>Autograd computes from the top to bottom and store the gradients it computes before (like $\frac{\partial{a^{[2]}}}{\partial{\vec a^{[1]}}}$, autograd will store it in node $\vec a^{[1]}$) so that it doesn&#39;t need to compute it again.</p>
+<h1 id="Course-website"><a href="#Course-website" class="headerlink" title="Course website"></a>Course website</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/">DIVE INTO DEEP LEARNING</a></li>
+<li><a target="_blank" rel="noopener" href="https://courses.d2l.ai/zh-v2/">Course video</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/351687500">autograd1</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/321449610">autograd2</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/28/DiveIntoDeepLearningIntroduction/" data-id="clzik0lc8001zv47k0zn0bz8e" data-title="D2L: Environment Configuration and Introduction" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-LabsOfMachineLearningByAndrewNg3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/23/LabsOfMachineLearningByAndrewNg3/" class="article-date">
+  <time class="dt-published" datetime="2023-04-23T12:17:55.000Z" itemprop="datePublished">2023-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/23/LabsOfMachineLearningByAndrewNg3/">Lab: Unsupervised Learning, Recommenders, Reinforcement Learning</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="C3-W1-PracticeLab1"><a href="#C3-W1-PracticeLab1" class="headerlink" title="C3_W1_PracticeLab1"></a>C3_W1_PracticeLab1</h1><p>To finish this lab and make the code run efficiently, we must have a good understanding of the slicing and broadcasting of <code>numpy</code> so that we can implement vectorized code.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Exercise 1</span></span><br><span class="line">m = X.shape[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># You need to return the following variables correctly</span></span><br><span class="line">idx = np.zeros(X.shape[<span class="number">0</span>], dtype=<span class="built_in">int</span>)</span><br><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">    d = np.<span class="built_in">sum</span>((centroids - X[i])**<span class="number">2</span>, axis=<span class="number">1</span>) <span class="comment"># For each point, compute its distance to each centroid</span></span><br><span class="line">    idx[i] = np.argmin(d, axis=<span class="number">0</span>) <span class="comment"># For each point, choose the closest centroid</span></span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 2</span></span><br><span class="line">centroids = np.zeros((K, n))</span><br><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(K):</span><br><span class="line">    p_i = idx == i <span class="comment"># Get the index of points that were assigned to centroid i </span></span><br><span class="line">    x_i = X[p_i] <span class="comment"># Slice</span></span><br><span class="line">    centroids[i] = np.mean(x_i, axis=<span class="number">0</span>) <span class="comment"># Compute the mean value of each column</span></span><br><span class="line"><span class="comment">### END CODE HERE ##</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>axis</code> is the dimension or the label, that will be taken into account. In other words, in each step, the other dimensions will not change. Therefore, for a matrix <code>A</code>, <code>np.sum(A, axis=1)</code> compute the sum of each row (The first dimension does&#39;t change). </p>
+</blockquote>
+<p>See <a href="/2023/04/22/NumPy/">Numpy</a> to know more about it.</p>
+<h1 id="C3-W1-PracticeLab2"><a href="#C3-W1-PracticeLab2" class="headerlink" title="C3_W1_PracticeLab2"></a>C3_W1_PracticeLab2</h1><p>This lab is quite easy. However, there are some points to notice:</p>
+<ul>
+<li>Slicing and broadcasting of numpy;</li>
+<li>Divide by 0 problem.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Exercise 1</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">mu = np.mean(X, axis=<span class="number">0</span>) <span class="comment"># average</span></span><br><span class="line">var = np.mean((X- mu)**<span class="number">2</span>, axis=<span class="number">0</span>)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 2</span></span><br><span class="line">best_epsilon = <span class="number">0</span></span><br><span class="line">best_F1 = <span class="number">0</span></span><br><span class="line">prec = <span class="number">0.</span></span><br><span class="line">rec = <span class="number">0.</span></span><br><span class="line">F1 = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">step_size = (<span class="built_in">max</span>(p_val) - <span class="built_in">min</span>(p_val)) / <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epsilon <span class="keyword">in</span> np.arange(<span class="built_in">min</span>(p_val), <span class="built_in">max</span>(p_val), step_size):</span><br><span class="line"></span><br><span class="line">    <span class="comment">### START CODE HERE ### </span></span><br><span class="line">    actual_pos_num = np.<span class="built_in">sum</span>(y_val) + <span class="number">0.</span> <span class="comment"># Number of actual positive</span></span><br><span class="line">    pred_pos = (p_val&lt;epsilon) + <span class="number">0</span> <span class="comment"># Make predictions</span></span><br><span class="line">    pred_pos_num = np.<span class="built_in">sum</span>(pred_pos) + <span class="number">0.</span> <span class="comment"># Number of predict positive</span></span><br><span class="line">    tp = np.<span class="built_in">sum</span>(y_val[pred_pos==<span class="number">1</span>]) <span class="comment"># Number of true positive</span></span><br><span class="line">    <span class="keyword">if</span> pred_pos_num != <span class="number">0</span>:</span><br><span class="line">        prec = tp / pred_pos_num</span><br><span class="line">    <span class="keyword">if</span> actual_pos_num != <span class="number">0</span>:</span><br><span class="line">        rec = tp / actual_pos_num</span><br><span class="line">    <span class="keyword">if</span> prec != <span class="number">0</span> <span class="keyword">and</span> rec != <span class="number">0</span>:</span><br><span class="line">        F1 = <span class="number">2</span> * prec * rec / (prec + rec)</span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="C3-W2-PracticeLab1"><a href="#C3-W2-PracticeLab1" class="headerlink" title="C3_W2_PracticeLab1"></a>C3_W2_PracticeLab1</h1><p>This lab is about collaborative filtering. We only need to implement the cost function. The other parts are almost the same as linear regression.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Vectorized</span></span><br><span class="line"><span class="comment">### START CODE HERE ###  </span></span><br><span class="line">reg = lambda_ / <span class="number">2</span> * (np.<span class="built_in">sum</span>(W**<span class="number">2</span>) + np.<span class="built_in">sum</span>(X**<span class="number">2</span>)) <span class="comment"># regularization</span></span><br><span class="line">err = (X @ W.T + b - Y)**<span class="number">2</span></span><br><span class="line">J = np.<span class="built_in">sum</span>(err[R==<span class="number">1</span>]) / <span class="number">2</span> + reg</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="C3-W4-PracticeLab"><a href="#C3-W4-PracticeLab" class="headerlink" title="C3_W4_PracticeLab"></a>C3_W4_PracticeLab</h1><p>Install dependent libraries (it is recommended to install anaconda first):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pip install gym==0.25.1</span><br><span class="line">pip install pyvirtualdisplay</span><br><span class="line">conda install swig <span class="comment"># or pip install swig</span></span><br><span class="line">conda install -c conda-forge gym-box2d</span><br><span class="line">pip install imageio[ffmpeg]</span><br><span class="line">pip install [pyav]</span><br></pre></td></tr></table></figure>
+<p>Other configurations:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&#x27;KMP_DUPLICATE_LIB_OK&#x27;</span>]=<span class="string">&#x27;TRUE&#x27;</span></span><br><span class="line">os.environ[<span class="string">&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;</span>]=<span class="string">&#x27;2&#x27;</span></span><br><span class="line"><span class="keyword">import</span> warnings <span class="comment"># ignore some warnings</span></span><br><span class="line">warnings.filterwarnings(<span class="string">&quot;ignore&quot;</span>, category=Warning)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>If there is still a bug in <code>Display(visible=0, size=(840, 480)).start()</code>, you can just comment out this code.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Exercise 1</span></span><br><span class="line"><span class="comment"># Create the Q-Network</span></span><br><span class="line">q_network = Sequential([</span><br><span class="line">    <span class="comment">### START CODE HERE ### </span></span><br><span class="line">    Dense(units=<span class="number">64</span>, activation=<span class="string">&#x27;relu&#x27;</span>, input_dim=<span class="number">8</span>),</span><br><span class="line">    Dense(units=<span class="number">64</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">4</span>, activation=<span class="string">&#x27;linear&#x27;</span>)</span><br><span class="line">    <span class="comment">### END CODE HERE ### </span></span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the target Q^-Network</span></span><br><span class="line">target_q_network = Sequential([</span><br><span class="line">    <span class="comment">### START CODE HERE ### </span></span><br><span class="line">    Dense(units=<span class="number">64</span>, activation=<span class="string">&#x27;relu&#x27;</span>, input_dim=<span class="number">8</span>),</span><br><span class="line">    Dense(units=<span class="number">64</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">4</span>, activation=<span class="string">&#x27;linear&#x27;</span>)</span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">optimizer = Adam(learning_rate=ALPHA)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 2</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">y_targets = rewards + (<span class="number">1</span> - done_vals) * gamma * max_qsa</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">loss = MSE(q_values, y_targets)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/23/LabsOfMachineLearningByAndrewNg3/" data-id="clzik0lcg003tv47k1m6c8hv3" data-title="Lab: Unsupervised Learning, Recommenders, Reinforcement Learning" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-LabsOfMachineLearningByAndrewNg2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/23/LabsOfMachineLearningByAndrewNg2/" class="article-date">
+  <time class="dt-published" datetime="2023-04-23T12:13:11.000Z" itemprop="datePublished">2023-04-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/23/LabsOfMachineLearningByAndrewNg2/">Lab: Advanced Learning Algorithms</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="C2-Week1"><a href="#C2-Week1" class="headerlink" title="C2_Week1"></a>C2_Week1</h1><p>As usual, modify:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.style.use(<span class="string">&#x27;./deeplearning.mplstyle&#x27;</span>) -&gt; plt.style.use(<span class="string">&#x27;deeplearning.mplstyle&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>The same operation should also be applied to <code>lab_coffee_utils.py</code>, <code>lab_neurons_utils.py</code> and <code>lab_utils_common.py</code>. </p>
+<p>Then, install tensorflow. Maybe you should run you anaconda prompt as a administrator. When running the code of labs, once using the module from tensorflow, jupyter notebook keeps saying: <strong>The kernel has died</strong>. When checking the command line of the prompt, there may be one warning and one error:</p>
+<p><img src="/2023/04/23/LabsOfMachineLearningByAndrewNg2/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Warning</center><br>
+
+<p><img src="/2023/04/23/LabsOfMachineLearningByAndrewNg2/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Error</center><br>
+
+<p>For the warning, it indicates that tensorflow could run faster by using some CPU instructions. We can add the following code to the beginning of the first code cell to ignore this warning:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;</span>]=<span class="string">&#x27;2&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>It is the error that leads the kernel to die. The error occurs because there are more than one <code>libiomap5md.dll</code> files. We can add the following code to the beginning of the first code cell to solve it:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&#x27;KMP_DUPLICATE_LIB_OK&#x27;</span>]=<span class="string">&#x27;TRUE&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>Now, we can run all the labs normally. Labs in C2_Week1 focus on introducing tensorflow, see <a href="/2023/04/12/Tensorflow/">Tensorflow</a> to know more about it.</p>
+<h1 id="C2-W1-PracticeLab"><a href="#C2-W1-PracticeLab" class="headerlink" title="C2_W1_PracticeLab"></a>C2_W1_PracticeLab</h1><p>Exercise 1 is quite simple, it is almost the same as <a href="/2023/04/12/Tensorflow/#Create-the-model">Create tensorflow model</a>.</p>
+<p>Exercise 2 and exercise 3 are quite interesting. They both implement forward propagation using numpy, that is, making predictions.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Non-vectorized</span></span><br><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(units):</span><br><span class="line">        a_out[j] = g(np.dot(a_in.T, W[:, j]) + b[j])</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Vectorized</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">    A_out = g(A_in @ W + b)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="C2-Week2"><a href="#C2-Week2" class="headerlink" title="C2_Week2"></a>C2_Week2</h1><p>Just following its instructions is okay. The last part of lab <strong>Multi-class Classification</strong>, which shows how the new features created by neurons are like, is rather thought-provoking. It reveals that neurons of hidden layers have learnt something about the problem. In fact, they have partly partition the dataset:</p>
+<p><img src="/2023/04/23/LabsOfMachineLearningByAndrewNg2/3.png" alt="3"></p>
+<p>See <a href="/2023/04/12/Tensorflow/#Optimization-for-softmax">Multiclass classification</a> to know more about relu, softmax and multiclass classification.</p>
+<h1 id="C2-W2-PracticeLab"><a href="#C2-W2-PracticeLab" class="headerlink" title="C2_W2_PracticeLab"></a>C2_W2_PracticeLab</h1><p>Quite easy:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Exercise 1</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">e = np.exp(z)</span><br><span class="line">a = e / np.<span class="built_in">sum</span>(e)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 2</span></span><br><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line">Dense(units=<span class="number">25</span>, activation=<span class="string">&#x27;relu&#x27;</span>, input_dim=<span class="number">400</span>),</span><br><span class="line">Dense(units=<span class="number">15</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">Dense(units=<span class="number">10</span>, activation=<span class="string">&#x27;linear&#x27;</span>)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="C2-W3-PracticeLab"><a href="#C2-W3-PracticeLab" class="headerlink" title="C2_W3_PracticeLab"></a>C2_W3_PracticeLab</h1><p>This lab is still very easy but it is quite useful. It use real data and curve to show us how to choose better $d$ and $\lambda$ using dev set and training set.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Exercise 1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">    err += (yhat[i] - y[i])**<span class="number">2</span></span><br><span class="line">err /= <span class="number">2</span> * m</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 2</span></span><br><span class="line">m = <span class="built_in">len</span>(y)</span><br><span class="line">incorrect = <span class="number">0.</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">    <span class="keyword">if</span> y[i] != yhat[i]:</span><br><span class="line">        incorrect += <span class="number">1</span></span><br><span class="line">cerr = incorrect / m</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 3</span></span><br><span class="line">model = Sequential(</span><br><span class="line">    [</span><br><span class="line">        <span class="comment">### START CODE HERE ### </span></span><br><span class="line">        Dense(units=<span class="number">120</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">        Dense(units=<span class="number">40</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">        Dense(units=<span class="number">6</span>, activation=<span class="string">&#x27;linear&#x27;</span>)</span><br><span class="line">        <span class="comment">### END CODE HERE ### </span></span><br><span class="line"></span><br><span class="line">    ], name=<span class="string">&quot;Complex&quot;</span></span><br><span class="line">)</span><br><span class="line">model.<span class="built_in">compile</span>(</span><br><span class="line">    <span class="comment">### START CODE HERE ### </span></span><br><span class="line">    loss=SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>),</span><br><span class="line">    optimizer=Adam(learning_rate=<span class="number">0.01</span>),</span><br><span class="line">    <span class="comment">### END CODE HERE ### </span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 4</span></span><br><span class="line">model_s = Sequential(</span><br><span class="line">    [</span><br><span class="line">        <span class="comment">### START CODE HERE ### </span></span><br><span class="line">        Dense(units=<span class="number">6</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">        Dense(units=<span class="number">6</span>, activation=<span class="string">&#x27;linear&#x27;</span>)</span><br><span class="line">        <span class="comment">### END CODE HERE ### </span></span><br><span class="line">    ], name = <span class="string">&quot;Simple&quot;</span></span><br><span class="line">)</span><br><span class="line">model_s.<span class="built_in">compile</span>(</span><br><span class="line">    <span class="comment">### START CODE HERE ### </span></span><br><span class="line">    loss=SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>),</span><br><span class="line">    optimizer=Adam(learning_rate=<span class="number">0.01</span>),</span><br><span class="line">    <span class="comment">### START CODE HERE ### </span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 5</span></span><br><span class="line">model_r = Sequential(</span><br><span class="line">    [</span><br><span class="line">        <span class="comment">### START CODE HERE ### </span></span><br><span class="line">        Dense(units=<span class="number">120</span>, activation=<span class="string">&#x27;relu&#x27;</span>, kernel_regularizer=tf.keras.regularizers.l2(<span class="number">0.1</span>)),</span><br><span class="line">        Dense(units=<span class="number">40</span>, activation=<span class="string">&#x27;relu&#x27;</span>, kernel_regularizer=tf.keras.regularizers.l2(<span class="number">0.1</span>)),</span><br><span class="line">        Dense(units=<span class="number">6</span>, activation=<span class="string">&#x27;linear&#x27;</span>)</span><br><span class="line">        <span class="comment">### START CODE HERE ### </span></span><br><span class="line">    ], name= <span class="literal">None</span></span><br><span class="line">)</span><br><span class="line">model_r.<span class="built_in">compile</span>(</span><br><span class="line">    <span class="comment">### START CODE HERE ### </span></span><br><span class="line">    loss=SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>),</span><br><span class="line">    optimizer=Adam(learning_rate=<span class="number">0.01</span>),</span><br><span class="line">    <span class="comment">### START CODE HERE ### </span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h1 id="C2-W4-PracticeLab"><a href="#C2-W4-PracticeLab" class="headerlink" title="C2_W4_PracticeLab"></a>C2_W4_PracticeLab</h1><p>To finish this lab, <code>pydot</code> is required. Install it using:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip intsall pydot</span><br><span class="line">or</span><br><span class="line">conda install pydot</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Exercise 1</span></span><br><span class="line">entropy = <span class="number">0.</span></span><br><span class="line">length = <span class="built_in">len</span>(y)</span><br><span class="line">e_count = np.<span class="built_in">sum</span>(y) + <span class="number">0.</span></span><br><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line"><span class="keyword">if</span> length != <span class="number">0</span> <span class="keyword">and</span> e_count != <span class="number">0</span> <span class="keyword">and</span> e_count != length:</span><br><span class="line">    p1 = e_count / length</span><br><span class="line">    entropy = -p1 * np.log2(p1) - (<span class="number">1</span> - p1) * np.log2(<span class="number">1</span> - p1)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 2</span></span><br><span class="line">left_indices = []</span><br><span class="line">right_indices = []</span><br><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> node_indices:</span><br><span class="line">    <span class="keyword">if</span> X[i][feature] == <span class="number">1</span>:</span><br><span class="line">        left_indices.append(i)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        right_indices.append(i)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 3</span></span><br><span class="line">information_gain = <span class="number">0</span></span><br><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line">length_node = <span class="built_in">len</span>(y_node) + <span class="number">0.</span></span><br><span class="line"><span class="keyword">if</span> length_node != <span class="number">0</span>:</span><br><span class="line">    length_left = <span class="built_in">len</span>(y_left)</span><br><span class="line">    weight_left = length_left / length_node</span><br><span class="line">    h_n = compute_entropy(y_node)</span><br><span class="line">    h_left = compute_entropy(y_left)</span><br><span class="line">    h_right = compute_entropy(y_right)</span><br><span class="line">    information_gain = h_n - weight_left * h_left - (<span class="number">1</span> - weight_left) * h_right</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Exercise 4</span></span><br><span class="line">best_feature = -<span class="number">1</span></span><br><span class="line">biggest_gain = <span class="number">0.</span></span><br><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line"><span class="keyword">for</span> feature <span class="keyword">in</span> <span class="built_in">range</span>(num_features):</span><br><span class="line">    current_gain = compute_information_gain(X, y, node_indices, feature)</span><br><span class="line">    <span class="keyword">if</span> (current_gain &gt; biggest_gain):</span><br><span class="line">        best_feature = feature</span><br><span class="line">        biggest_gain = current_gain</span><br><span class="line"><span class="comment">### END CODE HERE ##</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Some bugs occur when drawing the picture, and I don&#39;t know how to fit it... Just commenting out the relevant code is ok.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/23/LabsOfMachineLearningByAndrewNg2/" data-id="clzik0lci004ev47k9hj19ywr" data-title="Lab: Advanced Learning Algorithms" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-LabsOfMachineLearningByAndrewNg1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/21/LabsOfMachineLearningByAndrewNg1/" class="article-date">
+  <time class="dt-published" datetime="2023-04-21T15:35:46.000Z" itemprop="datePublished">2023-04-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/21/LabsOfMachineLearningByAndrewNg1/">Lab: Supervised Machine Learning - Regression and Classification</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Optional-labs-W1"><a href="#Optional-labs-W1" class="headerlink" title="Optional labs - W1"></a>Optional labs - W1</h1><h2 id="Lab01-Lab02"><a href="#Lab01-Lab02" class="headerlink" title="Lab01 - Lab02"></a>Lab01 - Lab02</h2><p>Just follow its instructions.</p>
+<h2 id="Lab03"><a href="#Lab03" class="headerlink" title="Lab03"></a>Lab03</h2><p>There is a markdown syntax error in <strong>Notation</strong> paragraph:</p>
+<p><img src="/2023/04/21/LabsOfMachineLearningByAndrewNg1/1.png" alt="1"></p>
+<p>To solve this, turn:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|: ------------|: ------------------------------------------------------------||</span><br></pre></td></tr></table></figure>
+<p>to</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|:---:|:---:|:---:|</span><br></pre></td></tr></table></figure>
+<p>In <strong>Tools</strong> paragraph, if you have put <code>deeplearning.mplstyle</code> into the same folder of your labs&#39;file, but code <code>plt.style.use(&#39;./deeplearning.mplstyle&#39;)</code> still can&#39;t run, you should delete <code>./</code> in <code>./deeplearning.mplstyle</code>. If your os is Linux, this problem will not occur.</p>
+<h2 id="Lab04"><a href="#Lab04" class="headerlink" title="Lab04"></a>Lab04</h2><p>In <strong>Tools</strong> paragraph, code <code>%matplotlib widget</code> can&#39;t run because of the lack of <strong>ipympl</strong> even though you installed jupyter using anaconda. Maybe the reason is that the version of ipympl is not compatible with jupyter. To solve this, run your anaconda prompt as a administrator and:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda-forge ipympl</span><br></pre></td></tr></table></figure>
+
+<p>The problem of <code>./deeplearning.mplstyle</code> will still occur, modify it as before. In addition, you should also modify the same path in <code>lab_utils_commonpy</code> and <code>lab_utils_uni.py</code>. For the following labs, you should keep doing so once you encounter <code>./deeplearning.mplstyle</code>.</p>
+<h2 id="Lab05"><a href="#Lab05" class="headerlink" title="Lab05"></a>Lab05</h2><p>You may run into <code>int</code> overflow when running <code>plt_divergence(p_histm J_hist, x_train, y_train)</code>. Solution:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in file lab_utils_uni.py</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># line 300: add np.int64</span></span><br><span class="line">w_array = np.arange(-<span class="number">70000</span>, <span class="number">70000</span>, <span class="number">1000</span>, dtype=np.int64)</span><br><span class="line"><span class="comment"># line 301: add np.int64</span></span><br><span class="line">cost = np.zeros_like(w_array, dtype=np.int64)</span><br><span class="line"><span class="comment"># line 319: add np.int64</span></span><br><span class="line">z=np.zeros_like(tmp_b, dtype=np.int64)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Optional-labs-W2"><a href="#Optional-labs-W2" class="headerlink" title="Optional labs - W2"></a>Optional labs - W2</h1><h2 id="Lab01"><a href="#Lab01" class="headerlink" title="Lab01"></a>Lab01</h2><p>See <a href="/2023/04/22/NumPy/">NumPy</a>.</p>
+<h2 id="Lab02"><a href="#Lab02" class="headerlink" title="Lab02"></a>Lab02</h2><p>The same bugs as <a href="#Lab03">Supervised Machine Learning.Optional labs - W1.Lab03</a>.</p>
+<h2 id="Lab03-1"><a href="#Lab03-1" class="headerlink" title="Lab03"></a>Lab03</h2><p>The same bugs as <a href="#Lab03">Supervised Machine Learning.Optional labs - W1.Lab03</a>.</p>
+<h2 id="Lab04-1"><a href="#Lab04-1" class="headerlink" title="Lab04"></a>Lab04</h2><p>Just follow its instructions.</p>
+<h2 id="Lab05-Lab06"><a href="#Lab05-Lab06" class="headerlink" title="Lab05 - Lab06"></a>Lab05 - Lab06</h2><p>See <a href="/2023/04/22/Scikit-learn/">Scikit-learn</a>.</p>
+<h1 id="Optional-labs-W3"><a href="#Optional-labs-W3" class="headerlink" title="Optional labs - W3"></a>Optional labs - W3</h1><h2 id="Lab01-Lab09-Soln"><a href="#Lab01-Lab09-Soln" class="headerlink" title="Lab01 - Lab09_Soln"></a>Lab01 - Lab09_Soln</h2><p>Just follow its instructions.</p>
+<h2 id="Lab01-user"><a href="#Lab01-user" class="headerlink" title="Lab01_user"></a>Lab01_user</h2><p>Answer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g = <span class="number">1</span> / (<span class="number">1</span> + np.exp(-z))</span><br></pre></td></tr></table></figure>
+
+<h2 id="Lab02-user"><a href="#Lab02-user" class="headerlink" title="Lab02_user"></a>Lab02_user</h2><p>Answer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x1 = <span class="number">3</span> - x0</span><br></pre></td></tr></table></figure>
+<p>Besides, there is a bug in <code>lab_utils.plot_data</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add the following codes after neg = y == 0</span></span><br><span class="line">pos = pos.reshape(-<span class="number">1</span>,)  <span class="comment"># work with 1D or 1D y vectors</span></span><br><span class="line">neg = neg.reshape(-<span class="number">1</span>,)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Lab03-user"><a href="#Lab03-user" class="headerlink" title="Lab03_user"></a>Lab03_user</h2><p>Answer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">    <span class="comment">### START CODE HERE ### </span></span><br><span class="line">    g = sigmoid(X[i] @ w + b)</span><br><span class="line">    cost -= y[i] * np.log(g) + (<span class="number">1</span> - y[i]) * np.log(<span class="number">1</span> - g)</span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>@</code> can represent matrix multiplication.</p>
+</blockquote>
+<h2 id="Lab04-user"><a href="#Lab04-user" class="headerlink" title="Lab04_user"></a>Lab04_user</h2><p>Non-vectorized answer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">    err = sigmoid(X[i] @ w + b) - y[i]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        dJdw[j] += err * X[i][j]</span><br><span class="line">    dJdb += err</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>For each example, get its error and apply it to different $w_j$.</p>
+</blockquote>
+<p>Vectorized answer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">z = X @ w + b</span><br><span class="line">g = sigmoid(z)</span><br><span class="line">err = g - y</span><br><span class="line">dJdw = <span class="number">1</span> / m * (np.dot(X.T, err))</span><br><span class="line">dJdb = <span class="number">1</span> / m * (np.<span class="built_in">sum</span>(err))</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Get error of all examples simultaneously.</p>
+</blockquote>
+<h2 id="Lab05-user"><a href="#Lab05-user" class="headerlink" title="Lab05_user"></a>Lab05_user</h2><p>See <a href="/2023/04/22/Scikit-learn/">Scikit-learn</a>.</p>
+<h2 id="Lab06-user"><a href="#Lab06-user" class="headerlink" title="Lab06_user"></a>Lab06_user</h2><p>This lab realize multiclass classification using multiple binary classification models, that is <strong>One Vs All algorithm</strong>. In fact, its core idea is quite simple. For an example with $n$ possible $y$, represent its label using a vector with $n$ binary elements, only one of which is <code>1</code>. Then, we just need to train $n$ binary classification models and choose the biggest prediction of them as $\widehat{y}$.</p>
+<p>Answer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># step 1</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">w_init = np.zeros((<span class="number">2</span>, <span class="number">1</span>))</span><br><span class="line">b_init = <span class="number">0.</span></span><br><span class="line"><span class="comment"># call gradient descent</span></span><br><span class="line">w_final, b_final,_,_ = gradient_descent(X_train, yc, w_init, b_init, </span><br><span class="line">                                        compute_cost_logistic_matrix,</span><br><span class="line">                                        compute_gradient_logistic_matrix,</span><br><span class="line">                                        predict_logistic_matrix, <span class="number">1e-2</span>, <span class="number">1000</span>)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># make prediction</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">z_wb = X @ W + b</span><br><span class="line">G = sigmoid(z_wb)</span><br><span class="line">pclass = np.argmax(G, axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Second Test Case</span></span><br><span class="line"><span class="comment"># plot the decison boundary. Pass in our models - the w&#x27;s and b&#x27;s assocated with each model and predict_mc</span></span><br><span class="line">plot_mc_decision_boundary(X_train,<span class="number">3</span>, W_models, b_models, predict_mc)</span><br><span class="line">plt.title(<span class="string">&quot;model decision boundary vs original training data&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># add the original data to the decison boundary</span></span><br><span class="line">plot_mc_data(X_train,y_train,[<span class="string">&quot;blob one&quot;</span>, <span class="string">&quot;blob two&quot;</span>, <span class="string">&quot;blob three&quot;</span>], legend=<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="Lab07-user"><a href="#Lab07-user" class="headerlink" title="Lab07_user"></a>Lab07_user</h2><p>Just follow its instructions. However, there is also a bug because of the update of <code>sklearn</code>. We should turn <code>penalty=&#39;none&#39;</code> to <code>penalty=None</code>.</p>
+<p><code>map_feature</code> is a very interesting function:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">map_feature</span>(<span class="params">X1, X2, degree</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Feature mapping function to polynomial features    </span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    X1 = np.atleast_1d(X1)</span><br><span class="line">    X2 = np.atleast_1d(X2)</span><br><span class="line"></span><br><span class="line">    out = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, degree+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>):</span><br><span class="line">            out.append((X1**(i-j) * (X2**j)))</span><br><span class="line">           </span><br><span class="line">    <span class="keyword">return</span> np.stack(out, axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>It produces polynomials of degree up to <code>degree</code> formed by <code>X1</code> and <code>X2</code>. That is, if <code>degree=3</code>:<br>$$(x_1+x_2)+(x_1^2+x_1x_2+x_2^2)+(x_1^3+x_1^2x_2+x_1x_2^2+x_2^3)$$</p>
+<h2 id="Lab08-user"><a href="#Lab08-user" class="headerlink" title="Lab08_user"></a>Lab08_user</h2><p>Answer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">f_wb = sigmoid(X @ w + b) <span class="comment"># m*1</span></span><br><span class="line">cost += <span class="number">1</span> / m * (np.dot(-y, np.log(f_wb)) - np.dot(<span class="number">1</span> - y, np.log(<span class="number">1</span> - f_wb))) + lambda_ / <span class="number">2</span> * np.<span class="built_in">sum</span>((w**<span class="number">2</span>))</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Lab09-user"><a href="#Lab09-user" class="headerlink" title="Lab09_user"></a>Lab09_user</h2><p>Answer:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Looping version</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">    err = np.<span class="built_in">sum</span>(sigmoid(X[i] @ w + b) - y[i])</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        dJdw[j] += err * X[i][j]</span><br><span class="line">    dJdb += err</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Vectorized version</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">f_wb = sigmoid(X @ w + b) <span class="comment"># m*1</span></span><br><span class="line">err = f_wb - y <span class="comment"># m*1</span></span><br><span class="line">dJdw = <span class="number">1</span> / m * np.dot(X.T, err) + lambda_ * w</span><br><span class="line">dJdb = np.<span class="built_in">sum</span>(err) / m</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="PracticeLab01"><a href="#PracticeLab01" class="headerlink" title="PracticeLab01"></a>PracticeLab01</h1><p>This lab requires us to implement the <code>compute_cost</code> and <code>compute_gradient</code> function of a linear regression model with only one feature. It is quite simple:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># compute_cost</span></span><br><span class="line"><span class="comment">### START CODE HERE ###  </span></span><br><span class="line">cost = <span class="number">1</span> / (<span class="number">2</span> * m) * (w * x + b - y)**<span class="number">2</span> <span class="comment"># m*1</span></span><br><span class="line">total_cost = np.<span class="built_in">sum</span>(cost) </span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># compute_gradient</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">f_wb = w * x + b <span class="comment"># m*1</span></span><br><span class="line">err = f_wb - y <span class="comment"># m*1</span></span><br><span class="line">dj_dw = err.T @ x / m</span><br><span class="line">dj_db = np.<span class="built_in">sum</span>(err) / m</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="PracticeLab02"><a href="#PracticeLab02" class="headerlink" title="PracticeLab02"></a>PracticeLab02</h1><p>This lab requires us to implement a logistic regression model with regularization. It is a bit more complicated than PracticeLab01, but it&#39;s still easy to finish.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sigmoid</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">g = <span class="number">1</span> / (<span class="number">1</span> + np.exp(-z))</span><br><span class="line"><span class="comment">### END SOLUTION ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># compute_cost</span></span><br><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line">f_wb = sigmoid(X @ w + b) <span class="comment"># m*1</span></span><br><span class="line">total_cost = <span class="number">1</span> / m * (np.dot(-y.T, np.log(f_wb)) - np.dot(<span class="number">1</span> - y.T, np.log(<span class="number">1</span> - f_wb)))</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># compute_gradient</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">f_wb = sigmoid(X @ w + b)</span><br><span class="line">err = f_wb - y</span><br><span class="line">dj_dw = <span class="number">1</span> / m * (X.T @ err)</span><br><span class="line">dj_db = <span class="number">1</span> / m * np.<span class="built_in">sum</span>(err)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># predict</span></span><br><span class="line"><span class="comment">### START CODE HERE ### </span></span><br><span class="line">y_pred = sigmoid(X @ w + b)</span><br><span class="line">p = <span class="number">0</span> + (y_pred &gt;= <span class="number">0.5</span>)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># compute_cost_reg</span></span><br><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line">reg_cost = np.<span class="built_in">sum</span>(w**<span class="number">2</span>)</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># compute_gradient_reg</span></span><br><span class="line"><span class="comment">### START CODE HERE ###     </span></span><br><span class="line">dj_dw += lambda_  / m * w</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/21/LabsOfMachineLearningByAndrewNg1/" data-id="clzik0lcf003qv47k97e9g44v" data-title="Lab: Supervised Machine Learning - Regression and Classification" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ReinforcementLearning" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/19/ReinforcementLearning/" class="article-date">
+  <time class="dt-published" datetime="2023-04-19T15:52:43.000Z" itemprop="datePublished">2023-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/19/ReinforcementLearning/">Reinforcement Learning</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Reinforcement learning differs from supervised learning in not needing labelled input&#x2F;output pairs to be presented, and in not needing sub-optimal actions to be explicitly corrected. Instead the focus is on finding a balance between exploration (of uncharted territory) and exploitation (of current knowledge).</p>
+<p>The environment is typically stated in the form of a Markov decision process (MDP), because many reinforcement learning algorithms for this context use dynamic programming techniques. The main difference between the classical dynamic programming methods and reinforcement learning algorithms is that the latter do not assume knowledge of an exact mathematical model of the MDP and they target large MDPs where exact methods become infeasible.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Reinforcement_learning">wiki: Reinforcement learning</a></p>
+</blockquote>
+<h1 id="Basic-concepts"><a href="#Basic-concepts" class="headerlink" title="Basic concepts"></a>Basic concepts</h1><ul>
+<li>environment $E$: The environment where a agent can perceive.</li>
+<li>states $s$: A description of the environment perceived by a agent. It is a subset of state space $S$, that is $s\in S$.</li>
+<li>actions $a$: The action a agent can take. All actions form action space $A$, $a\in{A}$.</li>
+<li>rewards $r$: The reward a agent gets after it takes a action.</li>
+<li>discount factor $\gamma$: A number close to 1. It discounts the gains that require more actions and reduces the losses that require more actions.</li>
+<li>return: The sum of reward weighted by $\gamma$.<br>$$a_1+\gamma{a_2}+...+\gamma{^n}a_{n-1}$$</li>
+<li>policy $\pi(s)$: A policy $a&#x3D;\pi(s)$ decides the action that a agent in $s_i$ state ought to take to get to next state $s_{i+1}$ so as to maximize the return.</li>
+</ul>
+<p><img src="/2023/04/19/ReinforcementLearning/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. A loop of reinforcement learning</center><br>
+
+<p>The figure above shows the procedure of reinforcement learning. A agent in state $s_i$ takes action to affect the environment or itself (The agent itself is actually a part of the environment), gets a certain reward and reach new state $s_{i+1}$. The goal of reinforcement learning is to fina a policy $\pi$ that tells the agent what action to take in every state so as to maximize the return. Nearly all reforcement learning assignment can be described as <strong>Markov decision process (MDP)</strong>. MDP is a process that the future only depends on the <strong>current state $s_i$</strong> and have nothing to do with the prior states or how things get to the current state.</p>
+<h1 id="State-action-value-function"><a href="#State-action-value-function" class="headerlink" title="State-action value function"></a>State-action value function</h1><p>State-action value function $Q(s,a)$, which is also called Q-function, $Q^*$ or optimal Q function, is a function that computes the maximum return a agent can get if it is in state $s$ and take action $a$ (once). After the agent takes action $a$, its state will become $s&#39;$ and the actions it could take in state $s&#39;$ are $a&#39;$. It is easy to realize that the computing of $Q$ is actually a dynamic programming process. In reinforcement learning, the method we use to count $Q$ is called <strong>bellman equation</strong>:</p>
+<p>$$Q(s,a)&#x3D;R(s)+{\gamma}\max_{a&#39;}Q(s&#39;,a&#39;)\tag{1}$$<br>where $R(s)$ is called immediate reward, the second part is the return weighted by $\gamma$ from behaving optimally starting from state $s&#39;$.</p>
+<h2 id="Random-stochastic-environment"><a href="#Random-stochastic-environment" class="headerlink" title="Random (stochastic) environment"></a>Random (stochastic) environment</h2><p>In practice, we can&#39;t guarantee that the agent will execute the actions precisely due to the randomness of the environment. In order to get a more precise value of return, we have to take this randomness into account:</p>
+<p>$$<br>Q(s,a)&#x3D;R(s)+{\gamma}E[\max_{a&#39;}Q(s&#39;,a&#39;)]\tag{2}<br>$$<br>$E$ means expectation. When taking randomness into account, the state after taking action $a$ is uncertain. Therefore, what the second term of $Q(s,a)$ computes is the weighted average of the maximum returns weighted by $\gamma$ of the different states the agent may reach after taking action $a$.</p>
+<h1 id="Continuous-state"><a href="#Continuous-state" class="headerlink" title="Continuous state"></a>Continuous state</h1><p>In practice, the state of a agent is a vector whose values are continuous. For examples, in lab <em>Lunar Lander</em>, the state of a lunar lander can be described as:<br>$$<br>s&#x3D;[x,y,\dot{x},\dot{y},\theta,\dot{\theta},l,r]<br>$$<br>where $x$, $y$ and $\theta$ are its position since this is a plane problem. $\dot{x}$, $\dot{y}$, $\dot{\theta}$ are its velocity of different directions. $l$ and $r$ (value 0 or 1) indicates whether the left or right leg of lunar lander has landed.</p>
+<p><img src="/2023/04/19/ReinforcementLearning/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Lunar Lander</center>
+
+<h2 id="DQN-algorithm"><a href="#DQN-algorithm" class="headerlink" title="DQN algorithm"></a>DQN algorithm</h2><p>An algorithm to solve this type of reinforcement learning is DQN algorithm or Deep Q-Network. It is also called deep reinforcement learning as it uses neural networks to solve reinforcement learning problems. Its core idea is to compute $Q(s,a)$ using neural networks:</p>
+<p><img src="/2023/04/19/ReinforcementLearning/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Deep reinforcement learning</center><br>
+
+<p>where $s$ is the state vector and $a$ is the action vector. In lunar lander, $a$ has four dimensions: do nothing, left thruster, right thruster and main thruster. Since it is actually a supervised learning model, we have to feed it training set $(s,a,Q)$ to get the mapping relationship between $s \And a$ and $Q$. According to bellman equation:</p>
+<p>$$Q(s,a)&#x3D;R(s)+{\gamma}\max_{a&#39;}Q(s&#39;,a&#39;)$$</p>
+<p>$Q$ is decided by $R(s)$ and $s&#39;$ since we must take all the action $a&#39;$ into account, that is, once we get $(s,a,R(s),s&#39;)$, we get $(s,a,Q)$. Therefore, the steps of DQN are:</p>
+<ol>
+<li>Initialize the neural netwrok randomly as a guess of $Q(s,a)$;</li>
+<li>Simulate the behaviors of the agent to get a number of $(s,a,R(s),s&#39;)$;</li>
+<li>Feed $(s&#39;,a&#39;)$ to the neural network to <strong>predict</strong> $Q(s&#39;,a&#39;)$;</li>
+<li>Create training set using<br>$$x&#x3D;(s,a) \And Q(s,a)&#x3D;R(s)+{\gamma}\max_{a&#39;}Q(s&#39;,a&#39;)$$</li>
+<li>Train the neural network using training set created above, get $Q_{new}$;</li>
+<li>Set $Q&#x3D;Q_{new}$.</li>
+</ol>
+<blockquote>
+<p>That is, produce some $(s,a,R(s),s&#39;)$ and guess a structure of $Q$ ($Q$ is the neural network). Use this $Q$ to predict $(s,a,Q)$. Use $(s,a,Q)$ to train the neural network and fine tune $Q$.</p>
+</blockquote>
+<p>In the architecture above, for each value of $a$ in a certain state $s$, we have to predict it respectively. A more effective architecture is to just feed $s$ and produce $Q$ of all values of $a$:</p>
+<p><img src="/2023/04/19/ReinforcementLearning/4.png" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Improved neural network architecture</center>
+
+<h2 id="epsilon-greedy-policy"><a href="#epsilon-greedy-policy" class="headerlink" title="$\epsilon$-greedy policy"></a>$\epsilon$-greedy policy</h2><p>When simulating the behaviors of the agent, instead of simulating its action randomly, it is more advisable to choose a action that will maximizes $Q(s,a)$. However, choosing the action that maximizes $Q(s,a)$ all the time may reduce the robustness of the agent or miss some good choices. A policy to solve this is $\epsilon$-greedy policy:</p>
+<ul>
+<li>With probability $1-\epsilon$, pick the action $a$ that maximizes $Q(s,a)$;</li>
+<li>With probability $\epsilon$, pick an action $a$ randomly.</li>
+</ul>
+<blockquote>
+<p>The first option is called &#39;Exploitation&#39; and the second option is called &#39;Exploration&#39;. As what the wiki in the <a href="#Introduction">Introduction</a> says, reinforcement learning focuses on the balance between exploration and exploitation.</p>
+</blockquote>
+<p>It is recommended to start $\epsilon$ high to explore more so as to enrich the robustness and then slightly reduce $\epsilon$.</p>
+<h2 id="Algorithm-refinement"><a href="#Algorithm-refinement" class="headerlink" title="Algorithm refinement"></a>Algorithm refinement</h2><h3 id="Mini-batch"><a href="#Mini-batch" class="headerlink" title="Mini-batch"></a>Mini-batch</h3><p>When the training set is too large, it is advisable to use different subsets instead of the whole set in each iteration. This will accelerate the computation of both $J$ and derivatives. Such methods can also be used in regression model:</p>
+<p><img src="/2023/04/19/ReinforcementLearning/5.png" alt="5"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 5. Mini-batch</center><br>
+
+<blockquote>
+<p>Tensorflow trains model using mini-batch.</p>
+</blockquote>
+<h3 id="Soft-update"><a href="#Soft-update" class="headerlink" title="Soft update"></a>Soft update</h3><p>When updating $Q$, we can&#39;t guarantee that $Q_{new}$ is better than $Q$. Therefore, it is recommended to keep a part of $Q$ and update smoothly, like:<br>$$Q_{new}&#x3D;0.01Q_{new}+0.99Q\tag{3}$$</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/19/ReinforcementLearning/" data-id="clzik0lcw007zv47k14znfnf4" data-title="Reinforcement Learning" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-RecommenderSystem" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/17/RecommenderSystem/" class="article-date">
+  <time class="dt-published" datetime="2023-04-17T08:22:09.000Z" itemprop="datePublished">2023-04-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/17/RecommenderSystem/">Recommender System</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Collaborative-filtering"><a href="#Collaborative-filtering" class="headerlink" title="Collaborative filtering"></a>Collaborative filtering</h1><p>The core idea of collaborative filtering is that users tend to use items with high ratings. Therefore, by predicting users&#39; ratings for items that they haven&#39;t used based on ratings of users who gave similar ratings, we can recommend those high rated items to users.</p>
+<h2 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h2><ul>
+<li>$n_u$ &#x3D; number of users;</li>
+<li>$n_m$ &#x3D; number of items;</li>
+<li>$r(i,j)&#x3D;1$ if user $j$ has rated item $i$;</li>
+<li>$y^{(i,j)}$ &#x3D; rating given by user $j$ to item $i$;</li>
+<li>$w^{(j)}, b^{(j)}$ &#x3D; parameters for user $j$;</li>
+<li>$x^{(i)}$ &#x3D; feature vector for item $i$;</li>
+<li>$m^{(j)}$ &#x3D; number of items rated by user $j$</li>
+</ul>
+<h2 id="Recommending-with-features"><a href="#Recommending-with-features" class="headerlink" title="Recommending with features"></a>Recommending with features</h2><p><img src="/2023/04/17/RecommenderSystem/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Items with features</center><br>
+
+<p>If we know the composition or features of items and their respective percentages, we can estimate how mush users like each feature or component. This is actually a regression model: ${rating}&#x3D;{w^{(j)}}\cdot{x}+b^{(j)}$. If we consider regularization as well as all the items and all the users together, we can get cost function $J$ like this:</p>
+<p>$$J(w,b) &#x3D; \frac{1}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{i:r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{k&#x3D;1}^{n}(w_k^{(j)})^2$$</p>
+<p>It is actually a linear regression model though we only consider the items that have been rated. Since $m^{(j)}$ is different for each user and it actually doesn&#39;t affect the final result for each user because it is only related to user $j$, we can remove it and make $2m^{(j)}$ just $2$. Each user is totally independent of others, that is, $w^{(j)}$ and $b^{(j)}$ have nothing to do with others. Therefore, $J$ is just a combination of several linear regression cost functions.</p>
+<h2 id="Recommending-without-features"><a href="#Recommending-without-features" class="headerlink" title="Recommending without features"></a>Recommending without features</h2><p><img src="/2023/04/17/RecommenderSystem/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Items without features</center><br>
+
+<p>More generally, we don&#39;t know the exact value of each feature. Therefore, the algorithm has to learn their values from users&#39; ratings:</p>
+<p>$$J(x) &#x3D; \frac{1}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{j:r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{k&#x3D;1}^{n}(x_k^{(i)})^2$$</p>
+<p>In this case, $x$, the values of features of each item, are the parameters that the algorithm will learn. We assume that the algorithm have already known the parameters of each user. Nonetheless, it actually doesn&#39;t know. Since the first term of $J(w,b)$ and $J(x)$ are the same, we can combine them together:</p>
+<p>$$J(w,b,x) &#x3D; \frac{1}{2}\sum\limits_{(i,j):r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{k&#x3D;1}^{n}(x_k^{(i)})^2+\frac{\lambda}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{k&#x3D;1}^{n}(w_k^{(j)})^2$$</p>
+<p>This is <strong>collaborative filtering</strong>. In addition to learning $w$ and $b$, it also learns $x$. When gradient descent, it has to modify $w$, $b$ and $x$ simultaneously. Because of the removing of $m^{(j)}$, it can combine the first term of $J(w,b)$ and $J(x)$ together. The ratings of other users are used to learn $x$ but affect the learning of $w$ and $b$ of all the users indirectly. That&#39;s why it is called collaborative filtering - all users collaborate to generate the features of items.</p>
+<p>If the rating of a item is given in the form of binary label (like or dislike), we can just turn linear regression to logistic regression. Namely, turn activation function from linear function to sigmoid function and turn loss function from squared error to cross entropy.</p>
+<h2 id="Mean-normalization"><a href="#Mean-normalization" class="headerlink" title="Mean normalization"></a>Mean normalization</h2><p>If there is a new user $a$ that haven&#39;t rated any items, the prediction of its rating that the collaborative filtering algorithm makes will all be zero. Because the parameters of $a$ have nothing to do with the value of the first term of $J(w,b,x)$, regularization will make them all zero and the prediction ${rating}&#x3D;{w}\cdot{x}+b$ will also be zero. Intuitively, we can use the average score of each item $\mu$ to predict the rating of a new user. And that&#39;s what mean normalization does:</p>
+<ul>
+<li>Subtract ${\mu}_{j}$ from each user&#39;s rating for item $j$;</li>
+<li>Do collaborative filtering using normalized scores;</li>
+<li>Make predictions: $\widehat{y}<em>{a}^{(i)}&#x3D;{w_a}\cdot{x}^{(i)}+b_a+\mu</em>{i}$</li>
+</ul>
+<h2 id="Finding-related-items"><a href="#Finding-related-items" class="headerlink" title="Finding related items"></a>Finding related items</h2><p>Features $x^{(i)}$ of item $i$ convey something about what the item is like. Therefore, we can find items similar to this item by computing:<br>$$||{x}^{(k)}-{x}^{(i)}||^2$$<br>where ${x}^{(k)}$ and ${x}^{(i)}$ are both vectors. The smaller this value is, the more similar the two items are.</p>
+<h1 id="Content-based-filtering"><a href="#Content-based-filtering" class="headerlink" title="Content-based filtering"></a>Content-based filtering</h1><p>Cold start problem:</p>
+<ul>
+<li>How to rank new items that few users have rated?</li>
+<li>How to show something reasonable to new users who have rated few items?</li>
+</ul>
+<p>Though mean normalization can solve the second problem to a certain extent, it is better to use content-based filtering to solve cold start problem.</p>
+<p>Content-based filtering recommends items to users based on features or background of user as well as item to find good match. Each user $j$ has several background information $x_u^{(j)}$ and each item $i$ has several features $x_m^{(i)}$. With $x_u^{(j)}$, it is possible for the algorithm to compute how much user $j$ like certain components of this type of item $v_u^{(j)}$. With $x_m^{(i)}$, it is possible for the algorithm to compute the proportions of each attribute of item $i$ $v_m^{(i)}$.</p>
+<blockquote>
+<p>The dimensions of $x_u^{(j)}$ and $x_m^{(i)}$ can be different, but the dimensions of $v_u^{(j)}$ and $v_m^{(i)}$ must be the same since the prediction of rating is: $v_u^{(j)}\cdot v_m^{(i)}$.</p>
+</blockquote>
+<p>We can use neural networks to compute $v_u^{(j)}$ and $v_m^{(i)}$ respectively:</p>
+<p><img src="/2023/04/17/RecommenderSystem/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. User and item network</center><br>
+
+<p>More generally, we will combine these two neural networks together:<br>$$J &#x3D; \sum\limits_{(i,j):r(i,j)&#x3D;1}{(v_u^{(j)}\cdot v_m^{(i)}-y^{(i,j)})}^2+{regularization\space term}$$</p>
+<p><img src="/2023/04/17/RecommenderSystem/4.png" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Compound neural network</center><br>
+
+<p>The cost function of the output layer depends on the value we need. It could be mean squared error for rating or cross entropy (and sigmoid activation function) for binary result. Similarly, we can find similar items using:</p>
+<p>$$||v_m^{(k)}-v_m^{(i)}||^2$$</p>
+<h2 id="Retrieval-amp-Ranking"><a href="#Retrieval-amp-Ranking" class="headerlink" title="Retrieval &amp; Ranking"></a>Retrieval &amp; Ranking</h2><p>For one user, the algorithm only needs to count $v_u^{(j)}$ one time but it has to count $v_m^{(i)}$ for each item. If there is a large set of items, it will be time consuming. Retrieval &amp; Ranking is one way to solve this.</p>
+<p>In retrieval step, there is another algorithm that will generate a large list of plausible item candidates that is much smaller than the whole set.</p>
+<p>In ranking step, the algorithm will only compute $v_m^{(i)}$ of items in the list generated in retrieval step and make recommendation.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/" data-id="clzik0lcv007sv47k5f0wb5gz" data-title="Recommender System" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-UnsupervisedLearning" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/16/UnsupervisedLearning/" class="article-date">
+  <time class="dt-published" datetime="2023-04-16T13:46:40.000Z" itemprop="datePublished">2023-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/04/16/UnsupervisedLearning/">Unsupervised Learning</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h1><p>Clustering is a type of unsupervised learning that automatically groups a set of objects in such a way that objects in the same group are more similar to each other than to those in other groups. A commonly used algorithm of clustering is K-means algorithm.</p>
+<h2 id="K-means-algorithm"><a href="#K-means-algorithm" class="headerlink" title="K-means algorithm"></a>K-means algorithm</h2><p>K-means algorithm partition $n$ observations into $k$ clusters where each observation belongs to the cluster with the nearest mean. In other words, there is a centroid in each cluster and among all the centroids, an observation in its cluster is closer to its centroid than to other centroids, that is, observations in the same cluster are more related. The procedures of k-means are as follows:</p>
+<blockquote>
+<p>Cluster centroids: centers of cluster.</p>
+</blockquote>
+<ul>
+<li>Randomly initialize $K$ cluster centroids $\mu_1,\mu_2,..., \mu_K$;<blockquote>
+<p>Just randomly choose $K$ points from the training set is ok though different initialization will produce different clusters.</p>
+</blockquote>
+</li>
+<li>Assign points to its closest cluster centroids;<blockquote>
+<p>If there are no points assigned to a centroid, just reduce the number of centroids to $K-1$ or reinitialize the centroids.</p>
+</blockquote>
+</li>
+<li>Move each cluster centroid to the average of all the points $(\bar{x},\bar{y},..., \bar{z})$ that were assigned to it;</li>
+<li>Keep doing so until the movements of centroids are small enough;</li>
+<li>Reinitialize all the centroids and train another set of $\mu$ 50-1000 times, choose the set with the lowest $J$ as the final result of clustering.</li>
+</ul>
+<p><img src="/2023/04/16/UnsupervisedLearning/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. K-means</center>
+
+<h3 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h3><p>Definition of some notations:</p>
+<ul>
+<li>$c^{(i)}$ &#x3D; index of cluster (1, 2,..., $K$) where example $x^{(i)}$ is currently assigned;</li>
+<li>$\mu_k$ &#x3D; cluster centroid $k$;</li>
+<li>$\mu_{c^{(i)}}$ &#x3D; cluster centroid of cluster to which $x^{(i)}$ has been assigned</li>
+</ul>
+<p>Distortion cost function $J$:<br>$$J(c^{(1)},...,c^{(m)},\mu_1,...,\mu_k)&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(x^{(i)}-\mu_{c^{(i)}})^2$$</p>
+<p>The way to minimize $J$ is repeatedly moving $\mu_k$ to the centre of cluster $k$.</p>
+<h3 id="Choosing-a-K"><a href="#Choosing-a-K" class="headerlink" title="Choosing a $K$"></a>Choosing a $K$</h3><p>Elbow method: Choose the value at the elbow of $J-K$ curve as $K$ on elbow is the position where the slope of a function rapidly decreases.</p>
+<p><img src="/2023/04/16/UnsupervisedLearning/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Elbow method</center><br>
+
+<p>More generally, the choice of $K$ depends on the downstream purpose.</p>
+<h1 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h1><p>Anomaly detection is another type of unsupervised learning that automatically identifies rare or anomalous events which are suspicous or harmful because they differ significantly from standard behaviors or patterns. The key algorithm in anomaly detection is density estimation that builds the model of $p(x)$ which is the probability density of $x$. The most commonly used probability density model is Gaussian (Normal or Bell shaped) distribution:<br>$$p(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</p>
+<p>For multiple features $\vec{x}$, assuming features are independent of each other:<br>$$p(\vec{x})&#x3D;\prod\limits_{j&#x3D;1}^{n}p(x_j; \mu_j, \sigma_j^2)$$</p>
+<p>The followings are procedures of anomaly detection:</p>
+<ul>
+<li>Choose $n$ features $x_j$ that you think might be indicative of anomalous examples;</li>
+<li>Fit parameters $\mu_1,...,\mu_n,\sigma_1^2,...,\sigma_n^2$;<br>$$\mu_j&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}x_j^{(i)}$$<br>$$\sigma_j&#x3D;\frac{1}{m}\sum\limits_{i&#x3D;1}^{m}(x_j^{(i)}-\mu_j)^2$$</li>
+<li>Given new example $\vec{x}$, compute $p(\vec{x})$;</li>
+<li>Anomaly if $p(\vec{x})&lt;\epsilon$.</li>
+</ul>
+<h2 id="Evaluating-anomaly-detection-system"><a href="#Evaluating-anomaly-detection-system" class="headerlink" title="Evaluating anomaly detection system"></a>Evaluating anomaly detection system</h2><p>In anomaly detection, we actually know which example is positive and which is not, that is, we have labeled data. However, we train the model using only normal examples, cross validate model with both anomalous and normal examples to determine $\epsilon$, test model with both anomalous and normal examples. When the data set is too small, it is feasible to remove test set.</p>
+<p>We only need to train the model one time as $\mu$ and $\sigma$ totally depend on the training set. Dev set is used to choose the best $\epsilon$. For skewed datasets, precission and recall may also be used in addition to the accurary of prediction.</p>
+<h2 id="Anomaly-detection-and-supervised-learning"><a href="#Anomaly-detection-and-supervised-learning" class="headerlink" title="Anomaly detection and supervised learning"></a>Anomaly detection and supervised learning</h2><style>
+    table th {
+        width: 160px;
+    }
+</style>
+<table>
+<thead>
+<tr>
+<th align="center">type</th>
+<th align="center">Anomaly detection</th>
+<th align="center">Supervised learning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">number of positive examples</td>
+<td align="center">small</td>
+<td align="center">large</td>
+</tr>
+<tr>
+<td align="center">number of negative examples</td>
+<td align="center">large</td>
+<td align="center">large</td>
+</tr>
+<tr>
+<td align="center">focus</td>
+<td align="center">detect negative examples</td>
+<td align="center">detect both negative and positive examples</td>
+</tr>
+<tr>
+<td align="center">new types of anomalies</td>
+<td align="center">easy to detect</td>
+<td align="center">hard to detect</td>
+</tr>
+</tbody></table>
+<p>The core idea of anomaly detection is to learn under what circumstances one example is normal. Therefore, anomaly detection is more robust if the types of anomaly keep changing while the standard of normal is stable.</p>
+<p>Though supervised learning is also feasible when the number of positive examples is small, it can&#39;t learn much from positive examples. In contrast, since supervised learning learns what positive and negative examples look like from previous examples, it can&#39;t deal with the types of anomaly that didn&#39;t occur before well.</p>
+<h2 id="Choosing-good-features"><a href="#Choosing-good-features" class="headerlink" title="Choosing good features"></a>Choosing good features</h2><p>Choosing good features is more important in anomaly detection than in supervised learning since supervised learning can rescale and take the best advantage of the features we give while anomaly detection treats each feature independent and equally important. To choose good features, there are several methods: </p>
+<ul>
+<li><p>Choose more gaussian features or <strong>make</strong> features more gaussian (e.g. $\log(x+c)$ instead of $x$);<br><img src="/2023/04/16/UnsupervisedLearning/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. Variable transformation</center><br>
+</li>
+<li><p>Error analysis of dev set to find new features or create new features based on exsiting features.</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/16/UnsupervisedLearning/" data-id="clzik0ld10098v47k7t97aqmd" data-title="Unsupervised Learning" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Recommender System | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="A recommender system is a subclass of information filtering system that provides suggestions for items that are most pertinent to a particular user. This post includes the course notes of recommender">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Recommender System">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="A recommender system is a subclass of information filtering system that provides suggestions for items that are most pertinent to a particular user. This post includes the course notes of recommender">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/3.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/4.png">
+<meta property="article:published_time" content="2023-04-17T08:22:09.000Z">
+<meta property="article:modified_time" content="2023-08-09T05:58:32.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Recommender System">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-RecommenderSystem" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/04/17/RecommenderSystem/" class="article-date">
+  <time class="dt-published" datetime="2023-04-17T08:22:09.000Z" itemprop="datePublished">2023-04-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Recommender System
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="Collaborative-filtering"><a href="#Collaborative-filtering" class="headerlink" title="Collaborative filtering"></a>Collaborative filtering</h1><p>The core idea of collaborative filtering is that users tend to use items with high ratings. Therefore, by predicting users&#39; ratings for items that they haven&#39;t used based on ratings of users who gave similar ratings, we can recommend those high rated items to users.</p>
+<h2 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h2><ul>
+<li>$n_u$ &#x3D; number of users;</li>
+<li>$n_m$ &#x3D; number of items;</li>
+<li>$r(i,j)&#x3D;1$ if user $j$ has rated item $i$;</li>
+<li>$y^{(i,j)}$ &#x3D; rating given by user $j$ to item $i$;</li>
+<li>$w^{(j)}, b^{(j)}$ &#x3D; parameters for user $j$;</li>
+<li>$x^{(i)}$ &#x3D; feature vector for item $i$;</li>
+<li>$m^{(j)}$ &#x3D; number of items rated by user $j$</li>
+</ul>
+<h2 id="Recommending-with-features"><a href="#Recommending-with-features" class="headerlink" title="Recommending with features"></a>Recommending with features</h2><p><img src="/2023/04/17/RecommenderSystem/1.png" alt="1"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 1. Items with features</center><br>
+
+<p>If we know the composition or features of items and their respective percentages, we can estimate how mush users like each feature or component. This is actually a regression model: ${rating}&#x3D;{w^{(j)}}\cdot{x}+b^{(j)}$. If we consider regularization as well as all the items and all the users together, we can get cost function $J$ like this:</p>
+<p>$$J(w,b) &#x3D; \frac{1}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{i:r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{k&#x3D;1}^{n}(w_k^{(j)})^2$$</p>
+<p>It is actually a linear regression model though we only consider the items that have been rated. Since $m^{(j)}$ is different for each user and it actually doesn&#39;t affect the final result for each user because it is only related to user $j$, we can remove it and make $2m^{(j)}$ just $2$. Each user is totally independent of others, that is, $w^{(j)}$ and $b^{(j)}$ have nothing to do with others. Therefore, $J$ is just a combination of several linear regression cost functions.</p>
+<h2 id="Recommending-without-features"><a href="#Recommending-without-features" class="headerlink" title="Recommending without features"></a>Recommending without features</h2><p><img src="/2023/04/17/RecommenderSystem/2.png" alt="2"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 2. Items without features</center><br>
+
+<p>More generally, we don&#39;t know the exact value of each feature. Therefore, the algorithm has to learn their values from users&#39; ratings:</p>
+<p>$$J(x) &#x3D; \frac{1}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{j:r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{k&#x3D;1}^{n}(x_k^{(i)})^2$$</p>
+<p>In this case, $x$, the values of features of each item, are the parameters that the algorithm will learn. We assume that the algorithm have already known the parameters of each user. Nonetheless, it actually doesn&#39;t know. Since the first term of $J(w,b)$ and $J(x)$ are the same, we can combine them together:</p>
+<p>$$J(w,b,x) &#x3D; \frac{1}{2}\sum\limits_{(i,j):r(i,j)&#x3D;1}(w^{(j)}\cdot x^{(i)}+b^{(j)}-y^{(i,j)})^2+\frac{\lambda}{2}\sum\limits_{i&#x3D;1}^{n_m}\sum\limits_{k&#x3D;1}^{n}(x_k^{(i)})^2+\frac{\lambda}{2}\sum\limits_{j&#x3D;1}^{n_u}\sum\limits_{k&#x3D;1}^{n}(w_k^{(j)})^2$$</p>
+<p>This is <strong>collaborative filtering</strong>. In addition to learning $w$ and $b$, it also learns $x$. When gradient descent, it has to modify $w$, $b$ and $x$ simultaneously. Because of the removing of $m^{(j)}$, it can combine the first term of $J(w,b)$ and $J(x)$ together. The ratings of other users are used to learn $x$ but affect the learning of $w$ and $b$ of all the users indirectly. That&#39;s why it is called collaborative filtering - all users collaborate to generate the features of items.</p>
+<p>If the rating of a item is given in the form of binary label (like or dislike), we can just turn linear regression to logistic regression. Namely, turn activation function from linear function to sigmoid function and turn loss function from squared error to cross entropy.</p>
+<h2 id="Mean-normalization"><a href="#Mean-normalization" class="headerlink" title="Mean normalization"></a>Mean normalization</h2><p>If there is a new user $a$ that haven&#39;t rated any items, the prediction of its rating that the collaborative filtering algorithm makes will all be zero. Because the parameters of $a$ have nothing to do with the value of the first term of $J(w,b,x)$, regularization will make them all zero and the prediction ${rating}&#x3D;{w}\cdot{x}+b$ will also be zero. Intuitively, we can use the average score of each item $\mu$ to predict the rating of a new user. And that&#39;s what mean normalization does:</p>
+<ul>
+<li>Subtract ${\mu}_{j}$ from each user&#39;s rating for item $j$;</li>
+<li>Do collaborative filtering using normalized scores;</li>
+<li>Make predictions: $\widehat{y}<em>{a}^{(i)}&#x3D;{w_a}\cdot{x}^{(i)}+b_a+\mu</em>{i}$</li>
+</ul>
+<h2 id="Finding-related-items"><a href="#Finding-related-items" class="headerlink" title="Finding related items"></a>Finding related items</h2><p>Features $x^{(i)}$ of item $i$ convey something about what the item is like. Therefore, we can find items similar to this item by computing:<br>$$||{x}^{(k)}-{x}^{(i)}||^2$$<br>where ${x}^{(k)}$ and ${x}^{(i)}$ are both vectors. The smaller this value is, the more similar the two items are.</p>
+<h1 id="Content-based-filtering"><a href="#Content-based-filtering" class="headerlink" title="Content-based filtering"></a>Content-based filtering</h1><p>Cold start problem:</p>
+<ul>
+<li>How to rank new items that few users have rated?</li>
+<li>How to show something reasonable to new users who have rated few items?</li>
+</ul>
+<p>Though mean normalization can solve the second problem to a certain extent, it is better to use content-based filtering to solve cold start problem.</p>
+<p>Content-based filtering recommends items to users based on features or background of user as well as item to find good match. Each user $j$ has several background information $x_u^{(j)}$ and each item $i$ has several features $x_m^{(i)}$. With $x_u^{(j)}$, it is possible for the algorithm to compute how much user $j$ like certain components of this type of item $v_u^{(j)}$. With $x_m^{(i)}$, it is possible for the algorithm to compute the proportions of each attribute of item $i$ $v_m^{(i)}$.</p>
+<blockquote>
+<p>The dimensions of $x_u^{(j)}$ and $x_m^{(i)}$ can be different, but the dimensions of $v_u^{(j)}$ and $v_m^{(i)}$ must be the same since the prediction of rating is: $v_u^{(j)}\cdot v_m^{(i)}$.</p>
+</blockquote>
+<p>We can use neural networks to compute $v_u^{(j)}$ and $v_m^{(i)}$ respectively:</p>
+<p><img src="/2023/04/17/RecommenderSystem/3.png" alt="3"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 3. User and item network</center><br>
+
+<p>More generally, we will combine these two neural networks together:<br>$$J &#x3D; \sum\limits_{(i,j):r(i,j)&#x3D;1}{(v_u^{(j)}\cdot v_m^{(i)}-y^{(i,j)})}^2+{regularization\space term}$$</p>
+<p><img src="/2023/04/17/RecommenderSystem/4.png" alt="4"></p>
+<center style="font-size:12px;font-weight:bold">Fig. 4. Compound neural network</center><br>
+
+<p>The cost function of the output layer depends on the value we need. It could be mean squared error for rating or cross entropy (and sigmoid activation function) for binary result. Similarly, we can find similar items using:</p>
+<p>$$||v_m^{(k)}-v_m^{(i)}||^2$$</p>
+<h2 id="Retrieval-amp-Ranking"><a href="#Retrieval-amp-Ranking" class="headerlink" title="Retrieval &amp; Ranking"></a>Retrieval &amp; Ranking</h2><p>For one user, the algorithm only needs to count $v_u^{(j)}$ one time but it has to count $v_m^{(i)}$ for each item. If there is a large set of items, it will be time consuming. Retrieval &amp; Ranking is one way to solve this.</p>
+<p>In retrieval step, there is another algorithm that will generate a large list of plausible item candidates that is much smaller than the whole set.</p>
+<p>In ranking step, the algorithm will only compute $v_m^{(i)}$ of items in the list generated in retrieval step and make recommendation.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/04/17/RecommenderSystem/" data-id="clzik0lcv007sv47k5f0wb5gz" data-title="Recommender System" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/04/17/UsageOfImportInPython/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Usage of Import Keyword in Python
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/16/UnsupervisedLearning/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Unsupervised Learning</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

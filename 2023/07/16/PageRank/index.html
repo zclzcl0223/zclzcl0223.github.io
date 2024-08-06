@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>PageRank | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="谷歌的搜索引擎发家算法--PageRank。虽然现在谷歌的搜索引擎中PageRank占比已经很少，但PageRank仍是一个重要的算法，且在与图相关的机器学习领域中继续发挥着余热，如APPNP就是用PageRank的衍生算法Topic-Sensitive PageRank优化了消息传递过程的图神经网络。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PageRank">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/16/PageRank/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="谷歌的搜索引擎发家算法--PageRank。虽然现在谷歌的搜索引擎中PageRank占比已经很少，但PageRank仍是一个重要的算法，且在与图相关的机器学习领域中继续发挥着余热，如APPNP就是用PageRank的衍生算法Topic-Sensitive PageRank优化了消息传递过程的图神经网络。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/16/PageRank/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/16/PageRank/2.jpg">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/16/PageRank/3.jpg">
+<meta property="article:published_time" content="2023-07-16T07:44:41.000Z">
+<meta property="article:modified_time" content="2023-08-09T05:55:04.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="GNN">
+<meta property="article:tag" content="Recommender System">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/07/16/PageRank/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-PageRank" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/16/PageRank/" class="article-date">
+  <time class="dt-published" datetime="2023-07-16T07:44:41.000Z" itemprop="datePublished">2023-07-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/GNN/">GNN</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      PageRank
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="PageRank"><a href="#PageRank" class="headerlink" title="PageRank"></a>PageRank</h1><p>PageRank将互联网视作由HTML网页组成的有向图（现在不行了，因为有许多不能被外部访问的内部网页，如朋友圈等），并为所有网页的重要性进行打分。当用户搜索相关网页时，PageRank便将得分高的网页放在搜索结果的前面。PageRank将任意互联网结点$i$的重要性定义为$r_i$，并将$i$的一条入度边视作另一个网页对$i$结点的引用，而将出度边视作$i$结点对其他网页的引用。PageRank的评分逻辑可以从三个角度进行理解。</p>
+<h2 id="解线性方程组"><a href="#解线性方程组" class="headerlink" title="解线性方程组"></a>解线性方程组</h2><p>这是理解PageRank的第一个角度，也是最原理性的数学角度。一个很符合生活常识的逻辑是：某篇论文的重要性，不取决于这篇论文引用了什么论文，而是取决于哪些论文引用了这篇论文和这些引用了它的论文的重要性。对于互联网网页组成的图，也是如此。假设网页结点$j$的重要性为$r_j$，出度为$d_j$，其出度边平均地将$j$的重要性分给了它引用的网页，而$j$的重要性又是引用了$j$的网页分给$j$的重要性之和，则很自然地，$r_j$可以表示为：</p>
+<p>$$<br>r_j&#x3D;\frac{r_i}{3}+\frac{r_k}{4}<br>$$</p>
+<p><img src="/2023/07/16/PageRank/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Rank of j</center><br>
+
+<p>其中，3和4分别是$i$和$k$的出度。若将所有结点的重要性都用这种方式表示，我们便可以得到一个关于所有结点重要性的方程组：</p>
+<p>$$<br>\begin{cases}<br>    \vdots \\<br>    r_j&#x3D;\sum _{i\to j} \frac{r _i}{d _i}\tag{1}\\<br>    \vdots<br>\end{cases}<br>$$</p>
+<p>假设图的总结点数为$n$，那么这就是一个$n$元的线性方程组。我们有$n$个方程，然而实际有效的只有$n-1$个方程（很好理解，若$n$个方程都有效，我们将得到唯一解，但实际上将所有的$r$放大同样的倍数得到的值也是合理的），因此需要补充方程</p>
+<p>$$<br>\sum _{i\in G}r_i&#x3D;1<br>$$</p>
+<p>以限制重要性的取值，其中$i\in G$指结点$i$是图中的结点。</p>
+<p>以上便是PageRank的数学逻辑。若图的结点数量较少，我们可以用上面的联立方程组很快地得到解析解。但实际上$n$的值是十分大的，直接求解会很麻烦，因此只能采用近似的方法：<strong>假设每个结点的初始重要性都是$\frac{1}{n}$，将初始重要性代入式$(1)$中，可以得到更新后的重要性，这视作一次迭代。重复上述过程足够多次，所有结点的重要性都将收敛为一个稳定值。</strong> 这样的迭代是很合理的，因为所有网页诞生之初，其重要性都是一致的，只不过在后续网页间互相引用的过程中，其他网页为其引用的网页贡献了重要性，使得被引用的网页变得更加重要，而上述的迭代操作便是对这一过程的模拟。</p>
+<h3 id="矩阵形式的方程组"><a href="#矩阵形式的方程组" class="headerlink" title="矩阵形式的方程组"></a>矩阵形式的方程组</h3><p>式$(1)$的方程组可以很容易地被转变为一个矩阵$\mathbf{M}$，其中：</p>
+<p>$$<br>\mathbf{M} _{ji}&#x3D;\frac{1}{d _i}<br>$$</p>
+<p>表示结点$i$因为引用结点$j$而流向$j$的重要性占$i$自身重要性的比例。再令所有结点的初始重要性为向量$\mathbf{r}$：</p>
+<p>$$<br>\mathbf{r}&#x3D;[\frac{1}{n},...,\frac{1}{n}] _{1\times n} ^T<br>$$</p>
+<p>于是，一次迭代便可视为$\mathbf{r}$左乘一次$\mathbf{M}$：</p>
+<p>$$<br>\mathbf{r} ^{(k+1)}&#x3D;\mathbf{M}\mathbf{r} ^{(k)}<br>$$</p>
+<p>其中，$\mathbf{r} ^{(k)}$表示$\mathbf{r}$第$k$次迭代的结果。</p>
+<blockquote>
+<p>矩阵$\mathbf{M}$又称<em>Stochastic adjacency matrix</em>（随机邻接矩阵），而这种迭代的方法称<em>Power iteration</em>（幂迭代）。从矩阵$\mathbf{M}$的名称不难看出其与邻接矩阵$A$具有不可分的关系，而这也是PageRank能被用于GNN的消息传递的原因之一（我猜的）。</p>
+</blockquote>
+<p>当$k\to+\infty$时，$\mathbf{r}$将收敛为一个稳定的结果（事实上，$k$为50时就已经基本收敛）。计算机很擅长矩阵运算，因此这也是最常被用来计算PageRank的方法。</p>
+<h2 id="随机游走"><a href="#随机游走" class="headerlink" title="随机游走"></a>随机游走</h2><p>另外一种理解角度是随机游走（Random walk）。假设图中有一个随机游走的surfer，在$t$时刻，它位于网页$i$；在$t+1$时刻，它将随机点击网页$i$中的超链接并到达网页$j$。初始时刻，surfer点击任何一个网页的概率相同：</p>
+<p>$$<br>\mathbf{p}(0)&#x3D;[\frac{1}{n},...,\frac{1}{n}] _{1\times n} ^T<br>$$</p>
+<p>此后，每经过一次随机游走，surfer到达任意一个网页的概率都将发生变化：</p>
+<p>$$<br>\mathbf{p}(t+1)&#x3D;\mathbf{M}\mathbf{p}(t)<br>$$</p>
+<p>此时，$\mathbf{M} _{ji}$可以视为从网页$i$跳到网页$j$的概率，$\mathbf{p}(t+1) _j$则是$t+1$次随机游走后，仍然在网页$j$的概率，其在数值上等于$t$次随机游走到达任意网页后又跳回网页$j$的数学期望。当$t\to +\infty$时，$\mathbf{p}(t)$便可被视为一开始surfer点击各个网页的概率向量（类似后验概率）。显然，概率越大的网页就越重要。</p>
+<blockquote>
+<p>这是一种更加合乎人们上网习惯的模拟，也是更好理解的一种角度。</p>
+</blockquote>
+<h2 id="马尔科夫链"><a href="#马尔科夫链" class="headerlink" title="马尔科夫链"></a>马尔科夫链</h2><p>第三种角度是马尔可夫链，其定义的状态转移实际上可以看作一种随机游走，因此与第二种角度基本上是互通的。</p>
+<h2 id="Google-Matrix"><a href="#Google-Matrix" class="headerlink" title="Google Matrix"></a>Google Matrix</h2><p>针对实际的网络，常规的$\mathbf{M}$并不是特别地好用，因为当图中包含以下这两类结点时，用$\mathbf{M}$计算得到的$\mathbf{r}$将失真：</p>
+<ol>
+<li><p>Dead ends</p>
+<p> 此类结点只有入度，没有出度：</p>
+<p> <img src="/2023/07/16/PageRank/2.jpg" alt="2"></p>
+ <center style="font-size:12px; font-weight:bold">Fig. 2. Dead ends</center><br>
+
+<p> surfer一旦走入这类结点，将被永远地困在里面，导致重要性消失。</p>
+</li>
+<li><p>Spider traps</p>
+<p> 此类结点的唯一出度边是个自旋边：</p>
+<p> <img src="/2023/07/16/PageRank/3.jpg" alt="3"></p>
+ <center style="font-size:12px; font-weight:bold">Fig. 3. Spider traps</center><br>
+
+<p> Spider traps会导致所有的重要性被这一类结点吸收。</p>
+</li>
+</ol>
+<p>对于这两类结点，PageRank给出的解决方案是：1）Dead ends，人为地为其添加$n$条出度边，使其重要性能够流向所有的结点（包括自己）；2）Spider traps，在每一次迭代任意结点时，令其有$\beta$的概率按照原来的出度边流动，有$1-\beta$的概率随机流向所有结点（包括自己）的任意一个。于是，在处理完Dead ends后，一次迭代后$r_j$变为：</p>
+<p>$$<br>\begin{align*}<br>    r_j<br>    &amp;&#x3D;\sum\limits _{i&#x3D;0} ^{n-1} [\beta \mathbf{M} _{ji}+(1-\beta)\frac{1}{n}]r _i\\<br>    &amp;&#x3D;\sum\limits _{i&#x3D;0} ^{n-1} \beta \mathbf{M} _{ji}r _i+(1-\beta)\frac{1}{n}\tag{2}<br>\end{align*}<br>$$</p>
+<p>上式成立因为$\sum\limits _{i&#x3D;0} ^{n-1}r_i&#x3D;1$。为了方便计算，PageRank定义了Google Matrix $\mathbf{G}$：</p>
+<p>$$<br>    \mathbf{G}&#x3D;\beta\mathbf{M}+(1-\beta)[\frac{1}{n}] _{n\times n}<br>$$<br>$$<br>\begin{align*}<br>        \mathbf{r} ^{(k+1)}<br>        &amp;&#x3D;\mathbf{G}\mathbf{r} ^{(k)}\\<br>        &amp;&#x3D;\beta\mathbf{M}\mathbf{r} ^{(k)}+(1-\beta)[\frac{1}{n}] _{n\times 1}\\<br>        &amp;&#x3D;\beta\mathbf{M}\mathbf{r} ^{(k)}+(1-\beta)\mathbf{S}\tag{3}<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>从随机游走的角度，式$(2)$可视为人为地提高到达Non-spider traps结点的概率，使得surfer能够跳出Spider traps，但是仍保持总概率和为1。</p>
+</blockquote>
+<h1 id="Personalized-PageRank"><a href="#Personalized-PageRank" class="headerlink" title="Personalized PageRank"></a>Personalized PageRank</h1><p>与PageRank是要计算图中所有结点的重要性不同，Personalized PageRank的目标是要计算所有结点与结点$j$的关联度。从随机游走的角度出发，我们就必须要让随机游走到达$j$的可能性最大，因为任何一个结点肯定与自身的关联性最大，由此，从$j$到达的结点分到的可能性也会增大，进而与$j$关联性大的结点就会被筛选出来。</p>
+<p>要想达到这个目标，我们只能人为地引导surfer向$j$结点跳转，即，将式$(3)$中的$\mathbf{S}$更改为：</p>
+<p>$$<br>\mathbf{S}&#x3D;<br>\begin{cases}<br>    \mathbf{S}_j&#x3D;1\\<br>    \mathbf{S}_i&#x3D;0,i\ne j<br>\end{cases}<br>$$</p>
+<p>使得任意结点不再是随机跳转到任意一个结点，而是随机跳转到指定结点$j$。</p>
+<blockquote>
+<p>Personalized PageRank是PPNP（原始版的APPNP）的理论基础。</p>
+</blockquote>
+<h1 id="Topic-Sensitive-PageRank"><a href="#Topic-Sensitive-PageRank" class="headerlink" title="Topic-Sensitive PageRank"></a>Topic-Sensitive PageRank</h1><p>Topic-Sensitive PageRank可视为拓展版的Personalized PageRank。Topic-Sensitive PageRank的目标是基于用户的个人信息，为其提供更加个性化的搜索结果，如：当一个平时喜欢搜索篮球领域相关问题的人搜索“科比”时，搜索引擎便会为其提供更多有关篮球领域的“科比”而不是其他领域的“科比”的信息。</p>
+<p>为达到这个目的，Topic-Sensitive PageRank也是在向量$\mathbf{S}$上做文章，不过它既不像PageRank那样广撒网，也不像Personalized PageRank“钟情于一人”，而是给予已知的拥有目标主题的网页更大的跳转机会，既：</p>
+<p>$$<br>\mathbf{S}&#x3D;\frac{[1,0,0,...,0,1,0] ^T}{\sum\limits _{i&#x3D;0} ^{n-1}\mathbf{S} _i}<br>$$</p>
+<blockquote>
+<p>Topic-Sensitive PageRank是APPNP的理论基础。</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1uP411K7yN/?spm_id_from=333.337.search-card.all.click&vd_source=2d980a0365f3ebea674b32924d8a4ce8">改变世界的谷歌PageRank算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/450267809?utm_id=0">图表示学习系列4——PageRank</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/509849231">【CS224W】04链接分析算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/likeyou1314918273/article/details/106895794">个性化PageRank算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/insistGoGo/article/details/9885037">Topic-Sensitive PageRank(主题敏感的PageRank )</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/16/PageRank/" data-id="clzik0lcs006qv47k4il88tdc" data-title="PageRank" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/19/LinkPrediction/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Link Prediction
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/15/ExpressivePowerofGNNs/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Expressive Power of GNNs</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

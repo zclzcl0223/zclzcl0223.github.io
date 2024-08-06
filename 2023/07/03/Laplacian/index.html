@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>Laplacian | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="拉普拉斯算子是图片边缘检测和图神经网络中常用的概念，它能够揭示于多元函数的凹凸性以及某一点函数值与周围点函数值的关系。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laplacian">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="拉普拉斯算子是图片边缘检测和图神经网络中常用的概念，它能够揭示于多元函数的凹凸性以及某一点函数值与周围点函数值的关系。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/3.png">
+<meta property="article:published_time" content="2023-07-03T05:33:14.000Z">
+<meta property="article:modified_time" content="2023-07-06T15:52:02.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="GNN">
+<meta property="article:tag" content="GCN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2023/07/03/Laplacian/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Laplacian" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/03/Laplacian/" class="article-date">
+  <time class="dt-published" datetime="2023-07-03T05:33:14.000Z" itemprop="datePublished">2023-07-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Laplacian
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>拉普拉斯算子$\Delta$定义为函数$f$（假设$f$为三元函数）的梯度的散度，它接受标量函数输入，并输入一个新的标量函数，即：</p>
+<p>$$<br>\Delta f&#x3D;\text{div}(\text{grad}f(x,y,z))<br>$$</p>
+<h2 id="哈密顿算子"><a href="#哈密顿算子" class="headerlink" title="哈密顿算子"></a>哈密顿算子</h2><p>哈密顿算子$\nabla$定义为：</p>
+<p>$$<br>\nabla&#x3D;\frac{\partial}{\partial x}\vec{i}+\frac{\partial}{\partial y}\vec{j}+\frac{\partial}{\partial z}\vec{k}<br>$$</p>
+<p>它本身没有意义，只是一个算子，但是又被看作是一个矢量。哈密顿算子作用于标量$f$可以得到$f$的梯度，作用于矢量$\vec{f}$可以得到$\vec{f}$的散度。</p>
+<h2 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h2><p>梯度是一个矢量，它表示某一空间函数$f(x,y,z)$在点$(x,y,z)$处方向导数最大的方向或者说函数值变化最快的方向：</p>
+<p>$$<br>\text{grad}f(x,y,z)&#x3D;\nabla f(x,y,z)&#x3D;\frac{\partial f}{\partial x}\vec{i}+\frac{\partial f}{\partial y}\vec{j}+\frac{\partial f}{\partial z}\vec{k}<br>$$</p>
+<h2 id="散度"><a href="#散度" class="headerlink" title="散度"></a>散度</h2><p>散度是一个标量，它表示空间中的矢量场$F&#x3D;&lt;f,g,h&gt;$在该点$(x,y,z)$单位体积上的通量，即该矢量场发散的强弱程度：</p>
+<p>$$<br>\text{div}(F)&#x3D;\nabla\cdot&lt;f,g,h&gt;&#x3D;\frac{\partial f}{\partial x}+\frac{\partial g}{\partial y}+\frac{\partial h}{\partial z}<br>$$</p>
+<p>当散度大于0时，表示该矢量场有散发通量的正源；当散度小于0时，表示该矢量场有吸收通量的负源；当散度等于0时，表示该场无源。</p>
+<h2 id="拉普拉斯算子的意义"><a href="#拉普拉斯算子的意义" class="headerlink" title="拉普拉斯算子的意义"></a>拉普拉斯算子的意义</h2><p>以下以二元函数$f(x,y)$为例，说明拉普拉斯算子的数学意义。</p>
+<p>对于给定的二元函数$f(x,y)$，其梯度$\nabla f$给出了其在二维空间上各个点函数值变化最快的方向。</p>
+<p><img src="/2023/07/03/Laplacian/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. f & grad</center><br>
+
+<p>上图下方的箭头即为$f$在各个点上的梯度方向。此时，若我们将原函数图像去掉，我们就得到一个由原函数的梯度向量形成的矢量场：</p>
+<p><img src="/2023/07/03/Laplacian/2.png" alt="2"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Vector field</center><br>
+
+<p>对该矢量场求散度$\nabla\cdot\nabla f$，我们实际上就能够得到原函数图像的凹凸性（大于0为凸，小于0为凹），如同一元函数的凹凸性一般，多元函数的凹凸性也体现了该点的函数值与该点周围的点的函数值的大小关系，凸说明该点的函数值小于周围点函数值的平均值，凹则说明大于。</p>
+<p>这就是拉普拉斯算子（$\Delta&#x3D;\nabla\cdot\nabla&#x3D;\nabla ^2$），它代表了小范围的凹凸性，这也是它能被用于图像边缘检测的原因（边缘往往显著区别于邻居）。</p>
+<h1 id="拉普拉斯矩阵"><a href="#拉普拉斯矩阵" class="headerlink" title="拉普拉斯矩阵"></a>拉普拉斯矩阵</h1><p>拉普拉斯矩阵$L$，是图上的拉普拉斯算子，也即离散的拉普拉斯算子。前面提到的拉普拉斯算子，其基于的空间都是连续的，而对于图像的像素矩阵，它可以被视为一个二元的函数，只不过其空间位置（即矩阵的行和列）是离散的值。当拉普拉斯算子作用于离散的空间，拉普拉斯算子就成了拉普拉斯矩阵。</p>
+<h2 id="一维和二维离散函数的导数"><a href="#一维和二维离散函数的导数" class="headerlink" title="一维和二维离散函数的导数"></a>一维和二维离散函数的导数</h2><p>假设离散空间中空间位置的最小步长为$h$：</p>
+<p>$$<br>x _{i+1}- x_i&#x3D;...&#x3D;x_2-x_1&#x3D;h<br>$$</p>
+<p>将$f(x _{i+1})$和$f(x _{i-1})$分别用泰勒级数在$x_i$点展开：</p>
+<p>$$<br>\begin{align*}<br>    f(x _{i+1})&amp;&#x3D;f(x_i)+f&#39;(x_i)h+f&#39;&#39;(x_i)\frac{h^2}{2}+...\tag{1}\\<br>    f(x _{i-1})&amp;&#x3D;f(x_i)-f&#39;(x_i)h+f&#39;&#39;(x_i)\frac{h^2}{2}-... \tag{2}<br>\end{align*}<br>$$</p>
+<p>$(1)$和$(2)$相减，可得：</p>
+<p>$$<br>f&#39;(x_i)&#x3D;\frac{f(x _{i+1})-f(x _{i-1})}{2h}-O(h^2)<br>$$</p>
+<p>同样地，$(1)$和$(2)$相加，可得：</p>
+<p>$$<br>f&#39;&#39;(x_i)&#x3D;\frac{f(x _{i+1})+f(x _{i-1})-2f(x_i)}{h^2}-O(h^3)<br>$$</p>
+<p>若忽略掉低阶无穷小$O(h^2)$和$O(h^3)$，并取$h$为1，那么二维空间的离散拉普拉斯算子便可表示为：</p>
+<p>$$<br>\begin{align*}<br>    \Delta f&amp;&#x3D;f _{xx}+f _{yy}\\<br>    &amp;&#x3D;f(x+1,y)+f(x-1,y)-2f(x,y)+f(x,y+1)+f(x,y-1)-2f(x,y)\\<br>    &amp;&#x3D;f(x+1,y)+f(x-1,y)+f(x,y+1)+f(x,y-1)-4f(x,y)\tag{3}<br>\end{align*}<br>$$</p>
+<p>若将3x3的卷积核的中心定义为$(x,y)$：</p>
+<p>$$<br>\begin{bmatrix}<br>    (x-1,y-1)&amp;(x,y-1)&amp;(x+1,y-1)\\<br>    (x-1,y)&amp;(x,y)&amp;(x+1,y)\\<br>    (x-1,y+1)&amp;(x,y+1)&amp;(x+1,y+1)<br>\end{bmatrix}<br>$$</p>
+<p>则其系数即为用于边缘检测的卷积核：</p>
+<p>$$<br>\begin{bmatrix}<br>    0&amp;1&amp;0\\<br>    1&amp;-4&amp;1\\<br>    0&amp;1&amp;0<br>\end{bmatrix}<br>$$</p>
+<blockquote>
+<p>此处可以看出拉普拉斯算子的另外一层含义：$f(x,y)$受到微小扰动后，可能变成$f(x-1,y)$，$f(x,y-1)$，$f(x+1,y)$和$f(x,y+1)$中的任何一个。拉普拉斯算子计算的就是对该点进行微小扰动后可能获得的总增益。这对于连续的拉普拉斯算子也成立，只不过扰动后可能出现的情况变成无数个。增益越大，说明函数在该点越有可能是个凸点（谷点）。</p>
+</blockquote>
+<h2 id="图拉普拉斯矩阵"><a href="#图拉普拉斯矩阵" class="headerlink" title="图拉普拉斯矩阵"></a>图拉普拉斯矩阵</h2><p>对于有$N$个顶点的图，其每个顶点的最大邻接顶点数（自由度）为$N$，邻接矩阵为$A$，度矩阵为$D$，其中：</p>
+<p>$$<br>D&#x3D;<br>\begin{cases}<br>    D _{ii}&#x3D;\sum\limits _{j&#x3D;1} ^{N}A _{ij}\\<br>    D _{ij}&#x3D;0,i\ne j<br>\end{cases}<br>$$</p>
+<p>根据扰动与增益的定义，我们很容易将式$(3)$推广到图中。图的扰动增益可以定义为邻接的两个顶点的特征差值。假设顶点$v _i$的特征为$f_i$，那么整个图的顶点特征则为：</p>
+<p>$$<br>f&#x3D;[f_1,f_2,...,f_N]^T<br>$$</p>
+<p>两邻接顶点的差异可定义为：</p>
+<p>$$<br>f_i-f_j<br>$$</p>
+<p>若考虑加权图中边的权值，则为：</p>
+<p>$$<br>w _{ij}(f_i-f_j)<br>$$</p>
+<p>于是，对某一个顶点$v_i$，其拉普拉斯算子为：</p>
+<p>$$<br>\begin{align*}<br>    \Delta f_i<br>    &amp;&#x3D;\sum\limits _{j&#x3D;1} ^Nw _{ij}(f_i-f_j)\\<br>    &amp;&#x3D;\sum\limits _{j&#x3D;1} ^Nw _{ij}f_i-\sum\limits _{j&#x3D;1} ^Nw _{ij}f_j\\<br>    &amp;&#x3D;D _{ii}f _i-w _{i:}f<br>\end{align*}<br>$$</p>
+<p>式中，$D _{ii}$为顶点$v_i$的度（有权则为带权的度），$w _{i:}$为顶点$v_i$的邻接边的权重向量，维度为$N$。对于整张图，则为：</p>
+<p>$$<br>\begin{align*}<br>    \Delta f<br>    &amp;&#x3D;<br>\begin{pmatrix}<br>    \Delta f_1\\<br>    \Delta f_2\\<br>    ...\\<br>    \Delta f_N<br>\end{pmatrix}&#x3D;<br>\begin{pmatrix}<br>    D _{11}f _1-w _{1:}f\\<br>    D _{22}f _2-w _{2:}f\\<br>    ...\\<br>    D _{NN}f _N-w _{N:}f<br>\end{pmatrix}\\<br>    &amp;&#x3D;<br>\begin{pmatrix}<br>    D _{11}&amp;\cdots&amp;0\\<br>    \vdots&amp;\ddots&amp;0\\<br>    0&amp;\cdots&amp;D _{NN}<br>\end{pmatrix}f-<br>\begin{pmatrix}<br>    W _{11}&amp;\cdots&amp;W _{1N}\\<br>    \vdots&amp;\ddots&amp;\vdots\\<br>    W _{N1}&amp;\cdots&amp;W _{NN}<br>\end{pmatrix}f\\<br>    &amp;&#x3D;(D-W)f\\<br>    &amp;&#x3D;Lf<br>\end{align*}<br>$$</p>
+<blockquote>
+<p>$L$称拉普拉斯矩阵。若$W$不表示权重，只表示邻接关系，则$W$即为邻接矩阵$A$。</p>
+<p>拉普拉斯矩阵是半正定矩阵，即对于任意不为0的实列向量$x$，有$x^TLx\ge0$。</p>
+<p>此处不以符号区别行&#x2F;列向量，均假设其自适应。</p>
+</blockquote>
+<h2 id="邻接矩阵探讨"><a href="#邻接矩阵探讨" class="headerlink" title="邻接矩阵探讨"></a>邻接矩阵探讨</h2><p>邻接矩阵$A$实际上也相当于一个算子，如：</p>
+<p>$$<br>\begin{align*}<br>    g&amp;&#x3D;Af\\<br>    g(i)&amp;&#x3D;\sum _{j} ^{A _{ij}&#x3D;1}f _j<br>\end{align*}<br>$$</p>
+<p>$g(i)$表示$i$的邻接顶点的特征和。又如：</p>
+<p>$$<br>\begin{align*}<br>    f ^Tg<br>    &amp;&#x3D;f ^TAf\\<br>    &amp;&#x3D;\sum\limits _{i,j} ^{A _{ij}&#x3D;1}f _i\cdot f _j<br>\end{align*}<br>$$</p>
+<p>邻接矩阵必是对称矩阵，因此这实际上是个二次形。</p>
+<h2 id="拉普拉斯矩阵探讨"><a href="#拉普拉斯矩阵探讨" class="headerlink" title="拉普拉斯矩阵探讨"></a>拉普拉斯矩阵探讨</h2><p>类似地，拉普拉斯矩阵$L$和$f$也能形成二次型：</p>
+<p>$$<br>\begin{align*}<br>    f^TLf<br>    &amp;&#x3D;\sum _{(i,j)\in E}(f _i - f _j)^2\tag{4}<br>\end{align*}<br>$$</p>
+<p>该式具有实际的物理意义：</p>
+<p><img src="/2023/07/03/Laplacian/3.png" alt="3"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Spring network</center><br>
+
+<p>在上图所示弹簧网络中，有5个质子，假设两端（黑球）固定，并给予中间的三个振子一定程度的扰动，则当系统重新平衡时，三个振子和两端会停留在让系统总弹性势能最小的位置。假设连接质子$i$和质子$j$的弹簧的弹性系数为$k _{ij}$（$k _{ji}$），则系统的总弹性势能为：</p>
+<p>$$<br>E&#x3D;\frac{1}{2}\sum _{(i,j)\in E}k _{ij}(x(i)-x(j))^2\tag{5}<br>$$<br>式中，$i$和$j$表示质子，$x(i)$为质子$i$的绝对位置，$E$是边集（即弹簧集）。最终质子的位置将使得$E$最小。将上述弹簧网络扩展为更一般的图，那么式$(5)$便能很轻易地被扩展为式$(4)$，只不过省略了一些对结果不造成影响的项（e.g. $\frac{1}{2}$），且一些项的含义发生了变化（e.g. $k _{ij}$成了图的边的权，若图的边无权，则可忽略该项）。式$(4)$显然是一个凸函数，因此它可以作为图神经网络的损失函数（但一般作为正则项）。</p>
+<h2 id="关联矩阵"><a href="#关联矩阵" class="headerlink" title="关联矩阵"></a>关联矩阵</h2><p>关联矩阵$\nabla$展现了边和其两端顶点的关系。一般地，有向图的关联矩阵更有意义，因此，对于无向图，我们可以为每条边随意规定一个方向，并定义其关联矩阵（形状为$|E|\times|V|$）为：<br>$$<br>\nabla&#x3D;<br>\begin{cases}<br>    \nabla _{ev}&#x3D;-1,&amp;\text{if v is the initial vextex of e}\\<br>    \nabla _{ev}&#x3D;1,&amp;\text{if v is the terminal vextex of e}\\<br>    \nabla _{ev}&#x3D;0,&amp;\text{otherwise}<br>\end{cases}<br>$$</p>
+<p>关联矩阵与拉普拉斯矩阵存在关系：</p>
+<p>$$<br>L&#x3D;\nabla^T\nabla<br>$$</p>
+<h2 id="拉普拉斯谱分解"><a href="#拉普拉斯谱分解" class="headerlink" title="拉普拉斯谱分解"></a>拉普拉斯谱分解</h2><p>特征分解也叫谱分解，即将矩阵分解为特征值和特征向量的乘积。因为拉普拉斯矩阵$L$为对称矩阵，因此它有$N$个特征值，$N$个相互正交的特征向量：</p>
+<p>$$<br>\begin{align*}<br>    Lu_k&amp;&#x3D;\lambda_ku_k\\<br>    L&#x3D;U^{-1}\Lambda&amp;U&#x3D;U^T\Lambda U<br>\end{align*}<br>$$</p>
+<h2 id="拉普拉斯矩阵的正则化"><a href="#拉普拉斯矩阵的正则化" class="headerlink" title="拉普拉斯矩阵的正则化"></a>拉普拉斯矩阵的正则化</h2><p>首先，要了解邻接矩阵的正则化：</p>
+<p>$$<br>\tilde{A}&#x3D;D ^{-\frac{1}{2}}A D ^{-\frac{1}{2}}<br>$$</p>
+<p>如同一般的正则化一样，邻接矩阵的正则化也可视作一种防止过拟合的措施。但是，邻接矩阵的正则化包含了两个方向的正则：</p>
+<ol>
+<li>左乘$D ^{-\frac{1}{2}}$是横向正则，即对$A$的同一行用相同尺度放缩，而对$A$的不同行用不同尺度放缩，这在一定程度上使得度高的顶点和度低的顶点在聚合后值不会相差得太太，有点像BatchNorm；</li>
+<li>右乘$D ^{-\frac{1}{2}}$是纵向正则，即对$A$的同一列用相同尺度放缩，而对$A$的不同列用不同尺度放缩，这相当于为邻接顶点赋予<strong>分发比例</strong>，即，对某个邻接顶点$j$，其信号聚合到本顶点$i$时，其贡献的程度应该是$1&#x2F;D _{jj}$，当然，实际上是$1&#x2F;\sqrt{D _{jj}}$，这是为了保证左右正则后的行列式值与只用$D$左正则的值相同。</li>
+</ol>
+<p>同样地，拉普拉斯矩阵的正则化为：</p>
+<p>$$<br>\begin{align*}<br>    \tilde{L}<br>    &amp;&#x3D;D ^{-\frac{1}{2}}L D ^{-\frac{1}{2}}\\<br>    &amp;&#x3D;D ^{-\frac{1}{2}}(D-A) D ^{-\frac{1}{2}}\\<br>    &amp;&#x3D;I-D ^{-\frac{1}{2}}A D ^{-\frac{1}{2}}<br>\end{align*}<br>$$</p>
+<p>上式本质上是让对角线都变成1。</p>
+<blockquote>
+<p>注，此处假设图不带权，故用的是邻接矩阵$A$。</p>
+<p>正则化拉普拉斯矩阵仍为半正定对称矩阵，且所有特征值$\lambda\in[0,2]$</p>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/zvideo/1440673926157991936">拉普拉斯方程</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1799419?areaSource=106000.9&traceId=BMewvJtoWh3KSO_SjKvfw">【图神经网络】数学基础篇</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/85287578">拉普拉斯矩阵与拉普拉斯算子的关系</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/07/03/Laplacian/" data-id="clzik0lcg0041v47keusa5k0m" data-title="Laplacian" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/04/GraphFourierTransform/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Graph Fourier Transform
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/02/GCN/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Graph Neural Networks &amp; Graph Convolutional Networks</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

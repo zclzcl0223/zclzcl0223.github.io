@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '[object Object]');
+</script>
+<!-- End Google Analytics -->
+
+  
+  <title>MatrixTheory: Linear Transformation Matrix | JourneyToCoding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="矩阵理论第三课，主要讲线性变换矩阵。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MatrixTheory: Linear Transformation Matrix">
+<meta property="og:url" content="https://zclzcl0223.github.io/2023/10/18/MatrixTheory3/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="矩阵理论第三课，主要讲线性变换矩阵。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-18T04:54:58.000Z">
+<meta property="article:modified_time" content="2023-11-02T02:10:12.000Z">
+<meta property="article:author" content="ChaosTsang">
+<meta property="article:tag" content="Math">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="JourneyToCoding" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/%5Bobject%20Object%5D">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">JourneyToCoding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code for fun</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/about/">about</a>
+        
+          <a class="main-nav-link" href="/tags/">tags</a>
+        
+          <a class="main-nav-link" href="/categories/">categories</a>
+        
+          <a class="main-nav-link" href="/archives/">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zclzcl0223.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-MatrixTheory3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/10/18/MatrixTheory3/" class="article-date">
+  <time class="dt-published" datetime="2023-10-18T04:54:58.000Z" itemprop="datePublished">2023-10-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      MatrixTheory: Linear Transformation Matrix
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+
+<h1 id="线性变换与矩阵"><a href="#线性变换与矩阵" class="headerlink" title="线性变换与矩阵"></a>线性变换与矩阵</h1><p>$T:U \to V$</p>
+<p>零空间：$\text{null}\space T&#x3D;\{\alpha \in U:T(\alpha)&#x3D;0\}$</p>
+<p>单射$\quad\text{iff}\quad\text{null}\space T &#x3D; {0}$。</p>
+<p>像空间：$\text{range}\space T&#x3D;\{\beta \in V:\exists \alpha \in U,T(\alpha)&#x3D;\beta\}$</p>
+<p>满射$\quad\text{iff}\quad\text{range}\space T &#x3D; V$。</p>
+<p>维数公式：$\text{dim}(\text{range})+\text{dim}(\text{null})&#x3D;\text{dim}(U)$</p>
+<blockquote>
+<p>前提：有限维、线性变换。</p>
+</blockquote>
+<h2 id="线性变换矩阵"><a href="#线性变换矩阵" class="headerlink" title="线性变换矩阵"></a>线性变换矩阵</h2><p>对$\text{dim}U&#x3D;n,\text{dim}V&#x3D;m$，$T(\alpha _1,..., \alpha _n)&#x3D;(\beta _1, ...,\beta _m)C _{m\times n}$，其中$\alpha _1,...,\alpha _n$和$\beta _1,...,\beta _m$分别为$U$和$V$的基，称$C _{m\times n}$为线性变换$T$在给定基$\alpha _1,...,\alpha _n:\beta _1,...,\beta _m$下的矩阵。</p>
+<blockquote>
+<p>线性变换由一组基的变换唯一确定。</p>
+<p>自身到自身的线性变换称为“算子”：$T \in L(U)$。此时，线性变换前后的基可以取一样的。</p>
+<p>矩阵就是线性变换，线性变换就是矩阵·。</p>
+</blockquote>
+<h3 id="线性变换矩阵求零、像空间"><a href="#线性变换矩阵求零、像空间" class="headerlink" title="线性变换矩阵求零、像空间"></a>线性变换矩阵求零、像空间</h3><p>$T(\alpha) &#x3D; T((\alpha _1,...,\alpha _n)X)&#x3D; T(\alpha _1,...,\alpha _n)X&#x3D;(\beta _1,...,\beta _m)AX$</p>
+<ul>
+<li><p>求零空间<br>$T(\alpha)&#x3D;0\to \text{null}T\to N(A)$，此时得出的是能让$T(\alpha) &#x3D; 0$的$X$的基，记为$X&#39;$，再用$(\alpha _1,...,\alpha _n)X&#39;$即可得到零空间的基。</p>
+</li>
+<li><p>求像空间<br>此时要求的是像空间的基，而$AX$相当于对$A$进行列变换，因而$A$的秩就是像空间的维数，列变换得到列空间$C&#39;$，计算$(\beta _1,...,\beta _m)C&#39;$即可得到像空间的基。故$\text{range}T\to C(A)$</p>
+</li>
+</ul>
+<blockquote>
+<p>核心：什么样的基能够使得线性变化矩阵最简单。</p>
+</blockquote>
+<h3 id="线性变换与相似"><a href="#线性变换与相似" class="headerlink" title="线性变换与相似"></a>线性变换与相似</h3><p>同一个线性变换（算子）在不同基下的矩阵相似：</p>
+<blockquote>
+<p>对$T: U\to U$，$T (\alpha _1,...,\alpha _n) &#x3D; (\alpha _1,...,\alpha _n)A$；对$T: V \to V$，$T (\beta _1,...,\beta _m) &#x3D; (\beta _1,...,\beta _m)B$；对两个基，有过渡矩阵$P$，使得$(\beta _1,...,\beta _m)&#x3D;(\alpha _1,...,\alpha _n)P$，则：<br>$$<br>\begin{align*}<br>T (\beta _1,...,\beta _m)<br>&amp;&#x3D; (\beta _1,...,\beta _m)B \\<br>&amp;&#x3D; (\alpha _1,...,\alpha _n)PB \\<br>&amp;&#x3D; T((\alpha _1,...,\alpha _n)P) \\<br>&amp;&#x3D; (\alpha _1,...,\alpha _n)AP<br>\end{align*}<br>$$<br>故有：$PB&#x3D;AP$，若$P$可逆，则易知$A$和$B$是相似的。</p>
+</blockquote>
+<h2 id="逆变换"><a href="#逆变换" class="headerlink" title="逆变换"></a>逆变换</h2><p>若存在线性变换$T: U \to V$和$S: V\to U$，使得$ST &#x3D; I$，$TS&#x3D;I$，则称$S$为$T$的逆变换，其中$ST$和$TS$是之前定义的线性变换的乘法运算，$I$为恒等变换。逆变换若存在则是唯一的。</p>
+<p>线性变换$T$可逆的充要条件：$T$单射且满射。</p>
+<h2 id="同构"><a href="#同构" class="headerlink" title="同构"></a>同构</h2><p>若存在一个$T \in L(U,V)$，且$T$可逆，则称线性空间$U$和$V$是同构的。</p>
+<p>两线性空间$U$、$V$同构的充要条件：$\text{dim}U&#x3D;\text{dim}V$。</p>
+<ul>
+<li>找同构映射：</li>
+</ul>
+<ol>
+<li>定义一个映射$T$；</li>
+<li>证明映射$T$是线性变换；</li>
+<li>证明映射$T$单射且满射。</li>
+</ol>
+<ul>
+<li>$V$为$\mathbb{F}$上的$n$维线性空间，则$V \simeq \mathbb{F} ^n$</li>
+<li>$L(U,V)\simeq \mathbb{F} ^{n \times n}$</li>
+</ul>
+<p>线性变换就是矩阵。两个线性空间的线性变换空间的维数是者两个线性空间维数的乘积：</p>
+<p>$$<br>\text{dim}L(U,V)&#x3D;\text{dim}U\cdot \text{dim}V<br>$$</p>
+<h2 id="乘积空间"><a href="#乘积空间" class="headerlink" title="乘积空间"></a>乘积空间</h2><p>$V _1, V _2,..., V _k$为$\mathbb{F}$上的线性空间，则$V _1\times V _2\times ...\times V _k&#x3D;\{(\alpha _1,\alpha _2,...,\alpha _k):\alpha _i\in V _i \}$就称为$V _1, V _2,..., V _k$的乘积空间。乘积空间还是线性空间。</p>
+<blockquote>
+<p>$V _1, V _2,..., V _k$可以是元素类型不同的空间。乘积空间的加法、数乘仍是各元素在原空间的加法和数乘。<br>乘积空间的维数为各成员空间的维数和。</p>
+</blockquote>
+<h2 id="商空间"><a href="#商空间" class="headerlink" title="商空间"></a>商空间</h2><p>$V$是$\mathbb{F}$上的线性空间，$U$是$V$的子空间，$\alpha \in V$，定义$\alpha + U &#x3D; \{\alpha + \beta:\beta \in U\}$，则商空间为$V&#x2F;U&#x3D;{\alpha + U:\alpha \in V}$。</p>
+<ul>
+<li>商空间的加法：$(\alpha + U) + (\beta + U) &#x3D; (\alpha + \beta) + U$</li>
+<li>商空间的数乘：$k\cdot (\beta + U) &#x3D; k\cdot \beta + U$</li>
+</ul>
+<p>下列三个公式等价：</p>
+<ol>
+<li>$\alpha - \beta \in U$</li>
+<li>$\alpha + U &#x3D; \beta + \ U$</li>
+<li>$(\alpha + U) \cap (\beta + U) \ne \emptyset$</li>
+</ol>
+<blockquote>
+<p>平行线</p>
+</blockquote>
+<p>商空间也是线性空间，零向量是$\{\alpha + U,\alpha \in U\}$。</p>
+<p>$\text{dim}(V&#x2F;U)&#x3D;n-k$，其中$\text{dim}V &#x3D; N$，$\text{dim}U&#x3D;k$</p>
+<blockquote>
+<p>证明：定义$T: V \to V &#x2F;U$，则对$\alpha \in V$，$T(\alpha) &#x3D; \alpha + U$（证明线性变换略）。</p>
+<p>易知这个线性变换是满射的，即$\text{dim}\text{range}T&#x3D;\text{dim}(V&#x2F;U)$。而零空间，$T(\alpha) &#x3D; 0$，满足该条件的$\alpha$即$U$中的所有元素，故$\text{dim}\text{null}T &#x3D; \text{dim}U$。又$\text{dim}V &#x3D; \text{dim}\text{range}T + \text{dim}\text{null}T$，故$\text{dim}(V&#x2F;U) &#x3D; \text{dim}V - \text{dim}U$。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zclzcl0223.github.io/2023/10/18/MatrixTheory3/" data-id="clzik0lcl0059v47k9v291m4v" data-title="MatrixTheory: Linear Transformation Matrix" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/" rel="tag">Math</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/10/25/PolynomialHierarchy/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Computational Complexity: Polynomial Hierarchy
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/10/10/ComputationalComplexityNPComp/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Computational Complexity NP-Completeness</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Model/">Advanced Model</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CS7313-Computational-Complexity/">CS7313: Computational Complexity</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dive-Into-Deep-Learning/">Dive Into Deep Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GNN/">GNN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kernel-Method/">Kernel Method</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MATH6005-Matrix-Theory/">MATH6005: Matrix Theory</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning-by-AndrewNg/">Machine Learning by AndrewNg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tool/">Tool</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Attention-Mechanism/" rel="tag">Attention Mechanism</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/" rel="tag">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Analysis/" rel="tag">Data Analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dataset-Distillation/" rel="tag">Dataset Distillation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Decision-Trees/" rel="tag">Decision Trees</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCN/" rel="tag">GCN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GNN/" rel="tag">GNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Generative-AI/" rel="tag">Generative AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lab/" rel="tag">Lab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markup-Language/" rel="tag">Markup Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/" rel="tag">RNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Recommender-System/" rel="tag">Recommender System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reinforcement-Learning/" rel="tag">Reinforcement Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVM/" rel="tag">SVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Supervised-Learning/" rel="tag">Supervised Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theoretical-Computer-Science/" rel="tag">Theoretical Computer Science</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unsupervised-Learning/" rel="tag">Unsupervised Learning</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Attention-Mechanism/" style="font-size: 11.82px;">Attention Mechanism</a> <a href="/tags/CNN/" style="font-size: 12.73px;">CNN</a> <a href="/tags/Configuration/" style="font-size: 10px;">Configuration</a> <a href="/tags/Data-Analysis/" style="font-size: 10px;">Data Analysis</a> <a href="/tags/Dataset-Distillation/" style="font-size: 13.64px;">Dataset Distillation</a> <a href="/tags/Decision-Trees/" style="font-size: 10px;">Decision Trees</a> <a href="/tags/Deep-Learning/" style="font-size: 20px;">Deep Learning</a> <a href="/tags/GCN/" style="font-size: 11.82px;">GCN</a> <a href="/tags/GNN/" style="font-size: 15.45px;">GNN</a> <a href="/tags/Generative-AI/" style="font-size: 10.91px;">Generative AI</a> <a href="/tags/Hexo/" style="font-size: 10.91px;">Hexo</a> <a href="/tags/Lab/" style="font-size: 10.91px;">Lab</a> <a href="/tags/Linux/" style="font-size: 16.36px;">Linux</a> <a href="/tags/Machine-Learning/" style="font-size: 17.27px;">Machine Learning</a> <a href="/tags/Markup-Language/" style="font-size: 10px;">Markup Language</a> <a href="/tags/Math/" style="font-size: 19.09px;">Math</a> <a href="/tags/Paper/" style="font-size: 14.55px;">Paper</a> <a href="/tags/Python/" style="font-size: 18.18px;">Python</a> <a href="/tags/RNN/" style="font-size: 10.91px;">RNN</a> <a href="/tags/Recommender-System/" style="font-size: 10.91px;">Recommender System</a> <a href="/tags/Reinforcement-Learning/" style="font-size: 10.91px;">Reinforcement Learning</a> <a href="/tags/SVM/" style="font-size: 10px;">SVM</a> <a href="/tags/Supervised-Learning/" style="font-size: 11.82px;">Supervised Learning</a> <a href="/tags/Theoretical-Computer-Science/" style="font-size: 15.45px;">Theoretical Computer Science</a> <a href="/tags/Tool/" style="font-size: 18.18px;">Tool</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 11.82px;">Unsupervised Learning</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/17/Diffusion/">Diffusion</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/20/VAE/">VAE</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/02/CountingComplexity/">Computational Complexity: Complexity of Counting</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/24/MatrixTheory5/">MatrixTheory: 特殊矩阵与矩阵分解</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/13/RandomizedComputation/">Computational Complexity: Randomized Computation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ChaosTsang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/about/" class="mobile-nav-link">about</a>
+  
+    <a href="/tags/" class="mobile-nav-link">tags</a>
+  
+    <a href="/categories/" class="mobile-nav-link">categories</a>
+  
+    <a href="/archives/" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
