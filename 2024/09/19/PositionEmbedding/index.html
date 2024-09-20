@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zclzcl0223.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"copycode":{"enable":true,"style":"mac","show_result":false},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Position embeddings enable self-attention to perceive the sequence order. Without position embeddings, the self-attention will treat the same words in different order of a sentence as the same thing.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Position Embedding">
+<meta property="og:url" content="https://zclzcl0223.github.io/2024/09/19/PositionEmbedding/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Position embeddings enable self-attention to perceive the sequence order. Without position embeddings, the self-attention will treat the same words in different order of a sentence as the same thing.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2024/09/19/PositionEmbedding/1.png">
+<meta property="article:published_time" content="2024-09-19T06:51:28.000Z">
+<meta property="article:modified_time" content="2024-09-20T07:11:02.869Z">
+<meta property="article:author" content="Chaolv Zeng">
+<meta property="article:tag" content="Attention Mechanism">
+<meta property="article:tag" content="Generative AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2024/09/19/PositionEmbedding/1.png">
+
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2024/09/19/PositionEmbedding/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zclzcl0223.github.io/2024/09/19/PositionEmbedding/","path":"2024/09/19/PositionEmbedding/","title":"Position Embedding"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Position Embedding | JourneyToCoding</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">JourneyToCoding</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for Fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Absolute-Position-Embedding"><span class="nav-number">1.</span> <span class="nav-text">Absolute Position Embedding</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Relative-Position-Embedding"><span class="nav-number">2.</span> <span class="nav-text">Relative Position Embedding</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rotary-Position-Embedding"><span class="nav-number">3.</span> <span class="nav-text">Rotary Position Embedding</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NoPE"><span class="nav-number">4.</span> <span class="nav-text">NoPE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CoPE"><span class="nav-number">5.</span> <span class="nav-text">CoPE</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chaolv Zeng"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Chaolv Zeng</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2024/09/19/PositionEmbedding/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Chaolv Zeng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Position Embedding | JourneyToCoding">
+      <meta itemprop="description" content="Position embeddings enable self-attention to perceive the sequence order. Without position embeddings, the self-attention will treat the same words in different order of a sentence as the same thing.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Position Embedding
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-09-19 14:51:28" itemprop="dateCreated datePublished" datetime="2024-09-19T14:51:28+08:00">2024-09-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-09-20 15:11:02" itemprop="dateModified" datetime="2024-09-20T15:11:02+08:00">2024-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Advanced-Model/" itemprop="url" rel="index"><span itemprop="name">Advanced Model</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">Position embeddings enable self-attention to perceive the sequence order. Without position embeddings, the self-attention will treat the same words in different order of a sentence as the same thing.</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><span id="more"></span>
+
+<p>Unlike RNNs, which recurrently process tokens of a sequence one by one, self-attention ditches sequential operations for parallel computation. To enable self-attention to perceive the sequence order, position embedding is a solution. The position embedding could either be learnable or fixed. Here we only consider the fixed position embedding.</p>
+<h1 id="Absolute-Position-Embedding"><a href="#Absolute-Position-Embedding" class="headerlink" title="Absolute Position Embedding"></a>Absolute Position Embedding</h1><p>A typical kind of absolute position embedding is the sinusoidal function used in the vanilla transformer:</p>
+<p>$$<br>\begin{cases}<br> p _{pos,2j}&amp;&#x3D;\sin(\frac{pos}{10000^{2j&#x2F;d}}), \\<br> p _{pos,2j+1}&amp;&#x3D;\cos(\frac{pos}{10000^{2j&#x2F;d}}),<br>\end{cases}<br>$$<br>where $pos$ is the position of token while $2j$ and $2j+1$ are embedding indices.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pe = torch.zeros(<span class="number">1</span>, max_len, n_hiddens)</span><br><span class="line">X = torch.arange(max_len, dtype=torch.float32).reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">X /= torch.<span class="built_in">pow</span>(<span class="number">10000</span>, torch.arange(<span class="number">0</span>, n_hiddens, <span class="number">2</span>, dtype=torch.float32) / n_hiddens)</span><br><span class="line">pe[:, :, <span class="number">0</span>::<span class="number">2</span>] = torch.sin(X)</span><br><span class="line">pe[:, :, <span class="number">1</span>::<span class="number">2</span>] = torch.cos(X)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Bert, GPT: Learnable Absolute PE</li>
+<li>Vanillar Transformer: Absolute PE</li>
+</ul>
+<h1 id="Relative-Position-Embedding"><a href="#Relative-Position-Embedding" class="headerlink" title="Relative Position Embedding"></a>Relative Position Embedding</h1><p>Unlike absolute position embedding, relative position embeddings focus on the relative position of <code>query</code> and <code>key</code>.</p>
+<p>Generally, a <code>query</code> and a <code>key</code> with position embeddings could be formulated as:</p>
+<p>$$<br>\begin{cases}<br>    \mathbf{q} _m&#x3D;\mathbf{W} _q(x _m+p _m), \\<br>    \mathbf{k} _n&#x3D;\mathbf{W} _k(x _n+p _n).<br>\end{cases}<br>$$</p>
+<p>The resulting attention is:</p>
+<p>$$<br>    \mathbf{q} _m ^T\mathbf{k} _n&#x3D;x _m ^T\mathbf{W} _q ^T\mathbf{W} _kx _n+x _m ^T\mathbf{W} _q ^T\mathbf{W} _k p_n + p _m ^T\mathbf{W} _q ^T\mathbf{W} _k x_n + p _m ^T\mathbf{W} _q ^T\mathbf{W} _k p_n.<br>$$</p>
+<p>The relative position embedding only needs to replace $p _m$ and $p _n$ with the relative forms. The simplest one is:</p>
+<p>$$<br>    \mathbf{q} _m ^T\mathbf{k} _n&#x3D;x _m ^T\mathbf{W} _q ^T\mathbf{W} _kx _n+x _m ^T\mathbf{W} _q ^T\mathbf{W} _k p _{m-n} + p _{m-n} ^T\mathbf{W} _q ^T\mathbf{W} _k x_n<br>$$</p>
+<h1 id="Rotary-Position-Embedding"><a href="#Rotary-Position-Embedding" class="headerlink" title="Rotary Position Embedding"></a>Rotary Position Embedding</h1><p>The intuition of RoPE is that the vanilla <code>Add</code> PE not only change the magnitude but also change the radius, which will cause the position embedding to change irregularly, resulting in the model only being able to memorize the data but not actually learn the position. This in turn causes the model to be unable to extend to positions that have not been seen in the <strong>training set</strong>.</p>
+<p>RoPE uses the rotation matrix of the two-dimensional vector space so that the same token at different positions only changes in angle. That is:</p>
+<p>$$<br>    \mathbf{q} _m ^T\mathbf{k} _n&#x3D;(\mathbf{R} ^d _{\theta, m}\mathbf{W} _qx _m) ^T(\mathbf{R} ^d _{\theta, n}\mathbf{W} _kx _n)&#x3D;x _m ^T\mathbf{W} _q ^T\mathbf{R} _{\theta, n-m} ^d \mathbf{W} _k x _n<br>$$<br>where</p>
+<p>$$<br>\mathbf{R} _{\theta, m}&#x3D;\begin{pmatrix}<br> &amp;\cos m\theta _1 &amp;-\sin m\theta _1 &amp;0 &amp;0 &amp;\cdots &amp;0 &amp;0\\<br> &amp;\sin m\theta _1 &amp;\cos m\theta _1 &amp;0 &amp;0 &amp;\cdots &amp;0 &amp;0\\<br> &amp;0 &amp;0 &amp;\cos m\theta _2 &amp;-\sin m\theta _2 &amp;\cdots &amp;0 &amp;0\\<br> &amp;0 &amp;0 &amp;\sin m\theta _2 &amp;\cos m\theta _2 &amp;\cdots &amp;0 &amp;0\\<br> &amp;\vdots &amp;\vdots &amp;\vdots &amp;\vdots &amp;\ddots &amp;\vdots &amp;\vdots\\<br> &amp;0 &amp;0 &amp;0 &amp;0 &amp;\cdots &amp;\cos m\theta _{d&#x2F;2} &amp;-\sin m\theta _{d&#x2F;2}\\<br> &amp;0 &amp;0 &amp;0 &amp;0 &amp;\cdots &amp;\sin m\theta _{d&#x2F;2} &amp;\cos m\theta _{d&#x2F;2}\\<br>\end{pmatrix}<br>$$<br>is the rotary matrix with the same $\theta _i$ as the sinusoidal function. Intuitively, the rotation matrix is ​​realized by <strong>grouping the embedding dimensions in pairs</strong> to expand the two-dimensional rotation matrix to multiple dimensions.</p>
+<p><img src="/2024/09/19/PositionEmbedding/1.png" alt="1"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Vanilla PE (left) and RoPE (right)</center><br>
+
+<p>Compared with the vanilla position embeddings, RoPE has several advantages:</p>
+<ol>
+<li>Incorporating relative position information more efficiently.</li>
+<li>Long-term decay: the attention weight will decay when the relative position increases.</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/meta-llama/llama3/blob/main/llama/model.py">Llama</a></li>
+</ul>
+<h1 id="NoPE"><a href="#NoPE" class="headerlink" title="NoPE"></a>NoPE</h1><p>To be continued...</p>
+<h1 id="CoPE"><a href="#CoPE" class="headerlink" title="CoPE"></a>CoPE</h1><p>To be continued...</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Attention-Mechanism/" rel="tag"># Attention Mechanism</a>
+              <a href="/tags/Generative-AI/" rel="tag"># Generative AI</a>
+          </div>
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+            var tags=tagsall[i].getElementsByTagName("a");
+            for (var j = tags.length - 1; j >= 0; j--) {
+                var r=Math.floor(Math.random()*75+130);
+                var g=Math.floor(Math.random()*75+100);
+                var b=Math.floor(Math.random()*75+80);
+                tags[j].style.background = "rgb("+r+","+g+","+b+")";
+            }
+          }                        
+          </script>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/17/Diffusion/" rel="prev" title="Diffusion">
+                  <i class="fa fa-angle-left"></i> Diffusion
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fas fa-star-of-david"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Chaolv Zeng</span>
+  </div>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/17/2022 8:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
