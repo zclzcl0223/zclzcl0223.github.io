@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zclzcl0223.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"copycode":{"enable":true,"style":"mac","show_result":false},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Discrete Fourier Transform (DFT) is a linear transform that converts a finite sequence of equally-spaced samples of a function in the time domain into a same-length sequence of equally-spaced samples">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Discrete Fourier Transform">
+<meta property="og:url" content="https://zclzcl0223.github.io/2024/09/29/DFT/index.html">
+<meta property="og:site_name" content="JourneyToCoding">
+<meta property="og:description" content="Discrete Fourier Transform (DFT) is a linear transform that converts a finite sequence of equally-spaced samples of a function in the time domain into a same-length sequence of equally-spaced samples">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-29T06:11:38.000Z">
+<meta property="article:modified_time" content="2024-09-29T08:29:42.863Z">
+<meta property="article:author" content="Chaolv Zeng">
+<meta property="article:tag" content="Math">
+<meta property="article:tag" content="Digital Signal Processing">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zclzcl0223.github.io/2024/09/29/DFT/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zclzcl0223.github.io/2024/09/29/DFT/","path":"2024/09/29/DFT/","title":"Discrete Fourier Transform"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Discrete Fourier Transform | JourneyToCoding</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <a target="_blank" rel="noopener" href="https://github.com/zclzcl0223" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">JourneyToCoding</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Code for Fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Continuous-Fourier-Transform"><span class="nav-number">1.</span> <span class="nav-text">Continuous Fourier Transform</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Discrete-Fourier-Transform"><span class="nav-number">2.</span> <span class="nav-text">Discrete Fourier Transform</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#One-sided-and-Two-sided-FFT"><span class="nav-number">2.1.</span> <span class="nav-text">One-sided and Two-sided FFT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Chaolv Zeng"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Chaolv Zeng</p>
+  <div class="site-description" itemprop="description">Start of Something New</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zclzcl0223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zclzcl0223" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chaostsang0223@gmail.com" title="E-Mail → mailto:chaostsang0223@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/05/10/FourierTransform/" rel="bookmark">
+        <time class="popular-posts-time">2023-05-10</time>
+        <br>
+      Fourier Transform
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/07/04/GraphFourierTransform/" rel="bookmark">
+        <time class="popular-posts-time">2023-07-04</time>
+        <br>
+      Graph Fourier Transform
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/05/10/FourierTransformAndCNN/" rel="bookmark">
+        <time class="popular-posts-time">2023-05-10</time>
+        <br>
+      Fourier Transform and CNN
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2024/09/19/PositionEmbedding/" rel="bookmark">
+        <time class="popular-posts-time">2024-09-19</time>
+        <br>
+      Position Embedding
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/08/09/SupportVectorMachine/" rel="bookmark">
+        <time class="popular-posts-time">2023-08-09</time>
+        <br>
+      Support Vector Machine
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zclzcl0223.github.io/2024/09/29/DFT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Chaolv Zeng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JourneyToCoding">
+      <meta itemprop="description" content="Start of Something New">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Discrete Fourier Transform | JourneyToCoding">
+      <meta itemprop="description" content="Discrete Fourier Transform (DFT) is a linear transform that converts a finite sequence of equally-spaced samples of a function in the time domain into a same-length sequence of equally-spaced samples in the frequency domain, which is a complex-valued function of frequency.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Discrete Fourier Transform
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-09-29 14:11:38 / Modified: 16:29:42" itemprop="dateCreated datePublished" datetime="2024-09-29T14:11:38+08:00">2024-09-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>533</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>2 mins.</span>
+    </span>
+</div>
+
+            <div class="post-description">Discrete Fourier Transform (DFT) is a linear transform that converts a finite sequence of equally-spaced samples of a function in the time domain into a same-length sequence of equally-spaced samples in the frequency domain, which is a complex-valued function of frequency.</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><span id="more"></span>
+
+<h1 id="Continuous-Fourier-Transform"><a href="#Continuous-Fourier-Transform" class="headerlink" title="Continuous Fourier Transform"></a>Continuous Fourier Transform</h1><p>See <a href="/2023/05/10/FourierTransform/">Fourier Transform</a>.</p>
+<p>In brief:</p>
+<p>$$f(t)&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}C_ne^{in\omega_0 t}<br> &#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt$$</p>
+<p>where $F(\omega)&#x3D; C _n&#x3D;\frac{1}{T}\int _{0} ^T f(t)e ^{-in\omega _0 t}dt$ is Fourier Transform.</p>
+<h1 id="Discrete-Fourier-Transform"><a href="#Discrete-Fourier-Transform" class="headerlink" title="Discrete Fourier Transform"></a>Discrete Fourier Transform</h1><p>For $N$ discrete signals sampled at equal intervals in a continuous signal, denoted as $\mathbf{X}&#x3D;\{x _0, x _1,\cdots, x _{N-1}\}$, assume the sampling interval is $\Delta t&#x3D;0$ and consider the original sequence has a period $T$. Then, the continuous fourier transform could be converted to DFT as :</p>
+<p>$$<br>\begin{align*}<br> F _k &amp;&#x3D; \frac{1}{N\Delta t}\sum\limits _{n&#x3D;0} ^{N-1}x _{n\Delta t}\cdot e ^{-i(n\omega _0)k\Delta t}\\<br> &amp;&#x3D;\frac{1}{N}\sum\limits _{n&#x3D;0} ^{N-1}x _n\cdot e ^{-i(n2\pi &#x2F; T)k}\\<br> &amp;&#x3D;\frac{1}{N}\sum\limits _{n&#x3D;0} ^{N-1}x _n\cdot e ^{-i(n2\pi &#x2F; (N\Delta t))k}\\<br> &amp;&#x3D;\frac{1}{N}\sum\limits _{n&#x3D;0} ^{N-1}x _n\cdot e ^{-i2\pi \frac{k}{N}n}<br>\end{align*}<br>$$<br>However, $\frac{1}{N}$ will make the value too small, so we always remove this term (actually it is moved to the <strong>inverse transform</strong>):</p>
+<p>$$<br>\begin{align*}<br> F _k &#x3D;\sum\limits _{n&#x3D;0} ^{N-1}x _n\cdot e ^{-i2\pi \frac{k}{N}n}<br>\end{align*}<br>$$</p>
+<p>Given a certain $k$, $ e ^{-i2\pi \frac{k}{N}n}$ could be treated as a signal in a certain frequency ($k&#x2F;N$). Then, $\sum\limits _{n&#x3D;0} ^{N-1}x _n\cdot e ^{-i2\pi \frac{k}{N}n}$ could be treated as calculating the <strong>similarity</strong> of a signal sequence $\{x _0, x _1,\cdots, x _{N-1}\}$ and $\{e ^{-i2\pi \frac{k}{N}\cdot0}, e ^{-i2\pi \frac{k}{N}\cdot1},\cdots, e ^{-i2\pi \frac{k}{N}\cdot(N-1)}\}$. Hence, DFT could also be represented in a matrix form:</p>
+<p>$$<br>[F _0, F _1, \cdots, F _{N-1}]&#x3D;[x _0, x _1,\cdots, x _{N-1}]\cdot\begin{bmatrix}<br> k&#x3D;0,&amp; k&#x3D;1,&amp; \cdots,&amp; k&#x3D;N-1&amp;\\<br> \vdots,&amp; \vdots,&amp; \ddots,&amp; \vdots&amp;<br>\end{bmatrix}<br>$$</p>
+<blockquote>
+<p>Fast Fourier Transform (FFT), a method to calculate DFT efficiently,  is based on the above formula.</p>
+</blockquote>
+<p>If $k$ is expressed in Hz, each $k$ represents $\frac{kf _s}{N}$Hz. $\frac{f _s}{N}$ is the <strong>Frequency Resolution</strong>.</p>
+<h2 id="One-sided-and-Two-sided-FFT"><a href="#One-sided-and-Two-sided-FFT" class="headerlink" title="One-sided and Two-sided FFT"></a>One-sided and Two-sided FFT</h2><p>One-sided FFT (<code>torch.fft.rfft</code>) only considers positive frequency while two-sided FFT (<code>torch.fft.fft</code>) considers both positive and negative frequency. If $x$ is real numbers and $N$ is even, then $|F _k|$ is symmetric about $|F _{N&#x2F;2}|$.</p>
+<p>Hence:</p>
+<ul>
+<li>if $N$ is even, one-sided FFT contain $N&#x2F;2+1$ elements ($k&#x3D;0,\cdots,N&#x2F;2$) where $k&#x3D;N&#x2F;2$ is called <strong>Nyquist Frequency</strong>.</li>
+<li>if $N$ is odd, one-sided FFT contain $\lfloor N&#x2F;2\rfloor$ elements ($k&#x3D;0,\cdots,\lfloor N&#x2F;2 \rfloor$-1) because <strong>Nyquist Frequency</strong> is skipped.</li>
+</ul>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1rj41157C6">如何快速理解离散傅立叶变换和FFT</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Math/" rel="tag"># Math</a>
+              <a href="/tags/Digital-Signal-Processing/" rel="tag"># Digital Signal Processing</a>
+          </div>
+          <script type="text/javascript">
+          var tagsall=document.getElementsByClassName("post-tags")
+          for (var i = tagsall.length - 1; i >= 0; i--){
+            var tags=tagsall[i].getElementsByTagName("a");
+            for (var j = tags.length - 1; j >= 0; j--) {
+                var r=Math.floor(Math.random()*75+130);
+                var g=Math.floor(Math.random()*75+100);
+                var b=Math.floor(Math.random()*75+80);
+                tags[j].style.background = "rgb("+r+","+g+","+b+")";
+            }
+          }                        
+          </script>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/09/19/PositionEmbedding/" rel="prev" title="Position Embedding">
+                  <i class="fa fa-angle-left"></i> Position Embedding
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fas fa-star-of-david"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Chaolv Zeng</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>Word count total: </span>
+    <span title="Word count total">139k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>Reading time total &asymp;</span>
+    <span title="Reading time total">8:27</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!-- <br /> -->
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<!-- <span id="times">载入时分秒...</span> -->
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/17/2022 8:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); 
+        if(String(snum).length ==1 ){snum = "0" + snum;}
+        // var times = document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","mhchem":false,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

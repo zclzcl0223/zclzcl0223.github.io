@@ -28,7 +28,7 @@
 <meta property="og:description" content="与C++一样，Python中也存在浅拷贝（Copy）和深拷贝（Deepcopy）两种拷贝方式。然而，由于Python中的一切传递、赋值都是引用，其深浅拷贝也具有更为不同的特点。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-07T13:43:08.000Z">
-<meta property="article:modified_time" content="2023-08-09T05:51:22.000Z">
+<meta property="article:modified_time" content="2024-09-29T08:55:21.932Z">
 <meta property="article:author" content="Chaolv Zeng">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -169,7 +169,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -188,6 +188,23 @@
     </div>
 
     
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/07/10/StringFormatting/" rel="bookmark">
+        <time class="popular-posts-time">2023-07-10</time>
+        <br>
+      Python String Formatting
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
   </aside>
 
 
@@ -240,7 +257,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-08-09 13:51:22" itemprop="dateModified" datetime="2023-08-09T13:51:22+08:00">2023-08-09</time>
+      <time title="Modified: 2024-09-29 16:55:21" itemprop="dateModified" datetime="2024-09-29T16:55:21+08:00">2024-09-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -259,6 +276,21 @@
       </span>
       <span class="post-meta-item-text">Views: </span>
       <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>830</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>3 mins.</span>
     </span>
 </div>
 
@@ -298,7 +330,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tup = (<span class="number">1</span>, [<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">tup1 = copy.copy(tup)</span><br><span class="line">tup2 = copy.deepcopy(tup)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(tup), <span class="string">&#x27;\n&#x27;</span>, <span class="built_in">id</span>(tup1), <span class="string">&#x27;\n&#x27;</span>, <span class="built_in">id</span>(tup2))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1944176723264</span></span><br><span class="line"><span class="string">1944176723264</span></span><br><span class="line"><span class="string">1944176723328</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU0NjgzMDIxMQ==&mid=2247569389&idx=4&sn=7f93a257c597821bb55da3e2637a3f3d&chksm=fb542d01cc23a4178b83617a01e933494ca6274dd2086baf2bd0354ac30637cc9af674458116&scene=27">【Python基础】Python的深浅拷贝讲解</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU0NjgzMDIxMQ==&mid=2247569389&idx=4&sn=7f93a257c597821bb55da3e2637a3f3d">【Python基础】Python的深浅拷贝讲解</a></li>
 </ul>
 
     </div>
@@ -361,6 +393,22 @@
     </span>
     <span class="author" itemprop="copyrightHolder">Chaolv Zeng</span>
   </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>Word count total: </span>
+    <span title="Word count total">139k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>Reading time total &asymp;</span>
+    <span title="Reading time total">8:27</span>
+  </span>
+</div>
 <div class="busuanzi-count">
     <span class="post-meta-item" id="busuanzi_container_site_uv">
       <span class="post-meta-item-icon">

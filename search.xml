@@ -1616,7 +1616,7 @@
 
 <p>而由于LASSO约束边界的不光滑性，切点更容易落在让某个参数分量为0的尖点上。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><a href="https://www.bilibili.com/video/BV1Bg4y1i76R?p=3&vd_source=2d980a0365f3ebea674b32924d8a4ce8">手把手教会机器学习与数据挖掘理论：岭回归（Ridge Regression）与LASSO</a></li>
+<li><a href="https://www.bilibili.com/video/BV1Bg4y1i76R">手把手教会机器学习与数据挖掘理论：岭回归（Ridge Regression）与LASSO</a></li>
 </ul>
 ]]></content>
       <tags>
@@ -2594,8 +2594,8 @@
 <p>Topic-Sensitive PageRank是APPNP的理论基础。</p>
 </blockquote>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><a href="https://www.bilibili.com/video/BV1uP411K7yN/?spm_id_from=333.337.search-card.all.click&vd_source=2d980a0365f3ebea674b32924d8a4ce8">改变世界的谷歌PageRank算法</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/450267809?utm_id=0">图表示学习系列4——PageRank</a></li>
+<li><a href="https://www.bilibili.com/video/BV1uP411K7yN">改变世界的谷歌PageRank算法</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/450267809">图表示学习系列4——PageRank</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/509849231">【CS224W】04链接分析算法</a></li>
 <li><a href="https://blog.csdn.net/likeyou1314918273/article/details/106895794">个性化PageRank算法</a></li>
 <li><a href="https://blog.csdn.net/insistGoGo/article/details/9885037">Topic-Sensitive PageRank(主题敏感的PageRank )</a></li>
@@ -2677,8 +2677,8 @@
 </ol>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a href="https://arxiv.org/pdf/1810.00826.pdf">How Powerful are Graph Neural Networks?</a></li>
-<li><a href="https://www.bilibili.com/video/BV14W4y1V7gg/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=2d980a0365f3ebea674b32924d8a4ce8">传统图机器学习的特征工程-全图【斯坦福CS224W】</a></li>
-<li><a href="https://www.bilibili.com/video/BV1MT411Y7da/?spm_id_from=333.788&vd_source=2d980a0365f3ebea674b32924d8a4ce8">图神经网络GNN的表达能力</a></li>
+<li><a href="https://www.bilibili.com/video/BV14W4y1V7gg">传统图机器学习的特征工程-全图【斯坦福CS224W】</a></li>
+<li><a href="https://www.bilibili.com/video/BV1MT411Y7da">图神经网络GNN的表达能力</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -2810,8 +2810,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -2897,7 +2897,7 @@
 </blockquote>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a href="https://arxiv.org/ftp/arxiv/papers/1812/1812.08434.pdf">Graph neural networks: A review of methods and applications</a></li>
-<li><a href="https://www.bilibili.com/video/BV1Me4y1c7kj/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">谱域图神经网络理论基础</a></li>
+<li><a href="https://www.bilibili.com/video/BV1Me4y1c7kj">谱域图神经网络理论基础</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/121090537">GCN中的等式证明</a></li>
 <li><a href="https://www.jianshu.com/p/35212baf6671">图卷积网络(GCN)原理解析</a></li>
 </ul>
@@ -2935,7 +2935,7 @@
 
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a href="https://zhuanlan.zhihu.com/p/137897522">图卷积神经网络系列：2. | 图傅里叶变换</a></li>
-<li><a href="https://www.bilibili.com/video/BV1Me4y1c7kj/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">谱域图神经网络理论基础</a></li>
+<li><a href="https://www.bilibili.com/video/BV1Me4y1c7kj">谱域图神经网络理论基础</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -3042,7 +3042,7 @@
 </blockquote>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a href="https://www.zhihu.com/zvideo/1440673926157991936">拉普拉斯方程</a></li>
-<li><a href="https://cloud.tencent.com/developer/article/1799419?areaSource=106000.9&traceId=BMewvJtoWh3KSO_SjKvfw">【图神经网络】数学基础篇</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1799419">【图神经网络】数学基础篇</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/85287578">拉普拉斯矩阵与拉普拉斯算子的关系</a></li>
 </ul>
 ]]></content>
@@ -3135,7 +3135,7 @@
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>本文所有的内容包括图片都基于文章 <em><strong>A Gentle Introduction to Graph Neural Networks</strong></em> 以及李沐先生的讲解。</p>
 <ul>
 <li><a href="https://distill.pub/2021/gnn-intro/">A Gentle Introduction to Graph Neural Networks</a></li>
-<li><a href="https://www.bilibili.com/video/BV1iT4y1d7zP/?spm_id_from=333.999.0.0&vd_source=2d980a0365f3ebea674b32924d8a4ce8">零基础多图详解图神经网络（GNN&#x2F;GCN）【论文精读】
+<li><a href="https://www.bilibili.com/video/BV1iT4y1d7zP">零基础多图详解图神经网络（GNN&#x2F;GCN）【论文精读】
 </a></li>
 </ul>
 ]]></content>
@@ -3989,7 +3989,7 @@
 <h2 id="Computational-complexity"><a href="#Computational-complexity" class="headerlink" title="Computational complexity"></a>Computational complexity</h2><p>Since the pooling layer windows are the same as kernels in convolutional layer, the pooling layer can reduce the dimension of data. </p>
 <p>However, because of the increase in data diversities and its consistency with the convolutional layer in dimensionality reduction, the pooling layer are no longer so important.</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a href="https://www.bilibili.com/video/BV1VV411478E/?spm_id_from=333.788&vd_source=2d980a0365f3ebea674b32924d8a4ce8">从“卷积”、到“图像卷积操作”、再到“卷积神经网络”，“卷积”意义的3次改变</a></li>
+<li><a href="https://www.bilibili.com/video/BV1VV411478E">从“卷积”、到“图像卷积操作”、再到“卷积神经网络”，“卷积”意义的3次改变</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -3998,6 +3998,42 @@
       <tags>
         <tag>Deep Learning</tag>
         <tag>CNN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Discrete Fourier Transform</title>
+    <url>/2024/09/29/DFT/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Continuous-Fourier-Transform"><a href="#Continuous-Fourier-Transform" class="headerlink" title="Continuous Fourier Transform"></a>Continuous Fourier Transform</h1><p>See <a href="/2023/05/10/FourierTransform/">Fourier Transform</a>.</p>
+<p>In brief:</p>
+<p>$$f(t)&#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}C_ne^{in\omega_0 t}<br> &#x3D;\sum\limits_{n&#x3D;-\infty} ^{+\infty}e^{in\omega_0 t}\frac{1}{T}\int_{0}^T f(t)e^{-in\omega_0 t}dt$$</p>
+<p>where $F(\omega)&#x3D; C _n&#x3D;\frac{1}{T}\int _{0} ^T f(t)e ^{-in\omega _0 t}dt$ is Fourier Transform.</p>
+<h1 id="Discrete-Fourier-Transform"><a href="#Discrete-Fourier-Transform" class="headerlink" title="Discrete Fourier Transform"></a>Discrete Fourier Transform</h1><p>For $N$ discrete signals sampled at equal intervals in a continuous signal, denoted as $\mathbf{X}&#x3D;\{x _0, x _1,\cdots, x _{N-1}\}$, assume the sampling interval is $\Delta t&#x3D;0$ and consider the original sequence has a period $T$. Then, the continuous fourier transform could be converted to DFT as :</p>
+<p>$$<br>\begin{align*}<br> F _k &amp;&#x3D; \frac{1}{N\Delta t}\sum\limits _{n&#x3D;0} ^{N-1}x _{n\Delta t}\cdot e ^{-i(n\omega _0)k\Delta t}\\<br> &amp;&#x3D;\frac{1}{N}\sum\limits _{n&#x3D;0} ^{N-1}x _n\cdot e ^{-i(n2\pi &#x2F; T)k}\\<br> &amp;&#x3D;\frac{1}{N}\sum\limits _{n&#x3D;0} ^{N-1}x _n\cdot e ^{-i(n2\pi &#x2F; (N\Delta t))k}\\<br> &amp;&#x3D;\frac{1}{N}\sum\limits _{n&#x3D;0} ^{N-1}x _n\cdot e ^{-i2\pi \frac{k}{N}n}<br>\end{align*}<br>$$<br>However, $\frac{1}{N}$ will make the value too small, so we always remove this term (actually it is moved to the <strong>inverse transform</strong>):</p>
+<p>$$<br>\begin{align*}<br> F _k &#x3D;\sum\limits _{n&#x3D;0} ^{N-1}x _n\cdot e ^{-i2\pi \frac{k}{N}n}<br>\end{align*}<br>$$</p>
+<p>Given a certain $k$, $ e ^{-i2\pi \frac{k}{N}n}$ could be treated as a signal in a certain frequency ($k&#x2F;N$). Then, $\sum\limits _{n&#x3D;0} ^{N-1}x _n\cdot e ^{-i2\pi \frac{k}{N}n}$ could be treated as calculating the <strong>similarity</strong> of a signal sequence $\{x _0, x _1,\cdots, x _{N-1}\}$ and $\{e ^{-i2\pi \frac{k}{N}\cdot0}, e ^{-i2\pi \frac{k}{N}\cdot1},\cdots, e ^{-i2\pi \frac{k}{N}\cdot(N-1)}\}$. Hence, DFT could also be represented in a matrix form:</p>
+<p>$$<br>[F _0, F _1, \cdots, F _{N-1}]&#x3D;[x _0, x _1,\cdots, x _{N-1}]\cdot\begin{bmatrix}<br> k&#x3D;0,&amp; k&#x3D;1,&amp; \cdots,&amp; k&#x3D;N-1&amp;\\<br> \vdots,&amp; \vdots,&amp; \ddots,&amp; \vdots&amp;<br>\end{bmatrix}<br>$$</p>
+<blockquote>
+<p>Fast Fourier Transform (FFT), a method to calculate DFT efficiently,  is based on the above formula.</p>
+</blockquote>
+<p>If $k$ is expressed in Hz, each $k$ represents $\frac{kf _s}{N}$Hz. $\frac{f _s}{N}$ is the <strong>Frequency Resolution</strong>.</p>
+<h2 id="One-sided-and-Two-sided-FFT"><a href="#One-sided-and-Two-sided-FFT" class="headerlink" title="One-sided and Two-sided FFT"></a>One-sided and Two-sided FFT</h2><p>One-sided FFT (<code>torch.fft.rfft</code>) only considers positive frequency while two-sided FFT (<code>torch.fft.fft</code>) considers both positive and negative frequency. If $x$ is real numbers and $N$ is even, then $|F _k|$ is symmetric about $|F _{N&#x2F;2}|$.</p>
+<p>Hence:</p>
+<ul>
+<li>if $N$ is even, one-sided FFT contain $N&#x2F;2+1$ elements ($k&#x3D;0,\cdots,N&#x2F;2$) where $k&#x3D;N&#x2F;2$ is called <strong>Nyquist Frequency</strong>.</li>
+<li>if $N$ is odd, one-sided FFT contain $\lfloor N&#x2F;2\rfloor$ elements ($k&#x3D;0,\cdots,\lfloor N&#x2F;2 \rfloor$-1) because <strong>Nyquist Frequency</strong> is skipped.</li>
+</ul>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a href="https://www.bilibili.com/video/BV1rj41157C6">如何快速理解离散傅立叶变换和FFT</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Math</category>
+      </categories>
+      <tags>
+        <tag>Math</tag>
+        <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
   <entry>
@@ -4103,8 +4139,9 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
+        <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
   <entry>
@@ -4182,16 +4219,17 @@
 
 <p>$e^{i\omega t}$ represents different waveforms while $F(w)$ represents the intensity of different waveforms in the original function $f(t)$. Therefore, we can restore the original function by superimposing waveforms of different intensities. And this is <strong>Inverse Fourier Transform</strong>.</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
-<li><a href="https://www.bilibili.com/video/BV1Et411R78v/?spm_id_from=333.788.recommend_more_video.-1&vd_source=2d980a0365f3ebea674b32924d8a4ce8">纯干货数学推导_傅里叶级数与傅里叶变换</a></li>
-<li><a href="https://www.bilibili.com/video/BV1ce4y1p7jF/?spm_id_from=333.880.my_history.page.click&vd_source=2d980a0365f3ebea674b32924d8a4ce8">卷积神经网络的底层是傅里叶变换，傅里叶变换的底层是希尔伯特空间坐标变换</a></li>
+<li><a href="https://www.bilibili.com/video/BV1Et411R78v">纯干货数学推导_傅里叶级数与傅里叶变换</a></li>
+<li><a href="https://www.bilibili.com/video/BV1ce4y1p7jF">卷积神经网络的底层是傅里叶变换，傅里叶变换的底层是希尔伯特空间坐标变换</a></li>
 </ul>
 ]]></content>
       <categories>
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
+        <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
   <entry>
@@ -5721,7 +5759,7 @@
 
 <p>上面的式子将一次性生成99个文件。其基本原理是：最外层花括号内的两项<code>00&#123;1..9&#125;</code>和<code>0&#123;10..99&#125;</code>分别单独展开。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><a href="https://www.youtube.com/watch?v=LH4eF75Z_7U&list=WL&index=3&t=33s">Linux Tutorials | Wildcards and Pattern Matching | GeeksforGeeks</a></li>
+<li><a href="https://youtu.be/LH4eF75Z_7U?si=bxCeRYpXGUmuKGXc">Linux Tutorials | Wildcards and Pattern Matching | GeeksforGeeks</a></li>
 <li><a href="https://www.kancloud.cn/thinkphp/linux-command-line/39435">第五章：操作文件和目录</a></li>
 <li><a href="https://www.kancloud.cn/thinkphp/linux-command-line/39438">第八章：从shell眼中看世界</a></li>
 </ul>
@@ -5830,8 +5868,8 @@
 </blockquote>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a href="https://www.kancloud.cn/thinkphp/linux-command-line/39455">The Linux Command Line 中文版 第二十四章：编译程序</a></li>
-<li><a href="https://www.youtube.com/watch?v=qON2D3vDIt8&list=WL&index=1&t=193s">[Environment Setup 8] Compile programs from source code using GCC, GNU Make, and CMake</a></li>
-<li><a href="https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html#zz-2.">Compiling, Linking and Building C&#x2F;C++ Applications</a></li>
+<li><a href="https://youtu.be/qON2D3vDIt8?si=MdJ6vMEBxWEojYbl">[Environment Setup 8] Compile programs from source code using GCC, GNU Make, and CMake</a></li>
+<li><a href="https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html">Compiling, Linking and Building C&#x2F;C++ Applications</a></li>
 <li><a href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">CMake Tutorial</a></li>
 </ul>
 ]]></content>
@@ -6759,8 +6797,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -6864,8 +6902,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -7049,7 +7087,7 @@
 <li><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html">pyplot.subplots</a></li>
 </ul>
 <h1 id="More-information"><a href="#More-information" class="headerlink" title="More information"></a>More information</h1><ul>
-<li><a href="https://www.youtube.com/playlistlist=PL-osiE80TeTvipOqomVEeZ1HRrcEvtZB_">Matplotlib Tutorials by Corey Schafer</a></li>
+<li><a href="https://youtu.be/UO98lJQ3QGI?si=AIbHWXO0NH7m5G_x">Matplotlib Tutorials by Corey Schafer</a></li>
 <li><a href="https://matplotlib.org/stable/plot_types/index.html">plot types</a></li>
 <li><a href="https://matplotlib.org/stable/gallery/index.html">plot examples</a></li>
 <li><a href="https://matplotlib.org/stable/api/pyplot_summary.html">pyplot api</a></li>
@@ -7280,9 +7318,23 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tup = (<span class="number">1</span>, [<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">tup1 = copy.copy(tup)</span><br><span class="line">tup2 = copy.deepcopy(tup)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(tup), <span class="string">&#x27;\n&#x27;</span>, <span class="built_in">id</span>(tup1), <span class="string">&#x27;\n&#x27;</span>, <span class="built_in">id</span>(tup2))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1944176723264</span></span><br><span class="line"><span class="string">1944176723264</span></span><br><span class="line"><span class="string">1944176723328</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0NjgzMDIxMQ==&mid=2247569389&idx=4&sn=7f93a257c597821bb55da3e2637a3f3d&chksm=fb542d01cc23a4178b83617a01e933494ca6274dd2086baf2bd0354ac30637cc9af674458116&scene=27">【Python基础】Python的深浅拷贝讲解</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU0NjgzMDIxMQ==&mid=2247569389&idx=4&sn=7f93a257c597821bb55da3e2637a3f3d">【Python基础】Python的深浅拷贝讲解</a></li>
 </ul>
 ]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gamma and Factorial</title>
+    <url>/2023/05/05/GammaAndFactorial/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Programming Language</category>
       </categories>
@@ -7361,20 +7413,6 @@
 <h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 ]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Gamma and Factorial</title>
-    <url>/2023/05/05/GammaAndFactorial/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Programming Language</category>
       </categories>
@@ -7620,6 +7658,9 @@
     <title>Conda</title>
     <url>/2023/04/11/Conda/</url>
     <content><![CDATA[<span id="more"></span>
+
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>5 steps:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># create a directory to install minicaonda in</span><br><span class="line">mkdir -p ~/miniconda3</span><br><span class="line"></span><br><span class="line"># download latest miniconda version</span><br><span class="line">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh</span><br><span class="line"></span><br><span class="line"># run the install script</span><br><span class="line">bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3</span><br><span class="line"></span><br><span class="line"># delete the intall script</span><br><span class="line">rm -rf ~/miniconda3/miniconda.sh</span><br><span class="line"></span><br><span class="line"># add a conda initialize to your bash</span><br><span class="line">~/miniconda3/bin/conda init bash</span><br><span class="line"></span><br><span class="line"># Verify the installaton </span><br><span class="line">conda list</span><br></pre></td></tr></table></figure>
 
 <h1 id="Environment-amp-Library"><a href="#Environment-amp-Library" class="headerlink" title="Environment &amp; Library"></a>Environment &amp; Library</h1><p>Create a new environment:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n [newevname] python=[YourVersion]</span><br></pre></td></tr></table></figure>
