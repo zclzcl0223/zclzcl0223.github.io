@@ -20,21 +20,19 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"zclzcl0223.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":false},"hljswrap":true,"copycode":{"enable":true,"style":"mac","show_result":false},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="从Streaming VQ起的召回之旅。">
+    <meta name="description" content="召回，推荐系统需要召回，NTP（next token prediction）其实也是召回。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Retrievers: Indexing and Ranking">
 <meta property="og:url" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/index.html">
 <meta property="og:site_name" content="JourneyToCoding">
-<meta property="og:description" content="从Streaming VQ起的召回之旅。">
+<meta property="og:description" content="召回，推荐系统需要召回，NTP（next token prediction）其实也是召回。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://zclzcl0223.github.io/1.png">
 <meta property="article:published_time" content="2026-01-18T11:02:33.000Z">
-<meta property="article:modified_time" content="2026-01-18T11:11:16.177Z">
+<meta property="article:modified_time" content="2026-01-18T12:03:00.873Z">
 <meta property="article:author" content="Chaolv Zeng">
 <meta property="article:tag" content="Recommender System">
 <meta property="article:tag" content="Recall">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/1.png">
 
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/">
@@ -133,7 +131,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -146,6 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HNSW"><span class="nav-number">1.</span> <span class="nav-text">HNSW</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TDM"><span class="nav-number">2.</span> <span class="nav-text">TDM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NANN"><span class="nav-number">3.</span> <span class="nav-text">NANN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DR"><span class="nav-number">4.</span> <span class="nav-text">DR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Streaming-VQ"><span class="nav-number">5.</span> <span class="nav-text">Streaming VQ</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -190,6 +189,30 @@
     </div>
 
     
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/05/19/MultipleGPUsAndParallelism/" rel="bookmark">
+        <time class="popular-posts-time">2023-05-19</time>
+        <br>
+      Multiple GPUs and Parallelism
+      </a>
+    </li>
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2023/04/17/RecommenderSystem/" rel="bookmark">
+        <time class="popular-posts-time">2023-04-17</time>
+        <br>
+      Recommender System
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
   </aside>
 
 
@@ -220,7 +243,7 @@
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="Retrievers: Indexing and Ranking | JourneyToCoding">
-      <meta itemprop="description" content="从Streaming VQ起的召回之旅。">
+      <meta itemprop="description" content="召回，推荐系统需要召回，NTP（next token prediction）其实也是召回。">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -236,7 +259,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2026-01-18 19:02:33 / Modified: 19:11:16" itemprop="dateCreated datePublished" datetime="2026-01-18T19:02:33+08:00">2026-01-18</time>
+      <time title="Created: 2026-01-18 19:02:33 / Modified: 20:03:00" itemprop="dateCreated datePublished" datetime="2026-01-18T19:02:33+08:00">2026-01-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -262,7 +285,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>13</span>
+      <span>119</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -273,7 +296,7 @@
     </span>
 </div>
 
-            <div class="post-description">从Streaming VQ起的召回之旅。</div>
+            <div class="post-description">召回，推荐系统需要召回，NTP（next token prediction）其实也是召回。</div>
         </div>
       </header>
 
@@ -282,8 +305,19 @@
     
     <div class="post-body" itemprop="articleBody"><span id="more"></span>
 
-<p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>
+<p>每次临近毕业都是很闲的时候，因此如本科毕业般，这次也想学点之前没认真学的东西。召回、各类大模型技术报告、新的语言......那么先从召回开始。</p>
+<p>从盘古开天地看起也不太现实，所以主要是围绕几篇主要的论文展开：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1603.09320">Hierarchical Navigable Small World (HNSW)</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1801.02294">Tree-based Deep Models (TDM)</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2202.10226">NANN (二向箔)</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2007.07203">Deep Retrieval (DR)</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2501.08695">Streaming VQ</a></li>
+</ul>
+<h2 id="HNSW"><a href="#HNSW" class="headerlink" title="HNSW"></a>HNSW</h2><h2 id="TDM"><a href="#TDM" class="headerlink" title="TDM"></a>TDM</h2><h2 id="NANN"><a href="#NANN" class="headerlink" title="NANN"></a>NANN</h2><h2 id="DR"><a href="#DR" class="headerlink" title="DR"></a>DR</h2><h2 id="Streaming-VQ"><a href="#Streaming-VQ" class="headerlink" title="Streaming VQ"></a>Streaming VQ</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/68748778">EMA</a></p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1711.00937">VQ-VAE</a></p>
+<p><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3298689.3346996">Sampling Bias</a></p>
+
     </div>
 
     

@@ -5,8 +5,19 @@
     <url>/2026/01/18/Retrievers-Indexing-and-Ranking/</url>
     <content><![CDATA[<span id="more"></span>
 
-<p><img src="/1.png" alt="1"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. </center><br>]]></content>
+<p>每次临近毕业都是很闲的时候，因此如本科毕业般，这次也想学点之前没认真学的东西。召回、各类大模型技术报告、新的语言......那么先从召回开始。</p>
+<p>从盘古开天地看起也不太现实，所以主要是围绕几篇主要的论文展开：</p>
+<ul>
+<li><a href="https://arxiv.org/pdf/1603.09320">Hierarchical Navigable Small World (HNSW)</a></li>
+<li><a href="https://arxiv.org/pdf/1801.02294">Tree-based Deep Models (TDM)</a></li>
+<li><a href="https://arxiv.org/pdf/2202.10226">NANN (二向箔)</a></li>
+<li><a href="https://arxiv.org/pdf/2007.07203">Deep Retrieval (DR)</a></li>
+<li><a href="https://arxiv.org/pdf/2501.08695">Streaming VQ</a></li>
+</ul>
+<h2 id="HNSW"><a href="#HNSW" class="headerlink" title="HNSW"></a>HNSW</h2><h2 id="TDM"><a href="#TDM" class="headerlink" title="TDM"></a>TDM</h2><h2 id="NANN"><a href="#NANN" class="headerlink" title="NANN"></a>NANN</h2><h2 id="DR"><a href="#DR" class="headerlink" title="DR"></a>DR</h2><h2 id="Streaming-VQ"><a href="#Streaming-VQ" class="headerlink" title="Streaming VQ"></a>Streaming VQ</h2><p><a href="https://zhuanlan.zhihu.com/p/68748778">EMA</a></p>
+<p><a href="https://arxiv.org/pdf/1711.00937">VQ-VAE</a></p>
+<p><a href="https://dl.acm.org/doi/10.1145/3298689.3346996">Sampling Bias</a></p>
+]]></content>
       <categories>
         <category>Recommender System</category>
       </categories>
@@ -937,8 +948,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1191,8 +1202,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1335,8 +1346,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1571,8 +1582,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1787,8 +1798,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1915,8 +1926,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2355,8 +2366,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2466,8 +2477,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2727,8 +2738,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2755,8 +2766,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2786,8 +2797,8 @@
       </categories>
       <tags>
         <tag>Deep Learning</tag>
-        <tag>Dataset Distillation</tag>
         <tag>GNN</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -2840,9 +2851,9 @@
       </categories>
       <tags>
         <tag>Paper</tag>
-        <tag>Dataset Distillation</tag>
-        <tag>Machine Learning</tag>
         <tag>GNN</tag>
+        <tag>Machine Learning</tag>
+        <tag>Dataset Distillation</tag>
         <tag>SVM</tag>
       </tags>
   </entry>
@@ -3469,8 +3480,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
       </tags>
   </entry>
@@ -4799,8 +4810,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
         <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
@@ -4887,8 +4898,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
         <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
@@ -7456,8 +7467,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -7561,8 +7572,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
