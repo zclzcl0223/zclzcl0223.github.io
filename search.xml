@@ -14,10 +14,28 @@
 <li><a href="https://arxiv.org/pdf/2007.07203">Deep Retrieval (DR)</a></li>
 <li><a href="https://arxiv.org/pdf/2501.08695">Streaming VQ</a></li>
 </ul>
-<h2 id="HNSW"><a href="#HNSW" class="headerlink" title="HNSW"></a>HNSW</h2><h2 id="TDM"><a href="#TDM" class="headerlink" title="TDM"></a>TDM</h2><h2 id="NANN"><a href="#NANN" class="headerlink" title="NANN"></a>NANN</h2><h2 id="DR"><a href="#DR" class="headerlink" title="DR"></a>DR</h2><h2 id="Streaming-VQ"><a href="#Streaming-VQ" class="headerlink" title="Streaming VQ"></a>Streaming VQ</h2><p><a href="https://zhuanlan.zhihu.com/p/68748778">EMA</a></p>
-<p><a href="https://arxiv.org/pdf/1711.00937">VQ-VAE</a></p>
+<h2 id="Streaming-VQ"><a href="#Streaming-VQ" class="headerlink" title="Streaming VQ"></a>Streaming VQ</h2><p>因为先看的Streaming VQ，所以就倒过来写了。</p>
+<p>VQ（Vector Quantisation），顾名思义是将一坨向量映射到一个索引，实际就是将向量分组。于推荐而言，召回中的VQ可以理解为由反向传播优化得到的动态分组方法。为什么召回需要分组，或者说需要索引？因为召回的候选是视频的全集，我们不可能在第一个阶段就对每个用户进行全候选计算，因此需要缩小范围。那么如何缩小范围？最简单的就是为用户以及视频打上标签，如我喜欢看日漫，那就只召回带日漫标签的。直接用标签分组缺乏灵活性，而VQ就是这么一个动态分组。</p>
+<p>首先，VQ这种方式在Neurips2017的文章<a href="https://arxiv.org/pdf/1711.00937">VQ-VAE</a>中首次被用到了生成式任务中：</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/1.png" alt="vqvae"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. VQ-VAE</center><br>
+
+<p>其对VAE Encoder的输出$z$进行了分组（后面都称索引），由于现实的图片分布可以理解为无数个高斯分布的叠加，因此这些索引我认为最终是实现了一个索引对应一个或者几个高斯分布。整个流程还是VAE那一套，量化体现在Encoder-&gt;Decoder的部分，即每个索引有其自身的Embedding，选取与Encoder输出欧式距离最近的组的Embedding作为Decoder的输出：</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/2.png" alt="quantisation"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Quantisation</center><br>
+
+<p>Loss由三部分组成（加号分割）：</p>
+<ul>
+<li>$\mathcal{L} _1$即重构MSE，生成梯度用于更新Decoder，比较特别的是，由于输入Decoder的是索引Embedding，因此梯度不会传到到Encoder，作者的解决方式是：Decoder和Encoder的结构是一模一样的，因此直接用Decoder的梯度更新Encoder;</li>
+<li>$\mathcal{L} _2$中sg指stop gradient，用于更新索引Embedding。不然看出，最终每个索引的Embedding其实一定程度上等于该索引所包含的向量的均值，因此也可以采用指数移动平均EMA的更新方法，Streaming VQ用的就是这种方式；</li>
+<li>$\mathcal{L} _3$更新Encoder，起到正则的效果；</li>
+</ul>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/3.png" alt="loss"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Loss of VQ-VAE</center><br>
+
+<p><a href="https://zhuanlan.zhihu.com/p/68748778">EMA</a></p>
 <p><a href="https://dl.acm.org/doi/10.1145/3298689.3346996">Sampling Bias</a></p>
-]]></content>
+<h2 id="DR"><a href="#DR" class="headerlink" title="DR"></a>DR</h2><h2 id="NANN"><a href="#NANN" class="headerlink" title="NANN"></a>NANN</h2><h2 id="TDM"><a href="#TDM" class="headerlink" title="TDM"></a>TDM</h2><h2 id="HNSW"><a href="#HNSW" class="headerlink" title="HNSW"></a>HNSW</h2>]]></content>
       <categories>
         <category>Recommender System</category>
       </categories>
@@ -948,8 +966,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1202,8 +1220,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1346,8 +1364,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1582,8 +1600,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1798,8 +1816,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1926,8 +1944,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -2366,8 +2384,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -2477,8 +2495,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -2738,8 +2756,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -2766,8 +2784,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -2797,8 +2815,8 @@
       </categories>
       <tags>
         <tag>Deep Learning</tag>
-        <tag>GNN</tag>
         <tag>Dataset Distillation</tag>
+        <tag>GNN</tag>
       </tags>
   </entry>
   <entry>
@@ -2851,9 +2869,9 @@
       </categories>
       <tags>
         <tag>Paper</tag>
-        <tag>GNN</tag>
-        <tag>Machine Learning</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Machine Learning</tag>
+        <tag>GNN</tag>
         <tag>SVM</tag>
       </tags>
   </entry>
@@ -4810,8 +4828,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
         <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
@@ -4898,8 +4916,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
         <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
@@ -6250,8 +6268,8 @@
         <category>Programming Language</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6354,8 +6372,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6439,8 +6457,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6548,8 +6566,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6678,8 +6696,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6696,8 +6714,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6768,8 +6786,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6958,8 +6976,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7060,8 +7078,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7186,8 +7204,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7217,8 +7235,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
