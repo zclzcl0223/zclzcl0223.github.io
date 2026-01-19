@@ -35,7 +35,7 @@
 
 <p>以上都是训练，实际Serving的时候就和VQ没什么关系了，还是从某个先验中采样出Embedding输入Decoder，而不是用Codebook（即索引表）的Embedding。</p>
 <h3 id="Streaming-VQ-1"><a href="#Streaming-VQ-1" class="headerlink" title="Streaming VQ"></a>Streaming VQ</h3><p>在VQ-VAE中，VQ实际上只是起到了一个辅助VAE训练的作用，最终的Codebook在Serving的时候并没有起到作用，而在Streaming VQ中，Codebook不仅有索引，每个索引下还有着对应的归属于该索引的视频，因而是有着实际作用的。</p>
-<p>整体架构如大的黑色虚线上面的部分所示：</p>
+<h4 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h4><p>整体架构如大的黑色虚线上面的部分所示：</p>
 <p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/4.png" alt="streaming_vq"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 4. Streaming VQ</center><br>
 
@@ -47,8 +47,17 @@
 <li><p>Codebook_User：Codebook的Loss回传更新G侧，Codebook本身由G侧Embedidng EMA更新，U侧是否更新不清楚。<br><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/6.png" alt="codebook_user"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 6. Codebook-User</center><br></li>
 </ul>
-<p>以上两者都采用In-batch softmax，即NCE。</p>
+<p>以上两者都采用In-batch softmax，即InfoNCE（无温度系数，定义见<a href="https://arxiv.org/pdf/1911.05722">MoC o</a>）。</p>
 <p><a href="https://dl.acm.org/doi/10.1145/3298689.3346996">Sampling Bias</a></p>
+<h4 id="Serving"><a href="#Serving" class="headerlink" title="Serving"></a>Serving</h4><p>由于G侧塔和U侧塔的特征是完全独立的，因此在同一个时刻每个Item都会唯一地被分配一个索引，那么实际我们只要计算U侧Embedidng和Codebook各个索引Embedding的内积，取靠前的几个作为我们的候选即可。但是，用户的兴趣是多元的（或者说长尾的），分低的索引中也可能有用户很感兴趣的视频，前面的处理会导致过于注重头部兴趣，而忽略了尾部兴趣。Streaming VQ的解决方式是为每个Item引入单独的Bias项，起到Embedding表征个性化、Bias表征视频热门程度的作用：</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/8.png" alt="personality"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 8. Item bias for personality and popularity</center><br>
+
+<p>如此，Codebook中不同索引的Item也变得可比了，于是我们可以直接k路归并地召回：</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/7.png" alt="K-merge"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 7. K-merge sort</center><br>
+
+
 <h2 id="DR"><a href="#DR" class="headerlink" title="DR"></a>DR</h2><h2 id="NANN"><a href="#NANN" class="headerlink" title="NANN"></a>NANN</h2><h2 id="TDM"><a href="#TDM" class="headerlink" title="TDM"></a>TDM</h2><h2 id="HNSW"><a href="#HNSW" class="headerlink" title="HNSW"></a>HNSW</h2>]]></content>
       <categories>
         <category>Recommender System</category>
@@ -3512,8 +3521,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
       </tags>
   </entry>
@@ -6282,8 +6291,8 @@
         <category>Programming Language</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6386,8 +6395,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6471,8 +6480,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6580,8 +6589,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6710,8 +6719,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6728,8 +6737,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6800,8 +6809,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6990,8 +6999,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7092,8 +7101,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7218,8 +7227,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7249,8 +7258,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7499,8 +7508,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -7604,8 +7613,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -8032,6 +8041,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Python Package</title>
+    <url>/2023/06/15/PythonPackage/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
+<blockquote>
+<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
+</blockquote>
+<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
+<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Configuration</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Zip: Make Aggregation Easier</title>
     <url>/2023/05/06/ZipMakeLifeEasier/</url>
     <content><![CDATA[<span id="more"></span>
@@ -8101,26 +8130,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python Package</title>
-    <url>/2023/06/15/PythonPackage/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
-<blockquote>
-<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
-</blockquote>
-<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
-<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Configuration</tag>
       </tags>
   </entry>
   <entry>
