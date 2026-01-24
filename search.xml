@@ -8,7 +8,7 @@
 <p>以Transformer为根基的LLMs能发展至今，离不开Transformer设计的规整、对称性。对Transformer来说，经过Embedding层映射到向量空间的文本序列，成为了一个很规整的$T\times D$的矩阵，其中$T$是序列长度，$D$是Embedding维度。Attention生成动态权重进行<strong>序列维度</strong>的变换映射；FFN以固定的权重进行<strong>特征维度</strong>的变换映射，位置编码PositionEncoding赋予模型识别顺序、外延能力（当然Causal Attention本身就不具备置换不变性，内在地有顺序感知能力，但加上位置编码总归是更直接点），残差Residue以及正则Norm作为深度神经网络的基本组件保证训练的可持续与稳定性。</p>
 <p>若再从Attention和FFN统一性的角度来看：Attention的QK内积生成权重，对V在序列维度加权求和；FFN（两层Linear维度分别为$D\times M$，$M\times D$）的输入与第一层Linear生成权重，对第二层的Linear在$M$维度加权求和。而稀疏性是普通存在的，因此很直接地，在FFN，对某个Token，在第二层的Linear中起到作用的肯定只有少数的行，因此有了MoE；同样地，与当前Token相关的历史Token也是少数的，即有用的V也就几个，因此有了稀疏注意力，如<a href="https://arxiv.org/pdf/2512.02556">DSA</a>。</p>
 <p>对其他的组件，如PositionEncoding，从Sinusoidal到<a href="https://arxiv.org/pdf/2104.09864">RoPE</a>到<a href="https://arxiv.org/pdf/2309.00071">YaRN</a>等，一直在发展；Norm也由LayerNorm到<a href="https://arxiv.org/pdf/1910.07467">RMSNorm</a>（当然还有<a href="https://arxiv.org/pdf/2503.10622">DyT</a>）。现在终于轮到Residue以及TokenEmbedding了（悲QAQ）。本篇主要围绕字节的<a href="https://arxiv.org/pdf/2409.19606">HC</a>以及DeepSeek的<a href="https://arxiv.org/pdf/2512.24880">mHC</a>看看米娜桑都对残差整了些什么花活儿。</p>
-<h2 id="HC"><a href="#HC" class="headerlink" title="HC"></a>HC</h2><p>emmm...怎么说呢，我十分认同openreview给5分的作者的意见，这篇文章的写作确实有点一言难尽。本来应该是很简单、直觉的方法，论文把它描述地过于复杂了，而且伪代码给得也不好。因此我决定跳过这篇文章，直接看mHC。</p>
+<h2 id="HC"><a href="#HC" class="headerlink" title="HC"></a>HC</h2><p>emmm...怎么说呢，我十分认同openreview给5分的审稿人的意见，这篇文章的写作确实有点一言难尽。本来应该是很简单、直觉的方法，论文把它描述地过于复杂了，而且伪代码给得也不好。因此我决定跳过这篇文章，直接看mHC。</p>
 <p><img src="/2026/01/23/Hyper-Connections/1.png" alt="hc"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. Hyper-connections</center><br>
 
@@ -2889,8 +2889,8 @@
       </categories>
       <tags>
         <tag>Deep Learning</tag>
-        <tag>GNN</tag>
         <tag>Dataset Distillation</tag>
+        <tag>GNN</tag>
       </tags>
   </entry>
   <entry>
@@ -2943,9 +2943,9 @@
       </categories>
       <tags>
         <tag>Paper</tag>
-        <tag>Machine Learning</tag>
-        <tag>GNN</tag>
         <tag>Dataset Distillation</tag>
+        <tag>GNN</tag>
+        <tag>Machine Learning</tag>
         <tag>SVM</tag>
       </tags>
   </entry>
@@ -3572,8 +3572,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
       </tags>
   </entry>
@@ -7559,8 +7559,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -7664,8 +7664,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
