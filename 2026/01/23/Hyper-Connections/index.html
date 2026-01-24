@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/23/Hyper-Connections/4.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/23/Hyper-Connections/2.png">
 <meta property="article:published_time" content="2026-01-23T13:02:42.000Z">
-<meta property="article:modified_time" content="2026-01-24T16:12:26.793Z">
+<meta property="article:modified_time" content="2026-01-24T16:15:57.649Z">
 <meta property="article:author" content="Chaolv Zeng">
 <meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary">
@@ -290,7 +290,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-01-25 00:12:26" itemprop="dateModified" datetime="2026-01-25T00:12:26+08:00">2026-01-25</time>
+      <time title="Modified: 2026-01-25 00:15:57" itemprop="dateModified" datetime="2026-01-25T00:15:57+08:00">2026-01-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -316,7 +316,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>787</span>
+      <span>785</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -353,7 +353,7 @@
 <p><img src="/2026/01/23/Hyper-Connections/2.png" alt="mhc"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 4. Manifold-constrained hyper-connections</center><br>
 
-<p>即相比于残差，HC人为地将恒等流由原来的一条增加为了n条，相应地输入$x _l$的维度也由$Batch\times Seq_len\times Dim$变为了$Batch\times Seq_len\times n\times Dim$（当然，在第一层的时候应该只是将原本的$x _l$复制了n份）。因此为了融合，会需要多个整合维度的投影矩阵，因此有了：$\mathcal{H} _l ^{pre}\in \mathbb{R} ^{n\times 1}$将输入的多流整合为一条流，输入Attention或FFN模块；$\mathcal{H} _l ^{post}\in \mathbb{R} ^{1\times n}$将Attention或FFN的输出重新转为n条流；$\mathcal{H} _l ^{res}\in \mathbb{R} ^{n\times n}$进行n条恒等流的交互。</p>
+<p>即相比于残差，HC人为地将恒等流由原来的一条增加为了n条，相应地输入$x _l$的维度也由$Batch\times SeqLen\times Dim$变为了$Batch\times SeqLen\times n\times Dim$（当然，在第一层的时候应该只是将原本的$x _l$复制了n份）。因此为了融合，会需要多个整合维度的投影矩阵，因此有了：$\mathcal{H} _l ^{pre}\in \mathbb{R} ^{n\times 1}$将输入的多流整合为一条流，输入Attention或FFN模块；$\mathcal{H} _l ^{post}\in \mathbb{R} ^{1\times n}$将Attention或FFN的输出重新转为n条流；$\mathcal{H} _l ^{res}\in \mathbb{R} ^{n\times n}$进行n条恒等流的交互。</p>
 
     </div>
 
