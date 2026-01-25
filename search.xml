@@ -23,6 +23,24 @@
 <center style="font-size:12px; font-weight:bold">Fig. 4. Manifold-constrained hyper-connections</center><br>
 
 <p>即相比于残差，HC人为地将恒等流由原来的一条增加为了n条，相应地输入$x _l$的维度也由$Batch\times SeqLen\times Dim$变为了$Batch\times SeqLen\times n\times Dim$（当然，在第一层的时候应该只是将原本的$x _l$复制了n份）。因此为了融合，会需要多个整合维度的投影矩阵，因此有了：$\mathcal{H} _l ^{pre}\in \mathbb{R} ^{n\times 1}$将输入的多流整合为一条流，输入Attention或FFN模块；$\mathcal{H} _l ^{post}\in \mathbb{R} ^{1\times n}$将Attention或FFN的输出重新转为n条流；$\mathcal{H} _l ^{res}\in \mathbb{R} ^{n\times n}$进行n条恒等流的交互。</p>
+<p>然而，由于流信息交换矩阵$\mathcal{H} _l ^{res}$的存在（该矩阵也是HC收益的主要来源），原本不受层深度影响的恒等分支：<br><img src="/2026/01/23/Hyper-Connections/5.png" alt="residue"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Multi-layer residue</center><br>
+前面也多乘了一个$\mathcal{H} _l ^{res}$相关的累乘矩阵：
+
+<p><img src="/2026/01/23/Hyper-Connections/6.png" alt="residue"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. Multi-layer hyper-connections</center><br>
+而$\mathcal{H} _l ^{res}$本身是不受任何限制的，因此可能会存在着梯度爆炸的问题（即原本只有一条流的时候始终加的是1，但现在多了个转换矩阵，最终的和可能 >> n）。mHC的主要改进点就是对上面的三个投影矩阵进行了值域限制。
+
+<p>在HC中，三个投影矩阵的构造方式为：</p>
+<p><img src="/2026/01/23/Hyper-Connections/7.png" alt="residue"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 7. Hyper-connections matrix</center><br>
+
+<p>而在mHC中，除了去掉激活函数tanh，并将原本在投影时分开处理的n条流（维度$n\times Dim$）转变为在投影时共同处理的一条流（维度$1\times nDim$），强化了流之间的交互：<br><img src="/2026/01/23/Hyper-Connections/8.png" alt="residue"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 8. mHC matrix</center><br>
+
+<p>还对最终生成的转换矩阵进行了限制，其中前两个用sigmoid限制，最后的则用<strong>双随机矩阵</strong>限制，即要求行和、列和均为1且非负：<br><img src="/2026/01/23/Hyper-Connections/9.png" alt="residue"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 9. Manifold-Constrained</center><br>
+
 ]]></content>
       <categories>
         <category>Advanced Model</category>
@@ -2952,8 +2970,8 @@
       <tags>
         <tag>Paper</tag>
         <tag>Dataset Distillation</tag>
-        <tag>GNN</tag>
         <tag>Machine Learning</tag>
+        <tag>GNN</tag>
         <tag>SVM</tag>
       </tags>
   </entry>
@@ -4910,8 +4928,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
         <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
@@ -4998,8 +5016,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
         <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
@@ -6350,8 +6368,8 @@
         <category>Programming Language</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6454,8 +6472,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6539,8 +6557,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6648,8 +6666,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6778,8 +6796,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6796,8 +6814,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6868,8 +6886,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7058,8 +7076,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7160,8 +7178,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7286,8 +7304,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -7317,8 +7335,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>Tool</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
