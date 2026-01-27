@@ -27,11 +27,14 @@
 <meta property="og:site_name" content="JourneyToCoding">
 <meta property="og:description" content="魔改Tokenizer（Embedding），感觉比魔改残差有前途。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/25/Per-Layer-Embedding/1.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/25/Per-Layer-Embedding/2.png">
 <meta property="article:published_time" content="2026-01-25T12:06:52.000Z">
-<meta property="article:modified_time" content="2026-01-25T12:07:51.309Z">
+<meta property="article:modified_time" content="2026-01-27T07:08:21.868Z">
 <meta property="article:author" content="Chaolv Zeng">
 <meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2026/01/25/Per-Layer-Embedding/1.png">
 
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2026/01/25/Per-Layer-Embedding/">
@@ -187,6 +190,23 @@
     </div>
 
     
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2024/09/19/PositionEmbedding/" rel="bookmark">
+        <time class="popular-posts-time">2024-09-19</time>
+        <br>
+      Position Embedding
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
   </aside>
 
 
@@ -231,9 +251,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2026-01-25 20:06:52 / Modified: 20:07:51" itemprop="dateCreated datePublished" datetime="2026-01-25T20:06:52+08:00">2026-01-25</time>
+      <time title="Created: 2026-01-25 20:06:52" itemprop="dateCreated datePublished" datetime="2026-01-25T20:06:52+08:00">2026-01-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-01-27 15:08:21" itemprop="dateModified" datetime="2026-01-27T15:08:21+08:00">2026-01-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -259,14 +285,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>1</span>
+      <span>492</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1 mins.</span>
+      <span>2 mins.</span>
     </span>
 </div>
 
@@ -277,7 +303,20 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><span id="more"></span>
+    <div class="post-body" itemprop="articleBody"><p>笼统地来说，所有的深度学习模型都只有两个部分：<strong>特征输入</strong>以及<strong>特征交互</strong>。其中特征输入一般只存在于最底层，如image的整张图片、text经tokenization后的embedding以及如推荐系统中的各类用户或上下文或物品特征，基本上除了推荐会做很多额外的显式特征交叉与处理，其他的输入类型对特征输入都尽量保持精简；而特征交叉（此处为广义的隐式特征交叉）即为后续的所有网络结构。</p>
+<p>换句话说，即便是在当今的大模型浪潮下，模型的所有“外部信息”输入都是在最底层完成的，剩余的模型结构都在做特征抽取或交叉。不过2025年开始有了一些把底层输入分散到各个层的尝试，比较有代表的是Google的<a target="_blank" rel="noopener" href="https://ai.google.dev/gemma/docs/gemma-3n">PLE</a>以及RWKV的<a target="_blank" rel="noopener" href="https://wiki.rwkv.com/basic/architecture.html#rwkv-v8">DeepEmbed</a>。</p>
+<p>其中，PLE更多地可被视为一种硬件加速、缓存策略。原本在最底层我们可能需要读取4096维的token embedding，但有了PLE，可能就可以底层读取2048维，剩下的在每层需要的时候再读。者带来的最大好处是这些后读取的embedding可以被存到cache中，从而极大地缓解缓存压力，至于模型性能的提升Google并为公布。</p>
+<p><img src="/2026/01/25/Per-Layer-Embedding/1.png" alt="ple"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Gemma PLE</center><br>
+
+<p>而DeepEmbed除了有着PLE相似的加速效果外，还给出了其对训练的影响：<br><img src="/2026/01/25/Per-Layer-Embedding/2.png" alt="deepembed"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. DeepEmbed</center><br>
+并且整体的实现也十分简单，只需将DeepEmbed的编码（应该还会经过一个Linear层）与FFN（RWKV用的是ReLuSq FFN，即ReLu激活函数+平方）哈达曼积即可：
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// ReLuSq FFN</span><br><span class="line">x = torch.relu(self.key(x)) ** <span class="number">2</span>  </span><br><span class="line"><span class="keyword">return</span> self.value(x)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// ReLuSq FFN + DeepEmbed</span><br><span class="line">self.deepemb = nn.Embedding(d_vocab, d_emb)</span><br><span class="line">...</span><br><span class="line">x = torch.relu(self.key(x)) ** <span class="number">2</span></span><br><span class="line"><span class="keyword">return</span> self.value(x) * self.deepemb(idx)</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -341,14 +380,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Word count total: </span>
-    <span title="Word count total">162k</span>
+    <span title="Word count total">163k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">9:49</span>
+    <span title="Reading time total">9:51</span>
   </span>
 </div>
 <div class="busuanzi-count">
