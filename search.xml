@@ -29,8 +29,8 @@
 <li>因为是在选择的一些TransformerBlock（代码中为第二层与第十六层）中嵌入了Engram，所以整体还是Embedding层、n个TransformerBlock以及最后的Linear投影：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">LLM = [</span><br><span class="line">    nn.Embedding(vocab_size, hidden_size),</span><br><span class="line">    *[TransformerBlock(layer_id=layer_id) <span class="keyword">for</span> layer_id <span class="keyword">in</span> <span class="built_in">range</span>(num_layers)],</span><br><span class="line">    nn.Linear(hidden_size, vocab_size)</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
 <li>同时，由于Engram是动态生成的，所以每个TransformerBlock的输入除了hidden_embedding外，还要额外地输入原始token_ids：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">hidden_states = TransformerBlock(input_ids, hidden_states) // [batch, length, head, head_dim]</span><br></pre></td></tr></table></figure></li>
 <li>在TransformerBlock中，对有Engram的块，先执行Engram：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TransformerBlock</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, layer_id</span>):</span><br><span class="line">        ...</span><br><span class="line">        self.engram = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">if</span> layer_id <span class="keyword">in</span> engram_layer_ids:</span><br><span class="line">            self.engram = Engram(layer_id=layer_id)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, input_ids, hidden_states</span>):</span><br><span class="line">        <span class="keyword">if</span> self.engram <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            hidden_states = self.engram(hidden_states, input_ids) + hidden_states</span><br><span class="line">        ...</span><br><span class="line">        Attention_Step</span><br><span class="line">        ...</span><br><span class="line">        FFN_state</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">return</span> hidden_states</span><br></pre></td></tr></table></figure></li>
-<li>在<code>Engram</code>中，如原文所述，由<strong>retrieval</strong>和<strong>fusion</strong>两步组成，简单地来说就是一个简化的Tokenizer+简化的Attention&amp;Conv：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Engram</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, layer_id</span>):</span><br><span class="line">        // retrieval</span><br><span class="line">        self.hash_mapping = NgramHashMapping(...)</span><br><span class="line">        self.multi_head_embedding = MultiHeadEmbedding(...)</span><br><span class="line">        </span><br><span class="line">        // fusion</span><br><span class="line">        self.short_conv = ShortConv(...)</span><br><span class="line">        engram_hidden_size = (engram_cfg.max_ngram_size-<span class="number">1</span>) * engram_cfg.n_embed_per_ngram</span><br><span class="line">        self.value_proj = nn.Linear(engram_hidden_size,backbone_config.hidden_size)</span><br><span class="line">        self.key_projs = nn.ModuleList(</span><br><span class="line">            [nn.Linear(engram_hidden_size,backbone_config.hidden_size) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)]</span><br><span class="line">        )</span><br><span class="line">        self.norm1 = nn.ModuleList([nn.RMSNorm(backbone_config.hidden_size) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)])</span><br><span class="line">        self.norm2 = nn.ModuleList([nn.RMSNorm(backbone_config.hidden_size) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, hidden_states, input_ids</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        hidden_states: [batch, length, head, head_dim]</span></span><br><span class="line"><span class="string">        input_ids: [batch, length]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        // retrieval</span><br><span class="line">        hash_input_ids = torch.from_numpy(self.hash_mapping.<span class="built_in">hash</span>(input_ids)[self.layer_id])</span><br><span class="line">        embeddings = self.multi_head_embedding(hash_input_ids).flatten(start_dim=-<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        // fusion</span><br><span class="line">        gates = []</span><br><span class="line">        <span class="keyword">for</span> hc_idx <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult):</span><br><span class="line">            key = self.key_projs[hc_idx](embeddings)</span><br><span class="line">            normed_key = self.norm1[hc_idx](key)</span><br><span class="line">            query = hidden_states[:,:,hc_idx,:]</span><br><span class="line">            normed_query = self.norm2[hc_idx](query)</span><br><span class="line">            gate = (normed_key * normed_query).<span class="built_in">sum</span>(dim=-<span class="number">1</span>) / math.sqrt(backbone_config.hidden_size)</span><br><span class="line">            gate = gate.<span class="built_in">abs</span>().clamp_min(<span class="number">1e-6</span>).sqrt() * gate.sign()</span><br><span class="line">            gate = gate.sigmoid().unsqueeze(-<span class="number">1</span>)</span><br><span class="line">            gates.append(gate)</span><br><span class="line">        gates = torch.stack(gates,dim=<span class="number">2</span>)</span><br><span class="line">        value = gates * self.value_proj(embeddings).unsqueeze(<span class="number">2</span>)</span><br><span class="line">        output = value + self.short_conv(value)</span><br><span class="line">        <span class="keyword">return</span> output </span><br></pre></td></tr></table></figure></li>
-<li>Retrieval_Step分3步，分别为Tokenizer Compression、Multi-Head Hashing、Multi-Head Embedding：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">******</span><br><span class="line">Tokenizer Compression</span><br><span class="line">理论上，<span class="number">2</span>-gram有vocab_size*(vocab_size-<span class="number">1</span>)个新的token，但这么多token肯定是不可能用在实际的模型中的，因此需要对这些组合进行压缩，整个Retrieval_Step干的都是这件事情。Compression是第一步，即把一些同义的组合归为一个token，如大小写（`apple`与`Apple`）、前空（`apple`与` apple`）、后空格（`apple`与`apple `）等</span><br><span class="line">******</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NgramHashMapping</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hash</span>(<span class="params">self, input_ids</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        compressed_tokenizer：一系列的转换规则对token进行标准化，如原本A的idx为65，a为97，compressed_tokenizer将A的idx修改为97</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        input_ids = self.compressed_tokenizer(input_ids)</span><br><span class="line">        ...</span><br><span class="line">        Other Retrieval Step</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">******</span><br><span class="line">Multi-Head Hashing</span><br><span class="line">此处哈希同样是为了减少组合n-gram的组合数，因为原本的nn.Embedding中idx和embedding就可以视为一个一一对应的哈希。因此此处的哈希是为了将多个n-gram token映射为一个组，即在Engram的一个新token实际代表了多个n-gram组合。这样做的最大问题是组合和新token无法一一对应了，那最终学出来的embedding意义就很模糊。文中给的解决方法是Multi-Head，每个Head有自己的EmbeddingTable，用多个哈希函数将一个n-gram组合映射到不同的token中，最后将所有Head的Embedding凭借起来作为该组合的Embedding。文中从哈希碰撞的角度解释，但我觉得应该从保证每个组合token唯一性的角度解释。不过直接用vq-vae学一个Code-book会不会更好？</span><br><span class="line">******</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>在<code>Engram</code>中，如原文所述，由<strong>retrieval</strong>和<strong>fusion</strong>两步组成，简单地来说就是一个简化的Tokenizer+简化的Attention&amp;Conv：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Engram</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, layer_id</span>):</span><br><span class="line">        // retrieval</span><br><span class="line">        self.hash_mapping = NgramHashMapping(...)</span><br><span class="line">        self.multi_head_embedding = MultiHeadEmbedding(...)</span><br><span class="line">        </span><br><span class="line">        // fusion</span><br><span class="line">        self.short_conv = ShortConv(...)</span><br><span class="line">        engram_hidden_size = (engram_cfg.max_ngram_size-<span class="number">1</span>) * engram_cfg.n_embed_per_ngram</span><br><span class="line">        self.value_proj = nn.Linear(engram_hidden_size,backbone_config.hidden_size)</span><br><span class="line">        self.key_projs = nn.ModuleList(</span><br><span class="line">            [nn.Linear(engram_hidden_size,backbone_config.hidden_size) </span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)]</span><br><span class="line">        )</span><br><span class="line">        self.norm1 = nn.ModuleList([nn.RMSNorm(backbone_config.hidden_size) </span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)])</span><br><span class="line">        self.norm2 = nn.ModuleList([nn.RMSNorm(backbone_config.hidden_size) </span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, hidden_states, input_ids</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        hidden_states: [batch, length, head, head_dim]</span></span><br><span class="line"><span class="string">        input_ids: [batch, length]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        // retrieval</span><br><span class="line">        hash_input_ids = torch.from_numpy(self.hash_mapping.<span class="built_in">hash</span>(input_ids)[self.layer_id])</span><br><span class="line">        embeddings = self.multi_head_embedding(hash_input_ids).flatten(start_dim=-<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        // fusion</span><br><span class="line">        gates = []</span><br><span class="line">        <span class="keyword">for</span> hc_idx <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult):</span><br><span class="line">            key = self.key_projs[hc_idx](embeddings)</span><br><span class="line">            normed_key = self.norm1[hc_idx](key)</span><br><span class="line">            query = hidden_states[:,:,hc_idx,:]</span><br><span class="line">            normed_query = self.norm2[hc_idx](query)</span><br><span class="line">            gate = (normed_key * normed_query).<span class="built_in">sum</span>(dim=-<span class="number">1</span>) / math.sqrt(backbone_config.hidden_size)</span><br><span class="line">            gate = gate.<span class="built_in">abs</span>().clamp_min(<span class="number">1e-6</span>).sqrt() * gate.sign()</span><br><span class="line">            gate = gate.sigmoid().unsqueeze(-<span class="number">1</span>)</span><br><span class="line">            gates.append(gate)</span><br><span class="line">        gates = torch.stack(gates,dim=<span class="number">2</span>)</span><br><span class="line">        value = gates * self.value_proj(embeddings).unsqueeze(<span class="number">2</span>)</span><br><span class="line">        output = value + self.short_conv(value)</span><br><span class="line">        <span class="keyword">return</span> output </span><br></pre></td></tr></table></figure></li>
+<li>Retrieval_Step分3步，分别为Tokenizer Compression、Multi-Head Hashing、Multi-Head Embedding：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">******</span><br><span class="line">Tokenizer Compression</span><br><span class="line">理论上，<span class="number">2</span>-gram有vocab_size*(vocab_size-<span class="number">1</span>)个新的token，但这么多token肯定是不可能用在实际的模型中的，</span><br><span class="line">因此需要对这些组合进行压缩，整个Retrieval_Step干的都是这件事情。Compression是第一步，即把一些同义的</span><br><span class="line">组合归为一个token，如大小写（`apple`与`Apple`）、前空（`apple`与` apple`）、后空格（`apple`</span><br><span class="line">与`apple `）等</span><br><span class="line">******</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NgramHashMapping</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hash</span>(<span class="params">self, input_ids</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        compressed_tokenizer：一系列的转换规则对token进行标准化，如原本A的idx为65，a为97，compressed_tokenizer将A的idx修改为97</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        input_ids = self.compressed_tokenizer(input_ids)</span><br><span class="line">        ...</span><br><span class="line">        Other Retrieval Step</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">******</span><br><span class="line">Multi-Head Hashing</span><br><span class="line">此处哈希同样是为了减少组合n-gram的组合数，因为原本的nn.Embedding中idx和embedding就可以视为一个一</span><br><span class="line">一对应的哈希。因此此处的哈希是为了将多个n-gram token映射为一个组，即在Engram的一个新token实际代表</span><br><span class="line">了多个n-gram组合。这样做的最大问题是组合和新token无法一一对应了，那最终学出来的embedding意义就很</span><br><span class="line">模糊。文中给的解决方法是Multi-Head，每个Head有自己的EmbeddingTable，用多个哈希函数将一个n-gram</span><br><span class="line">组合映射到不同的token中，最后将所有Head的Embedding凭借起来作为该组合的Embedding。文中从哈希碰撞</span><br><span class="line">的角度解释，但我觉得应该从保证每个组合token唯一性的角度解释。不过直接用vq-vae学一个Code-book会不</span><br><span class="line">会更好？</span><br><span class="line">******</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ol>
 ]]></content>
       <categories>
@@ -820,8 +820,8 @@
         <category>Advanced Model</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Attention Mechanism</tag>
+        <tag>Deep Learning</tag>
         <tag>Generative AI</tag>
         <tag>LLM</tag>
       </tags>
@@ -3010,8 +3010,8 @@
       <tags>
         <tag>Paper</tag>
         <tag>GNN</tag>
-        <tag>Machine Learning</tag>
         <tag>Dataset Distillation</tag>
+        <tag>Machine Learning</tag>
         <tag>SVM</tag>
       </tags>
   </entry>
@@ -3084,8 +3084,8 @@
         <category>Advanced Model</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Attention Mechanism</tag>
+        <tag>Deep Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -3122,8 +3122,8 @@
         <category>Advanced Model</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Attention Mechanism</tag>
+        <tag>Deep Learning</tag>
         <tag>Reinforcement Learning</tag>
       </tags>
   </entry>
@@ -3639,8 +3639,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Tool</tag>
         <tag>Deep Learning</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -4213,8 +4213,8 @@
         <category>Dive Into Deep Learning</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Attention Mechanism</tag>
+        <tag>Deep Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -4287,8 +4287,8 @@
         <category>Dive Into Deep Learning</category>
       </categories>
       <tags>
-        <tag>Deep Learning</tag>
         <tag>Attention Mechanism</tag>
+        <tag>Deep Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -6408,8 +6408,8 @@
         <category>Programming Language</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -6512,8 +6512,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -6597,8 +6597,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -6706,8 +6706,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -6836,8 +6836,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -6854,8 +6854,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -6926,8 +6926,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -7116,8 +7116,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -7218,8 +7218,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -7344,8 +7344,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -7375,8 +7375,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Tool</tag>
         <tag>Linux</tag>
+        <tag>Tool</tag>
       </tags>
   </entry>
   <entry>
@@ -7626,8 +7626,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Tool</tag>
         <tag>Deep Learning</tag>
+        <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -7731,8 +7731,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Tool</tag>
         <tag>Deep Learning</tag>
+        <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -8158,48 +8158,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python Package</title>
-    <url>/2023/06/15/PythonPackage/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
-<blockquote>
-<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
-</blockquote>
-<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
-<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Configuration</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Zip: Make Aggregation Easier</title>
-    <url>/2023/05/06/ZipMakeLifeEasier/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>We can even use zip to generate a dictionary:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Gamma and Factorial</title>
     <url>/2023/05/05/GammaAndFactorial/</url>
     <content><![CDATA[<span id="more"></span>
@@ -8242,6 +8200,48 @@
 <p><code>filter</code> is easily replaced by <code>for</code> or <code>for if</code> comprehension:</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python Package</title>
+    <url>/2023/06/15/PythonPackage/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
+<blockquote>
+<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
+</blockquote>
+<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
+<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Configuration</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Zip: Make Aggregation Easier</title>
+    <url>/2023/05/06/ZipMakeLifeEasier/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>We can even use zip to generate a dictionary:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>Programming Language</category>
       </categories>
