@@ -29,8 +29,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/25/Per-Layer-Embedding/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/25/Per-Layer-Embedding/2.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/25/Per-Layer-Embedding/3.png">
 <meta property="article:published_time" content="2026-01-25T12:06:52.000Z">
-<meta property="article:modified_time" content="2026-01-27T08:16:29.128Z">
+<meta property="article:modified_time" content="2026-01-27T15:01:04.174Z">
 <meta property="article:author" content="Chaolv Zeng">
 <meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary">
@@ -191,6 +192,23 @@
     </div>
 
     
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    Related Posts
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2024/09/19/PositionEmbedding/" rel="bookmark">
+        <time class="popular-posts-time">2024-09-19</time>
+        <br>
+      Position Embedding
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
   </aside>
 
 
@@ -243,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-01-27 16:16:29" itemprop="dateModified" datetime="2026-01-27T16:16:29+08:00">2026-01-27</time>
+      <time title="Modified: 2026-01-27 23:01:04" itemprop="dateModified" datetime="2026-01-27T23:01:04+08:00">2026-01-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,14 +287,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>778</span>
+      <span>1.5k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>3 mins.</span>
+      <span>5 mins.</span>
     </span>
 </div>
 
@@ -299,13 +317,23 @@
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// ReLuSq FFN</span><br><span class="line">x = torch.relu(self.key(x)) ** <span class="number">2</span>  </span><br><span class="line"><span class="keyword">return</span> self.value(x)</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// ReLuSq FFN + DeepEmbed</span><br><span class="line">self.deepemb = nn.Embedding(d_vocab, d_emb)</span><br><span class="line">...</span><br><span class="line">x = torch.relu(self.key(x)) ** <span class="number">2</span></span><br><span class="line"><span class="keyword">return</span> self.value(x) * self.deepemb(idx)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// ReLuSq FFN + DeepEmbed</span><br><span class="line">self.deepemb = nn.Embedding(d_vocab, d_emb)</span><br><span class="line">...</span><br><span class="line">x = torch.relu(self.key(x)) ** <span class="number">2</span></span><br><span class="line"><span class="keyword">return</span> self.value(x) * self.deepemb(ids)</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>这里将第一层Linear称为key，第二层称为value其实也体现了将MLP当做一个“字典”、“知识库”的观点。</p>
 </blockquote>
 <h2 id="DeepSeek-Engram"><a href="#DeepSeek-Engram" class="headerlink" title="DeepSeek Engram"></a>DeepSeek Engram</h2><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2601.07372">Engram</a>与前两者存在一定的相似，但“故事”以及完整性显然要更好一点。从大的方向来说，LLMs在做的就是两件事情：推理（reasoning）以及知识检索（knowledge retrieval），并且很大程度地依赖FFN（MoE或MLP）完成。但Attention是序列自回归的，因此在无外挂知识库的情况下，它需要很多计算才能逐步激活所需要的知识，作者认为这是对算力的浪费。因此，Engram就是这么一个内挂的知识库，将一些“固定搭配”作为新的token，赋予模型查表的能力，让FFN更多地负责推理（如，将“马化腾”作为一个固定搭配，那么模型可能就不需要那么多的激活参数计算这三个字是怎么关联在一起的，而可直接将其视作人名）。</p>
+<p><img src="/2026/01/25/Per-Layer-Embedding/3.png" alt="engram"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Engram</center><br>
+
 <p>因为Engram是开源的，所以这次直接对着代码开搞！<a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/Engram/blob/main/engram_demo_v1.py">GITHUB</a></p>
+<ol>
+<li>因为是在选择的一些TransformerBlock（代码中为第二层与第十六层）中嵌入了Engram，所以整体还是Embedding层、n个TransformerBlock以及最后的Linear投影：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LLM = [</span><br><span class="line">    nn.Embedding(vocab_size, hidden_size),</span><br><span class="line">    *[TransformerBlock(layer_id=layer_id) <span class="keyword">for</span> layer_id <span class="keyword">in</span> <span class="built_in">range</span>(num_layers)],</span><br><span class="line">    nn.Linear(hidden_size, vocab_size)</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+<li>同时，由于Engram是动态生成的，所以每个TransformerBlock的输入除了hidden_embedding外，还要额外地输入原始token_ids：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hidden_states = TransformerBlock(input_ids, hidden_states) // [batch, length, head, head_dim]</span><br></pre></td></tr></table></figure></li>
+<li>在TransformerBlock中，对有Engram的块，先执行Engram：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TransformerBlock</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, layer_id</span>):</span><br><span class="line">        ...</span><br><span class="line">        self.engram = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">if</span> layer_id <span class="keyword">in</span> engram_layer_ids:</span><br><span class="line">            self.engram = Engram(layer_id=layer_id)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, input_ids, hidden_states</span>):</span><br><span class="line">        <span class="keyword">if</span> self.engram <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            hidden_states = self.engram(hidden_states, input_ids) + hidden_states</span><br><span class="line">        ...</span><br><span class="line">        Attention_Step</span><br><span class="line">        ...</span><br><span class="line">        FFN_state</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">return</span> hidden_states</span><br></pre></td></tr></table></figure></li>
+<li>在<code>Engram</code>中，如原文所述，由<strong>retrieval</strong>和<strong>fusion</strong>两步组成，简单地来说就是一个简化的Tokenizer+简化的Attention&amp;Conv：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Engram</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, layer_id</span>):</span><br><span class="line">        // retrieval</span><br><span class="line">        self.hash_mapping = NgramHashMapping(...)</span><br><span class="line">        self.multi_head_embedding = MultiHeadEmbedding(...)</span><br><span class="line">        </span><br><span class="line">        // fusion</span><br><span class="line">        self.short_conv = ShortConv(...)</span><br><span class="line">        engram_hidden_size = (engram_cfg.max_ngram_size-<span class="number">1</span>) * engram_cfg.n_embed_per_ngram</span><br><span class="line">        self.value_proj = nn.Linear(engram_hidden_size,backbone_config.hidden_size)</span><br><span class="line">        self.key_projs = nn.ModuleList(</span><br><span class="line">            [nn.Linear(engram_hidden_size,backbone_config.hidden_size) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)]</span><br><span class="line">        )</span><br><span class="line">        self.norm1 = nn.ModuleList([nn.RMSNorm(backbone_config.hidden_size) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)])</span><br><span class="line">        self.norm2 = nn.ModuleList([nn.RMSNorm(backbone_config.hidden_size) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, hidden_states, input_ids</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        hidden_states: [batch, length, head, head_dim]</span></span><br><span class="line"><span class="string">        input_ids: [batch, length]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        // retrieval</span><br><span class="line">        hash_input_ids = torch.from_numpy(self.hash_mapping.<span class="built_in">hash</span>(input_ids)[self.layer_id])</span><br><span class="line">        embeddings = self.multi_head_embedding(hash_input_ids).flatten(start_dim=-<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        // fusion</span><br><span class="line">        gates = []</span><br><span class="line">        <span class="keyword">for</span> hc_idx <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult):</span><br><span class="line">            key = self.key_projs[hc_idx](embeddings)</span><br><span class="line">            normed_key = self.norm1[hc_idx](key)</span><br><span class="line">            query = hidden_states[:,:,hc_idx,:]</span><br><span class="line">            normed_query = self.norm2[hc_idx](query)</span><br><span class="line">            gate = (normed_key * normed_query).<span class="built_in">sum</span>(dim=-<span class="number">1</span>) / math.sqrt(backbone_config.hidden_size)</span><br><span class="line">            gate = gate.<span class="built_in">abs</span>().clamp_min(<span class="number">1e-6</span>).sqrt() * gate.sign()</span><br><span class="line">            gate = gate.sigmoid().unsqueeze(-<span class="number">1</span>)</span><br><span class="line">            gates.append(gate)</span><br><span class="line">        gates = torch.stack(gates,dim=<span class="number">2</span>)</span><br><span class="line">        value = gates * self.value_proj(embeddings).unsqueeze(<span class="number">2</span>)</span><br><span class="line">        output = value + self.short_conv(value)</span><br><span class="line">        <span class="keyword">return</span> output </span><br></pre></td></tr></table></figure></li>
+<li>Retrieval_Step分3步，分别为Tokenizer Compression、Multi-Head Hashing、Multi-Head Embedding：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">******</span><br><span class="line">Tokenizer Compression</span><br><span class="line">理论上，<span class="number">2</span>-gram有vocab_size*(vocab_size-<span class="number">1</span>)个新的token，但这么多token肯定是不可能用在实际的模型中的，因此需要对这些组合进行压缩，整个Retrieval_Step干的都是这件事情。Compression是第一步，即把一些同义的组合归为一个token，如大小写（`apple`与`Apple`）、前空（`apple`与` apple`）、后空格（`apple`与`apple `）等</span><br><span class="line">******</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NgramHashMapping</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hash</span>(<span class="params">self, input_ids</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        compressed_tokenizer：一系列的转换规则对token进行标准化，如原本A的idx为65，a为97，compressed_tokenizer将A的idx修改为97</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        input_ids = self.compressed_tokenizer(input_ids)</span><br><span class="line">        ...</span><br><span class="line">        Other Retrieval Step</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">******</span><br><span class="line">Multi-Head Hashing</span><br><span class="line">此处哈希同样是为了减少组合n-gram的组合数，因为原本的nn.Embedding中idx和embedding就可以视为一个一一对应的哈希。因此此处的哈希是为了将多个n-gram token映射为一个组，即在Engram的一个新token实际代表了多个n-gram组合。这样做的最大问题是组合和新token无法一一对应了，那最终学出来的embedding意义就很模糊。文中给的解决方法是Multi-Head，每个Head有自己的EmbeddingTable，用多个哈希函数将一个n-gram组合映射到不同的token中，最后将所有Head的Embedding凭借起来作为该组合的Embedding。文中从哈希碰撞的角度解释，但我觉得应该从保证每个组合token唯一性的角度解释。不过直接用vq-vae学一个Code-book会不会更好？</span><br><span class="line">******</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
 
     </div>
 
@@ -370,14 +398,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Word count total: </span>
-    <span title="Word count total">163k</span>
+    <span title="Word count total">164k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">9:52</span>
+    <span title="Reading time total">9:55</span>
   </span>
 </div>
 <div class="busuanzi-count">

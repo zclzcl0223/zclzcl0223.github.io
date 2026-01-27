@@ -15,13 +15,23 @@
 
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">// ReLuSq FFN</span><br><span class="line">x = torch.relu(self.key(x)) ** <span class="number">2</span>  </span><br><span class="line"><span class="keyword">return</span> self.value(x)</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">// ReLuSq FFN + DeepEmbed</span><br><span class="line">self.deepemb = nn.Embedding(d_vocab, d_emb)</span><br><span class="line">...</span><br><span class="line">x = torch.relu(self.key(x)) ** <span class="number">2</span></span><br><span class="line"><span class="keyword">return</span> self.value(x) * self.deepemb(idx)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">// ReLuSq FFN + DeepEmbed</span><br><span class="line">self.deepemb = nn.Embedding(d_vocab, d_emb)</span><br><span class="line">...</span><br><span class="line">x = torch.relu(self.key(x)) ** <span class="number">2</span></span><br><span class="line"><span class="keyword">return</span> self.value(x) * self.deepemb(ids)</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>这里将第一层Linear称为key，第二层称为value其实也体现了将MLP当做一个“字典”、“知识库”的观点。</p>
 </blockquote>
 <h2 id="DeepSeek-Engram"><a href="#DeepSeek-Engram" class="headerlink" title="DeepSeek Engram"></a>DeepSeek Engram</h2><p><a href="https://arxiv.org/pdf/2601.07372">Engram</a>与前两者存在一定的相似，但“故事”以及完整性显然要更好一点。从大的方向来说，LLMs在做的就是两件事情：推理（reasoning）以及知识检索（knowledge retrieval），并且很大程度地依赖FFN（MoE或MLP）完成。但Attention是序列自回归的，因此在无外挂知识库的情况下，它需要很多计算才能逐步激活所需要的知识，作者认为这是对算力的浪费。因此，Engram就是这么一个内挂的知识库，将一些“固定搭配”作为新的token，赋予模型查表的能力，让FFN更多地负责推理（如，将“马化腾”作为一个固定搭配，那么模型可能就不需要那么多的激活参数计算这三个字是怎么关联在一起的，而可直接将其视作人名）。</p>
+<p><img src="/2026/01/25/Per-Layer-Embedding/3.png" alt="engram"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Engram</center><br>
+
 <p>因为Engram是开源的，所以这次直接对着代码开搞！<a href="https://github.com/deepseek-ai/Engram/blob/main/engram_demo_v1.py">GITHUB</a></p>
+<ol>
+<li>因为是在选择的一些TransformerBlock（代码中为第二层与第十六层）中嵌入了Engram，所以整体还是Embedding层、n个TransformerBlock以及最后的Linear投影：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">LLM = [</span><br><span class="line">    nn.Embedding(vocab_size, hidden_size),</span><br><span class="line">    *[TransformerBlock(layer_id=layer_id) <span class="keyword">for</span> layer_id <span class="keyword">in</span> <span class="built_in">range</span>(num_layers)],</span><br><span class="line">    nn.Linear(hidden_size, vocab_size)</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+<li>同时，由于Engram是动态生成的，所以每个TransformerBlock的输入除了hidden_embedding外，还要额外地输入原始token_ids：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">hidden_states = TransformerBlock(input_ids, hidden_states) // [batch, length, head, head_dim]</span><br></pre></td></tr></table></figure></li>
+<li>在TransformerBlock中，对有Engram的块，先执行Engram：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TransformerBlock</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, layer_id</span>):</span><br><span class="line">        ...</span><br><span class="line">        self.engram = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">if</span> layer_id <span class="keyword">in</span> engram_layer_ids:</span><br><span class="line">            self.engram = Engram(layer_id=layer_id)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, input_ids, hidden_states</span>):</span><br><span class="line">        <span class="keyword">if</span> self.engram <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            hidden_states = self.engram(hidden_states, input_ids) + hidden_states</span><br><span class="line">        ...</span><br><span class="line">        Attention_Step</span><br><span class="line">        ...</span><br><span class="line">        FFN_state</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">return</span> hidden_states</span><br></pre></td></tr></table></figure></li>
+<li>在<code>Engram</code>中，如原文所述，由<strong>retrieval</strong>和<strong>fusion</strong>两步组成，简单地来说就是一个简化的Tokenizer+简化的Attention&amp;Conv：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Engram</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, layer_id</span>):</span><br><span class="line">        // retrieval</span><br><span class="line">        self.hash_mapping = NgramHashMapping(...)</span><br><span class="line">        self.multi_head_embedding = MultiHeadEmbedding(...)</span><br><span class="line">        </span><br><span class="line">        // fusion</span><br><span class="line">        self.short_conv = ShortConv(...)</span><br><span class="line">        engram_hidden_size = (engram_cfg.max_ngram_size-<span class="number">1</span>) * engram_cfg.n_embed_per_ngram</span><br><span class="line">        self.value_proj = nn.Linear(engram_hidden_size,backbone_config.hidden_size)</span><br><span class="line">        self.key_projs = nn.ModuleList(</span><br><span class="line">            [nn.Linear(engram_hidden_size,backbone_config.hidden_size) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)]</span><br><span class="line">        )</span><br><span class="line">        self.norm1 = nn.ModuleList([nn.RMSNorm(backbone_config.hidden_size) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)])</span><br><span class="line">        self.norm2 = nn.ModuleList([nn.RMSNorm(backbone_config.hidden_size) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult)])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, hidden_states, input_ids</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        hidden_states: [batch, length, head, head_dim]</span></span><br><span class="line"><span class="string">        input_ids: [batch, length]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        // retrieval</span><br><span class="line">        hash_input_ids = torch.from_numpy(self.hash_mapping.<span class="built_in">hash</span>(input_ids)[self.layer_id])</span><br><span class="line">        embeddings = self.multi_head_embedding(hash_input_ids).flatten(start_dim=-<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        // fusion</span><br><span class="line">        gates = []</span><br><span class="line">        <span class="keyword">for</span> hc_idx <span class="keyword">in</span> <span class="built_in">range</span>(backbone_config.hc_mult):</span><br><span class="line">            key = self.key_projs[hc_idx](embeddings)</span><br><span class="line">            normed_key = self.norm1[hc_idx](key)</span><br><span class="line">            query = hidden_states[:,:,hc_idx,:]</span><br><span class="line">            normed_query = self.norm2[hc_idx](query)</span><br><span class="line">            gate = (normed_key * normed_query).<span class="built_in">sum</span>(dim=-<span class="number">1</span>) / math.sqrt(backbone_config.hidden_size)</span><br><span class="line">            gate = gate.<span class="built_in">abs</span>().clamp_min(<span class="number">1e-6</span>).sqrt() * gate.sign()</span><br><span class="line">            gate = gate.sigmoid().unsqueeze(-<span class="number">1</span>)</span><br><span class="line">            gates.append(gate)</span><br><span class="line">        gates = torch.stack(gates,dim=<span class="number">2</span>)</span><br><span class="line">        value = gates * self.value_proj(embeddings).unsqueeze(<span class="number">2</span>)</span><br><span class="line">        output = value + self.short_conv(value)</span><br><span class="line">        <span class="keyword">return</span> output </span><br></pre></td></tr></table></figure></li>
+<li>Retrieval_Step分3步，分别为Tokenizer Compression、Multi-Head Hashing、Multi-Head Embedding：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">******</span><br><span class="line">Tokenizer Compression</span><br><span class="line">理论上，<span class="number">2</span>-gram有vocab_size*(vocab_size-<span class="number">1</span>)个新的token，但这么多token肯定是不可能用在实际的模型中的，因此需要对这些组合进行压缩，整个Retrieval_Step干的都是这件事情。Compression是第一步，即把一些同义的组合归为一个token，如大小写（`apple`与`Apple`）、前空（`apple`与` apple`）、后空格（`apple`与`apple `）等</span><br><span class="line">******</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">NgramHashMapping</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hash</span>(<span class="params">self, input_ids</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        compressed_tokenizer：一系列的转换规则对token进行标准化，如原本A的idx为65，a为97，compressed_tokenizer将A的idx修改为97</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        input_ids = self.compressed_tokenizer(input_ids)</span><br><span class="line">        ...</span><br><span class="line">        Other Retrieval Step</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">******</span><br><span class="line">Multi-Head Hashing</span><br><span class="line">此处哈希同样是为了减少组合n-gram的组合数，因为原本的nn.Embedding中idx和embedding就可以视为一个一一对应的哈希。因此此处的哈希是为了将多个n-gram token映射为一个组，即在Engram的一个新token实际代表了多个n-gram组合。这样做的最大问题是组合和新token无法一一对应了，那最终学出来的embedding意义就很模糊。文中给的解决方法是Multi-Head，每个Head有自己的EmbeddingTable，用多个哈希函数将一个n-gram组合映射到不同的token中，最后将所有Head的Embedding凭借起来作为该组合的Embedding。文中从哈希碰撞的角度解释，但我觉得应该从保证每个组合token唯一性的角度解释。不过直接用vq-vae学一个Code-book会不会更好？</span><br><span class="line">******</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
 ]]></content>
       <categories>
         <category>Advanced Model</category>
@@ -810,8 +820,8 @@
         <category>Advanced Model</category>
       </categories>
       <tags>
-        <tag>Attention Mechanism</tag>
         <tag>Deep Learning</tag>
+        <tag>Attention Mechanism</tag>
         <tag>Generative AI</tag>
         <tag>LLM</tag>
       </tags>
@@ -2945,8 +2955,8 @@
       </categories>
       <tags>
         <tag>Deep Learning</tag>
-        <tag>Dataset Distillation</tag>
         <tag>GNN</tag>
+        <tag>Dataset Distillation</tag>
       </tags>
   </entry>
   <entry>
@@ -2999,9 +3009,9 @@
       </categories>
       <tags>
         <tag>Paper</tag>
-        <tag>Dataset Distillation</tag>
         <tag>GNN</tag>
         <tag>Machine Learning</tag>
+        <tag>Dataset Distillation</tag>
         <tag>SVM</tag>
       </tags>
   </entry>
@@ -3074,8 +3084,8 @@
         <category>Advanced Model</category>
       </categories>
       <tags>
-        <tag>Attention Mechanism</tag>
         <tag>Deep Learning</tag>
+        <tag>Attention Mechanism</tag>
       </tags>
   </entry>
   <entry>
@@ -3112,8 +3122,8 @@
         <category>Advanced Model</category>
       </categories>
       <tags>
-        <tag>Attention Mechanism</tag>
         <tag>Deep Learning</tag>
+        <tag>Attention Mechanism</tag>
         <tag>Reinforcement Learning</tag>
       </tags>
   </entry>
@@ -3629,8 +3639,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -4203,8 +4213,8 @@
         <category>Dive Into Deep Learning</category>
       </categories>
       <tags>
-        <tag>Attention Mechanism</tag>
         <tag>Deep Learning</tag>
+        <tag>Attention Mechanism</tag>
       </tags>
   </entry>
   <entry>
@@ -4277,8 +4287,8 @@
         <category>Dive Into Deep Learning</category>
       </categories>
       <tags>
-        <tag>Attention Mechanism</tag>
         <tag>Deep Learning</tag>
+        <tag>Attention Mechanism</tag>
       </tags>
   </entry>
   <entry>
@@ -7616,8 +7626,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -7721,8 +7731,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -8148,6 +8158,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Python Package</title>
+    <url>/2023/06/15/PythonPackage/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
+<blockquote>
+<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
+</blockquote>
+<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
+<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Configuration</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Zip: Make Aggregation Easier</title>
     <url>/2023/05/06/ZipMakeLifeEasier/</url>
     <content><![CDATA[<span id="more"></span>
@@ -8217,26 +8247,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python Package</title>
-    <url>/2023/06/15/PythonPackage/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
-<blockquote>
-<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
-</blockquote>
-<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
-<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Configuration</tag>
       </tags>
   </entry>
   <entry>
