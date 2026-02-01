@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/11.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/12.png">
 <meta property="article:published_time" content="2026-01-18T11:02:33.000Z">
-<meta property="article:modified_time" content="2026-02-01T12:02:59.069Z">
+<meta property="article:modified_time" content="2026-02-01T12:13:34.659Z">
 <meta property="article:author" content="Chaolv Zeng">
 <meta property="article:tag" content="Recommender System">
 <meta property="article:tag" content="Recall">
@@ -278,7 +278,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-02-01 20:02:59" itemprop="dateModified" datetime="2026-02-01T20:02:59+08:00">2026-02-01</time>
+      <time title="Modified: 2026-02-01 20:13:34" itemprop="dateModified" datetime="2026-02-01T20:13:34+08:00">2026-02-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -411,7 +411,7 @@
 <h3 id="Offline-Graph"><a href="#Offline-Graph" class="headerlink" title="Offline Graph"></a>Offline Graph</h3><p>HNSW为层次级的向量索引结构，给定层高决定系数$m _L$，索引的最大连接数$M _{max}$，以及构图索引的基础连接数$M$，HNSW以逐节点插入的方式构图，而最终的检索则可视为在$L _0$插入节点。</p>
 <h4 id="KNN-search"><a href="#KNN-search" class="headerlink" title="KNN-search"></a>KNN-search</h4><p>HNSW的检索是近似KNN（AKNN）检索，给定Query（User Embedding或者Item Embedding）以及K（返回结果个数），KNN-search可归结为：</p>
 <ol>
-<li>从$L _{max}$开始，给定enter point（ep，一般为度最大的节点），执行Search_Layer(ef&#x3D;1)，即分别与ep、ep的邻居求欧式距离，找到最近的点$e _{Lmax}$，加入候选集$W$，同时以$e _{Lmax}$为ep，进入下一层$L _{max}$；</li>
+<li>从$L _{max}$开始，给定enter point（ep，一般为度最大的节点），执行Search_Layer(ef&#x3D;1)，即分别与ep、ep的邻居求欧式距离，找到最近的点$e _{Lmax}$，加入候选集$W$，同时以$e _{Lmax}$为ep，进入下一层$L _{max-1}$；</li>
 <li>在$L _{max-1}$~$L _1$，重复1的操作，此时候选集$W$的元素为{$e _{Lmax},e _{Lmax-1},...,e _{L1}$}；</li>
 <li>从$e _{L1}$进入最底层$L _0$，执行Search_Layer(ef&#x3D;K)，即检索K个最近邻，加入$W$；</li>
 <li>将从$W$中与Query最近的K个弹出，即为最终结果。</li>
@@ -426,6 +426,7 @@
 <li>若$L &lt; L _{max}$，则执行Search_Layer(ef&#x3D;1)一路到$L$层，并将过程中的ep加入候选集$W$；</li>
 <li>在之后的每一层，先Search_Layer(ef&#x3D;efConstruction)，其中efConstruction为可调参数，插入$W$，再从$W$中选择$M$个候选Select_Neighbours(q, W, M)，与$q$连边，作为$q$的邻居，若连边后，候选的邻居数大于$M _{max}$，则单独对这些候选重选邻居，限制其最大邻居数为$M _{max}$。</li>
 </ol>
+<p>不难看出，在$L$~$0$层，每一层都会插入新节点$q$并且为其连边，所以<strong>上层有的节点下层一定有，反之不然</strong>。</p>
 <h4 id="Search-Layer"><a href="#Search-Layer" class="headerlink" title="Search_Layer"></a>Search_Layer</h4><p>给定要检索的近邻个数ef，新插入节点$q$以及ep，Search_Layer是HNSW最基础的步骤：</p>
 <ol>
 <li>初始化两个优先级队列$W$与$C$，其中$W$为大根堆，$C$为小根堆，同时维护访问过的节点表$V$，三者均初始化为ep；<blockquote>
@@ -554,7 +555,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">10:02</span>
+    <span title="Reading time total">10:03</span>
   </span>
 </div>
 <div class="busuanzi-count">
