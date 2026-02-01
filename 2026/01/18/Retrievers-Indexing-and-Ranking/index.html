@@ -38,8 +38,9 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/7.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/10.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/11.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/12.png">
 <meta property="article:published_time" content="2026-01-18T11:02:33.000Z">
-<meta property="article:modified_time" content="2026-01-30T16:14:07.744Z">
+<meta property="article:modified_time" content="2026-02-01T12:02:59.069Z">
 <meta property="article:author" content="Chaolv Zeng">
 <meta property="article:tag" content="Recommender System">
 <meta property="article:tag" content="Recall">
@@ -156,7 +157,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Streaming-VQ"><span class="nav-number">1.</span> <span class="nav-text">Streaming VQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VQ-VAE"><span class="nav-number">1.1.</span> <span class="nav-text">VQ-VAE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Streaming-VQ-1"><span class="nav-number">1.2.</span> <span class="nav-text">Streaming VQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Training"><span class="nav-number">1.2.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Serving"><span class="nav-number">1.2.2.</span> <span class="nav-text">Serving</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Trick"><span class="nav-number">1.2.3.</span> <span class="nav-text">Trick</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Index-Reparability"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Index Reparability</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Index-Balancing"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">Index Balancing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Multi-task-Streaming-VQ"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">Multi-task Streaming VQ</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DR"><span class="nav-number">2.</span> <span class="nav-text">DR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NANN"><span class="nav-number">3.</span> <span class="nav-text">NANN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TDM"><span class="nav-number">4.</span> <span class="nav-text">TDM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HNSW"><span class="nav-number">5.</span> <span class="nav-text">HNSW</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-1"><span class="nav-number">5.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E6%9E%84%E5%9B%BE"><span class="nav-number">5.2.</span> <span class="nav-text">离线构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serving-1"><span class="nav-number">5.3.</span> <span class="nav-text">Serving</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Streaming-VQ"><span class="nav-number">1.</span> <span class="nav-text">Streaming VQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VQ-VAE"><span class="nav-number">1.1.</span> <span class="nav-text">VQ-VAE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Streaming-VQ-1"><span class="nav-number">1.2.</span> <span class="nav-text">Streaming VQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Training"><span class="nav-number">1.2.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Serving"><span class="nav-number">1.2.2.</span> <span class="nav-text">Serving</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Trick"><span class="nav-number">1.2.3.</span> <span class="nav-text">Trick</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Index-Reparability"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Index Reparability</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Index-Balancing"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">Index Balancing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Multi-task-Streaming-VQ"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">Multi-task Streaming VQ</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DR"><span class="nav-number">2.</span> <span class="nav-text">DR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NANN"><span class="nav-number">3.</span> <span class="nav-text">NANN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TDM"><span class="nav-number">4.</span> <span class="nav-text">TDM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HNSW"><span class="nav-number">5.</span> <span class="nav-text">HNSW</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-1"><span class="nav-number">5.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Offline-Graph"><span class="nav-number">5.2.</span> <span class="nav-text">Offline Graph</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#KNN-search"><span class="nav-number">5.2.1.</span> <span class="nav-text">KNN-search</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert"><span class="nav-number">5.2.2.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Search-Layer"><span class="nav-number">5.2.3.</span> <span class="nav-text">Search_Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Select-Neighbours"><span class="nav-number">5.2.4.</span> <span class="nav-text">Select_Neighbours</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyper%E3%80%81Complexity"><span class="nav-number">5.2.5.</span> <span class="nav-text">Hyper、Complexity</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serving-1"><span class="nav-number">5.3.</span> <span class="nav-text">Serving</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -221,20 +222,6 @@
       MatrixTheory: Linear Transformation Matrix
       </a>
     </li>
-    <li class="popular-posts-item">
-      <a class="popular-posts-link" href="/2023/09/24/MatrixTheory1/" rel="bookmark">
-        <time class="popular-posts-time">2023-09-24</time>
-        <br>
-      MatrixTheory: Linear Space and Subspace
-      </a>
-    </li>
-    <li class="popular-posts-item">
-      <a class="popular-posts-link" href="/2023/09/22/RidgeRegression/" rel="bookmark">
-        <time class="popular-posts-time">2023-09-22</time>
-        <br>
-      Ridge Regression
-      </a>
-    </li>
   </ul>
 
           </div>
@@ -291,7 +278,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-01-31 00:14:07" itemprop="dateModified" datetime="2026-01-31T00:14:07+08:00">2026-01-31</time>
+      <time title="Modified: 2026-02-01 20:02:59" itemprop="dateModified" datetime="2026-02-01T20:02:59+08:00">2026-02-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -317,14 +304,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>2.7k</span>
+      <span>3.8k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>10 mins.</span>
+      <span>14 mins.</span>
     </span>
 </div>
 
@@ -421,7 +408,78 @@
 <h2 id="DR"><a href="#DR" class="headerlink" title="DR"></a>DR</h2><h2 id="NANN"><a href="#NANN" class="headerlink" title="NANN"></a>NANN</h2><h2 id="TDM"><a href="#TDM" class="headerlink" title="TDM"></a>TDM</h2><h2 id="HNSW"><a href="#HNSW" class="headerlink" title="HNSW"></a>HNSW</h2><p>HNSW（Hierarchical Navigable Small World）是工业界最常用的向量检索结构之一。正如其名称所示，它通过构建多层级的小世界图来实现高效的近邻搜索。从直觉上看，HNSW 可以被类比为一张“谷歌地图”：当我们试图在地图上寻找某个具体街区时，通常会先在较粗的尺度上定位国家或城市，再逐步放大视图，最终在高分辨率的局部区域中完成精确定位。类似地，HNSW 的搜索过程也是一个由粗到细的逐层导航过程：高层图中节点稀疏、连接跨度大，用于快速确定查询向量所在的大致区域；随着搜索逐层下沉，图结构逐渐变得更加稠密，从而在局部范围内进行更精细的近邻探索。</p>
 <p>由此我们可以看到，HNSW只是index，它由Item Embedding离线构图，Serving时给定seed从上层的最近邻一路索引到最下层的最近邻，而ranking由双塔模型承担。</p>
 <h3 id="Training-1"><a href="#Training-1" class="headerlink" title="Training"></a>Training</h3><p>Training不涉及任何HNSW，只训练双塔（U侧塔，G侧塔）。</p>
-<h3 id="离线构图"><a href="#离线构图" class="headerlink" title="离线构图"></a>离线构图</h3><h3 id="Serving-1"><a href="#Serving-1" class="headerlink" title="Serving"></a>Serving</h3>
+<h3 id="Offline-Graph"><a href="#Offline-Graph" class="headerlink" title="Offline Graph"></a>Offline Graph</h3><p>HNSW为层次级的向量索引结构，给定层高决定系数$m _L$，索引的最大连接数$M _{max}$，以及构图索引的基础连接数$M$，HNSW以逐节点插入的方式构图，而最终的检索则可视为在$L _0$插入节点。</p>
+<h4 id="KNN-search"><a href="#KNN-search" class="headerlink" title="KNN-search"></a>KNN-search</h4><p>HNSW的检索是近似KNN（AKNN）检索，给定Query（User Embedding或者Item Embedding）以及K（返回结果个数），KNN-search可归结为：</p>
+<ol>
+<li>从$L _{max}$开始，给定enter point（ep，一般为度最大的节点），执行Search_Layer(ef&#x3D;1)，即分别与ep、ep的邻居求欧式距离，找到最近的点$e _{Lmax}$，加入候选集$W$，同时以$e _{Lmax}$为ep，进入下一层$L _{max}$；</li>
+<li>在$L _{max-1}$~$L _1$，重复1的操作，此时候选集$W$的元素为{$e _{Lmax},e _{Lmax-1},...,e _{L1}$}；</li>
+<li>从$e _{L1}$进入最底层$L _0$，执行Search_Layer(ef&#x3D;K)，即检索K个最近邻，加入$W$；</li>
+<li>将从$W$中与Query最近的K个弹出，即为最终结果。</li>
+</ol>
+<p>显然地，$W$会被实现为一个<strong>优先级队列</strong>，且为小根堆，而要保证上层元素一定会出现在下层，则需要构图方式保证，见后文。</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/12.png" alt="HNSW"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. HNSW</center><br>
+
+<h4 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a>Insert</h4><p>Insert是HNSW构图时的唯一操作，给定$m _L$、$M _{max}$、$M$、当前最大层高$L _{max}$以及新插入元素$q$，Insert的过程为：</p>
+<ol>
+<li>按$\lfloor-\ln(unif(0...1))\cdot m _L\rfloor$生成新插入元素的层高$L$；</li>
+<li>若$L &lt; L _{max}$，则执行Search_Layer(ef&#x3D;1)一路到$L$层，并将过程中的ep加入候选集$W$；</li>
+<li>在之后的每一层，先Search_Layer(ef&#x3D;efConstruction)，其中efConstruction为可调参数，插入$W$，再从$W$中选择$M$个候选Select_Neighbours(q, W, M)，与$q$连边，作为$q$的邻居，若连边后，候选的邻居数大于$M _{max}$，则单独对这些候选重选邻居，限制其最大邻居数为$M _{max}$。</li>
+</ol>
+<h4 id="Search-Layer"><a href="#Search-Layer" class="headerlink" title="Search_Layer"></a>Search_Layer</h4><p>给定要检索的近邻个数ef，新插入节点$q$以及ep，Search_Layer是HNSW最基础的步骤：</p>
+<ol>
+<li>初始化两个优先级队列$W$与$C$，其中$W$为大根堆，$C$为小根堆，同时维护访问过的节点表$V$，三者均初始化为ep；<blockquote>
+<p>为何$W$是大根堆，而$C$是小根堆？因为$W$是最终的返回结果，所以当$|W|&gt;ef$的时候要弹出距离最远的，故要实现为大根堆；$C$是候选集，我们每次肯定是贪心地插入最近的，所以$C$要实现为小根堆，以弹出最小的。因此整个Search_Layer就是一个遍历$C$的过程，遍历的终止条件为$C$为空或者$C$中的最小值已经大于$W$中的最大值。</p>
+</blockquote>
+</li>
+<li>对$C$中当前的最小元素$c$，若其不满足上面所说的终止条件，则遍历$c$的邻居，更新访问节点表$V$，将可插入$W$的邻居插入，保持$|W| &lt;&#x3D; ef$，在插入$W$的同时插入$C$，<blockquote>
+<p>为何不考虑$c$？a. 对最初的情况，因为$W$与$C$的初始化是一样的，所以ep最开始就被考虑了；b. 后续的节点都是经过2被插入到$C$的，因此能被插入的也早被插入到$W$了。</p>
+</blockquote>
+</li>
+<li>重复2，直到满足遍历终止条件。</li>
+</ol>
+<h4 id="Select-Neighbours"><a href="#Select-Neighbours" class="headerlink" title="Select_Neighbours"></a>Select_Neighbours</h4><p>文中给了两种方式：</p>
+<ol>
+<li>Simple：就选距离最近的K个；</li>
+<li>Heuristic：启发式算法除了考虑距离外，还考虑了区域的连通性，即当图存在非联通子图时，还会强行地连接两个非联通子图，保证全图的连通性。</li>
+</ol>
+<h4 id="Hyper、Complexity"><a href="#Hyper、Complexity" class="headerlink" title="Hyper、Complexity"></a>Hyper、Complexity</h4><p>据文中所述，$M _{max}&#x3D;2M$、$m _L&#x3D;\frac{1}{\ln M}$，$M\in[5,48]$即可。构图复杂度$N\log N$，检索复杂度$\log N$。</p>
+<h3 id="Serving-1"><a href="#Serving-1" class="headerlink" title="Serving"></a>Serving</h3><p>Serving归接下来就是一个查表的过程，根据不同的Query构造方式，流程也会有些许不同:</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>User Embedding</th>
+<th>历史正向互动Item Embedding</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Query 来源</td>
+<td>U侧与Context特征实时过U侧塔得到的Embedding</td>
+<td>离线（或实时）Embedding</td>
+</tr>
+<tr>
+<td>Query 数量</td>
+<td>1 个</td>
+<td>多个（通常取最近 N 个）</td>
+</tr>
+<tr>
+<td>与双塔模型的关系</td>
+<td>双塔直接用于召回（User→Item）</td>
+<td>双塔可用于对召回结果进行粗排序</td>
+</tr>
+<tr>
+<td>与 HNSW 的关系</td>
+<td>HNSW 作为用户到内容的近邻搜索结构</td>
+<td>HNSW 作为 item-item 扩散的核心工具</td>
+</tr>
+<tr>
+<td>与生成式视角的类比</td>
+<td>使用一个全局语义 seed 进行检索</td>
+<td>从多个已生成 token 出发进行扩散式检索</td>
+</tr>
+</tbody></table>
+
     </div>
 
     
@@ -489,14 +547,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>Word count total: </span>
-    <span title="Word count total">165k</span>
+    <span title="Word count total">166k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>Reading time total &asymp;</span>
-    <span title="Reading time total">9:58</span>
+    <span title="Reading time total">10:02</span>
   </span>
 </div>
 <div class="busuanzi-count">
