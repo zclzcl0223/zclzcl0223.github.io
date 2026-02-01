@@ -205,7 +205,7 @@
 <p>为何$W$是大根堆，而$C$是小根堆？因为$W$是最终的返回结果，所以当$|W|&gt;ef$的时候要弹出距离最远的，故要实现为大根堆；$C$是候选集，我们每次肯定是贪心地插入最近的，所以$C$要实现为小根堆，以弹出最小的。因此整个Search_Layer就是一个遍历$C$的过程，遍历的终止条件为$C$为空或者$C$中的最小值已经大于$W$中的最大值。</p>
 </blockquote>
 </li>
-<li>对$C$中当前的最小元素$c$，若其不满足上面所说的终止条件，则遍历$c$的邻居，更新访问节点表$V$，将可插入$W$的邻居插入，保持$|W| &lt;&#x3D; ef$，在插入$W$的同时插入$C$，<blockquote>
+<li>对$C$中当前的最小元素$c$，若其不满足上面所说的终止条件，则遍历$c$的邻居，更新访问节点表$V$，将可插入$W$的邻居插入，保持$|W| &lt;&#x3D; ef$，在插入$W$的同时插入$C$；<blockquote>
 <p>为何不考虑$c$？a. 对最初的情况，因为$W$与$C$的初始化是一样的，所以ep最开始就被考虑了；b. 后续的节点都是经过2被插入到$C$的，因此能被插入的也早被插入到$W$了。</p>
 </blockquote>
 </li>
@@ -217,7 +217,7 @@
 <li>Heuristic：启发式算法除了考虑距离外，还考虑了区域的连通性，即当图存在非联通子图时，还会强行地连接两个非联通子图，保证全图的连通性。</li>
 </ol>
 <h4 id="Hyper、Complexity"><a href="#Hyper、Complexity" class="headerlink" title="Hyper、Complexity"></a>Hyper、Complexity</h4><p>据文中所述，$M _{max}&#x3D;2M$、$m _L&#x3D;\frac{1}{\ln M}$，$M\in[5,48]$即可。构图复杂度$N\log N$，检索复杂度$\log N$。</p>
-<h3 id="Serving-1"><a href="#Serving-1" class="headerlink" title="Serving"></a>Serving</h3><p>Serving归接下来就是一个查表的过程，根据不同的Query构造方式，流程也会有些许不同:</p>
+<h3 id="Serving-1"><a href="#Serving-1" class="headerlink" title="Serving"></a>Serving</h3><p>Serving归结下来就是一个查表的过程，根据不同的Query构造方式，流程也会有些许不同:</p>
 <table>
 <thead>
 <tr>
@@ -1183,8 +1183,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1437,8 +1437,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1581,8 +1581,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -1817,8 +1817,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2033,8 +2033,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2161,8 +2161,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2601,8 +2601,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2712,8 +2712,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -2973,8 +2973,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -3001,8 +3001,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>Theoretical Computer Science</tag>
+        <tag>Math</tag>
       </tags>
   </entry>
   <entry>
@@ -3716,8 +3716,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -7703,8 +7703,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -7808,8 +7808,8 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Deep Learning</tag>
         <tag>Tool</tag>
+        <tag>Deep Learning</tag>
         <tag>Machine Learning</tag>
       </tags>
   </entry>
@@ -8235,48 +8235,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python Package</title>
-    <url>/2023/06/15/PythonPackage/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
-<blockquote>
-<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
-</blockquote>
-<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
-<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Configuration</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Zip: Make Aggregation Easier</title>
-    <url>/2023/05/06/ZipMakeLifeEasier/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>We can even use zip to generate a dictionary:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Gamma and Factorial</title>
     <url>/2023/05/05/GammaAndFactorial/</url>
     <content><![CDATA[<span id="more"></span>
@@ -8319,6 +8277,48 @@
 <p><code>filter</code> is easily replaced by <code>for</code> or <code>for if</code> comprehension:</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br><span class="line"><span class="string">[0, 2, 4, 6, 8]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python Package</title>
+    <url>/2023/06/15/PythonPackage/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Python包和Python版本"><a href="#Python包和Python版本" class="headerlink" title="Python包和Python版本"></a>Python包和Python版本</h1><p>在安装Python包之前，一定要先确认包和当下的Python版本是否兼容，很多安装问题都源于版本的不兼容。当使用远程镜像或Pycharm无法正确地安装包时，可以手动下载与当前Python版本相兼容的包的<code>.whl</code>文件。</p>
+<blockquote>
+<p><code>.whl</code>文件(WHL file)也称为轮子（wheel），这是用于Python分发（Distribution）的标准内置包格式（Standard built-package format）。它包含安装所需的所有文件和元数据（Metadata）。<code>.whl</code>文件使用zip进行压缩。<code>.whl</code>文件还包含有关此wheel文件支持的Python版本和平台的信息。<code>.whl</code>文件格式是一种即装即用格式（Ready-to-install format），允许在不构建源代码分发（Without building the source distribution）的情况下运行安装包。其本质上是一个安装包。</p>
+</blockquote>
+<p><a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#ta">Archived: Unofficial Windows Binaries for Python Extension Packages</a>该网站提供了一些常用的<code>.whl</code>安装包，<a href="https://download.pytorch.org/whl/torch_stable.html">Pytorch Stable</a>则提供了各个版本的torch和torchvision的安装包。</p>
+<p>下载好<code>.whl</code>安装包后，在当前的Python环境（或虚拟环境）下运行命令行，切换到<code>.whl</code>安装包所在的目录，用<code>pip</code>安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install [Your .whl file]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Configuration</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Zip: Make Aggregation Easier</title>
+    <url>/2023/05/06/ZipMakeLifeEasier/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h1><p>It is easy to aggregates elements from iterables using <code>zip</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*iterables)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">number = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">letters = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="number">5</span>), <span class="built_in">range</span>(<span class="number">100</span>))))  <span class="comment"># the number of zip is equal to the shortest iterable</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]</span></span><br><span class="line"><span class="string">[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>We can even use zip to generate a dictionary:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;job&#x27;</span>]</span><br><span class="line">items = [<span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;worker&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(fields, items)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&#123;&#x27;name&#x27;: &#x27;John&#x27;, &#x27;job&#x27;: &#x27;worker&#x27;&#125;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>If the iterables are ordered (e.g. <code>list</code>, <code>dict</code>), <code>zip</code> will output the tuples in order, otherwise the order is indeterminate.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">number = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">letters = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(number, letters)))</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[(1, &#x27;b&#x27;), (2, &#x27;c&#x27;), (3, &#x27;a&#x27;)]</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h1><p><code>zip</code> can also work as <code>unzip</code>, which returns tuples:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">zip(*pairs)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">pairs = [(<span class="number">1</span>, <span class="string">&#x27;a&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;b&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>)]</span><br><span class="line">number, letters = <span class="built_in">zip</span>(*pairs)</span><br><span class="line"><span class="built_in">print</span>(number)</span><br><span class="line"><span class="built_in">print</span>(letters)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">(&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>Programming Language</category>
       </categories>

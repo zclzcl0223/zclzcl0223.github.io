@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/11.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/12.png">
 <meta property="article:published_time" content="2026-01-18T11:02:33.000Z">
-<meta property="article:modified_time" content="2026-02-01T12:13:34.659Z">
+<meta property="article:modified_time" content="2026-02-01T12:19:51.495Z">
 <meta property="article:author" content="Chaolv Zeng">
 <meta property="article:tag" content="Recommender System">
 <meta property="article:tag" content="Recall">
@@ -278,7 +278,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-02-01 20:13:34" itemprop="dateModified" datetime="2026-02-01T20:13:34+08:00">2026-02-01</time>
+      <time title="Modified: 2026-02-01 20:19:51" itemprop="dateModified" datetime="2026-02-01T20:19:51+08:00">2026-02-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -433,7 +433,7 @@
 <p>为何$W$是大根堆，而$C$是小根堆？因为$W$是最终的返回结果，所以当$|W|&gt;ef$的时候要弹出距离最远的，故要实现为大根堆；$C$是候选集，我们每次肯定是贪心地插入最近的，所以$C$要实现为小根堆，以弹出最小的。因此整个Search_Layer就是一个遍历$C$的过程，遍历的终止条件为$C$为空或者$C$中的最小值已经大于$W$中的最大值。</p>
 </blockquote>
 </li>
-<li>对$C$中当前的最小元素$c$，若其不满足上面所说的终止条件，则遍历$c$的邻居，更新访问节点表$V$，将可插入$W$的邻居插入，保持$|W| &lt;&#x3D; ef$，在插入$W$的同时插入$C$，<blockquote>
+<li>对$C$中当前的最小元素$c$，若其不满足上面所说的终止条件，则遍历$c$的邻居，更新访问节点表$V$，将可插入$W$的邻居插入，保持$|W| &lt;&#x3D; ef$，在插入$W$的同时插入$C$；<blockquote>
 <p>为何不考虑$c$？a. 对最初的情况，因为$W$与$C$的初始化是一样的，所以ep最开始就被考虑了；b. 后续的节点都是经过2被插入到$C$的，因此能被插入的也早被插入到$W$了。</p>
 </blockquote>
 </li>
@@ -445,7 +445,7 @@
 <li>Heuristic：启发式算法除了考虑距离外，还考虑了区域的连通性，即当图存在非联通子图时，还会强行地连接两个非联通子图，保证全图的连通性。</li>
 </ol>
 <h4 id="Hyper、Complexity"><a href="#Hyper、Complexity" class="headerlink" title="Hyper、Complexity"></a>Hyper、Complexity</h4><p>据文中所述，$M _{max}&#x3D;2M$、$m _L&#x3D;\frac{1}{\ln M}$，$M\in[5,48]$即可。构图复杂度$N\log N$，检索复杂度$\log N$。</p>
-<h3 id="Serving-1"><a href="#Serving-1" class="headerlink" title="Serving"></a>Serving</h3><p>Serving归接下来就是一个查表的过程，根据不同的Query构造方式，流程也会有些许不同:</p>
+<h3 id="Serving-1"><a href="#Serving-1" class="headerlink" title="Serving"></a>Serving</h3><p>Serving归结下来就是一个查表的过程，根据不同的Query构造方式，流程也会有些许不同:</p>
 <table>
 <thead>
 <tr>
