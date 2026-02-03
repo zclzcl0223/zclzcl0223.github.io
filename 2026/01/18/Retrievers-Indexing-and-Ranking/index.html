@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/13.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/12.png">
 <meta property="article:published_time" content="2026-01-18T11:02:33.000Z">
-<meta property="article:modified_time" content="2026-02-03T07:59:54.051Z">
+<meta property="article:modified_time" content="2026-02-03T08:03:34.032Z">
 <meta property="article:author" content="Chaolv Zeng">
 <meta property="article:tag" content="Recommender System">
 <meta property="article:tag" content="Recall">
@@ -274,7 +274,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-02-03 15:59:54" itemprop="dateModified" datetime="2026-02-03T15:59:54+08:00">2026-02-03</time>
+      <time title="Modified: 2026-02-03 16:03:34" itemprop="dateModified" datetime="2026-02-03T16:03:34+08:00">2026-02-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -407,7 +407,7 @@
 <li>传统的基于模型的两阶段召回，Ranking&amp;Indexing是分开的，最终我们实际只在训练Ranking模型，而Indexing是基于Ranking模型得到的Embedding构建的，典型的如基于HNSW的召回，这导致：a. Ranking时在用U侧和G侧内积打分，Indexing时则是ANN检索，两阶段目标不一致，检索误差无法通过Ranking模型优化；b. 为了构图，Ranking模型被设计为U侧塔和G侧塔直接内积计算的模式，无法考虑更复杂的形式。不难看出，此时的召回优化，模型层面实际上是“一维”的；</li>
 <li>一些一阶段的召回，如DR、TDM，将模型和索引协同训练，同时考虑模型、索引、计算，可视为“三维”。这类方式有着训练复杂度高、虚拟索引限制G侧无法利用更复杂特征的问题。</li>
 </ol>
-<p>NANN是对这两者的折中，其索引退回了HNSW的形式，仍由Item embedding构图（所以两阶段召回的第二个问题本来就对了呀，换了非双塔一样可以用Item embedding建立索引），但最终检索时不再是直接ANN，而是用Ranking模型对enter point的邻居打分，选topk：</p>
+<p>NANN是对这两者的折中，其索引退回了HNSW的形式，仍由Item embedding构图（所以两阶段召回的第二个挑战似乎不太对，换了非双塔一样可以用Item embedding建立索引），但最终检索时不再直接ANN，而是用Ranking模型对enter point的邻居打分，选topk：</p>
 <p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/14.png" alt="NANN"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. NANN</center><br>
 
