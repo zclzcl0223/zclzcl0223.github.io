@@ -27,6 +27,15 @@
 <meta property="og:site_name" content="JourneyToCoding">
 <meta property="og:description" content="召回，推荐系统需要召回，NTP（next token prediction）其实也是召回。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/12.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/13.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/14.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/15.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/16.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/17.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/19.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/18.png">
+<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/20.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/2.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/3.png">
@@ -38,22 +47,13 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/7.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/10.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/11.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/16.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/17.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/19.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/18.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/20.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/14.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/15.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/13.png">
-<meta property="og:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/12.png">
 <meta property="article:published_time" content="2026-01-18T11:02:33.000Z">
-<meta property="article:modified_time" content="2026-02-05T08:21:40.049Z">
+<meta property="article:modified_time" content="2026-02-05T08:26:25.369Z">
 <meta property="article:author" content="Chaolv Zeng">
 <meta property="article:tag" content="Recommender System">
 <meta property="article:tag" content="Recall">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/1.png">
+<meta name="twitter:image" content="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/12.png">
 
 
 <link rel="canonical" href="https://zclzcl0223.github.io/2026/01/18/Retrievers-Indexing-and-Ranking/">
@@ -165,7 +165,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Streaming-VQ"><span class="nav-number">1.</span> <span class="nav-text">Streaming VQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VQ-VAE"><span class="nav-number">1.1.</span> <span class="nav-text">VQ-VAE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Streaming-VQ-1"><span class="nav-number">1.2.</span> <span class="nav-text">Streaming VQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Training"><span class="nav-number">1.2.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Serving"><span class="nav-number">1.2.2.</span> <span class="nav-text">Serving</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Trick"><span class="nav-number">1.2.3.</span> <span class="nav-text">Trick</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Index-Reparability"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Index Reparability</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Index-Balancing"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">Index Balancing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Multi-task-Streaming-VQ"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">Multi-task Streaming VQ</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trinity"><span class="nav-number">2.</span> <span class="nav-text">Trinity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-1"><span class="nav-number">2.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serving-1"><span class="nav-number">2.2.</span> <span class="nav-text">Serving</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-interest"><span class="nav-number">2.2.1.</span> <span class="nav-text">Multi-interest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Long-tail-interest"><span class="nav-number">2.2.2.</span> <span class="nav-text">Long-tail interest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Long-term-interest"><span class="nav-number">2.2.3.</span> <span class="nav-text">Long-term interest</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NANN"><span class="nav-number">3.</span> <span class="nav-text">NANN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-2"><span class="nav-number">3.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serving-2"><span class="nav-number">3.2.</span> <span class="nav-text">Serving</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">3.3.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DR"><span class="nav-number">4.</span> <span class="nav-text">DR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TDM"><span class="nav-number">5.</span> <span class="nav-text">TDM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-3"><span class="nav-number">5.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serving-3"><span class="nav-number">5.2.</span> <span class="nav-text">Serving</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HNSW"><span class="nav-number">6.</span> <span class="nav-text">HNSW</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-4"><span class="nav-number">6.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Offline-Graph"><span class="nav-number">6.2.</span> <span class="nav-text">Offline Graph</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#KNN-search"><span class="nav-number">6.2.1.</span> <span class="nav-text">KNN-search</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert"><span class="nav-number">6.2.2.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Search-Layer"><span class="nav-number">6.2.3.</span> <span class="nav-text">Search_Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Select-Neighbours"><span class="nav-number">6.2.4.</span> <span class="nav-text">Select_Neighbours</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyper%E3%80%81Complexity"><span class="nav-number">6.2.5.</span> <span class="nav-text">Hyper、Complexity</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serving-4"><span class="nav-number">6.3.</span> <span class="nav-text">Serving</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HNSW"><span class="nav-number">1.</span> <span class="nav-text">HNSW</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training"><span class="nav-number">1.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Offline-Graph"><span class="nav-number">1.2.</span> <span class="nav-text">Offline Graph</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#KNN-search"><span class="nav-number">1.2.1.</span> <span class="nav-text">KNN-search</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert"><span class="nav-number">1.2.2.</span> <span class="nav-text">Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Search-Layer"><span class="nav-number">1.2.3.</span> <span class="nav-text">Search_Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Select-Neighbours"><span class="nav-number">1.2.4.</span> <span class="nav-text">Select_Neighbours</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hyper%E3%80%81Complexity"><span class="nav-number">1.2.5.</span> <span class="nav-text">Hyper、Complexity</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serving"><span class="nav-number">1.3.</span> <span class="nav-text">Serving</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TDM"><span class="nav-number">2.</span> <span class="nav-text">TDM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-1"><span class="nav-number">2.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serving-1"><span class="nav-number">2.2.</span> <span class="nav-text">Serving</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DR"><span class="nav-number">3.</span> <span class="nav-text">DR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NANN"><span class="nav-number">4.</span> <span class="nav-text">NANN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-2"><span class="nav-number">4.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serving-2"><span class="nav-number">4.2.</span> <span class="nav-text">Serving</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">4.3.</span> <span class="nav-text">Reference</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trinity"><span class="nav-number">5.</span> <span class="nav-text">Trinity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-3"><span class="nav-number">5.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serving-3"><span class="nav-number">5.2.</span> <span class="nav-text">Serving</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-interest"><span class="nav-number">5.2.1.</span> <span class="nav-text">Multi-interest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Long-tail-interest"><span class="nav-number">5.2.2.</span> <span class="nav-text">Long-tail interest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Long-term-interest"><span class="nav-number">5.2.3.</span> <span class="nav-text">Long-term interest</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Streaming-VQ"><span class="nav-number">6.</span> <span class="nav-text">Streaming VQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VQ-VAE"><span class="nav-number">6.1.</span> <span class="nav-text">VQ-VAE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Streaming-VQ-1"><span class="nav-number">6.2.</span> <span class="nav-text">Streaming VQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Training-4"><span class="nav-number">6.2.1.</span> <span class="nav-text">Training</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Serving-4"><span class="nav-number">6.2.2.</span> <span class="nav-text">Serving</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Trick"><span class="nav-number">6.2.3.</span> <span class="nav-text">Trick</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Index-Reparability"><span class="nav-number">6.2.3.1.</span> <span class="nav-text">Index Reparability</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Index-Balancing"><span class="nav-number">6.2.3.2.</span> <span class="nav-text">Index Balancing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Multi-task-Streaming-VQ"><span class="nav-number">6.2.3.3.</span> <span class="nav-text">Multi-task Streaming VQ</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -279,7 +279,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-02-05 16:21:40" itemprop="dateModified" datetime="2026-02-05T16:21:40+08:00">2026-02-05</time>
+      <time title="Modified: 2026-02-05 16:26:25" itemprop="dateModified" datetime="2026-02-05T16:26:25+08:00">2026-02-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -335,157 +335,9 @@
 <li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2402.02842">Trinity</a></li>
 <li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2501.08695">Streaming VQ</a></li>
 </ul>
-<h2 id="Streaming-VQ"><a href="#Streaming-VQ" class="headerlink" title="Streaming VQ"></a>Streaming VQ</h2><p>因为先看的Streaming VQ，所以就倒过来写了。</p>
-<p>VQ（Vector Quantisation），顾名思义是将一坨向量映射到一个索引，实际就是将向量分组。于推荐而言，召回中的VQ可以理解为由反向传播优化得到的动态分组方法。为什么召回需要分组，或者说需要索引？因为召回的候选是视频的全集，我们不可能在第一个阶段就对每个用户进行全候选计算，因此需要缩小范围。那么如何缩小范围？最简单的就是为用户以及视频打上标签，如我喜欢看日漫，那就只召回带日漫标签的。直接用标签分组缺乏灵活性，而VQ就是这么一个动态分组。</p>
-<h3 id="VQ-VAE"><a href="#VQ-VAE" class="headerlink" title="VQ-VAE"></a>VQ-VAE</h3><p>首先，VQ这种方式在Neurips2017的文章<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1711.00937">VQ-VAE</a>中首次被用到了生成式任务中：</p>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/1.png" alt="vqvae"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. VQ-VAE</center><br>
-
-<p>其对VAE Encoder的输出$z$进行了分组（后面都称索引），由于现实的图片分布可以理解为无数个高斯分布的叠加，因此这些索引我认为最终是实现了一个索引对应一个或者几个高斯分布。整个流程还是VAE那一套，量化体现在Encoder-&gt;Decoder的部分，即每个索引有其自身的Embedding，选取与Encoder输出欧式距离最近的组的Embedding作为Decoder的输入：</p>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/2.png" alt="quantisation"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 2. Quantisation</center><br>
-
-<p>Loss由三部分组成（加号分割）：</p>
-<ul>
-<li>$\mathcal{L} _1$即重构MSE，生成梯度用于更新Decoder，比较特别的是，由于输入Decoder的是索引Embedding，因此梯度不会传到到Encoder，作者的解决方式是：Decoder和Encoder的结构是一模一样的，因此直接用Decoder的梯度更新Encoder;</li>
-<li>$\mathcal{L} _2$中sg指stop gradient，用于更新索引Embedding。不难看出，最终每个索引的Embedding其实一定程度上等于该索引所包含的向量的均值，因此也可以采用指数移动平均EMA的更新方法，Streaming VQ用的就是这种方式；</li>
-<li>$\mathcal{L} _3$更新Encoder，起到正则的效果。</li>
-</ul>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/3.png" alt="loss"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 3. Loss of VQ-VAE</center><br>
-
-<p>以上都是训练，实际Serving的时候就和VQ没什么关系了，还是从某个先验中采样出Embedding输入Decoder，而不是用Codebook（即索引表）的Embedding。</p>
-<h3 id="Streaming-VQ-1"><a href="#Streaming-VQ-1" class="headerlink" title="Streaming VQ"></a>Streaming VQ</h3><p>在VQ-VAE中，VQ实际上只是起到了一个辅助VAE训练的作用，最终的Codebook在Serving的时候并没有起到作用，而在Streaming VQ中，Codebook不仅有索引，每个索引下还有着对应的归属于该索引的视频，因而是有着实际作用的。</p>
-<h4 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h4><p>整体架构如大的黑色虚线上面的部分所示：</p>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/4.png" alt="streaming_vq"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 4. Streaming VQ</center><br>
-
-<p>相比VQ-VAE，下游任务不再是重构，而是对应的推荐系统二分类任务，并且Codebook的更新使用了<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/68748778">EMA</a>，因此最终的损失函数实际只有一项，对应VQ-VAE的重构Loss，但细拆下来会有两项，分别是Item（视频）本身与User的分类Loss，以及Codebook与User的分类Loss：</p>
-<ul>
-<li><p>Item_User：更新G侧和U侧。<br><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/5.png" alt="item_user"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 5. Item-User</center><br>
-</li>
-<li><p>Codebook_User：Codebook的Loss回传更新G侧，Codebook本身由G侧Embedidng EMA更新，U侧是否更新不清楚。<br><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/6.png" alt="codebook_user"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 6. Codebook-User</center><br></li>
-</ul>
-<p>以上两者都采用In-batch softmax，即InfoNCE（无温度系数，定义见<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1911.05722">MoCo</a>）。</p>
-<blockquote>
-<p>In-batch softmax，本质上是一种负采样方法。对于一个Batch内的U-G对，将匹配的$U _i$与$G _i$作为正样本，而将$U _i$与$G _j$作为负样本，于是对一个大小为n的batch，就有n个正样本，n(n-1)个负样本。但这会导致视频成为负样本的概率与其出现次数成正比，导致对高热视频的打压，<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3298689.3346996">Sampling Bias</a>即用于解决这个问题。</p>
-</blockquote>
-<h4 id="Serving"><a href="#Serving" class="headerlink" title="Serving"></a>Serving</h4><p>由于G侧塔和U侧塔的特征是完全独立的，因此在同一个时刻每个Item都会唯一地被分配一个索引，那么实际我们只要计算U侧Embedidng和Codebook各个索引Embedding的内积，取靠前的几个作为我们的候选即可。但是，用户的兴趣是多元的（或者说长尾的），分低的索引中也可能有用户很感兴趣的视频，前面的处理会导致过于注重头部兴趣，而忽略了尾部兴趣。Streaming VQ的解决方式是为每个Item引入单独的Bias项，起到Embedding表征个性化、Bias表征视频热门程度的作用：</p>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/9.png" alt="personality_formula"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 7. Item bias for personality and popularity: formula</center><br>
-
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/8.png" alt="personality"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 8. Item bias for personality and popularity: model</center><br>
-
-<p>如此，Codebook中不同索引的Item也变得可比了，于是我们可以直接k路归并地召回：</p>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/7.png" alt="K-merge"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 9. K-merge sort</center><br>
-
-<p>还有一个问题是，如何为所有的样本打上索引标签？文中的解决方式是两个数据流：</p>
-<ul>
-<li>曝光样本组成的实时数据流：即正常的流式更新，有梯度回传，如Fig4中item feature的蓝线所示；</li>
-<li>所有候选数据流：仅生成G侧塔的Embedding以及对应的索引，无梯度，如Fig4中item feture和黑色虚线所示。</li>
-</ul>
-<h4 id="Trick"><a href="#Trick" class="headerlink" title="Trick"></a>Trick</h4><p>总的框架就如上面所述，对一个用户，Serving时：User Embedding和Codebook Embedding内积求相似度-&gt;k路归并召回一定数量的视频-&gt;Ranking模型打分将前面的视频送入粗排。</p>
-<p>但实际要真能在线上有用，还是需要一些小技巧。</p>
-<h5 id="Index-Reparability"><a href="#Index-Reparability" class="headerlink" title="Index Reparability"></a>Index Reparability</h5><p>即视频对应索引的可变性。对比VQ-VAE和Streaming VQ的Loss可发现，除去Streaming VQ使用EMA代替梯度回传外，Streaming VQ还少了$\mathcal{L} _3$，即用于让Item Embedding不会过多偏移其所属的Codebook Embedding的L2正则项，起到的作用为让Item的对应的索引保持稳定。</p>
-<p>如文中所述，图片的特征是静态的，其所属的索引保持稳定没有任何问题；而对于推荐的视频，其不少特征是动态变化的，如互动、播放量等，因此其对应的索引也应该是可变化的。故而Streaming VQ去掉了这一项正则，而让Item_User的Loss去更新Item。</p>
-<h5 id="Index-Balancing"><a href="#Index-Balancing" class="headerlink" title="Index Balancing"></a>Index Balancing</h5><p>即每个索引包含的视频个数要尽可能地均衡。由于VQ的映射是多对一的，因此Codebook_User Loss这一项的存在会天然地要求每个索引所包含的视频个数尽可能一致，如5个视频5个索引，那肯定是一对一的Loss最小，因为这时Codebook Embedding就等于Item Embedding。</p>
-<p>为了进一步提升均衡性，文中还有两个额外的改进：</p>
-<ol>
-<li>EMA时，用视频的在当前时间步的出现周期$\delta ^t$作为放缩项，减小高热Item的权重；同时维护一个<strong>索引k</strong>出现次数的计数$c _k$，打压高热Cluster的更新。<br>$$<br>\begin{align*}<br>\mathbf{w} ^{t+1} _k&amp;&#x3D;\alpha \mathbf{w} _k ^t+(1-\alpha)(\delta ^t) ^{\beta}v _j ^t,\\<br>c _k ^{t+ 1}&amp;&#x3D;\alpha c _k ^t+(1-\alpha)(\delta ^t) ^{\beta},\\<br>\mathbf{e} _k ^{t+1}&amp;&#x3D;\frac{\mathbf{w} _k ^{t+1}}{c _k ^{t+ 1}}<br>\end{align*}<br>$$</li>
-<li>复用前面的$c _k$，对出现次数少的Cluster做一个Boost。<br><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/10.png" alt="boost"><center style="font-size:12px; font-weight:bold">Fig. 10. Low loading cluster boost</center><br></li>
-</ol>
-<p>即，在分布均匀可由VQ自身保证的情况下，分别从Item侧（防止Cluster被高热Item主导）和Cluster侧（防止训练被高热Cluster主导）做了平衡措施。</p>
-<blockquote>
-<p>$\delta$定义源自<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3298689.3346996">Sampling Bias</a>。按论文中的方法，为每个GID分配一个$\delta _i$，初始化为0，以及最近一次出现的epoch$t _i$，然后当其在本epoch出现时，移动平均地更新：$\delta _i&#x3D;(1-\alpha) \delta _{i-1} + \alpha (t - t _i)$；$t _i &#x3D; t$，不难看出，当更新步数足够大时，$\delta _i$即为对应视频出现的周期，那么$1&#x2F;\delta _i$即为其出现的频率。原文用这个频率为In-batch softmax的双塔内积消偏，即：$s(x _i, y _j) - \log(p _j)$，最终效果为对热门物品，放大其打分。</p>
-</blockquote>
-<h5 id="Multi-task-Streaming-VQ"><a href="#Multi-task-Streaming-VQ" class="headerlink" title="Multi-task Streaming VQ"></a>Multi-task Streaming VQ</h5><p>仅针对Indexing时的多目标，因为Ranking的多目标和粗精排没什么区别。</p>
-<p>一言以蔽之：仅U侧塔个数变为多目标个数，前面的负载均衡公式引入每个目标的Reward项$h$（即0&#x2F;1，是否为正样本，最终累乘的结果实际上就是一个多项式相乘的融分）调节多目标的更新权重：</p>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/11.png" alt="boost"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 11. Multi-task</center><br>
-
-<h2 id="Trinity"><a href="#Trinity" class="headerlink" title="Trinity"></a>Trinity</h2><p>严格来说，Trinity和Streaming VQ、NANN、HNSW等不是一个类型的东西，因为后者关注Indexing+Ranking，是对整体召回流程、模型的迭代，而Trinity则是强行用某些规则、统计结果，对召回的结果进行了筛选。<strong>简单地来说，Trinity是机器学习版的纯统计的标签召回，即直接根据标签的统计结果，召回想要的视频，不过与过去的不同的是此处的标签以及聚类是VQ-VAE学习出来的，而不是人为的硬标签（如动漫、音乐等）。</strong></p>
-<p>因此，Trinity是对其他纯基于模型的召回的补充，它以<strong>统计</strong>的方式，缓解了各类流式更新的召回模型过于注重当下热门话题、当下兴趣的现象。</p>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/16.png" alt="Trinity"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. Trinity</center><br>
-
-<h3 id="Training-1"><a href="#Training-1" class="headerlink" title="Training"></a>Training</h3><p>Trinity的Training就只是在训练Codebook，输入为用户历史长序列以及Item，正例为互动过或者完播等的视频，与VQ-VAE、Streaming VQ基本类似。不过不同的是Trinity训练了两个Codebook，一个词本小，记为Primary Clusters；另一个词本大，记为Secondary Clusters。</p>
-<h3 id="Serving-1"><a href="#Serving-1" class="headerlink" title="Serving"></a>Serving</h3><p>Trinity的主要动机为保证用户的长期兴趣，基于此从：multi-interest（多）、long-tail interest（长尾）、long-term interest（长期），三个方面展开。</p>
-<h4 id="Multi-interest"><a href="#Multi-interest" class="headerlink" title="Multi-interest"></a>Multi-interest</h4><ol>
-<li>从用户历史长序列中取互动过或者完播或者播放时长&gt;10s的Item（Length &lt;&#x3D; 2500）；</li>
-<li>得到Item的Primary&#x2F;Secondary Clusters，分别计算Primary Clusters和Secondary Clusters的频率直方图；</li>
-<li>由于Secondary Clusters的个数多于Primary Clusters，两者存在多对一的关系，将Secondary Clusters作为Primary Clusters的子节点；</li>
-<li>在频率满足阈值的Primary Clusters中，随机选一个满足频率阈值的Secondary Clusters，加入候选；</li>
-<li>遍历完后候选未满则在频率满足阈值的Primary Clusters中取频率最大的Secondary Clusters，加入候选；</li>
-<li>还不满则将频率大的Secondary Clusters，加入候选；</li>
-<li>所有候选Item过一个Ranking模型。</li>
-</ol>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/17.png" alt="Multi-interest"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 2. Multi-interest</center><br>
-
-<h4 id="Long-tail-interest"><a href="#Long-tail-interest" class="headerlink" title="Long-tail interest"></a>Long-tail interest</h4><ol>
-<li>按<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3298689.3346996">Sampling Bias</a>的方法得到每个Secondary Clusters的平均出现间隔，由大到小排序（过滤Item数过少的Clusters），取间隔最大的几个，作为<strong>全局</strong>的Long-tail interests；</li>
-<li>复用Multi-interest的用户Secondary Clusters频率直方图，将频率大于阈值且在全局Long-tail interests的加入候选；</li>
-<li>每个候选的Secondary Cluster以其归一化后的频率作为概率（公式见下），随机采样出限定个数的Clusters，作为最终候选；</li>
-<li>所有候选Item过一个Ranking模型。</li>
-</ol>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/19.png" alt="Probability"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 3. Probability</center><br>
-
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/18.png" alt="Long-tail"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 4. Long-tail interest</center><br>
-
-<h4 id="Long-term-interest"><a href="#Long-term-interest" class="headerlink" title="Long-term interest"></a>Long-term interest</h4><p>最简单，直接用历史互动过或完播或播放时长&gt;&#x3D;10s的Item作为种子（当然，种子也需要模型进行排序），然后ANN（对每个Cluster被选取的Item数作限制）。</p>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/20.png" alt="Long-term"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 4. Long-term interest</center><br>
-
-<p>总的来看是用向量量化（VQ）生成动态标签，代替传统的静态标签，实现了对传统统计召回的升级。</p>
-<h2 id="NANN"><a href="#NANN" class="headerlink" title="NANN"></a>NANN</h2><p>NANN（Neural Approximate Nearest Neighbor），阿里将其简称为“二向箔”，原因在于：</p>
-<ol>
-<li>传统的基于模型的两阶段召回，Ranking&amp;Indexing是分开的，最终我们实际只在训练Ranking模型，而Indexing是基于Ranking模型得到的Embedding构建的，典型的如基于HNSW的召回，这导致：a. Ranking时在用U侧和G侧内积打分，Indexing时则是ANN检索，两阶段目标不一致，检索误差无法通过Ranking模型优化；b. 为了构图，Ranking模型被设计为U侧塔和G侧塔直接内积计算的模式，无法考虑更复杂的形式。不难看出，此时的召回优化，模型层面实际上是“一维”的；</li>
-<li>一些一阶段的召回，如DR、TDM，将模型和索引协同训练，同时考虑模型、索引、计算，可视为“三维”。这类方式有着训练复杂度高、虚拟索引限制G侧无法利用更复杂特征的问题。</li>
-</ol>
-<p>NANN是对这两者的折中，其索引退回了HNSW的形式，仍由Item embedding构图（所以两阶段召回的第二个挑战似乎不太对，换了非双塔一样可以用Item embedding建立索引），但最终检索时不再直接ANN，而是用Ranking模型对enter point的邻居打分，选topk：</p>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/14.png" alt="NANN"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. NANN</center><br>
-
-<p>所以，名字起得很对，用Neural Network完成ANN。</p>
-<h3 id="Training-2"><a href="#Training-2" class="headerlink" title="Training"></a>Training</h3><p>Training只训练Ranking模型，但由于在NANN中，HNSW构图时用的是Item embedding的ANN（且用的为欧式距离），而Serving时又用Neural Network近似这个ANN，所以还是有比较大的不一致，不过文中似乎没有详细讨论这个问题，而是将其归结为了一个鲁棒性问题：即Item embedding的一丁点扰动可能会导致结果变成一坨，因为HNSW不再用欧式距离，而是由神经网络进行打分。</p>
-<p>文中给的方法是引入一个对抗辅助损失函数：<br><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/15.png" alt="kl"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 2. AUX loss</center><br>
-
-<p>不难看到$(e _v +\Delta)$是梯度“上升”，在一定程度上可被视为Bad case。引入的辅助损失函数用KL散度约束住了Bad case。</p>
-<h3 id="Serving-2"><a href="#Serving-2" class="headerlink" title="Serving"></a>Serving</h3><p>Serving本质上是一个将ANN替换为Ranking模型打分的HNSW，即给定enter point，用Ranking模型打分邻居，选top1，进入下一层，在最下层则选topk。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/614214963">https://zhuanlan.zhihu.com/p/614214963</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/443113850">https://zhuanlan.zhihu.com/p/443113850</a></li>
-</ul>
-<h2 id="DR"><a href="#DR" class="headerlink" title="DR"></a>DR</h2><h2 id="TDM"><a href="#TDM" class="headerlink" title="TDM"></a>TDM</h2><p>TDM（Tree-based Deep Models）算是较早的索引聚类召回。HNSW其实并没有聚类的概念，因为每个Item都是独立的索引，其以连边的方式连接了其他的Item，形成了以该Item为核心的小聚类，即我们有N个Item就有N个小聚类，而且这些小聚类还是相关联的。TDM则是通过构造虚拟节点，并将Item放在二叉树的叶子上，实现了一个层次聚类效果，大聚类-&gt;小聚类-&gt;小小聚类-&gt;Item。</p>
-<h3 id="Training-3"><a href="#Training-3" class="headerlink" title="Training"></a>Training</h3><p>模型+树索引两者交替训练：</p>
-<ol>
-<li>初始化模型、树索引（按category初始化）；</li>
-<li>训练模型直至收敛，其中正负样本的构造方式为：<blockquote>
-<p>正样本叶子的祖先均被视为正样本，相应地子节点均为负样本的节点被视为负样本</p>
-</blockquote>
-</li>
-<li>根据新的叶子embedding，k-means重新构造索引树（从上到下地2-means）；</li>
-<li>重复2~3直至收敛。</li>
-</ol>
-<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/13.png" alt="tdm"></p>
-<center style="font-size:12px; font-weight:bold">Fig. 1. TDM</center><br>
-
-<h3 id="Serving-3"><a href="#Serving-3" class="headerlink" title="Serving"></a>Serving</h3><p>Serving就比较简单，是比较常规的Beam-Search，即：</p>
-<ol>
-<li>所有候选节点出弹出、过模型，选Topk的子节点加入候选；</li>
-<li>重复步骤1，直到叶子节点，选Topk返回。</li>
-</ol>
-<p>其中，由于训练时层与层之间是没有任何累乘的条件概率制约的，即层与层之间完全不干扰，所以初始的候选应该为层节点个数&gt;k的层的所有节点。</p>
 <h2 id="HNSW"><a href="#HNSW" class="headerlink" title="HNSW"></a>HNSW</h2><p>HNSW（Hierarchical Navigable Small World）是工业界最常用的向量检索结构之一。正如其名称所示，它通过构建多层级的小世界图来实现高效的近邻搜索。从直觉上看，HNSW 可以被类比为一张“谷歌地图”：当我们试图在地图上寻找某个具体街区时，通常会先在较粗的尺度上定位国家或城市，再逐步放大视图，最终在高分辨率的局部区域中完成精确定位。类似地，HNSW 的搜索过程也是一个由粗到细的逐层导航过程：高层图中节点稀疏、连接跨度大，用于快速确定查询向量所在的大致区域；随着搜索逐层下沉，图结构逐渐变得更加稠密，从而在局部范围内进行更精细的近邻探索。</p>
 <p>由此我们可以看到，HNSW只是index，它由Item Embedding离线构图，Serving时给定seed从上层的最近邻一路索引到最下层的最近邻，而ranking由双塔模型承担。</p>
-<h3 id="Training-4"><a href="#Training-4" class="headerlink" title="Training"></a>Training</h3><p>Training不涉及任何HNSW，只训练双塔（U侧塔，G侧塔）。</p>
+<h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><p>Training不涉及任何HNSW，只训练双塔（U侧塔，G侧塔）。</p>
 <h3 id="Offline-Graph"><a href="#Offline-Graph" class="headerlink" title="Offline Graph"></a>Offline Graph</h3><p>HNSW为层次级的向量索引结构，给定层高决定系数$m _L$，索引的最大连接数$M _{max}$，以及构图索引的基础连接数$M$，HNSW以逐节点插入的方式构图，而最终的检索则可视为在$L _0$插入节点。</p>
 <h4 id="KNN-search"><a href="#KNN-search" class="headerlink" title="KNN-search"></a>KNN-search</h4><p>HNSW的检索是近似KNN（AKNN）检索，给定Query（User Embedding或者Item Embedding）以及K（返回结果个数），KNN-search可归结为：</p>
 <ol>
@@ -523,7 +375,7 @@
 <li>Heuristic：启发式算法除了考虑距离外，还考虑了区域的连通性，即当图存在非联通子图时，还会强行地连接两个非联通子图，保证全图的连通性。</li>
 </ol>
 <h4 id="Hyper、Complexity"><a href="#Hyper、Complexity" class="headerlink" title="Hyper、Complexity"></a>Hyper、Complexity</h4><p>据文中所述，$M _{max}&#x3D;2M$、$m _L&#x3D;\frac{1}{\ln M}$，$M\in[5,48]$即可。构图复杂度$N\log N$，检索复杂度$\log N$。</p>
-<h3 id="Serving-4"><a href="#Serving-4" class="headerlink" title="Serving"></a>Serving</h3><p>Serving归结下来就是一个查表的过程，根据不同的Query构造方式，流程也会有些许不同:</p>
+<h3 id="Serving"><a href="#Serving" class="headerlink" title="Serving"></a>Serving</h3><p>Serving归结下来就是一个查表的过程，根据不同的Query构造方式，流程也会有些许不同:</p>
 <table>
 <thead>
 <tr>
@@ -558,6 +410,152 @@
 <td>从多个已生成 token 出发进行扩散式检索</td>
 </tr>
 </tbody></table>
+<h2 id="TDM"><a href="#TDM" class="headerlink" title="TDM"></a>TDM</h2><p>TDM（Tree-based Deep Models）算是较早的索引聚类召回。HNSW其实并没有聚类的概念，因为每个Item都是独立的索引，其以连边的方式连接了其他的Item，形成了以该Item为核心的小聚类，即我们有N个Item就有N个小聚类，而且这些小聚类还是相关联的。TDM则是通过构造虚拟节点，并将Item放在二叉树的叶子上，实现了一个层次聚类效果，大聚类-&gt;小聚类-&gt;小小聚类-&gt;Item。</p>
+<h3 id="Training-1"><a href="#Training-1" class="headerlink" title="Training"></a>Training</h3><p>模型+树索引两者交替训练：</p>
+<ol>
+<li>初始化模型、树索引（按category初始化）；</li>
+<li>训练模型直至收敛，其中正负样本的构造方式为：<blockquote>
+<p>正样本叶子的祖先均被视为正样本，相应地子节点均为负样本的节点被视为负样本</p>
+</blockquote>
+</li>
+<li>根据新的叶子embedding，k-means重新构造索引树（从上到下地2-means）；</li>
+<li>重复2~3直至收敛。</li>
+</ol>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/13.png" alt="tdm"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. TDM</center><br>
+
+<h3 id="Serving-1"><a href="#Serving-1" class="headerlink" title="Serving"></a>Serving</h3><p>Serving就比较简单，是比较常规的Beam-Search，即：</p>
+<ol>
+<li>所有候选节点出弹出、过模型，选Topk的子节点加入候选；</li>
+<li>重复步骤1，直到叶子节点，选Topk返回。</li>
+</ol>
+<p>其中，由于训练时层与层之间是没有任何累乘的条件概率制约的，即层与层之间完全不干扰，所以初始的候选应该为层节点个数&gt;k的层的所有节点。</p>
+<h2 id="DR"><a href="#DR" class="headerlink" title="DR"></a>DR</h2><h2 id="NANN"><a href="#NANN" class="headerlink" title="NANN"></a>NANN</h2><p>NANN（Neural Approximate Nearest Neighbor），阿里将其简称为“二向箔”，原因在于：</p>
+<ol>
+<li>传统的基于模型的两阶段召回，Ranking&amp;Indexing是分开的，最终我们实际只在训练Ranking模型，而Indexing是基于Ranking模型得到的Embedding构建的，典型的如基于HNSW的召回，这导致：a. Ranking时在用U侧和G侧内积打分，Indexing时则是ANN检索，两阶段目标不一致，检索误差无法通过Ranking模型优化；b. 为了构图，Ranking模型被设计为U侧塔和G侧塔直接内积计算的模式，无法考虑更复杂的形式。不难看出，此时的召回优化，模型层面实际上是“一维”的；</li>
+<li>一些一阶段的召回，如DR、TDM，将模型和索引协同训练，同时考虑模型、索引、计算，可视为“三维”。这类方式有着训练复杂度高、虚拟索引限制G侧无法利用更复杂特征的问题。</li>
+</ol>
+<p>NANN是对这两者的折中，其索引退回了HNSW的形式，仍由Item embedding构图（所以两阶段召回的第二个挑战似乎不太对，换了非双塔一样可以用Item embedding建立索引），但最终检索时不再直接ANN，而是用Ranking模型对enter point的邻居打分，选topk：</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/14.png" alt="NANN"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. NANN</center><br>
+
+<p>所以，名字起得很对，用Neural Network完成ANN。</p>
+<h3 id="Training-2"><a href="#Training-2" class="headerlink" title="Training"></a>Training</h3><p>Training只训练Ranking模型，但由于在NANN中，HNSW构图时用的是Item embedding的ANN（且用的为欧式距离），而Serving时又用Neural Network近似这个ANN，所以还是有比较大的不一致，不过文中似乎没有详细讨论这个问题，而是将其归结为了一个鲁棒性问题：即Item embedding的一丁点扰动可能会导致结果变成一坨，因为HNSW不再用欧式距离，而是由神经网络进行打分。</p>
+<p>文中给的方法是引入一个对抗辅助损失函数：<br><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/15.png" alt="kl"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. AUX loss</center><br>
+
+<p>不难看到$(e _v +\Delta)$是梯度“上升”，在一定程度上可被视为Bad case。引入的辅助损失函数用KL散度约束住了Bad case。</p>
+<h3 id="Serving-2"><a href="#Serving-2" class="headerlink" title="Serving"></a>Serving</h3><p>Serving本质上是一个将ANN替换为Ranking模型打分的HNSW，即给定enter point，用Ranking模型打分邻居，选top1，进入下一层，在最下层则选topk。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/614214963">https://zhuanlan.zhihu.com/p/614214963</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/443113850">https://zhuanlan.zhihu.com/p/443113850</a></li>
+</ul>
+<h2 id="Trinity"><a href="#Trinity" class="headerlink" title="Trinity"></a>Trinity</h2><p>严格来说，Trinity和Streaming VQ、NANN、HNSW等不是一个类型的东西，因为后者关注Indexing+Ranking，是对整体召回流程、模型的迭代，而Trinity则是强行用某些规则、统计结果，对召回的结果进行了筛选。<strong>简单地来说，Trinity是机器学习版的纯统计的标签召回，即直接根据标签的统计结果，召回想要的视频，不过与过去的不同的是此处的标签以及聚类是VQ-VAE学习出来的，而不是人为的硬标签（如动漫、音乐等）。</strong></p>
+<p>因此，Trinity是对其他纯基于模型的召回的补充，它以<strong>统计</strong>的方式，缓解了各类流式更新的召回模型过于注重当下热门话题、当下兴趣的现象。</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/16.png" alt="Trinity"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. Trinity</center><br>
+
+<h3 id="Training-3"><a href="#Training-3" class="headerlink" title="Training"></a>Training</h3><p>Trinity的Training就只是在训练Codebook，输入为用户历史长序列以及Item，正例为互动过或者完播等的视频，与VQ-VAE、Streaming VQ基本类似。不过不同的是Trinity训练了两个Codebook，一个词本小，记为Primary Clusters；另一个词本大，记为Secondary Clusters。</p>
+<h3 id="Serving-3"><a href="#Serving-3" class="headerlink" title="Serving"></a>Serving</h3><p>Trinity的主要动机为保证用户的长期兴趣，基于此从：multi-interest（多）、long-tail interest（长尾）、long-term interest（长期），三个方面展开。</p>
+<h4 id="Multi-interest"><a href="#Multi-interest" class="headerlink" title="Multi-interest"></a>Multi-interest</h4><ol>
+<li>从用户历史长序列中取互动过或者完播或者播放时长&gt;10s的Item（Length &lt;&#x3D; 2500）；</li>
+<li>得到Item的Primary&#x2F;Secondary Clusters，分别计算Primary Clusters和Secondary Clusters的频率直方图；</li>
+<li>由于Secondary Clusters的个数多于Primary Clusters，两者存在多对一的关系，将Secondary Clusters作为Primary Clusters的子节点；</li>
+<li>在频率满足阈值的Primary Clusters中，随机选一个满足频率阈值的Secondary Clusters，加入候选；</li>
+<li>遍历完后候选未满则在频率满足阈值的Primary Clusters中取频率最大的Secondary Clusters，加入候选；</li>
+<li>还不满则将频率大的Secondary Clusters，加入候选；</li>
+<li>所有候选Item过一个Ranking模型。</li>
+</ol>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/17.png" alt="Multi-interest"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Multi-interest</center><br>
+
+<h4 id="Long-tail-interest"><a href="#Long-tail-interest" class="headerlink" title="Long-tail interest"></a>Long-tail interest</h4><ol>
+<li>按<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3298689.3346996">Sampling Bias</a>的方法得到每个Secondary Clusters的平均出现间隔，由大到小排序（过滤Item数过少的Clusters），取间隔最大的几个，作为<strong>全局</strong>的Long-tail interests；</li>
+<li>复用Multi-interest的用户Secondary Clusters频率直方图，将频率大于阈值且在全局Long-tail interests的加入候选；</li>
+<li>每个候选的Secondary Cluster以其归一化后的频率作为概率（公式见下），随机采样出限定个数的Clusters，作为最终候选；</li>
+<li>所有候选Item过一个Ranking模型。</li>
+</ol>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/19.png" alt="Probability"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Probability</center><br>
+
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/18.png" alt="Long-tail"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Long-tail interest</center><br>
+
+<h4 id="Long-term-interest"><a href="#Long-term-interest" class="headerlink" title="Long-term interest"></a>Long-term interest</h4><p>最简单，直接用历史互动过或完播或播放时长&gt;&#x3D;10s的Item作为种子（当然，种子也需要模型进行排序），然后ANN（对每个Cluster被选取的Item数作限制）。</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/20.png" alt="Long-term"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Long-term interest</center><br>
+
+<p>总的来看是用向量量化（VQ）生成动态标签，代替传统的静态标签，实现了对传统统计召回的升级。</p>
+<h2 id="Streaming-VQ"><a href="#Streaming-VQ" class="headerlink" title="Streaming VQ"></a>Streaming VQ</h2><p>VQ（Vector Quantisation），顾名思义是将一坨向量映射到一个索引，实际就是将向量分组。于推荐而言，召回中的VQ可以理解为由反向传播优化得到的动态分组方法。为什么召回需要分组，或者说需要索引？因为召回的候选是视频的全集，我们不可能在第一个阶段就对每个用户进行全候选计算，因此需要缩小范围。那么如何缩小范围？最简单的就是为用户以及视频打上标签，如我喜欢看日漫，那就只召回带日漫标签的。直接用标签分组缺乏灵活性，而VQ就是这么一个动态分组。</p>
+<h3 id="VQ-VAE"><a href="#VQ-VAE" class="headerlink" title="VQ-VAE"></a>VQ-VAE</h3><p>首先，VQ这种方式在Neurips2017的文章<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1711.00937">VQ-VAE</a>中首次被用到了生成式任务中：</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/1.png" alt="vqvae"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. VQ-VAE</center><br>
+
+<p>其对VAE Encoder的输出$z$进行了分组（后面都称索引），由于现实的图片分布可以理解为无数个高斯分布的叠加，因此这些索引我认为最终是实现了一个索引对应一个或者几个高斯分布。整个流程还是VAE那一套，量化体现在Encoder-&gt;Decoder的部分，即每个索引有其自身的Embedding，选取与Encoder输出欧式距离最近的组的Embedding作为Decoder的输入：</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/2.png" alt="quantisation"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. Quantisation</center><br>
+
+<p>Loss由三部分组成（加号分割）：</p>
+<ul>
+<li>$\mathcal{L} _1$即重构MSE，生成梯度用于更新Decoder，比较特别的是，由于输入Decoder的是索引Embedding，因此梯度不会传到到Encoder，作者的解决方式是：Decoder和Encoder的结构是一模一样的，因此直接用Decoder的梯度更新Encoder;</li>
+<li>$\mathcal{L} _2$中sg指stop gradient，用于更新索引Embedding。不难看出，最终每个索引的Embedding其实一定程度上等于该索引所包含的向量的均值，因此也可以采用指数移动平均EMA的更新方法，Streaming VQ用的就是这种方式；</li>
+<li>$\mathcal{L} _3$更新Encoder，起到正则的效果。</li>
+</ul>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/3.png" alt="loss"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. Loss of VQ-VAE</center><br>
+
+<p>以上都是训练，实际Serving的时候就和VQ没什么关系了，还是从某个先验中采样出Embedding输入Decoder，而不是用Codebook（即索引表）的Embedding。</p>
+<h3 id="Streaming-VQ-1"><a href="#Streaming-VQ-1" class="headerlink" title="Streaming VQ"></a>Streaming VQ</h3><p>在VQ-VAE中，VQ实际上只是起到了一个辅助VAE训练的作用，最终的Codebook在Serving的时候并没有起到作用，而在Streaming VQ中，Codebook不仅有索引，每个索引下还有着对应的归属于该索引的视频，因而是有着实际作用的。</p>
+<h4 id="Training-4"><a href="#Training-4" class="headerlink" title="Training"></a>Training</h4><p>整体架构如大的黑色虚线上面的部分所示：</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/4.png" alt="streaming_vq"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 4. Streaming VQ</center><br>
+
+<p>相比VQ-VAE，下游任务不再是重构，而是对应的推荐系统二分类任务，并且Codebook的更新使用了<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/68748778">EMA</a>，因此最终的损失函数实际只有一项，对应VQ-VAE的重构Loss，但细拆下来会有两项，分别是Item（视频）本身与User的分类Loss，以及Codebook与User的分类Loss：</p>
+<ul>
+<li><p>Item_User：更新G侧和U侧。<br><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/5.png" alt="item_user"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 5. Item-User</center><br>
+</li>
+<li><p>Codebook_User：Codebook的Loss回传更新G侧，Codebook本身由G侧Embedidng EMA更新，U侧是否更新不清楚。<br><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/6.png" alt="codebook_user"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 6. Codebook-User</center><br></li>
+</ul>
+<p>以上两者都采用In-batch softmax，即InfoNCE（无温度系数，定义见<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1911.05722">MoCo</a>）。</p>
+<blockquote>
+<p>In-batch softmax，本质上是一种负采样方法。对于一个Batch内的U-G对，将匹配的$U _i$与$G _i$作为正样本，而将$U _i$与$G _j$作为负样本，于是对一个大小为n的batch，就有n个正样本，n(n-1)个负样本。但这会导致视频成为负样本的概率与其出现次数成正比，导致对高热视频的打压，<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3298689.3346996">Sampling Bias</a>即用于解决这个问题。</p>
+</blockquote>
+<h4 id="Serving-4"><a href="#Serving-4" class="headerlink" title="Serving"></a>Serving</h4><p>由于G侧塔和U侧塔的特征是完全独立的，因此在同一个时刻每个Item都会唯一地被分配一个索引，那么实际我们只要计算U侧Embedidng和Codebook各个索引Embedding的内积，取靠前的几个作为我们的候选即可。但是，用户的兴趣是多元的（或者说长尾的），分低的索引中也可能有用户很感兴趣的视频，前面的处理会导致过于注重头部兴趣，而忽略了尾部兴趣。Streaming VQ的解决方式是为每个Item引入单独的Bias项，起到Embedding表征个性化、Bias表征视频热门程度的作用：</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/9.png" alt="personality_formula"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 7. Item bias for personality and popularity: formula</center><br>
+
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/8.png" alt="personality"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 8. Item bias for personality and popularity: model</center><br>
+
+<p>如此，Codebook中不同索引的Item也变得可比了，于是我们可以直接k路归并地召回：</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/7.png" alt="K-merge"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 9. K-merge sort</center><br>
+
+<p>还有一个问题是，如何为所有的样本打上索引标签？文中的解决方式是两个数据流：</p>
+<ul>
+<li>曝光样本组成的实时数据流：即正常的流式更新，有梯度回传，如Fig4中item feature的蓝线所示；</li>
+<li>所有候选数据流：仅生成G侧塔的Embedding以及对应的索引，无梯度，如Fig4中item feture和黑色虚线所示。</li>
+</ul>
+<h4 id="Trick"><a href="#Trick" class="headerlink" title="Trick"></a>Trick</h4><p>总的框架就如上面所述，对一个用户，Serving时：User Embedding和Codebook Embedding内积求相似度-&gt;k路归并召回一定数量的视频-&gt;Ranking模型打分将前面的视频送入粗排。</p>
+<p>但实际要真能在线上有用，还是需要一些小技巧。</p>
+<h5 id="Index-Reparability"><a href="#Index-Reparability" class="headerlink" title="Index Reparability"></a>Index Reparability</h5><p>即视频对应索引的可变性。对比VQ-VAE和Streaming VQ的Loss可发现，除去Streaming VQ使用EMA代替梯度回传外，Streaming VQ还少了$\mathcal{L} _3$，即用于让Item Embedding不会过多偏移其所属的Codebook Embedding的L2正则项，起到的作用为让Item的对应的索引保持稳定。</p>
+<p>如文中所述，图片的特征是静态的，其所属的索引保持稳定没有任何问题；而对于推荐的视频，其不少特征是动态变化的，如互动、播放量等，因此其对应的索引也应该是可变化的。故而Streaming VQ去掉了这一项正则，而让Item_User的Loss去更新Item。</p>
+<h5 id="Index-Balancing"><a href="#Index-Balancing" class="headerlink" title="Index Balancing"></a>Index Balancing</h5><p>即每个索引包含的视频个数要尽可能地均衡。由于VQ的映射是多对一的，因此Codebook_User Loss这一项的存在会天然地要求每个索引所包含的视频个数尽可能一致，如5个视频5个索引，那肯定是一对一的Loss最小，因为这时Codebook Embedding就等于Item Embedding。</p>
+<p>为了进一步提升均衡性，文中还有两个额外的改进：</p>
+<ol>
+<li>EMA时，用视频的在当前时间步的出现周期$\delta ^t$作为放缩项，减小高热Item的权重；同时维护一个<strong>索引k</strong>出现次数的计数$c _k$，打压高热Cluster的更新。<br>$$<br>\begin{align*}<br>\mathbf{w} ^{t+1} _k&amp;&#x3D;\alpha \mathbf{w} _k ^t+(1-\alpha)(\delta ^t) ^{\beta}v _j ^t,\\<br>c _k ^{t+ 1}&amp;&#x3D;\alpha c _k ^t+(1-\alpha)(\delta ^t) ^{\beta},\\<br>\mathbf{e} _k ^{t+1}&amp;&#x3D;\frac{\mathbf{w} _k ^{t+1}}{c _k ^{t+ 1}}<br>\end{align*}<br>$$</li>
+<li>复用前面的$c _k$，对出现次数少的Cluster做一个Boost。<br><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/10.png" alt="boost"><center style="font-size:12px; font-weight:bold">Fig. 10. Low loading cluster boost</center><br></li>
+</ol>
+<p>即，在分布均匀可由VQ自身保证的情况下，分别从Item侧（防止Cluster被高热Item主导）和Cluster侧（防止训练被高热Cluster主导）做了平衡措施。</p>
+<blockquote>
+<p>$\delta$定义源自<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3298689.3346996">Sampling Bias</a>。按论文中的方法，为每个GID分配一个$\delta _i$，初始化为0，以及最近一次出现的epoch$t _i$，然后当其在本epoch出现时，移动平均地更新：$\delta _i&#x3D;(1-\alpha) \delta _{i-1} + \alpha (t - t _i)$；$t _i &#x3D; t$，不难看出，当更新步数足够大时，$\delta _i$即为对应视频出现的周期，那么$1&#x2F;\delta _i$即为其出现的频率。原文用这个频率为In-batch softmax的双塔内积消偏，即：$s(x _i, y _j) - \log(p _j)$，最终效果为对热门物品，放大其打分。</p>
+</blockquote>
+<h5 id="Multi-task-Streaming-VQ"><a href="#Multi-task-Streaming-VQ" class="headerlink" title="Multi-task Streaming VQ"></a>Multi-task Streaming VQ</h5><p>仅针对Indexing时的多目标，因为Ranking的多目标和粗精排没什么区别。</p>
+<p>一言以蔽之：仅U侧塔个数变为多目标个数，前面的负载均衡公式引入每个目标的Reward项$h$（即0&#x2F;1，是否为正样本，最终累乘的结果实际上就是一个多项式相乘的融分）调节多目标的更新权重：</p>
+<p><img src="/2026/01/18/Retrievers-Indexing-and-Ranking/11.png" alt="boost"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 11. Multi-task</center><br>
 
     </div>
 
