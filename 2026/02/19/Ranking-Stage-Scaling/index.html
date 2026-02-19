@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/02/19/Ranking-Stage-Scaling/1.png">
 <meta property="og:image" content="https://zclzcl0223.github.io/2026/02/19/Ranking-Stage-Scaling/2.png">
 <meta property="article:published_time" content="2026-02-19T01:35:12.000Z">
-<meta property="article:modified_time" content="2026-02-19T02:26:00.456Z">
+<meta property="article:modified_time" content="2026-02-19T06:42:03.964Z">
 <meta property="article:author" content="Chaolv Zeng">
 <meta property="article:tag" content="Recommender System">
 <meta property="article:tag" content="Ranking">
@@ -239,7 +239,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2026-02-19 09:35:12 / Modified: 10:26:00" itemprop="dateCreated datePublished" datetime="2026-02-19T09:35:12+08:00">2026-02-19</time>
+      <time title="Created: 2026-02-19 09:35:12 / Modified: 14:42:03" itemprop="dateCreated datePublished" datetime="2026-02-19T09:35:12+08:00">2026-02-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -265,7 +265,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>697</span>
+      <span>763</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -305,6 +305,7 @@
 <li><strong>参数的组织方式</strong>。序列Token共享一套QKV、FFN，非序列Token则每个Token一套QKV、FFN。</li>
 <li><strong>逐层的序列压缩</strong>。整体为完全的Causual-attention，这使得后面的Token聚合了前面Token的信息，因此OneTrans采用了逐层<strong>缩短</strong>Query的方式来压缩序列长度，如在某层中，KV为全序列，Q只为后一半序列，那么经过该Block的交互后，整体序列长度减半。最终只会剩下非序列Token，然后Mean-pooling过各种二分类任务。</li>
 </ol>
+<p>线上Serving时，序列Token可KV cache，非序列Token因有各种Context或计数特征需要实时计算。虽然文中的消融实验显示Full-attention和Causual-attention效果差不多，但非序列Token感觉用双向注意力更好？</p>
 
     </div>
 
