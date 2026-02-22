@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>RQ-VAE</title>
+    <url>/2026/02/19/RQ-VAE/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h2 id="RQ-VAE"><a href="#RQ-VAE" class="headerlink" title="RQ-VAE"></a>RQ-VAE</h2><p><a href="https://arxiv.org/pdf/2203.01941">RQ-VAE</a>，方法很简单，一言以蔽之就是用List-wise的索引[1,2,3]代替Point-wise的索引[1]，以达到$A+B+C&#x3D;ABC$的效果，其中$A$、$B$、$C$分别为一、二、三级Codebook的大小。实际上把VQ-VAE简单扩展一下就可以实现这样的效果，但RQ-VAE稍微略有不同，它每级用的都是一个Codebook，而用于匹配索引的Item embedding是上一级的残差，即：</p>
+<p><img src="/2026/02/19/RQ-VAE/1.png" alt="RQVAE"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 1. RQ-VAE</center><br>
+
+<p>其中$e(k _d)$是$k _d$索引的Embedding，$r _{d-1}$为残差，$r _0$初始化为Item embedding。</p>
+<p><img src="/2026/02/19/RQ-VAE/2.png" alt="TIGER"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 2. RQ-VAE from TIGER</center><br>
+
+
+<h2 id="TIGER"><a href="#TIGER" class="headerlink" title="TIGER"></a>TIGER</h2><p><a href="https://arxiv.org/pdf/2305.05065">TIGER</a>在多方面都算是生成式召回比较开山、有代表性的工作。</p>
+<p>TIGER将RQ-VAE生成的List-wise索引称为Semantic IDs（SID），并搭建了一个NTP的SID生成范式。SID的初始Item embedding为对Item的一系列文本描述经过BERT后的编码，然后基于这个编码训练RQ-VAE（每级单独的Codebook，这点与原始RQ-VAE不同）得到每个Item的SID。每个Item SID的大小为<strong>3</strong>，对SID相同的Item额外增加一个ID进行区分（即大小为4）。对于可能出现的虚假SID问题，即没有任何Item与该SID组合匹配，文中的实验指出，这种情况出现的概率极低。</p>
+<p><img src="/2026/02/19/RQ-VAE/3.png" alt="TIGER"></p>
+<center style="font-size:12px; font-weight:bold">Fig. 3. TIGER pipeline</center><br>
+]]></content>
+      <categories>
+        <category>Recommender System</category>
+      </categories>
+      <tags>
+        <tag>Generative AI</tag>
+        <tag>Recommender System</tag>
+        <tag>Recall</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ranking Stage Scaling</title>
     <url>/2026/02/19/Ranking-Stage-Scaling/</url>
     <content><![CDATA[<span id="more"></span>
@@ -5188,8 +5216,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
         <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
@@ -5276,8 +5304,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>Math</tag>
         <tag>CNN</tag>
+        <tag>Math</tag>
         <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
@@ -8400,6 +8428,20 @@
       </tags>
   </entry>
   <entry>
+    <title>Gamma and Factorial</title>
+    <url>/2023/05/05/GammaAndFactorial/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Programming Language</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Lambda: Anomymous Functions</title>
     <url>/2023/05/05/PythonLambda/</url>
     <content><![CDATA[<span id="more"></span>
@@ -8453,20 +8495,6 @@
       <tags>
         <tag>Python</tag>
         <tag>Configuration</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Gamma and Factorial</title>
-    <url>/2023/05/05/GammaAndFactorial/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="Gamma-n-1-and-n"><a href="#Gamma-n-1-and-n" class="headerlink" title="$\Gamma(n+1)$ and $n!$"></a>$\Gamma(n+1)$ and $n!$</h1><p>Factorial is an operation unique to positive integers and zero. There is no direct definition of factorial for positive real numbers. But if we connect the discrete points in the factorial function into a smooth curve, we get the factorial of a positive real number. And that&#39;s gamma function:<br>$$<br>\Gamma(x)&#x3D;\int_0^{+\infty}t^{x-1}e^{-t}dt(x&gt;0)<br>$$<br>gamma function is the expansion of factorial on positive real numbers:<br>$$<br>\Gamma(n+1)&#x3D;n!<br>$$<br>Therefore:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">math.gamma(<span class="number">5</span>)==<span class="number">24</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">True</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Programming Language</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
