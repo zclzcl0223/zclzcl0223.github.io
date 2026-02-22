@@ -5,7 +5,7 @@
     <url>/2026/02/19/RQ-VAE/</url>
     <content><![CDATA[<span id="more"></span>
 
-<h2 id="RQ-VAE"><a href="#RQ-VAE" class="headerlink" title="RQ-VAE"></a>RQ-VAE</h2><p><a href="https://arxiv.org/pdf/2203.01941">RQ-VAE</a>，方法很简单，一言以蔽之就是用List-wise的索引[1,2,3]代替Point-wise的索引[1]，以达到$A+B+C&#x3D;ABC$的效果，其中$A$、$B$、$C$分别为一、二、三级Codebook的大小。实际上把VQ-VAE简单扩展一下就可以实现这样的效果，但RQ-VAE稍微略有不同，它每级用的都是一个Codebook，而用于匹配索引的Item embedding是上一级的残差，即：</p>
+<h2 id="RQ-VAE"><a href="#RQ-VAE" class="headerlink" title="RQ-VAE"></a>RQ-VAE</h2><p><a href="https://arxiv.org/pdf/2203.01941">RQ-VAE</a>，方法很简单，一言以蔽之就是用List-wise的索引[1,2,3]代替Point-wise的索引[1]，以达到$A+B+C&#x3D;ABC$的效果，其中$A$、$B$、$C$分别为一、二、三级Codebook的大小。实际上把VQ-VAE简单扩展一下就可以实现这样的效果，但RQ-VAE略有不同，它每级用的都是一个Codebook，而用于匹配索引的Item embedding是上一级的残差，即：</p>
 <p><img src="/2026/02/19/RQ-VAE/1.png" alt="RQVAE"></p>
 <center style="font-size:12px; font-weight:bold">Fig. 1. RQ-VAE</center><br>
 
@@ -1354,8 +1354,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1608,8 +1608,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1752,8 +1752,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -1988,8 +1988,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -2204,8 +2204,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -2332,8 +2332,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -2772,8 +2772,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -2883,8 +2883,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -3144,8 +3144,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -3172,8 +3172,8 @@
         <category>CS7313: Computational Complexity</category>
       </categories>
       <tags>
-        <tag>Theoretical Computer Science</tag>
         <tag>Math</tag>
+        <tag>Theoretical Computer Science</tag>
       </tags>
   </entry>
   <entry>
@@ -3886,8 +3886,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
       </tags>
   </entry>
@@ -5216,8 +5216,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
         <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
@@ -5304,8 +5304,8 @@
         <category>Math</category>
       </categories>
       <tags>
-        <tag>CNN</tag>
         <tag>Math</tag>
+        <tag>CNN</tag>
         <tag>Digital Signal Processing</tag>
       </tags>
   </entry>
@@ -7873,8 +7873,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
@@ -7978,8 +7978,8 @@
         <category>Tool</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>Deep Learning</tag>
+        <tag>Python</tag>
         <tag>Tool</tag>
         <tag>Machine Learning</tag>
       </tags>
